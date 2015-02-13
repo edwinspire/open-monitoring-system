@@ -1,0 +1,4 @@
+<xsql>
+	<uxsql_query driver='postgres' db_conexion_name='db1'>SELECT * FROM fun_view_contacts_to_list_xml($1::boolean);</uxsql_query>
+		<uxsql_parameter name='field_as_base63'>true</uxsql_parameter>
+</xsql>

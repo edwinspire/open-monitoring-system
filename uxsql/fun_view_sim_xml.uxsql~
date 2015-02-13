@@ -1,0 +1,5 @@
+<xsql>
+	<uxsql_query driver='postgres' db_conexion_name='db1'>SELECT * FROM fun_view_sim_xml($1::boolean);</uxsql_query>
+		<uxsql_parameter name='fields_as_base64'>true</uxsql_parameter>	
+				
+</xsql>

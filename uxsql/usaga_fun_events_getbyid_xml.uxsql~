@@ -1,0 +1,14 @@
+<xsql>
+	<uxsql_query driver='postgres' db_conexion_name='db1' native_xml='true'>SELECT * FROM usaga.fun_events_getbyid_xml($1::integer, $2::boolean);</uxsql_query>
+		<uxsql_parameter http_get='idaccounts'>{}</uxsql_parameter>
+		<uxsql_parameter http_get='start'>2000-01-01 00:00</uxsql_parameter>		
+		<uxsql_parameter http_get='end'>2050-01-01 00:00</uxsql_parameter>		
+		<uxsql_parameter http_get='f'>0</uxsql_parameter>		
+		<uxsql_parameter http_get='rows'>100</uxsql_parameter>		
+		<uxsql_parameter http_get='ideventtypes'>{}</uxsql_parameter>		
+		<uxsql_parameter http_get='status'>{}</uxsql_parameter>		
+		<uxsql_parameter http_get='prioritymin'>0</uxsql_parameter>		
+		<uxsql_parameter http_get='prioritymax'>100</uxsql_parameter>			
+		<uxsql_parameter name='fields_as_base64'>true</uxsql_parameter>	
+				
+</xsql>

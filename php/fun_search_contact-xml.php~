@@ -1,0 +1,12 @@
+<?php
+include "pg.php";
+
+if (isset($_GET['search'])) {
+	$result = pg_query_params($pGdbconn, 'fun_event_comment_insert_xml($1::integer, $2::integer, $3::integer, $4::integer, $5::text, $6::integer[], $7::boolean) as return;', array($_GET['search'], 'true'));
+$val = pg_fetch_result($result, 0, 0);
+//Header('Content-type: text/xml');
+echo $val;
+}else{
+echo "<table></table>";
+}
+?>

@@ -1,0 +1,10 @@
+<xsql>
+	<uxsql_query driver='postgres' db_conexion_name='db1' native_xml='true'>SELECT * FROM fun_provider_edit_xml($1::integer, $2::boolean, $3::text, $4::text, $5::timestamp without time zone, $6::boolean);</uxsql_query>
+		<uxsql_parameter http_post='idprovider'></uxsql_parameter>
+		<uxsql_parameter http_post='enable'></uxsql_parameter>
+		<uxsql_parameter http_post='name'></uxsql_parameter>
+		<uxsql_parameter http_post='note'></uxsql_parameter>		
+		<uxsql_parameter http_post='ts'></uxsql_parameter>		
+		<uxsql_parameter name='fields_as_base64'>true</uxsql_parameter>	
+		
+</xsql>

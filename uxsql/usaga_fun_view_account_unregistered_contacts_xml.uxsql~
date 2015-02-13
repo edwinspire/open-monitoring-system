@@ -1,0 +1,14 @@
+<xsql>
+	<uxsql_query driver='postgres' db_conexion_name='db1' native_xml='true'>SELECT * FROM usaga.fun_view_account_unregistered_contacts_xml($1::integer, $2::boolean);</uxsql_query>
+	<uxsql_parameter http_post='idaccount'>0</uxsql_parameter>
+	<uxsql_parameter http_post='enable'>false</uxsql_parameter>
+	<uxsql_parameter http_post='account'></uxsql_parameter>
+	<uxsql_parameter http_post='name'></uxsql_parameter>
+	<uxsql_parameter http_post='idgroup'>0</uxsql_parameter>
+	<uxsql_parameter http_post='partition'>0</uxsql_parameter>
+	<uxsql_parameter http_post='type'>0</uxsql_parameter>
+		<uxsql_parameter http_post='idcontact'>0</uxsql_parameter>
+	<uxsql_parameter http_post='note'></uxsql_parameter>
+		<uxsql_parameter name='fields_as_base64'>true</uxsql_parameter>	
+				
+</xsql>

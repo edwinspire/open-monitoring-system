@@ -1,0 +1,22 @@
+define("jspire/Tuple",["dojo/_base/declare", "jspire/Tuple"],function(_1){
+
+return {
+
+// Requiere los modulos 'gridx/modules/RowHeader', 'gridx/modules/select/Row', 'gridx/modules/extendedSelect/Row', 'gridx/modules/IndirectSelect'
+// Tambien debe tener un campo unique_id visible para usarlo como referencia
+load: function(idtuple){
+
+return "";
+},
+
+save: function(){
+
+return gridx;
+},
+
+delete: function(){
+
+}
+
+};
+});

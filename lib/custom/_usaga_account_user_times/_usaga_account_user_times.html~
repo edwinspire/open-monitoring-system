@@ -1,0 +1,25 @@
+<div>
+  <div data-dojo-type="_common_basic_menubar/_common_basic_menubar" id="toolbar"></div>
+  <div data-dojo-type="_common_titlebar/_common_titlebar" id="title_horario_semana"></div>
+  <div data-dojo-type="_usaga_account_user_time_day/_usaga_account_user_time_day" id="lunes"></div>
+  <div data-dojo-type="_usaga_account_user_time_day/_usaga_account_user_time_day" id="martes"></div>
+  <div data-dojo-type="_usaga_account_user_time_day/_usaga_account_user_time_day" id="miercoles"></div>
+  <div data-dojo-type="_usaga_account_user_time_day/_usaga_account_user_time_day" id="jueves"></div>
+  <div data-dojo-type="_usaga_account_user_time_day/_usaga_account_user_time_day" id="viernes"></div>
+  <div data-dojo-type="_usaga_account_user_time_day/_usaga_account_user_time_day" id="sabado"></div>
+  <div data-dojo-type="_usaga_account_user_time_day/_usaga_account_user_time_day" id="domingo"></div>
+  <div data-dojo-type="_usaga_account_user_time_day/_usaga_account_user_time_day" id="feriado"></div>
+  <div data-dojo-type="_common_titlebar/_common_titlebar" id="title_vacaciones" style="margin-top: 5px;"></div>
+  <div>
+   <div style="margin: 5px; display: inline-block;">
+    <label style="margin-right: 5px;">
+  Inicio:</label>
+    <input type="text" data-dojo-type="dijit/form/DateTextBox" id="vacacionesini" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." style="width: 120px;" value="2012-01-01"></input>
+  </div>
+   <div style="margin: 5px; display: inline-block;">
+     <label style="margin-right: 5px;">
+     Inicio:</label>
+     <input type="text" data-dojo-type="dijit/form/DateTextBox" id="vacacionesfin" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." style="width: 120px;" value="2012-01-01"></input>
+   </div>
+ </div>
+</div>

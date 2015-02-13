@@ -1,0 +1,5 @@
+<xsql>
+	<uxsql_query driver='sqlite' db_name="server">SELECT * FROM serialport;</uxsql_query>
+			<uxsql_column_b64>port</uxsql_parameter>
+			<uxsql_column_b64>note</uxsql_parameter>
+</xsql>

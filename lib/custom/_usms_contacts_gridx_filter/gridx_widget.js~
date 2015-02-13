@@ -1,0 +1,13 @@
+define(['dojo/_base/declare',
+'dijit/_Widget',
+'dijit/_Templated',
+'dojo/text!gridx_widget/gridx_widget.html',
+'dojo/data/ItemFileReadStore',
+'gridx/Grid'
+],function(declare,_Widget,_Templated,templateString){
+
+ return declare([ _Widget, _Templated], {
+       widgetsInTemplate:true,
+       templateString:templateString   
+});
+});
