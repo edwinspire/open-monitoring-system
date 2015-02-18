@@ -37,7 +37,7 @@ require(["dojo/ready", "dojox/geo/openlayers/Map", 'dojo/request', 'jspire/reque
 		}
 		);
 		if(IdAccount > 0) {
-			R.get('/uxsql/usaga_fun_view_account_location_byid_xml.uxsql', {
+			R.get('/php_query/usaga_fun_view_account_location_byid_xml.php', {
 				query: {
 					idaccount: IdAccount
 				}
@@ -64,7 +64,7 @@ require(["dojo/ready", "dojox/geo/openlayers/Map", 'dojo/request', 'jspire/reque
 				map.getOLMap().zoomTo(Math.round(SliderZoom.get('value')));
 				//////////////////////////////////////////////////////////
 				// Obtenemos las coordenadas de los contactos de la cuenta
-				R.get('/uxsql/usaga_fun_view_account_location_byid_xml.uxsql', {
+				R.get('/php_query/usaga_fun_view_account_location_byid_xml.php', {
 					query: {
 						idaccount: IdAccount
 					}

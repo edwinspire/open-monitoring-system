@@ -85,7 +85,7 @@ require(["dojo/ready",
 			var num = GridxTable.IdToDelete.length;
 			if(num > 0) {
 			//TODO No implementado
-				request.post('/uxsql/serialport_delete.uxsql', {
+				request.post('/php_query/serialport_delete.php', {
 					handleAs: "xml",
 					data: {
 						idports: GridxTable.IdToDelete.toString()
@@ -123,7 +123,7 @@ require(["dojo/ready",
 			);
 			GridxTable.IdToDelete = [];
 			// Request the text file
-			request.get("/uxsql/serialport_select_all.uxsql", {
+			request.get("/php_query/serialport_select_all.php", {
 				// Parse data from xml
 				handleAs: "xml"
 			}
@@ -168,9 +168,9 @@ require(["dojo/ready",
 		// Guarda los datos
 		GridxTable.SaveItem = function(item) {
 		
-		var url = '/uxsql/serialport_edit.uxsql';
+		var url = '/php_query/serialport_edit.php';
 		if(item.idport == 0){
-			url = '/uxsql/serialport_insert.uxsql';
+			url = '/php_query/serialport_insert.php';
 		}
 		
 			request.post(url, {

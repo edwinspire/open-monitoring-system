@@ -1,0 +1,10 @@
+<xsql>
+	<uxsql_query driver='postgres' db_conexion_name='db1' native_xml='true'>SELECT * FROM usaga.fun_view_account_users_trigger_phones_contacts_xml($1::integer, $2::integer, $3::boolean);</uxsql_query>
+	<uxsql_parameter http_post='idaccount'>0</uxsql_parameter>
+	<uxsql_parameter http_post='idphone'>0</uxsql_parameter>
+	<uxsql_parameter http_post='enable'>false</uxsql_parameter>
+	<uxsql_parameter http_post='fromsms'>100</uxsql_parameter>
+	<uxsql_parameter http_post='fromcall'>false</uxsql_parameter>
+	<uxsql_parameter http_post='note'></uxsql_parameter>
+	<uxsql_parameter name='fields_as_base64'>true</uxsql_parameter>				
+</xsql>

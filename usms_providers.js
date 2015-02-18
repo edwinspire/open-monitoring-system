@@ -61,11 +61,8 @@ require(["dojo/ready",
 	}
 	gridxprovider.delete = function() {
 		if(gridxprovider.selected.length>0) {
-			request.post('/uxsql/fun_provider_delete_selection_xml.uxsql', {
-				data: {
-					"{"+idproviders: gridxprovider.selected.toString()+"}"
-				}
-				,
+			request.post('/php_query/fun_provider_delete_selection_xml.php', {
+				data: {idproviders: "{"+gridxprovider.selected.toString()+"}"},
 									            handleAs: "xml"
 			}
 			).then(
@@ -126,7 +123,7 @@ require(["dojo/ready",
 	gridxprovider._Load= function() {
 		gridxprovider.selected = [];
 		// Request the text file
-		request.get("/uxsql/fun_view_provider_table_xml.uxsql", {
+		request.get("/php_query/fun_view_provider_table_xml.php", {
 			// Parse data from xml
 			handleAs: "xml"
 		}
@@ -177,7 +174,7 @@ require(["dojo/ready",
 	}
 	gridxprovider._Save= function(item) {
 		// Request the text file
-		request.post("/uxsql/fun_provider_edit_xml.uxsql", {
+		request.post("/php_query/fun_provider_edit_xml.php", {
 			// Parse data from xml
 			data: item,
 							            handleAs: "xml"

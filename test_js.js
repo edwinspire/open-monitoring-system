@@ -8,17 +8,22 @@ require(["dojo/ready",
          // logic that requires that Dojo is fully initialized should go here
 
 
+var dt = dojo.byId('test');
+var dtx = dijit.byId('sd');
+
 var data = new ds();
-data.url = "test_js.json";
-data.load(0);
+data.url_load = "test_js.json";
+
+data.name_document('db1');
+
+
 dojo.connect(data, 'onLoad', function(){
 console.log('Cargado');
 })
 
-console.log(data.data_);
 setTimeout(function(){
-console.log(data.data_);
-}, 2000);
+data.load(1);
+}, 5000);
 
 
 

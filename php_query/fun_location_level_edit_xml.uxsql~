@@ -1,0 +1,11 @@
+<xsql>
+	<uxsql_query driver='postgres' db_conexion_name='db1' native_xml='true'>SELECT * FROM fun_location_level_edit_xml($1::integer, $2::integer, $3::integer, $4::text, $5::text, $6::timestamp without time zone, $7::boolean);</uxsql_query>
+		<uxsql_parameter http_post='level'>0</uxsql_parameter>
+		<uxsql_parameter http_post='idpk'>0</uxsql_parameter>
+		<uxsql_parameter http_post='idfk'>0</uxsql_parameter>
+		<uxsql_parameter http_post='name'></uxsql_parameter>
+		<uxsql_parameter http_post='code'></uxsql_parameter>
+		<uxsql_parameter http_post='ts'></uxsql_parameter>	
+		<uxsql_parameter name='fields_as_base64'>true</uxsql_parameter>	
+				
+</xsql>

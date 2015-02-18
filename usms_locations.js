@@ -158,7 +158,7 @@ require(["dojo/ready",
 					level: t.level, idpk:item.idpk, idfk: item.idfk, name: item.name, code: item.code, ts: item.ts
 				}
 				;
-				request.post('/uxsql/fun_location_level_edit_xml.uxsql', {
+				request.post('/php_query/fun_location_level_edit_xml.php', {
 					handleAs: "xml",
 					data: d,
 				}
@@ -184,7 +184,7 @@ require(["dojo/ready",
 			,
 			this.delete = function() {
 				var t = this;
-				request.post('/uxsql/fun_location_level_remove_selected_xml.uxsql', {
+				request.post('/php_query/fun_location_level_remove_selected_xml.php', {
 					handleAs: "xml",
 					data: {
 						ids: "{"+t.to_delete.toString()+"}", level: t.level
@@ -238,7 +238,7 @@ require(["dojo/ready",
 			t.setHeaderLabel('---');
 			L2.onLoad();
 			// Request the text file
-			request.get("/uxsql/fun_view_location_level_xml.uxsql", {
+			request.get("/php_query/fun_view_location_level_xml.php", {
 				query: {
 					level: t.level
 				}
@@ -312,7 +312,7 @@ require(["dojo/ready",
 			;
 			if(L1.id > 0) {
 				// Request the text file
-				request.get("/uxsql/fun_view_location_level_xml.uxsql", {
+				request.get("/php_query/fun_view_location_level_xml.php", {
 					query: {
 						idfk: t.fk, level: t.level
 					}
@@ -386,7 +386,7 @@ require(["dojo/ready",
 			;
 			if(L2.id > 0) {
 				// Request the text file
-				request.get("/uxsql/fun_view_location_level_xml.uxsql", {
+				request.get("/php_query/fun_view_location_level_xml.php", {
 					query: {
 						idfk: t.fk, level: t.level
 					}
@@ -460,7 +460,7 @@ require(["dojo/ready",
 			;
 			if(L3.id > 0) {
 				// Request the text file
-				request.get("/uxsql/fun_view_location_level_xml.uxsql", {
+				request.get("/php_query/fun_view_location_level_xml.php", {
 					query: {
 						idfk: t.fk, level: t.level
 					}
@@ -534,7 +534,7 @@ require(["dojo/ready",
 			;
 			if(L4.id > 0) {
 				// Request the text file
-				request.get("/uxsql/fun_view_location_level_xml.uxsql", {
+				request.get("/php_query/fun_view_location_level_xml.php", {
 					query: {
 						idfk: t.fk, level: t.level
 					}
@@ -606,7 +606,7 @@ require(["dojo/ready",
 			;
 			if(L5.id > 0) {
 				// Request the text file
-				request.get("/uxsql/fun_view_location_level_xml.uxsql", {
+				request.get("/php_query/fun_view_location_level_xml.php", {
 					query: {
 						idfk: t.fk, level: t.level
 					}

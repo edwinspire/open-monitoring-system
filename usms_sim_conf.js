@@ -86,7 +86,7 @@ require(["dojo/ready",
 		GridxTable.Delete = function() {
 			var num = GridxTable.IdToDelete.length;
 			if(num > 0) {
-				request.post('/uxsql/serialport_delete.uxsql', {
+				request.post('/php_query/serialport_delete.php', {
 					handleAs: "xml",
 					data: {
 						idports: GridxTable.IdToDelete.toString()
@@ -121,7 +121,7 @@ require(["dojo/ready",
 			//MH.notification.notify({message: 'Cargando datos. Por favor espere...'});
 			GridxTable.IdToDelete = [];
 			// Request the text file
-			request.get("/uxsql/fun_view_sim_xml.uxsql", {
+			request.get("/php_query/fun_view_sim_xml.php", {
 				// Parse data from xml
 				handleAs: "xml"
 			}
@@ -171,7 +171,7 @@ require(["dojo/ready",
 		}
 		// Guarda los datos
 		GridxTable.SaveItem = function(item) {
-			request.post('/uxsql/fun_sim_table_edit_xml.uxsql', {
+			request.post('/php_query/fun_sim_table_edit_xml.php', {
 				handleAs: "xml",
 				data: item
 			}

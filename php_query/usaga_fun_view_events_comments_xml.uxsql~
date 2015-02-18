@@ -1,0 +1,13 @@
+<xsql>
+	<uxsql_query driver='postgres' db_conexion_name='db1' native_xml='true'>SELECT * FROM usaga.fun_view_events_comments_xml($1::integer, $2::boolean);</uxsql_query>
+		<uxsql_parameter http_get='idaccount'>0</uxsql_parameter>
+		<uxsql_parameter http_get='code'>00</uxsql_parameter>
+		<uxsql_parameter http_get='zu'>0</uxsql_parameter>
+		<uxsql_parameter http_get='priority'>100</uxsql_parameter>
+		<uxsql_parameter http_get='description'></uxsql_parameter>
+		<uxsql_parameter http_get='ideventtype'>0</uxsql_parameter>
+		<uxsql_parameter http_get='date'>2000-01-01 00:00</uxsql_parameter>
+		<uxsql_parameter http_get='note'></uxsql_parameter>			
+		<uxsql_parameter name='fields_as_base64'>true</uxsql_parameter>	
+				
+</xsql>

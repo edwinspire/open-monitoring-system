@@ -224,123 +224,7 @@ _Grid.load();
 			ContactW.Load(item.idaccount, item.idcontact);
 		}
 		);
-		/*
-	if (GridxA) {
-GridxA.ApplyNotifyToSelection = function(){
-if(GridxA.selected.length>0){
-   R.post('notifyeditselectedcontacts.usaga', {
-		data: {idaccount: Account.Id, idcontacts: GridxA.selected.toString(), call: dijit.byId('GridxACall').get('checked'), sms: dijit.byId('GridxASMS').get('checked'), msg: dijit.byId('GridxAMsgText').get('value')},
-            handleAs: "xml"
-        }).then(
-                function(response){
-var d = new RXml.getFromXhr(response, 'row');
-if(d.length > 0){
-GridxA.emit('notify_message', {message: d.getStringFromB64(0, 'outpgmsg')}); 
-}
-GridxA.Load();
-ContactW.Load(Account.Id, 0);
-                },
-                function(error){
-                    // Display the error returned
-GridxA.emit('notify_message', {message: error}); 
-                }
-            );
-}else{
-GridxA.emit('notify_message', {message: 'No hay contactos seleccionados para aplicar los cambios'});
-}
-}
-dojo.connect(GridxA.select.row, 'onSelectionChange', function(selected){
-GridxA.selected = [];
-var numsel = selected.length;
-i = 0;
-while(i<numsel){
-// Aqui buscamos los datos desde el store y no desde la celda, agregamos el idphone al array
-GridxA.store.fetch({query: {unique_id: selected[i]}, onItem: function(item){
-GridxA.selected[i] = GridxA.store.getValue(item, 'idcontact');
-} 
-});
-i++;
-}
-});
-GridxA.on('notify_message', function(m){
-MH.notification.notify({message: m.message});
-});
-// Captura el evento cuando se hace click en una fila
-dojo.connect(GridxA, 'onRowClick', function(evt){
-var t = GridxA;
-d = t.cell(event.rowId, 1, true).data();
-// Aqui buscamos los datos desde el store y no desde la celda.
-t.store.fetch({query: {unique_id: d}, onItem: function(item){
-ContactW.Load(t.store.getValue(item, 'idaccount'), t.store.getValue(item, 'idcontact'));
-}
-});
-});
-		GridxA.setColumns([
-			{field:"unique_id", name: "#", width: '20px'},
-			{field:"enable_as_contact", name: "*", width: '20px', editor: "dijit/form/CheckBox", editorArgs: jsGridx.EditorArgsToCellBooleanDisabled, alwaysEditing: true},
-			{field:"priority", name: "priority", width: '20px'},
-			{field:"name", name: "nombre", width: '150px'},
-			{field:"appointment", name: "Designacion"}
-		]);
-GridxA.startup();
-}
-*/
-		/*
-GridxA.Clear= function(){
-GridxA.selected = [];
-GridxA._setData({identifier: "unique_id", items: []});
-}
-GridxA._setData = function(data){
-	id_account_contact_store.clearOnClose = true;
-	id_account_contact_store.data = data;
-	id_account_contact_store.close();
-		GridxA.store = null;
-		GridxA.setStore(id_account_contact_store);
-}
-*/
-		/*
-GridxA.Load = function(){
-GridxA.resize();
-GridxA.selected = [];
-if(Account.Id > 0){
-   R.get('getaccountcontactsgrid.usaga', {
-		query: {idaccount: Account.Id},
-            // Parse data from xml
-            handleAs: "xml"
-        }).then(
-                function(response){
-var d = new RXml.getFromXhr(response, 'row');
-numrows = d.length;
-var myData = {identifier: "unique_id", items: []};
-if(numrows > 0){
-var i = 0;
-while(i<numrows){
-myData.items[i] = {
-unique_id: i+1,
-idcontact: d.getNumber(i, "idcontact"), 
-idaccount: d.getNumber(i, "idaccount"), 
-enable_as_contact: d.getBool(i, "enable_as_contact"),
-priority: d.getNumber(i, "prioritycontact"),    
-name: d.getStringFromB64(i, "lastname")+' '+d.getStringFromB64(i, "firstname"),
-appointment: d.getStringFromB64(i, "appointment")
-};
-i++;
-}
-}
-GridxA._setData(myData);
-                },
-                function(error){
-                    // Display the error returned
-console.log(error);
-t.emit('notify_message', {message: error}); 
-                }
-            );
-}else{
-GridxA.Clear();
-}
-return GridxA;
-}
-*/
+
 		// ### SECCION TELEFONOS DE CONTACTOS ###
 		// Abre el dialogo
 		var DialogContactNotifyPhoneApplySelected = dijit.byId('id_contact_NotifyContactdialog');
@@ -354,7 +238,7 @@ return GridxA;
 		if (GridxB) {
 			GridxB.ApplyNotifyToSelection = function() {
 				if(GridxB.selected.length>0) {
-					R.post('/uxsql/usaga_fun_account_notifications_applyselected_xml.uxsql', {
+					R.post('/php_query/usaga_fun_account_notifications_applyselected_xml.php', {
 						data: {
 							idaccount: Account.Id, idphones: '{'+GridxB.selected.toString()+'}', call: dijit.byId('GridxBCall').get('checked'), sms: dijit.byId('GridxBSMS').get('checked'), msg: dijit.byId('GridxBMsgText').get('value')
 						}
@@ -462,7 +346,7 @@ return GridxA;
 			GridxB.Load = function(idcontact) {
 				GridxB.selected = [];
 				if(Account.Id > 0 && idcontact > 0) {
-					R.get('/uxsql/usaga_fun_view_account_notif_phones_xml.uxsql', {
+					R.get('/php_query/usaga_fun_view_account_notif_phones_xml.php', {
 						query: {
 							idaccount: Account.Id, idcontact: idcontact
 						}
@@ -518,7 +402,7 @@ return GridxA;
 			}
 			GridxB.SaveItem = function(itemStore) {
 				var t = GridxB;
-				R.post('/uxsql/usaga_fun_account_notifications_table_xml.uxsql', {
+				R.post('/php_query/usaga_fun_account_notifications_table_xml.php', {
 					data: {
 						idnotifaccount: 0, idaccount:Account.Id, idphone: itemStore.idphone, priority: itemStore.priority, sms: itemStore.sms, call: itemStore.call, smstext: itemStore.smstext, note: itemStore.note
 					}
@@ -612,7 +496,7 @@ return GridxA;
 		GridxC.Load = function() {
 			var G = GridxC;
 			if(Account.Id > 0) {
-				R.get('/uxsql/usaga_fun_view_account_users_xml.uxsql', {
+				R.get('/php_query/usaga_fun_view_account_users_xml.php', {
 					handleAs: "xml",
 					query: {
 						idaccount: Account.Id
@@ -728,7 +612,7 @@ return GridxA;
 		);
 		GridxD.SaveItem = function(item) {
 			if(item.idaccount > 0 && item.idcontact > 0 && GridxD) {
-				R.post('/uxsql/usaga_fun_account_phones_trigger_alarm_table_xml.uxsql', {
+				R.post('/php_query/usaga_fun_account_phones_trigger_alarm_table_xml.php', {
 					handleAs: "xml",
 					data: {
 						idaccount: item.idaccount, idphone: item.idphone, enable: item.enable, fromsms: item.fromsms, fromcall: item.fromcall, note: item.note
@@ -757,7 +641,7 @@ return GridxA;
 		GridxD.Load = function(idaccount_, idcontact_) {
 			var G = GridxD;
 			if(idaccount_ > 0 && idcontact_ > 0) {
-				R.get('/uxsql/usaga_fun_view_account_users_trigger_phones_contacts_xml.uxsql', {
+				R.get('/php_query/usaga_fun_view_account_users_trigger_phones_contacts_xml.php', {
 					handleAs: "xml",
 					query: {
 						idaccount: idaccount_, idcontact: idcontact_

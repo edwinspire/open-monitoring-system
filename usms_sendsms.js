@@ -82,7 +82,7 @@ require(["dojo/ready",
 		}
 		);
 		var PostSendSMS = function(sms_) {
-			request.post('/uxsql/fun_outgoing_new_xml.uxsql', {
+			request.post('/php_query/fun_outgoing_new_xml.php', {
 				handleAs: "xml",
 				data: sms_
 			}
@@ -274,7 +274,7 @@ require(["dojo/ready",
 		GridxListContact.Load = function() {
 			GridxListContact.RowSelected = [];
 			// Request the text file
-			request.post("/uxsql/fun_view_contacts_phones_with_search_xml.uxsql", {
+			request.post("/php_query/fun_view_contacts_phones_with_search_xml.php", {
 				data: {
 					contact_phone_search: TBoxSearchContactPhone.get('value'), exclude_idphones: "{"+GridxListToSend.idphones().toString()+"}"
 				}
