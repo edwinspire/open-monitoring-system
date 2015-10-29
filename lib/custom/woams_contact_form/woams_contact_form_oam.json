@@ -1,0 +1,56 @@
+{
+    "id": "woams_contact_form",
+    "name": "woams_contact_form",
+    "spec": "1.0",
+    "version": "1.0",
+    "require": [
+        {
+            "type": "javascript",
+            "src": "dojo/dojo.js",
+            "$library": "dojo"
+        },
+        {
+            "type": "javascript-module",
+            "format": "amd",
+            "src": "dijit/form/DateTextBox",
+            "$library": "dojo"
+        },
+        {
+            "type": "javascript-module",
+            "format": "amd",
+            "src": "dijit/form/CheckBox",
+            "$library": "dojo"
+        },
+        {
+            "type": "javascript-module",
+            "format": "amd",
+            "src": "dijit/form/TextBox",
+            "$library": "dojo"
+        },
+        {
+            "type": "javascript-module",
+            "format": "amd",
+            "src": "dijit/form/ComboBox",
+            "$library": "dojo"
+        },
+        {
+            "type": "javascript-module",
+            "format": "amd",
+            "src": "dijit/form/Textarea",
+            "$library": "dojo"
+        },
+        {
+            "$library": "dojo",
+            "format": "amd",
+            "src": "woams_contact_form/woams_contact_form",
+            "type": "javascript-module"
+        }
+    ],
+    "library": {
+        "dojo": {
+            "src": "../../dojo/dojo/dojo.js"
+        },
+        "gridx": {}
+    },
+    "content": "<div></div>"
+}

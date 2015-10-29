@@ -1,0 +1,46 @@
+<div data-dojo-attach-point="Wcontainer">
+
+    <label data-dojo-attach-point="ID" style="margin: 3px; font-weight: bold;">
+
+        #1000</label>
+    <div style="margin: 3px; display: inline-block;">
+        <label style="margin-right: 3px;">
+            Abonado:</label>
+        <div data-dojo-attach-point="Account" data-dbTuple="woams_event_view_bind" name="idaccount" data-dojo-type="woams_account_list/woams_account_list"></div> 
+    </div>
+    <div style="margin: 3px; display: inline-block;">
+        <label style="margin-right: 3px;">
+            Tipo Evento:</label>
+        <div data-dojo-attach-point="ET" data-dbTuple="woams_event_view_bind"  name="ideventtype" data-dojo-type="woams_eventtypes_list/woams_eventtypes_list" style="display: inline;"></div> 
+    </div>
+    <div style="margin: 3px; display: inline-block;">
+        <label style="margin-right: 3px;">
+            Fecha:</label>
+        <div data-dojo-attach-point="Fecha"  data-dbTuple="woams_event_view_bind" data-dbfieldtype="date" name="dateevent" data-dojo-type="w_common_datetime/w_common_datetime" style="margin: 3px; display: inline-block;"></div> 
+    </div>
+    <div style="margin: 3px; display: inline-block;">
+        <label style="margin-right: 3px;">
+            Prioridad:</label>
+        <input data-dojo-attach-point="Priority" type="number" data-dbTuple="woams_event_view_bind" name="priority" data-dojo-type="dijit/form/NumberSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." value="0" style="width: 55.109375px;"></input>
+    </div>
+    <div style="margin: 3px; display: inline-block;">
+        <label style="margin-right: 3px;">
+            C&oacute;digo:</label>
+        <input data-dojo-attach-point="Code" type="text" data-dbTuple="woams_event_view_bind" name="code" data-dojo-type="dijit/form/TextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false" style="width: 50px;" value="N/A"></input>
+    </div>
+    <div style="margin: 3px; display: inline-block;">
+        <label style="margin-right: 3px;">
+            Zona / Usuario:</label>
+        <input data-dojo-attach-point="ZU" type="text" data-dbTuple="woams_event_view_bind"  name="zu" data-dojo-type="dijit/form/NumberTextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." style="width: 50px;" value="0"></input>
+    </div>
+    <div>
+        <label>
+            Descripci&oacute;n:</label>
+        <div data-dojo-attach-point="Description" data-dbTuple="woams_event_view_bind" name="description" type="text" data-dojo-type="w_editable_div/w_editable_div" style="height: auto; width: 100%;"></div>
+    </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "localPath": true,
+    "customWidgetSpec": 1,
+    "categories": {
+        "custom": {
+            "name": "Custom widget",
+            "description": "Custom widget",
+            "widgetClass": "dijit"
+        }
+    },
+    "widgets": [
+        {
+            "name": "woams_event_comments",
+            "description": "woams_event_comments",
+            "type": "woams_event_comments/woams_event_comments",
+            "category": "custom",
+            "iconLocal": true,
+            "icon": "app/davinci/img/maqetta.png"
+        }
+    ],
+    "name": "woams_event_comments",
+    "longName": "woams_event_comments"
+}

@@ -1,0 +1,50 @@
+{
+    "id": "woams_account_form",
+    "name": "woams_account_form",
+    "spec": "1.0",
+    "version": "1.0",
+    "require": [
+        {
+            "type": "javascript",
+            "src": "dojo/dojo.js",
+            "$library": "dojo"
+        },
+        {
+            "type": "javascript-module",
+            "format": "amd",
+            "src": "dijit/form/NumberSpinner",
+            "$library": "dojo"
+        },
+        {
+            "type": "javascript-module",
+            "format": "amd",
+            "src": "dijit/form/DateTextBox",
+            "$library": "dojo"
+        },
+        {
+            "type": "javascript-module",
+            "format": "amd",
+            "src": "dijit/form/TextBox",
+            "$library": "dojo"
+        },
+        {
+            "type": "javascript-module",
+            "format": "amd",
+            "src": "dijit/form/SimpleTextarea",
+            "$library": "dojo"
+        },
+        {
+            "$library": "dojo",
+            "format": "amd",
+            "src": "woams_account_form/woams_account_form",
+            "type": "javascript-module"
+        }
+    ],
+    "library": {
+        "dojo": {
+            "src": "../../dojo/dojo/dojo.js"
+        },
+        "gridx": {}
+    },
+    "content": "<div></div>"
+}

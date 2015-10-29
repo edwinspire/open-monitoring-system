@@ -1,0 +1,40 @@
+[Error T1],No tiene datos para procesar. Comuníquese a Sistemas.,No encuentra los datos de la farmacia configurados en la tabla df_parametroscompania.," Referirse al manual, sección configuración en farmacia."
+[Error T2],No se pudieron leer correctamente los datos de la tarjeta. Intente nuevamente.,"Las tramas de la tarjeta no están correctas, no puede leer el número, la fecha de caducidad o el nombre del cliente.","Intentar por dos ocasiones más si el error persiste indicar que la tarjeta tiene algún problema y si el problema se presenta con otras tarjetas en la misma caja, cambiar el lector de bandas magnéticas."
+[Error T3] ,No se obtuvo respuesta desde la operadora.,Se envió el requerimiento hacia el servidor matriz y no respondió en 40 segundos.,"Antes de intentar nuevamente revisar tiempos de respuesta desde la caja hasta el servidor 192.168.238.23.- Verificar en el switch los estados de las transacciones, comunicarse con Programadores en el caso en que estén aprobadas en el switch matriz."
+[Error T4] ,El valor mínimo a pagar con tarjeta debe ser (un valor),Este mensaje indica que con la tarjeta no puede pagar menos de lo indicado.,La tarjeta debe cubrir la base 12 y el iva de la factura.
+[Error TB] ,"** [Error TB] ** Son las respuestas que recibimos desde las operadoras de tarjetas sea Datafast, Medianet, Cuota Fácil. Se listan a continuación las posibles respuestas.",****************,****************
+[Error TB] ,BIN INVALIDO    ,BIN NO REGISTRADO,"Este error reportar hacia los programadores, para revisar los bines registrados en la farmacia, y en el switch."
+[Error TB] ,REFERIRSE EMISOR,"REFERIRSE EMISOR, CONDICION ESPECIAL",Indica que el cliente debe llamar al banco.
+[Error TB] ,ESTAB NOAFILIADO,ESTABLECIMIENTO NO AFILIADO,"El código asignado a la farmacia, no está activo en los bancos, reportar hacia el Operador 1, quién en este caso revisará la transacción en el switch matriz para revisar por donde se procesó la misma y reportar hacia la operadora respectiva datafast o medianet."
+[Error TB] , NO DISPONIBLE  ,IMPOSIBLE LOCALIZAR MENSAJE ANTERIOR,"Respuesta desde el banco, Intente nuevamente."
+[Error TB] ,TRANSACCION NO SOPORTADA,TRANSACCION NO SOPORTADA,"Esta respuesta viene desde el banco, en la mayoría de los casos refiere a que están tratando de hacer un tipo de diferido que Farmaenlace no tiene negociado con el banco emisor de la tarjeta. En este caso el operador1 debe comunicarse con el encargado de tarjetas en tesorería actualmente Johana Calo quien le indicará si la negociación existe y porque operadora debe pasar si encuentra alguna inconsistencia se debe escalar el problema hacia el programador."
+[Error TB] ,TERMINAL INVAL. ,CAPACIDAD DE TERMINAL INVALIDA TERMINAL NO REGISTRADO,"El código asignado al punto de facturación, no está activo en los bancos, reportar hacia el Operador 1, quién en este caso revisará la transacción en el switch transaccional para revisar por donde se procesó la misma y reportar hacia la operadora respectiva datafast o medianet."
+[Error TB] ,RETENER TARJETA ,"RETENER TARJETA, CONDICION ESPECIAL","Respuesta desde el banco, la tarjeta posiblemente tiene problemas."
+[Error TB] , NO AUTORIZAR   ,NO AUTORIZAR,"Respuesta desde el banco, la tarjeta posiblemente tiene problemas."
+[Error TB] ,   REINTENTE    ,"ERROR, REINTENTE NUEVAMENTE",Respuesta desde el banco.
+[Error TB] ,MONTO EXCED CUPO,MONTO EXCEDE CUPO,Respuesta desde el banco. El cliente ya no tiene cupo suficiente para el cubrir el valor por el que se quiere hacer el voucher.
+[Error TB] ,TARJETA INVALIDA,CUENTA INVALIDA (NO EXISTE NUMERO),"Respuesta desde el banco, la tarjeta posiblemente tiene problemas."
+[Error TB] ,BCO. FUERA LINEA,EMISOR O SWITCH INOPERATIVO,"Si esta respuesta se presenta en más de una farmacia reportar hacia redes, quienes deben verificar si existe conexión hacia las operadoras de tarjetas, si existe conexión deben reportar hacia los programadores, para revisar la operatividad del switch y reportar hacia las operadoras."
+[Error TB] , MONTO INVALIDO ,MONTO INVALIDO,"Respuesta desde el banco, el banco no puede autorizar ese valor, en la mayoría de casos es muy bajo."
+[Error TB] ,REINGRESE TRANS.,REINGRESE TRANSACCION,Respuesta desde el banco.
+[Error TB] ,RETENER Y LLAMAR,RETENER TARJETA (PERDIDA) (ROBADA),"Respuesta  desde el banco, la tarjeta posiblemente tiene problemas."
+[Error TB] ,FONDOS INSUFICI.,FONDOS INSUFICIENTES,Respuesta desde el banco.
+[Error TB] ,TARJETA EXPIRADA,TARJETA EXPIRADA/EXPIRACION NO CORRESPONDE,Respuesta desde el banco.
+[Error TB] ,TRANS.NO PERMITE,TRX NO PERMITIDA AL TARJETA HABIENTE TRX NO PERMITIDA EN ESTA TERMINAL,Respuesta desde el banco.
+[Error TB] ,TARJETA RESTRING,TARJETA RESTRINGIDA,Respuesta desde el banco.
+[Error TB] ,TRANSACCION NO AUTORIZADA,TRANSACCION NO AUTORIZADA,Respuesta desde el banco.
+[Error TB] ,IMPOS. REVERSAR ,NINGUNA ACCION TOMADA (IMPOSIBLE REVERSAR ANTERIOR TRANSACCION),"Respuesta desde el banco. Esta respuesta nunca es visible en las farmacias, pero si el operador la observa esta respuesta en el switch debe verificar el estado de la transacción que originó el reverso si está en estado aprobado, reportar hacia programadores."
+[Error TB] , FECHA INVALIDA ,FECHA INVALIDA,"Esta respuesta puede presentarse en transacciones originadas por el 1800, y se debe a que la información de la tarjeta originada en la toma del pedido está incorrecta."
+[Error TB] , CVV INCORRECTO ,CVV INCORRECTO,"Esta respuesta puede presentarse en transacciones originadas por el 1800, y se debe a que la información de la tarjeta originada en la toma del pedido está incorrecta."
+[Error TB] ,TRANS. INVALIDA ,TRANSACCION INVALIDA,Respuesta desde el banco.
+[Error TB] ,ERROR EN SISTEMA,FUNCIONAMIENTO DEFECTUOSO DEL SISTEMA,"Este error proviene desde las plataformas de los bancos no son errores internos de farmaenlace, reportar hacia el operador 1 para que verifique con la operadora correspondiente."
+[Error TB] ,TARJ.BLOQUEADA  ,TARJETA BLOQUEADA,Respuesta desde el banco.
+[Error TB] ,TIMEOUT TRANS.  ,TIMEOUT TRANS.,"Si esta respuesta es repetitiva reportar hacia redes, quienes deben verificar los tiempos de respuesta hacia las operadoras de tarjetas."
+[Error TB] ,NSP KEK NO REGIS,NO SE HA REGISTRADO LA KEK DEL SISTEMA,Llamar inmediatamente a los programadores.
+[Error TB] ,NSP LLAVE INVAL,SE HIZO EL 1er INTERCAMBIO DE LLAVES,Llamar inmediatamente a los programadores.
+[Error TB] ,TRANSACCION DUPLICADA,TRANSACCION DUPLICADA,"Respuesta desde el banco, comunicarse con el Operador 1 para que revise el estado del primer intento de la transacción."
+[Error TB] ,LLAVE EXPIRADA,"LLAVE DE ALMACENAMIENTO EXPIRADA, NO SE ACEPTARA TRANSACCIONES","Llamar inmediatamente a los programadores o al personal de redes, significa que las llaves de encriptación se caducaron se tienen que regenerar las llaves."
+[Error TB] ,LLAVE POR EXPIRARSE,LLAVE DE ALMACENAMIENTO EXPIRARA PRONTO,"Llamar inmediatamente a los programadores, significa que las llaves de encriptación se caducaron se tienen que regenerar las llaves."
+[Error TB] ,ERROR BD SEGURIDAD,ERROR OCURRIDO EN LA BASE DE DATOS DE ENCRIPCION DE TARJETAS,Llamar inmediatamente a los programadores.
+[Error TB] ,CUPO INSUFICIENTE,CUPO INSUFICIENTE,Respuesta desde el banco.
+[Error TB] ,ERROR DE LLAVES COMUNICACION DOWN,LLAVE DE COMUNICACION DOWN NO SE ENCUENTRA REGISTRADA Y/O EXPIRO,Llamar inmediatamente a los programadores.

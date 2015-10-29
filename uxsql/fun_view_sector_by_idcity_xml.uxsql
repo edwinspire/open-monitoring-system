@@ -1,6 +1,0 @@
-<xsql>
-	<uxsql_query driver='postgres' db_conexion_name='db1' native_xml='true'>SELECT * FROM fun_view_sector_by_idcity_xml($1::integer, $2::boolean);</uxsql_query>
-		<uxsql_parameter http_get='idcity'></uxsql_parameter>		
-		<uxsql_parameter name='fields_as_base64'>true</uxsql_parameter>	
-				
-</xsql>

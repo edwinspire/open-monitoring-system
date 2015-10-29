@@ -1,0 +1,31 @@
+{
+    "id": "woams_account_technicals_gridx",
+    "name": "woams_account_technicals_gridx",
+    "spec": "1.0",
+    "version": "1.0",
+    "require": [
+        {
+            "type": "javascript",
+            "src": "dojo/dojo.js",
+            "$library": "dojo"
+        },
+        {
+            "type": "css",
+            "src": "resources/claro/Gridx.css",
+            "$library": "gridx"
+        },
+        {
+            "$library": "dojo",
+            "format": "amd",
+            "src": "woams_account_technicals_gridx/woams_account_technicals_gridx",
+            "type": "javascript-module"
+        }
+    ],
+    "library": {
+        "dojo": {
+            "src": "../../dojo/dojo/dojo.js"
+        },
+        "gridx": {}
+    },
+    "content": "<div></div>"
+}

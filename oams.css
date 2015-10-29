@@ -1,0 +1,114 @@
+html, body, #mainDiv {
+    width: 100%; height: 100%;
+    border: 0; padding: 0; margin: 0;
+}
+
+.WidgetFullSize{
+width: 100%; height: 100%;
+}
+
+.GridxFullSize{
+height: calc(100% - 2px);
+height: -webkit-calc(100% - 2px);
+height: -moz-calc(100% - 2px);
+background: yellow;
+}
+
+ .gridx {
+        width: 99%;
+        height: 99%;
+    }
+
+
+.woams_map_into_widget {
+    position: relative;
+/*    padding-bottom: 100%; /* proportion value to aspect ratio 16:9 (9 / 16 = 0.5625 or 56.25%) */
+    padding-top: 80%;
+    height: 0;
+    overflow: hidden;
+}
+
+.woams_map_into_widget iframe{
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+ 
+}
+
+.woams_size_without_toolbar{
+height: calc(100% - 50px);
+height: -webkit-calc(100% - 50px);
+height: -moz-calc(100% - 50px);
+}
+
+.woams_events_comments_accordion_full_size{
+height: calc(100% - 25px);
+height: -webkit-calc(100% - 25px);
+height: -moz-calc(100% - 25px);
+}
+
+.ContentMasterWithoutHeaderTitleMenu{
+height: calc(100% - 80px);
+height: -webkit-calc(100% - 80px);
+height: -moz-calc(100% - 80px);
+width: 100%;
+/*background: red;*/
+}
+
+
+.ContentMasterWithoutHeader{
+height: calc(100% - 55px);
+height: -webkit-calc(100% - 55px);
+height: -moz-calc(100% - 55px);
+width: 100%;
+/*background: red;*/
+}
+
+.woams_account_widget_c1{
+height: calc(100% - 50px);
+height: -webkit-calc(100% - 50px);
+height: -moz-calc(100% - 50px);
+}
+
+.woams_account_widget_tc1{
+height: calc(100% - 2px);
+height: -webkit-calc(100% - 2px);
+height: -moz-calc(100% - 2px);
+}
+
+.usms_notification_urgency_general {
+background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* IE10+ */
+background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
+}
+
+.levelbg0{background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 100%);}
+.levelbg1{background: linear-gradient(to right, rgba(255,25,25,1) 0%,rgba(125,185,232,0) 100%);}
+.levelbg2{background: linear-gradient(to right, rgba(255,64,13,1) 0%,rgba(125,185,232,0) 100%);}
+.levelbg3{background: linear-gradient(to right, rgba(255,128,26,1) 0%,rgba(125,185,232,0) 100%);}
+.levelbg4{background: linear-gradient(to right, rgba(255,191,38,1) 0%,rgba(125,185,232,0) 100%);}
+.levelbg5{background: linear-gradient(to right, rgba(255,255,51,1) 0%,rgba(125,185,232,0) 100%);}
+.levelbg6{background: linear-gradient(to right, rgba(191,230,38,1) 0%,rgba(125,185,232,0) 100%);}
+.levelbg7{background: linear-gradient(to right, rgba(128,204,26,1) 0%,rgba(125,185,232,0) 100%);}
+.levelbg8{background: linear-gradient(to right, rgba(64,179,13,1) 0%,rgba(125,185,232,0) 100%); }
+.levelbg9{background: linear-gradient(to right, rgba(64,179,64,1) 0%,rgba(125,185,232,0) 100%);}
+.levelbg10{background: linear-gradient(to right, rgba(128,204,128,1) 0%,rgba(125,185,232,0) 100%);}
+
+.levelb0{border-style:solid; border-color: rgb(255,255,255); border-width:1px;}
+.levelb1{border-style:solid; border-color: rgb(255,25,25); border-width:1px;}
+.levelb2{border-style:solid; border-color: rgb(255,64,13); border-width:1px;}
+.levelb3{border-style:solid; border-color: rgb(255,128,26); border-width:1px;}
+.levelb4{border-style:solid; border-color: rgb(255,191,38); border-width:1px;}
+.levelb5{border-style:solid; border-color: rgb(255,255,51); border-width:1px;}
+.levelb6{border-style:solid; border-color: rgb(191,230,38); border-width:1px;}
+.levelb7{border-style:solid; border-color: rgb(128,204,26); border-width:1px;}
+.levelb8{border-style:solid; border-color: rgb(64,179,13); border-width:1px;}
+.levelb9{border-style:solid; border-color: rgb(64,179,64); border-width:1px;}
+.levelb10{border-style:solid; border-color: rgb(128,204,128); border-width:1px;}
+

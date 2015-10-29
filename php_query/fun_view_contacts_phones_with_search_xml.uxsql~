@@ -1,7 +1,0 @@
-<xsql>
-	<uxsql_query driver='postgres' db_conexion_name='db1' native_xml='true'>SELECT * FROM fun_view_contacts_phones_with_search_xml($1::text, $2::int[], $3::boolean);</uxsql_query>
-		<uxsql_parameter http_post='exclude_idphones'>{}</uxsql_parameter>		
-		<uxsql_parameter http_post='exclude_idphones'>{}</uxsql_parameter>		
-		<uxsql_parameter name='fields_as_base64'>true</uxsql_parameter>	
-				
-</xsql>

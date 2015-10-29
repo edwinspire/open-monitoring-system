@@ -1,0 +1,27 @@
+{
+    "version": "1.0",
+    "localPath": true,
+    "customWidgetSpec": 1,
+    "categories": {
+        "custom": {
+            "name": "Custom widget",
+            "description": "Custom widget",
+            "widgetClass": "dijit"
+        }
+    },
+    "widgets": [
+        {
+            "name": "w_common_datetime",
+            "description": "w_common_datetime",
+            "type": "w_common_datetime/w_common_datetime",
+            "category": "custom",
+            "iconLocal": true,
+            "icon": "app/davinci/img/maqetta.png",
+            "properties": {
+                "style": "margin: 3px; display: inline-block;"
+            }
+        }
+    ],
+    "name": "w_common_datetime",
+    "longName": "w_common_datetime"
+}

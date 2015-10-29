@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>Soporte Farmaenlace</title>
+        <script type="text/javascript" data-dojo-config="'parseOnLoad':true,'async':true,'packages':[{'name':'gridx','location':'../gridx'},{'name':'clipart','location':'../../clipart'},{'name':'maqettaSamples','location':'../../../samples'},{'name':'maqetta','location':'../../maqetta'},{'name':'shapes','location':'../../shapes'},{'name':'zazl','location':'../../zazl'},{'name':'widgets','location':'../../custom'},{'name':'w_farmacias_gridx','location':'../../custom/w_farmacias_gridx'},{'name':'w_menu','location':'../../custom/w_menu'},{'name':'w_menu_master','location':'../../custom/w_menu_master'},{'name':'w_header','location':'../../custom/w_header'},{'name':'w_tecnicos_gridx','location':'../../custom/w_tecnicos_gridx'},{'name':'w_common_titlebar','location':'../../custom/w_common_titlebar'}],'themeMap':[['Android','',['themes/android/android.css']],['BlackBerry','',['themes/blackberry/blackberry.css']],['iPad','',['themes/ipad/ipad.css']],['iPhone','',['themes/iphone/iphone.css']],['.*','',['themes/iphone/iphone.css']]],'mblThemeFiles':[],'mblLoadCompatPattern':''" src="lib/dojo/dojo/dojo.js"></script>
+        <script type="text/javascript">
+            require([
+                "dijit/dijit",
+                "dojo/parser",
+                "maqetta/space",
+                "maqetta/AppStates",
+                "dijit/MenuBar",
+                "dijit/PopupMenuBarItem",
+                "dijit/Menu",
+                "dijit/MenuItem",
+                "w_menu/w_menu",
+                "w_common_titlebar/w_common_titlebar",
+                "dijit/layout/ContentPane",
+                "dojox/io/xhrScriptPlugin",
+                "dojo/data/ItemFileReadStore",
+                "gridx/Grid",
+                "gridx/core/model/cache/Async",
+                "dojox/data/CsvStore",
+                "dijit/layout/TabContainer",
+                "dijit/form/FilteringSelect",
+                "w_tecnicos_gridx/w_tecnicos_gridx"
+            ]);
+        </script>
+        <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "lib/dojo/gridx/resources/claro/Gridx_rtl.css";@import "app.css";
+        </style>
+
+        <style type="text/css">
+            body
+            {
+                background-image: url(images/fondo_farma.jpg);
+                background-attachment: fixed;
+                background-repeat: no-repeat;
+                background-position: center center;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/fondo_farma.jpg', sizingMethod='scale');
+                -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/fondo_farma.jpg', sizingMethod='scale')";
+            }
+        </style>
+
+    </head>
+    <body data-maq-flow-layout="true" data-maq-comptype="desktop" class="claro" data-maq-ws="collapse" data-maq-appstates="{}" id="myapp">
+        <div style="width: 100%; height: 100%;">
+
+        </div>
+    </body>
+</html>

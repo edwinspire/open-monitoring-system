@@ -1,0 +1,67 @@
+{
+    "id": "woams_event_comment_insert",
+    "name": "woams_event_comment_insert",
+    "spec": "1.0",
+    "version": "1.0",
+    "require": [
+        {
+            "type": "javascript",
+            "src": "dojo/dojo.js",
+            "$library": "dojo"
+        },
+        {
+            "type": "javascript-module",
+            "format": "amd",
+            "src": "dijit/Editor",
+            "$library": "dojo"
+        },
+        {
+            "type": "javascript-module",
+            "format": "amd",
+            "src": "jspire/request/Xml",
+            "$library": "dojo"
+        },
+        {
+            "type": "javascript-module",
+            "format": "amd",
+            "src": "dijit/Toolbar",
+            "$library": "dojo"
+        },
+        {
+            "type": "javascript-module",
+            "format": "amd",
+            "src": "dijit/form/Button",
+            "$library": "dojo"
+        },
+        {
+            "type": "javascript-module",
+            "format": "amd",
+            "src": "dijit/form/Textarea",
+            "$library": "dojo"
+        },
+        {
+            "type": "javascript-module",
+            "format": "amd",
+            "src": "dijit/form/Form",
+            "$library": "dojo"
+        },
+        {
+            "type": "javascript-module",
+            "format": "amd",
+            "src": "dojo/query",
+            "$library": "dojo"
+        },
+        {
+            "$library": "dojo",
+            "format": "amd",
+            "src": "woams_event_comment_insert/woams_event_comment_insert",
+            "type": "javascript-module"
+        }
+    ],
+    "library": {
+        "dojo": {
+            "src": "../../dojo/dojo/dojo.js"
+        }
+    },
+    "content": "<div></div>"
+}

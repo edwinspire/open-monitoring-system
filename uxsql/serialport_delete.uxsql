@@ -1,5 +1,0 @@
-<xsql>
-	<uxsql_query driver='sqlite' db_name='configuration'>DELETE FROM serialport WHERE idport = ?;</uxsql_query>
-		<uxsql_parameter type="text" http_post='idprt'>0</uxsql_parameter>	
-		
-</xsql>

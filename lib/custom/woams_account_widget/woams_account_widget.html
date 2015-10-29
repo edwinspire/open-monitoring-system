@@ -1,0 +1,191 @@
+<div data-dojo-attach-point="C0" style="width: 100%; height: 100%;">
+    <div data-dojo-attach-point="T1" data-dojo-type="w_common_titlebar/w_common_titlebar"></div>
+    <div data-dojo-attach-point="Menu" data-dojo-type="w_common_basic_menubar/w_common_basic_menubar"></div>
+    <div class="woams_account_widget_c1">
+        <span class="woams_account_widget_tc1" data-dojo-attach-point="TC1" data-dojo-type="dijit/layout/TabContainer" style="min-width: 5em; min-height: 5em;" controllerWidget="dijit.layout.TabController">
+
+            <div data-dojo-type="dijit/layout/ContentPane" title="Principal" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="true" closable="false" >
+                <div data-dojo-attach-point="AccountForm" data-dojo-type="woams_account_form/woams_account_form"></div>
+            </div>
+
+            <div data-dojo-type="dijit/layout/ContentPane" title="Ubicación Geográfica" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="true" closable="false" >
+
+                <div data-dojo-attach-point="ContainerMap" class="woams_map_into_widget" data-dojo-type="dijit/layout/ContentPane" style="height: 100%"></div>
+
+            </div>
+
+            <div data-dojo-type="dijit/layout/ContentPane" title="Contactos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false">
+                <div data-dojo-attach-point="C2" data-dojo-type="dijit/layout/BorderContainer" design="sidebar" persist="false" gutters="true" style="min-width: 1em; min-height: 1px; z-index: 0; width: 100%; height: 95%;">
+
+                    <div data-dojo-type="dijit/layout/ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="left" splitter="true" maxSize="Infinity" style="width: 50%;" doLayout="false">
+                        <div data-dojo-type="woams_common_gridx/woams_common_gridx" data-dojo-attach-point="GridAccountContacts" ></div>
+                    </div>
+
+                    <div data-dojo-type="dijit/layout/ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="center" splitter="false" maxSize="Infinity" doLayout="false">
+                        <div data-dojo-type="woams_contact_widget/woams_contact_widget" data-dojo-attach-point="AccountContactsx" ></div>
+                    </div>
+
+                </div>
+            </div>
+            <div data-dojo-type="dijit/layout/ContentPane" title="Usuarios" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false">
+                <div data-dojo-attach-point="C3" data-dojo-type="dijit/layout/BorderContainer" design="sidebar" persist="false" gutters="true" style="min-width: 1em; min-height: 1px; z-index: 0; width: 100%; height: 95%;">
+
+                    <div data-dojo-type="dijit/layout/ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="left" splitter="true" maxSize="Infinity" style="width: 50%;" doLayout="false">
+                        <div data-dojo-type="woams_common_gridx/woams_common_gridx" data-dojo-attach-point="GridAccountUsers" ></div>
+                    </div>
+
+                    <div data-dojo-type="dijit/layout/ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="center" splitter="false" maxSize="Infinity" doLayout="false">
+                        <div data-dojo-type="woams_contact_widget/woams_contact_widget" data-dojo-attach-point="AccountUser" ></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div data-dojo-type="dijit/layout/ContentPane" title=" Equipos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false">
+
+                <div data-dojo-type="dijit/layout/TabContainer" style="width: 100%; height: 100%;">
+                    <div data-dojo-type="dijit/layout/ContentPane" title="General" data-dojo-props="selected:true">
+                        <span data-dojo-type="dijit/Toolbar" data-dojo-attach-point="idtoolbar">
+
+                            <input type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="new_equipment" tabIndex="-1" intermediateChanges="false" label="Agregar" iconClass="dijitIconNewTask"></input>
+
+                            <input type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="delete_selection" tabIndex="-1" intermediateChanges="false" label="Eliminar seleccionados" iconClass=""></input>
+
+                        </span>
+
+                        <div class="woams_size_without_toolbar">
+                            <div  data-dojo-type="woams_common_gridx/woams_common_gridx" data-dojo-attach-point="GridAccountEquipments" ></div>
+                        </div>
+                    </div>
+                    <div data-dojo-type="dijit/layout/ContentPane" title="Equipos de redes">
+                        <span data-dojo-type="dijit/Toolbar" data-dojo-attach-point="idtoolbar">
+
+                            <input type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="new_equipment_network" tabIndex="-1" intermediateChanges="false" label="Agregar" iconClass="dijitIconNewTask"></input>
+
+                            <input type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="delete_selection_network" tabIndex="-1" intermediateChanges="false" label="Eliminar seleccionados" iconClass=""></input>
+
+                        </span>
+
+                        <div class="woams_size_without_toolbar">
+                            <div  data-dojo-type="woams_common_gridx/woams_common_gridx" data-dojo-attach-point="GridAccountEquipmentsNetwork" ></div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+            <div data-dojo-type="dijit/layout/ContentPane" title="Eventos" style="width: 100%; height: 100%;">
+                <div data-dojo-attach-point="EventsComments" data-dojo-type="woams_events_comments/woams_events_comments" ></div>
+            </div>
+
+        </span>
+    </div>
+
+
+    <div style="display: none;" data-dojo-attach-point="CttdNewEquipment" data-dojo-type="dijit/ConfirmTooltipDialog">
+
+        <input style="display: none;" data-dojo-type="dijit/form/TextBox" data-dbTuple="woams_account_equipment_tuple" name="idaccount" data-dojo-attach-point="idaccount" />
+
+        <label for="code_ref">Código de referencia</label> <input data-dbTuple="woams_account_equipment_tuple" required="true" data-dojo-type="dijit/form/TextBox" name="code_ref" /><br />
+        <label for="description">Descripción:</label> <input data-dbTuple="woams_account_equipment_tuple" data-dojo-type="dijit/form/TextBox" name="description" /><br />
+        <label for="equipment">Equipo:</label> <input data-dbTuple="woams_account_equipment_tuple" required="true" data-dojo-type="dijit/form/TextBox" name="equipment" /><br />
+        <label for="mark">Marca:</label> <input data-dbTuple="woams_account_equipment_tuple" data-dojo-type="dijit/form/TextBox"  name="mark" /><br />
+        <label for="model">Modelo:</label> <input data-dbTuple="woams_account_equipment_tuple" required="true" data-dojo-type="dijit/form/TextBox"  name="model" /><br />
+        <label for="serial_number">Serie:</label> <input data-dbTuple="woams_account_equipment_tuple" required="true" data-dojo-type="dijit/form/TextBox"  name="serial_number" /><br />
+        <label for="installation_date">Fecha Instalación:</label><input data-dbTuple="woams_account_equipment_tuple" required="true"  name="installation_date" type="text" data-dojo-type="dijit/form/DateTextBox" data-dbFieldType="date"></input><br />
+        <label for="uninstall_date">Fecha desintalación:</label> <input data-dbTuple="woams_account_equipment_tuple" required="true" name="uninstall_date" type="text" data-dojo-type="dijit/form/DateTextBox" data-dbFieldType="date"></input><br />
+        <label for="operativity">Operatividad:</label> <input data-dbTuple="woams_account_equipment_tuple" required="true" data-dojo-type="dijit/form/TextBox" type="number" min="0" max="100" value="100" name="operativity" /><br />
+
+
+
+    </div>
+
+    <div style="display: none;" data-dojo-attach-point="CttdDeleteEquipments" data-dojo-type="dijit/ConfirmTooltipDialog">
+        Esta seguro de eliminar los equipos seleccionados?
+    </div>
+
+
+    <div style="display: none;" data-dojo-attach-point="CttdNewAccount" data-dojo-type="dijit/ConfirmTooltipDialog">
+
+    <div style="display: inline-block;" class="campo">
+        <label for="enabled" class="etiqueta">
+            Habilitado:</label>
+        <span>
+            <input data-dbTuple="woams_account_widget_new_account" required="true" data-dbFieldType="checkbox"  name="enabled"  type="checkbox" data-dojo-type="dijit/form/CheckBox"></input>
+        </span></div>
+
+    <div style="display: inline-block;" class="campo">
+        <label class="etiqueta">
+            Abonado Num:</label>
+        <span>
+            <input data-dbTuple="woams_account_widget_new_account" required="true" name="account" type="text" value="oams" data-dojo-type="dijit/form/ValidationTextBox"></input>
+        </span></div>
+
+    <div style="display: inline-block;" class="campo">
+        <label for="first_name" class="etiqueta">
+            Nombres:</label>
+        <span>
+            <input data-dbTuple="woams_account_widget_new_account" required="true" name="first_name" type="text"  data-dojo-type="dijit/form/ValidationTextBox"  data-dojo-props="invalidMessage:'Invalid Non-Space Text.', missingMessage: 'Este campo es necesario'"></input>
+        </span></div>
+    <div style="display: inline-block;" class="campo">
+        <label class="etiqueta">
+            Apellido:</label>
+        <span>
+            <input data-dbTuple="woams_account_widget_new_account" required="true" name="last_name"  type="text" data-dojo-type="dijit/form/ValidationTextBox"></input>
+        </span></div>
+        
+    <div style="display: inline-block;" class="campo">
+        <label class="etiqueta">
+            Tipo ID:</label>
+        <span>
+            <div  data-dbTuple="woams_account_widget_new_account" name="ididtype"  data-dojo-type="woams_identificationtypes_list/woams_identificationtypes_list" style="display: inline;"></div> 
+        </span></div>
+    <div style="display: inline-block;" class="campo">
+        <label class="etiqueta">
+            Identificaci&oacute;n:</label>
+        <span>
+            <input data-dbTuple="woams_account_widget_new_account" required="true" name="identification"  type="text" data-dojo-type="dijit/form/ValidationTextBox"></input>
+        </span></div>
+        <div class="campo">
+        <label class="etiqueta">
+            Dirección:</label>
+
+        <textarea data-dbTuple="woams_account_widget_new_account" name="address" type="text" data-dojo-type="dijit/form/Textarea" style="width: 100%; height: auto;"></textarea>
+
+    </div>
+
+    <div class="campo">
+        <label class="etiqueta">
+            Dirección ref:</label>
+
+        <textarea data-dbTuple="woams_account_widget_new_account" name="address_ref" type="text" data-dojo-type="dijit/form/Textarea" style="width: 100%; height: auto;"></textarea>
+
+    </div>
+
+
+    <div class="campo">
+        <label class="etiqueta">
+            Notas:</label>
+
+        <textarea data-dbTuple="woams_account_widget_new_account" name="note" type="text" data-dojo-type="dijit/form/Textarea" style="width: 100%; height: auto;"></textarea>
+
+    </div>
+
+
+    <div style="float: left; width: 49%; min-width: 200px; height: 200px; display: none;" >         <div  data-dojo-type="woams_groups_gridx/woams_groups_gridx"></div> </div>
+
+    <div style="float: right; width: 49%; min-width: 200px; height: 200px; display: none;" >
+        <div  data-dojo-type="woams_groups_gridx/woams_groups_gridx"></div>
+
+    </div>        
+        
+        
+        
+        
+    </div>
+
+</div>
+

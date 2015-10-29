@@ -1,1 +1,10 @@
-.dijitRtl .soria .dijitMenuItem .dijitMenuItemIcon {padding-left: 3px; padding-right: 0;}.dijitRtl .soria .dijitMenuItem .dijitMenuExpand {background-position: left top;}
+/* Menu */
+
+.dijitRtl .soria .dijitMenuItem .dijitMenuItemIcon {
+	padding-left: 3px;
+	padding-right: 0;
+}
+
+.dijitRtl .soria .dijitMenuItem .dijitMenuExpand {
+	background-position: left top;
+}

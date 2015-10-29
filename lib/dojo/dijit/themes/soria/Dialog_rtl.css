@@ -1,1 +1,5 @@
-.dijitRtl .soria .dijitDialogTitleBar .dijitDialogCloseIcon {right: auto; left: 5px;}
+/* Dialog */
+.dijitRtl .soria .dijitDialogTitleBar .dijitDialogCloseIcon {
+	right: auto;
+	left: 5px;
+}
