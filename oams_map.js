@@ -4,7 +4,7 @@ require(["dojo/ready", "dojox/geo/openlayers/Map", 'dojo/request',
     ready(function () {
 
 
-        var IdAccount = dojo.byId('map').getAttribute('data-oams-idaccount');
+       // var IdAccount = dojo.byId('map').getAttribute('data-oams-idaccount');
         var map = new Map("map");
 
 // Crea una funcion que agrega un punto en el mapa
@@ -37,6 +37,45 @@ require(["dojo/ready", "dojox/geo/openlayers/Map", 'dojo/request',
         );
 
 
+
+                            dojo.forEach(geodata, function (item, i) {
+//console.log(response);
+var title =  item.last_name+' '+item.first_name;
+var labeltitle =  '';
+var content =  '<div><b>Dirección: </b>'+item.address+'</div>'+'<div><b>Latitud: </b>'+item.geox+'</div>'+'<div><b>Longitud: </b>'+item.geoy+'</div>';
+
+if(item.first_name.indexOf("ECO") == 0){
+			map.addPoint(parseFloat(item.geox), parseFloat(item.geoy), title, labeltitle, content, 'eco.png');
+}else if(item.first_name.indexOf("MEDI") == 0){
+			map.addPoint(parseFloat(item.geox), parseFloat(item.geoy), title, labeltitle, content, 'medi.png');
+}else if(item.first_name.indexOf("PAF") == 0){
+			map.addPoint(parseFloat(item.geox), parseFloat(item.geoy), title, labeltitle, content, 'paf.png');
+}else if(item.first_name.indexOf("Punto") == 0){
+			map.addPoint(parseFloat(item.geox), parseFloat(item.geoy), title, labeltitle, content, 'pnatural.png');
+}else if(item.first_name.indexOf("DIFARMES") == 0){
+			map.addPoint(parseFloat(item.geox), parseFloat(item.geoy), title, labeltitle, content, 'difarmes.png');
+}else{
+			map.addPoint(parseFloat(item.geox), parseFloat(item.geoy), title, labeltitle, content, 'MapMarker_1.png');
+}
+
+
+
+if(i == 0){
+                        map.fitTo({
+                            position: [parseFloat(item.geoy), parseFloat(item.geox)],
+                            extent: 0.01
+                        });
+}
+
+                        SliderZoom.maximum = map.getOLMap().getNumZoomLevels() - 1;
+                        SliderZoom.set('value', map.getOLMap().getZoom());
+                        map.getOLMap().zoomTo(Math.round(SliderZoom.get('value')));
+
+
+
+                            });
+
+/*
 console.log('Solicita carga mapa para abonado '+IdAccount);
 
                 R.post("oams_php_query/account_map.php", {
@@ -57,12 +96,16 @@ var title =  item.last_name+' '+item.first_name;
 var labeltitle =  '';
 var content =  '<div><b>Dirección: </b>'+item.address+'</div>'+'<div><b>Latitud: </b>'+item.geox+'</div>'+'<div><b>Longitud: </b>'+item.geoy+'</div>';
 
-if(item.last_name.indexOf("ECO") == 0){
-			map.addPoint(parseFloat(item.geox), parseFloat(item.geoy), title, labeltitle, content, 'MapMarker_2.png');
-}else if(item.last_name.indexOf("MEDI") == 0){
-			map.addPoint(parseFloat(item.geox), parseFloat(item.geoy), title, labeltitle, content, 'MapMarker_3.png');
-}else if(item.last_name.indexOf("PAF") == 0){
-			map.addPoint(parseFloat(item.geox), parseFloat(item.geoy), title, labeltitle, content, 'MapMarker.png');
+if(item.first_name.indexOf("ECO") == 0){
+			map.addPoint(parseFloat(item.geox), parseFloat(item.geoy), title, labeltitle, content, 'eco.png');
+}else if(item.first_name.indexOf("MEDI") == 0){
+			map.addPoint(parseFloat(item.geox), parseFloat(item.geoy), title, labeltitle, content, 'medi.png');
+}else if(item.first_name.indexOf("PAF") == 0){
+			map.addPoint(parseFloat(item.geox), parseFloat(item.geoy), title, labeltitle, content, 'paf.png');
+}else if(item.first_name.indexOf("Punto") == 0){
+			map.addPoint(parseFloat(item.geox), parseFloat(item.geoy), title, labeltitle, content, 'pnatural.png');
+}else if(item.first_name.indexOf("DIFARMES") == 0){
+			map.addPoint(parseFloat(item.geox), parseFloat(item.geoy), title, labeltitle, content, 'difarmes.png');
 }else{
 			map.addPoint(parseFloat(item.geox), parseFloat(item.geoy), title, labeltitle, content, 'MapMarker_1.png');
 }
@@ -92,6 +135,8 @@ if(i == 0){
                            // t.Grid.emit('onnotify', {msg: error});
                         }
                 );
+
+*/
 
 
 

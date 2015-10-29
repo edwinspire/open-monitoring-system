@@ -4,7 +4,7 @@ header('Content-type: application/json');
 
     $db = new oamsDB();
     $db->connect();
-   $db->mapper_table();
+//   $db->mapper_table();
 
 $result = "{}";
 

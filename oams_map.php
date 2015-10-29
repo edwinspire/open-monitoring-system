@@ -31,9 +31,50 @@ CheckPageAccess(0);
         </script>
         <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "app.css";@import "oams.css";
         </style>
+<script>
+<?php 
+require_once "oams_php_script_private/oams_db.php";
+
+    $db = new oamsDB();
+    $db->connect();
+//   $db->mapper_table();
+
+$result = "[{}]";
+
+    if ($db->access_control(0)) {
+
+//print_r($_GET);
+
+switch($_GET["maptype"]){
+case 0:
+// Muestra todos los abonados del sistema
+$result =  oamsDB::result_to_json("accounts", pg_query_params($db->connection, "SELECT account, last_name, first_name, geox, geoy, address, address_ref FROM accounts WHERE enabled = true AND geox != 0 AND geoy != 0;", array()));
+break;
+case 1:
+// Muestra solo el abonado seleccionado
+if(isset($_GET["idcontact"]) && $_GET["idcontact"] > 0){
+$result =  oamsDB::result_to_json("accounts", pg_query_params($db->connection, "SELECT account, last_name, first_name, geox, geoy, address, address_ref FROM accounts WHERE idcontact = $1::bigint AND geox != 0 AND geoy != 0;", array($_GET["idcontact"])));
+}
+break;
+case 2:
+// Muestra los abonados asignados al contacto pasado como parametro
+if(isset($_GET["idcontact"]) && $_GET["idcontact"] > 0){
+$result =  oamsDB::result_to_json("accounts", pg_query_params($db->connection, "SELECT account, last_name, first_name, geox, geoy, address, address_ref FROM accounts WHERE idcontact IN (SELECT idaccount FROM view_account_contacts WHERE idcontact = $1::bigint AND appointment = 'oams_assigned') AND geox != 0 AND geoy != 0;;", array($_GET["idcontact"])));
+}
+break;
+}
+
+    } else {
+        header('HTTP/1.1 401 Unauthorized', true, 401);
+    }
+
+echo "var geodata = ".$result."\n\r";
+?>
+</script>
         <script type="text/javascript" src="oams_map.js"></script>
     </head>
     <body data-maq-flow-layout="true" data-maq-comptype="desktop" class="claro" data-maq-ws="collapse" id="myapp" data-maq-appstates="{}">
+
 
 <?php 
 if(isset($_GET["with_menu"])){
@@ -42,7 +83,7 @@ echo "<div style=\"position: absolute; width: 95%; top: 0; z-index: 999;\"><div 
 }
 }
 ?>
-        <div id="map" data-oams-with_contacts_users="<?php echo $_GET["with_contacts_users"]; ?>" data-oams-idaccount="<?php echo $_GET["idaccount"]; ?>" style="background-color: #b5d0d0; width: 100%;  height: 100%; overflow: hidden;">
+        <div id="map" style="background-color: #b5d0d0; width: 100%;  height: 100%; overflow: hidden;">
             <span>
                 <div data-dojo-type="dijit/form/VerticalSlider" id="id_zoom" intermediateChanges="false" discreteValues="Infinity" style="width: auto; height: 200px; position: absolute; z-index: 900; right: 0px; top: 0px; background-color: white; opacity: 0.85;" title="Zoom">
                     <div data-dojo-type="dijit/form/VerticalRule" container="rightDecoration" style="width: 5px;"></div>

@@ -5,21 +5,16 @@ require_once "oams_db.php";
 
     $db = new oamsDB();
     $db->connect();
-   $db->mapper_table();
+   $db->db_mapper();
 
 /*
-$host = "localhost";
-$dbname = "open_ams";
-
-$dbconn = pg_connect("host=".$host." port=5432 dbname=".$dbname." user=postgres password=pg1234")  or die("Could not connect");
-$table = array();
-*/
+pg_query($db->connection, "SELECT fun_oams_mapper();");
 
 $result_list_tables = pg_query_params($db->connection, "SELECT * from oams_table_columns ORDER BY table_name, column_name;", array());
 
 $dbname = "open_ams";
 $namevardb = "_DBMAP_".$dbname;
-$outphp = "<?php  \n\r".'$'.$namevardb.' = array()'.";\n";
+$outphp = "<?php  \n\r".'$GLOBALS["dbmap_open_ams"] = array()'.";\n";
 
 $jsw = "width: 'auto'";
 
@@ -36,8 +31,9 @@ $gstructures = array();
 
 while ($row = pg_fetch_array($result_list_tables , null, PGSQL_ASSOC)){ 
 
-$outphp = $outphp.'$'.$namevardb.'["'.$row["table_name"].'"]["'.$row["column_name"].'"] = "'.$row["data_type"]."\";\n";
-$outphp = $outphp.'$'.$namevardb.'["'.$row["table_name"].'"]["'.$row["column_name"].'"]["label"] = "'.$row["column_label"]."\";\n";
+$outphp = $outphp.'$GLOBALS["dbmap_open_ams"]["'.$row["table_name"].'"]["'.$row["column_name"].'"] = array("data_type"=>"'.$row["data_type"].'", "label"=>"'.$row["column_label"].'");'."\n";
+
+
 $gs = "";
 
 switch($row["data_type"]){
@@ -53,17 +49,6 @@ $gs = $row["column_name"].": {r: ". "{field:'".$row["column_name"]."', ".$jsw.",
 $gs = $gs." w: "."{field:'".$row["column_name"]."', ".$jsw.", editor: 'dijit/form/CheckBox', editorArgs: {props: 'value: true, disabled: \"false\"', fromEditor: function (d){return d;}, toEditor: function(storeData, gridData){ return gridData;}}, alwaysEditing: true, name:'".$row["column_label"]."'}}";
 
 	break;
-
-/*
-			{field:"es_franquicia", name: "Franquicia",  width: '50px', editor: "dijit/form/CheckBox", editorArgs: {props: 'value: true, disabled: "true"',
-				fromEditor: function (d){
-		return d;
-	},
-toEditor: function(storeData, gridData){
-return gridData;
-				}}, alwaysEditing: true},
-*/
-
 
 	default:
 $gs = $row["column_name"].": {r: ". "{field:'".$row["column_name"]."', name:'".$row["column_label"]."'}, ";
@@ -97,8 +82,5 @@ fclose($mystructure);
 $myfile = fopen($namevardb.".php", "w") or die("Unable to open file!");
 fwrite($myfile, $outphp);
 fclose($myfile);
-
-
-
-
+*/
 ?>

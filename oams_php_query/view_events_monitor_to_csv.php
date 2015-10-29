@@ -7,7 +7,7 @@ ini_set('display_errors', -1);
 
     $db = new oamsDB();
     $db->connect();
-   $db->mapper_table();
+//   $db->mapper_table();
 $result = array();
 
 	if(!$db->access_control(0)){
@@ -28,7 +28,7 @@ if (isset($_POST["type_grid"]) && isset($_POST["idevents"])) {
                 break;
             case "1":
                 $param[0] = $_POST["idaccount"];
-                $query = "SELECT " . $columns . " FROM view_events_monitor WHERE idaccount = $1::integer AND idevent IN(" . $_POST["idevents"] . ") ORDER BY last_name, first_name, dateevent LIMIT 1500;";
+                $query = "SELECT " . $columns . " FROM view_events_monitor WHERE idaccount = $1::integer AND idevent IN(" . $_POST["idevents"] . ") ORDER BY dateevent DESC LIMIT 1500;";
                 break;
             case "2":
                 $query = "SELECT " . $columns . " FROM view_events_monitor WHERE status IN(0) AND idevent IN(" . $_POST["idevents"] . ") ORDER BY last_name, first_name, dateevent LIMIT 1500;";
@@ -43,7 +43,8 @@ if (isset($_POST["type_grid"]) && isset($_POST["idevents"])) {
                 $query = "SELECT " . $columns . " FROM view_events_monitor ORDER BY last_name, first_name, dateevent LIMIT 1500;";
                 break;
             case "1":
-                $query = "SELECT " . $columns . " FROM view_events_monitor WHERE idaccount = $1::integer ORDER BY last_name, first_name, dateevent LIMIT 1500;";
+                $param[0] = $_POST["idaccount"];
+                $query = "SELECT " . $columns . " FROM view_events_monitor WHERE idaccount = $1::integer ORDER BY dateevent DESC LIMIT 1500;";
                 break;
             case "2":
                 $query = "SELECT " . $columns . " FROM view_events_monitor WHERE status IN(0) ORDER BY last_name, first_name, dateevent LIMIT 1500;";

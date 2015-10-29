@@ -15,7 +15,6 @@ require([
   "dojo/parser",
   "dijit/layout/BorderContainer",
   "dijit/layout/ContentPane",
-  "woams_accounts_view_gridx/woams_accounts_view_gridx",
   "woams_menu_header/woams_menu_header",
   "dijit/MenuBar",
   "dijit/Menu",

@@ -5,7 +5,7 @@ require_once "../oams_php_script_private/oams_db.php";
 
     $db = new oamsDB();
     $db->connect();
-   $db->mapper_table();
+//   $db->mapper_table();
 
 header('Content-type: application/json');
 

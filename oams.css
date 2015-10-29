@@ -19,6 +19,13 @@ background: yellow;
         height: 99%;
     }
 
+.form_field{
+padding: 0.2em;
+}
+
+.form_label{
+}
+
 
 .woams_map_into_widget {
     position: relative;

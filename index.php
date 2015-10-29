@@ -5,7 +5,7 @@ require_once "oams_php_script_private/oams_db.php";
 
 	if(!$db->login()){
 header("Location: login.php");
-                       die();
+                      die();
 }
 ?>
 <!DOCTYPE html>

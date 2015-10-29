@@ -12,10 +12,8 @@ class oamsDB {
    // private $tables = array();
 	
 public function login() {
-// session_start();
-    $Retorno = true;
 
-//print_r($_POST);
+    $Retorno = false;
 // Devuelve true si no se ha solicitado loguearse
     if (isset($_POST['oams_submit'])) {
 
@@ -25,23 +23,14 @@ public function login() {
 
         $result = pg_query_params($this->connection, "SELECT login, username, sessionid, fullname, msg FROM fun_login($1::text, $2::text, $3::text, $4::text);", array($user, $pwd, $_SERVER['HTTP_USER_AGENT'], $_SERVER['REMOTE_ADDR']));
         $row = pg_fetch_assoc($result);
-
-      // echo $row["login"]."</br>";
-//echo $row["msg"]."</br>";
-//print_r($row);
         if ($row["login"] == "t") {
             $Retorno = true;
-	//$this->idadmin = $row["idadmin"];
-	//$_SESSION['oams_userid'] =  $row["fun_return"];
-          //  $_SESSION['oams_username'] = $row["fun_msg"];
 		setcookie("oams_fullname", $row["fullname"], (time()+3600)*8);  /* expira en 8 hora */
 		setcookie("oams_username", $row["username"], (time()+3600)*8);  /* expira en 8 hora */
 		setcookie("oams_sessionid", $row["sessionid"], (time()+3600)*8);  /* expira en 8 hora */
         }
     }
 
-
-//session_write_close(); 
     return $Retorno;
 }
 
@@ -57,34 +46,15 @@ return $r;
 }
 
 public function logout() {
-// TODO Hacer nmas  simp,e el query del logout
-//    $pGdbconn = pg_connect($cs);
-// Elimina el session_id del servidor
-// print_r($_COOKIE);
 
     if (isset($_COOKIE['oams_username'])) {
-        $result = pg_query_params($this->connection, "SELECT fun_logout($1::bigint, $2::text) as result;", array($_COOKIE['oams_username'], $_COOKIE['oams_sessionid'])); //$_SERVER['HTTP_USER_AGENT'], $_SERVER['REMOTE_ADDR'], session_id()   
-
+        $result = pg_query_params($this->connection, "SELECT fun_logout($1::bigint, $2::text) as result;", array($_COOKIE['oams_username'], $_COOKIE['oams_sessionid'])); //$_SERVER['HTTP_USER_AGENT'], $_SERVER['REMOTE_ADDR'], session_id()  
     }
 
 	setcookie("oams_fullname", "anonymous", time()+1);
 	setcookie("oams_username", "anonymous", time()+1);
 	setcookie("oams_sessionid", "anonymous", time()+1);
 
-//    $_SESSION = array();
-
-// Si se desea destruir la sesión completamente, borre también la cookie de sesión.
-// Nota: ¡Esto destruirá la sesión, y no la información de la sesión!
-/* 
-   if (ini_get("session.use_cookies")) {
-        $params = session_get_cookie_params();
-        setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]
-        );
-    }
-*/
-
-// Finalmente, destruir la sesión.
-//    session_destroy();
 }
 
 
@@ -182,7 +152,7 @@ foreach ($row as $k => &$v) {
 
 if(isset($GLOBALS["dbmap_open_ams"][$table_name][$k])){
 // En esta parte convertimos los valores boleanos devueltos por postgres a boleanos validos para json
-switch($GLOBALS["dbmap_open_ams"][$table_name][$k]){
+switch($GLOBALS["dbmap_open_ams"][$table_name][$k]["data_type"]){
 	case 'boolean':
 if($v == 't'){
 $v = true;
@@ -233,10 +203,8 @@ if(is_array($arr)){
 
 
 
+/*
     public function mapper_table($table_name = "") {
-
-       // global $_DBMAP_open_ams;
-      // print_r($GLOBALS["dbmap_open_ams"]);
 
         if (strlen($table_name) > 0) {
             $t = array();
@@ -244,14 +212,14 @@ if(is_array($arr)){
 
             $columns = array();
             while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-                $columns[$row["column_name"]] = $row["data_type"];
+                $columns[$row["column_name"]] = array("data_type"=>$row["data_type"]);
             }
 
             $GLOBALS["dbmap_open_ams"][$table_name] = $columns;
         } 
 
-//print_r($GLOBALS["dbmap_open_ams"]);
     }
+*/
 
     // Declaración del método
     public function connect() {
@@ -262,9 +230,11 @@ if(is_array($arr)){
 // Debe ser un array que contenga como llave el nombre de la columna y como valor el valor correspondiente
     public function insert($table_name, $data, $ignore_data = array()) {
 
+/*
 	if(!isset($GLOBALS["dbmap_open_ams"][$table_name])){
 $this->mapper_table($table_name);
 }
+*/
 
         $d = array();
 
@@ -290,10 +260,11 @@ return (bool) pg_insert($this->connection, $table_name, $d);
         $ret = array();
         $i = 1;
 
+/*
 	if(!isset($GLOBALS["dbmap_open_ams"][$table_name])){
 $this->mapper_table($table_name);
 }
-
+*/
 
         foreach ($data as $k => $v) {
 
@@ -318,16 +289,18 @@ return (bool)$r;
     }
 
 // Debe ser un array que contenga como llave el nombre de la columna y como valor el valor correspondiente, $where un array con los nombres de los campos para hacer where
-    public function select($table_name, $return_fields = array(), $where = array(), $orderby="", $limit = 0) {
+    private function build_query_select($table_name, $return_fields = array(), $where = array(), $orderby="", $limit = 0) {
 
         $fields = array();
         $w = array();
         $datas = array();
         $i = 1;
 
+/*
 	if(!isset($GLOBALS["dbmap_open_ams"][$table_name])){
 $this->mapper_table($table_name);
 }
+*/
 
         foreach ($GLOBALS["dbmap_open_ams"][$table_name] as $k => $v) {
 
@@ -336,7 +309,7 @@ $this->mapper_table($table_name);
             }   
     
             if (array_key_exists($k, $where)) {
-                array_push($w, $k . "=$" . $i . "::" . $GLOBALS["dbmap_open_ams"][$table_name][$k]);
+                array_push($w, $k . "=$" . $i . "::" . $v["data_type"]);
                 array_push($datas, $where[$k]);
                 $i++;
             }
@@ -365,10 +338,19 @@ if(strlen($orderby) > 0){
             $query = $query . " LIMIT " . $limit;
         }
 
-        $query = $query . ";";
+       // $query = $query . ";";
 //echo $query;
-        return pg_query_params($this->connection, $query, $datas);
+ //       return pg_query_params($this->connection, $query, $datas);
+return array("query"=>$query, "datas"=>$datas);
     }
+
+
+public function select($table_name, $return_fields = array(), $where = array(), $orderby="", $limit = 0){
+$d = $this->build_query_select($table_name, $return_fields, $where, $orderby, $limit);
+return pg_query_params($this->connection, $d["query"], $d["datas"]);
+}
+
+
 
 // Debe ser un array que contenga como llave el nombre de la columna y como valor el valor correspondiente, $where un array con los nombres de los campos para hacer where
     public function delete($table_name, $where = array(), $require_where = true) {
@@ -388,8 +370,108 @@ $r = pg_delete($this->connection, $table_name, $where);
 return $r;
     }
 
+
+public function db_mapper(){
+
+pg_query($this->connection, "SELECT fun_oams_mapper();");
+
+$result_list_tables = pg_query_params($this->connection, "SELECT * from oams_table_columns ORDER BY table_name, column_name;", array());
+
+$dbname = "open_ams";
+$namevardb = "_DBMAP_".$dbname;
+$outphp = "<?php  \n\r".'$GLOBALS["dbmap_open_ams"] = array()'.";\n";
+
+$jsw = "width: 'auto'";
+
+$gstructuresjs = "define(\"oams/grid_structures/XXXTABLEXXX\",['dojo/_base/declare', 'dojo/Evented'],function(_1, _2){
+
+  return _1([_2], {
+	structure: XXXSTRUCTUREXXX
+
+});
+
+
+});";
+$gstructures = array();
+
+while ($row = pg_fetch_array($result_list_tables , null, PGSQL_ASSOC)){ 
+
+$outphp = $outphp.'$GLOBALS["dbmap_open_ams"]["'.$row["table_name"].'"]["'.$row["column_name"].'"] = array("data_type"=>"'.$row["data_type"].'", "label"=>"'.$row["column_label"].'");'."\n";
+
+/*
+$outphp = $outphp.'$'.$namevardb.'["'.$row["table_name"].'"]["'.$row["column_name"].'"] = "'.$row["data_type"]."\";\n";
+$outphp = $outphp.'$'.$namevardb.'["'.$row["table_name"].'"]["'.$row["column_name"].'"]["label"] = "'.$row["column_label"]."\";\n";
+*/
+$gs = "";
+
+if(strlen($row["column_width"])>2){
+$jsw = "width: '".$row["column_width"]." '";
+}else{
+$jsw = "width: 'auto' ";
+}
+
+switch($row["data_type"]){
+	case "timestamp without time zone":
+$gs = $row["column_name"].": {r: ". "{field:'".$row["column_name"]."', ".$jsw.", dataType: 'datetime',  name:'".$row["column_label"]."'}, ";
+$gs = $gs." w: "."{field:'".$row["column_name"]."', editable: 'true', dataType: 'datetime', name:'".$row["column_label"]."'}}";
+
+	break;
+	case "boolean":
+//$jsw = "width: '50px'";
+$gs = $row["column_name"].": {r: ". "{field:'".$row["column_name"]."', ".$jsw.", dataType: 'boolean', editor: 'dijit/form/CheckBox', editorArgs: {props: 'value: true, disabled: \"true\"', fromEditor: function (d){return d;}, toEditor: function(storeData, gridData){ return gridData;}}, alwaysEditing: true,  name:'".$row["column_label"]."'}, ";
+$gs = $gs." w: "."{field:'".$row["column_name"]."', ".$jsw.", editable: 'true', dataType: 'boolean', editor: 'dijit/form/CheckBox', editorArgs: {props: 'value: true, disabled: \"false\"', fromEditor: function (d){return d;}, toEditor: function(storeData, gridData){ return gridData;}}, alwaysEditing: true, name:'".$row["column_label"]."'}}";
+
+	break;
+
+	default:
+$gs = $row["column_name"].": {r: ". "{field:'".$row["column_name"]."', ".$jsw.", name:'".$row["column_label"]."'}, ";
+$gs = $gs." w: "."{field:'".$row["column_name"]."', editable: 'true', name:'".$row["column_label"]."'}}";
+	break;
+
+}
+
+if(!array_key_exists($row["table_name"], $gstructures)){
+$gstructures[$row["table_name"]] = array();
+array_push($gstructures[$row["table_name"]], $gs);
+
+}else{
+array_push($gstructures[$row["table_name"]], $gs);
+}
+
+}
+
+$outphp = $outphp."\n\r?>";
+
+foreach($gstructures as $k=>$v){
+$tabla = $k;
+$a = str_replace("XXXTABLEXXX", $tabla, $gstructuresjs);
+$b = str_replace("XXXSTRUCTUREXXX", "{".implode(",\n", $v)."}\n\r", $a);
+
+$mystructure = fopen("../lib/dojo/oams/grid_structures/".$tabla.".js", "w") or die("Unable to open file!");
+fwrite($mystructure, $b);
+fclose($mystructure);
+}
+
+$myfile = fopen($namevardb.".php", "w") or die("Unable to open file!");
+fwrite($myfile, $outphp);
+fclose($myfile);
+}
+/*
 public  function select_result_as_json($table_name, $return_fields = array(), $where = array(), $orderby="", $limit = 0){
 return oamsDB::result_to_json($table_name, $this->select($table_name, $return_fields, $where, $orderby, $limit));
+}
+*/
+
+public function query_params_result_as_json($query, $params){
+$q = "select array_to_json(array_agg(row_to_json(t))) FROM (".$query.") t;";
+$r = pg_query_params($this->connection, $q, $params);
+return pg_fetch_assoc($r)["array_to_json"];
+}
+
+
+public  function select_result_as_json($table_name, $return_fields = array(), $where = array(), $orderby="", $limit = 0){
+$d = $this->build_query_select($table_name, $return_fields, $where, $orderby, $limit);
+return $this->query_params_result_as_json($d["query"], $d["datas"]);
 }
 
 public  function select_result_as_csv($table_name, $return_fields = array(), $where = array(), $orderby="", $limit = 0){

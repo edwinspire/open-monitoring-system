@@ -4,12 +4,12 @@ header('Content-type: application/json');
 
     $db = new oamsDB();
     $db->connect();
-   $db->mapper_table();
+//   $db->mapper_table();
 
 $result = "{}";
 
 	if($db->access_control(0)){
-$result = $db->select_result_as_json("accounts", array(), array(), "last_name, first_name");
+$result = $db->select_result_as_json("view_accounts", array(), array(), "account_name");
 		}else{
 header('HTTP/1.1 401 Unauthorized', true, 401);
 }

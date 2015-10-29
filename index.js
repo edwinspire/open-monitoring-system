@@ -7,7 +7,7 @@ require(["dojo/ready",
      ready(function(){
          // logic that requires that Dojo is fully initialized should go here
  
-//dijit.byId('idTitulo1').set('label', 'LOG DE EVENTOS');
+dijit.byId('idTitulo1').set('label', 'LOG DE EVENTOS');
 var mh = dijit.byId('id_mh');
 var g1 = dijit.byId('id_gridx_event_monitor');
 g1.create_grid(0);

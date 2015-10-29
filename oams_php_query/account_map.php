@@ -5,13 +5,11 @@ require_once "../oams_php_script_private/oams_db.php";
 
     $db = new oamsDB();
     $db->connect();
-   $db->mapper_table();
+ //  $db->mapper_table();
 
 $result = false;
 
 if (isset($_POST["idaccount"])) {
-
-    session_start();
 
     if ($db->access_control(0)) {
 

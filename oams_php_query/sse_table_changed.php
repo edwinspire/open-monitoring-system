@@ -13,7 +13,6 @@ $last_ts = array();
 
     $db = new oamsDB();
     $db->connect();
-  $db->mapper_table();
 
 if($db->access_control(0)){
 

@@ -10,14 +10,14 @@ include "../oams_php_script_private/oams_db.php";
 //ini_set('display_errors', 1);
 //header('Content-type: application/json');
 //$pGdbconn = pg_connect($conn_string) or die("Could not connect");
-session_start();
+//session_start();
 $result = false;
 
 if(isset($_POST["query_type"])){
 
     $db = new oamsDB();
     $db->connect();
-    $db->mapper_table("view_equipments");
+  //  $db->mapper_table("view_equipments");
 
 switch($_POST["query_type"]){
 

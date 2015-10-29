@@ -12,7 +12,7 @@ $result = false;
 
 if (isset($_POST["query_type"])) {
 
-    session_start();
+//    session_start();
     $idadmin = get_idadmin($pGdbconn);
 
     if ($idadmin > 0) {
