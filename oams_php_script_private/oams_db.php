@@ -2,11 +2,17 @@
 
 ini_set('display_errors', -1);
 include_once("_DBMAP_open_ams.php");
+$oams_config = parse_ini_file("oams.ini.php");
 
 class oamsDB {
 
     // Declaración de la propiedad
-    private $conn_string = "host=localhost port=5432 dbname=open_ams user=postgres password=pg1234";
+//    private $conn_string = "host=localhost port=5432 dbname=open_ams user=postgres password=pg1234";
+public $host="localhost";
+public $port=5432;
+public $dbname="open_ams";
+public $user="postgres";
+public $password="pg1234";
     public $connection = null;
 	public $idadmin = -100;
    // private $tables = array();
@@ -223,7 +229,34 @@ if(is_array($arr)){
 
     // Declaración del método
     public function connect() {
-        $this->connection = pg_connect($this->conn_string) or die("Could not connect");
+
+ global $oams_config;
+
+if(isset($oams_config["PostgreSQL"])){
+
+if(isset($oams_config["PostgreSQL"]["host"])){
+$this->host = $oams_config["PostgreSQL"]["host"];
+}
+
+if(isset($oams_config["PostgreSQL"]["port"])){
+$this->port = $oams_config["PostgreSQL"]["port"];
+}
+
+if(isset($oams_config["PostgreSQL"]["dbname"])){
+$this->dbname = $oams_config["PostgreSQL"]["dbname"];
+}
+
+if(isset($oams_config["PostgreSQL"]["user"])){
+$this->user = $oams_config["PostgreSQL"]["user"];
+}
+
+if(isset($oams_config["PostgreSQL"]["password"])){
+$this->password = $oams_config["PostgreSQL"]["password"];
+}
+
+}
+
+        $this->connection = pg_connect("host=".$this->host." port=".$this->port." dbname=".$this->dbname." user=".$this->user." password=".$this->password) or die("Could not connect");
 	return $this->connection;
     }
 
@@ -419,7 +452,7 @@ $gs = $gs." w: "."{field:'".$row["column_name"]."', editable: 'true', dataType: 
 	case "boolean":
 //$jsw = "width: '50px'";
 $gs = $row["column_name"].": {r: ". "{field:'".$row["column_name"]."', ".$jsw.", dataType: 'boolean', editor: 'dijit/form/CheckBox', editorArgs: {props: 'value: true, disabled: \"true\"', fromEditor: function (d){return d;}, toEditor: function(storeData, gridData){ return gridData;}}, alwaysEditing: true,  name:'".$row["column_label"]."'}, ";
-$gs = $gs." w: "."{field:'".$row["column_name"]."', ".$jsw.", editable: 'true', dataType: 'boolean', editor: 'dijit/form/CheckBox', editorArgs: {props: 'value: true, disabled: \"false\"', fromEditor: function (d){return d;}, toEditor: function(storeData, gridData){ return gridData;}}, alwaysEditing: true, name:'".$row["column_label"]."'}}";
+$gs = $gs." w: "."{field:'".$row["column_name"]."', ".$jsw.", editable: 'true', dataType: 'boolean', editor: 'dijit/form/CheckBox', editorArgs: {props: 'value: true', fromEditor: function (d){return d;}, toEditor: function(storeData, gridData){ return gridData;}}, alwaysEditing: true, name:'".$row["column_label"]."'}}";
 
 	break;
 

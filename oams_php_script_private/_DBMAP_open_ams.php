@@ -63,6 +63,8 @@ $GLOBALS["dbmap_open_ams"]["account_users"]["note"] = array("data_type"=>"text",
 $GLOBALS["dbmap_open_ams"]["account_users"]["priority"] = array("data_type"=>"integer", "label"=>"Prioridad");
 $GLOBALS["dbmap_open_ams"]["account_users"]["ts"] = array("data_type"=>"timestamp without time zone", "label"=>"ts");
 $GLOBALS["dbmap_open_ams"]["account_users"]["user"] = array("data_type"=>"integer", "label"=>"Usuario");
+$GLOBALS["dbmap_open_ams"]["admin_notifications"]["idadmin_notification"] = array("data_type"=>"bigint", "label"=>"idadmin_notification");
+$GLOBALS["dbmap_open_ams"]["admin_notifications"]["ts"] = array("data_type"=>"timestamp without time zone", "label"=>"ts");
 $GLOBALS["dbmap_open_ams"]["attachments"]["file"] = array("data_type"=>"text", "label"=>"Archivo");
 $GLOBALS["dbmap_open_ams"]["attachments"]["idattachment"] = array("data_type"=>"bigint", "label"=>"idattachment");
 $GLOBALS["dbmap_open_ams"]["attachments"]["md5"] = array("data_type"=>"text", "label"=>"md5");
@@ -101,6 +103,7 @@ $GLOBALS["dbmap_open_ams"]["emails"]["email"] = array("data_type"=>"text", "labe
 $GLOBALS["dbmap_open_ams"]["emails"]["idcontact"] = array("data_type"=>"bigint", "label"=>"idcontact");
 $GLOBALS["dbmap_open_ams"]["emails"]["idemail"] = array("data_type"=>"bigint", "label"=>"idemail");
 $GLOBALS["dbmap_open_ams"]["emails"]["note"] = array("data_type"=>"text", "label"=>"Notas");
+$GLOBALS["dbmap_open_ams"]["emails"]["notify_if_administrator"] = array("data_type"=>"boolean", "label"=>"notify_if_administrator");
 $GLOBALS["dbmap_open_ams"]["emails"]["priority"] = array("data_type"=>"integer", "label"=>"Prioridad");
 $GLOBALS["dbmap_open_ams"]["emails"]["ts"] = array("data_type"=>"timestamp without time zone", "label"=>"ts");
 $GLOBALS["dbmap_open_ams"]["equipments"]["agreement_code_provider"] = array("data_type"=>"text", "label"=>"agreement_code_provider");
@@ -262,6 +265,7 @@ $GLOBALS["dbmap_open_ams"]["network_devices"]["ip"] = array("data_type"=>"inet",
 $GLOBALS["dbmap_open_ams"]["network_devices"]["mac"] = array("data_type"=>"macaddr", "label"=>"mac");
 $GLOBALS["dbmap_open_ams"]["network_devices"]["mark"] = array("data_type"=>"text", "label"=>"Marca");
 $GLOBALS["dbmap_open_ams"]["network_devices"]["model"] = array("data_type"=>"text", "label"=>"Modelo");
+$GLOBALS["dbmap_open_ams"]["network_devices"]["monitored"] = array("data_type"=>"boolean", "label"=>"monitored");
 $GLOBALS["dbmap_open_ams"]["network_devices"]["network_access_method"] = array("data_type"=>"text", "label"=>"network_access_method");
 $GLOBALS["dbmap_open_ams"]["network_devices"]["note"] = array("data_type"=>"text", "label"=>"Notas");
 $GLOBALS["dbmap_open_ams"]["network_devices"]["operability"] = array("data_type"=>"smallint", "label"=>"Operatividad");
@@ -383,6 +387,7 @@ $GLOBALS["dbmap_open_ams"]["view_account_network_devices"]["last_name"] = array(
 $GLOBALS["dbmap_open_ams"]["view_account_network_devices"]["mac"] = array("data_type"=>"macaddr", "label"=>"mac");
 $GLOBALS["dbmap_open_ams"]["view_account_network_devices"]["mark"] = array("data_type"=>"text", "label"=>"Marca");
 $GLOBALS["dbmap_open_ams"]["view_account_network_devices"]["model"] = array("data_type"=>"text", "label"=>"Modelo");
+$GLOBALS["dbmap_open_ams"]["view_account_network_devices"]["monitored"] = array("data_type"=>"boolean", "label"=>"monitored");
 $GLOBALS["dbmap_open_ams"]["view_account_network_devices"]["port"] = array("data_type"=>"smallint", "label"=>"port");
 $GLOBALS["dbmap_open_ams"]["view_account_network_devices"]["pwd"] = array("data_type"=>"text", "label"=>"pwd");
 $GLOBALS["dbmap_open_ams"]["view_account_network_devices"]["serial_number"] = array("data_type"=>"text", "label"=>"Número - Serie");
@@ -481,6 +486,21 @@ $GLOBALS["dbmap_open_ams"]["view_admins"]["ididtype"] = array("data_type"=>"inte
 $GLOBALS["dbmap_open_ams"]["view_admins"]["is_admin"] = array("data_type"=>"boolean", "label"=>"is_admin");
 $GLOBALS["dbmap_open_ams"]["view_admins"]["note"] = array("data_type"=>"text", "label"=>"Notas");
 $GLOBALS["dbmap_open_ams"]["view_admins"]["postal_code"] = array("data_type"=>"text", "label"=>"Código Postal");
+$GLOBALS["dbmap_open_ams"]["view_contact_groups"]["description"] = array("data_type"=>"text", "label"=>"description");
+$GLOBALS["dbmap_open_ams"]["view_contact_groups"]["enabled"] = array("data_type"=>"boolean", "label"=>"enabled");
+$GLOBALS["dbmap_open_ams"]["view_contact_groups"]["idcontact"] = array("data_type"=>"integer", "label"=>"idcontact");
+$GLOBALS["dbmap_open_ams"]["view_contact_groups"]["idcontactgroup"] = array("data_type"=>"bigint", "label"=>"idcontactgroup");
+$GLOBALS["dbmap_open_ams"]["view_contact_groups"]["idgroup"] = array("data_type"=>"bigint", "label"=>"idgroup");
+$GLOBALS["dbmap_open_ams"]["view_contact_groups"]["name"] = array("data_type"=>"text", "label"=>"name");
+$GLOBALS["dbmap_open_ams"]["view_contact_groups"]["note"] = array("data_type"=>"text", "label"=>"note");
+$GLOBALS["dbmap_open_ams"]["view_contact_groups"]["ts"] = array("data_type"=>"timestamp without time zone", "label"=>"ts");
+$GLOBALS["dbmap_open_ams"]["view_contact_groups_they_belong"]["description"] = array("data_type"=>"text", "label"=>"description");
+$GLOBALS["dbmap_open_ams"]["view_contact_groups_they_belong"]["enabled"] = array("data_type"=>"boolean", "label"=>"enabled");
+$GLOBALS["dbmap_open_ams"]["view_contact_groups_they_belong"]["idgroup"] = array("data_type"=>"bigint", "label"=>"idgroup");
+$GLOBALS["dbmap_open_ams"]["view_contact_groups_they_belong"]["ismember"] = array("data_type"=>"boolean", "label"=>"ismember");
+$GLOBALS["dbmap_open_ams"]["view_contact_groups_they_belong"]["name"] = array("data_type"=>"text", "label"=>"name");
+$GLOBALS["dbmap_open_ams"]["view_contact_groups_they_belong"]["note"] = array("data_type"=>"text", "label"=>"note");
+$GLOBALS["dbmap_open_ams"]["view_contact_groups_they_belong"]["ts"] = array("data_type"=>"timestamp without time zone", "label"=>"ts");
 $GLOBALS["dbmap_open_ams"]["view_equipments"]["account"] = array("data_type"=>"text", "label"=>"Oficina");
 $GLOBALS["dbmap_open_ams"]["view_equipments"]["account_name"] = array("data_type"=>"text", "label"=>"Farmacia");
 $GLOBALS["dbmap_open_ams"]["view_equipments"]["agreement_code_provider"] = array("data_type"=>"text", "label"=>"agreement_code_provider");

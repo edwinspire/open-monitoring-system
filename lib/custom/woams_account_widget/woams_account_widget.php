@@ -14,6 +14,10 @@
 
             </div>
 
+            <div data-dojo-type="dijit/layout/ContentPane" title="Grupos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false">
+                <div data-dojo-attach-point="AccountGroups" data-dojo-type="woams_contacts_groups_gridx/woams_contacts_groups_gridx" style="height: 100%"></div>
+</div>
+
             <div data-dojo-type="dijit/layout/ContentPane" title="Contactos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false">
                 <div data-dojo-attach-point="C2" data-dojo-type="dijit/layout/BorderContainer" design="sidebar" persist="false" gutters="true" style="min-width: 1em; min-height: 1px; z-index: 0; width: 100%; height: 95%;">
 
@@ -255,17 +259,6 @@ echo get_table_column_label("accounts", "note");
         <textarea data-dbTuple="woams_account_widget_new_account" name="note" type="text" data-dojo-type="dijit/form/Textarea" style="width: 100%; height: auto;"></textarea>
 
     </div>
-
-
-    <div style="float: left; width: 49%; min-width: 200px; height: 200px; display: none;" >         <div  data-dojo-type="woams_groups_gridx/woams_groups_gridx"></div> </div>
-
-    <div style="float: right; width: 49%; min-width: 200px; height: 200px; display: none;" >
-        <div  data-dojo-type="woams_groups_gridx/woams_groups_gridx"></div>
-
-    </div>        
-        
-        
-        
         
     </div>
 

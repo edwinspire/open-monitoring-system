@@ -1,5 +1,5 @@
 <?php
-require_once "oams_php_script_private/security.php";
+require_once "oams_php_script_private/misc.php";
 CheckPageAccess(0);
 ?>
 <!DOCTYPE html>

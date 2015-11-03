@@ -18,8 +18,8 @@ if($db->access_control(0)){
 
 while ($count_seconds < 120) {
 
-$tresult = pg_query_params($db->connection, "SELECT * FROM fun_set_expired_events();", array());
-$tresult2 = pg_query_params($db->connection, "SELECT * FROM fun_remove_notifications_old();", array());
+//$tresult = pg_query_params($db->connection, "SELECT * FROM fun_set_expired_events();", array());
+//$tresult2 = pg_query_params($db->connection, "SELECT * FROM fun_remove_notifications_old();", array());
 
     $result = pg_query_params($db->connection, "SELECT table_name, ts FROM sys_table_ts;", array());
     if (!$result) {

@@ -28,7 +28,7 @@ a1.load(e.item.idcontact);
          
      
 mh.on("sse_onchanged_table", function(e){
-   console.log(e);
+//   console.log(e);
     if(e.table_name == "accounts"){
 g1.load();
     }

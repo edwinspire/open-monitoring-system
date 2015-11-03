@@ -1,5 +1,5 @@
 <?php
-require_once "oams_php_script_private/security.php";
+require_once "oams_php_script_private/misc.php";
 CheckPageAccess(0);
 ?>
 <!DOCTYPE html>
@@ -33,7 +33,6 @@ require([
   "w_common_tooltipdialogconfirmation/w_common_tooltipdialogconfirmation",
   "w_common_basic_menubar/w_common_basic_menubar",
   "dijit/layout/TabContainer",
-  "woams_groups_gridx/woams_groups_gridx",
   "woams_equipments_gridx/woams_equipments_gridx",
   "woams_phones_gridx/woams_phones_gridx",
 "woams_events_comments/woams_events_comments"

@@ -199,12 +199,6 @@ echo get_table_column_label("accounts", "note");
     </div>
 
 
-    <div style="float: left; width: 49%; min-width: 200px; height: 200px; display: none;" >         <div  data-dojo-type="woams_groups_gridx/woams_groups_gridx"></div> </div>
-
-    <div style="float: right; width: 49%; min-width: 200px; height: 200px; display: none;" >
-        <div  data-dojo-type="woams_groups_gridx/woams_groups_gridx"></div>
-
-    </div>
 
 </div >
 

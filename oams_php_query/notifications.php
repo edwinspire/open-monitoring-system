@@ -1,15 +1,22 @@
 <?php
 
 //ini_set('display_errors', 0);
-include "../oams_php_script_private/pg_conn_string.php";
-include "../common_php_script/pg_result_to_json.php";
+require_once "../oams_php_script_private/oams_db.php";
 
 header('Content-type: application/json');
-//session_start();
-$pGdbconn = pg_connect($conn_string) or die("Could not connect");
+    $db = new oamsDB();
+    $db->connect();
+
+	if($db->access_control(0)){
 
 $lastidnotify = isset($_POST['lastidnotify']) ? $_POST['lastidnotify'] : '0';
-$result = pg_query_params($pGdbconn, "SELECT * FROM notification_area WHERE (sessionid = 'all' OR sessionid = $1::text) AND idnotify > $2::integer ORDER BY urgency, idnotify;", array($_COOKIE["oams_sessionid"], $lastidnotify));
-echo pg_result_to_json($result);
 
+    $db = new oamsDB();
+    $db->connect();
+
+                $result = $db->query_params_result_as_json("SELECT * FROM notification_area WHERE (sessionid = 'all' OR sessionid = $1::text) AND idnotify > $2::integer ORDER BY urgency, idnotify", array($_COOKIE["oams_sessionid"], $lastidnotify));
+
+}
+
+echo $result;
 ?>
