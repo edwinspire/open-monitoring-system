@@ -114,7 +114,13 @@ if(is_array($arr)){
     $h = array();
 
     foreach ($arr[0] as $k => $v) {
+
+if(isset($GLOBALS["dbmap_open_ams"][$table_name][$k]["label"])){
+        array_push($h, strtoupper($GLOBALS["dbmap_open_ams"][$table_name][$k]["label"]));
+}else{
         array_push($h, strtoupper($k));
+}
+
     }
 
     $r = oamsDB::arrayToCsv($h);

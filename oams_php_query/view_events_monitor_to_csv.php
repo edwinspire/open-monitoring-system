@@ -19,7 +19,7 @@ if (isset($_POST["type_grid"]) && isset($_POST["idevents"])) {
 
     $query = "";
     $param = array();
-    $columns = "account , (last_name||' '||first_name) as NAME, dateevent as DATE, label, description, priority, status_label, status, oams_assigned, idevent, idaccount, code, zu AS ZONE_USER, ideventtype, last_comment";
+    $columns = "account , (last_name||' '||first_name) as first_name, label, description, priority, status_label, status, oams_assigned, idevent, idaccount, code, zu, ideventtype, last_comment";
 
     if (isset($_POST["selected"])) {
         switch ($_POST["type_grid"]) {

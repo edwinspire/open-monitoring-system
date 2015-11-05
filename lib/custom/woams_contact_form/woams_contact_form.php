@@ -52,7 +52,7 @@ echo get_table_column_label("contacts", "birthday");
 ?> 
 </label>
         <span>
-            <input data-dbTuple="woams_contact_form_widget" required="true" data-dbFieldType="date" name="birthday" data-dojo-attach-point="BDay" type="text"  data-dojo-type="dijit/form/DateTextBox"></input>
+            <input data-dbTuple="woams_contact_form_widget"  data-dbFieldType="date" name="birthday" data-dojo-attach-point="BDay" type="text"  data-dojo-type="dijit/form/DateTextBox"></input>
         </span></div>
     <div style="display: inline-block;" class="form_field">
         <label class="form_label">

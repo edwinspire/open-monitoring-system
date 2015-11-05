@@ -136,7 +136,7 @@ echo get_table_column_label("equipments", "serial_number");
 require_once "../../../oams_php_script_private/misc.php";
 echo get_table_column_label("equipments", "installation_date");
 ?>  
-</label><input data-dbTuple="woams_account_equipment_tuple" required="true"  name="installation_date" type="text" data-dojo-type="dijit/form/DateTextBox" data-dbFieldType="date"></input><br />
+</label><input data-dbTuple="woams_account_equipment_tuple"  name="installation_date" type="text" data-dojo-type="dijit/form/DateTextBox" data-dbFieldType="date"></input><br />
         <label for="operativity">
             <?php 
 require_once "../../../oams_php_script_private/misc.php";

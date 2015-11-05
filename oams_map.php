@@ -37,13 +37,10 @@ require_once "oams_php_script_private/oams_db.php";
 
     $db = new oamsDB();
     $db->connect();
-//   $db->mapper_table();
 
 $result = "[{}]";
 
     if ($db->access_control(0)) {
-
-//print_r($_GET);
 
 switch($_GET["maptype"]){
 case 0:
@@ -59,7 +56,7 @@ break;
 case 2:
 // Muestra los abonados asignados al contacto pasado como parametro
 if(isset($_GET["idcontact"]) && $_GET["idcontact"] > 0){
-$result =  oamsDB::result_to_json("accounts", pg_query_params($db->connection, "SELECT account, last_name, first_name, geox, geoy, address, address_ref FROM accounts WHERE idcontact IN (SELECT idaccount FROM view_account_contacts WHERE idcontact = $1::bigint AND appointment = 'oams_assigned') AND geox != 0 AND geoy != 0;;", array($_GET["idcontact"])));
+$result =  oamsDB::result_to_json("accounts", pg_query_params($db->connection, "SELECT account, last_name, first_name, geox, geoy, address, address_ref FROM accounts WHERE idcontact IN (SELECT idaccount FROM view_account_contacts WHERE idcontact = $1::bigint AND appointment = 'oams_assigned') AND geox != 0 AND geoy != 0;", array($_GET["idcontact"])));
 }
 break;
 }
@@ -85,10 +82,11 @@ echo "<div style=\"position: absolute; width: 95%; top: 0; z-index: 999;\"><div 
 ?>
         <div id="map" style="background-color: #b5d0d0; width: 100%;  height: 100%; overflow: hidden;">
             <span>
-                <div data-dojo-type="dijit/form/VerticalSlider" id="id_zoom" intermediateChanges="false" discreteValues="Infinity" style="width: auto; height: 200px; position: absolute; z-index: 900; right: 0px; top: 0px; background-color: white; opacity: 0.85;" title="Zoom">
+                <div data-dojo-type="dijit/form/VerticalSlider" id="id_zoom" intermediateChanges="false" discreteValues="Infinity" style="width: auto; height: 200px; position: absolute; z-index: 900; right: 0px; top: 0px; background-color: white; opacity: 7.85;" title="Zoom">
                     <div data-dojo-type="dijit/form/VerticalRule" container="rightDecoration" style="width: 5px;"></div>
                     <ol data-dojo-type="dijit/form/VerticalRuleLabels" container="rightDecoration" labels="0%,50%,100%" style="width: 3em;"></ol>
                 </div>
+<a target="_blank" id="link_openstreetmaps" href="http://www.openstreetmap.org" style="width: auto; padding: 0.5em; position: absolute; z-index: 901; right: 0px; bottom: 0px; background-color: white; opacity: 0.75;">Ver OpenStreetMap</a>
             </span></div>
     </body>
 </html>

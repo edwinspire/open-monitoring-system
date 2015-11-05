@@ -1,6 +1,10 @@
-require(["dojo/ready", "dojox/geo/openlayers/Map", 'dojo/request', 
-    "dojox/geo/openlayers/WidgetFeature", "dojox/geo/openlayers/Layer", "w_common_mappoint/w_common_mappoint"
-], function (ready, Map, R, WidgetFeature, Layer, MapPoint) {
+require(["dojo/ready", 
+"dojox/geo/openlayers/Map",  
+    "dojox/geo/openlayers/WidgetFeature",
+ "dojox/geo/openlayers/Layer",
+ "w_common_mappoint/w_common_mappoint",
+ "dojo/dom-attr"
+], function (ready, Map, WidgetFeature, Layer, MapPoint, domAttr) {
     ready(function () {
 
 
@@ -40,6 +44,7 @@ require(["dojo/ready", "dojox/geo/openlayers/Map", 'dojo/request',
 
                             dojo.forEach(geodata, function (item, i) {
 //console.log(response);
+
 var title =  item.last_name+' '+item.first_name;
 var labeltitle =  '';
 var content =  '<div><b>Dirección: </b>'+item.address+'</div>'+'<div><b>Latitud: </b>'+item.geox+'</div>'+'<div><b>Longitud: </b>'+item.geoy+'</div>';
@@ -61,6 +66,11 @@ if(item.first_name.indexOf("ECO") == 0){
 
 
 if(i == 0){
+
+if(geodata.length == 1){
+domAttr.set("link_openstreetmaps", "href", "http://www.openstreetmap.org/?mlat="+item.geox+"&mlon="+item.geoy+"#map=19/"+item.geox+"/"+item.geoy); 
+}
+
                         map.fitTo({
                             position: [parseFloat(item.geoy), parseFloat(item.geox)],
                             extent: 0.01

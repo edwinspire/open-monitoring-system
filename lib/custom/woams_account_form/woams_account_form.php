@@ -53,7 +53,7 @@ echo get_table_column_label("accounts", "birthday");
 ?>               
 </label>
         <span>
-            <input data-dbTuple="woams_account_form_widget" required="true" data-dbFieldType="date" name="birthday" data-dojo-attach-point="BDay" type="text"  data-dojo-type="dijit/form/DateTextBox"></input>
+            <input data-dbTuple="woams_account_form_widget" data-dbFieldType="date" name="birthday" data-dojo-attach-point="BDay" type="text"  data-dojo-type="dijit/form/DateTextBox"></input>
         </span></div>
     <div style="display: inline-block;" class="form_field">
         <label cclass="form_label">
@@ -118,7 +118,7 @@ echo get_table_column_label("accounts", "geoy");
 </label>
         <span>
             <input data-dbTuple="woams_account_form_widget" name="geoy" value="0" data-dojo-attach-point="Geoy" required="true"  data-dojo-type="dijit/form/ValidationTextBox"></input>
-        </span><button data-dojo-type="dijit/form/Button" data-dojo-attach-point="OpenStreetMaps" data-dojo-props="iconClass:'dijitEditorIcon dijitEditorIconFullScreen', showLabel: true" type="button">Ver en mapa externo</button></div>
+        </span></div>
 
     <div class="form_field">
         <label cclass="form_label">
@@ -173,7 +173,7 @@ echo get_table_column_label("accounts", "start_date");
 ?> 
 </label>
         <span>
-            <input data-dbTuple="woams_account_form_widget" required="true" data-dbFieldType="date" name="start_date" data-dojo-attach-point="DStart" type="text" data-dojo-type="dijit/form/DateTextBox"></input>
+            <input data-dbTuple="woams_account_form_widget" data-dbFieldType="date" name="start_date" data-dojo-attach-point="DStart" type="text" data-dojo-type="dijit/form/DateTextBox"></input>
         </span></div>
     <div style="display: inline-block;" class="form_field">
         <label cclass="form_label">
@@ -183,7 +183,7 @@ echo get_table_column_label("accounts", "end_date");
 ?> 
 </label>
         <span>
-            <input data-dbTuple="woams_account_form_widget" required="true" data-dbFieldType="date" name="end_date" data-dojo-attach-point="DEnd" type="text" data-dojo-type="dijit/form/DateTextBox"></input>
+            <input data-dbTuple="woams_account_form_widget" data-dbFieldType="date" name="end_date" data-dojo-attach-point="DEnd" type="text" data-dojo-type="dijit/form/DateTextBox"></input>
         </span></div>
 
     <div class="form_field">
