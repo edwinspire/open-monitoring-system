@@ -1,6 +1,6 @@
 <?php
 
-ini_set('display_errors', -1);
+ini_set('display_errors', 0);
 include_once("_DBMAP_open_ams.php");
 $oams_config = parse_ini_file("oams.ini.php");
 
@@ -215,23 +215,7 @@ if(is_array($arr)){
 
 
 
-/*
-    public function mapper_table($table_name = "") {
 
-        if (strlen($table_name) > 0) {
-            $t = array();
-            $result = pg_query_params($this->connection, "SELECT column_name, data_type FROM information_schema.columns WHERE table_catalog = 'open_ams'  AND table_schema = 'public' AND table_name = $1::TEXT;", array($table_name));
-
-            $columns = array();
-            while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-                $columns[$row["column_name"]] = array("data_type"=>$row["data_type"]);
-            }
-
-            $GLOBALS["dbmap_open_ams"][$table_name] = $columns;
-        } 
-
-    }
-*/
 
     // Declaración del método
     public function connect() {

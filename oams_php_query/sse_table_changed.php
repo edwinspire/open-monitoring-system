@@ -1,7 +1,4 @@
 <?php
-
-//ini_set('display_errors', 0);
-//require "../oams_php_script_private/security.php";
 include_once "../oams_php_script_private/oams_db.php";
 set_time_limit(350);
 
@@ -17,9 +14,6 @@ $last_ts = array();
 if($db->access_control(0)){
 
 while ($count_seconds < 120) {
-
-//$tresult = pg_query_params($db->connection, "SELECT * FROM fun_set_expired_events();", array());
-//$tresult2 = pg_query_params($db->connection, "SELECT * FROM fun_remove_notifications_old();", array());
 
     $result = pg_query_params($db->connection, "SELECT table_name, ts FROM sys_table_ts;", array());
     if (!$result) {

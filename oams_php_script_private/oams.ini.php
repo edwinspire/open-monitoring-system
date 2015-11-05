@@ -1,4 +1,5 @@
 ;<?php
+;echo "Area restringida"
 ;die(); // For further security
 ;/*
 
