@@ -441,8 +441,14 @@ $gs = $gs." w: "."{field:'".$row["column_name"]."', editable: 'true', dataType: 
 	break;
 	case "boolean":
 //$jsw = "width: '50px'";
+/*
 $gs = $row["column_name"].": {r: ". "{field:'".$row["column_name"]."', ".$jsw.", dataType: 'boolean', editor: 'dijit/form/CheckBox', editorArgs: {props: 'value: true, disabled: \"true\"', fromEditor: function (d){return d;}, toEditor: function(storeData, gridData){ return gridData;}}, alwaysEditing: true,  name:'".$row["column_label"]."'}, ";
+*/
+$gs = $row["column_name"].": {r: ". "{field:'".$row["column_name"]."', ".$jsw.", dataType: 'boolean', editor: 'dijit/form/CheckBox', editorArgs: {props: 'value: true, disabled: \"true\"'}, alwaysEditing: true,  name:'".$row["column_label"]."'}, ";
+/*
 $gs = $gs." w: "."{field:'".$row["column_name"]."', ".$jsw.", editable: 'true', dataType: 'boolean', editor: 'dijit/form/CheckBox', editorArgs: {props: 'value: true', fromEditor: function (d){return d;}, toEditor: function(storeData, gridData){ return gridData;}}, alwaysEditing: true, name:'".$row["column_label"]."'}}";
+*/
+$gs = $gs." w: "."{field:'".$row["column_name"]."', ".$jsw.", editable: 'true', dataType: 'boolean', editor: 'dijit/form/CheckBox', editorArgs: {props: 'value: true'}, alwaysEditing: true, name:'".$row["column_label"]."'}}";
 
 	break;
 

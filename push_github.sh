@@ -1,5 +1,5 @@
 #!/bin/bash
 git add .
-git commit -m "Se crear el area para agregar y quitar abonados de grupos"
+git commit -m "Cambio en el generador de mapa de gridx para los campos tipo boolean"
 git push origin master
 
