@@ -15,7 +15,7 @@
             </div>
 
             <div data-dojo-type="dijit/layout/ContentPane" title="Grupos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false">
-                <div data-dojo-attach-point="AccountGroups" data-dojo-type="woams_contacts_groups_gridx/woams_contacts_groups_gridx" style="height: 100%"></div>
+              <div  data-dojo-type="woams_common_gridx/woams_common_gridx" data-dojo-attach-point="GridGroups" ></div>
 </div>
 
             <div data-dojo-type="dijit/layout/ContentPane" title="Contactos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false">

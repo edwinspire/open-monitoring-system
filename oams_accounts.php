@@ -36,8 +36,7 @@ CheckPageAccess(0);
                 "dijit/layout/TabContainer",             
                 "woams_equipments_gridx/woams_equipments_gridx",               
                 "woams_phones_gridx/woams_phones_gridx",
-                "woams_account_widget/woams_account_widget",
-"woams_contacts_groups_gridx/woams_contacts_groups_gridx"
+                "woams_account_widget/woams_account_widget"
             ]);
         </script>
         <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "oams_accounts.css";@import "oams.css";
