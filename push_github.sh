@@ -1,5 +1,5 @@
 #!/bin/bash
 git add .
-git commit -m "Se encuentra que uno de los modulos de gridx resizecolumn estaba causando problema con los checkbox, se elimina ese modulo. Tambien se desactiva el modulo InderectSelect default y es cargado solo si es solicitado."
+git commit -m "Se elimina la tabla contacts_group ya no es necesaria y se hace cambios en las funciones"
 git push origin master
 
