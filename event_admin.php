@@ -73,7 +73,7 @@ require([
 "woams_contacts_list/woams_contacts_list"
 ]);
 </script>
-<style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "oams_accounts.css";@import "oams.css";
+<style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "styles.css";
 </style>
 <script type="text/javascript" src="index.js"></script>
 </head>

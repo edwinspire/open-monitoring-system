@@ -39,9 +39,9 @@ CheckPageAccess(0);
                 "woams_contact_widget/woams_contact_widget"
             ]);
         </script>
-        <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "oams_accounts.css";@import "oams.css";
+        <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "styles.css";
         </style>
-        <script type="text/javascript" src="oams_contacts.js"></script>
+        <script type="text/javascript" src="contacts.js"></script>
     </head>
     <body data-maq-flow-layout="true" data-maq-comptype="desktop" class="claro" data-maq-ws="collapse" data-maq-appstates="{}" id="myapp">
         <div style="width: 100%; height: 100%;">

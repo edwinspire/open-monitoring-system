@@ -32,7 +32,7 @@ header("Location: login.php");
 'gridx/modules/Focus', 'gridx/modules/VirtualVScroller', 'gridx/modules/RowHeader', 'gridx/modules/select/Row', 'gridx/modules/extendedSelect/Row', 'gridx/modules/IndirectSelect', 'gridx/modules/Pagination', 'gridx/modules/pagination/PaginationBar', 'gridx/modules/ColumnResizer', 'gridx/modules/Filter','gridx/modules/filter/FilterBar',	'gridx/modules/filter/QuickFilter','gridx/modules/SingleSort',	'gridx/modules/extendedSelect/Row','gridx/modules/IndirectSelectColumn','gridx/modules/VirtualVScroller'
             ]);
         </script>
-        <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "app.css";@import "oams.css";
+        <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "app.css";@import "styles.css";
         </style>  
                <script type="text/javascript" src="farma_tarjetas_errores.js"></script>
     </head>

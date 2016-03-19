@@ -27,9 +27,9 @@ CheckPageAccess(0);
 "dijit/layout/ContentPane"
             ]);
         </script>
-        <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "app.css";@import "oams.css";
+        <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "app.css";@import "styles.css";
         </style>  
-        <script type="text/javascript" src="oams_report_equipments.js"></script>
+        <script type="text/javascript" src="report_equipments.js"></script>
     </head>
     <body data-maq-flow-layout="true" data-maq-comptype="desktop" class="claro" data-maq-ws="collapse" data-maq-appstates="{}" id="myapp">
 

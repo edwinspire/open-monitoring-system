@@ -25,7 +25,7 @@
                 "w_common_tooltipdialogconfirmation/w_common_tooltipdialogconfirmation"
             ]);
         </script>
-        <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "app.css";@import "oams.css";
+        <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "styles.css";
         </style>
 <script>
 <?php 

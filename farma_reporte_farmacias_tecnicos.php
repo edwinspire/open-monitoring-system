@@ -44,7 +44,7 @@ require([
 "woams_common_gridx/woams_common_gridx"
 ]);
 </script>
-<style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "oams_accounts.css";@import "oams.css";
+<style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "oams_accounts.css";@import "styles.css";
 </style>
 <script type="text/javascript" src="farma_reporte_farmacias_tecnicos.js"></script>
 </head>

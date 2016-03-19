@@ -23,7 +23,7 @@ CheckPageAccess(0);
                 "w_common_titlebar/w_common_titlebar"
             ]);
         </script>
-        <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "app.css";@import "oams.css";
+        <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "styles.css";
         </style>  
         <script type="text/javascript" src="monitor.js"></script>
     </head>
