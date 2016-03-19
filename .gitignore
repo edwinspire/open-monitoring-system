@@ -3,4 +3,5 @@
 #*.sh
 *.bat
 *.log
-*farma
+**farma*
+
