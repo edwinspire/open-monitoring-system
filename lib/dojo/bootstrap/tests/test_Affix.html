@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Dojo-Bootstrap/Affix</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="lib/dojo/bootstrap/assets/tests.css">
+        <style>
+            section {
+                height: 50em;
+            }
+            #affixnav { width: 100px; margin-top: 60px; background-color: #EEEEEE; }
+            #affixnav.top { margin-top: 0px; }
+        </style>
+    </head>
+
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <div class="row">
+                        <a class="brand" href="index.html">Dojo Bootstrap Tests</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <section class="sidebar col-md-3"></section>
+                <section id="main" class="main col-md-8">
+                    <div class="row-fluid">
+                        <!-- navigation -->
+                        <div class="col-md-3">
+                            <ul id="affixnav" class="nav nav-list" data-spy="affix" data-offset-top="0">
+                                <li><a href="#a"><i class="icon-chevron-right"></i> A</a></li>
+                                <li><a href="#b"><i class="icon-chevron-right"></i> B</a></li>
+                                <li><a href="#c"><i class="icon-chevron-right"></i> C</a></li>
+                            </ul>
+                        </div>
+                        <!-- content -->
+                        <div class="col-md-9">
+                            <section id="a">
+                                <div class="page-header">
+                                    <h1>A</h1>
+                                </div>
+                            </section>
+                            <div class="clearfix"></div>
+                            <section id="b">
+                                <div class="page-header">
+                                    <h1>B</h1>
+                                </div>
+                            </section>
+                            <div class="clearfix"></div>
+                            <section id="c">
+                                <div class="page-header">
+                                    <h1>C</h1>
+                                </div>
+                            </section>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    
+
+<script type="text/javascript" src="lib/dojo/dojo/dojo.js" 
+data-dojo-config="'parseOnLoad':true,'async':true,'packages':[
+{'name':'gridx','location':'../gridx'}
+,{'name':'widgets','location':'../../custom'}
+,{'name':'w_common_basic_button_action_confirm','location':'../../custom/w_common_basic_button_action_confirm'}
+,{'name':'w_common_basic_menubar','location':'../../custom/w_common_basic_menubar'}
+,{'name':'w_common_datetime','location':'../../custom/w_common_datetime'}
+,{'name':'w_common_from_to_date','location':'../../custom/w_common_from_to_date'}
+,{'name':'w_common_mappoint','location':'../../custom/w_common_mappoint'}
+,{'name':'w_common_notification_area','location':'../../custom/w_common_notification_area'}
+,{'name':'w_common_titlebar','location':'../../custom/w_common_titlebar'}
+,{'name':'w_common_tooltipdialogconfirmation','location':'../../custom/w_common_tooltipdialogconfirmation'}
+,{'name':'w_editable_div','location':'../../custom/w_editable_div'}
+,{'name':'woams_account_form','location':'../../custom/woams_account_form'}
+,{'name':'woams_account_list','location':'../../custom/woams_account_list'}
+,{'name':'woams_account_states_gridx','location':'../../custom/woams_account_states_gridx'}
+,{'name':'woams_account_states_list','location':'../../custom/woams_account_states_list'}
+,{'name':'woams_account_technicals_gridx','location':'../../custom/woams_account_technicals_gridx'}
+,{'name':'woams_account_types_gridx','location':'../../custom/woams_account_types_gridx'}
+,{'name':'woams_account_types_list','location':'../../custom/woams_account_types_list'}
+,{'name':'woams_account_widget','location':'../../custom/woams_account_widget'}
+,{'name':'woams_admin_widget','location':'../../custom/woams_admin_widget'}
+,{'name':'woams_common_gridx','location':'../../custom/woams_common_gridx'}
+,{'name':'woams_contact_form','location':'../../custom/woams_contact_form'}
+,{'name':'woams_contact_widget','location':'../../custom/woams_contact_widget'}
+,{'name':'woams_contacts_list','location':'../../custom/woams_contacts_list'}
+,{'name':'woams_divisions_list','location':'../../custom/woams_divisions_list'}
+,{'name':'woams_emails_gridx','location':'../../custom/woams_emails_gridx'}
+,{'name':'woams_equipments','location':'../../custom/woams_equipments'}
+,{'name':'woams_equipments_gridx','location':'../../custom/woams_equipments_gridx'}
+,{'name':'woams_event_comment_insert','location':'../../custom/woams_event_comment_insert'}
+,{'name':'woams_event_comment_view','location':'../../custom/woams_event_comment_view'}
+,{'name':'woams_event_comments','location':'../../custom/woams_event_comments'}
+,{'name':'woams_event_view','location':'../../custom/woams_event_view'}
+,{'name':'woams_events_comments','location':'../../custom/woams_events_comments'}
+,{'name':'woams_events_monitor','location':'../../custom/woams_events_monitor'}
+,{'name':'woams_events_monitor_gridx','location':'../../custom/woams_events_monitor_gridx'}
+,{'name':'woams_eventtypes_gridx','location':'../../custom/woams_eventtypes_gridx'}
+,{'name':'woams_eventtypes_list','location':'../../custom/woams_eventtypes_list'}
+,{'name':'woams_groups_list','location':'../../custom/woams_groups_list'}
+,{'name':'woams_identification_types_gridx','location':'../../custom/woams_identification_types_gridx'}
+,{'name':'woams_identificationtypes_list','location':'../../custom/woams_identificationtypes_list'}
+,{'name':'woams_menu_header','location':'../../custom/woams_menu_header'}
+,{'name':'woams_phone_types_gridx','location':'../../custom/woams_phone_types_gridx'}
+,{'name':'woams_phones_gridx','location':'../../custom/woams_phones_gridx'}
+,{'name':'woams_phonetypes_list','location':'../../custom/woams_phonetypes_list'}
+,{'name':'woams_providers_gridx','location':'../../custom/woams_providers_gridx'}
+,{'name':'woams_providers_list','location':'../../custom/woams_providers_list'}
+,{'name':'woams_technicals_gridx','location':'../../custom/woams_technicals_gridx'}
+]"></script> 
+        <script>
+            require(["bootstrap/Affix", "bootstrap/Scrollspy", "bootstrap/tests/tests.js"]);
+        </script>
+    </body>
+</html>

@@ -53,9 +53,7 @@
 
                             <input type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="new_equipment" tabIndex="-1" intermediateChanges="false" label="Agregar" iconClass="dijitIconNewTask"></input>
 
-                            <input type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="new_network_device" tabIndex="-1" intermediateChanges="false" label="Agregar Equipo de Red" iconClass="dijitIconNewTask"></input>
-
-                            <input type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="delete_selection" tabIndex="-1" intermediateChanges="false" label="Eliminar seleccionados" iconClass=""></input>
+                            <input type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="delete_equipment_selection" tabIndex="-1" intermediateChanges="false" label="Eliminar seleccionados" iconClass=""></input>
 
                         </span>
 
@@ -66,14 +64,14 @@
                     <div data-dojo-type="dijit/layout/ContentPane" title="Equipos de redes">
                         <span data-dojo-type="dijit/Toolbar" data-dojo-attach-point="idtoolbar">
 
-                            <input type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="new_equipment_network" tabIndex="-1" intermediateChanges="false" label="Agregar" iconClass="dijitIconNewTask"></input>
+                            <input type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="new_network_device" tabIndex="-1" intermediateChanges="false" label="Agregar" iconClass="dijitIconNewTask"></input>
 
-                            <input type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="delete_selection_network" tabIndex="-1" intermediateChanges="false" label="Eliminar seleccionados" iconClass=""></input>
+                            <input type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="delete_network_device_selection" tabIndex="-1" intermediateChanges="false" label="Eliminar seleccionados" iconClass=""></input>
 
                         </span>
 
                         <div class="woams_size_without_toolbar">
-                            <div  data-dojo-type="woams_common_gridx/woams_common_gridx" data-dojo-attach-point="GridAccountEquipmentsNetwork" ></div>
+                            <div  data-dojo-type="woams_common_gridx/woams_common_gridx" data-dojo-attach-point="GridAccountNetworkDevices" ></div>
                         </div>
                     </div>
                 </div>
@@ -93,7 +91,7 @@
 
     <div style="display: none;" data-dojo-attach-point="CttdNewEquipment" data-dojo-type="dijit/ConfirmTooltipDialog">
 
-        <input style="display: none;" data-dojo-type="dijit/form/TextBox" data-dbTuple="woams_account_equipment_tuple" name="idaccount" data-dojo-attach-point="idaccount" />
+        <input style="display: none;" data-dojo-type="dijit/form/TextBox" data-dbTuple="woams_account_equipment_tuple" name="idaccount" data-dojo-attach-point="new_equipment_idaccount" />
 
         <label for="code_ref">
             <?php 
@@ -106,7 +104,9 @@ echo get_table_column_label("equipments", "code_ref");
 require_once "../../../oams_php_script_private/misc.php";
 echo get_table_column_label("equipments", "description");
 ?>  
-</label> <input data-dbTuple="woams_account_equipment_tuple" data-dojo-type="dijit/form/TextBox" name="description" /><br />
+</label>
+
+ <input data-dbTuple="woams_account_equipment_tuple" data-dojo-type="dijit/form/TextBox" name="description" /><br />
         <label for="equipment">
             <?php 
 require_once "../../../oams_php_script_private/misc.php";
@@ -137,12 +137,12 @@ require_once "../../../oams_php_script_private/misc.php";
 echo get_table_column_label("equipments", "installation_date");
 ?>  
 </label><input data-dbTuple="woams_account_equipment_tuple"  name="installation_date" type="text" data-dojo-type="dijit/form/DateTextBox" data-dbFieldType="date"></input><br />
-        <label for="operativity">
+        <label for="operability">
             <?php 
 require_once "../../../oams_php_script_private/misc.php";
-echo get_table_column_label("equipments", "operativity");
+echo get_table_column_label("equipments", "operability");
 ?>  
-</label> <input data-dbTuple="woams_account_equipment_tuple" required="true" data-dojo-type="dijit/form/TextBox" type="number" min="0" max="100" value="100" name="operativity" /><br />
+</label> <input data-dbTuple="woams_account_equipment_tuple" required="true" data-dojo-type="dijit/form/TextBox" type="number" min="0" max="100" value="100" name="operability" /><br />
         <label for="note">
             <?php 
 require_once "../../../oams_php_script_private/misc.php";
@@ -156,7 +156,112 @@ echo get_table_column_label("equipments", "note");
     <div style="display: none;" data-dojo-attach-point="CttdDeleteEquipments" data-dojo-type="dijit/ConfirmTooltipDialog">
         Esta seguro de eliminar los equipos seleccionados?
     </div>
+    
 
+    <div style="display: none;" data-dojo-attach-point="CttdNewNetworkDevice" data-dojo-type="dijit/ConfirmTooltipDialog">
+
+        <input style="display: none;" data-dojo-type="dijit/form/TextBox" data-dbTuple="woams_account_network_device_tuple" name="idaccount" data-dojo-attach-point="new_network_device_idaccount" />
+
+        <label for="code_ref">
+            <?php 
+require_once "../../../oams_php_script_private/misc.php";
+echo get_table_column_label("network_devices", "code_ref");
+?>  
+</label> <input data-dbTuple="woams_account_network_device_tuple" required="true" data-dojo-type="dijit/form/TextBox" name="code_ref" /><br />
+        <label for="description">
+            <?php 
+require_once "../../../oams_php_script_private/misc.php";
+echo get_table_column_label("network_devices", "description");
+?>  
+</label> <input data-dbTuple="woams_account_network_device_tuple" data-dojo-type="dijit/form/TextBox" name="description" /><br />
+        <label for="equipment">
+            <?php 
+require_once "../../../oams_php_script_private/misc.php";
+echo get_table_column_label("network_devices", "equipment");
+?>  
+</label> <input data-dbTuple="woams_account_network_device_tuple" required="true" data-dojo-type="dijit/form/TextBox" name="equipment" /><br />
+        <label for="mark">
+            <?php 
+require_once "../../../oams_php_script_private/misc.php";
+echo get_table_column_label("network_devices", "mark");
+?>  
+</label> <input data-dbTuple="woams_account_network_device_tuple" data-dojo-type="dijit/form/TextBox"  name="mark" /><br />
+        <label for="model">
+            <?php 
+require_once "../../../oams_php_script_private/misc.php";
+echo get_table_column_label("network_devices", "model");
+?>  
+</label> <input data-dbTuple="woams_account_network_device_tuple" required="true" data-dojo-type="dijit/form/TextBox"  name="model" /><br />
+        <label for="serial_number">
+            <?php 
+require_once "../../../oams_php_script_private/misc.php";
+echo get_table_column_label("network_devices", "serial_number");
+?>  
+</label> <input data-dbTuple="woams_account_network_device_tuple" required="true" data-dojo-type="dijit/form/TextBox"  name="serial_number" /><br />
+        <label for="installation_date">
+            <?php 
+require_once "../../../oams_php_script_private/misc.php";
+echo get_table_column_label("network_devices", "installation_date");
+?>  
+</label><input data-dbTuple="woams_account_network_device_tuple"  name="installation_date" type="text" data-dojo-type="dijit/form/DateTextBox" data-dbFieldType="date"></input><br />
+       
+<label for="mac">
+            <?php 
+require_once "../../../oams_php_script_private/misc.php";
+echo get_table_column_label("network_devices", "mac");
+?>  
+</label> 
+<!--En este input la propiedad data-dbFieldEmptyAsNull="true" sirve para indicar que si el campo esta vacio se lo setee a null y no se envie al servidor-->
+<input data-dbTuple="woams_account_network_device_tuple" data-dojo-type="dijit/form/ValidationTextBox" type="text" name="mac" value="" placeHolder="00-00-00-00-00-00" data-dojo-props="pattern:'([0-9a-fA-F]{1,2})-([0-9a-fA-F]{1,2})-([0-9a-fA-F]{1,2})-([0-9a-fA-F]{1,2})-([0-9a-fA-F]{1,2})-([0-9a-fA-F]{1,2})', invalidMessage:'Invalid MAC'"  data-dbFieldEmptyAsNull="true"/><br />
+
+<label for="ip">
+            <?php 
+require_once "../../../oams_php_script_private/misc.php";
+echo get_table_column_label("network_devices", "ip");
+?>  
+</label> 
+<input data-dbTuple="woams_account_network_device_tuple" required="true" data-dojo-type="dijit/form/TextBox" type="text" name="ip" placeHolder="0.0.0.0"  data-dbFieldEmptyAsNull="true" /><br />
+
+<label for="username">
+            <?php 
+require_once "../../../oams_php_script_private/misc.php";
+echo get_table_column_label("network_devices", "username");
+?>  
+</label> 
+<input data-dbTuple="woams_account_network_device_tuple" required="true" data-dojo-type="dijit/form/TextBox" type="text" name="username" /><br />
+
+<label for="pwd">
+            <?php 
+require_once "../../../oams_php_script_private/misc.php";
+echo get_table_column_label("network_devices", "pwd");
+?>  
+</label> 
+<input data-dbTuple="woams_account_network_device_tuple" required="true" data-dojo-type="dijit/form/TextBox" type="text" name="pwd" /><br />
+
+
+<label for="operability">
+            <?php 
+require_once "../../../oams_php_script_private/misc.php";
+echo get_table_column_label("network_devices", "operability");
+?>  
+</label> 
+<input data-dbTuple="woams_account_network_device_tuple" required="true" data-dojo-type="dijit/form/TextBox" type="number" min="0" max="100" value="100" name="operability" /><br />
+
+<label for="note">
+            <?php 
+require_once "../../../oams_php_script_private/misc.php";
+echo get_table_column_label("network_devices", "note");
+?>  
+</label> <textarea data-dbTuple="woams_account_network_device_tuple" name="note" type="text" data-dojo-type="dijit/form/Textarea" style="width: 100%; height: auto;"></textarea><br/>
+
+
+    </div>
+    
+
+    <div style="display: none;" data-dojo-attach-point="CttdDeleteNetworkDevice" data-dojo-type="dijit/ConfirmTooltipDialog">
+        Esta seguro de eliminar los equipos seleccionados?
+    </div>    
+    
 
     <div style="display: none;  width: 50%;" data-dojo-attach-point="CttdNewAccount" data-dojo-type="dijit/ConfirmTooltipDialog">
 
@@ -170,6 +275,18 @@ echo get_table_column_label("accounts", "enabled");
         <span>
             <input data-dbTuple="woams_account_widget_new_account" required="true" data-dbFieldType="checkbox"  name="enabled"  type="checkbox" data-dojo-type="dijit/form/CheckBox"></input>
         </span></div>
+
+    <div style="display: inline-block;" class="form_field">
+        <label cclass="form_label">
+            <?php 
+require_once "../../../oams_php_script_private/misc.php";
+echo get_table_column_label("divisions", "iddivision");
+?>             
+</label>
+        <span>
+            <div  data-dbTuple="woams_account_widget_new_account" name="iddivision" data-dojo-attach-point="IDDivision" data-dojo-type="woams_divisions_list/woams_divisions_list" style="display: inline;"></div> 
+        </span></div>
+
 
     <div style="display: inline-block;" class="form_field">
         <label class="form_label">

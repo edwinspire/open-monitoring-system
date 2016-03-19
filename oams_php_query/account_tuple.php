@@ -21,31 +21,39 @@ header('HTTP/1.1 401 Unauthorized', true, 401);
         switch ($_POST["query_type"]) {
 
             case "insert":
-		$result = "{\"insert\": \"".$db->insert("accounts", $_POST, array("idcontact"))."\"}";
+		//$result = "{\"insert\": \"".$db->insert("accounts", $_POST, array("idcontact"))."\"}";
+$result = $db->insert_result_as_json("accounts", $_POST, array("idcontact"));
                 break;
 
             case "update":
                 if (isset($_POST["idcontact"])) {
+$result = $db->update_resutl_as_json("accounts",  
+							$_POST, 
+							array("idcontact"=>$_POST["idcontact"]),
+							array("idcontact", "ts"));
+/*
 		$result = "{\"updated\": \"".$db->update("accounts",  
 							$_POST, 
 							array("idcontact"=>$_POST["idcontact"]),
 							array("idcontact", "ts"))."\"}";
+*/
                 } else {
-                    $result = "{\"updated\": \"error, no idcontact\"}";
+                    $result = "{\"updated\": \"0\", \"error\": \"No existe el campo idcontact\"}";
                 }
 
                 break;
 
             case "select":
                 if (isset($_POST["idcontact"])) {
-		$result = $db->select_result_as_json("accounts", array(), array("idcontact"=>$_POST["idcontact"]));
+		$result = $db->select_result_as_json("accounts", array("idcontact", "ts", "enabled", "first_name", "last_name", "birthday", "identification", "ididtype", "postal_code", "gender",  "geox", "geoy",  "note", "account",  "iddivision", "idaccounttype", "idaccountstate", "address", "address_ref"), array("idcontact"=>$_POST["idcontact"]));
                 }
                 break;
             case "delete":
                 if (isset($_POST["idcontact"])) {
-		$result = "{\"deleted\": \"".$db->delete("accounts", array("idcontact"=>$_POST["idcontact"]))."\"}";
+		$result = $db->delete_result_as_json("accounts", array("idcontact"=>$_POST["idcontact"]));
+//		$result = "{\"deleted\": \"".$db->delete("accounts", array("idcontact"=>$_POST["idcontact"]))."\"}";
                 }else{
- $result = "{\"deleted\": \"error, no idcontact\"}";
+ $result = "{\"delete\": \"0\", \"error\": \"No existe el campo idcontact\"}";
 }
                 break;
         }

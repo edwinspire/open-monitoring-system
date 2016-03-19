@@ -1,5 +1,5 @@
 <?php
-include_once "../oams_php_script_private/oams_db.php";
+include_once "../lib/custom/uDC/pguDC.php";
 set_time_limit(350);
 
 header('Content-type: text/event-stream');
@@ -8,7 +8,7 @@ header('Cache-Control: no-cache');
 $count_seconds = 0;
 $last_ts = array();
 
-    $db = new oamsDB();
+    $db = new pguDC();
     $db->connect();
 
 if($db->access_control(0)){

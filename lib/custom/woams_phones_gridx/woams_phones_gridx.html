@@ -1,4 +1,10 @@
-<div data-dojo-attach-point="Contenedor" style="width: 100%; height: 100%;">
+ <div >
+<span data-dojo-type="dijit/Toolbar">
+<input type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="new_reg" tabIndex="-1" intermediateChanges="false" label="Nuevo" iconClass="dijitIconNewTask"></input>
+<input type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="delete_reg" tabIndex="-1" intermediateChanges="false" label="Eliminar seleccionados" iconClass="dijitIconDelete"></input>
+</span>
+          <div data-dojo-type="woams_common_gridx/woams_common_gridx" data-dojo-attach-point="GridX" ></div> 
+
+<div data-dojo-type="w_common_tooltipdialogconfirmation/w_common_tooltipdialogconfirmation" style="display: none;" data-dojo-attach-point="dialog_delete_selection"></div>
+
 </div>
-
-

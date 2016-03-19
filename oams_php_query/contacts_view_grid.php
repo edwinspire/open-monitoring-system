@@ -9,7 +9,7 @@ header('Content-type: application/json');
 $result = "{}";
 
 	if($db->access_control(0)){
-$result = $db->select_result_as_json("contacts", array(), array(), "last_name, first_name");
+$result = $db->select_result_as_json("view_contacts", array(), array(), "contact_name");
 		}else{
 header('HTTP/1.1 401 Unauthorized', true, 401);
 }

@@ -1,6 +1,12 @@
 <?php
-require_once "oams_php_script_private/security.php";
-CheckPageAccess(0);
+require_once "lib/custom/uDC/pguDC.php";
+    $db = new pguDC();
+    $db->connect();
+	if(!$db->access_control(0)){
+header("Location: login.php");
+  die();
+}
+
 ?>
 <!DOCTYPE html>
 <html>

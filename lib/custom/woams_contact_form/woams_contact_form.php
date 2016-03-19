@@ -14,17 +14,6 @@ echo get_table_column_label("contacts", "enabled");
         </span></div>
 
     <div style="display: inline-block;" class="form_field">
-        <label class="form_label">
-                        <?php 
-require_once "../../../oams_php_script_private/misc.php";
-echo get_table_column_label("contacts", "account");
-?> 
-</label>
-        <span>
-            <input data-dbTuple="woams_contact_form_widget" required="true" name="account" type="text" value="oams" data-dojo-type="dijit/form/ValidationTextBox"></input>
-        </span></div>
-
-    <div style="display: inline-block;" class="form_field">
         <label for="first_name" class="form_label">
                         <?php 
 require_once "../../../oams_php_script_private/misc.php";

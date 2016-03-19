@@ -19,7 +19,8 @@ if (isset($_POST["type_grid"]) && isset($_POST["idevents"])) {
 
     $query = "";
     $param = array();
-    $columns = "account , (last_name||' '||first_name) as first_name, label, description, priority, status_label, status, oams_assigned, idevent, idaccount, code, zu, ideventtype, last_comment";
+//    $columns = "dateevent, account , account_name as first_name, label, description, priority, status_label, status, oams_assigned, idevent, idaccount, code, zu, ideventtype, last_comment";
+    $columns = "dateevent, account , account_name as first_name, label, description, priority, status_label, status, oams_assigned";
 
     if (isset($_POST["selected"])) {
         switch ($_POST["type_grid"]) {
@@ -31,26 +32,26 @@ if (isset($_POST["type_grid"]) && isset($_POST["idevents"])) {
                 $query = "SELECT " . $columns . " FROM view_events_monitor WHERE idaccount = $1::integer AND idevent IN(" . $_POST["idevents"] . ") ORDER BY dateevent DESC LIMIT 1500;";
                 break;
             case "2":
-                $query = "SELECT " . $columns . " FROM view_events_monitor WHERE status IN(0) AND idevent IN(" . $_POST["idevents"] . ") ORDER BY last_name, first_name, dateevent LIMIT 1500;";
+                $query = "SELECT " . $columns . " FROM view_events_monitor WHERE status IN(0) AND idevent IN(" . $_POST["idevents"] . ") ORDER BY account_name, dateevent LIMIT 1500;";
                 break;
             case "3":
-                $query = "SELECT " . $columns . " FROM view_events_monitor WHERE status IN(0) AND idevent IN(" . $_POST["idevents"] . ") ORDER BY last_name, first_name, dateevent LIMIT 1500;";
+                $query = "SELECT " . $columns . " FROM view_events_monitor WHERE status IN(0) AND idevent IN(" . $_POST["idevents"] . ") ORDER BY account_name, dateevent LIMIT 1500;";
                 break;
         }
     } else {
         switch ($_POST["type_grid"]) {
             case "0":
-                $query = "SELECT " . $columns . " FROM view_events_monitor ORDER BY last_name, first_name, dateevent LIMIT 1500;";
+                $query = "SELECT " . $columns . " FROM view_events_monitor ORDER BY account_name, dateevent LIMIT 1500;";
                 break;
             case "1":
                 $param[0] = $_POST["idaccount"];
                 $query = "SELECT " . $columns . " FROM view_events_monitor WHERE idaccount = $1::integer ORDER BY dateevent DESC LIMIT 1500;";
                 break;
             case "2":
-                $query = "SELECT " . $columns . " FROM view_events_monitor WHERE status IN(0) ORDER BY last_name, first_name, dateevent LIMIT 1500;";
+                $query = "SELECT " . $columns . " FROM view_events_monitor WHERE status IN(0) ORDER BY account_name, dateevent LIMIT 1500;";
                 break;
             case "3":
-                $query = "SELECT " . $columns . " FROM view_events_monitor WHERE status IN(0) ORDER BY last_name, first_name, dateevent LIMIT 1500;";
+                $query = "SELECT " . $columns . " FROM view_events_monitor WHERE status IN(0) ORDER BY account_name, dateevent LIMIT 1500;";
                 break;
         }
     }
@@ -58,7 +59,7 @@ if (isset($_POST["type_grid"]) && isset($_POST["idevents"])) {
 //echo $query."</br>";
     $result = pg_query_params($db->connection, $query, $param);
 } else {
-    $result = pg_query_params($db->connection, "SELECT " . $columns . " FROM view_events_monitor ORDER BY last_name, first_name, dateevent LIMIT 1500;", array());
+    $result = pg_query_params($db->connection, "SELECT " . $columns . " FROM view_events_monitor ORDER BY account_name, dateevent LIMIT 1500;", array());
 }
 
 }

@@ -1,6 +1,7 @@
 <div>
 <div data-dojo-attach-point="ContainerForm" >
     <input data-dbTuple="woams_account_form_widget"  data-dojo-type="dijit/form/TextBox" name="idcontact" value="0" data-dojo-attach-point="idaccount"  type="hidden"></input>
+<div data-dojo-attach-point="idaccount_show" style="text-align: right;">0000</div>
 
     <div style="display: inline-block;" class="form_field">
         <label for="enabled" cclass="form_label">
@@ -14,6 +15,19 @@ echo get_table_column_label("accounts", "enabled");
             <input data-dbTuple="woams_account_form_widget" required="true" data-dbFieldType="checkbox"  name="enabled" data-dojo-attach-point="Enabled" type="checkbox" data-dojo-type="dijit/form/CheckBox"></input>
         </span></div>
 
+
+    <div style="display: inline-block;" class="form_field">
+        <label cclass="form_label">
+            <?php 
+require_once "../../../oams_php_script_private/misc.php";
+echo get_table_column_label("divisions", "iddivision");
+?>             
+</label>
+        <span>
+            <div  data-dbTuple="woams_account_form_widget" name="iddivision" data-dojo-attach-point="IDDivision" data-dojo-type="woams_divisions_list/woams_divisions_list" style="display: inline;"></div> 
+        </span></div>
+
+
     <div style="display: inline-block;" class="form_field">
         <label cclass="form_label">
             <?php 
@@ -22,8 +36,9 @@ echo get_table_column_label("accounts", "account");
 ?>
   </label>
         <span>
-            <input data-dbTuple="woams_account_form_widget" required="true" name="account" type="text" value="oams" data-dojo-type="dijit/form/ValidationTextBox"></input>
+            <input data-dbTuple="woams_account_form_widget" class="btn btn-primary" required="true" name="account" type="text" value="oams" data-dojo-type="dijit/form/ValidationTextBox"></input>
         </span></div>
+
 
     <div style="display: inline-block;" class="form_field">
         <label for="first_name" cclass="form_label">
@@ -43,7 +58,7 @@ echo get_table_column_label("accounts", "last_name");
 ?>               
 </label>
         <span>
-            <input data-dbTuple="woams_account_form_widget" required="true" name="last_name" data-dojo-attach-point="LName" type="text" data-dojo-type="dijit/form/ValidationTextBox"></input>
+            <input data-dbTuple="woams_account_form_widget" class="btn btn-primary" required="true" name="last_name" data-dojo-attach-point="LName" type="text" data-dojo-type="dijit/form/ValidationTextBox"></input>
         </span></div>
     <div style="display: inline-block;" class="form_field">
         <label cclass="form_label">

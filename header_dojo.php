@@ -11,7 +11,8 @@ array_push($custom, "{'name':'".$dir."','location':'../../custom/".$dir."'}"."\n
 }
 echo "<script type=\"text/javascript\" src=\"lib/dojo/dojo/dojo.js\" 
 data-dojo-config=\"'parseOnLoad':true,'async':true,'packages':[
-{'name':'gridx','location':'../gridx'}
+{'name':'bootstrap','location':'../bootstrap'}
+,{'name':'gridx','location':'../gridx'}
 ,{'name':'widgets','location':'../../custom'}
 ,".implode(",", $custom)."]\"></script>";
 ?> 

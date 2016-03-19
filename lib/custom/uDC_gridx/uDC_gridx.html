@@ -1,0 +1,43 @@
+<div data-dojo-attach-point="Contenedor" style="width: 100%; height: 100%;">
+	<div data-dojo-attach-point='TBar' data-dojo-type='dijit/Toolbar'>
+<div data-dojo-attach-point="ButtonLoadNew" data-dojo-type="dijit/form/DropDownButton" data-dojo-props='iconClass: "dijitIcon dijitIconNewTask"'>
+    <span>Nuevo</span>
+    <div data-dojo-attach-point="ConfirmDialogNew" data-dojo-type="dijit/ConfirmTooltipDialog">
+       <form data-dojo-attach-point="NewForm">*-*-*-*-*-*</form>
+    </div>
+</div>
+<div data-dojo-type="dijit/form/DropDownButton" data-dojo-attach-point="ButtonDeleteSelection" disabled="true" data-dojo-props='iconClass: "dijitIcon dijitIconDelete"'>
+    <span>Eliminar Selección</span>
+    <div data-dojo-attach-point="ConfirmDialogDelete" data-dojo-type="dijit/ConfirmTooltipDialog">
+       <div style="width: 120px;">Esta seguro que desea eliminar los registros seleccionados?</div>
+    </div>
+</div>
+
+<span data-dojo-type="dijit/ToolbarSeparator"></span>
+
+<div data-dojo-attach-point="ButtonLoad" data-dojo-type="dijit/form/DropDownButton" data-dojo-props='iconClass: "dijitEditorIcon dijitEditorIconCreateLink"'>
+    <span>Cargar Datos</span>
+    <div data-dojo-attach-point="ConfirmDialogLoad" data-dojo-type="dijit/ConfirmTooltipDialog">
+        <input type="radio" data-dojo-type="dijit/form/RadioButton" checked value="auto"/> <label for="automatic">Automático</label> <br />
+        <input type="radio" data-dojo-type="dijit/form/RadioButton" value="manual"/> <label for="now">Manual</label> <br />
+        <input type="radio" data-dojo-type="dijit/form/RadioButton" value="disabled"/> <label for="unabled">Desactivar</label>
+	</div>
+</div>
+
+<span data-dojo-type="dijit/ToolbarSeparator"></span>
+<div data-dojo-attach-point="ButtonExport" data-dojo-type="dijit/form/DropDownButton" data-dojo-props='iconClass: "dijitIcon dijitIconTable"'>
+    <span>Exportar</span>
+    <div data-dojo-attach-point="ConfirmDialogExport" data-dojo-type="dijit/ConfirmTooltipDialog">
+<form data-dojo-attach-point="FormExport" method="POST" target="_blank" action="undefined_export.php">
+	<input type="hidden" name="udc_action" value="grid_export"/> 
+<input data-dojo-attach-point="udc_referential_field_export" type="hidden" name="udc_referential_field" value=""/> 
+<input data-dojo-attach-point="udc_action_export" type="hidden" name="udc_table" value=""/>
+<input data-dojo-attach-point="udc_action_export_ids" type="hidden" name="udc_selected_id" value=""/>  
+        <input type="radio" data-dojo-type="dijit/form/RadioButton" name="export_param" value="selection"/> <label for="selection">Selección</label> <br />
+        <input type="radio" data-dojo-type="dijit/form/RadioButton" name="export_param" checked value="all"/> <label for="all">Todo</label> <br />
+</form>
+</div>
+	</div>
+
+<div data-dojo-type="uDC/uDC" data-dojo-attach-point="uDC"></div>
+</div>

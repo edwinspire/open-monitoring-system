@@ -19,7 +19,7 @@ break;
 
 case "update":
 
-if($_POST["ismember"] == false){
+if($_POST["ismember"] == "false"){
 //array_remove(anyarray, anyelement)
 $result = '{"update": '.pg_affected_rows (pg_query_params($db->connection, "UPDATE contacts SET groups = array_remove(groups, $1::INT) WHERE idcontact = $2::BIGINT RETURNING idcontact", array("idgroup"=>$_POST["idgroup"], "idcontact"=>$_POST["idcontact"])))."}";
 }else{

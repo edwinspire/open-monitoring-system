@@ -2,9 +2,10 @@
  * This file is provided for custom JavaScript logic that your HTML files might need.
  * Maqetta includes this JavaScript file by default within HTML pages authored in Maqetta.
  */
-require(["dojo/ready", 'dojo/on', 'dojo/dom-style', 'oams/grid_structures/contacts',], function (ready, on, domStyle, sgcontacts) {
+require(["dojo/ready", 'dojo/on', 'dojo/dom-style', 'oams/grid_structures/view_contacts',], function (ready, on, domStyle, sgcontacts) {
     ready(function () {
 
+dijit.byId("idTitle").set("label", "DIRECTORIO DE CONTACTOS");
         var bc = dijit.byId('BContainer');
         var mh = dijit.byId('idMenuHeader');
         var g1 = dijit.byId('gridx_account_view');
@@ -15,7 +16,7 @@ require(["dojo/ready", 'dojo/on', 'dojo/dom-style', 'oams/grid_structures/contac
 
             g1.Url = "/oams_php_query/contacts_view_grid.php";
             g1.set("structure", [{field: "unique_id", name: "#", width: '35px'},
-                sg1.enabled.r, sg1.last_name.r, sg1.first_name.r, sg1.identification.r
+                sg1.enabled.r, sg1.contact_name.r, sg1.identification.r
             ]);
 
    //     g1.create_grid(0);
