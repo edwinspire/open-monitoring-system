@@ -6,10 +6,10 @@
 [PostgreSQL]
 host="localhost"
 port=5432
-dbname="open_ams"
+dbname="oms"
 user="postgres"
 password="pg4321"
-catalog="open_ams"
+catalog="oms"
 ;*/
 
 ;?>
