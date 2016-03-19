@@ -1,0 +1,6 @@
+# Ignores
+*~
+#*.sh
+*.bat
+*.log
+*farma

@@ -1,0 +1,14 @@
+http://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=5&ved=0ahUKEwj6spTFk8vLAhVEJx4KHXjxCx0QFghAMAQ&url=http%3A%2F%2Fosdir.com%2Fml%2Fpgadmin-hackers%2F2011-01%2Fmsg00264.html&usg=AFQjCNFqksGFv4Vo5XKo0lITB5378cTaNQ&bvm=bv.117218890,d.dmo
+
+
+
+/usr/bin/pg_restore --host localhost --port 5432 --username "postgres" --dbname "open_ams" --no-password  --schema-only --verbose "/media/openams/4F9FDC59434A097B/20160317_1800.backup"
+
+
+usr/bin/pg_restore --host localhost --port 5432 --username "postgres" --dbname "open_ams" --no-password  --section=pre-data -j 10  --list "/home/openams/open_ams/db/20160317_1800.backup"
+
+usr/bin/pg_restore --host localhost --port 5432 --username "postgres" --dbname "oms" --no-password  "/home/openams/open_ams/db/20160318_0825.backup"
+
+
+git clone https://github.com/edwinspire/open-ams.git
+
