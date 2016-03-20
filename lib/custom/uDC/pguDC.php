@@ -1,6 +1,6 @@
 <?php
 
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
 //include_once("_DBMAP_open_ams.php");
 $oams_config = parse_ini_file("oams.ini.php");
 
@@ -61,13 +61,13 @@ public function login() {
         $user = isset($_POST['oams_user']) ? $_POST['oams_user'] : 'anonymous';
         $pwd = isset($_POST['oams_pwd']) ? $_POST['oams_pwd'] : '';
 
-        $result = pg_query_params($this->connection, "SELECT login, username, sessionid, fullname, msg FROM fun_login($1::text, $2::text, $3::text, $4::text);", array($user, $pwd, $_SERVER['HTTP_USER_AGENT'], $_SERVER['REMOTE_ADDR']));
+        $result = pg_query_params($this->connection, "SELECT login, username, idadmin, sessionid, fullname, msg FROM fun_login($1::text, $2::text, $3::text, $4::text);", array($user, $pwd, $_SERVER['HTTP_USER_AGENT'], $_SERVER['REMOTE_ADDR']));
         $row = pg_fetch_assoc($result);
 //print_r($row);
         if ($row["login"] == "t") {
             $Retorno = true;
 		setcookie("oams_fullname", $row["fullname"], (time()+3600)*8);  /* expira en 8 hora */
-		setcookie("oams_username", $row["username"], (time()+3600)*8);  /* expira en 8 hora */
+		setcookie("oams_idadmin", $row["idadmin"], (time()+3600)*8);  /* expira en 8 hora */
 		setcookie("oams_sessionid", $row["sessionid"], (time()+3600)*8);  /* expira en 8 hora */
         }
     }
@@ -88,12 +88,12 @@ return $r;
 
 public function logout() {
 
-    if (isset($_COOKIE['oams_username'])) {
-        $result = pg_query_params($this->connection, "SELECT fun_logout($1::bigint, $2::text) as result;", array($_COOKIE['oams_username'], $_COOKIE['oams_sessionid'])); //$_SERVER['HTTP_USER_AGENT'], $_SERVER['REMOTE_ADDR'], session_id()  
+    if (isset($_COOKIE['oams_idadmin'])) {
+        $result = pg_query_params($this->connection, "SELECT fun_logout($1::text, $2::text) as result;", array($_COOKIE['oams_idadmin'], $_COOKIE['oams_sessionid'])); //$_SERVER['HTTP_USER_AGENT'], $_SERVER['REMOTE_ADDR'], session_id()  
     }
 
 	setcookie("oams_fullname", "anonymous", time()+1);
-	setcookie("oams_username", "anonymous", time()+1);
+	setcookie("oams_idadmin", "-9999999999", time()+1);
 	setcookie("oams_sessionid", "anonymous", time()+1);
 
 }
@@ -103,9 +103,9 @@ public function logout() {
 $r = false;
 $this->idadmin = -100;
 //print_r($_COOKIE);
-if(isset($_COOKIE['oams_sessionid']) && isset($_COOKIE['oams_username'])){
+if(isset($_COOKIE['oams_sessionid']) && isset($_COOKIE['oams_idadmin'])){
 //echo "Variables deficnidas </br>";
-        $result = pg_query_params($this->connection, "SELECT idadmin FROM admins WHERE admin_username = $1::text AND admin_sessionid= $2::TEXT AND admin_ip = $3::TEXT;", array($_COOKIE['oams_username'], $_COOKIE['oams_sessionid'], $_SERVER['REMOTE_ADDR']));
+        $result = pg_query_params($this->connection, "SELECT idadmin FROM admins WHERE idadmin = $1::BIGINT AND admin_sessionid= $2::TEXT AND admin_ip = $3::TEXT;", array($_COOKIE['oams_idadmin'], $_COOKIE['oams_sessionid'], $_SERVER['REMOTE_ADDR']));
         $row = pg_fetch_assoc($result);
 //print_r($row);
         if ($row["idadmin"] > 0) {

@@ -14,8 +14,10 @@
 
 
                 <span data-dojo-type="dijit/PopupMenuBarItem" disabled="true" label="<?php 
-require_once "../../../oams_php_script_private/misc.php";
-echo get_table_column_label("divisions", "name");
+//require_once "../../../oams_php_script_private/misc.php";
+require_once "../uDC/pguDC.php";
+//echo get_table_column_label("divisions", "name");
+echo pguDC::column_label("divisions", "name");
 ?>" iconClass="dijitNoIcon">
 
 <span data-dojo-type="dijit/Menu">
