@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.4.6
 -- Dumped by pg_dump version 9.4.6
--- Started on 2016-03-20 07:15:50 ECT
+-- Started on 2016-03-20 20:38:51 ECT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -14,7 +14,7 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- TOC entry 3949 (class 1262 OID 89876)
+-- TOC entry 3064 (class 1262 OID 89876)
 -- Name: oms; Type: DATABASE; Schema: -; Owner: postgres
 --
 
@@ -33,8 +33,8 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- TOC entry 3950 (class 1262 OID 89876)
--- Dependencies: 3949
+-- TOC entry 3065 (class 1262 OID 89876)
+-- Dependencies: 3064
 -- Name: oms; Type: COMMENT; Schema: -; Owner: postgres
 --
 
@@ -50,7 +50,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 3953 (class 0 OID 0)
+-- TOC entry 3068 (class 0 OID 0)
 -- Dependencies: 2
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -67,7 +67,7 @@ CREATE EXTENSION IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 3954 (class 0 OID 0)
+-- TOC entry 3069 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION adminpack; Type: COMMENT; Schema: -; Owner: 
 --
@@ -78,7 +78,7 @@ COMMENT ON EXTENSION adminpack IS 'administrative functions for PostgreSQL';
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 303 (class 1255 OID 89889)
+-- TOC entry 271 (class 1255 OID 89889)
 -- Name: accounts_insert_update(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -131,8 +131,8 @@ END;$$;
 ALTER FUNCTION public.accounts_insert_update() OWNER TO postgres;
 
 --
--- TOC entry 3955 (class 0 OID 0)
--- Dependencies: 303
+-- TOC entry 3070 (class 0 OID 0)
+-- Dependencies: 271
 -- Name: FUNCTION accounts_insert_update(); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -140,7 +140,7 @@ COMMENT ON FUNCTION accounts_insert_update() IS 'Realiza validacion de datos ant
 
 
 --
--- TOC entry 304 (class 1255 OID 89890)
+-- TOC entry 272 (class 1255 OID 89890)
 -- Name: admins_insert_update(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -181,7 +181,7 @@ $$;
 ALTER FUNCTION public.admins_insert_update() OWNER TO postgres;
 
 --
--- TOC entry 305 (class 1255 OID 89891)
+-- TOC entry 273 (class 1255 OID 89891)
 -- Name: admins_update_admin_pwd(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -207,7 +207,7 @@ END;$$;
 ALTER FUNCTION public.admins_update_admin_pwd() OWNER TO postgres;
 
 --
--- TOC entry 311 (class 1255 OID 89892)
+-- TOC entry 279 (class 1255 OID 89892)
 -- Name: contacts_insert_update(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -268,7 +268,7 @@ $$;
 ALTER FUNCTION public.contacts_insert_update() OWNER TO postgres;
 
 --
--- TOC entry 306 (class 1255 OID 89893)
+-- TOC entry 274 (class 1255 OID 89893)
 -- Name: contacts_update_admin_pwd(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -294,8 +294,8 @@ END;$$;
 ALTER FUNCTION public.contacts_update_admin_pwd() OWNER TO postgres;
 
 --
--- TOC entry 3956 (class 0 OID 0)
--- Dependencies: 306
+-- TOC entry 3071 (class 0 OID 0)
+-- Dependencies: 274
 -- Name: FUNCTION contacts_update_admin_pwd(); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -303,7 +303,7 @@ COMMENT ON FUNCTION contacts_update_admin_pwd() IS 'Devuelve el md5 de la clave 
 
 
 --
--- TOC entry 307 (class 1255 OID 89894)
+-- TOC entry 275 (class 1255 OID 89894)
 -- Name: equipment_insert_update(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -346,7 +346,7 @@ $$;
 ALTER FUNCTION public.equipment_insert_update() OWNER TO postgres;
 
 --
--- TOC entry 308 (class 1255 OID 89895)
+-- TOC entry 276 (class 1255 OID 89895)
 -- Name: event_comments_after_insert(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -367,7 +367,7 @@ end;$$;
 ALTER FUNCTION public.event_comments_after_insert() OWNER TO postgres;
 
 --
--- TOC entry 309 (class 1255 OID 89896)
+-- TOC entry 277 (class 1255 OID 89896)
 -- Name: event_comments_before_insert_redirect_partition(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -433,7 +433,7 @@ end;$_$;
 ALTER FUNCTION public.event_comments_before_insert_redirect_partition() OWNER TO postgres;
 
 --
--- TOC entry 310 (class 1255 OID 89897)
+-- TOC entry 278 (class 1255 OID 89897)
 -- Name: events_before_insert_redirect_partition(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -656,8 +656,8 @@ END;$_$;
 ALTER FUNCTION public.events_before_insert_redirect_partition() OWNER TO postgres;
 
 --
--- TOC entry 3957 (class 0 OID 0)
--- Dependencies: 310
+-- TOC entry 3072 (class 0 OID 0)
+-- Dependencies: 278
 -- Name: FUNCTION events_before_insert_redirect_partition(); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -665,7 +665,7 @@ COMMENT ON FUNCTION events_before_insert_redirect_partition() IS 'Antes de inser
 
 
 --
--- TOC entry 359 (class 1255 OID 89899)
+-- TOC entry 329 (class 1255 OID 89899)
 -- Name: events_on_insert(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -725,7 +725,7 @@ INSERT INTO notification_area(
 END IF;
 
 
-/*
+
 
 -- Auto cerramos los eventos se se haya programado para ser cerrados por la llegada de este evento
 -- 1. Obtenemos la lista de los ideventtypes que serán cerrados por el ideventtype de este evento
@@ -777,7 +777,7 @@ INSERT INTO event_comments(
 
 END IF;
 
-*/
+
 
 RAISE NOTICE '>>> 9) TERMINA EVENTS_ON_INSERT';
 
@@ -788,8 +788,8 @@ END;$$;
 ALTER FUNCTION public.events_on_insert() OWNER TO postgres;
 
 --
--- TOC entry 3958 (class 0 OID 0)
--- Dependencies: 359
+-- TOC entry 3073 (class 0 OID 0)
+-- Dependencies: 329
 -- Name: FUNCTION events_on_insert(); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -797,7 +797,7 @@ COMMENT ON FUNCTION events_on_insert() IS 'Envia la notificacion al navegador cu
 
 
 --
--- TOC entry 312 (class 1255 OID 89900)
+-- TOC entry 280 (class 1255 OID 89900)
 -- Name: fun_account_auto_account(text, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -849,7 +849,7 @@ END;$$;
 ALTER FUNCTION public.fun_account_auto_account(iaccount text, idivision integer) OWNER TO postgres;
 
 --
--- TOC entry 313 (class 1255 OID 89901)
+-- TOC entry 281 (class 1255 OID 89901)
 -- Name: fun_check_sessionid_idadmin(text, text, text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -880,7 +880,7 @@ END;$$;
 ALTER FUNCTION public.fun_check_sessionid_idadmin(iusername text, isessionid text, iip text) OWNER TO postgres;
 
 --
--- TOC entry 316 (class 1255 OID 89903)
+-- TOC entry 284 (class 1255 OID 89903)
 -- Name: fun_create_table_partition(text, timestamp without time zone); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -948,7 +948,7 @@ END;$$;
 ALTER FUNCTION public.fun_create_table_partition(inherts_table text, idatetimeevent timestamp without time zone) OWNER TO postgres;
 
 --
--- TOC entry 314 (class 1255 OID 89904)
+-- TOC entry 282 (class 1255 OID 89904)
 -- Name: fun_edit_accounts(integer, boolean, text, text, timestamp without time zone, text, integer, text, integer, real, real, text, text, text, integer, integer, timestamp without time zone, timestamp without time zone, text, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1018,8 +1018,8 @@ END;$$;
 ALTER FUNCTION public.fun_edit_accounts(id integer, ienabled boolean, ifirst_name text, ilast_name text, ibirthday timestamp without time zone, iidentification text, iididtype integer, ipostal_code text, igender integer, igeox real, igeoy real, inote text, iaddress text, iaddress_ref text, iidaccountstate integer, iidaccounttype integer, istart_date timestamp without time zone, iend_date timestamp without time zone, iaccount text, iidadmin integer, OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 3959 (class 0 OID 0)
--- Dependencies: 314
+-- TOC entry 3074 (class 0 OID 0)
+-- Dependencies: 282
 -- Name: FUNCTION fun_edit_accounts(id integer, ienabled boolean, ifirst_name text, ilast_name text, ibirthday timestamp without time zone, iidentification text, iididtype integer, ipostal_code text, igender integer, igeox real, igeoy real, inote text, iaddress text, iaddress_ref text, iidaccountstate integer, iidaccounttype integer, istart_date timestamp without time zone, iend_date timestamp without time zone, iaccount text, iidadmin integer, OUT fun_return integer, OUT fun_msg text); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -1027,7 +1027,7 @@ COMMENT ON FUNCTION fun_edit_accounts(id integer, ienabled boolean, ifirst_name 
 
 
 --
--- TOC entry 317 (class 1255 OID 89905)
+-- TOC entry 285 (class 1255 OID 89905)
 -- Name: fun_edit_contacts(integer, boolean, text, text, timestamp without time zone, text, integer, text, integer[], integer, real, real, text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1078,7 +1078,7 @@ END;$$;
 ALTER FUNCTION public.fun_edit_contacts(id integer, ienabled boolean, ifirst_name text, ilast_name text, ibirthday timestamp without time zone, iidentification text, iididtype integer, ipostal_code text, igroups integer[], igender integer, igeox real, igeoy real, inote text, OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 318 (class 1255 OID 89906)
+-- TOC entry 286 (class 1255 OID 89906)
 -- Name: fun_edit_event_comments(integer, integer, timestamp without time zone, integer, text, integer, bigint); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1128,7 +1128,7 @@ END;$$;
 ALTER FUNCTION public.fun_edit_event_comments(id integer, iidadmin integer, istart timestamp without time zone, iseconds integer, icomment_event text, istatus integer, iidevent bigint, OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 319 (class 1255 OID 89907)
+-- TOC entry 287 (class 1255 OID 89907)
 -- Name: fun_edit_events(integer, timestamp without time zone, integer, integer, text, integer, integer, integer, text, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1219,7 +1219,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 174 (class 1259 OID 89908)
+-- TOC entry 178 (class 1259 OID 89908)
 -- Name: events; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1244,8 +1244,8 @@ WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 ALTER TABLE events OWNER TO postgres;
 
 --
--- TOC entry 3960 (class 0 OID 0)
--- Dependencies: 174
+-- TOC entry 3075 (class 0 OID 0)
+-- Dependencies: 178
 -- Name: TABLE events; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -1253,8 +1253,8 @@ COMMENT ON TABLE events IS 'Las notificaciones de los ecentos solo se muestran a
 
 
 --
--- TOC entry 3961 (class 0 OID 0)
--- Dependencies: 174
+-- TOC entry 3076 (class 0 OID 0)
+-- Dependencies: 178
 -- Name: COLUMN events.status; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -1262,8 +1262,8 @@ COMMENT ON COLUMN events.status IS 'Este campo se actualiza automaticamente segu
 
 
 --
--- TOC entry 3962 (class 0 OID 0)
--- Dependencies: 174
+-- TOC entry 3077 (class 0 OID 0)
+-- Dependencies: 178
 -- Name: COLUMN events.idadmin; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -1273,8 +1273,8 @@ No se lo pone como llave foranea para no tener que crearlas en cada tabla hereda
 
 
 --
--- TOC entry 3963 (class 0 OID 0)
--- Dependencies: 174
+-- TOC entry 3078 (class 0 OID 0)
+-- Dependencies: 178
 -- Name: COLUMN events.last_comment; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -1282,7 +1282,7 @@ COMMENT ON COLUMN events.last_comment IS 'Fecha del ultimo comentario registrado
 
 
 --
--- TOC entry 320 (class 1255 OID 89920)
+-- TOC entry 288 (class 1255 OID 89920)
 -- Name: fun_event_before_insert_check_and_redirect_partition(events, text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1308,8 +1308,8 @@ $$;
 ALTER FUNCTION public.fun_event_before_insert_check_and_redirect_partition(INOUT ievents events, table_name text) OWNER TO postgres;
 
 --
--- TOC entry 3964 (class 0 OID 0)
--- Dependencies: 320
+-- TOC entry 3079 (class 0 OID 0)
+-- Dependencies: 288
 -- Name: FUNCTION fun_event_before_insert_check_and_redirect_partition(INOUT ievents events, table_name text); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -1317,7 +1317,7 @@ COMMENT ON FUNCTION fun_event_before_insert_check_and_redirect_partition(INOUT i
 
 
 --
--- TOC entry 321 (class 1255 OID 89921)
+-- TOC entry 289 (class 1255 OID 89921)
 -- Name: fun_event_comment_insert_selected(integer[], integer, text, integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1357,7 +1357,7 @@ END;$$;
 ALTER FUNCTION public.fun_event_comment_insert_selected(iidevents integer[], iseconds integer, icomment text, istatus integer, iidadmin integer, OUT fun_return bigint, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 322 (class 1255 OID 89922)
+-- TOC entry 290 (class 1255 OID 89922)
 -- Name: fun_event_comments_table_create_partition(timestamp without time zone); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1438,7 +1438,7 @@ END;$$;
 ALTER FUNCTION public.fun_event_comments_table_create_partition(idatetimeevent timestamp without time zone) OWNER TO postgres;
 
 --
--- TOC entry 315 (class 1255 OID 89923)
+-- TOC entry 283 (class 1255 OID 89923)
 -- Name: fun_event_insert(timestamp without time zone, integer, integer, text, integer, integer, integer, text, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1466,7 +1466,7 @@ END;$$;
 ALTER FUNCTION public.fun_event_insert(idateevent timestamp without time zone, istatus integer, iidaccount integer, icode text, izu integer, ipriority integer, iideventtype integer, idescription text, iidadmin integer, OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 323 (class 1255 OID 89924)
+-- TOC entry 291 (class 1255 OID 89924)
 -- Name: fun_event_insert_by_ideventtype(timestamp without time zone, integer, integer, integer, integer, text, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1498,8 +1498,8 @@ END;$$;
 ALTER FUNCTION public.fun_event_insert_by_ideventtype(idateevent timestamp without time zone, iidaccount integer, izu integer, ipriority integer, iideventtype integer, idescription text, iidadmin integer, OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 3965 (class 0 OID 0)
--- Dependencies: 323
+-- TOC entry 3080 (class 0 OID 0)
+-- Dependencies: 291
 -- Name: FUNCTION fun_event_insert_by_ideventtype(idateevent timestamp without time zone, iidaccount integer, izu integer, ipriority integer, iideventtype integer, idescription text, iidadmin integer, OUT fun_return integer, OUT fun_msg text); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -1507,7 +1507,7 @@ COMMENT ON FUNCTION fun_event_insert_by_ideventtype(idateevent timestamp without
 
 
 --
--- TOC entry 324 (class 1255 OID 89925)
+-- TOC entry 292 (class 1255 OID 89925)
 -- Name: fun_event_insert_by_ideventtype_account(timestamp without time zone, text, integer, integer, integer, text, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1529,7 +1529,7 @@ END;$$;
 ALTER FUNCTION public.fun_event_insert_by_ideventtype_account(idateevent timestamp without time zone, iaccount text, izu integer, ipriority integer, iideventtype integer, idescription text, iidadmin integer, OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 325 (class 1255 OID 89926)
+-- TOC entry 328 (class 1255 OID 89926)
 -- Name: fun_event_insert_diskspace(bigint, text, real); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1545,6 +1545,7 @@ last_size REAL DEFAULT -100;
 row_network_device view_account_network_devices%ROWTYPE;
 
 BEGIN
+
 
 SELECT * INTO row_network_device FROM view_account_network_devices WHERE idequipment = iidequipment;
 
@@ -1600,7 +1601,7 @@ END;$_$;
 ALTER FUNCTION public.fun_event_insert_diskspace(iidequipment bigint, idrive text, isize real, OUT ofun_return integer, OUT ofun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 326 (class 1255 OID 89927)
+-- TOC entry 293 (class 1255 OID 89927)
 -- Name: fun_event_status_get_label(integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1647,7 +1648,7 @@ END;$$;
 ALTER FUNCTION public.fun_event_status_get_label(istatus integer) OWNER TO postgres;
 
 --
--- TOC entry 327 (class 1255 OID 89928)
+-- TOC entry 294 (class 1255 OID 89928)
 -- Name: fun_event_time_last_eventtype_account_not_closed(integer, timestamp without time zone, integer, bigint); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1681,7 +1682,7 @@ END;$$;
 ALTER FUNCTION public.fun_event_time_last_eventtype_account_not_closed(iidaccount integer, idateevent timestamp without time zone, iideventtype integer, izu bigint) OWNER TO postgres;
 
 --
--- TOC entry 328 (class 1255 OID 89929)
+-- TOC entry 295 (class 1255 OID 89929)
 -- Name: fun_events_general_check_before_insert(text, events); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1835,7 +1836,7 @@ END;$_$;
 ALTER FUNCTION public.fun_events_general_check_before_insert(itable_name text, INOUT ievents events) OWNER TO postgres;
 
 --
--- TOC entry 329 (class 1255 OID 89931)
+-- TOC entry 296 (class 1255 OID 89931)
 -- Name: fun_farma_event_insert_jobs(bigint, timestamp without time zone, bigint, integer, integer, bigint, text, boolean, text, timestamp without time zone, integer, timestamp without time zone); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1980,7 +1981,7 @@ END;$_$;
 ALTER FUNCTION public.fun_farma_event_insert_jobs(iidequipment bigint, idateevent timestamp without time zone, iidaccount bigint, last_run_outcome integer, job_current_execution_status integer, izu bigint, ijob_name text, ijob_enabled boolean, ijob_description text, ijob_date_create timestamp without time zone, ijob_run_duration integer, ijob_next_run timestamp without time zone, OUT ofun_return integer, OUT ofun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 330 (class 1255 OID 89932)
+-- TOC entry 297 (class 1255 OID 89932)
 -- Name: fun_farma_event_insert_lista_precios(text, text, text, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2040,7 +2041,7 @@ END;$$;
 ALTER FUNCTION public.fun_farma_event_insert_lista_precios(ioficina text, ilista_principal text, ilista_activa text, icantidad_productos integer) OWNER TO postgres;
 
 --
--- TOC entry 331 (class 1255 OID 89933)
+-- TOC entry 298 (class 1255 OID 89933)
 -- Name: fun_farma_event_insert_sqlserver_uptime(bigint, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2094,8 +2095,8 @@ END;$$;
 ALTER FUNCTION public.fun_farma_event_insert_sqlserver_uptime(iidaccount bigint, iuptime integer) OWNER TO postgres;
 
 --
--- TOC entry 3966 (class 0 OID 0)
--- Dependencies: 331
+-- TOC entry 3081 (class 0 OID 0)
+-- Dependencies: 298
 -- Name: FUNCTION fun_farma_event_insert_sqlserver_uptime(iidaccount bigint, iuptime integer); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -2103,7 +2104,7 @@ COMMENT ON FUNCTION fun_farma_event_insert_sqlserver_uptime(iidaccount bigint, i
 
 
 --
--- TOC entry 332 (class 1255 OID 89934)
+-- TOC entry 299 (class 1255 OID 89934)
 -- Name: fun_farma_event_insert_statusdb_account(bigint, bigint, text, bigint, integer, text, real, real); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2229,7 +2230,7 @@ END;$$;
 ALTER FUNCTION public.fun_farma_event_insert_statusdb_account(iidequipment bigint, iidaccount bigint, inamedb text, izu bigint, istatus integer, istate_des text, idbfilesize real, idblogsize real, OUT ofun_return integer, OUT ofun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 333 (class 1255 OID 89935)
+-- TOC entry 300 (class 1255 OID 89935)
 -- Name: fun_farma_import_accounts(text, text, text, text, text, timestamp without time zone, timestamp without time zone, text, text, text, text, text, text, text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2413,7 +2414,7 @@ END;$$;
 ALTER FUNCTION public.fun_farma_import_accounts(istatus text, franquicia text, ilast_name text, iaddress text, iaddress_ref text, istart_date timestamp without time zone, iend_date timestamp without time zone, iaccount text, idb_user text, idb_pwd text, telf1 text, telf2 text, iemail text, cedula_sup_operativo text, OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 334 (class 1255 OID 89937)
+-- TOC entry 301 (class 1255 OID 89937)
 -- Name: fun_farma_import_accounts_insertemail(bigint, text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2435,7 +2436,7 @@ $$;
 ALTER FUNCTION public.fun_farma_import_accounts_insertemail(iidcontact bigint, iemail text) OWNER TO postgres;
 
 --
--- TOC entry 335 (class 1255 OID 89938)
+-- TOC entry 302 (class 1255 OID 89938)
 -- Name: fun_farma_import_accounts_insertphone(bigint, text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2457,8 +2458,8 @@ $$;
 ALTER FUNCTION public.fun_farma_import_accounts_insertphone(iidcontact bigint, inumber text) OWNER TO postgres;
 
 --
--- TOC entry 3967 (class 0 OID 0)
--- Dependencies: 335
+-- TOC entry 3082 (class 0 OID 0)
+-- Dependencies: 302
 -- Name: FUNCTION fun_farma_import_accounts_insertphone(iidcontact bigint, inumber text); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -2466,7 +2467,7 @@ COMMENT ON FUNCTION fun_farma_import_accounts_insertphone(iidcontact bigint, inu
 
 
 --
--- TOC entry 336 (class 1255 OID 89939)
+-- TOC entry 303 (class 1255 OID 89939)
 -- Name: fun_farma_import_asig_personal_farma(text, text, text, text, boolean, text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2523,7 +2524,7 @@ END;$$;
 ALTER FUNCTION public.fun_farma_import_asig_personal_farma(cedula text, nombrecorto text, pwd text, perfil_referencia text, estado boolean, oficina text, OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 337 (class 1255 OID 89940)
+-- TOC entry 304 (class 1255 OID 89940)
 -- Name: fun_farma_import_nomina(text, text, timestamp without time zone, text, integer, text, text, text, text, text, text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2574,7 +2575,7 @@ END;$$;
 ALTER FUNCTION public.fun_farma_import_nomina(ifirst_name text, ilast_name text, ibirthday timestamp without time zone, iidentification text, igender integer, inote text, iaddress text, iaddress_ref text, itelf1 text, itelf2 text, iemail text, OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 338 (class 1255 OID 89941)
+-- TOC entry 305 (class 1255 OID 89941)
 -- Name: fun_farma_import_nomina_email(integer, text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2614,7 +2615,7 @@ END;$$;
 ALTER FUNCTION public.fun_farma_import_nomina_email(iidcontact integer, iemail text, OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 339 (class 1255 OID 89942)
+-- TOC entry 306 (class 1255 OID 89942)
 -- Name: fun_farma_import_nomina_telf(integer, text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2654,7 +2655,7 @@ END;$$;
 ALTER FUNCTION public.fun_farma_import_nomina_telf(iidcontact integer, itelf text, OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 340 (class 1255 OID 89943)
+-- TOC entry 307 (class 1255 OID 89943)
 -- Name: fun_farma_import_tec(text, text, text, text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2699,7 +2700,7 @@ END;$$;
 ALTER FUNCTION public.fun_farma_import_tec(ifirst_name text, ilast_name text, iidentification text, itype text, OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 341 (class 1255 OID 89944)
+-- TOC entry 308 (class 1255 OID 89944)
 -- Name: fun_farma_import_tec_asig(text, text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2744,7 +2745,7 @@ END;$$;
 ALTER FUNCTION public.fun_farma_import_tec_asig(iidentification text, ioficina text, OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 342 (class 1255 OID 89945)
+-- TOC entry 309 (class 1255 OID 89945)
 -- Name: fun_farma_update_lista_precios_farmacias(integer, text, text, integer, text, text, integer, text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2827,7 +2828,7 @@ END;$$;
 ALTER FUNCTION public.fun_farma_update_lista_precios_farmacias(iidaccount integer, iprincipal text, iactiva text, iproductos integer, i159principal text, i159activa text, i159productos integer, iprovincia text, OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 343 (class 1255 OID 89946)
+-- TOC entry 310 (class 1255 OID 89946)
 -- Name: fun_farma_update_lista_precios_srv159(text, text, text, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2872,7 +2873,7 @@ END;$$;
 ALTER FUNCTION public.fun_farma_update_lista_precios_srv159(account text, iprincipal text, iactiva text, iproductos integer, OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 345 (class 1255 OID 89947)
+-- TOC entry 312 (class 1255 OID 89947)
 -- Name: fun_firts_load(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3028,7 +3029,7 @@ END;$$;
 ALTER FUNCTION public.fun_firts_load(OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 346 (class 1255 OID 89948)
+-- TOC entry 313 (class 1255 OID 89948)
 -- Name: fun_get_idaccount_by_account(text, bigint); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3058,7 +3059,7 @@ END;$$;
 ALTER FUNCTION public.fun_get_idaccount_by_account(iaccount text, iiddivision bigint) OWNER TO postgres;
 
 --
--- TOC entry 360 (class 1255 OID 89949)
+-- TOC entry 326 (class 1255 OID 89949)
 -- Name: fun_login(text, text, text, text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3135,7 +3136,7 @@ END;$$;
 ALTER FUNCTION public.fun_login(iusername text, ipwd text, iuseragent text, iip text, OUT login boolean, OUT username text, OUT sessionid text, OUT fullname text, OUT idadmin bigint, OUT msg text) OWNER TO postgres;
 
 --
--- TOC entry 358 (class 1255 OID 94492)
+-- TOC entry 325 (class 1255 OID 94492)
 -- Name: fun_logout(bigint, text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3157,7 +3158,7 @@ END;$$;
 ALTER FUNCTION public.fun_logout(iidadmin bigint, isessionid text) OWNER TO postgres;
 
 --
--- TOC entry 347 (class 1255 OID 89951)
+-- TOC entry 314 (class 1255 OID 89951)
 -- Name: fun_notification_insert_by_idadmin(integer, integer, boolean, text, text, text, text, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3178,7 +3179,7 @@ END;$$;
 ALTER FUNCTION public.fun_notification_insert_by_idadmin(inurgency integer, intimeout integer, incloseable boolean, inimg text, insnd text, intitle text, inbody text, iidadmin integer) OWNER TO postgres;
 
 --
--- TOC entry 348 (class 1255 OID 89952)
+-- TOC entry 315 (class 1255 OID 89952)
 -- Name: fun_oams_mapper(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3218,7 +3219,7 @@ END;$$;
 ALTER FUNCTION public.fun_oams_mapper() OWNER TO postgres;
 
 --
--- TOC entry 349 (class 1255 OID 89953)
+-- TOC entry 316 (class 1255 OID 89953)
 -- Name: fun_quick_create_account(integer, integer, text, text, text, text, integer, text, text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3261,7 +3262,7 @@ END;$$;
 ALTER FUNCTION public.fun_quick_create_account(iidaccountstate integer, iidaccounttype integer, iaccount text, ifirst_name text, ilast_name text, iidentification text, iididtype integer, iaddress text, iaddress_ref text, OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 344 (class 1255 OID 89954)
+-- TOC entry 311 (class 1255 OID 89954)
 -- Name: fun_receiver_raid_reports(text, timestamp without time zone, text, text, text, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3333,7 +3334,7 @@ END;$$;
 ALTER FUNCTION public.fun_receiver_raid_reports(ioficina text, ireceivetime timestamp without time zone, ihostname text, iproducttype text, idescription text, iline_file integer, OUT fun_return integer, OUT fun_msg text) OWNER TO postgres;
 
 --
--- TOC entry 350 (class 1255 OID 89955)
+-- TOC entry 317 (class 1255 OID 89955)
 -- Name: fun_remove_notifications_old(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3350,7 +3351,7 @@ $$;
 ALTER FUNCTION public.fun_remove_notifications_old() OWNER TO postgres;
 
 --
--- TOC entry 351 (class 1255 OID 89956)
+-- TOC entry 318 (class 1255 OID 89956)
 -- Name: fun_set_expired_events(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3385,7 +3386,7 @@ END;$$;
 ALTER FUNCTION public.fun_set_expired_events() OWNER TO postgres;
 
 --
--- TOC entry 352 (class 1255 OID 89957)
+-- TOC entry 319 (class 1255 OID 89957)
 -- Name: fun_sufix_name_by_date(timestamp without time zone); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3407,8 +3408,8 @@ END;$$;
 ALTER FUNCTION public.fun_sufix_name_by_date(idate timestamp without time zone) OWNER TO postgres;
 
 --
--- TOC entry 3968 (class 0 OID 0)
--- Dependencies: 352
+-- TOC entry 3083 (class 0 OID 0)
+-- Dependencies: 319
 -- Name: FUNCTION fun_sufix_name_by_date(idate timestamp without time zone); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3416,7 +3417,7 @@ COMMENT ON FUNCTION fun_sufix_name_by_date(idate timestamp without time zone) IS
 
 
 --
--- TOC entry 361 (class 1255 OID 89958)
+-- TOC entry 327 (class 1255 OID 89958)
 -- Name: fun_udc_mapper(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3456,7 +3457,7 @@ END;$$;
 ALTER FUNCTION public.fun_udc_mapper() OWNER TO postgres;
 
 --
--- TOC entry 353 (class 1255 OID 89959)
+-- TOC entry 320 (class 1255 OID 89959)
 -- Name: fun_view_contact_groups_they_belong(bigint); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3493,7 +3494,7 @@ $$;
 ALTER FUNCTION public.fun_view_contact_groups_they_belong(iidcontact bigint, OUT idcontact bigint, OUT idgroup bigint, OUT ts timestamp without time zone, OUT ismember boolean, OUT enabled boolean, OUT name text, OUT description text, OUT note text) OWNER TO postgres;
 
 --
--- TOC entry 354 (class 1255 OID 89960)
+-- TOC entry 321 (class 1255 OID 89960)
 -- Name: fun_view_farma_lista_precios(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3545,7 +3546,7 @@ $$;
 ALTER FUNCTION public.fun_view_farma_lista_precios(OUT idaccount bigint, OUT account text, OUT ts_farmacia timestamp without time zone, OUT ts_server159 timestamp without time zone, OUT account_name text, OUT address text, OUT tecnico text, OUT note text, OUT srv159_principal text, OUT srv159_activa text, OUT srv159_productos integer, OUT principal text, OUT activa text, OUT productos integer, OUT estado text, OUT sincronizado text, OUT provincia text, OUT ip text) OWNER TO postgres;
 
 --
--- TOC entry 355 (class 1255 OID 89961)
+-- TOC entry 322 (class 1255 OID 89961)
 -- Name: notifications_before_insert(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3588,8 +3589,8 @@ END;$$;
 ALTER FUNCTION public.notifications_before_insert() OWNER TO postgres;
 
 --
--- TOC entry 3969 (class 0 OID 0)
--- Dependencies: 355
+-- TOC entry 3084 (class 0 OID 0)
+-- Dependencies: 322
 -- Name: FUNCTION notifications_before_insert(); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3597,7 +3598,7 @@ COMMENT ON FUNCTION notifications_before_insert() IS 'Acciones y comprobaciones 
 
 
 --
--- TOC entry 356 (class 1255 OID 89962)
+-- TOC entry 323 (class 1255 OID 89962)
 -- Name: on_changed_table(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3647,8 +3648,8 @@ END;$$;
 ALTER FUNCTION public.on_changed_table() OWNER TO postgres;
 
 --
--- TOC entry 3970 (class 0 OID 0)
--- Dependencies: 356
+-- TOC entry 3085 (class 0 OID 0)
+-- Dependencies: 323
 -- Name: FUNCTION on_changed_table(); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3656,7 +3657,7 @@ COMMENT ON FUNCTION on_changed_table() IS 'Debe ser disparado despues de que la 
 
 
 --
--- TOC entry 357 (class 1255 OID 89963)
+-- TOC entry 324 (class 1255 OID 89963)
 -- Name: on_update_row_update_ts(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3676,8 +3677,8 @@ $$;
 ALTER FUNCTION public.on_update_row_update_ts() OWNER TO postgres;
 
 --
--- TOC entry 3971 (class 0 OID 0)
--- Dependencies: 357
+-- TOC entry 3086 (class 0 OID 0)
+-- Dependencies: 324
 -- Name: FUNCTION on_update_row_update_ts(); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3685,7 +3686,7 @@ COMMENT ON FUNCTION on_update_row_update_ts() IS 'Debe ser disparado antes de ac
 
 
 --
--- TOC entry 175 (class 1259 OID 89964)
+-- TOC entry 179 (class 1259 OID 89964)
 -- Name: account_contacts; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -3703,8 +3704,8 @@ CREATE TABLE account_contacts (
 ALTER TABLE account_contacts OWNER TO postgres;
 
 --
--- TOC entry 3972 (class 0 OID 0)
--- Dependencies: 175
+-- TOC entry 3087 (class 0 OID 0)
+-- Dependencies: 179
 -- Name: TABLE account_contacts; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3713,8 +3714,8 @@ No hay como usar idacount como llave foranea porque es una tabla heredada, hay q
 
 
 --
--- TOC entry 3973 (class 0 OID 0)
--- Dependencies: 175
+-- TOC entry 3088 (class 0 OID 0)
+-- Dependencies: 179
 -- Name: COLUMN account_contacts.idaccount; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3722,8 +3723,8 @@ COMMENT ON COLUMN account_contacts.idaccount IS 'ID de la cuenta';
 
 
 --
--- TOC entry 3974 (class 0 OID 0)
--- Dependencies: 175
+-- TOC entry 3089 (class 0 OID 0)
+-- Dependencies: 179
 -- Name: COLUMN account_contacts.idcontact; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3731,7 +3732,7 @@ COMMENT ON COLUMN account_contacts.idcontact IS 'ID asociado de la lista de cont
 
 
 --
--- TOC entry 176 (class 1259 OID 89972)
+-- TOC entry 180 (class 1259 OID 89972)
 -- Name: account_states; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -3746,8 +3747,8 @@ CREATE TABLE account_states (
 ALTER TABLE account_states OWNER TO postgres;
 
 --
--- TOC entry 3975 (class 0 OID 0)
--- Dependencies: 176
+-- TOC entry 3090 (class 0 OID 0)
+-- Dependencies: 180
 -- Name: TABLE account_states; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3755,7 +3756,7 @@ COMMENT ON TABLE account_states IS 'Lista de posibles estados de un abonado';
 
 
 --
--- TOC entry 177 (class 1259 OID 89979)
+-- TOC entry 181 (class 1259 OID 89979)
 -- Name: account_state_idaccountstate_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3770,8 +3771,8 @@ CREATE SEQUENCE account_state_idaccountstate_seq
 ALTER TABLE account_state_idaccountstate_seq OWNER TO postgres;
 
 --
--- TOC entry 3976 (class 0 OID 0)
--- Dependencies: 177
+-- TOC entry 3091 (class 0 OID 0)
+-- Dependencies: 181
 -- Name: account_state_idaccountstate_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -3779,7 +3780,7 @@ ALTER SEQUENCE account_state_idaccountstate_seq OWNED BY account_states.idaccoun
 
 
 --
--- TOC entry 178 (class 1259 OID 89981)
+-- TOC entry 182 (class 1259 OID 89981)
 -- Name: account_types; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -3794,7 +3795,7 @@ CREATE TABLE account_types (
 ALTER TABLE account_types OWNER TO postgres;
 
 --
--- TOC entry 179 (class 1259 OID 89988)
+-- TOC entry 183 (class 1259 OID 89988)
 -- Name: account_types_idaccounttype_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3809,8 +3810,8 @@ CREATE SEQUENCE account_types_idaccounttype_seq
 ALTER TABLE account_types_idaccounttype_seq OWNER TO postgres;
 
 --
--- TOC entry 3977 (class 0 OID 0)
--- Dependencies: 179
+-- TOC entry 3092 (class 0 OID 0)
+-- Dependencies: 183
 -- Name: account_types_idaccounttype_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -3818,7 +3819,7 @@ ALTER SEQUENCE account_types_idaccounttype_seq OWNED BY account_types.idaccountt
 
 
 --
--- TOC entry 180 (class 1259 OID 89990)
+-- TOC entry 184 (class 1259 OID 89990)
 -- Name: account_users_idaccountuser_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3833,8 +3834,8 @@ CREATE SEQUENCE account_users_idaccountuser_seq
 ALTER TABLE account_users_idaccountuser_seq OWNER TO postgres;
 
 --
--- TOC entry 3978 (class 0 OID 0)
--- Dependencies: 180
+-- TOC entry 3093 (class 0 OID 0)
+-- Dependencies: 184
 -- Name: account_users_idaccountuser_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -3842,7 +3843,7 @@ ALTER SEQUENCE account_users_idaccountuser_seq OWNED BY account_contacts.idaccou
 
 
 --
--- TOC entry 283 (class 1259 OID 93483)
+-- TOC entry 242 (class 1259 OID 93483)
 -- Name: account_users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -3867,7 +3868,7 @@ INHERITS (account_contacts);
 ALTER TABLE account_users OWNER TO postgres;
 
 --
--- TOC entry 181 (class 1259 OID 90004)
+-- TOC entry 185 (class 1259 OID 90004)
 -- Name: contacts; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -3895,8 +3896,8 @@ WITH (toast.autovacuum_enabled='true');
 ALTER TABLE contacts OWNER TO postgres;
 
 --
--- TOC entry 3979 (class 0 OID 0)
--- Dependencies: 181
+-- TOC entry 3094 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: COLUMN contacts.enabled; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3905,8 +3906,8 @@ Por ejemplo si el contacto debe usarse o no para otras areas de la aplicacion.';
 
 
 --
--- TOC entry 3980 (class 0 OID 0)
--- Dependencies: 181
+-- TOC entry 3095 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: COLUMN contacts.first_name; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3916,8 +3917,8 @@ Este campo es oblogatorio y no puede ser nulo.
 
 
 --
--- TOC entry 3981 (class 0 OID 0)
--- Dependencies: 181
+-- TOC entry 3096 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: COLUMN contacts.last_name; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3926,8 +3927,8 @@ Este valor puede ser nulo aunque no se recomienda.';
 
 
 --
--- TOC entry 3982 (class 0 OID 0)
--- Dependencies: 181
+-- TOC entry 3097 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: COLUMN contacts.identification; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3937,8 +3938,8 @@ Es un identificador unico entre el resto de contactos.
 
 
 --
--- TOC entry 3983 (class 0 OID 0)
--- Dependencies: 181
+-- TOC entry 3098 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: COLUMN contacts.ididtype; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3946,8 +3947,8 @@ COMMENT ON COLUMN contacts.ididtype IS 'Tipo de identificacion (Ej.: Cedula, RUC
 
 
 --
--- TOC entry 3984 (class 0 OID 0)
--- Dependencies: 181
+-- TOC entry 3099 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: COLUMN contacts.postal_code; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3955,8 +3956,8 @@ COMMENT ON COLUMN contacts.postal_code IS 'Codigo Postal';
 
 
 --
--- TOC entry 3985 (class 0 OID 0)
--- Dependencies: 181
+-- TOC entry 3100 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: COLUMN contacts.gender; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3967,8 +3968,8 @@ COMMENT ON COLUMN contacts.gender IS 'Genero:
 
 
 --
--- TOC entry 3986 (class 0 OID 0)
--- Dependencies: 181
+-- TOC entry 3101 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: COLUMN contacts.geox; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3976,8 +3977,8 @@ COMMENT ON COLUMN contacts.geox IS 'Geolocalizacion X';
 
 
 --
--- TOC entry 3987 (class 0 OID 0)
--- Dependencies: 181
+-- TOC entry 3102 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: COLUMN contacts.geoy; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3985,8 +3986,8 @@ COMMENT ON COLUMN contacts.geoy IS 'Geolocalizacion Y';
 
 
 --
--- TOC entry 3988 (class 0 OID 0)
--- Dependencies: 181
+-- TOC entry 3103 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: COLUMN contacts.address; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -3994,8 +3995,8 @@ COMMENT ON COLUMN contacts.address IS 'Direccion del contacto';
 
 
 --
--- TOC entry 3989 (class 0 OID 0)
--- Dependencies: 181
+-- TOC entry 3104 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: COLUMN contacts.address_ref; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -4003,8 +4004,8 @@ COMMENT ON COLUMN contacts.address_ref IS 'Puntos referenciales para ubucacion d
 
 
 --
--- TOC entry 3990 (class 0 OID 0)
--- Dependencies: 181
+-- TOC entry 3105 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: COLUMN contacts.groups; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -4012,7 +4013,7 @@ COMMENT ON COLUMN contacts.groups IS 'Id de los grupos a los que pertenece este 
 
 
 --
--- TOC entry 182 (class 1259 OID 90016)
+-- TOC entry 186 (class 1259 OID 90016)
 -- Name: contacts_idcontact_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -4027,8 +4028,8 @@ CREATE SEQUENCE contacts_idcontact_seq
 ALTER TABLE contacts_idcontact_seq OWNER TO postgres;
 
 --
--- TOC entry 3991 (class 0 OID 0)
--- Dependencies: 182
+-- TOC entry 3106 (class 0 OID 0)
+-- Dependencies: 186
 -- Name: contacts_idcontact_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -4036,7 +4037,7 @@ ALTER SEQUENCE contacts_idcontact_seq OWNED BY contacts.idcontact;
 
 
 --
--- TOC entry 183 (class 1259 OID 90018)
+-- TOC entry 187 (class 1259 OID 90018)
 -- Name: accounts; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -4070,7 +4071,7 @@ WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 ALTER TABLE accounts OWNER TO postgres;
 
 --
--- TOC entry 184 (class 1259 OID 90034)
+-- TOC entry 188 (class 1259 OID 90034)
 -- Name: admins; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -4096,7 +4097,7 @@ WITH (toast.autovacuum_enabled='true');
 ALTER TABLE admins OWNER TO postgres;
 
 --
--- TOC entry 185 (class 1259 OID 90047)
+-- TOC entry 189 (class 1259 OID 90047)
 -- Name: admins_idadmin_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -4111,8 +4112,8 @@ CREATE SEQUENCE admins_idadmin_seq
 ALTER TABLE admins_idadmin_seq OWNER TO postgres;
 
 --
--- TOC entry 3992 (class 0 OID 0)
--- Dependencies: 185
+-- TOC entry 3107 (class 0 OID 0)
+-- Dependencies: 189
 -- Name: admins_idadmin_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -4120,7 +4121,7 @@ ALTER SEQUENCE admins_idadmin_seq OWNED BY admins.idadmin;
 
 
 --
--- TOC entry 186 (class 1259 OID 90049)
+-- TOC entry 190 (class 1259 OID 90049)
 -- Name: admins_idcontact_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -4135,8 +4136,8 @@ CREATE SEQUENCE admins_idcontact_seq
 ALTER TABLE admins_idcontact_seq OWNER TO postgres;
 
 --
--- TOC entry 3993 (class 0 OID 0)
--- Dependencies: 186
+-- TOC entry 3108 (class 0 OID 0)
+-- Dependencies: 190
 -- Name: admins_idcontact_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -4144,7 +4145,7 @@ ALTER SEQUENCE admins_idcontact_seq OWNED BY admins.idcontact;
 
 
 --
--- TOC entry 187 (class 1259 OID 90051)
+-- TOC entry 191 (class 1259 OID 90051)
 -- Name: attachments; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -4159,7 +4160,7 @@ CREATE TABLE attachments (
 ALTER TABLE attachments OWNER TO postgres;
 
 --
--- TOC entry 188 (class 1259 OID 90058)
+-- TOC entry 192 (class 1259 OID 90058)
 -- Name: attachments_idattachment_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -4174,8 +4175,8 @@ CREATE SEQUENCE attachments_idattachment_seq
 ALTER TABLE attachments_idattachment_seq OWNER TO postgres;
 
 --
--- TOC entry 3994 (class 0 OID 0)
--- Dependencies: 188
+-- TOC entry 3109 (class 0 OID 0)
+-- Dependencies: 192
 -- Name: attachments_idattachment_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -4183,7 +4184,7 @@ ALTER SEQUENCE attachments_idattachment_seq OWNED BY attachments.idattachment;
 
 
 --
--- TOC entry 189 (class 1259 OID 90060)
+-- TOC entry 193 (class 1259 OID 90060)
 -- Name: divisions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -4200,8 +4201,8 @@ CREATE TABLE divisions (
 ALTER TABLE divisions OWNER TO postgres;
 
 --
--- TOC entry 3995 (class 0 OID 0)
--- Dependencies: 189
+-- TOC entry 3110 (class 0 OID 0)
+-- Dependencies: 193
 -- Name: TABLE divisions; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -4209,7 +4210,7 @@ COMMENT ON TABLE divisions IS 'Division, area, grupo empresarial, etc';
 
 
 --
--- TOC entry 190 (class 1259 OID 90068)
+-- TOC entry 194 (class 1259 OID 90068)
 -- Name: division_iddivision_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -4224,8 +4225,8 @@ CREATE SEQUENCE division_iddivision_seq
 ALTER TABLE division_iddivision_seq OWNER TO postgres;
 
 --
--- TOC entry 3996 (class 0 OID 0)
--- Dependencies: 190
+-- TOC entry 3111 (class 0 OID 0)
+-- Dependencies: 194
 -- Name: division_iddivision_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -4233,7 +4234,7 @@ ALTER SEQUENCE division_iddivision_seq OWNED BY divisions.iddivision;
 
 
 --
--- TOC entry 191 (class 1259 OID 90070)
+-- TOC entry 195 (class 1259 OID 90070)
 -- Name: emails; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -4251,8 +4252,8 @@ CREATE TABLE emails (
 ALTER TABLE emails OWNER TO postgres;
 
 --
--- TOC entry 3997 (class 0 OID 0)
--- Dependencies: 191
+-- TOC entry 3112 (class 0 OID 0)
+-- Dependencies: 195
 -- Name: COLUMN emails.notify_if_administrator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -4260,7 +4261,7 @@ COMMENT ON COLUMN emails.notify_if_administrator IS 'Habilita envio de email de 
 
 
 --
--- TOC entry 192 (class 1259 OID 90080)
+-- TOC entry 196 (class 1259 OID 90080)
 -- Name: emails_idemail_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -4275,8 +4276,8 @@ CREATE SEQUENCE emails_idemail_seq
 ALTER TABLE emails_idemail_seq OWNER TO postgres;
 
 --
--- TOC entry 3998 (class 0 OID 0)
--- Dependencies: 192
+-- TOC entry 3113 (class 0 OID 0)
+-- Dependencies: 196
 -- Name: emails_idemail_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -4284,7 +4285,7 @@ ALTER SEQUENCE emails_idemail_seq OWNED BY emails.idemail;
 
 
 --
--- TOC entry 193 (class 1259 OID 90082)
+-- TOC entry 197 (class 1259 OID 90082)
 -- Name: equipments; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -4310,8 +4311,8 @@ CREATE TABLE equipments (
 ALTER TABLE equipments OWNER TO postgres;
 
 --
--- TOC entry 3999 (class 0 OID 0)
--- Dependencies: 193
+-- TOC entry 3114 (class 0 OID 0)
+-- Dependencies: 197
 -- Name: COLUMN equipments.serial_number; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -4319,8 +4320,8 @@ COMMENT ON COLUMN equipments.serial_number IS 'Numero de serie que viene en el p
 
 
 --
--- TOC entry 4000 (class 0 OID 0)
--- Dependencies: 193
+-- TOC entry 3115 (class 0 OID 0)
+-- Dependencies: 197
 -- Name: COLUMN equipments.code_ref; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -4328,8 +4329,8 @@ COMMENT ON COLUMN equipments.code_ref IS 'Codigo para uso interno';
 
 
 --
--- TOC entry 4001 (class 0 OID 0)
--- Dependencies: 193
+-- TOC entry 3116 (class 0 OID 0)
+-- Dependencies: 197
 -- Name: COLUMN equipments.operability; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -4337,8 +4338,8 @@ COMMENT ON COLUMN equipments.operability IS 'Porcentage de operatividad del equi
 
 
 --
--- TOC entry 4002 (class 0 OID 0)
--- Dependencies: 193
+-- TOC entry 3117 (class 0 OID 0)
+-- Dependencies: 197
 -- Name: COLUMN equipments.agreement_code_provider; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -4346,7 +4347,7 @@ COMMENT ON COLUMN equipments.agreement_code_provider IS 'Numero de contrato, num
 
 
 --
--- TOC entry 194 (class 1259 OID 90091)
+-- TOC entry 198 (class 1259 OID 90091)
 -- Name: equipments_idequipment_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -4361,8 +4362,8 @@ CREATE SEQUENCE equipments_idequipment_seq
 ALTER TABLE equipments_idequipment_seq OWNER TO postgres;
 
 --
--- TOC entry 4003 (class 0 OID 0)
--- Dependencies: 194
+-- TOC entry 3118 (class 0 OID 0)
+-- Dependencies: 198
 -- Name: equipments_idequipment_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -4370,7 +4371,7 @@ ALTER SEQUENCE equipments_idequipment_seq OWNED BY equipments.idequipment;
 
 
 --
--- TOC entry 195 (class 1259 OID 90093)
+-- TOC entry 199 (class 1259 OID 90093)
 -- Name: event_comments_attachments; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -4385,7 +4386,7 @@ CREATE TABLE event_comments_attachments (
 ALTER TABLE event_comments_attachments OWNER TO postgres;
 
 --
--- TOC entry 196 (class 1259 OID 90097)
+-- TOC entry 200 (class 1259 OID 90097)
 -- Name: event_attachments_ideventattach_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -4400,8 +4401,8 @@ CREATE SEQUENCE event_attachments_ideventattach_seq
 ALTER TABLE event_attachments_ideventattach_seq OWNER TO postgres;
 
 --
--- TOC entry 4004 (class 0 OID 0)
--- Dependencies: 196
+-- TOC entry 3119 (class 0 OID 0)
+-- Dependencies: 200
 -- Name: event_attachments_ideventattach_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -4409,7 +4410,7 @@ ALTER SEQUENCE event_attachments_ideventattach_seq OWNED BY event_comments_attac
 
 
 --
--- TOC entry 197 (class 1259 OID 90099)
+-- TOC entry 201 (class 1259 OID 90099)
 -- Name: event_comments; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -4429,8 +4430,8 @@ WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 ALTER TABLE event_comments OWNER TO postgres;
 
 --
--- TOC entry 4005 (class 0 OID 0)
--- Dependencies: 197
+-- TOC entry 3120 (class 0 OID 0)
+-- Dependencies: 201
 -- Name: COLUMN event_comments.status; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -4438,7 +4439,7 @@ COMMENT ON COLUMN event_comments.status IS 'Este campo es necesario para actuali
 
 
 --
--- TOC entry 198 (class 1259 OID 90109)
+-- TOC entry 202 (class 1259 OID 90109)
 -- Name: event_comments_ideventcomment_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -4453,8 +4454,8 @@ CREATE SEQUENCE event_comments_ideventcomment_seq
 ALTER TABLE event_comments_ideventcomment_seq OWNER TO postgres;
 
 --
--- TOC entry 4006 (class 0 OID 0)
--- Dependencies: 198
+-- TOC entry 3121 (class 0 OID 0)
+-- Dependencies: 202
 -- Name: event_comments_ideventcomment_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -4462,37 +4463,7 @@ ALTER SEQUENCE event_comments_ideventcomment_seq OWNED BY event_comments.idevent
 
 
 --
--- TOC entry 284 (class 1259 OID 93495)
--- Name: event_comments_201512; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE event_comments_201512 (
-    ideventcomment bigint DEFAULT nextval('event_comments_ideventcomment_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    idadmin integer,
-    start timestamp without time zone DEFAULT now(),
-    seconds integer DEFAULT 0,
-    comment_event text,
-    status smallint DEFAULT 0,
-    idevent bigint
-)
-INHERITS (event_comments)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE event_comments_201512 OWNER TO postgres;
-
---
--- TOC entry 4007 (class 0 OID 0)
--- Dependencies: 284
--- Name: COLUMN event_comments_201512.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN event_comments_201512.status IS 'Es estado del comentario sirve para definir el estado del evento en cuestion ';
-
-
---
--- TOC entry 285 (class 1259 OID 93506)
+-- TOC entry 258 (class 1259 OID 96263)
 -- Name: event_comments_2016; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -4513,8 +4484,8 @@ WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 ALTER TABLE event_comments_2016 OWNER TO postgres;
 
 --
--- TOC entry 4008 (class 0 OID 0)
--- Dependencies: 285
+-- TOC entry 3122 (class 0 OID 0)
+-- Dependencies: 258
 -- Name: COLUMN event_comments_2016.status; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -4522,97 +4493,7 @@ COMMENT ON COLUMN event_comments_2016.status IS 'Este campo es necesario para ac
 
 
 --
--- TOC entry 286 (class 1259 OID 93517)
--- Name: event_comments_201601; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE event_comments_201601 (
-    ideventcomment bigint DEFAULT nextval('event_comments_ideventcomment_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    idadmin integer,
-    start timestamp without time zone DEFAULT now(),
-    seconds integer DEFAULT 0,
-    comment_event text,
-    status smallint DEFAULT 0,
-    idevent bigint
-)
-INHERITS (event_comments)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE event_comments_201601 OWNER TO postgres;
-
---
--- TOC entry 4009 (class 0 OID 0)
--- Dependencies: 286
--- Name: COLUMN event_comments_201601.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN event_comments_201601.status IS 'Eliminar este campo';
-
-
---
--- TOC entry 287 (class 1259 OID 93528)
--- Name: event_comments_201602; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE event_comments_201602 (
-    ideventcomment bigint DEFAULT nextval('event_comments_ideventcomment_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    idadmin integer,
-    start timestamp without time zone DEFAULT now(),
-    seconds integer DEFAULT 0,
-    comment_event text,
-    status smallint DEFAULT 0,
-    idevent bigint
-)
-INHERITS (event_comments)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE event_comments_201602 OWNER TO postgres;
-
---
--- TOC entry 4010 (class 0 OID 0)
--- Dependencies: 287
--- Name: COLUMN event_comments_201602.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN event_comments_201602.status IS 'Este campo es necesario para actualiza la tabla events cuando un comentario es ingresado.';
-
-
---
--- TOC entry 288 (class 1259 OID 93539)
--- Name: event_comments_201603; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE event_comments_201603 (
-    ideventcomment bigint DEFAULT nextval('event_comments_ideventcomment_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    idadmin integer,
-    start timestamp without time zone DEFAULT now(),
-    seconds integer DEFAULT 0,
-    comment_event text,
-    status smallint DEFAULT 0,
-    idevent bigint
-)
-INHERITS (event_comments)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE event_comments_201603 OWNER TO postgres;
-
---
--- TOC entry 4011 (class 0 OID 0)
--- Dependencies: 288
--- Name: COLUMN event_comments_201603.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN event_comments_201603.status IS 'Este campo es necesario para actualiza la tabla events cuando un comentario es ingresado.';
-
-
---
--- TOC entry 199 (class 1259 OID 90166)
+-- TOC entry 203 (class 1259 OID 90166)
 -- Name: events_idevent_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -4627,8 +4508,8 @@ CREATE SEQUENCE events_idevent_seq
 ALTER TABLE events_idevent_seq OWNER TO postgres;
 
 --
--- TOC entry 4012 (class 0 OID 0)
--- Dependencies: 199
+-- TOC entry 3123 (class 0 OID 0)
+-- Dependencies: 203
 -- Name: events_idevent_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -4636,61 +4517,7 @@ ALTER SEQUENCE events_idevent_seq OWNED BY events.idevent;
 
 
 --
--- TOC entry 200 (class 1259 OID 90168)
--- Name: events_201512; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_201512 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    note text
-)
-INHERITS (events)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_201512 OWNER TO postgres;
-
---
--- TOC entry 4013 (class 0 OID 0)
--- Dependencies: 200
--- Name: COLUMN events_201512.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_201512.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4014 (class 0 OID 0)
--- Dependencies: 200
--- Name: COLUMN events_201512.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_201512.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4015 (class 0 OID 0)
--- Dependencies: 200
--- Name: COLUMN events_201512.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_201512.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 201 (class 1259 OID 90181)
+-- TOC entry 248 (class 1259 OID 95114)
 -- Name: events_2016; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -4717,8 +4544,8 @@ WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 ALTER TABLE events_2016 OWNER TO postgres;
 
 --
--- TOC entry 4016 (class 0 OID 0)
--- Dependencies: 201
+-- TOC entry 3124 (class 0 OID 0)
+-- Dependencies: 248
 -- Name: COLUMN events_2016.status; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -4726,8 +4553,8 @@ COMMENT ON COLUMN events_2016.status IS 'Este campo se actualiza automaticamente
 
 
 --
--- TOC entry 4017 (class 0 OID 0)
--- Dependencies: 201
+-- TOC entry 3125 (class 0 OID 0)
+-- Dependencies: 248
 -- Name: COLUMN events_2016.idadmin; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -4737,8 +4564,8 @@ No se lo pone como llave foranea para no tener que crearlas en cada tabla hereda
 
 
 --
--- TOC entry 4018 (class 0 OID 0)
--- Dependencies: 201
+-- TOC entry 3126 (class 0 OID 0)
+-- Dependencies: 248
 -- Name: COLUMN events_2016.last_comment; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -4746,175 +4573,7 @@ COMMENT ON COLUMN events_2016.last_comment IS 'Fecha del ultimo comentario regis
 
 
 --
--- TOC entry 202 (class 1259 OID 90195)
--- Name: events_201601; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_201601 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    note text
-)
-INHERITS (events)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_201601 OWNER TO postgres;
-
---
--- TOC entry 4019 (class 0 OID 0)
--- Dependencies: 202
--- Name: COLUMN events_201601.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_201601.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4020 (class 0 OID 0)
--- Dependencies: 202
--- Name: COLUMN events_201601.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_201601.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.
-
-No se lo pone como llave foranea para no tener que crearlas en cada tabla heredada mas bien se hace la comprobacion antes de insertar en la tabla y de no existir se pone a null';
-
-
---
--- TOC entry 4021 (class 0 OID 0)
--- Dependencies: 202
--- Name: COLUMN events_201601.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_201601.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 203 (class 1259 OID 90208)
--- Name: events_201602; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_201602 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    note text
-)
-INHERITS (events)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_201602 OWNER TO postgres;
-
---
--- TOC entry 4022 (class 0 OID 0)
--- Dependencies: 203
--- Name: COLUMN events_201602.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_201602.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4023 (class 0 OID 0)
--- Dependencies: 203
--- Name: COLUMN events_201602.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_201602.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.
-
-No se lo pone como llave foranea para no tener que crearlas en cada tabla heredada mas bien se hace la comprobacion antes de insertar en la tabla y de no existir se pone a null';
-
-
---
--- TOC entry 4024 (class 0 OID 0)
--- Dependencies: 203
--- Name: COLUMN events_201602.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_201602.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 204 (class 1259 OID 90221)
--- Name: events_201603; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_201603 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    note text
-)
-INHERITS (events)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_201603 OWNER TO postgres;
-
---
--- TOC entry 4025 (class 0 OID 0)
--- Dependencies: 204
--- Name: COLUMN events_201603.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_201603.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4026 (class 0 OID 0)
--- Dependencies: 204
--- Name: COLUMN events_201603.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_201603.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.
-
-No se lo pone como llave foranea para no tener que crearlas en cada tabla heredada mas bien se hace la comprobacion antes de insertar en la tabla y de no existir se pone a null';
-
-
---
--- TOC entry 4027 (class 0 OID 0)
--- Dependencies: 204
--- Name: COLUMN events_201603.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_201603.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 205 (class 1259 OID 90234)
+-- TOC entry 204 (class 1259 OID 90234)
 -- Name: events_dbsizes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -4942,8 +4601,8 @@ WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 ALTER TABLE events_dbsizes OWNER TO postgres;
 
 --
--- TOC entry 4028 (class 0 OID 0)
--- Dependencies: 205
+-- TOC entry 3127 (class 0 OID 0)
+-- Dependencies: 204
 -- Name: TABLE events_dbsizes; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -4951,8 +4610,8 @@ COMMENT ON TABLE events_dbsizes IS 'Aqui no debe crearse el check de fecha ya qu
 
 
 --
--- TOC entry 4029 (class 0 OID 0)
--- Dependencies: 205
+-- TOC entry 3128 (class 0 OID 0)
+-- Dependencies: 204
 -- Name: COLUMN events_dbsizes.status; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -4960,8 +4619,8 @@ COMMENT ON COLUMN events_dbsizes.status IS 'Este campo se actualiza automaticame
 
 
 --
--- TOC entry 4030 (class 0 OID 0)
--- Dependencies: 205
+-- TOC entry 3129 (class 0 OID 0)
+-- Dependencies: 204
 -- Name: COLUMN events_dbsizes.idadmin; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -4969,8 +4628,8 @@ COMMENT ON COLUMN events_dbsizes.idadmin IS 'IdAdmin del usuario que crea el eve
 
 
 --
--- TOC entry 4031 (class 0 OID 0)
--- Dependencies: 205
+-- TOC entry 3130 (class 0 OID 0)
+-- Dependencies: 204
 -- Name: COLUMN events_dbsizes.last_comment; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -4978,11 +4637,11 @@ COMMENT ON COLUMN events_dbsizes.last_comment IS 'Fecha del ultimo comentario re
 
 
 --
--- TOC entry 206 (class 1259 OID 90247)
--- Name: events_dbsizes_201512; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 255 (class 1259 OID 96141)
+-- Name: events_dbsizes_2015; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE events_dbsizes_201512 (
+CREATE TABLE events_dbsizes_2015 (
     idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
     ts timestamp without time zone DEFAULT now(),
     loaded timestamp without time zone DEFAULT now(),
@@ -4998,44 +4657,43 @@ CREATE TABLE events_dbsizes_201512 (
     idequipment bigint,
     db_name text,
     db_size real,
-    db_type smallint,
-    note text
+    db_type smallint
 )
 INHERITS (events_dbsizes)
 WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 
 
-ALTER TABLE events_dbsizes_201512 OWNER TO postgres;
+ALTER TABLE events_dbsizes_2015 OWNER TO postgres;
 
 --
--- TOC entry 4032 (class 0 OID 0)
--- Dependencies: 206
--- Name: COLUMN events_dbsizes_201512.status; Type: COMMENT; Schema: public; Owner: postgres
+-- TOC entry 3131 (class 0 OID 0)
+-- Dependencies: 255
+-- Name: COLUMN events_dbsizes_2015.status; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN events_dbsizes_201512.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4033 (class 0 OID 0)
--- Dependencies: 206
--- Name: COLUMN events_dbsizes_201512.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_dbsizes_201512.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
+COMMENT ON COLUMN events_dbsizes_2015.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
 
 
 --
--- TOC entry 4034 (class 0 OID 0)
--- Dependencies: 206
--- Name: COLUMN events_dbsizes_201512.last_comment; Type: COMMENT; Schema: public; Owner: postgres
+-- TOC entry 3132 (class 0 OID 0)
+-- Dependencies: 255
+-- Name: COLUMN events_dbsizes_2015.idadmin; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN events_dbsizes_201512.last_comment IS 'Fecha del ultimo comentario registrado.';
+COMMENT ON COLUMN events_dbsizes_2015.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
 
 
 --
--- TOC entry 207 (class 1259 OID 90260)
+-- TOC entry 3133 (class 0 OID 0)
+-- Dependencies: 255
+-- Name: COLUMN events_dbsizes_2015.last_comment; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN events_dbsizes_2015.last_comment IS 'Fecha del ultimo comentario registrado.';
+
+
+--
+-- TOC entry 250 (class 1259 OID 95195)
 -- Name: events_dbsizes_2016; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -5056,6 +4714,7 @@ CREATE TABLE events_dbsizes_2016 (
     db_name text,
     db_size real,
     db_type smallint,
+    note text,
     CONSTRAINT events_dbsizes_2016_dateevent_check CHECK ((date_part('year'::text, dateevent) = (2016)::double precision))
 )
 INHERITS (events_dbsizes)
@@ -5065,8 +4724,8 @@ WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 ALTER TABLE events_dbsizes_2016 OWNER TO postgres;
 
 --
--- TOC entry 4035 (class 0 OID 0)
--- Dependencies: 207
+-- TOC entry 3134 (class 0 OID 0)
+-- Dependencies: 250
 -- Name: COLUMN events_dbsizes_2016.status; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5074,8 +4733,8 @@ COMMENT ON COLUMN events_dbsizes_2016.status IS 'Este campo se actualiza automat
 
 
 --
--- TOC entry 4036 (class 0 OID 0)
--- Dependencies: 207
+-- TOC entry 3135 (class 0 OID 0)
+-- Dependencies: 250
 -- Name: COLUMN events_dbsizes_2016.idadmin; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5083,8 +4742,8 @@ COMMENT ON COLUMN events_dbsizes_2016.idadmin IS 'IdAdmin del usuario que crea e
 
 
 --
--- TOC entry 4037 (class 0 OID 0)
--- Dependencies: 207
+-- TOC entry 3136 (class 0 OID 0)
+-- Dependencies: 250
 -- Name: COLUMN events_dbsizes_2016.last_comment; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5092,178 +4751,7 @@ COMMENT ON COLUMN events_dbsizes_2016.last_comment IS 'Fecha del ultimo comentar
 
 
 --
--- TOC entry 208 (class 1259 OID 90274)
--- Name: events_dbsizes_201601; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_dbsizes_201601 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    db_name text,
-    db_size real,
-    db_type smallint,
-    note text
-)
-INHERITS (events_dbsizes)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_dbsizes_201601 OWNER TO postgres;
-
---
--- TOC entry 4038 (class 0 OID 0)
--- Dependencies: 208
--- Name: COLUMN events_dbsizes_201601.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_dbsizes_201601.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4039 (class 0 OID 0)
--- Dependencies: 208
--- Name: COLUMN events_dbsizes_201601.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_dbsizes_201601.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4040 (class 0 OID 0)
--- Dependencies: 208
--- Name: COLUMN events_dbsizes_201601.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_dbsizes_201601.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 209 (class 1259 OID 90287)
--- Name: events_dbsizes_201602; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_dbsizes_201602 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    db_name text,
-    db_size real,
-    db_type smallint,
-    note text
-)
-INHERITS (events_dbsizes)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_dbsizes_201602 OWNER TO postgres;
-
---
--- TOC entry 4041 (class 0 OID 0)
--- Dependencies: 209
--- Name: COLUMN events_dbsizes_201602.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_dbsizes_201602.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4042 (class 0 OID 0)
--- Dependencies: 209
--- Name: COLUMN events_dbsizes_201602.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_dbsizes_201602.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4043 (class 0 OID 0)
--- Dependencies: 209
--- Name: COLUMN events_dbsizes_201602.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_dbsizes_201602.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 210 (class 1259 OID 90300)
--- Name: events_dbsizes_201603; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_dbsizes_201603 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    db_name text,
-    db_size real,
-    db_type smallint,
-    note text
-)
-INHERITS (events_dbsizes)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_dbsizes_201603 OWNER TO postgres;
-
---
--- TOC entry 4044 (class 0 OID 0)
--- Dependencies: 210
--- Name: COLUMN events_dbsizes_201603.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_dbsizes_201603.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4045 (class 0 OID 0)
--- Dependencies: 210
--- Name: COLUMN events_dbsizes_201603.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_dbsizes_201603.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4046 (class 0 OID 0)
--- Dependencies: 210
--- Name: COLUMN events_dbsizes_201603.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_dbsizes_201603.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 211 (class 1259 OID 90313)
+-- TOC entry 205 (class 1259 OID 90313)
 -- Name: events_device_uptime; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -5289,8 +4777,8 @@ WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 ALTER TABLE events_device_uptime OWNER TO postgres;
 
 --
--- TOC entry 4047 (class 0 OID 0)
--- Dependencies: 211
+-- TOC entry 3137 (class 0 OID 0)
+-- Dependencies: 205
 -- Name: COLUMN events_device_uptime.status; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5298,8 +4786,8 @@ COMMENT ON COLUMN events_device_uptime.status IS 'Este campo se actualiza automa
 
 
 --
--- TOC entry 4048 (class 0 OID 0)
--- Dependencies: 211
+-- TOC entry 3138 (class 0 OID 0)
+-- Dependencies: 205
 -- Name: COLUMN events_device_uptime.idadmin; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5307,8 +4795,8 @@ COMMENT ON COLUMN events_device_uptime.idadmin IS 'IdAdmin del usuario que crea 
 
 
 --
--- TOC entry 4049 (class 0 OID 0)
--- Dependencies: 211
+-- TOC entry 3139 (class 0 OID 0)
+-- Dependencies: 205
 -- Name: COLUMN events_device_uptime.last_comment; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5316,11 +4804,11 @@ COMMENT ON COLUMN events_device_uptime.last_comment IS 'Fecha del ultimo comenta
 
 
 --
--- TOC entry 212 (class 1259 OID 90327)
--- Name: events_device_uptime_201512; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 254 (class 1259 OID 96118)
+-- Name: events_device_uptime_2015; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE events_device_uptime_201512 (
+CREATE TABLE events_device_uptime_2015 (
     idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
     ts timestamp without time zone DEFAULT now(),
     loaded timestamp without time zone DEFAULT now(),
@@ -5334,44 +4822,43 @@ CREATE TABLE events_device_uptime_201512 (
     last_comment timestamp without time zone,
     zu bigint DEFAULT 0,
     idequipment bigint,
-    uptime real DEFAULT (-1),
-    note text
+    uptime real DEFAULT (-1)
 )
 INHERITS (events_device_uptime)
 WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 
 
-ALTER TABLE events_device_uptime_201512 OWNER TO postgres;
+ALTER TABLE events_device_uptime_2015 OWNER TO postgres;
 
 --
--- TOC entry 4050 (class 0 OID 0)
--- Dependencies: 212
--- Name: COLUMN events_device_uptime_201512.status; Type: COMMENT; Schema: public; Owner: postgres
+-- TOC entry 3140 (class 0 OID 0)
+-- Dependencies: 254
+-- Name: COLUMN events_device_uptime_2015.status; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN events_device_uptime_201512.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4051 (class 0 OID 0)
--- Dependencies: 212
--- Name: COLUMN events_device_uptime_201512.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_device_uptime_201512.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
+COMMENT ON COLUMN events_device_uptime_2015.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
 
 
 --
--- TOC entry 4052 (class 0 OID 0)
--- Dependencies: 212
--- Name: COLUMN events_device_uptime_201512.last_comment; Type: COMMENT; Schema: public; Owner: postgres
+-- TOC entry 3141 (class 0 OID 0)
+-- Dependencies: 254
+-- Name: COLUMN events_device_uptime_2015.idadmin; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN events_device_uptime_201512.last_comment IS 'Fecha del ultimo comentario registrado.';
+COMMENT ON COLUMN events_device_uptime_2015.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
 
 
 --
--- TOC entry 213 (class 1259 OID 90341)
+-- TOC entry 3142 (class 0 OID 0)
+-- Dependencies: 254
+-- Name: COLUMN events_device_uptime_2015.last_comment; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN events_device_uptime_2015.last_comment IS 'Fecha del ultimo comentario registrado.';
+
+
+--
+-- TOC entry 247 (class 1259 OID 95074)
 -- Name: events_device_uptime_2016; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -5399,8 +4886,8 @@ WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 ALTER TABLE events_device_uptime_2016 OWNER TO postgres;
 
 --
--- TOC entry 4053 (class 0 OID 0)
--- Dependencies: 213
+-- TOC entry 3143 (class 0 OID 0)
+-- Dependencies: 247
 -- Name: COLUMN events_device_uptime_2016.status; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5408,8 +4895,8 @@ COMMENT ON COLUMN events_device_uptime_2016.status IS 'Este campo se actualiza a
 
 
 --
--- TOC entry 4054 (class 0 OID 0)
--- Dependencies: 213
+-- TOC entry 3144 (class 0 OID 0)
+-- Dependencies: 247
 -- Name: COLUMN events_device_uptime_2016.idadmin; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5417,8 +4904,8 @@ COMMENT ON COLUMN events_device_uptime_2016.idadmin IS 'IdAdmin del usuario que 
 
 
 --
--- TOC entry 4055 (class 0 OID 0)
--- Dependencies: 213
+-- TOC entry 3145 (class 0 OID 0)
+-- Dependencies: 247
 -- Name: COLUMN events_device_uptime_2016.last_comment; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5426,172 +4913,7 @@ COMMENT ON COLUMN events_device_uptime_2016.last_comment IS 'Fecha del ultimo co
 
 
 --
--- TOC entry 214 (class 1259 OID 90356)
--- Name: events_device_uptime_201601; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_device_uptime_201601 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    uptime real DEFAULT (-1),
-    note text
-)
-INHERITS (events_device_uptime)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_device_uptime_201601 OWNER TO postgres;
-
---
--- TOC entry 4056 (class 0 OID 0)
--- Dependencies: 214
--- Name: COLUMN events_device_uptime_201601.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_device_uptime_201601.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4057 (class 0 OID 0)
--- Dependencies: 214
--- Name: COLUMN events_device_uptime_201601.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_device_uptime_201601.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4058 (class 0 OID 0)
--- Dependencies: 214
--- Name: COLUMN events_device_uptime_201601.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_device_uptime_201601.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 215 (class 1259 OID 90370)
--- Name: events_device_uptime_201602; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_device_uptime_201602 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    uptime real DEFAULT (-1),
-    note text
-)
-INHERITS (events_device_uptime)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_device_uptime_201602 OWNER TO postgres;
-
---
--- TOC entry 4059 (class 0 OID 0)
--- Dependencies: 215
--- Name: COLUMN events_device_uptime_201602.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_device_uptime_201602.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4060 (class 0 OID 0)
--- Dependencies: 215
--- Name: COLUMN events_device_uptime_201602.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_device_uptime_201602.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4061 (class 0 OID 0)
--- Dependencies: 215
--- Name: COLUMN events_device_uptime_201602.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_device_uptime_201602.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 216 (class 1259 OID 90384)
--- Name: events_device_uptime_201603; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_device_uptime_201603 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    uptime real DEFAULT (-1),
-    note text
-)
-INHERITS (events_device_uptime)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_device_uptime_201603 OWNER TO postgres;
-
---
--- TOC entry 4062 (class 0 OID 0)
--- Dependencies: 216
--- Name: COLUMN events_device_uptime_201603.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_device_uptime_201603.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4063 (class 0 OID 0)
--- Dependencies: 216
--- Name: COLUMN events_device_uptime_201603.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_device_uptime_201603.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4064 (class 0 OID 0)
--- Dependencies: 216
--- Name: COLUMN events_device_uptime_201603.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_device_uptime_201603.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 217 (class 1259 OID 90398)
+-- TOC entry 206 (class 1259 OID 90398)
 -- Name: events_diskspace; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -5620,8 +4942,8 @@ WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 ALTER TABLE events_diskspace OWNER TO postgres;
 
 --
--- TOC entry 4065 (class 0 OID 0)
--- Dependencies: 217
+-- TOC entry 3146 (class 0 OID 0)
+-- Dependencies: 206
 -- Name: COLUMN events_diskspace.status; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5629,8 +4951,8 @@ COMMENT ON COLUMN events_diskspace.status IS 'Este campo se actualiza automatica
 
 
 --
--- TOC entry 4066 (class 0 OID 0)
--- Dependencies: 217
+-- TOC entry 3147 (class 0 OID 0)
+-- Dependencies: 206
 -- Name: COLUMN events_diskspace.idadmin; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5638,8 +4960,8 @@ COMMENT ON COLUMN events_diskspace.idadmin IS 'IdAdmin del usuario que crea el e
 
 
 --
--- TOC entry 4067 (class 0 OID 0)
--- Dependencies: 217
+-- TOC entry 3148 (class 0 OID 0)
+-- Dependencies: 206
 -- Name: COLUMN events_diskspace.last_comment; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5647,11 +4969,11 @@ COMMENT ON COLUMN events_diskspace.last_comment IS 'Fecha del ultimo comentario 
 
 
 --
--- TOC entry 218 (class 1259 OID 90414)
--- Name: events_diskspace_201512; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 253 (class 1259 OID 96090)
+-- Name: events_diskspace_2015; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE events_diskspace_201512 (
+CREATE TABLE events_diskspace_2015 (
     idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
     ts timestamp without time zone DEFAULT now(),
     loaded timestamp without time zone DEFAULT now(),
@@ -5667,43 +4989,44 @@ CREATE TABLE events_diskspace_201512 (
     idequipment bigint,
     drive character(2),
     drive_size real DEFAULT (-1),
-    drive_free real DEFAULT (-1)
+    drive_free real DEFAULT (-1),
+    CONSTRAINT events_diskspace_check_ideventtype CHECK (((ideventtype = 62) OR (ideventtype = 52)))
 )
 INHERITS (events_diskspace)
 WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 
 
-ALTER TABLE events_diskspace_201512 OWNER TO postgres;
+ALTER TABLE events_diskspace_2015 OWNER TO postgres;
 
 --
--- TOC entry 4068 (class 0 OID 0)
--- Dependencies: 218
--- Name: COLUMN events_diskspace_201512.status; Type: COMMENT; Schema: public; Owner: postgres
+-- TOC entry 3149 (class 0 OID 0)
+-- Dependencies: 253
+-- Name: COLUMN events_diskspace_2015.status; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN events_diskspace_201512.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4069 (class 0 OID 0)
--- Dependencies: 218
--- Name: COLUMN events_diskspace_201512.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_diskspace_201512.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
+COMMENT ON COLUMN events_diskspace_2015.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
 
 
 --
--- TOC entry 4070 (class 0 OID 0)
--- Dependencies: 218
--- Name: COLUMN events_diskspace_201512.last_comment; Type: COMMENT; Schema: public; Owner: postgres
+-- TOC entry 3150 (class 0 OID 0)
+-- Dependencies: 253
+-- Name: COLUMN events_diskspace_2015.idadmin; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN events_diskspace_201512.last_comment IS 'Fecha del ultimo comentario registrado.';
+COMMENT ON COLUMN events_diskspace_2015.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
 
 
 --
--- TOC entry 219 (class 1259 OID 90430)
+-- TOC entry 3151 (class 0 OID 0)
+-- Dependencies: 253
+-- Name: COLUMN events_diskspace_2015.last_comment; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN events_diskspace_2015.last_comment IS 'Fecha del ultimo comentario registrado.';
+
+
+--
+-- TOC entry 246 (class 1259 OID 95032)
 -- Name: events_diskspace_2016; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -5724,7 +5047,8 @@ CREATE TABLE events_diskspace_2016 (
     drive character(2),
     drive_size real DEFAULT (-1),
     drive_free real DEFAULT (-1),
-    CONSTRAINT events_diskspace_2016_dateevent_check CHECK ((date_part('year'::text, dateevent) = (2016)::double precision))
+    CONSTRAINT events_diskspace_2016_dateevent_check CHECK ((date_part('year'::text, dateevent) = (2016)::double precision)),
+    CONSTRAINT events_diskspace_check_ideventtype CHECK (((ideventtype = 62) OR (ideventtype = 52)))
 )
 INHERITS (events_diskspace)
 WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
@@ -5733,8 +5057,8 @@ WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 ALTER TABLE events_diskspace_2016 OWNER TO postgres;
 
 --
--- TOC entry 4071 (class 0 OID 0)
--- Dependencies: 219
+-- TOC entry 3152 (class 0 OID 0)
+-- Dependencies: 246
 -- Name: COLUMN events_diskspace_2016.status; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5742,8 +5066,8 @@ COMMENT ON COLUMN events_diskspace_2016.status IS 'Este campo se actualiza autom
 
 
 --
--- TOC entry 4072 (class 0 OID 0)
--- Dependencies: 219
+-- TOC entry 3153 (class 0 OID 0)
+-- Dependencies: 246
 -- Name: COLUMN events_diskspace_2016.idadmin; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5751,8 +5075,8 @@ COMMENT ON COLUMN events_diskspace_2016.idadmin IS 'IdAdmin del usuario que crea
 
 
 --
--- TOC entry 4073 (class 0 OID 0)
--- Dependencies: 219
+-- TOC entry 3154 (class 0 OID 0)
+-- Dependencies: 246
 -- Name: COLUMN events_diskspace_2016.last_comment; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5760,176 +5084,7 @@ COMMENT ON COLUMN events_diskspace_2016.last_comment IS 'Fecha del ultimo coment
 
 
 --
--- TOC entry 220 (class 1259 OID 90447)
--- Name: events_diskspace_201601; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_diskspace_201601 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    drive character(2),
-    drive_size real DEFAULT (-1),
-    drive_free real DEFAULT (-1)
-)
-INHERITS (events_diskspace)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_diskspace_201601 OWNER TO postgres;
-
---
--- TOC entry 4074 (class 0 OID 0)
--- Dependencies: 220
--- Name: COLUMN events_diskspace_201601.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_diskspace_201601.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4075 (class 0 OID 0)
--- Dependencies: 220
--- Name: COLUMN events_diskspace_201601.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_diskspace_201601.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4076 (class 0 OID 0)
--- Dependencies: 220
--- Name: COLUMN events_diskspace_201601.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_diskspace_201601.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 221 (class 1259 OID 90463)
--- Name: events_diskspace_201602; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_diskspace_201602 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    drive character(2),
-    drive_size real DEFAULT (-1),
-    drive_free real DEFAULT (-1),
-    note text
-)
-INHERITS (events_diskspace)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_diskspace_201602 OWNER TO postgres;
-
---
--- TOC entry 4077 (class 0 OID 0)
--- Dependencies: 221
--- Name: COLUMN events_diskspace_201602.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_diskspace_201602.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4078 (class 0 OID 0)
--- Dependencies: 221
--- Name: COLUMN events_diskspace_201602.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_diskspace_201602.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4079 (class 0 OID 0)
--- Dependencies: 221
--- Name: COLUMN events_diskspace_201602.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_diskspace_201602.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 222 (class 1259 OID 90479)
--- Name: events_diskspace_201603; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_diskspace_201603 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    drive character(2),
-    drive_size real DEFAULT (-1),
-    drive_free real DEFAULT (-1)
-)
-INHERITS (events_diskspace)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_diskspace_201603 OWNER TO postgres;
-
---
--- TOC entry 4080 (class 0 OID 0)
--- Dependencies: 222
--- Name: COLUMN events_diskspace_201603.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_diskspace_201603.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4081 (class 0 OID 0)
--- Dependencies: 222
--- Name: COLUMN events_diskspace_201603.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_diskspace_201603.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4082 (class 0 OID 0)
--- Dependencies: 222
--- Name: COLUMN events_diskspace_201603.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_diskspace_201603.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 223 (class 1259 OID 90495)
+-- TOC entry 207 (class 1259 OID 90495)
 -- Name: events_jobs; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -5961,8 +5116,8 @@ WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 ALTER TABLE events_jobs OWNER TO postgres;
 
 --
--- TOC entry 4083 (class 0 OID 0)
--- Dependencies: 223
+-- TOC entry 3155 (class 0 OID 0)
+-- Dependencies: 207
 -- Name: COLUMN events_jobs.status; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5970,8 +5125,8 @@ COMMENT ON COLUMN events_jobs.status IS 'Este campo se actualiza automaticamente
 
 
 --
--- TOC entry 4084 (class 0 OID 0)
--- Dependencies: 223
+-- TOC entry 3156 (class 0 OID 0)
+-- Dependencies: 207
 -- Name: COLUMN events_jobs.idadmin; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5979,8 +5134,8 @@ COMMENT ON COLUMN events_jobs.idadmin IS 'IdAdmin del usuario que crea el evento
 
 
 --
--- TOC entry 4085 (class 0 OID 0)
--- Dependencies: 223
+-- TOC entry 3157 (class 0 OID 0)
+-- Dependencies: 207
 -- Name: COLUMN events_jobs.last_comment; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -5988,7 +5143,7 @@ COMMENT ON COLUMN events_jobs.last_comment IS 'Fecha del ultimo comentario regis
 
 
 --
--- TOC entry 224 (class 1259 OID 90511)
+-- TOC entry 252 (class 1259 OID 96003)
 -- Name: events_jobs_1990; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -6022,8 +5177,8 @@ WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 ALTER TABLE events_jobs_1990 OWNER TO postgres;
 
 --
--- TOC entry 4086 (class 0 OID 0)
--- Dependencies: 224
+-- TOC entry 3158 (class 0 OID 0)
+-- Dependencies: 252
 -- Name: COLUMN events_jobs_1990.status; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -6031,8 +5186,8 @@ COMMENT ON COLUMN events_jobs_1990.status IS 'Este campo se actualiza automatica
 
 
 --
--- TOC entry 4087 (class 0 OID 0)
--- Dependencies: 224
+-- TOC entry 3159 (class 0 OID 0)
+-- Dependencies: 252
 -- Name: COLUMN events_jobs_1990.idadmin; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -6040,8 +5195,8 @@ COMMENT ON COLUMN events_jobs_1990.idadmin IS 'IdAdmin del usuario que crea el e
 
 
 --
--- TOC entry 4088 (class 0 OID 0)
--- Dependencies: 224
+-- TOC entry 3160 (class 0 OID 0)
+-- Dependencies: 252
 -- Name: COLUMN events_jobs_1990.last_comment; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -6049,246 +5204,7 @@ COMMENT ON COLUMN events_jobs_1990.last_comment IS 'Fecha del ultimo comentario 
 
 
 --
--- TOC entry 225 (class 1259 OID 90528)
--- Name: events_jobs_199001; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_jobs_199001 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone,
-    note text
-)
-INHERITS (events_jobs)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_jobs_199001 OWNER TO postgres;
-
---
--- TOC entry 4089 (class 0 OID 0)
--- Dependencies: 225
--- Name: COLUMN events_jobs_199001.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_199001.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4090 (class 0 OID 0)
--- Dependencies: 225
--- Name: COLUMN events_jobs_199001.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_199001.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4091 (class 0 OID 0)
--- Dependencies: 225
--- Name: COLUMN events_jobs_199001.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_199001.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 226 (class 1259 OID 90544)
--- Name: events_jobs_201407; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_jobs_201407 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone,
-    note text
-)
-INHERITS (events_jobs)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_jobs_201407 OWNER TO postgres;
-
---
--- TOC entry 4092 (class 0 OID 0)
--- Dependencies: 226
--- Name: COLUMN events_jobs_201407.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201407.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4093 (class 0 OID 0)
--- Dependencies: 226
--- Name: COLUMN events_jobs_201407.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201407.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4094 (class 0 OID 0)
--- Dependencies: 226
--- Name: COLUMN events_jobs_201407.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201407.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 227 (class 1259 OID 90560)
--- Name: events_jobs_201411; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_jobs_201411 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone
-)
-INHERITS (events_jobs)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_jobs_201411 OWNER TO postgres;
-
---
--- TOC entry 4095 (class 0 OID 0)
--- Dependencies: 227
--- Name: COLUMN events_jobs_201411.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201411.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4096 (class 0 OID 0)
--- Dependencies: 227
--- Name: COLUMN events_jobs_201411.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201411.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4097 (class 0 OID 0)
--- Dependencies: 227
--- Name: COLUMN events_jobs_201411.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201411.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 228 (class 1259 OID 90576)
--- Name: events_jobs_201412; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_jobs_201412 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone,
-    note text
-)
-INHERITS (events_jobs)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_jobs_201412 OWNER TO postgres;
-
---
--- TOC entry 4098 (class 0 OID 0)
--- Dependencies: 228
--- Name: COLUMN events_jobs_201412.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201412.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4099 (class 0 OID 0)
--- Dependencies: 228
--- Name: COLUMN events_jobs_201412.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201412.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4100 (class 0 OID 0)
--- Dependencies: 228
--- Name: COLUMN events_jobs_201412.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201412.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 229 (class 1259 OID 90592)
+-- TOC entry 251 (class 1259 OID 95946)
 -- Name: events_jobs_2015; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -6322,8 +5238,8 @@ WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 ALTER TABLE events_jobs_2015 OWNER TO postgres;
 
 --
--- TOC entry 4101 (class 0 OID 0)
--- Dependencies: 229
+-- TOC entry 3161 (class 0 OID 0)
+-- Dependencies: 251
 -- Name: COLUMN events_jobs_2015.status; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -6331,8 +5247,8 @@ COMMENT ON COLUMN events_jobs_2015.status IS 'Este campo se actualiza automatica
 
 
 --
--- TOC entry 4102 (class 0 OID 0)
--- Dependencies: 229
+-- TOC entry 3162 (class 0 OID 0)
+-- Dependencies: 251
 -- Name: COLUMN events_jobs_2015.idadmin; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -6340,8 +5256,8 @@ COMMENT ON COLUMN events_jobs_2015.idadmin IS 'IdAdmin del usuario que crea el e
 
 
 --
--- TOC entry 4103 (class 0 OID 0)
--- Dependencies: 229
+-- TOC entry 3163 (class 0 OID 0)
+-- Dependencies: 251
 -- Name: COLUMN events_jobs_2015.last_comment; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -6349,603 +5265,7 @@ COMMENT ON COLUMN events_jobs_2015.last_comment IS 'Fecha del ultimo comentario 
 
 
 --
--- TOC entry 230 (class 1259 OID 90609)
--- Name: events_jobs_201503; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_jobs_201503 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone,
-    note text
-)
-INHERITS (events_jobs)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_jobs_201503 OWNER TO postgres;
-
---
--- TOC entry 4104 (class 0 OID 0)
--- Dependencies: 230
--- Name: COLUMN events_jobs_201503.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201503.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4105 (class 0 OID 0)
--- Dependencies: 230
--- Name: COLUMN events_jobs_201503.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201503.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4106 (class 0 OID 0)
--- Dependencies: 230
--- Name: COLUMN events_jobs_201503.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201503.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 231 (class 1259 OID 90625)
--- Name: events_jobs_201504; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_jobs_201504 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone,
-    note text
-)
-INHERITS (events_jobs)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_jobs_201504 OWNER TO postgres;
-
---
--- TOC entry 4107 (class 0 OID 0)
--- Dependencies: 231
--- Name: COLUMN events_jobs_201504.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201504.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4108 (class 0 OID 0)
--- Dependencies: 231
--- Name: COLUMN events_jobs_201504.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201504.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4109 (class 0 OID 0)
--- Dependencies: 231
--- Name: COLUMN events_jobs_201504.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201504.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 232 (class 1259 OID 90641)
--- Name: events_jobs_201505; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_jobs_201505 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone,
-    note text
-)
-INHERITS (events_jobs)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_jobs_201505 OWNER TO postgres;
-
---
--- TOC entry 4110 (class 0 OID 0)
--- Dependencies: 232
--- Name: COLUMN events_jobs_201505.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201505.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4111 (class 0 OID 0)
--- Dependencies: 232
--- Name: COLUMN events_jobs_201505.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201505.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4112 (class 0 OID 0)
--- Dependencies: 232
--- Name: COLUMN events_jobs_201505.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201505.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 233 (class 1259 OID 90657)
--- Name: events_jobs_201506; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_jobs_201506 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone
-)
-INHERITS (events_jobs)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_jobs_201506 OWNER TO postgres;
-
---
--- TOC entry 4113 (class 0 OID 0)
--- Dependencies: 233
--- Name: COLUMN events_jobs_201506.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201506.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4114 (class 0 OID 0)
--- Dependencies: 233
--- Name: COLUMN events_jobs_201506.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201506.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4115 (class 0 OID 0)
--- Dependencies: 233
--- Name: COLUMN events_jobs_201506.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201506.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 234 (class 1259 OID 90673)
--- Name: events_jobs_201507; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_jobs_201507 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone
-)
-INHERITS (events_jobs)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_jobs_201507 OWNER TO postgres;
-
---
--- TOC entry 4116 (class 0 OID 0)
--- Dependencies: 234
--- Name: COLUMN events_jobs_201507.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201507.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4117 (class 0 OID 0)
--- Dependencies: 234
--- Name: COLUMN events_jobs_201507.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201507.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4118 (class 0 OID 0)
--- Dependencies: 234
--- Name: COLUMN events_jobs_201507.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201507.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 235 (class 1259 OID 90689)
--- Name: events_jobs_201508; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_jobs_201508 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone
-)
-INHERITS (events_jobs)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_jobs_201508 OWNER TO postgres;
-
---
--- TOC entry 4119 (class 0 OID 0)
--- Dependencies: 235
--- Name: COLUMN events_jobs_201508.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201508.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4120 (class 0 OID 0)
--- Dependencies: 235
--- Name: COLUMN events_jobs_201508.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201508.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4121 (class 0 OID 0)
--- Dependencies: 235
--- Name: COLUMN events_jobs_201508.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201508.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 236 (class 1259 OID 90705)
--- Name: events_jobs_201509; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_jobs_201509 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone
-)
-INHERITS (events_jobs)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_jobs_201509 OWNER TO postgres;
-
---
--- TOC entry 4122 (class 0 OID 0)
--- Dependencies: 236
--- Name: COLUMN events_jobs_201509.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201509.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4123 (class 0 OID 0)
--- Dependencies: 236
--- Name: COLUMN events_jobs_201509.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201509.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4124 (class 0 OID 0)
--- Dependencies: 236
--- Name: COLUMN events_jobs_201509.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201509.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 237 (class 1259 OID 90721)
--- Name: events_jobs_201510; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_jobs_201510 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone,
-    note text
-)
-INHERITS (events_jobs)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_jobs_201510 OWNER TO postgres;
-
---
--- TOC entry 4125 (class 0 OID 0)
--- Dependencies: 237
--- Name: COLUMN events_jobs_201510.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201510.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4126 (class 0 OID 0)
--- Dependencies: 237
--- Name: COLUMN events_jobs_201510.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201510.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4127 (class 0 OID 0)
--- Dependencies: 237
--- Name: COLUMN events_jobs_201510.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201510.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 238 (class 1259 OID 90737)
--- Name: events_jobs_201511; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_jobs_201511 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone
-)
-INHERITS (events_jobs)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_jobs_201511 OWNER TO postgres;
-
---
--- TOC entry 4128 (class 0 OID 0)
--- Dependencies: 238
--- Name: COLUMN events_jobs_201511.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201511.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4129 (class 0 OID 0)
--- Dependencies: 238
--- Name: COLUMN events_jobs_201511.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201511.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4130 (class 0 OID 0)
--- Dependencies: 238
--- Name: COLUMN events_jobs_201511.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201511.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 239 (class 1259 OID 90753)
--- Name: events_jobs_201512; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_jobs_201512 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone,
-    note text
-)
-INHERITS (events_jobs)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_jobs_201512 OWNER TO postgres;
-
---
--- TOC entry 4131 (class 0 OID 0)
--- Dependencies: 239
--- Name: COLUMN events_jobs_201512.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201512.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4132 (class 0 OID 0)
--- Dependencies: 239
--- Name: COLUMN events_jobs_201512.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201512.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4133 (class 0 OID 0)
--- Dependencies: 239
--- Name: COLUMN events_jobs_201512.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201512.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 240 (class 1259 OID 90769)
+-- TOC entry 249 (class 1259 OID 95153)
 -- Name: events_jobs_2016; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -6979,8 +5299,8 @@ WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 ALTER TABLE events_jobs_2016 OWNER TO postgres;
 
 --
--- TOC entry 4134 (class 0 OID 0)
--- Dependencies: 240
+-- TOC entry 3164 (class 0 OID 0)
+-- Dependencies: 249
 -- Name: COLUMN events_jobs_2016.status; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -6988,8 +5308,8 @@ COMMENT ON COLUMN events_jobs_2016.status IS 'Este campo se actualiza automatica
 
 
 --
--- TOC entry 4135 (class 0 OID 0)
--- Dependencies: 240
+-- TOC entry 3165 (class 0 OID 0)
+-- Dependencies: 249
 -- Name: COLUMN events_jobs_2016.idadmin; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -6997,8 +5317,8 @@ COMMENT ON COLUMN events_jobs_2016.idadmin IS 'IdAdmin del usuario que crea el e
 
 
 --
--- TOC entry 4136 (class 0 OID 0)
--- Dependencies: 240
+-- TOC entry 3166 (class 0 OID 0)
+-- Dependencies: 249
 -- Name: COLUMN events_jobs_2016.last_comment; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7006,187 +5326,7 @@ COMMENT ON COLUMN events_jobs_2016.last_comment IS 'Fecha del ultimo comentario 
 
 
 --
--- TOC entry 241 (class 1259 OID 90786)
--- Name: events_jobs_201601; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_jobs_201601 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone
-)
-INHERITS (events_jobs)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_jobs_201601 OWNER TO postgres;
-
---
--- TOC entry 4137 (class 0 OID 0)
--- Dependencies: 241
--- Name: COLUMN events_jobs_201601.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201601.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4138 (class 0 OID 0)
--- Dependencies: 241
--- Name: COLUMN events_jobs_201601.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201601.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4139 (class 0 OID 0)
--- Dependencies: 241
--- Name: COLUMN events_jobs_201601.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201601.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 242 (class 1259 OID 90802)
--- Name: events_jobs_201602; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_jobs_201602 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone
-)
-INHERITS (events_jobs)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_jobs_201602 OWNER TO postgres;
-
---
--- TOC entry 4140 (class 0 OID 0)
--- Dependencies: 242
--- Name: COLUMN events_jobs_201602.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201602.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4141 (class 0 OID 0)
--- Dependencies: 242
--- Name: COLUMN events_jobs_201602.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201602.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4142 (class 0 OID 0)
--- Dependencies: 242
--- Name: COLUMN events_jobs_201602.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201602.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 243 (class 1259 OID 90818)
--- Name: events_jobs_201603; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_jobs_201603 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone
-)
-INHERITS (events_jobs)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_jobs_201603 OWNER TO postgres;
-
---
--- TOC entry 4143 (class 0 OID 0)
--- Dependencies: 243
--- Name: COLUMN events_jobs_201603.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201603.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4144 (class 0 OID 0)
--- Dependencies: 243
--- Name: COLUMN events_jobs_201603.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201603.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4145 (class 0 OID 0)
--- Dependencies: 243
--- Name: COLUMN events_jobs_201603.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_jobs_201603.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 244 (class 1259 OID 90834)
+-- TOC entry 208 (class 1259 OID 90834)
 -- Name: events_raid; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -7212,8 +5352,8 @@ INHERITS (events);
 ALTER TABLE events_raid OWNER TO postgres;
 
 --
--- TOC entry 4146 (class 0 OID 0)
--- Dependencies: 244
+-- TOC entry 3167 (class 0 OID 0)
+-- Dependencies: 208
 -- Name: TABLE events_raid; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7221,8 +5361,8 @@ COMMENT ON TABLE events_raid IS 'Importa los reportes de Servidores RAID (AMD) r
 
 
 --
--- TOC entry 4147 (class 0 OID 0)
--- Dependencies: 244
+-- TOC entry 3168 (class 0 OID 0)
+-- Dependencies: 208
 -- Name: COLUMN events_raid.line_file; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7230,44 +5370,7 @@ COMMENT ON COLUMN events_raid.line_file IS 'Ultima linea que leyo el sistema des
 
 
 --
--- TOC entry 245 (class 1259 OID 90848)
--- Name: events_raid_201511; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE events_raid_201511 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    hostname inet,
-    line_file integer DEFAULT 0,
-    note text
-)
-INHERITS (events_raid)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
-ALTER TABLE events_raid_201511 OWNER TO postgres;
-
---
--- TOC entry 4148 (class 0 OID 0)
--- Dependencies: 245
--- Name: COLUMN events_raid_201511.line_file; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN events_raid_201511.line_file IS 'Ultima linea que leyo el sistema desde el archivo de email de icedove.';
-
-
---
--- TOC entry 246 (class 1259 OID 90862)
+-- TOC entry 209 (class 1259 OID 90862)
 -- Name: eventtypes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -7297,8 +5400,8 @@ CREATE TABLE eventtypes (
 ALTER TABLE eventtypes OWNER TO postgres;
 
 --
--- TOC entry 4149 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3169 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: TABLE eventtypes; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7307,8 +5410,8 @@ A partir del evento 1000 son definidos internamente por oams y no deben ser util
 
 
 --
--- TOC entry 4150 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3170 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: COLUMN eventtypes.name; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7316,8 +5419,8 @@ COMMENT ON COLUMN eventtypes.name IS 'Nombre del evento';
 
 
 --
--- TOC entry 4151 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3171 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: COLUMN eventtypes.treatment; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7325,8 +5428,8 @@ COMMENT ON COLUMN eventtypes.treatment IS 'Requiere tratamiento por parte del op
 
 
 --
--- TOC entry 4152 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3172 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: COLUMN eventtypes.manual; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7334,8 +5437,8 @@ COMMENT ON COLUMN eventtypes.manual IS 'Puede ser creado el evento manualmente, 
 
 
 --
--- TOC entry 4153 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3173 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: COLUMN eventtypes.date_editable; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7343,8 +5446,8 @@ COMMENT ON COLUMN eventtypes.date_editable IS 'Las fechas de los eventos NO debe
 
 
 --
--- TOC entry 4154 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3174 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: COLUMN eventtypes.notify_timeout; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7352,8 +5455,8 @@ COMMENT ON COLUMN eventtypes.notify_timeout IS 'Tiempo que la notificacion sera 
 
 
 --
--- TOC entry 4155 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3175 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: COLUMN eventtypes.notify_closable; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7361,8 +5464,8 @@ COMMENT ON COLUMN eventtypes.notify_closable IS 'La notificacion puede ser cerra
 
 
 --
--- TOC entry 4156 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3176 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: COLUMN eventtypes.notify_img; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7370,8 +5473,8 @@ COMMENT ON COLUMN eventtypes.notify_img IS 'Imagen a ser  mostrada en la notific
 
 
 --
--- TOC entry 4157 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3177 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: COLUMN eventtypes.notify_snd; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7379,8 +5482,8 @@ COMMENT ON COLUMN eventtypes.notify_snd IS 'Sonido a ser escuchado cuando la not
 
 
 --
--- TOC entry 4158 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3178 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: COLUMN eventtypes.label; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7388,8 +5491,8 @@ COMMENT ON COLUMN eventtypes.label IS 'Etiqueta que se mostrara en la interface 
 
 
 --
--- TOC entry 4159 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3179 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: COLUMN eventtypes.code; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7397,8 +5500,8 @@ COMMENT ON COLUMN eventtypes.code IS 'Codigo de alarma';
 
 
 --
--- TOC entry 4160 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3180 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: COLUMN eventtypes.notify_all_users; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7406,8 +5509,8 @@ COMMENT ON COLUMN eventtypes.notify_all_users IS 'Muestra la notificacion de est
 
 
 --
--- TOC entry 4161 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3181 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: COLUMN eventtypes.expiration; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7417,8 +5520,8 @@ Se puede usar este campo para auto cerrar los eventos que no requieren tratamien
 
 
 --
--- TOC entry 4162 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3182 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: COLUMN eventtypes.auto_close_on_event_defined; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7426,8 +5529,8 @@ COMMENT ON COLUMN eventtypes.auto_close_on_event_defined IS 'Cierra el evento au
 
 
 --
--- TOC entry 4163 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3183 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: COLUMN eventtypes.eventtype_groups; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7435,7 +5538,7 @@ COMMENT ON COLUMN eventtypes.eventtype_groups IS 'Para formar grupos de eventos.
 
 
 --
--- TOC entry 247 (class 1259 OID 90879)
+-- TOC entry 210 (class 1259 OID 90879)
 -- Name: eventtypes_ideventtype_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -7450,8 +5553,8 @@ CREATE SEQUENCE eventtypes_ideventtype_seq
 ALTER TABLE eventtypes_ideventtype_seq OWNER TO postgres;
 
 --
--- TOC entry 4164 (class 0 OID 0)
--- Dependencies: 247
+-- TOC entry 3184 (class 0 OID 0)
+-- Dependencies: 210
 -- Name: eventtypes_ideventtype_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -7459,7 +5562,7 @@ ALTER SEQUENCE eventtypes_ideventtype_seq OWNED BY eventtypes.ideventtype;
 
 
 --
--- TOC entry 248 (class 1259 OID 90881)
+-- TOC entry 211 (class 1259 OID 90881)
 -- Name: farma_lista_precios_farmacias; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -7485,8 +5588,8 @@ CREATE TABLE farma_lista_precios_farmacias (
 ALTER TABLE farma_lista_precios_farmacias OWNER TO postgres;
 
 --
--- TOC entry 4165 (class 0 OID 0)
--- Dependencies: 248
+-- TOC entry 3185 (class 0 OID 0)
+-- Dependencies: 211
 -- Name: TABLE farma_lista_precios_farmacias; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7494,7 +5597,7 @@ COMMENT ON TABLE farma_lista_precios_farmacias IS 'Tabla con la lista de precios
 
 
 --
--- TOC entry 249 (class 1259 OID 90892)
+-- TOC entry 212 (class 1259 OID 90892)
 -- Name: farma_lista_precios_farmacias_idlista_precios_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -7509,8 +5612,8 @@ CREATE SEQUENCE farma_lista_precios_farmacias_idlista_precios_seq
 ALTER TABLE farma_lista_precios_farmacias_idlista_precios_seq OWNER TO postgres;
 
 --
--- TOC entry 4166 (class 0 OID 0)
--- Dependencies: 249
+-- TOC entry 3186 (class 0 OID 0)
+-- Dependencies: 212
 -- Name: farma_lista_precios_farmacias_idlista_precios_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -7518,7 +5621,7 @@ ALTER SEQUENCE farma_lista_precios_farmacias_idlista_precios_seq OWNED BY farma_
 
 
 --
--- TOC entry 250 (class 1259 OID 90894)
+-- TOC entry 213 (class 1259 OID 90894)
 -- Name: groups; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -7536,8 +5639,8 @@ CREATE TABLE groups (
 ALTER TABLE groups OWNER TO postgres;
 
 --
--- TOC entry 4167 (class 0 OID 0)
--- Dependencies: 250
+-- TOC entry 3187 (class 0 OID 0)
+-- Dependencies: 213
 -- Name: TABLE groups; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7545,7 +5648,7 @@ COMMENT ON TABLE groups IS 'Grupos';
 
 
 --
--- TOC entry 251 (class 1259 OID 90902)
+-- TOC entry 214 (class 1259 OID 90902)
 -- Name: groups_idgrupo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -7560,8 +5663,8 @@ CREATE SEQUENCE groups_idgrupo_seq
 ALTER TABLE groups_idgrupo_seq OWNER TO postgres;
 
 --
--- TOC entry 4168 (class 0 OID 0)
--- Dependencies: 251
+-- TOC entry 3188 (class 0 OID 0)
+-- Dependencies: 214
 -- Name: groups_idgrupo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -7569,7 +5672,7 @@ ALTER SEQUENCE groups_idgrupo_seq OWNED BY groups.idgroup;
 
 
 --
--- TOC entry 252 (class 1259 OID 90904)
+-- TOC entry 215 (class 1259 OID 90904)
 -- Name: gui_tables_columns; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -7587,7 +5690,7 @@ CREATE TABLE gui_tables_columns (
 ALTER TABLE gui_tables_columns OWNER TO postgres;
 
 --
--- TOC entry 253 (class 1259 OID 90911)
+-- TOC entry 216 (class 1259 OID 90911)
 -- Name: identification_types; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -7603,7 +5706,7 @@ CREATE TABLE identification_types (
 ALTER TABLE identification_types OWNER TO postgres;
 
 --
--- TOC entry 254 (class 1259 OID 90919)
+-- TOC entry 217 (class 1259 OID 90919)
 -- Name: identification_type_ididtype_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -7618,8 +5721,8 @@ CREATE SEQUENCE identification_type_ididtype_seq
 ALTER TABLE identification_type_ididtype_seq OWNER TO postgres;
 
 --
--- TOC entry 4169 (class 0 OID 0)
--- Dependencies: 254
+-- TOC entry 3189 (class 0 OID 0)
+-- Dependencies: 217
 -- Name: identification_type_ididtype_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -7627,7 +5730,7 @@ ALTER SEQUENCE identification_type_ididtype_seq OWNED BY identification_types.id
 
 
 --
--- TOC entry 255 (class 1259 OID 90921)
+-- TOC entry 218 (class 1259 OID 90921)
 -- Name: interface_words; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -7643,8 +5746,8 @@ CREATE TABLE interface_words (
 ALTER TABLE interface_words OWNER TO postgres;
 
 --
--- TOC entry 4170 (class 0 OID 0)
--- Dependencies: 255
+-- TOC entry 3190 (class 0 OID 0)
+-- Dependencies: 218
 -- Name: TABLE interface_words; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7652,8 +5755,8 @@ COMMENT ON TABLE interface_words IS 'Lista de palabras o frases comunes usadas e
 
 
 --
--- TOC entry 4171 (class 0 OID 0)
--- Dependencies: 255
+-- TOC entry 3191 (class 0 OID 0)
+-- Dependencies: 218
 -- Name: COLUMN interface_words.word; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7661,7 +5764,7 @@ COMMENT ON COLUMN interface_words.word IS 'Palabras usadas en la interface grafi
 
 
 --
--- TOC entry 256 (class 1259 OID 90928)
+-- TOC entry 219 (class 1259 OID 90928)
 -- Name: interface_words_idwords_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -7676,8 +5779,8 @@ CREATE SEQUENCE interface_words_idwords_seq
 ALTER TABLE interface_words_idwords_seq OWNER TO postgres;
 
 --
--- TOC entry 4172 (class 0 OID 0)
--- Dependencies: 256
+-- TOC entry 3192 (class 0 OID 0)
+-- Dependencies: 219
 -- Name: interface_words_idwords_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -7685,7 +5788,7 @@ ALTER SEQUENCE interface_words_idwords_seq OWNED BY interface_words.idword;
 
 
 --
--- TOC entry 257 (class 1259 OID 90930)
+-- TOC entry 220 (class 1259 OID 90930)
 -- Name: network_devices; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -7720,8 +5823,8 @@ INHERITS (equipments);
 ALTER TABLE network_devices OWNER TO postgres;
 
 --
--- TOC entry 4173 (class 0 OID 0)
--- Dependencies: 257
+-- TOC entry 3193 (class 0 OID 0)
+-- Dependencies: 220
 -- Name: TABLE network_devices; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7729,8 +5832,8 @@ COMMENT ON TABLE network_devices IS 'Equipos que funcionan en red o estan conect
 
 
 --
--- TOC entry 4174 (class 0 OID 0)
--- Dependencies: 257
+-- TOC entry 3194 (class 0 OID 0)
+-- Dependencies: 220
 -- Name: COLUMN network_devices.ip; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7738,8 +5841,8 @@ COMMENT ON COLUMN network_devices.ip IS 'Direccion IP';
 
 
 --
--- TOC entry 4175 (class 0 OID 0)
--- Dependencies: 257
+-- TOC entry 3195 (class 0 OID 0)
+-- Dependencies: 220
 -- Name: COLUMN network_devices.mac; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7747,7 +5850,7 @@ COMMENT ON COLUMN network_devices.mac IS 'MAC';
 
 
 --
--- TOC entry 258 (class 1259 OID 90942)
+-- TOC entry 257 (class 1259 OID 96235)
 -- Name: notification_area; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -7769,16 +5872,7 @@ WITH (autovacuum_enabled='true');
 ALTER TABLE notification_area OWNER TO postgres;
 
 --
--- TOC entry 4176 (class 0 OID 0)
--- Dependencies: 258
--- Name: COLUMN notification_area.sessionid; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN notification_area.sessionid IS 'Numero de referencia del usuario al que se va a mostrar las notificaciones, si este campo es igual a ''all'' se mostrara a todos los usuarios conectados.';
-
-
---
--- TOC entry 259 (class 1259 OID 90953)
+-- TOC entry 256 (class 1259 OID 96233)
 -- Name: notification_area_idnotify_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -7793,8 +5887,8 @@ CREATE SEQUENCE notification_area_idnotify_seq
 ALTER TABLE notification_area_idnotify_seq OWNER TO postgres;
 
 --
--- TOC entry 4177 (class 0 OID 0)
--- Dependencies: 259
+-- TOC entry 3196 (class 0 OID 0)
+-- Dependencies: 256
 -- Name: notification_area_idnotify_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -7802,7 +5896,7 @@ ALTER SEQUENCE notification_area_idnotify_seq OWNED BY notification_area.idnotif
 
 
 --
--- TOC entry 260 (class 1259 OID 90955)
+-- TOC entry 221 (class 1259 OID 90955)
 -- Name: oams_table_columns; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -7821,8 +5915,8 @@ CREATE TABLE oams_table_columns (
 ALTER TABLE oams_table_columns OWNER TO postgres;
 
 --
--- TOC entry 4178 (class 0 OID 0)
--- Dependencies: 260
+-- TOC entry 3197 (class 0 OID 0)
+-- Dependencies: 221
 -- Name: TABLE oams_table_columns; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7830,8 +5924,8 @@ COMMENT ON TABLE oams_table_columns IS 'Propiedades de los Campos de las tables 
 
 
 --
--- TOC entry 4179 (class 0 OID 0)
--- Dependencies: 260
+-- TOC entry 3198 (class 0 OID 0)
+-- Dependencies: 221
 -- Name: COLUMN oams_table_columns.table_name; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7839,8 +5933,8 @@ COMMENT ON COLUMN oams_table_columns.table_name IS 'id table column';
 
 
 --
--- TOC entry 4180 (class 0 OID 0)
--- Dependencies: 260
+-- TOC entry 3199 (class 0 OID 0)
+-- Dependencies: 221
 -- Name: COLUMN oams_table_columns.column_label; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7849,7 +5943,7 @@ Si  es null se usa el nombre de la columna';
 
 
 --
--- TOC entry 261 (class 1259 OID 90962)
+-- TOC entry 222 (class 1259 OID 90962)
 -- Name: phone_providers; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -7864,7 +5958,7 @@ CREATE TABLE phone_providers (
 ALTER TABLE phone_providers OWNER TO postgres;
 
 --
--- TOC entry 262 (class 1259 OID 90970)
+-- TOC entry 223 (class 1259 OID 90970)
 -- Name: phone_types; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -7878,7 +5972,7 @@ CREATE TABLE phone_types (
 ALTER TABLE phone_types OWNER TO postgres;
 
 --
--- TOC entry 263 (class 1259 OID 90977)
+-- TOC entry 224 (class 1259 OID 90977)
 -- Name: phone_type_idphonetype_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -7893,8 +5987,8 @@ CREATE SEQUENCE phone_type_idphonetype_seq
 ALTER TABLE phone_type_idphonetype_seq OWNER TO postgres;
 
 --
--- TOC entry 4181 (class 0 OID 0)
--- Dependencies: 263
+-- TOC entry 3200 (class 0 OID 0)
+-- Dependencies: 224
 -- Name: phone_type_idphonetype_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -7902,7 +5996,7 @@ ALTER SEQUENCE phone_type_idphonetype_seq OWNED BY phone_types.idphonetype;
 
 
 --
--- TOC entry 264 (class 1259 OID 90979)
+-- TOC entry 225 (class 1259 OID 90979)
 -- Name: phones; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -7922,8 +6016,8 @@ CREATE TABLE phones (
 ALTER TABLE phones OWNER TO postgres;
 
 --
--- TOC entry 4182 (class 0 OID 0)
--- Dependencies: 264
+-- TOC entry 3201 (class 0 OID 0)
+-- Dependencies: 225
 -- Name: COLUMN phones.idcontact; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -7931,7 +6025,7 @@ COMMENT ON COLUMN phones.idcontact IS 'Validar si existe este contacto hay que h
 
 
 --
--- TOC entry 265 (class 1259 OID 90990)
+-- TOC entry 226 (class 1259 OID 90990)
 -- Name: phones_idphone_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -7946,8 +6040,8 @@ CREATE SEQUENCE phones_idphone_seq
 ALTER TABLE phones_idphone_seq OWNER TO postgres;
 
 --
--- TOC entry 4183 (class 0 OID 0)
--- Dependencies: 265
+-- TOC entry 3202 (class 0 OID 0)
+-- Dependencies: 226
 -- Name: phones_idphone_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -7955,7 +6049,7 @@ ALTER SEQUENCE phones_idphone_seq OWNED BY phones.idphone;
 
 
 --
--- TOC entry 266 (class 1259 OID 90992)
+-- TOC entry 227 (class 1259 OID 90992)
 -- Name: providers; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -7992,8 +6086,8 @@ INHERITS (contacts);
 ALTER TABLE providers OWNER TO postgres;
 
 --
--- TOC entry 4184 (class 0 OID 0)
--- Dependencies: 266
+-- TOC entry 3203 (class 0 OID 0)
+-- Dependencies: 227
 -- Name: TABLE providers; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -8001,7 +6095,7 @@ COMMENT ON TABLE providers IS 'Lista de proveedores de productos y servicios';
 
 
 --
--- TOC entry 267 (class 1259 OID 91009)
+-- TOC entry 228 (class 1259 OID 91009)
 -- Name: providers_idprovider_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -8016,8 +6110,8 @@ CREATE SEQUENCE providers_idprovider_seq
 ALTER TABLE providers_idprovider_seq OWNER TO postgres;
 
 --
--- TOC entry 4185 (class 0 OID 0)
--- Dependencies: 267
+-- TOC entry 3204 (class 0 OID 0)
+-- Dependencies: 228
 -- Name: providers_idprovider_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -8025,7 +6119,7 @@ ALTER SEQUENCE providers_idprovider_seq OWNED BY phone_providers.idprovider;
 
 
 --
--- TOC entry 268 (class 1259 OID 91011)
+-- TOC entry 229 (class 1259 OID 91011)
 -- Name: sys_table_ts; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -8039,8 +6133,8 @@ CREATE TABLE sys_table_ts (
 ALTER TABLE sys_table_ts OWNER TO postgres;
 
 --
--- TOC entry 4186 (class 0 OID 0)
--- Dependencies: 268
+-- TOC entry 3205 (class 0 OID 0)
+-- Dependencies: 229
 -- Name: TABLE sys_table_ts; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -8048,8 +6142,8 @@ COMMENT ON TABLE sys_table_ts IS 'Esta tabla contiene el timestamp de la ultima 
 
 
 --
--- TOC entry 4187 (class 0 OID 0)
--- Dependencies: 268
+-- TOC entry 3206 (class 0 OID 0)
+-- Dependencies: 229
 -- Name: COLUMN sys_table_ts.table_name; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -8057,66 +6151,7 @@ COMMENT ON COLUMN sys_table_ts.table_name IS 'Nombre de la tabla de la base de d
 
 
 --
--- TOC entry 269 (class 1259 OID 91019)
--- Name: test2; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE test2 (
-    idevent bigint DEFAULT nextval('events_idevent_seq'::regclass),
-    ts timestamp without time zone DEFAULT now(),
-    loaded timestamp without time zone DEFAULT now(),
-    dateevent timestamp without time zone DEFAULT now(),
-    status integer DEFAULT 0,
-    idaccount integer,
-    priority integer DEFAULT (-1),
-    ideventtype integer,
-    description text,
-    idadmin integer,
-    last_comment timestamp without time zone,
-    zu bigint DEFAULT 0,
-    idequipment bigint,
-    job_name text,
-    job_enabled boolean DEFAULT true,
-    job_description text,
-    job_date_create timestamp without time zone,
-    job_run_duration integer DEFAULT (-1),
-    job_run_status smallint DEFAULT (-10),
-    job_next_run timestamp without time zone
-)
-INHERITS (events_jobs);
-
-
-ALTER TABLE test2 OWNER TO postgres;
-
---
--- TOC entry 4188 (class 0 OID 0)
--- Dependencies: 269
--- Name: COLUMN test2.status; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN test2.status IS 'Este campo se actualiza automaticamente segun el estado del ultimo comentario ingresado para este evento.';
-
-
---
--- TOC entry 4189 (class 0 OID 0)
--- Dependencies: 269
--- Name: COLUMN test2.idadmin; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN test2.idadmin IS 'IdAdmin del usuario que crea el evento, generalmente es el sistema quien ingresa el evento, por seguridad es necesario registrar si un administrador inserta un evento manualmente.';
-
-
---
--- TOC entry 4190 (class 0 OID 0)
--- Dependencies: 269
--- Name: COLUMN test2.last_comment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON COLUMN test2.last_comment IS 'Fecha del ultimo comentario registrado.';
-
-
---
--- TOC entry 270 (class 1259 OID 91035)
+-- TOC entry 230 (class 1259 OID 91035)
 -- Name: udc_tables_columns; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -8136,7 +6171,7 @@ CREATE TABLE udc_tables_columns (
 ALTER TABLE udc_tables_columns OWNER TO postgres;
 
 --
--- TOC entry 271 (class 1259 OID 91042)
+-- TOC entry 231 (class 1259 OID 91042)
 -- Name: view_account_contacts; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -8170,7 +6205,7 @@ CREATE VIEW view_account_contacts AS
 ALTER TABLE view_account_contacts OWNER TO postgres;
 
 --
--- TOC entry 272 (class 1259 OID 91047)
+-- TOC entry 232 (class 1259 OID 91047)
 -- Name: view_account_network_devices; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -8207,7 +6242,7 @@ CREATE VIEW view_account_network_devices AS
 ALTER TABLE view_account_network_devices OWNER TO postgres;
 
 --
--- TOC entry 289 (class 1259 OID 93550)
+-- TOC entry 243 (class 1259 OID 93550)
 -- Name: view_account_users; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -8234,7 +6269,7 @@ CREATE VIEW view_account_users AS
 ALTER TABLE view_account_users OWNER TO postgres;
 
 --
--- TOC entry 273 (class 1259 OID 91056)
+-- TOC entry 233 (class 1259 OID 91056)
 -- Name: view_accounts; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -8271,7 +6306,7 @@ CREATE VIEW view_accounts AS
 ALTER TABLE view_accounts OWNER TO postgres;
 
 --
--- TOC entry 274 (class 1259 OID 91061)
+-- TOC entry 234 (class 1259 OID 91061)
 -- Name: view_accounts_oams_assigned; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -8303,7 +6338,7 @@ CREATE VIEW view_accounts_oams_assigned AS
 ALTER TABLE view_accounts_oams_assigned OWNER TO postgres;
 
 --
--- TOC entry 290 (class 1259 OID 93554)
+-- TOC entry 244 (class 1259 OID 93554)
 -- Name: view_accounts_users_pwd; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -8327,7 +6362,7 @@ CREATE VIEW view_accounts_users_pwd AS
 ALTER TABLE view_accounts_users_pwd OWNER TO postgres;
 
 --
--- TOC entry 275 (class 1259 OID 91069)
+-- TOC entry 235 (class 1259 OID 91069)
 -- Name: view_admins; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -8360,7 +6395,7 @@ CREATE VIEW view_admins AS
 ALTER TABLE view_admins OWNER TO postgres;
 
 --
--- TOC entry 276 (class 1259 OID 91074)
+-- TOC entry 236 (class 1259 OID 91074)
 -- Name: view_contact_groups_they_belong; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -8379,7 +6414,7 @@ CREATE VIEW view_contact_groups_they_belong AS
 ALTER TABLE view_contact_groups_they_belong OWNER TO postgres;
 
 --
--- TOC entry 277 (class 1259 OID 91078)
+-- TOC entry 237 (class 1259 OID 91078)
 -- Name: view_contacts; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -8405,7 +6440,7 @@ CREATE VIEW view_contacts AS
 ALTER TABLE view_contacts OWNER TO postgres;
 
 --
--- TOC entry 278 (class 1259 OID 91082)
+-- TOC entry 238 (class 1259 OID 91082)
 -- Name: view_equipments; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -8446,7 +6481,7 @@ CREATE VIEW view_equipments AS
 ALTER TABLE view_equipments OWNER TO postgres;
 
 --
--- TOC entry 279 (class 1259 OID 91087)
+-- TOC entry 239 (class 1259 OID 91087)
 -- Name: view_events_monitor; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -8479,7 +6514,7 @@ CREATE VIEW view_events_monitor AS
 ALTER TABLE view_events_monitor OWNER TO postgres;
 
 --
--- TOC entry 280 (class 1259 OID 91092)
+-- TOC entry 240 (class 1259 OID 91092)
 -- Name: view_events_with_eventtypes_detail; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -8500,7 +6535,7 @@ CREATE VIEW view_events_with_eventtypes_detail AS
 ALTER TABLE view_events_with_eventtypes_detail OWNER TO postgres;
 
 --
--- TOC entry 281 (class 1259 OID 91096)
+-- TOC entry 241 (class 1259 OID 91096)
 -- Name: view_farma_lista_precios; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -8529,14 +6564,14 @@ CREATE VIEW view_farma_lista_precios AS
 ALTER TABLE view_farma_lista_precios OWNER TO postgres;
 
 --
--- TOC entry 282 (class 1259 OID 91100)
+-- TOC entry 245 (class 1259 OID 94511)
 -- Name: view_table_events_father; Type: MATERIALIZED VIEW; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE MATERIALIZED VIEW view_table_events_father AS
  SELECT DISTINCT ON (columns.table_name) columns.table_name
    FROM information_schema.columns
-  WHERE (((((columns.table_name)::text ~~ 'events%'::text) AND (NOT ((columns.table_name)::text ~ '.[0-9]'::text))) AND ((columns.table_catalog)::text = 'open_ams'::text)) AND ((columns.table_schema)::text = 'public'::text))
+  WHERE ((((columns.table_name)::text ~~ 'events%'::text) AND (NOT ((columns.table_name)::text ~ '.[0-9]'::text))) AND ((columns.table_schema)::text = 'public'::text))
   ORDER BY columns.table_name, columns.column_name, columns.data_type
   WITH NO DATA;
 
@@ -8544,8 +6579,8 @@ CREATE MATERIALIZED VIEW view_table_events_father AS
 ALTER TABLE view_table_events_father OWNER TO postgres;
 
 --
--- TOC entry 4191 (class 0 OID 0)
--- Dependencies: 282
+-- TOC entry 3207 (class 0 OID 0)
+-- Dependencies: 245
 -- Name: MATERIALIZED VIEW view_table_events_father; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -8553,7 +6588,7 @@ COMMENT ON MATERIALIZED VIEW view_table_events_father IS 'Tablas padres de event
 
 
 --
--- TOC entry 2451 (class 2604 OID 93558)
+-- TOC entry 2277 (class 2604 OID 93558)
 -- Name: idaccountuser; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8561,7 +6596,7 @@ ALTER TABLE ONLY account_contacts ALTER COLUMN idaccountuser SET DEFAULT nextval
 
 
 --
--- TOC entry 2454 (class 2604 OID 93559)
+-- TOC entry 2279 (class 2604 OID 93559)
 -- Name: idaccountstate; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8569,7 +6604,7 @@ ALTER TABLE ONLY account_states ALTER COLUMN idaccountstate SET DEFAULT nextval(
 
 
 --
--- TOC entry 2456 (class 2604 OID 93560)
+-- TOC entry 2281 (class 2604 OID 93560)
 -- Name: idaccounttype; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8577,7 +6612,7 @@ ALTER TABLE ONLY account_types ALTER COLUMN idaccounttype SET DEFAULT nextval('a
 
 
 --
--- TOC entry 2482 (class 2604 OID 93561)
+-- TOC entry 2306 (class 2604 OID 93561)
 -- Name: idadmin; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8585,7 +6620,7 @@ ALTER TABLE ONLY admins ALTER COLUMN idadmin SET DEFAULT nextval('admins_idadmin
 
 
 --
--- TOC entry 2483 (class 2604 OID 93562)
+-- TOC entry 2307 (class 2604 OID 93562)
 -- Name: idcontact; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8593,7 +6628,7 @@ ALTER TABLE ONLY admins ALTER COLUMN idcontact SET DEFAULT nextval('admins_idcon
 
 
 --
--- TOC entry 2484 (class 2604 OID 93563)
+-- TOC entry 2309 (class 2604 OID 93563)
 -- Name: idattachment; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8601,7 +6636,7 @@ ALTER TABLE ONLY attachments ALTER COLUMN idattachment SET DEFAULT nextval('atta
 
 
 --
--- TOC entry 2464 (class 2604 OID 93564)
+-- TOC entry 2288 (class 2604 OID 93564)
 -- Name: idcontact; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8609,7 +6644,7 @@ ALTER TABLE ONLY contacts ALTER COLUMN idcontact SET DEFAULT nextval('contacts_i
 
 
 --
--- TOC entry 2486 (class 2604 OID 93565)
+-- TOC entry 2312 (class 2604 OID 93565)
 -- Name: iddivision; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8617,7 +6652,7 @@ ALTER TABLE ONLY divisions ALTER COLUMN iddivision SET DEFAULT nextval('division
 
 
 --
--- TOC entry 2489 (class 2604 OID 93566)
+-- TOC entry 2317 (class 2604 OID 93566)
 -- Name: idemail; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8625,7 +6660,7 @@ ALTER TABLE ONLY emails ALTER COLUMN idemail SET DEFAULT nextval('emails_idemail
 
 
 --
--- TOC entry 2494 (class 2604 OID 93567)
+-- TOC entry 2321 (class 2604 OID 93567)
 -- Name: idequipment; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8633,7 +6668,7 @@ ALTER TABLE ONLY equipments ALTER COLUMN idequipment SET DEFAULT nextval('equipm
 
 
 --
--- TOC entry 2500 (class 2604 OID 93568)
+-- TOC entry 2328 (class 2604 OID 93568)
 -- Name: ideventcomment; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8641,7 +6676,7 @@ ALTER TABLE ONLY event_comments ALTER COLUMN ideventcomment SET DEFAULT nextval(
 
 
 --
--- TOC entry 2498 (class 2604 OID 93569)
+-- TOC entry 2323 (class 2604 OID 93569)
 -- Name: ideventcommentattach; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8649,7 +6684,7 @@ ALTER TABLE ONLY event_comments_attachments ALTER COLUMN ideventcommentattach SE
 
 
 --
--- TOC entry 2450 (class 2604 OID 93570)
+-- TOC entry 2274 (class 2604 OID 93570)
 -- Name: idevent; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8657,7 +6692,7 @@ ALTER TABLE ONLY events ALTER COLUMN idevent SET DEFAULT nextval('events_idevent
 
 
 --
--- TOC entry 2934 (class 2604 OID 93571)
+-- TOC entry 2383 (class 2604 OID 93571)
 -- Name: ideventtype; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8665,7 +6700,7 @@ ALTER TABLE ONLY eventtypes ALTER COLUMN ideventtype SET DEFAULT nextval('eventt
 
 
 --
--- TOC entry 2940 (class 2604 OID 93572)
+-- TOC entry 2389 (class 2604 OID 93572)
 -- Name: idlista_precios; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8673,7 +6708,7 @@ ALTER TABLE ONLY farma_lista_precios_farmacias ALTER COLUMN idlista_precios SET 
 
 
 --
--- TOC entry 2941 (class 2604 OID 93573)
+-- TOC entry 2392 (class 2604 OID 93573)
 -- Name: idgroup; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8681,7 +6716,7 @@ ALTER TABLE ONLY groups ALTER COLUMN idgroup SET DEFAULT nextval('groups_idgrupo
 
 
 --
--- TOC entry 2945 (class 2604 OID 93574)
+-- TOC entry 2396 (class 2604 OID 93574)
 -- Name: ididtype; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8689,7 +6724,7 @@ ALTER TABLE ONLY identification_types ALTER COLUMN ididtype SET DEFAULT nextval(
 
 
 --
--- TOC entry 2948 (class 2604 OID 93575)
+-- TOC entry 2398 (class 2604 OID 93575)
 -- Name: idword; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8697,7 +6732,7 @@ ALTER TABLE ONLY interface_words ALTER COLUMN idword SET DEFAULT nextval('interf
 
 
 --
--- TOC entry 2961 (class 2604 OID 93576)
+-- TOC entry 2531 (class 2604 OID 96238)
 -- Name: idnotify; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8705,7 +6740,7 @@ ALTER TABLE ONLY notification_area ALTER COLUMN idnotify SET DEFAULT nextval('no
 
 
 --
--- TOC entry 2963 (class 2604 OID 93577)
+-- TOC entry 2408 (class 2604 OID 93577)
 -- Name: idprovider; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8713,7 +6748,7 @@ ALTER TABLE ONLY phone_providers ALTER COLUMN idprovider SET DEFAULT nextval('pr
 
 
 --
--- TOC entry 2966 (class 2604 OID 93578)
+-- TOC entry 2410 (class 2604 OID 93578)
 -- Name: idphonetype; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8721,7 +6756,7 @@ ALTER TABLE ONLY phone_types ALTER COLUMN idphonetype SET DEFAULT nextval('phone
 
 
 --
--- TOC entry 2973 (class 2604 OID 93579)
+-- TOC entry 2416 (class 2604 OID 93579)
 -- Name: idphone; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -8729,7 +6764,7 @@ ALTER TABLE ONLY phones ALTER COLUMN idphone SET DEFAULT nextval('phones_idphone
 
 
 --
--- TOC entry 3510 (class 2606 OID 93581)
+-- TOC entry 2688 (class 2606 OID 93581)
 -- Name: account_users_idaccount_idcontact_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -8738,7 +6773,7 @@ ALTER TABLE ONLY account_users
 
 
 --
--- TOC entry 3512 (class 2606 OID 93583)
+-- TOC entry 2690 (class 2606 OID 93583)
 -- Name: account_users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -8747,7 +6782,7 @@ ALTER TABLE ONLY account_users
 
 
 --
--- TOC entry 3054 (class 2606 OID 93585)
+-- TOC entry 2567 (class 2606 OID 93585)
 -- Name: accounts__pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -8756,43 +6791,7 @@ ALTER TABLE ONLY accounts
 
 
 --
--- TOC entry 3515 (class 2606 OID 93587)
--- Name: event_comments_201512_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY event_comments_201512
-    ADD CONSTRAINT event_comments_201512_pkey PRIMARY KEY (ideventcomment);
-
-
---
--- TOC entry 3521 (class 2606 OID 93589)
--- Name: event_comments_201601_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY event_comments_201601
-    ADD CONSTRAINT event_comments_201601_pkey PRIMARY KEY (ideventcomment);
-
-
---
--- TOC entry 3524 (class 2606 OID 93591)
--- Name: event_comments_201602_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY event_comments_201602
-    ADD CONSTRAINT event_comments_201602_pkey PRIMARY KEY (ideventcomment);
-
-
---
--- TOC entry 3527 (class 2606 OID 93593)
--- Name: event_comments_201603_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY event_comments_201603
-    ADD CONSTRAINT event_comments_201603_pkey PRIMARY KEY (ideventcomment);
-
-
---
--- TOC entry 3518 (class 2606 OID 93595)
+-- TOC entry 2800 (class 2606 OID 96275)
 -- Name: event_comments_2016_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -8801,61 +6800,16 @@ ALTER TABLE ONLY event_comments_2016
 
 
 --
--- TOC entry 3083 (class 2606 OID 93597)
--- Name: events_201512_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_201512
-    ADD CONSTRAINT events_201512_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3096 (class 2606 OID 91769)
--- Name: events_201601_dateevent_idequipment_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_201601
-    ADD CONSTRAINT events_201601_dateevent_idequipment_ideventtype_zu_key UNIQUE (dateevent, idequipment, ideventtype, zu);
-
-
---
--- TOC entry 3098 (class 2606 OID 93599)
--- Name: events_201601_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_201601
-    ADD CONSTRAINT events_201601_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3100 (class 2606 OID 91777)
--- Name: events_201602_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_201602
-    ADD CONSTRAINT events_201602_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3103 (class 2606 OID 91781)
--- Name: events_201603_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_201603
-    ADD CONSTRAINT events_201603_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3087 (class 2606 OID 91786)
--- Name: events_2016_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2716 (class 2606 OID 95130)
+-- Name: events_2016_dateevent_idequipment_zu_ideventtype_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY events_2016
-    ADD CONSTRAINT events_2016_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idequipment, ideventtype, zu);
+    ADD CONSTRAINT events_2016_dateevent_idequipment_zu_ideventtype_key UNIQUE (dateevent, idequipment, zu, ideventtype);
 
 
 --
--- TOC entry 3089 (class 2606 OID 93601)
+-- TOC entry 2720 (class 2606 OID 95128)
 -- Name: events_2016_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -8864,88 +6818,34 @@ ALTER TABLE ONLY events_2016
 
 
 --
--- TOC entry 3111 (class 2606 OID 91790)
--- Name: events_dbsizes_201512_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2790 (class 2606 OID 96160)
+-- Name: events_dbsizes_2015_dateevent_idequipment_zu_ideventtype_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY events_dbsizes_201512
-    ADD CONSTRAINT events_dbsizes_201512_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3114 (class 2606 OID 91792)
--- Name: events_dbsizes_201512_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_dbsizes_201512
-    ADD CONSTRAINT events_dbsizes_201512_pkey PRIMARY KEY (idevent);
+ALTER TABLE ONLY events_dbsizes_2015
+    ADD CONSTRAINT events_dbsizes_2015_dateevent_idequipment_zu_ideventtype_key UNIQUE (dateevent, idequipment, zu, ideventtype);
 
 
 --
--- TOC entry 3130 (class 2606 OID 91794)
--- Name: events_dbsizes_201601_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2794 (class 2606 OID 96155)
+-- Name: events_dbsizes_2015_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY events_dbsizes_201601
-    ADD CONSTRAINT events_dbsizes_201601_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3133 (class 2606 OID 91800)
--- Name: events_dbsizes_201601_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_dbsizes_201601
-    ADD CONSTRAINT events_dbsizes_201601_pkey PRIMARY KEY (idevent);
+ALTER TABLE ONLY events_dbsizes_2015
+    ADD CONSTRAINT events_dbsizes_2015_pkey PRIMARY KEY (idevent);
 
 
 --
--- TOC entry 3137 (class 2606 OID 91802)
--- Name: events_dbsizes_201602_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_dbsizes_201602
-    ADD CONSTRAINT events_dbsizes_201602_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3140 (class 2606 OID 91804)
--- Name: events_dbsizes_201602_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_dbsizes_201602
-    ADD CONSTRAINT events_dbsizes_201602_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3144 (class 2606 OID 91806)
--- Name: events_dbsizes_201603_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_dbsizes_201603
-    ADD CONSTRAINT events_dbsizes_201603_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3147 (class 2606 OID 91808)
--- Name: events_dbsizes_201603_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_dbsizes_201603
-    ADD CONSTRAINT events_dbsizes_201603_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3118 (class 2606 OID 91810)
--- Name: events_dbsizes_2016_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2740 (class 2606 OID 95214)
+-- Name: events_dbsizes_2016_dateevent_idequipment_zu_ideventtype_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY events_dbsizes_2016
-    ADD CONSTRAINT events_dbsizes_2016_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
+    ADD CONSTRAINT events_dbsizes_2016_dateevent_idequipment_zu_ideventtype_key UNIQUE (dateevent, idequipment, zu, ideventtype);
 
 
 --
--- TOC entry 3121 (class 2606 OID 91812)
+-- TOC entry 2744 (class 2606 OID 95209)
 -- Name: events_dbsizes_2016_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -8954,7 +6854,7 @@ ALTER TABLE ONLY events_dbsizes_2016
 
 
 --
--- TOC entry 3106 (class 2606 OID 91814)
+-- TOC entry 2594 (class 2606 OID 91814)
 -- Name: events_dbsizes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -8963,88 +6863,34 @@ ALTER TABLE ONLY events_dbsizes
 
 
 --
--- TOC entry 3158 (class 2606 OID 91816)
--- Name: events_device_uptime_201512_dateevent_idaccount_ideventtype_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2783 (class 2606 OID 96135)
+-- Name: events_device_uptime_2015_dateevent_idequipment_zu_ideventt_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY events_device_uptime_201512
-    ADD CONSTRAINT events_device_uptime_201512_dateevent_idaccount_ideventtype_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3161 (class 2606 OID 91818)
--- Name: events_device_uptime_201512_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_device_uptime_201512
-    ADD CONSTRAINT events_device_uptime_201512_pkey PRIMARY KEY (idevent);
+ALTER TABLE ONLY events_device_uptime_2015
+    ADD CONSTRAINT events_device_uptime_2015_dateevent_idequipment_zu_ideventt_key UNIQUE (dateevent, idequipment, zu, ideventtype);
 
 
 --
--- TOC entry 3177 (class 2606 OID 91820)
--- Name: events_device_uptime_201601_dateevent_idaccount_ideventtype_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2787 (class 2606 OID 96133)
+-- Name: events_device_uptime_2015_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY events_device_uptime_201601
-    ADD CONSTRAINT events_device_uptime_201601_dateevent_idaccount_ideventtype_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3180 (class 2606 OID 91822)
--- Name: events_device_uptime_201601_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_device_uptime_201601
-    ADD CONSTRAINT events_device_uptime_201601_pkey PRIMARY KEY (idevent);
+ALTER TABLE ONLY events_device_uptime_2015
+    ADD CONSTRAINT events_device_uptime_2015_pkey PRIMARY KEY (idevent);
 
 
 --
--- TOC entry 3184 (class 2606 OID 91824)
--- Name: events_device_uptime_201602_dateevent_idaccount_ideventtype_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_device_uptime_201602
-    ADD CONSTRAINT events_device_uptime_201602_dateevent_idaccount_ideventtype_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3187 (class 2606 OID 91826)
--- Name: events_device_uptime_201602_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_device_uptime_201602
-    ADD CONSTRAINT events_device_uptime_201602_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3191 (class 2606 OID 91828)
--- Name: events_device_uptime_201603_dateevent_idaccount_ideventtype_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_device_uptime_201603
-    ADD CONSTRAINT events_device_uptime_201603_dateevent_idaccount_ideventtype_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3194 (class 2606 OID 91830)
--- Name: events_device_uptime_201603_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_device_uptime_201603
-    ADD CONSTRAINT events_device_uptime_201603_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3165 (class 2606 OID 91832)
--- Name: events_device_uptime_2016_dateevent_idaccount_ideventtype_z_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2704 (class 2606 OID 95091)
+-- Name: events_device_uptime_2016_dateevent_idequipment_zu_ideventt_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY events_device_uptime_2016
-    ADD CONSTRAINT events_device_uptime_2016_dateevent_idaccount_ideventtype_z_key UNIQUE (dateevent, idaccount, ideventtype, zu);
+    ADD CONSTRAINT events_device_uptime_2016_dateevent_idequipment_zu_ideventt_key UNIQUE (dateevent, idequipment, zu, ideventtype);
 
 
 --
--- TOC entry 3168 (class 2606 OID 91834)
+-- TOC entry 2708 (class 2606 OID 95089)
 -- Name: events_device_uptime_2016_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9053,88 +6899,34 @@ ALTER TABLE ONLY events_device_uptime_2016
 
 
 --
--- TOC entry 3205 (class 2606 OID 91836)
--- Name: events_diskspace_201512_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2776 (class 2606 OID 96112)
+-- Name: events_diskspace_2015_dateevent_idequipment_zu_ideventtype_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY events_diskspace_201512
-    ADD CONSTRAINT events_diskspace_201512_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3208 (class 2606 OID 91838)
--- Name: events_diskspace_201512_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_diskspace_201512
-    ADD CONSTRAINT events_diskspace_201512_pkey PRIMARY KEY (idevent);
+ALTER TABLE ONLY events_diskspace_2015
+    ADD CONSTRAINT events_diskspace_2015_dateevent_idequipment_zu_ideventtype_key UNIQUE (dateevent, idequipment, zu, ideventtype);
 
 
 --
--- TOC entry 3224 (class 2606 OID 91840)
--- Name: events_diskspace_201601_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2780 (class 2606 OID 96107)
+-- Name: events_diskspace_2015_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY events_diskspace_201601
-    ADD CONSTRAINT events_diskspace_201601_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3227 (class 2606 OID 91842)
--- Name: events_diskspace_201601_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_diskspace_201601
-    ADD CONSTRAINT events_diskspace_201601_pkey PRIMARY KEY (idevent);
+ALTER TABLE ONLY events_diskspace_2015
+    ADD CONSTRAINT events_diskspace_2015_pkey PRIMARY KEY (idevent);
 
 
 --
--- TOC entry 3231 (class 2606 OID 91848)
--- Name: events_diskspace_201602_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_diskspace_201602
-    ADD CONSTRAINT events_diskspace_201602_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3234 (class 2606 OID 91851)
--- Name: events_diskspace_201602_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_diskspace_201602
-    ADD CONSTRAINT events_diskspace_201602_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3240 (class 2606 OID 91854)
--- Name: events_diskspace_201603_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_diskspace_201603
-    ADD CONSTRAINT events_diskspace_201603_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3243 (class 2606 OID 91856)
--- Name: events_diskspace_201603_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_diskspace_201603
-    ADD CONSTRAINT events_diskspace_201603_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3212 (class 2606 OID 91858)
--- Name: events_diskspace_2016_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2692 (class 2606 OID 95054)
+-- Name: events_diskspace_2016_dateevent_idequipment_zu_ideventtype_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY events_diskspace_2016
-    ADD CONSTRAINT events_diskspace_2016_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
+    ADD CONSTRAINT events_diskspace_2016_dateevent_idequipment_zu_ideventtype_key UNIQUE (dateevent, idequipment, zu, ideventtype);
 
 
 --
--- TOC entry 3215 (class 2606 OID 91860)
+-- TOC entry 2696 (class 2606 OID 95049)
 -- Name: events_diskspace_2016_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9143,16 +6935,7 @@ ALTER TABLE ONLY events_diskspace_2016
 
 
 --
--- TOC entry 3198 (class 2606 OID 91862)
--- Name: events_diskspace_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_diskspace
-    ADD CONSTRAINT events_diskspace_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3200 (class 2606 OID 91864)
+-- TOC entry 2608 (class 2606 OID 91864)
 -- Name: events_diskspace_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9161,34 +6944,16 @@ ALTER TABLE ONLY events_diskspace
 
 
 --
--- TOC entry 3269 (class 2606 OID 91866)
--- Name: events_jobs_199001_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_199001
-    ADD CONSTRAINT events_jobs_199001_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3272 (class 2606 OID 91868)
--- Name: events_jobs_199001_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_199001
-    ADD CONSTRAINT events_jobs_199001_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3257 (class 2606 OID 91870)
--- Name: events_jobs_1990_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2764 (class 2606 OID 96025)
+-- Name: events_jobs_1990_dateevent_idequipment_zu_ideventtype_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY events_jobs_1990
-    ADD CONSTRAINT events_jobs_1990_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
+    ADD CONSTRAINT events_jobs_1990_dateevent_idequipment_zu_ideventtype_key UNIQUE (dateevent, idequipment, zu, ideventtype);
 
 
 --
--- TOC entry 3261 (class 2606 OID 91872)
+-- TOC entry 2768 (class 2606 OID 96020)
 -- Name: events_jobs_1990_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9197,250 +6962,16 @@ ALTER TABLE ONLY events_jobs_1990
 
 
 --
--- TOC entry 3277 (class 2606 OID 91874)
--- Name: events_jobs_201407_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201407
-    ADD CONSTRAINT events_jobs_201407_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3281 (class 2606 OID 91876)
--- Name: events_jobs_201407_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201407
-    ADD CONSTRAINT events_jobs_201407_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3285 (class 2606 OID 91878)
--- Name: events_jobs_201411_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201411
-    ADD CONSTRAINT events_jobs_201411_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3288 (class 2606 OID 91880)
--- Name: events_jobs_201411_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201411
-    ADD CONSTRAINT events_jobs_201411_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3293 (class 2606 OID 91882)
--- Name: events_jobs_201412_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201412
-    ADD CONSTRAINT events_jobs_201412_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3296 (class 2606 OID 91884)
--- Name: events_jobs_201412_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201412
-    ADD CONSTRAINT events_jobs_201412_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3308 (class 2606 OID 91886)
--- Name: events_jobs_201503_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201503
-    ADD CONSTRAINT events_jobs_201503_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3312 (class 2606 OID 91888)
--- Name: events_jobs_201503_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201503
-    ADD CONSTRAINT events_jobs_201503_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3316 (class 2606 OID 91890)
--- Name: events_jobs_201504_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201504
-    ADD CONSTRAINT events_jobs_201504_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3320 (class 2606 OID 91892)
--- Name: events_jobs_201504_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201504
-    ADD CONSTRAINT events_jobs_201504_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3324 (class 2606 OID 91894)
--- Name: events_jobs_201505_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201505
-    ADD CONSTRAINT events_jobs_201505_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3328 (class 2606 OID 91896)
--- Name: events_jobs_201505_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201505
-    ADD CONSTRAINT events_jobs_201505_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3333 (class 2606 OID 91898)
--- Name: events_jobs_201506_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201506
-    ADD CONSTRAINT events_jobs_201506_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3336 (class 2606 OID 91900)
--- Name: events_jobs_201506_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201506
-    ADD CONSTRAINT events_jobs_201506_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3341 (class 2606 OID 91902)
--- Name: events_jobs_201507_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201507
-    ADD CONSTRAINT events_jobs_201507_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3344 (class 2606 OID 91904)
--- Name: events_jobs_201507_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201507
-    ADD CONSTRAINT events_jobs_201507_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3349 (class 2606 OID 91906)
--- Name: events_jobs_201508_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201508
-    ADD CONSTRAINT events_jobs_201508_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3352 (class 2606 OID 91908)
--- Name: events_jobs_201508_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201508
-    ADD CONSTRAINT events_jobs_201508_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3357 (class 2606 OID 91910)
--- Name: events_jobs_201509_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201509
-    ADD CONSTRAINT events_jobs_201509_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3360 (class 2606 OID 91912)
--- Name: events_jobs_201509_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201509
-    ADD CONSTRAINT events_jobs_201509_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3365 (class 2606 OID 91914)
--- Name: events_jobs_201510_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201510
-    ADD CONSTRAINT events_jobs_201510_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3368 (class 2606 OID 91916)
--- Name: events_jobs_201510_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201510
-    ADD CONSTRAINT events_jobs_201510_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3372 (class 2606 OID 91918)
--- Name: events_jobs_201511_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201511
-    ADD CONSTRAINT events_jobs_201511_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3376 (class 2606 OID 91920)
--- Name: events_jobs_201511_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201511
-    ADD CONSTRAINT events_jobs_201511_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3380 (class 2606 OID 91922)
--- Name: events_jobs_201512_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201512
-    ADD CONSTRAINT events_jobs_201512_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3384 (class 2606 OID 91924)
--- Name: events_jobs_201512_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201512
-    ADD CONSTRAINT events_jobs_201512_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3300 (class 2606 OID 91926)
--- Name: events_jobs_2015_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2752 (class 2606 OID 95968)
+-- Name: events_jobs_2015_dateevent_idequipment_zu_ideventtype_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY events_jobs_2015
-    ADD CONSTRAINT events_jobs_2015_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
+    ADD CONSTRAINT events_jobs_2015_dateevent_idequipment_zu_ideventtype_key UNIQUE (dateevent, idequipment, zu, ideventtype);
 
 
 --
--- TOC entry 3304 (class 2606 OID 91928)
+-- TOC entry 2756 (class 2606 OID 95963)
 -- Name: events_jobs_2015_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9449,70 +6980,16 @@ ALTER TABLE ONLY events_jobs_2015
 
 
 --
--- TOC entry 3401 (class 2606 OID 91930)
--- Name: events_jobs_201601_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201601
-    ADD CONSTRAINT events_jobs_201601_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3405 (class 2606 OID 91932)
--- Name: events_jobs_201601_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201601
-    ADD CONSTRAINT events_jobs_201601_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3409 (class 2606 OID 91934)
--- Name: events_jobs_201602_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201602
-    ADD CONSTRAINT events_jobs_201602_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3413 (class 2606 OID 91936)
--- Name: events_jobs_201602_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201602
-    ADD CONSTRAINT events_jobs_201602_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3417 (class 2606 OID 91938)
--- Name: events_jobs_201603_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201603
-    ADD CONSTRAINT events_jobs_201603_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3421 (class 2606 OID 91940)
--- Name: events_jobs_201603_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs_201603
-    ADD CONSTRAINT events_jobs_201603_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3388 (class 2606 OID 91942)
--- Name: events_jobs_2016_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2728 (class 2606 OID 95175)
+-- Name: events_jobs_2016_dateevent_idequipment_zu_ideventtype_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY events_jobs_2016
-    ADD CONSTRAINT events_jobs_2016_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
+    ADD CONSTRAINT events_jobs_2016_dateevent_idequipment_zu_ideventtype_key UNIQUE (dateevent, idequipment, zu, ideventtype);
 
 
 --
--- TOC entry 3392 (class 2606 OID 91944)
+-- TOC entry 2732 (class 2606 OID 95170)
 -- Name: events_jobs_2016_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9521,16 +6998,7 @@ ALTER TABLE ONLY events_jobs_2016
 
 
 --
--- TOC entry 3249 (class 2606 OID 91946)
--- Name: events_jobs_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_jobs
-    ADD CONSTRAINT events_jobs_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3252 (class 2606 OID 91948)
+-- TOC entry 2615 (class 2606 OID 91948)
 -- Name: events_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9539,34 +7007,7 @@ ALTER TABLE ONLY events_jobs
 
 
 --
--- TOC entry 3433 (class 2606 OID 91950)
--- Name: events_raid_201511_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_raid_201511
-    ADD CONSTRAINT events_raid_201511_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3437 (class 2606 OID 91952)
--- Name: events_raid_201511_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_raid_201511
-    ADD CONSTRAINT events_raid_201511_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3425 (class 2606 OID 91954)
--- Name: events_raid_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_raid
-    ADD CONSTRAINT events_raid_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3429 (class 2606 OID 91956)
+-- TOC entry 2622 (class 2606 OID 91956)
 -- Name: events_raid_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9575,16 +7016,7 @@ ALTER TABLE ONLY events_raid
 
 
 --
--- TOC entry 3152 (class 2606 OID 91958)
--- Name: events_sqlserver_uptime_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_device_uptime
-    ADD CONSTRAINT events_sqlserver_uptime_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3154 (class 2606 OID 91960)
+-- TOC entry 2601 (class 2606 OID 91960)
 -- Name: events_sqlserver_uptime_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9593,16 +7025,7 @@ ALTER TABLE ONLY events_device_uptime
 
 
 --
--- TOC entry 3470 (class 2606 OID 91962)
--- Name: network_devices_2_code_ref_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY network_devices
-    ADD CONSTRAINT network_devices_2_code_ref_key UNIQUE (code_ref);
-
-
---
--- TOC entry 3472 (class 2606 OID 91964)
+-- TOC entry 2658 (class 2606 OID 91964)
 -- Name: network_devices_2_equipment_mark_serial_number_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9611,7 +7034,7 @@ ALTER TABLE ONLY network_devices
 
 
 --
--- TOC entry 3474 (class 2606 OID 91966)
+-- TOC entry 2660 (class 2606 OID 91966)
 -- Name: network_devices_2_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9620,7 +7043,7 @@ ALTER TABLE ONLY network_devices
 
 
 --
--- TOC entry 3042 (class 2606 OID 93603)
+-- TOC entry 2555 (class 2606 OID 93603)
 -- Name: pk_account_state_idaccountstate; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9629,7 +7052,7 @@ ALTER TABLE ONLY account_states
 
 
 --
--- TOC entry 3046 (class 2606 OID 93605)
+-- TOC entry 2559 (class 2606 OID 93605)
 -- Name: pk_account_types_idaccounttype; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9638,7 +7061,7 @@ ALTER TABLE ONLY account_types
 
 
 --
--- TOC entry 3038 (class 2606 OID 93607)
+-- TOC entry 2551 (class 2606 OID 93607)
 -- Name: pk_account_users_idaccounuser; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9647,7 +7070,7 @@ ALTER TABLE ONLY account_contacts
 
 
 --
--- TOC entry 3059 (class 2606 OID 93609)
+-- TOC entry 2572 (class 2606 OID 93609)
 -- Name: pk_admin_idadmin; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9656,7 +7079,7 @@ ALTER TABLE ONLY admins
 
 
 --
--- TOC entry 3061 (class 2606 OID 91976)
+-- TOC entry 2574 (class 2606 OID 91976)
 -- Name: pk_attachments_idattachment; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9665,7 +7088,7 @@ ALTER TABLE ONLY attachments
 
 
 --
--- TOC entry 3050 (class 2606 OID 93611)
+-- TOC entry 2563 (class 2606 OID 93611)
 -- Name: pk_contacts_idcontact; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9674,7 +7097,7 @@ ALTER TABLE ONLY contacts
 
 
 --
--- TOC entry 3063 (class 2606 OID 93613)
+-- TOC entry 2576 (class 2606 OID 93613)
 -- Name: pk_division_iddivision; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9683,7 +7106,7 @@ ALTER TABLE ONLY divisions
 
 
 --
--- TOC entry 3065 (class 2606 OID 93615)
+-- TOC entry 2578 (class 2606 OID 93615)
 -- Name: pk_email_idemail; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9692,7 +7115,7 @@ ALTER TABLE ONLY emails
 
 
 --
--- TOC entry 3070 (class 2606 OID 93617)
+-- TOC entry 2583 (class 2606 OID 93617)
 -- Name: pk_equipments_idequipment; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9701,7 +7124,7 @@ ALTER TABLE ONLY equipments
 
 
 --
--- TOC entry 3076 (class 2606 OID 91986)
+-- TOC entry 2587 (class 2606 OID 91986)
 -- Name: pk_event_attachments_ideventattach; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9710,7 +7133,7 @@ ALTER TABLE ONLY event_comments_attachments
 
 
 --
--- TOC entry 3081 (class 2606 OID 91988)
+-- TOC entry 2592 (class 2606 OID 91988)
 -- Name: pk_event_comments_ideventcomment; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9719,7 +7142,7 @@ ALTER TABLE ONLY event_comments
 
 
 --
--- TOC entry 3033 (class 2606 OID 91990)
+-- TOC entry 2546 (class 2606 OID 91990)
 -- Name: pk_events_idevent; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9728,7 +7151,7 @@ ALTER TABLE ONLY events
 
 
 --
--- TOC entry 3442 (class 2606 OID 91992)
+-- TOC entry 2630 (class 2606 OID 91992)
 -- Name: pk_eventtypes_ideventtype; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9737,7 +7160,7 @@ ALTER TABLE ONLY eventtypes
 
 
 --
--- TOC entry 3451 (class 2606 OID 91994)
+-- TOC entry 2639 (class 2606 OID 91994)
 -- Name: pk_farma_lista_precios; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9746,7 +7169,7 @@ ALTER TABLE ONLY farma_lista_precios_farmacias
 
 
 --
--- TOC entry 3455 (class 2606 OID 91996)
+-- TOC entry 2643 (class 2606 OID 91996)
 -- Name: pk_group_idgroup; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9755,7 +7178,7 @@ ALTER TABLE ONLY groups
 
 
 --
--- TOC entry 3459 (class 2606 OID 91998)
+-- TOC entry 2647 (class 2606 OID 91998)
 -- Name: pk_guitc; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9764,7 +7187,7 @@ ALTER TABLE ONLY gui_tables_columns
 
 
 --
--- TOC entry 3465 (class 2606 OID 92000)
+-- TOC entry 2653 (class 2606 OID 92000)
 -- Name: pk_id_interface_words; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9773,7 +7196,7 @@ ALTER TABLE ONLY interface_words
 
 
 --
--- TOC entry 3461 (class 2606 OID 92002)
+-- TOC entry 2649 (class 2606 OID 92002)
 -- Name: pk_identification_type_ididtype; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9782,7 +7205,7 @@ ALTER TABLE ONLY identification_types
 
 
 --
--- TOC entry 3476 (class 2606 OID 92004)
+-- TOC entry 2797 (class 2606 OID 96248)
 -- Name: pk_notification_area_idnotify; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9791,7 +7214,7 @@ ALTER TABLE ONLY notification_area
 
 
 --
--- TOC entry 3478 (class 2606 OID 92006)
+-- TOC entry 2664 (class 2606 OID 92006)
 -- Name: pk_otc; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9800,7 +7223,7 @@ ALTER TABLE ONLY oams_table_columns
 
 
 --
--- TOC entry 3484 (class 2606 OID 92008)
+-- TOC entry 2670 (class 2606 OID 92008)
 -- Name: pk_phone_type_idphonetype; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9809,7 +7232,7 @@ ALTER TABLE ONLY phone_types
 
 
 --
--- TOC entry 3488 (class 2606 OID 92010)
+-- TOC entry 2674 (class 2606 OID 92010)
 -- Name: pk_phones_idphone; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9818,7 +7241,7 @@ ALTER TABLE ONLY phones
 
 
 --
--- TOC entry 3480 (class 2606 OID 92012)
+-- TOC entry 2666 (class 2606 OID 92012)
 -- Name: pk_providers_idprovider; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9827,7 +7250,7 @@ ALTER TABLE ONLY phone_providers
 
 
 --
--- TOC entry 3498 (class 2606 OID 92014)
+-- TOC entry 2684 (class 2606 OID 92014)
 -- Name: pk_tables_changed_name; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9836,7 +7259,7 @@ ALTER TABLE ONLY sys_table_ts
 
 
 --
--- TOC entry 3508 (class 2606 OID 92016)
+-- TOC entry 2686 (class 2606 OID 92016)
 -- Name: pk_udctc; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9845,7 +7268,7 @@ ALTER TABLE ONLY udc_tables_columns
 
 
 --
--- TOC entry 3492 (class 2606 OID 92018)
+-- TOC entry 2678 (class 2606 OID 92018)
 -- Name: providers_admin_username_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9854,7 +7277,7 @@ ALTER TABLE ONLY providers
 
 
 --
--- TOC entry 3494 (class 2606 OID 92020)
+-- TOC entry 2680 (class 2606 OID 92020)
 -- Name: providers_first_name_last_name_identification_ididtype_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9863,7 +7286,7 @@ ALTER TABLE ONLY providers
 
 
 --
--- TOC entry 3496 (class 2606 OID 92022)
+-- TOC entry 2682 (class 2606 OID 92022)
 -- Name: providers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9872,25 +7295,7 @@ ALTER TABLE ONLY providers
 
 
 --
--- TOC entry 3500 (class 2606 OID 92024)
--- Name: test2_dateevent_idaccount_ideventtype_zu_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY test2
-    ADD CONSTRAINT test2_dateevent_idaccount_ideventtype_zu_key UNIQUE (dateevent, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3505 (class 2606 OID 92026)
--- Name: test2_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY test2
-    ADD CONSTRAINT test2_pkey PRIMARY KEY (idevent);
-
-
---
--- TOC entry 3040 (class 2606 OID 93619)
+-- TOC entry 2553 (class 2606 OID 93619)
 -- Name: uniq_account_contacts_idcontact; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9899,7 +7304,7 @@ ALTER TABLE ONLY account_contacts
 
 
 --
--- TOC entry 3044 (class 2606 OID 93621)
+-- TOC entry 2557 (class 2606 OID 93621)
 -- Name: uniq_account_states_state; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9908,7 +7313,7 @@ ALTER TABLE ONLY account_states
 
 
 --
--- TOC entry 3048 (class 2606 OID 93623)
+-- TOC entry 2561 (class 2606 OID 93623)
 -- Name: uniq_account_type_type; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9917,7 +7322,7 @@ ALTER TABLE ONLY account_types
 
 
 --
--- TOC entry 3057 (class 2606 OID 93625)
+-- TOC entry 2570 (class 2606 OID 93625)
 -- Name: uniq_accounts_div_account_type_enabled; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9926,7 +7331,7 @@ ALTER TABLE ONLY accounts
 
 
 --
--- TOC entry 3052 (class 2606 OID 93627)
+-- TOC entry 2565 (class 2606 OID 93627)
 -- Name: uniq_contacts_fname_lname_identification_ididtype; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9935,7 +7340,7 @@ ALTER TABLE ONLY contacts
 
 
 --
--- TOC entry 3067 (class 2606 OID 93629)
+-- TOC entry 2580 (class 2606 OID 93629)
 -- Name: uniq_email_idcontact_email; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9944,25 +7349,16 @@ ALTER TABLE ONLY emails
 
 
 --
--- TOC entry 3072 (class 2606 OID 93631)
--- Name: uniq_equipments_cod_ref; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2585 (class 2606 OID 95982)
+-- Name: uniq_equipments_eq_codref_serial; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY equipments
-    ADD CONSTRAINT uniq_equipments_cod_ref UNIQUE (code_ref);
+    ADD CONSTRAINT uniq_equipments_eq_codref_serial UNIQUE (equipment, serial_number, code_ref);
 
 
 --
--- TOC entry 3074 (class 2606 OID 93633)
--- Name: uniq_equipments_serial_number; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY equipments
-    ADD CONSTRAINT uniq_equipments_serial_number UNIQUE (equipment, mark, serial_number);
-
-
---
--- TOC entry 3078 (class 2606 OID 92044)
+-- TOC entry 2589 (class 2606 OID 92044)
 -- Name: uniq_event_comments_attach; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9971,16 +7367,7 @@ ALTER TABLE ONLY event_comments_attachments
 
 
 --
--- TOC entry 3085 (class 2606 OID 92046)
--- Name: uniq_events_201512_dateevent_ideq_ideventtype; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY events_201512
-    ADD CONSTRAINT uniq_events_201512_dateevent_ideq_ideventtype UNIQUE (dateevent, idequipment, zu, ideventtype);
-
-
---
--- TOC entry 3094 (class 2606 OID 92048)
+-- TOC entry 2726 (class 2606 OID 95149)
 -- Name: uniq_events_2016_de_ide_idevt_zu; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9989,7 +7376,7 @@ ALTER TABLE ONLY events_2016
 
 
 --
--- TOC entry 3035 (class 2606 OID 92050)
+-- TOC entry 2548 (class 2606 OID 92050)
 -- Name: uniq_events_dateevent_ideq_ideventtype; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -9998,7 +7385,7 @@ ALTER TABLE ONLY events
 
 
 --
--- TOC entry 3128 (class 2606 OID 92052)
+-- TOC entry 2750 (class 2606 OID 95230)
 -- Name: uniq_events_dbsizes_2016_de_ide_idevt_zu; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10007,7 +7394,16 @@ ALTER TABLE ONLY events_dbsizes_2016
 
 
 --
--- TOC entry 3175 (class 2606 OID 92054)
+-- TOC entry 2599 (class 2606 OID 94980)
+-- Name: uniq_events_dbsizes_dateevent_ideq_ideventtype; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY events_dbsizes
+    ADD CONSTRAINT uniq_events_dbsizes_dateevent_ideq_ideventtype UNIQUE (dateevent, idequipment, zu, ideventtype);
+
+
+--
+-- TOC entry 2714 (class 2606 OID 95110)
 -- Name: uniq_events_device_uptime_2016_de_ide_idevt_zu; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10016,7 +7412,16 @@ ALTER TABLE ONLY events_device_uptime_2016
 
 
 --
--- TOC entry 3222 (class 2606 OID 92056)
+-- TOC entry 2606 (class 2606 OID 94982)
+-- Name: uniq_events_device_uptime_dateevent_ideq_ideventtype; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY events_device_uptime
+    ADD CONSTRAINT uniq_events_device_uptime_dateevent_ideq_ideventtype UNIQUE (dateevent, idequipment, zu, ideventtype);
+
+
+--
+-- TOC entry 2702 (class 2606 OID 95070)
 -- Name: uniq_events_diskspace_2016_de_ide_idevt_zu; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10025,7 +7430,16 @@ ALTER TABLE ONLY events_diskspace_2016
 
 
 --
--- TOC entry 3267 (class 2606 OID 92058)
+-- TOC entry 2613 (class 2606 OID 95000)
+-- Name: uniq_events_diskspace_dateevent_ideq_ideventtype; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY events_diskspace
+    ADD CONSTRAINT uniq_events_diskspace_dateevent_ideq_ideventtype UNIQUE (dateevent, idequipment, zu, ideventtype);
+
+
+--
+-- TOC entry 2774 (class 2606 OID 96041)
 -- Name: uniq_events_jobs_1990_de_ide_idevt_zu; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10034,7 +7448,16 @@ ALTER TABLE ONLY events_jobs_1990
 
 
 --
--- TOC entry 3399 (class 2606 OID 92060)
+-- TOC entry 2762 (class 2606 OID 96065)
+-- Name: uniq_events_jobs_2015_de_ide_idevt_zu; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY events_jobs_2015
+    ADD CONSTRAINT uniq_events_jobs_2015_de_ide_idevt_zu UNIQUE (dateevent, idequipment, zu, ideventtype);
+
+
+--
+-- TOC entry 2738 (class 2606 OID 95191)
 -- Name: uniq_events_jobs_2016_de_ide_idevt_zu; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10043,7 +7466,25 @@ ALTER TABLE ONLY events_jobs_2016
 
 
 --
--- TOC entry 3444 (class 2606 OID 92062)
+-- TOC entry 2620 (class 2606 OID 95015)
+-- Name: uniq_events_jobs_dateevent_ideq_ideventtype; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY events_jobs
+    ADD CONSTRAINT uniq_events_jobs_dateevent_ideq_ideventtype UNIQUE (dateevent, idequipment, zu, ideventtype);
+
+
+--
+-- TOC entry 2627 (class 2606 OID 95030)
+-- Name: uniq_events_raid_dateevent_ideq_ideventtype; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY events_raid
+    ADD CONSTRAINT uniq_events_raid_dateevent_ideq_ideventtype UNIQUE (dateevent, idequipment, zu, ideventtype);
+
+
+--
+-- TOC entry 2632 (class 2606 OID 92062)
 -- Name: uniq_eventtypes_code; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10052,7 +7493,7 @@ ALTER TABLE ONLY eventtypes
 
 
 --
--- TOC entry 3446 (class 2606 OID 92064)
+-- TOC entry 2634 (class 2606 OID 92064)
 -- Name: uniq_eventtypes_label; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10061,7 +7502,7 @@ ALTER TABLE ONLY eventtypes
 
 
 --
--- TOC entry 3448 (class 2606 OID 92066)
+-- TOC entry 2636 (class 2606 OID 92066)
 -- Name: uniq_eventtypes_name; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10070,7 +7511,7 @@ ALTER TABLE ONLY eventtypes
 
 
 --
--- TOC entry 3453 (class 2606 OID 92068)
+-- TOC entry 2641 (class 2606 OID 92068)
 -- Name: uniq_farma_lista_precios_idaccount; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10079,7 +7520,7 @@ ALTER TABLE ONLY farma_lista_precios_farmacias
 
 
 --
--- TOC entry 3457 (class 2606 OID 92070)
+-- TOC entry 2645 (class 2606 OID 92070)
 -- Name: uniq_groups_iddivision; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10088,7 +7529,7 @@ ALTER TABLE ONLY groups
 
 
 --
--- TOC entry 3490 (class 2606 OID 92072)
+-- TOC entry 2676 (class 2606 OID 92072)
 -- Name: uniq_idcontact_phone_ext; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10097,7 +7538,7 @@ ALTER TABLE ONLY phones
 
 
 --
--- TOC entry 3463 (class 2606 OID 92074)
+-- TOC entry 2651 (class 2606 OID 92074)
 -- Name: uniq_identification_types_name; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10106,7 +7547,7 @@ ALTER TABLE ONLY identification_types
 
 
 --
--- TOC entry 3467 (class 2606 OID 92076)
+-- TOC entry 2655 (class 2606 OID 92076)
 -- Name: uniq_interface_words_word; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10115,7 +7556,16 @@ ALTER TABLE ONLY interface_words
 
 
 --
--- TOC entry 3486 (class 2606 OID 92078)
+-- TOC entry 2662 (class 2606 OID 95984)
+-- Name: uniq_network_devices_eq_codref_serial; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY network_devices
+    ADD CONSTRAINT uniq_network_devices_eq_codref_serial UNIQUE (equipment, serial_number, code_ref);
+
+
+--
+-- TOC entry 2672 (class 2606 OID 92078)
 -- Name: uniq_phone_types_type; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10124,7 +7574,7 @@ ALTER TABLE ONLY phone_types
 
 
 --
--- TOC entry 3482 (class 2606 OID 92080)
+-- TOC entry 2668 (class 2606 OID 92080)
 -- Name: uniq_providers_provider; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10133,39 +7583,7 @@ ALTER TABLE ONLY phone_providers
 
 
 --
--- TOC entry 3513 (class 1259 OID 93634)
--- Name: event_comments_201512_idevent_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX event_comments_201512_idevent_idx ON event_comments_201512 USING btree (idevent);
-
-
---
--- TOC entry 3519 (class 1259 OID 93635)
--- Name: event_comments_201601_idevent_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX event_comments_201601_idevent_idx ON event_comments_201601 USING btree (idevent);
-
-
---
--- TOC entry 3522 (class 1259 OID 93636)
--- Name: event_comments_201602_idevent_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX event_comments_201602_idevent_idx ON event_comments_201602 USING btree (idevent);
-
-
---
--- TOC entry 3525 (class 1259 OID 93637)
--- Name: event_comments_201603_idevent_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX event_comments_201603_idevent_idx ON event_comments_201603 USING btree (idevent);
-
-
---
--- TOC entry 3516 (class 1259 OID 93638)
+-- TOC entry 2798 (class 1259 OID 96276)
 -- Name: event_comments_2016_idevent_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10173,119 +7591,55 @@ CREATE INDEX event_comments_2016_idevent_idx ON event_comments_2016 USING btree 
 
 
 --
--- TOC entry 3101 (class 1259 OID 92086)
--- Name: events_201603_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2717 (class 1259 OID 95131)
+-- Name: events_2016_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX events_201603_idaccount_idx ON events_201603 USING btree (idaccount);
-
-
---
--- TOC entry 3104 (class 1259 OID 92087)
--- Name: events_201603_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_201603_status_idx ON events_201603 USING btree (status) WHERE (status = 0);
+CREATE INDEX events_2016_idaccount_idx ON events_2016 USING btree (idaccount);
 
 
 --
--- TOC entry 3112 (class 1259 OID 92088)
--- Name: events_dbsizes_201512_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2718 (class 1259 OID 95132)
+-- Name: events_2016_idequipment_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX events_dbsizes_201512_idaccount_idx ON events_dbsizes_201512 USING btree (idaccount);
-
-
---
--- TOC entry 3115 (class 1259 OID 92089)
--- Name: events_dbsizes_201512_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_dbsizes_201512_status_idaccount_ideventtype_zu_idx ON events_dbsizes_201512 USING btree (status, idaccount, ideventtype, zu);
+CREATE INDEX events_2016_idequipment_idx ON events_2016 USING btree (idequipment);
 
 
 --
--- TOC entry 3116 (class 1259 OID 92090)
--- Name: events_dbsizes_201512_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2721 (class 1259 OID 95133)
+-- Name: events_2016_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX events_dbsizes_201512_status_idx ON events_dbsizes_201512 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3131 (class 1259 OID 92091)
--- Name: events_dbsizes_201601_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_dbsizes_201601_idaccount_idx ON events_dbsizes_201601 USING btree (idaccount);
+CREATE INDEX events_2016_status_idx ON events_2016 USING btree (status) WHERE (status = 0);
 
 
 --
--- TOC entry 3134 (class 1259 OID 92092)
--- Name: events_dbsizes_201601_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2791 (class 1259 OID 96156)
+-- Name: events_dbsizes_2015_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX events_dbsizes_201601_status_idaccount_ideventtype_zu_idx ON events_dbsizes_201601 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3135 (class 1259 OID 93639)
--- Name: events_dbsizes_201601_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_dbsizes_201601_status_idx ON events_dbsizes_201601 USING btree (status) WHERE (status = 0);
+CREATE INDEX events_dbsizes_2015_idaccount_idx ON events_dbsizes_2015 USING btree (idaccount);
 
 
 --
--- TOC entry 3138 (class 1259 OID 93640)
--- Name: events_dbsizes_201602_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2792 (class 1259 OID 96157)
+-- Name: events_dbsizes_2015_idequipment_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX events_dbsizes_201602_idaccount_idx ON events_dbsizes_201602 USING btree (idaccount);
-
-
---
--- TOC entry 3141 (class 1259 OID 93641)
--- Name: events_dbsizes_201602_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_dbsizes_201602_status_idaccount_ideventtype_zu_idx ON events_dbsizes_201602 USING btree (status, idaccount, ideventtype, zu);
+CREATE INDEX events_dbsizes_2015_idequipment_idx ON events_dbsizes_2015 USING btree (idequipment);
 
 
 --
--- TOC entry 3142 (class 1259 OID 93642)
--- Name: events_dbsizes_201602_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2795 (class 1259 OID 96158)
+-- Name: events_dbsizes_2015_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX events_dbsizes_201602_status_idx ON events_dbsizes_201602 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3145 (class 1259 OID 93643)
--- Name: events_dbsizes_201603_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_dbsizes_201603_idaccount_idx ON events_dbsizes_201603 USING btree (idaccount);
+CREATE INDEX events_dbsizes_2015_status_idx ON events_dbsizes_2015 USING btree (status) WHERE (status = 0);
 
 
 --
--- TOC entry 3148 (class 1259 OID 93644)
--- Name: events_dbsizes_201603_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_dbsizes_201603_status_idaccount_ideventtype_zu_idx ON events_dbsizes_201603 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3149 (class 1259 OID 93645)
--- Name: events_dbsizes_201603_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_dbsizes_201603_status_idx ON events_dbsizes_201603 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3119 (class 1259 OID 93646)
+-- TOC entry 2741 (class 1259 OID 95210)
 -- Name: events_dbsizes_2016_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10293,15 +7647,15 @@ CREATE INDEX events_dbsizes_2016_idaccount_idx ON events_dbsizes_2016 USING btre
 
 
 --
--- TOC entry 3122 (class 1259 OID 93647)
--- Name: events_dbsizes_2016_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2742 (class 1259 OID 95211)
+-- Name: events_dbsizes_2016_idequipment_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX events_dbsizes_2016_status_idaccount_ideventtype_zu_idx ON events_dbsizes_2016 USING btree (status, idaccount, ideventtype, zu);
+CREATE INDEX events_dbsizes_2016_idequipment_idx ON events_dbsizes_2016 USING btree (idequipment);
 
 
 --
--- TOC entry 3123 (class 1259 OID 93648)
+-- TOC entry 2745 (class 1259 OID 95212)
 -- Name: events_dbsizes_2016_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10309,103 +7663,31 @@ CREATE INDEX events_dbsizes_2016_status_idx ON events_dbsizes_2016 USING btree (
 
 
 --
--- TOC entry 3159 (class 1259 OID 93649)
--- Name: events_device_uptime_201512_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2784 (class 1259 OID 96136)
+-- Name: events_device_uptime_2015_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX events_device_uptime_201512_idaccount_idx ON events_device_uptime_201512 USING btree (idaccount);
-
-
---
--- TOC entry 3162 (class 1259 OID 93650)
--- Name: events_device_uptime_201512_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_device_uptime_201512_status_idaccount_ideventtype_zu_idx ON events_device_uptime_201512 USING btree (status, idaccount, ideventtype, zu);
+CREATE INDEX events_device_uptime_2015_idaccount_idx ON events_device_uptime_2015 USING btree (idaccount);
 
 
 --
--- TOC entry 3163 (class 1259 OID 93651)
--- Name: events_device_uptime_201512_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2785 (class 1259 OID 96137)
+-- Name: events_device_uptime_2015_idequipment_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX events_device_uptime_201512_status_idx ON events_device_uptime_201512 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3178 (class 1259 OID 93652)
--- Name: events_device_uptime_201601_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_device_uptime_201601_idaccount_idx ON events_device_uptime_201601 USING btree (idaccount);
+CREATE INDEX events_device_uptime_2015_idequipment_idx ON events_device_uptime_2015 USING btree (idequipment);
 
 
 --
--- TOC entry 3181 (class 1259 OID 93653)
--- Name: events_device_uptime_201601_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2788 (class 1259 OID 96138)
+-- Name: events_device_uptime_2015_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX events_device_uptime_201601_status_idaccount_ideventtype_zu_idx ON events_device_uptime_201601 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3182 (class 1259 OID 93654)
--- Name: events_device_uptime_201601_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_device_uptime_201601_status_idx ON events_device_uptime_201601 USING btree (status) WHERE (status = 0);
+CREATE INDEX events_device_uptime_2015_status_idx ON events_device_uptime_2015 USING btree (status) WHERE (status = 0);
 
 
 --
--- TOC entry 3185 (class 1259 OID 93655)
--- Name: events_device_uptime_201602_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_device_uptime_201602_idaccount_idx ON events_device_uptime_201602 USING btree (idaccount);
-
-
---
--- TOC entry 3188 (class 1259 OID 93656)
--- Name: events_device_uptime_201602_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_device_uptime_201602_status_idaccount_ideventtype_zu_idx ON events_device_uptime_201602 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3189 (class 1259 OID 93657)
--- Name: events_device_uptime_201602_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_device_uptime_201602_status_idx ON events_device_uptime_201602 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3192 (class 1259 OID 93658)
--- Name: events_device_uptime_201603_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_device_uptime_201603_idaccount_idx ON events_device_uptime_201603 USING btree (idaccount);
-
-
---
--- TOC entry 3195 (class 1259 OID 93659)
--- Name: events_device_uptime_201603_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_device_uptime_201603_status_idaccount_ideventtype_zu_idx ON events_device_uptime_201603 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3196 (class 1259 OID 93660)
--- Name: events_device_uptime_201603_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_device_uptime_201603_status_idx ON events_device_uptime_201603 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3166 (class 1259 OID 93661)
+-- TOC entry 2705 (class 1259 OID 95092)
 -- Name: events_device_uptime_2016_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10413,15 +7695,15 @@ CREATE INDEX events_device_uptime_2016_idaccount_idx ON events_device_uptime_201
 
 
 --
--- TOC entry 3169 (class 1259 OID 93662)
--- Name: events_device_uptime_2016_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2706 (class 1259 OID 95093)
+-- Name: events_device_uptime_2016_idequipment_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX events_device_uptime_2016_status_idaccount_ideventtype_zu_idx ON events_device_uptime_2016 USING btree (status, idaccount, ideventtype, zu);
+CREATE INDEX events_device_uptime_2016_idequipment_idx ON events_device_uptime_2016 USING btree (idequipment);
 
 
 --
--- TOC entry 3170 (class 1259 OID 93663)
+-- TOC entry 2709 (class 1259 OID 95094)
 -- Name: events_device_uptime_2016_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10429,103 +7711,31 @@ CREATE INDEX events_device_uptime_2016_status_idx ON events_device_uptime_2016 U
 
 
 --
--- TOC entry 3206 (class 1259 OID 93664)
--- Name: events_diskspace_201512_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2777 (class 1259 OID 96108)
+-- Name: events_diskspace_2015_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX events_diskspace_201512_idaccount_idx ON events_diskspace_201512 USING btree (idaccount);
-
-
---
--- TOC entry 3209 (class 1259 OID 93665)
--- Name: events_diskspace_201512_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_diskspace_201512_status_idaccount_ideventtype_zu_idx ON events_diskspace_201512 USING btree (status, idaccount, ideventtype, zu);
+CREATE INDEX events_diskspace_2015_idaccount_idx ON events_diskspace_2015 USING btree (idaccount);
 
 
 --
--- TOC entry 3210 (class 1259 OID 93666)
--- Name: events_diskspace_201512_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2778 (class 1259 OID 96109)
+-- Name: events_diskspace_2015_idequipment_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX events_diskspace_201512_status_idx ON events_diskspace_201512 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3225 (class 1259 OID 93667)
--- Name: events_diskspace_201601_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_diskspace_201601_idaccount_idx ON events_diskspace_201601 USING btree (idaccount);
+CREATE INDEX events_diskspace_2015_idequipment_idx ON events_diskspace_2015 USING btree (idequipment);
 
 
 --
--- TOC entry 3228 (class 1259 OID 93668)
--- Name: events_diskspace_201601_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2781 (class 1259 OID 96110)
+-- Name: events_diskspace_2015_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX events_diskspace_201601_status_idaccount_ideventtype_zu_idx ON events_diskspace_201601 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3229 (class 1259 OID 93669)
--- Name: events_diskspace_201601_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_diskspace_201601_status_idx ON events_diskspace_201601 USING btree (status) WHERE (status = 0);
+CREATE INDEX events_diskspace_2015_status_idx ON events_diskspace_2015 USING btree (status) WHERE (status = 0);
 
 
 --
--- TOC entry 3232 (class 1259 OID 93670)
--- Name: events_diskspace_201602_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_diskspace_201602_idaccount_idx ON events_diskspace_201602 USING btree (idaccount);
-
-
---
--- TOC entry 3235 (class 1259 OID 93671)
--- Name: events_diskspace_201602_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_diskspace_201602_status_idaccount_ideventtype_zu_idx ON events_diskspace_201602 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3236 (class 1259 OID 93672)
--- Name: events_diskspace_201602_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_diskspace_201602_status_idx ON events_diskspace_201602 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3241 (class 1259 OID 93673)
--- Name: events_diskspace_201603_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_diskspace_201603_idaccount_idx ON events_diskspace_201603 USING btree (idaccount);
-
-
---
--- TOC entry 3244 (class 1259 OID 93674)
--- Name: events_diskspace_201603_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_diskspace_201603_status_idaccount_ideventtype_zu_idx ON events_diskspace_201603 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3245 (class 1259 OID 93675)
--- Name: events_diskspace_201603_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_diskspace_201603_status_idx ON events_diskspace_201603 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3213 (class 1259 OID 93676)
+-- TOC entry 2693 (class 1259 OID 95050)
 -- Name: events_diskspace_2016_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10533,15 +7743,15 @@ CREATE INDEX events_diskspace_2016_idaccount_idx ON events_diskspace_2016 USING 
 
 
 --
--- TOC entry 3216 (class 1259 OID 93677)
--- Name: events_diskspace_2016_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2694 (class 1259 OID 95051)
+-- Name: events_diskspace_2016_idequipment_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX events_diskspace_2016_status_idaccount_ideventtype_zu_idx ON events_diskspace_2016 USING btree (status, idaccount, ideventtype, zu);
+CREATE INDEX events_diskspace_2016_idequipment_idx ON events_diskspace_2016 USING btree (idequipment);
 
 
 --
--- TOC entry 3217 (class 1259 OID 93678)
+-- TOC entry 2697 (class 1259 OID 95052)
 -- Name: events_diskspace_2016_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10549,119 +7759,7 @@ CREATE INDEX events_diskspace_2016_status_idx ON events_diskspace_2016 USING btr
 
 
 --
--- TOC entry 3150 (class 1259 OID 93679)
--- Name: events_index_ideventtype_idaccount_zu_status_edpt; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_index_ideventtype_idaccount_zu_status_edpt ON events_device_uptime USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3283 (class 1259 OID 93680)
--- Name: events_index_ideventtype_idaccount_zu_status_ej_201411; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_index_ideventtype_idaccount_zu_status_ej_201411 ON events_jobs_201411 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3291 (class 1259 OID 93681)
--- Name: events_index_ideventtype_idaccount_zu_status_ej_201412; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_index_ideventtype_idaccount_zu_status_ej_201412 ON events_jobs_201412 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3331 (class 1259 OID 93682)
--- Name: events_index_ideventtype_idaccount_zu_status_ej_201506; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_index_ideventtype_idaccount_zu_status_ej_201506 ON events_jobs_201506 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3339 (class 1259 OID 93683)
--- Name: events_index_ideventtype_idaccount_zu_status_ej_201507; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_index_ideventtype_idaccount_zu_status_ej_201507 ON events_jobs_201507 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3347 (class 1259 OID 93684)
--- Name: events_index_ideventtype_idaccount_zu_status_ej_201508; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_index_ideventtype_idaccount_zu_status_ej_201508 ON events_jobs_201508 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3355 (class 1259 OID 93685)
--- Name: events_index_ideventtype_idaccount_zu_status_ej_201509; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_index_ideventtype_idaccount_zu_status_ej_201509 ON events_jobs_201509 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3363 (class 1259 OID 93686)
--- Name: events_index_ideventtype_idaccount_zu_status_ej_201510; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_index_ideventtype_idaccount_zu_status_ej_201510 ON events_jobs_201510 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3107 (class 1259 OID 93687)
--- Name: events_index_ideventtype_idaccount_zu_status_events_dbsizes; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_index_ideventtype_idaccount_zu_status_events_dbsizes ON events_dbsizes USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3201 (class 1259 OID 93688)
--- Name: events_index_ideventtype_idaccount_zu_status_events_diskspace; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_index_ideventtype_idaccount_zu_status_events_diskspace ON events_diskspace USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3270 (class 1259 OID 93689)
--- Name: events_jobs_199001_idaccount_ideventtype; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_199001_idaccount_ideventtype ON events_jobs_199001 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3273 (class 1259 OID 93690)
--- Name: events_jobs_199001_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_199001_status_idaccount_ideventtype_zu_idx ON events_jobs_199001 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3274 (class 1259 OID 93691)
--- Name: events_jobs_199001_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_199001_status_idx ON events_jobs_199001 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3258 (class 1259 OID 93692)
--- Name: events_jobs_1990_idaccount_ideventtype_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_1990_idaccount_ideventtype_idx ON events_jobs_1990 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3259 (class 1259 OID 93693)
+-- TOC entry 2765 (class 1259 OID 96021)
 -- Name: events_jobs_1990_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10669,7 +7767,15 @@ CREATE INDEX events_jobs_1990_idaccount_idx ON events_jobs_1990 USING btree (ida
 
 
 --
--- TOC entry 3262 (class 1259 OID 93694)
+-- TOC entry 2766 (class 1259 OID 96022)
+-- Name: events_jobs_1990_idequipment_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX events_jobs_1990_idequipment_idx ON events_jobs_1990 USING btree (idequipment);
+
+
+--
+-- TOC entry 2769 (class 1259 OID 96023)
 -- Name: events_jobs_1990_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10677,271 +7783,7 @@ CREATE INDEX events_jobs_1990_status_idx ON events_jobs_1990 USING btree (status
 
 
 --
--- TOC entry 3278 (class 1259 OID 93695)
--- Name: events_jobs_201407_idaccount_ideventtype; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201407_idaccount_ideventtype ON events_jobs_201407 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3279 (class 1259 OID 93696)
--- Name: events_jobs_201407_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201407_idaccount_idx ON events_jobs_201407 USING btree (idaccount);
-
-
---
--- TOC entry 3282 (class 1259 OID 93697)
--- Name: events_jobs_201407_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201407_status_idx ON events_jobs_201407 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3286 (class 1259 OID 93698)
--- Name: events_jobs_201411_idaccount_ideventtype; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201411_idaccount_ideventtype ON events_jobs_201411 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3294 (class 1259 OID 93699)
--- Name: events_jobs_201412_idaccount_ideventtype; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201412_idaccount_ideventtype ON events_jobs_201412 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3297 (class 1259 OID 93700)
--- Name: events_jobs_201412_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201412_status_idx ON events_jobs_201412 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3309 (class 1259 OID 93701)
--- Name: events_jobs_201503_idaccount_ideventtype; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201503_idaccount_ideventtype ON events_jobs_201503 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3310 (class 1259 OID 93702)
--- Name: events_jobs_201503_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201503_idaccount_idx ON events_jobs_201503 USING btree (idaccount);
-
-
---
--- TOC entry 3313 (class 1259 OID 93703)
--- Name: events_jobs_201503_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201503_status_idaccount_ideventtype_zu_idx ON events_jobs_201503 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3314 (class 1259 OID 93704)
--- Name: events_jobs_201503_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201503_status_idx ON events_jobs_201503 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3317 (class 1259 OID 93705)
--- Name: events_jobs_201504_idaccount_ideventtype; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201504_idaccount_ideventtype ON events_jobs_201504 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3318 (class 1259 OID 93706)
--- Name: events_jobs_201504_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201504_idaccount_idx ON events_jobs_201504 USING btree (idaccount);
-
-
---
--- TOC entry 3321 (class 1259 OID 93707)
--- Name: events_jobs_201504_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201504_status_idaccount_ideventtype_zu_idx ON events_jobs_201504 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3322 (class 1259 OID 93708)
--- Name: events_jobs_201504_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201504_status_idx ON events_jobs_201504 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3325 (class 1259 OID 93709)
--- Name: events_jobs_201505_idaccount_ideventtype; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201505_idaccount_ideventtype ON events_jobs_201505 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3326 (class 1259 OID 93710)
--- Name: events_jobs_201505_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201505_idaccount_idx ON events_jobs_201505 USING btree (idaccount);
-
-
---
--- TOC entry 3329 (class 1259 OID 93711)
--- Name: events_jobs_201505_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201505_status_idaccount_ideventtype_zu_idx ON events_jobs_201505 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3330 (class 1259 OID 93712)
--- Name: events_jobs_201505_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201505_status_idx ON events_jobs_201505 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3334 (class 1259 OID 93713)
--- Name: events_jobs_201506_idaccount_ideventtype; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201506_idaccount_ideventtype ON events_jobs_201506 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3342 (class 1259 OID 93714)
--- Name: events_jobs_201507_idaccount_ideventtype; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201507_idaccount_ideventtype ON events_jobs_201507 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3350 (class 1259 OID 93715)
--- Name: events_jobs_201508_idaccount_ideventtype; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201508_idaccount_ideventtype ON events_jobs_201508 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3358 (class 1259 OID 93716)
--- Name: events_jobs_201509_idaccount_ideventtype; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201509_idaccount_ideventtype ON events_jobs_201509 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3366 (class 1259 OID 93717)
--- Name: events_jobs_201510_idaccount_ideventtype; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201510_idaccount_ideventtype ON events_jobs_201510 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3369 (class 1259 OID 93718)
--- Name: events_jobs_201510_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201510_status_idx ON events_jobs_201510 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3373 (class 1259 OID 93719)
--- Name: events_jobs_201511_idaccount_ideventtype; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201511_idaccount_ideventtype ON events_jobs_201511 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3374 (class 1259 OID 93720)
--- Name: events_jobs_201511_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201511_idaccount_idx ON events_jobs_201511 USING btree (idaccount);
-
-
---
--- TOC entry 3377 (class 1259 OID 93721)
--- Name: events_jobs_201511_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201511_status_idaccount_ideventtype_zu_idx ON events_jobs_201511 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3378 (class 1259 OID 93722)
--- Name: events_jobs_201511_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201511_status_idx ON events_jobs_201511 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3381 (class 1259 OID 93723)
--- Name: events_jobs_201512_idaccount_ideventtype_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201512_idaccount_ideventtype_idx ON events_jobs_201512 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3382 (class 1259 OID 93724)
--- Name: events_jobs_201512_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201512_idaccount_idx ON events_jobs_201512 USING btree (idaccount);
-
-
---
--- TOC entry 3385 (class 1259 OID 93725)
--- Name: events_jobs_201512_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201512_status_idaccount_ideventtype_zu_idx ON events_jobs_201512 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3386 (class 1259 OID 93726)
--- Name: events_jobs_201512_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201512_status_idx ON events_jobs_201512 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3301 (class 1259 OID 93727)
--- Name: events_jobs_2015_idaccount_ideventtype_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_2015_idaccount_ideventtype_idx ON events_jobs_2015 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3302 (class 1259 OID 93728)
+-- TOC entry 2753 (class 1259 OID 95964)
 -- Name: events_jobs_2015_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10949,15 +7791,15 @@ CREATE INDEX events_jobs_2015_idaccount_idx ON events_jobs_2015 USING btree (ida
 
 
 --
--- TOC entry 3305 (class 1259 OID 93729)
--- Name: events_jobs_2015_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2754 (class 1259 OID 95965)
+-- Name: events_jobs_2015_idequipment_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX events_jobs_2015_status_idaccount_ideventtype_zu_idx ON events_jobs_2015 USING btree (status, idaccount, ideventtype, zu);
+CREATE INDEX events_jobs_2015_idequipment_idx ON events_jobs_2015 USING btree (idequipment);
 
 
 --
--- TOC entry 3306 (class 1259 OID 93730)
+-- TOC entry 2757 (class 1259 OID 95966)
 -- Name: events_jobs_2015_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -10965,111 +7807,7 @@ CREATE INDEX events_jobs_2015_status_idx ON events_jobs_2015 USING btree (status
 
 
 --
--- TOC entry 3402 (class 1259 OID 93731)
--- Name: events_jobs_201601_idaccount_ideventtype_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201601_idaccount_ideventtype_idx ON events_jobs_201601 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3403 (class 1259 OID 93732)
--- Name: events_jobs_201601_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201601_idaccount_idx ON events_jobs_201601 USING btree (idaccount);
-
-
---
--- TOC entry 3406 (class 1259 OID 93733)
--- Name: events_jobs_201601_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201601_status_idaccount_ideventtype_zu_idx ON events_jobs_201601 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3407 (class 1259 OID 93734)
--- Name: events_jobs_201601_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201601_status_idx ON events_jobs_201601 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3410 (class 1259 OID 93735)
--- Name: events_jobs_201602_idaccount_ideventtype_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201602_idaccount_ideventtype_idx ON events_jobs_201602 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3411 (class 1259 OID 93736)
--- Name: events_jobs_201602_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201602_idaccount_idx ON events_jobs_201602 USING btree (idaccount);
-
-
---
--- TOC entry 3414 (class 1259 OID 93737)
--- Name: events_jobs_201602_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201602_status_idaccount_ideventtype_zu_idx ON events_jobs_201602 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3415 (class 1259 OID 93738)
--- Name: events_jobs_201602_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201602_status_idx ON events_jobs_201602 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3418 (class 1259 OID 93739)
--- Name: events_jobs_201603_idaccount_ideventtype_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201603_idaccount_ideventtype_idx ON events_jobs_201603 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3419 (class 1259 OID 93740)
--- Name: events_jobs_201603_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201603_idaccount_idx ON events_jobs_201603 USING btree (idaccount);
-
-
---
--- TOC entry 3422 (class 1259 OID 93741)
--- Name: events_jobs_201603_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201603_status_idaccount_ideventtype_zu_idx ON events_jobs_201603 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3423 (class 1259 OID 93742)
--- Name: events_jobs_201603_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_201603_status_idx ON events_jobs_201603 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3389 (class 1259 OID 93743)
--- Name: events_jobs_2016_idaccount_ideventtype_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_2016_idaccount_ideventtype_idx ON events_jobs_2016 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3390 (class 1259 OID 93744)
+-- TOC entry 2729 (class 1259 OID 95171)
 -- Name: events_jobs_2016_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11077,15 +7815,15 @@ CREATE INDEX events_jobs_2016_idaccount_idx ON events_jobs_2016 USING btree (ida
 
 
 --
--- TOC entry 3393 (class 1259 OID 93745)
--- Name: events_jobs_2016_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2730 (class 1259 OID 95172)
+-- Name: events_jobs_2016_idequipment_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX events_jobs_2016_status_idaccount_ideventtype_zu_idx ON events_jobs_2016 USING btree (status, idaccount, ideventtype, zu);
+CREATE INDEX events_jobs_2016_idequipment_idx ON events_jobs_2016 USING btree (idequipment);
 
 
 --
--- TOC entry 3394 (class 1259 OID 93746)
+-- TOC entry 2733 (class 1259 OID 95173)
 -- Name: events_jobs_2016_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11093,79 +7831,7 @@ CREATE INDEX events_jobs_2016_status_idx ON events_jobs_2016 USING btree (status
 
 
 --
--- TOC entry 3250 (class 1259 OID 93747)
--- Name: events_jobs_idaccount_ideventtype; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_jobs_idaccount_ideventtype ON events_jobs USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3434 (class 1259 OID 93748)
--- Name: events_raid_201511_idaccount_ideventtype_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_raid_201511_idaccount_ideventtype_idx ON events_raid_201511 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3435 (class 1259 OID 93749)
--- Name: events_raid_201511_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_raid_201511_idaccount_idx ON events_raid_201511 USING btree (idaccount);
-
-
---
--- TOC entry 3438 (class 1259 OID 93750)
--- Name: events_raid_201511_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_raid_201511_status_idaccount_ideventtype_zu_idx ON events_raid_201511 USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3439 (class 1259 OID 93751)
--- Name: events_raid_201511_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_raid_201511_status_idx ON events_raid_201511 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3426 (class 1259 OID 93752)
--- Name: events_raid_idaccount_ideventtype_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_raid_idaccount_ideventtype_idx ON events_raid USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3427 (class 1259 OID 93753)
--- Name: events_raid_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_raid_idaccount_idx ON events_raid USING btree (idaccount);
-
-
---
--- TOC entry 3430 (class 1259 OID 93754)
--- Name: events_raid_status_idaccount_ideventtype_zu_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_raid_status_idaccount_ideventtype_zu_idx ON events_raid USING btree (status, idaccount, ideventtype, zu);
-
-
---
--- TOC entry 3431 (class 1259 OID 93755)
--- Name: events_raid_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX events_raid_status_idx ON events_raid USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3036 (class 1259 OID 93756)
+-- TOC entry 2549 (class 1259 OID 93756)
 -- Name: index_account_contacts_appointment; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11173,7 +7839,7 @@ CREATE INDEX index_account_contacts_appointment ON account_contacts USING btree 
 
 
 --
--- TOC entry 3055 (class 1259 OID 93757)
+-- TOC entry 2568 (class 1259 OID 93757)
 -- Name: index_accounts_account; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11181,7 +7847,7 @@ CREATE INDEX index_accounts_account ON accounts USING btree (account);
 
 
 --
--- TOC entry 3079 (class 1259 OID 93758)
+-- TOC entry 2590 (class 1259 OID 93758)
 -- Name: index_ec_idevent; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11189,103 +7855,7 @@ CREATE INDEX index_ec_idevent ON event_comments USING btree (idevent);
 
 
 --
--- TOC entry 3108 (class 1259 OID 93759)
--- Name: index_edbs_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_edbs_idaccount ON events_dbsizes USING btree (idaccount);
-
-
---
--- TOC entry 3202 (class 1259 OID 93760)
--- Name: index_eds_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_eds_idaccount ON events_diskspace USING btree (idaccount);
-
-
---
--- TOC entry 3155 (class 1259 OID 93761)
--- Name: index_edu_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_edu_idaccount ON events_device_uptime USING btree (idaccount);
-
-
---
--- TOC entry 3253 (class 1259 OID 93762)
--- Name: index_ej_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_ej_idaccount ON events_jobs USING btree (idaccount);
-
-
---
--- TOC entry 3353 (class 1259 OID 93763)
--- Name: index_ej_idaccount201508; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_ej_idaccount201508 ON events_jobs_201508 USING btree (idaccount);
-
-
---
--- TOC entry 3275 (class 1259 OID 93764)
--- Name: index_ej_idaccount_199001; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_ej_idaccount_199001 ON events_jobs_199001 USING btree (idaccount);
-
-
---
--- TOC entry 3289 (class 1259 OID 93765)
--- Name: index_ej_idaccount_201411; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_ej_idaccount_201411 ON events_jobs_201411 USING btree (idaccount);
-
-
---
--- TOC entry 3298 (class 1259 OID 93766)
--- Name: index_ej_idaccount_201412; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_ej_idaccount_201412 ON events_jobs_201412 USING btree (idaccount);
-
-
---
--- TOC entry 3337 (class 1259 OID 93767)
--- Name: index_ej_idaccount_201506; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_ej_idaccount_201506 ON events_jobs_201506 USING btree (idaccount);
-
-
---
--- TOC entry 3345 (class 1259 OID 93768)
--- Name: index_ej_idaccount_201507; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_ej_idaccount_201507 ON events_jobs_201507 USING btree (idaccount);
-
-
---
--- TOC entry 3361 (class 1259 OID 93769)
--- Name: index_ej_idaccount_201509; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_ej_idaccount_201509 ON events_jobs_201509 USING btree (idaccount);
-
-
---
--- TOC entry 3370 (class 1259 OID 93770)
--- Name: index_ej_idaccount_201510; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_ej_idaccount_201510 ON events_jobs_201510 USING btree (idaccount);
-
-
---
--- TOC entry 3068 (class 1259 OID 93771)
+-- TOC entry 2581 (class 1259 OID 93771)
 -- Name: index_equipment_eq; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11293,7 +7863,7 @@ CREATE INDEX index_equipment_eq ON equipments USING btree (equipment);
 
 
 --
--- TOC entry 3090 (class 1259 OID 93772)
+-- TOC entry 2722 (class 1259 OID 95150)
 -- Name: index_events_2016_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11301,7 +7871,7 @@ CREATE INDEX index_events_2016_idaccount ON events_2016 USING btree (idaccount);
 
 
 --
--- TOC entry 3091 (class 1259 OID 93773)
+-- TOC entry 2723 (class 1259 OID 95151)
 -- Name: index_events_2016_idequipment; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11309,7 +7879,7 @@ CREATE INDEX index_events_2016_idequipment ON events_2016 USING btree (idequipme
 
 
 --
--- TOC entry 3092 (class 1259 OID 93774)
+-- TOC entry 2724 (class 1259 OID 95152)
 -- Name: index_events_2016_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11317,7 +7887,7 @@ CREATE INDEX index_events_2016_status ON events_2016 USING btree (status) WHERE 
 
 
 --
--- TOC entry 3124 (class 1259 OID 93775)
+-- TOC entry 2746 (class 1259 OID 95231)
 -- Name: index_events_dbsizes_2016_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11325,7 +7895,7 @@ CREATE INDEX index_events_dbsizes_2016_idaccount ON events_dbsizes_2016 USING bt
 
 
 --
--- TOC entry 3125 (class 1259 OID 93776)
+-- TOC entry 2747 (class 1259 OID 95232)
 -- Name: index_events_dbsizes_2016_idequipment; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11333,7 +7903,7 @@ CREATE INDEX index_events_dbsizes_2016_idequipment ON events_dbsizes_2016 USING 
 
 
 --
--- TOC entry 3126 (class 1259 OID 93777)
+-- TOC entry 2748 (class 1259 OID 95233)
 -- Name: index_events_dbsizes_2016_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11341,7 +7911,23 @@ CREATE INDEX index_events_dbsizes_2016_status ON events_dbsizes_2016 USING btree
 
 
 --
--- TOC entry 3109 (class 1259 OID 93778)
+-- TOC entry 2595 (class 1259 OID 94976)
+-- Name: index_events_dbsizes_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_events_dbsizes_idaccount ON events_dbsizes USING btree (idaccount);
+
+
+--
+-- TOC entry 2596 (class 1259 OID 94977)
+-- Name: index_events_dbsizes_idequipment; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_events_dbsizes_idequipment ON events_dbsizes USING btree (idequipment);
+
+
+--
+-- TOC entry 2597 (class 1259 OID 94978)
 -- Name: index_events_dbsizes_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11349,7 +7935,7 @@ CREATE INDEX index_events_dbsizes_status ON events_dbsizes USING btree (status) 
 
 
 --
--- TOC entry 3171 (class 1259 OID 93779)
+-- TOC entry 2710 (class 1259 OID 95111)
 -- Name: index_events_device_uptime_2016_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11357,7 +7943,7 @@ CREATE INDEX index_events_device_uptime_2016_idaccount ON events_device_uptime_2
 
 
 --
--- TOC entry 3172 (class 1259 OID 93780)
+-- TOC entry 2711 (class 1259 OID 95112)
 -- Name: index_events_device_uptime_2016_idequipment; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11365,7 +7951,7 @@ CREATE INDEX index_events_device_uptime_2016_idequipment ON events_device_uptime
 
 
 --
--- TOC entry 3173 (class 1259 OID 93781)
+-- TOC entry 2712 (class 1259 OID 95113)
 -- Name: index_events_device_uptime_2016_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11373,23 +7959,31 @@ CREATE INDEX index_events_device_uptime_2016_status ON events_device_uptime_2016
 
 
 --
--- TOC entry 3237 (class 1259 OID 93782)
--- Name: index_events_diskspace_201602_drive; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2602 (class 1259 OID 94983)
+-- Name: index_events_device_uptime_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX index_events_diskspace_201602_drive ON events_diskspace_201602 USING btree (drive);
-
-
---
--- TOC entry 3246 (class 1259 OID 93783)
--- Name: index_events_diskspace_201603_drive; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_events_diskspace_201603_drive ON events_diskspace_201603 USING btree (drive);
+CREATE INDEX index_events_device_uptime_idaccount ON events_device_uptime USING btree (idaccount);
 
 
 --
--- TOC entry 3218 (class 1259 OID 93784)
+-- TOC entry 2603 (class 1259 OID 94984)
+-- Name: index_events_device_uptime_idequipment; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_events_device_uptime_idequipment ON events_device_uptime USING btree (idequipment);
+
+
+--
+-- TOC entry 2604 (class 1259 OID 94985)
+-- Name: index_events_device_uptime_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_events_device_uptime_status ON events_device_uptime USING btree (status) WHERE (status = 0);
+
+
+--
+-- TOC entry 2698 (class 1259 OID 95071)
 -- Name: index_events_diskspace_2016_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11397,7 +7991,7 @@ CREATE INDEX index_events_diskspace_2016_idaccount ON events_diskspace_2016 USIN
 
 
 --
--- TOC entry 3219 (class 1259 OID 93785)
+-- TOC entry 2699 (class 1259 OID 95072)
 -- Name: index_events_diskspace_2016_idequipment; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11405,7 +7999,7 @@ CREATE INDEX index_events_diskspace_2016_idequipment ON events_diskspace_2016 US
 
 
 --
--- TOC entry 3220 (class 1259 OID 93786)
+-- TOC entry 2700 (class 1259 OID 95073)
 -- Name: index_events_diskspace_2016_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11413,7 +8007,23 @@ CREATE INDEX index_events_diskspace_2016_status ON events_diskspace_2016 USING b
 
 
 --
--- TOC entry 3203 (class 1259 OID 93787)
+-- TOC entry 2609 (class 1259 OID 94996)
+-- Name: index_events_diskspace_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_events_diskspace_idaccount ON events_diskspace USING btree (idaccount);
+
+
+--
+-- TOC entry 2610 (class 1259 OID 94997)
+-- Name: index_events_diskspace_idequipment; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_events_diskspace_idequipment ON events_diskspace USING btree (idequipment);
+
+
+--
+-- TOC entry 2611 (class 1259 OID 94998)
 -- Name: index_events_diskspace_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11421,15 +8031,7 @@ CREATE INDEX index_events_diskspace_status ON events_diskspace USING btree (stat
 
 
 --
--- TOC entry 3156 (class 1259 OID 93788)
--- Name: index_events_dut; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_events_dut ON events_device_uptime USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3029 (class 1259 OID 93789)
+-- TOC entry 2542 (class 1259 OID 93789)
 -- Name: index_events_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11437,7 +8039,7 @@ CREATE INDEX index_events_idaccount ON events USING btree (idaccount);
 
 
 --
--- TOC entry 3030 (class 1259 OID 93790)
+-- TOC entry 2543 (class 1259 OID 93790)
 -- Name: index_events_idequipment; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11445,23 +8047,7 @@ CREATE INDEX index_events_idequipment ON events USING btree (idequipment);
 
 
 --
--- TOC entry 3238 (class 1259 OID 93791)
--- Name: index_events_idequipment_a; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_events_idequipment_a ON events_diskspace_201602 USING btree (idequipment);
-
-
---
--- TOC entry 3247 (class 1259 OID 93792)
--- Name: index_events_idequipment_b; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_events_idequipment_b ON events_diskspace_201603 USING btree (idequipment);
-
-
---
--- TOC entry 3263 (class 1259 OID 93793)
+-- TOC entry 2770 (class 1259 OID 96042)
 -- Name: index_events_jobs_1990_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11469,7 +8055,7 @@ CREATE INDEX index_events_jobs_1990_idaccount ON events_jobs_1990 USING btree (i
 
 
 --
--- TOC entry 3264 (class 1259 OID 93794)
+-- TOC entry 2771 (class 1259 OID 96043)
 -- Name: index_events_jobs_1990_idequipment; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11477,7 +8063,7 @@ CREATE INDEX index_events_jobs_1990_idequipment ON events_jobs_1990 USING btree 
 
 
 --
--- TOC entry 3265 (class 1259 OID 93795)
+-- TOC entry 2772 (class 1259 OID 96044)
 -- Name: index_events_jobs_1990_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11485,47 +8071,31 @@ CREATE INDEX index_events_jobs_1990_status ON events_jobs_1990 USING btree (stat
 
 
 --
--- TOC entry 3290 (class 1259 OID 93796)
--- Name: index_events_jobs_201411_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2758 (class 1259 OID 96066)
+-- Name: index_events_jobs_2015_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX index_events_jobs_201411_status ON events_jobs_201411 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3338 (class 1259 OID 93797)
--- Name: index_events_jobs_201506_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_events_jobs_201506_status ON events_jobs_201506 USING btree (status) WHERE (status = 0);
+CREATE INDEX index_events_jobs_2015_idaccount ON events_jobs_2015 USING btree (idaccount);
 
 
 --
--- TOC entry 3346 (class 1259 OID 93798)
--- Name: index_events_jobs_201507_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2759 (class 1259 OID 96067)
+-- Name: index_events_jobs_2015_idequipment; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX index_events_jobs_201507_status ON events_jobs_201507 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3354 (class 1259 OID 93799)
--- Name: index_events_jobs_201508_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX index_events_jobs_201508_status ON events_jobs_201508 USING btree (status) WHERE (status = 0);
+CREATE INDEX index_events_jobs_2015_idequipment ON events_jobs_2015 USING btree (idequipment);
 
 
 --
--- TOC entry 3362 (class 1259 OID 93800)
--- Name: index_events_jobs_201509_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 2760 (class 1259 OID 96068)
+-- Name: index_events_jobs_2015_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX index_events_jobs_201509_status ON events_jobs_201509 USING btree (status) WHERE (status = 0);
+CREATE INDEX index_events_jobs_2015_status ON events_jobs_2015 USING btree (status) WHERE (status = 0);
 
 
 --
--- TOC entry 3395 (class 1259 OID 93801)
+-- TOC entry 2734 (class 1259 OID 95192)
 -- Name: index_events_jobs_2016_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11533,7 +8103,7 @@ CREATE INDEX index_events_jobs_2016_idaccount ON events_jobs_2016 USING btree (i
 
 
 --
--- TOC entry 3396 (class 1259 OID 93802)
+-- TOC entry 2735 (class 1259 OID 95193)
 -- Name: index_events_jobs_2016_idequipment; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11541,7 +8111,7 @@ CREATE INDEX index_events_jobs_2016_idequipment ON events_jobs_2016 USING btree 
 
 
 --
--- TOC entry 3397 (class 1259 OID 93803)
+-- TOC entry 2736 (class 1259 OID 95194)
 -- Name: index_events_jobs_2016_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11549,7 +8119,23 @@ CREATE INDEX index_events_jobs_2016_status ON events_jobs_2016 USING btree (stat
 
 
 --
--- TOC entry 3254 (class 1259 OID 93804)
+-- TOC entry 2616 (class 1259 OID 95011)
+-- Name: index_events_jobs_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_events_jobs_idaccount ON events_jobs USING btree (idaccount);
+
+
+--
+-- TOC entry 2617 (class 1259 OID 95012)
+-- Name: index_events_jobs_idequipment; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_events_jobs_idequipment ON events_jobs USING btree (idequipment);
+
+
+--
+-- TOC entry 2618 (class 1259 OID 95013)
 -- Name: index_events_jobs_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11557,7 +8143,31 @@ CREATE INDEX index_events_jobs_status ON events_jobs USING btree (status) WHERE 
 
 
 --
--- TOC entry 3031 (class 1259 OID 93805)
+-- TOC entry 2623 (class 1259 OID 95026)
+-- Name: index_events_raid_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_events_raid_idaccount ON events_raid USING btree (idaccount);
+
+
+--
+-- TOC entry 2624 (class 1259 OID 95027)
+-- Name: index_events_raid_idequipment; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_events_raid_idequipment ON events_raid USING btree (idequipment);
+
+
+--
+-- TOC entry 2625 (class 1259 OID 95028)
+-- Name: index_events_raid_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_events_raid_status ON events_raid USING btree (status) WHERE (status = 0);
+
+
+--
+-- TOC entry 2544 (class 1259 OID 93805)
 -- Name: index_events_status; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11565,7 +8175,7 @@ CREATE INDEX index_events_status ON events USING btree (status) WHERE (status = 
 
 
 --
--- TOC entry 3440 (class 1259 OID 93806)
+-- TOC entry 2628 (class 1259 OID 93806)
 -- Name: index_eventtypes; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11573,7 +8183,7 @@ CREATE INDEX index_eventtypes ON eventtypes USING btree (code);
 
 
 --
--- TOC entry 3449 (class 1259 OID 93807)
+-- TOC entry 2637 (class 1259 OID 93807)
 -- Name: index_farma_lista_precios_idaccount; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11581,7 +8191,7 @@ CREATE INDEX index_farma_lista_precios_idaccount ON farma_lista_precios_farmacia
 
 
 --
--- TOC entry 3468 (class 1259 OID 93808)
+-- TOC entry 2656 (class 1259 OID 93808)
 -- Name: index_network_devices_eq; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -11589,47 +8199,7 @@ CREATE INDEX index_network_devices_eq ON network_devices USING btree (equipment)
 
 
 --
--- TOC entry 3501 (class 1259 OID 93809)
--- Name: test2_dateevent_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX test2_dateevent_idx ON test2 USING btree (dateevent);
-
-
---
--- TOC entry 3502 (class 1259 OID 93810)
--- Name: test2_idaccount_ideventtype_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX test2_idaccount_ideventtype_idx ON test2 USING btree (idaccount, ideventtype);
-
-
---
--- TOC entry 3503 (class 1259 OID 93811)
--- Name: test2_idaccount_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX test2_idaccount_idx ON test2 USING btree (idaccount);
-
-
---
--- TOC entry 3506 (class 1259 OID 93812)
--- Name: test2_status_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX test2_status_idx ON test2 USING btree (status) WHERE (status = 0);
-
-
---
--- TOC entry 3255 (class 1259 OID 93813)
--- Name: test_prueba; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX test_prueba ON events_jobs USING btree (dateevent);
-
-
---
--- TOC entry 3626 (class 2620 OID 93814)
+-- TOC entry 2848 (class 2620 OID 93814)
 -- Name: 1_update_ts; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11637,8 +8207,8 @@ CREATE TRIGGER "1_update_ts" BEFORE UPDATE ON contacts FOR EACH ROW EXECUTE PROC
 
 
 --
--- TOC entry 4192 (class 0 OID 0)
--- Dependencies: 3626
+-- TOC entry 3208 (class 0 OID 0)
+-- Dependencies: 2848
 -- Name: TRIGGER "1_update_ts" ON contacts; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -11646,7 +8216,7 @@ COMMENT ON TRIGGER "1_update_ts" ON contacts IS 'Actualiza el ts cuando un regis
 
 
 --
--- TOC entry 3629 (class 2620 OID 93815)
+-- TOC entry 2851 (class 2620 OID 93815)
 -- Name: 1_update_ts; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11654,8 +8224,8 @@ CREATE TRIGGER "1_update_ts" BEFORE UPDATE ON accounts FOR EACH ROW EXECUTE PROC
 
 
 --
--- TOC entry 4193 (class 0 OID 0)
--- Dependencies: 3629
+-- TOC entry 3209 (class 0 OID 0)
+-- Dependencies: 2851
 -- Name: TRIGGER "1_update_ts" ON accounts; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -11663,7 +8233,7 @@ COMMENT ON TRIGGER "1_update_ts" ON accounts IS 'Actualiza el ts cuando un regis
 
 
 --
--- TOC entry 3633 (class 2620 OID 93816)
+-- TOC entry 2855 (class 2620 OID 93816)
 -- Name: 1_update_ts; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11671,8 +8241,8 @@ CREATE TRIGGER "1_update_ts" BEFORE UPDATE ON admins FOR EACH ROW EXECUTE PROCED
 
 
 --
--- TOC entry 4194 (class 0 OID 0)
--- Dependencies: 3633
+-- TOC entry 3210 (class 0 OID 0)
+-- Dependencies: 2855
 -- Name: TRIGGER "1_update_ts" ON admins; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -11680,7 +8250,7 @@ COMMENT ON TRIGGER "1_update_ts" ON admins IS 'Actualiza el ts cuando un registr
 
 
 --
--- TOC entry 3796 (class 2620 OID 93817)
+-- TOC entry 2895 (class 2620 OID 93817)
 -- Name: 1on_insert_update; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11688,7 +8258,7 @@ CREATE TRIGGER "1on_insert_update" BEFORE INSERT OR UPDATE ON network_devices FO
 
 
 --
--- TOC entry 3634 (class 2620 OID 93818)
+-- TOC entry 2856 (class 2620 OID 93818)
 -- Name: 2_on_insert_update; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11696,7 +8266,7 @@ CREATE TRIGGER "2_on_insert_update" BEFORE INSERT OR UPDATE ON admins FOR EACH R
 
 
 --
--- TOC entry 3627 (class 2620 OID 93819)
+-- TOC entry 2849 (class 2620 OID 93819)
 -- Name: 2_on_insert_update; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11704,7 +8274,7 @@ CREATE TRIGGER "2_on_insert_update" BEFORE INSERT OR UPDATE OF identification ON
 
 
 --
--- TOC entry 3630 (class 2620 OID 93820)
+-- TOC entry 2852 (class 2620 OID 93820)
 -- Name: 2_on_insert_update; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11712,7 +8282,7 @@ CREATE TRIGGER "2_on_insert_update" BEFORE INSERT OR UPDATE OF identification ON
 
 
 --
--- TOC entry 3631 (class 2620 OID 93821)
+-- TOC entry 2853 (class 2620 OID 93821)
 -- Name: 3_on_insert_update; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11720,7 +8290,7 @@ CREATE TRIGGER "3_on_insert_update" BEFORE INSERT OR UPDATE OF idaccounttype, ac
 
 
 --
--- TOC entry 3797 (class 2620 OID 93822)
+-- TOC entry 2931 (class 2620 OID 96255)
 -- Name: before_insert; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11728,7 +8298,7 @@ CREATE TRIGGER before_insert BEFORE INSERT ON notification_area FOR EACH ROW EXE
 
 
 --
--- TOC entry 3646 (class 2620 OID 93823)
+-- TOC entry 2868 (class 2620 OID 93823)
 -- Name: on_before_insert_comment; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11736,7 +8306,7 @@ CREATE TRIGGER on_before_insert_comment BEFORE INSERT ON event_comments FOR EACH
 
 
 --
--- TOC entry 3616 (class 2620 OID 93824)
+-- TOC entry 2838 (class 2620 OID 93824)
 -- Name: on_before_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11744,8 +8314,8 @@ CREATE TRIGGER on_before_insert_event BEFORE INSERT ON events FOR EACH ROW EXECU
 
 
 --
--- TOC entry 4195 (class 0 OID 0)
--- Dependencies: 3616
+-- TOC entry 3211 (class 0 OID 0)
+-- Dependencies: 2838
 -- Name: TRIGGER on_before_insert_event ON events; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -11753,7 +8323,7 @@ COMMENT ON TRIGGER on_before_insert_event ON events IS 'Se dispara cuando se tra
 
 
 --
--- TOC entry 3717 (class 2620 OID 93825)
+-- TOC entry 2879 (class 2620 OID 93825)
 -- Name: on_before_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11761,7 +8331,7 @@ CREATE TRIGGER on_before_insert_event BEFORE INSERT ON events_jobs FOR EACH ROW 
 
 
 --
--- TOC entry 3663 (class 2620 OID 93826)
+-- TOC entry 2870 (class 2620 OID 93826)
 -- Name: on_before_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11769,8 +8339,8 @@ CREATE TRIGGER on_before_insert_event BEFORE INSERT ON events_dbsizes FOR EACH R
 
 
 --
--- TOC entry 4196 (class 0 OID 0)
--- Dependencies: 3663
+-- TOC entry 3212 (class 0 OID 0)
+-- Dependencies: 2870
 -- Name: TRIGGER on_before_insert_event ON events_dbsizes; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -11778,7 +8348,7 @@ COMMENT ON TRIGGER on_before_insert_event ON events_dbsizes IS 'Se dispara cuand
 
 
 --
--- TOC entry 3699 (class 2620 OID 93827)
+-- TOC entry 2877 (class 2620 OID 93827)
 -- Name: on_before_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11786,7 +8356,7 @@ CREATE TRIGGER on_before_insert_event BEFORE INSERT ON events_diskspace FOR EACH
 
 
 --
--- TOC entry 3681 (class 2620 OID 93828)
+-- TOC entry 2873 (class 2620 OID 93828)
 -- Name: on_before_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11794,8 +8364,8 @@ CREATE TRIGGER on_before_insert_event BEFORE INSERT ON events_device_uptime FOR 
 
 
 --
--- TOC entry 4197 (class 0 OID 0)
--- Dependencies: 3681
+-- TOC entry 3213 (class 0 OID 0)
+-- Dependencies: 2873
 -- Name: TRIGGER on_before_insert_event ON events_device_uptime; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -11803,7 +8373,7 @@ COMMENT ON TRIGGER on_before_insert_event ON events_device_uptime IS 'Se dispara
 
 
 --
--- TOC entry 3781 (class 2620 OID 93829)
+-- TOC entry 2883 (class 2620 OID 93829)
 -- Name: on_before_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11811,7 +8381,7 @@ CREATE TRIGGER on_before_insert_event BEFORE INSERT ON events_raid FOR EACH ROW 
 
 
 --
--- TOC entry 3622 (class 2620 OID 93830)
+-- TOC entry 2844 (class 2620 OID 93830)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11819,8 +8389,8 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON account_stat
 
 
 --
--- TOC entry 4198 (class 0 OID 0)
--- Dependencies: 3622
+-- TOC entry 3214 (class 0 OID 0)
+-- Dependencies: 2844
 -- Name: TRIGGER on_changed_table ON account_states; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -11828,7 +8398,7 @@ COMMENT ON TRIGGER on_changed_table ON account_states IS 'Actualiza la tabla sys
 
 
 --
--- TOC entry 3624 (class 2620 OID 93831)
+-- TOC entry 2846 (class 2620 OID 93831)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11836,7 +8406,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON account_type
 
 
 --
--- TOC entry 3636 (class 2620 OID 93832)
+-- TOC entry 2858 (class 2620 OID 93832)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11844,7 +8414,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON attachments 
 
 
 --
--- TOC entry 3628 (class 2620 OID 93833)
+-- TOC entry 2850 (class 2620 OID 93833)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11852,7 +8422,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON contacts FOR
 
 
 --
--- TOC entry 3639 (class 2620 OID 93834)
+-- TOC entry 2861 (class 2620 OID 93834)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11860,7 +8430,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON emails FOR E
 
 
 --
--- TOC entry 3647 (class 2620 OID 93835)
+-- TOC entry 2869 (class 2620 OID 93835)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11868,15 +8438,17 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON event_commen
 
 
 --
--- TOC entry 3617 (class 2620 OID 93836)
+-- TOC entry 2839 (class 2620 OID 93836)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
 
+ALTER TABLE events DISABLE TRIGGER on_changed_table;
+
 
 --
--- TOC entry 3788 (class 2620 OID 93837)
+-- TOC entry 2887 (class 2620 OID 93837)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11884,7 +8456,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON eventtypes F
 
 
 --
--- TOC entry 3792 (class 2620 OID 93838)
+-- TOC entry 2891 (class 2620 OID 93838)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11892,7 +8464,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON groups FOR E
 
 
 --
--- TOC entry 3794 (class 2620 OID 93839)
+-- TOC entry 2893 (class 2620 OID 93839)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11900,7 +8472,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON identificati
 
 
 --
--- TOC entry 3802 (class 2620 OID 93840)
+-- TOC entry 2898 (class 2620 OID 93840)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11908,7 +8480,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON phone_types 
 
 
 --
--- TOC entry 3804 (class 2620 OID 93841)
+-- TOC entry 2900 (class 2620 OID 93841)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11916,7 +8488,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON phones FOR E
 
 
 --
--- TOC entry 3800 (class 2620 OID 93842)
+-- TOC entry 2896 (class 2620 OID 93842)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11924,15 +8496,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON phone_provid
 
 
 --
--- TOC entry 3798 (class 2620 OID 93843)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON notification_area FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3641 (class 2620 OID 93844)
+-- TOC entry 2863 (class 2620 OID 93844)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11940,7 +8504,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON equipments F
 
 
 --
--- TOC entry 3620 (class 2620 OID 93845)
+-- TOC entry 2842 (class 2620 OID 93845)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11948,7 +8512,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON account_cont
 
 
 --
--- TOC entry 3644 (class 2620 OID 93846)
+-- TOC entry 2866 (class 2620 OID 93846)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11956,7 +8520,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON event_commen
 
 
 --
--- TOC entry 3632 (class 2620 OID 93847)
+-- TOC entry 2854 (class 2620 OID 93847)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11964,7 +8528,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON accounts FOR
 
 
 --
--- TOC entry 3718 (class 2620 OID 93848)
+-- TOC entry 2880 (class 2620 OID 93848)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -11972,31 +8536,17 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs 
 
 
 --
--- TOC entry 3757 (class 2620 OID 93849)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_201509 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3754 (class 2620 OID 93850)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_201508 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3664 (class 2620 OID 93851)
+-- TOC entry 2871 (class 2620 OID 93851)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_dbsizes FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
 
+ALTER TABLE events_dbsizes DISABLE TRIGGER on_changed_table;
+
 
 --
--- TOC entry 3700 (class 2620 OID 93852)
+-- TOC entry 2876 (class 2620 OID 93852)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12006,7 +8556,7 @@ ALTER TABLE events_diskspace DISABLE TRIGGER on_changed_table;
 
 
 --
--- TOC entry 3682 (class 2620 OID 93853)
+-- TOC entry 2874 (class 2620 OID 93853)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12016,95 +8566,7 @@ ALTER TABLE events_device_uptime DISABLE TRIGGER on_changed_table;
 
 
 --
--- TOC entry 3751 (class 2620 OID 93854)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_201507 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3730 (class 2620 OID 93855)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_201411 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3748 (class 2620 OID 93856)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_201506 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3733 (class 2620 OID 93857)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_201412 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3760 (class 2620 OID 93858)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_201510 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3724 (class 2620 OID 93859)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_199001 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3745 (class 2620 OID 93860)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_201505 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3739 (class 2620 OID 93861)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_201503 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3763 (class 2620 OID 93862)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_201511 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3742 (class 2620 OID 93863)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_201504 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3727 (class 2620 OID 93864)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_201407 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3782 (class 2620 OID 93865)
+-- TOC entry 2884 (class 2620 OID 93865)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12112,55 +8574,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_raid 
 
 
 --
--- TOC entry 3785 (class 2620 OID 93866)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_raid_201511 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3648 (class 2620 OID 93867)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_201512 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3702 (class 2620 OID 93868)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_diskspace_201512 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3666 (class 2620 OID 93869)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_dbsizes_201512 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3684 (class 2620 OID 93870)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_device_uptime_201512 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3766 (class 2620 OID 93871)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_201512 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3790 (class 2620 OID 93872)
+-- TOC entry 2889 (class 2620 OID 93872)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12168,63 +8582,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON farma_lista_
 
 
 --
--- TOC entry 3808 (class 2620 OID 93873)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON event_comments_201512 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3813 (class 2620 OID 93874)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON event_comments_201601 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3708 (class 2620 OID 93875)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_diskspace_201601 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3690 (class 2620 OID 93876)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_device_uptime_201601 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3654 (class 2620 OID 93877)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_201601 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3772 (class 2620 OID 93878)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_201601 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3672 (class 2620 OID 93879)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_dbsizes_201601 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3638 (class 2620 OID 93880)
+-- TOC entry 2860 (class 2620 OID 93880)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12232,63 +8590,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON divisions FO
 
 
 --
--- TOC entry 3657 (class 2620 OID 93881)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_201602 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3711 (class 2620 OID 93882)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_diskspace_201602 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3775 (class 2620 OID 93883)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_201602 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3675 (class 2620 OID 93884)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_dbsizes_201602 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3816 (class 2620 OID 93885)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON event_comments_201602 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3693 (class 2620 OID 93886)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_device_uptime_201602 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3778 (class 2620 OID 93887)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_201603 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3806 (class 2620 OID 93888)
+-- TOC entry 2902 (class 2620 OID 93888)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12296,47 +8598,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON account_user
 
 
 --
--- TOC entry 3714 (class 2620 OID 93889)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_diskspace_201603 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3660 (class 2620 OID 93890)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_201603 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3678 (class 2620 OID 93891)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_dbsizes_201603 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3696 (class 2620 OID 93892)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_device_uptime_201603 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3819 (class 2620 OID 93893)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON event_comments_201603 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3635 (class 2620 OID 93894)
+-- TOC entry 2857 (class 2620 OID 93894)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12344,15 +8606,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON admins FOR E
 
 
 --
--- TOC entry 3651 (class 2620 OID 93895)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_2016 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3705 (class 2620 OID 93896)
+-- TOC entry 2906 (class 2620 OID 95055)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12360,7 +8614,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_disks
 
 
 --
--- TOC entry 3687 (class 2620 OID 93897)
+-- TOC entry 2907 (class 2620 OID 95095)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12368,7 +8622,15 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_devic
 
 
 --
--- TOC entry 3769 (class 2620 OID 93898)
+-- TOC entry 2910 (class 2620 OID 95134)
+-- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_2016 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
+
+
+--
+-- TOC entry 2915 (class 2620 OID 95176)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12376,7 +8638,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_
 
 
 --
--- TOC entry 3669 (class 2620 OID 93899)
+-- TOC entry 2917 (class 2620 OID 95215)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12384,23 +8646,7 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_dbsiz
 
 
 --
--- TOC entry 3810 (class 2620 OID 93900)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON event_comments_2016 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3721 (class 2620 OID 93901)
--- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_1990 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
-
-
---
--- TOC entry 3736 (class 2620 OID 93902)
+-- TOC entry 2919 (class 2620 OID 95969)
 -- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12408,31 +8654,55 @@ CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_
 
 
 --
--- TOC entry 3814 (class 2620 OID 93903)
--- Name: on_insert; Type: TRIGGER; Schema: public; Owner: postgres
+-- TOC entry 2922 (class 2620 OID 96026)
+-- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
-CREATE TRIGGER on_insert AFTER INSERT ON event_comments_201601 FOR EACH ROW EXECUTE PROCEDURE event_comments_after_insert();
-
-
---
--- TOC entry 3817 (class 2620 OID 93904)
--- Name: on_insert; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert AFTER INSERT ON event_comments_201602 FOR EACH ROW EXECUTE PROCEDURE event_comments_after_insert();
+CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_jobs_1990 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
 
 
 --
--- TOC entry 3820 (class 2620 OID 93905)
--- Name: on_insert; Type: TRIGGER; Schema: public; Owner: postgres
+-- TOC entry 2926 (class 2620 OID 96113)
+-- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
-CREATE TRIGGER on_insert AFTER INSERT ON event_comments_201603 FOR EACH ROW EXECUTE PROCEDURE event_comments_after_insert();
+CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_diskspace_2015 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
 
 
 --
--- TOC entry 3811 (class 2620 OID 93906)
+-- TOC entry 2928 (class 2620 OID 96139)
+-- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_device_uptime_2015 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
+
+
+--
+-- TOC entry 2929 (class 2620 OID 96161)
+-- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON events_dbsizes_2015 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
+
+
+--
+-- TOC entry 2932 (class 2620 OID 96256)
+-- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON notification_area FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
+
+
+--
+-- TOC entry 2934 (class 2620 OID 96277)
+-- Name: on_changed_table; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER on_changed_table AFTER INSERT OR DELETE OR UPDATE ON event_comments_2016 FOR EACH ROW EXECUTE PROCEDURE on_changed_table();
+
+
+--
+-- TOC entry 2936 (class 2620 OID 96279)
 -- Name: on_insert; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12440,7 +8710,7 @@ CREATE TRIGGER on_insert AFTER INSERT ON event_comments_2016 FOR EACH ROW EXECUT
 
 
 --
--- TOC entry 3618 (class 2620 OID 93907)
+-- TOC entry 2840 (class 2620 OID 93907)
 -- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12448,7 +8718,7 @@ CREATE TRIGGER on_insert_event AFTER INSERT ON events FOR EACH ROW EXECUTE PROCE
 
 
 --
--- TOC entry 3719 (class 2620 OID 93908)
+-- TOC entry 2881 (class 2620 OID 93908)
 -- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12456,111 +8726,7 @@ CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs FOR EACH ROW EXECUTE 
 
 
 --
--- TOC entry 3758 (class 2620 OID 93909)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_201509 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3755 (class 2620 OID 93910)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_201508 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3752 (class 2620 OID 93911)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_201507 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3731 (class 2620 OID 93912)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_201411 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3749 (class 2620 OID 93913)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_201506 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3734 (class 2620 OID 93914)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_201412 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3761 (class 2620 OID 93915)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_201510 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3725 (class 2620 OID 93916)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_199001 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3746 (class 2620 OID 93917)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_201505 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3740 (class 2620 OID 93918)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_201503 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3764 (class 2620 OID 93919)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_201511 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3743 (class 2620 OID 93920)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_201504 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3728 (class 2620 OID 93921)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_201407 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3783 (class 2620 OID 93922)
+-- TOC entry 2885 (class 2620 OID 93922)
 -- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12568,183 +8734,7 @@ CREATE TRIGGER on_insert_event AFTER INSERT ON events_raid FOR EACH ROW EXECUTE 
 
 
 --
--- TOC entry 3786 (class 2620 OID 93923)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_raid_201511 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3649 (class 2620 OID 93924)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_201512 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3703 (class 2620 OID 93925)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_diskspace_201512 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3667 (class 2620 OID 93926)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_dbsizes_201512 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3685 (class 2620 OID 93927)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_device_uptime_201512 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3767 (class 2620 OID 93928)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_201512 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3709 (class 2620 OID 93929)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_diskspace_201601 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3691 (class 2620 OID 93930)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_device_uptime_201601 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3655 (class 2620 OID 93931)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_201601 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3773 (class 2620 OID 93932)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_201601 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3673 (class 2620 OID 93933)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_dbsizes_201601 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3658 (class 2620 OID 93934)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_201602 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3712 (class 2620 OID 93935)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_diskspace_201602 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3776 (class 2620 OID 93936)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_201602 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3676 (class 2620 OID 93937)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_dbsizes_201602 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3694 (class 2620 OID 93938)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_device_uptime_201602 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3779 (class 2620 OID 93939)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_201603 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3715 (class 2620 OID 93940)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_diskspace_201603 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3661 (class 2620 OID 93941)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_201603 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3679 (class 2620 OID 93942)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_dbsizes_201603 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3697 (class 2620 OID 93943)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_device_uptime_201603 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3652 (class 2620 OID 93944)
--- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_insert_event AFTER INSERT ON events_2016 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
-
-
---
--- TOC entry 3706 (class 2620 OID 93945)
+-- TOC entry 2904 (class 2620 OID 95058)
 -- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12752,7 +8742,7 @@ CREATE TRIGGER on_insert_event AFTER INSERT ON events_diskspace_2016 FOR EACH RO
 
 
 --
--- TOC entry 3688 (class 2620 OID 93946)
+-- TOC entry 2908 (class 2620 OID 95098)
 -- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12760,7 +8750,15 @@ CREATE TRIGGER on_insert_event AFTER INSERT ON events_device_uptime_2016 FOR EAC
 
 
 --
--- TOC entry 3770 (class 2620 OID 93947)
+-- TOC entry 2912 (class 2620 OID 95137)
+-- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER on_insert_event AFTER INSERT ON events_2016 FOR EACH ROW EXECUTE PROCEDURE events_on_insert();
+
+
+--
+-- TOC entry 2913 (class 2620 OID 95179)
 -- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12768,7 +8766,7 @@ CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_2016 FOR EACH ROW EXE
 
 
 --
--- TOC entry 3670 (class 2620 OID 93948)
+-- TOC entry 2916 (class 2620 OID 95218)
 -- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12776,7 +8774,7 @@ CREATE TRIGGER on_insert_event AFTER INSERT ON events_dbsizes_2016 FOR EACH ROW 
 
 
 --
--- TOC entry 3722 (class 2620 OID 93949)
+-- TOC entry 2924 (class 2620 OID 96029)
 -- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12784,7 +8782,7 @@ CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_1990 FOR EACH ROW EXE
 
 
 --
--- TOC entry 3737 (class 2620 OID 93950)
+-- TOC entry 2921 (class 2620 OID 96053)
 -- Name: on_insert_event; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12792,7 +8790,7 @@ CREATE TRIGGER on_insert_event AFTER INSERT ON events_jobs_2015 FOR EACH ROW EXE
 
 
 --
--- TOC entry 3642 (class 2620 OID 93951)
+-- TOC entry 2864 (class 2620 OID 93951)
 -- Name: on_insert_update; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12800,8 +8798,8 @@ CREATE TRIGGER on_insert_update BEFORE INSERT OR UPDATE ON equipments FOR EACH R
 
 
 --
--- TOC entry 4199 (class 0 OID 0)
--- Dependencies: 3642
+-- TOC entry 3215 (class 0 OID 0)
+-- Dependencies: 2864
 -- Name: TRIGGER on_insert_update ON equipments; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -12809,7 +8807,7 @@ COMMENT ON TRIGGER on_insert_update ON equipments IS 'Valida datos antes de inse
 
 
 --
--- TOC entry 3623 (class 2620 OID 93952)
+-- TOC entry 2845 (class 2620 OID 93952)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12817,8 +8815,8 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON account_states FOR EACH ROW EXECUT
 
 
 --
--- TOC entry 4200 (class 0 OID 0)
--- Dependencies: 3623
+-- TOC entry 3216 (class 0 OID 0)
+-- Dependencies: 2845
 -- Name: TRIGGER on_update_row ON account_states; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -12826,7 +8824,7 @@ COMMENT ON TRIGGER on_update_row ON account_states IS 'Actualiza el ts cuando un
 
 
 --
--- TOC entry 3625 (class 2620 OID 93953)
+-- TOC entry 2847 (class 2620 OID 93953)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12834,7 +8832,7 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON account_types FOR EACH ROW EXECUTE
 
 
 --
--- TOC entry 3637 (class 2620 OID 93954)
+-- TOC entry 2859 (class 2620 OID 93954)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12842,7 +8840,7 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON attachments FOR EACH ROW EXECUTE P
 
 
 --
--- TOC entry 3640 (class 2620 OID 93955)
+-- TOC entry 2862 (class 2620 OID 93955)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12850,7 +8848,7 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON emails FOR EACH ROW EXECUTE PROCED
 
 
 --
--- TOC entry 3789 (class 2620 OID 93956)
+-- TOC entry 2888 (class 2620 OID 93956)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12858,7 +8856,7 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON eventtypes FOR EACH ROW EXECUTE PR
 
 
 --
--- TOC entry 3793 (class 2620 OID 93957)
+-- TOC entry 2892 (class 2620 OID 93957)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12866,7 +8864,7 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON groups FOR EACH ROW EXECUTE PROCED
 
 
 --
--- TOC entry 3795 (class 2620 OID 93958)
+-- TOC entry 2894 (class 2620 OID 93958)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12874,7 +8872,7 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON identification_types FOR EACH ROW 
 
 
 --
--- TOC entry 3803 (class 2620 OID 93959)
+-- TOC entry 2899 (class 2620 OID 93959)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12882,7 +8880,7 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON phone_types FOR EACH ROW EXECUTE P
 
 
 --
--- TOC entry 3805 (class 2620 OID 93960)
+-- TOC entry 2901 (class 2620 OID 93960)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12890,7 +8888,7 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON phones FOR EACH ROW EXECUTE PROCED
 
 
 --
--- TOC entry 3801 (class 2620 OID 93961)
+-- TOC entry 2897 (class 2620 OID 93961)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12898,15 +8896,7 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON phone_providers FOR EACH ROW EXECU
 
 
 --
--- TOC entry 3799 (class 2620 OID 93962)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON notification_area FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3643 (class 2620 OID 93963)
+-- TOC entry 2865 (class 2620 OID 93963)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12914,7 +8904,7 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON equipments FOR EACH ROW EXECUTE PR
 
 
 --
--- TOC entry 3621 (class 2620 OID 93964)
+-- TOC entry 2843 (class 2620 OID 93964)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12922,7 +8912,7 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON account_contacts FOR EACH ROW EXEC
 
 
 --
--- TOC entry 3645 (class 2620 OID 93965)
+-- TOC entry 2867 (class 2620 OID 93965)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12930,15 +8920,17 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON event_comments_attachments FOR EAC
 
 
 --
--- TOC entry 3619 (class 2620 OID 93966)
+-- TOC entry 2841 (class 2620 OID 93966)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE TRIGGER on_update_row BEFORE UPDATE ON events FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
 
+ALTER TABLE events DISABLE TRIGGER on_update_row;
+
 
 --
--- TOC entry 3720 (class 2620 OID 93967)
+-- TOC entry 2882 (class 2620 OID 93967)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12946,31 +8938,17 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs FOR EACH ROW EXECUTE P
 
 
 --
--- TOC entry 3759 (class 2620 OID 93968)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_201509 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3756 (class 2620 OID 93969)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_201508 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3665 (class 2620 OID 93970)
+-- TOC entry 2872 (class 2620 OID 93970)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE TRIGGER on_update_row BEFORE UPDATE ON events_dbsizes FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
 
+ALTER TABLE events_dbsizes DISABLE TRIGGER on_update_row;
+
 
 --
--- TOC entry 3701 (class 2620 OID 93971)
+-- TOC entry 2878 (class 2620 OID 93971)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12980,7 +8958,7 @@ ALTER TABLE events_diskspace DISABLE TRIGGER on_update_row;
 
 
 --
--- TOC entry 3683 (class 2620 OID 93972)
+-- TOC entry 2875 (class 2620 OID 93972)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12990,95 +8968,7 @@ ALTER TABLE events_device_uptime DISABLE TRIGGER on_update_row;
 
 
 --
--- TOC entry 3753 (class 2620 OID 93973)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_201507 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3732 (class 2620 OID 93974)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_201411 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3750 (class 2620 OID 93975)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_201506 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3735 (class 2620 OID 93976)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_201412 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3762 (class 2620 OID 93977)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_201510 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3726 (class 2620 OID 93978)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_199001 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3747 (class 2620 OID 93979)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_201505 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3741 (class 2620 OID 93980)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_201503 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3765 (class 2620 OID 93981)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_201511 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3744 (class 2620 OID 93982)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_201504 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3729 (class 2620 OID 93983)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_201407 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3784 (class 2620 OID 93984)
+-- TOC entry 2886 (class 2620 OID 93984)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -13086,15 +8976,7 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON events_raid FOR EACH ROW EXECUTE P
 
 
 --
--- TOC entry 3787 (class 2620 OID 93985)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_raid_201511 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3791 (class 2620 OID 93986)
+-- TOC entry 2890 (class 2620 OID 93986)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -13102,159 +8984,7 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON farma_lista_precios_farmacias FOR 
 
 
 --
--- TOC entry 3650 (class 2620 OID 93987)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_201512 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3704 (class 2620 OID 93988)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_diskspace_201512 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3668 (class 2620 OID 93989)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_dbsizes_201512 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3686 (class 2620 OID 93990)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_device_uptime_201512 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3768 (class 2620 OID 93991)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_201512 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3809 (class 2620 OID 93992)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON event_comments_201512 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3815 (class 2620 OID 93993)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON event_comments_201601 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3710 (class 2620 OID 93994)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_diskspace_201601 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3692 (class 2620 OID 93995)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_device_uptime_201601 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3656 (class 2620 OID 93996)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_201601 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3774 (class 2620 OID 93997)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_201601 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3674 (class 2620 OID 93998)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_dbsizes_201601 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3659 (class 2620 OID 93999)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_201602 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3713 (class 2620 OID 94000)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_diskspace_201602 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3777 (class 2620 OID 94001)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_201602 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3677 (class 2620 OID 94002)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_dbsizes_201602 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3818 (class 2620 OID 94003)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON event_comments_201602 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3695 (class 2620 OID 94004)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_device_uptime_201602 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3780 (class 2620 OID 94005)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_201603 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3807 (class 2620 OID 94006)
+-- TOC entry 2903 (class 2620 OID 94006)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -13262,55 +8992,7 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON account_users FOR EACH ROW EXECUTE
 
 
 --
--- TOC entry 3716 (class 2620 OID 94007)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_diskspace_201603 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3662 (class 2620 OID 94008)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_201603 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3680 (class 2620 OID 94009)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_dbsizes_201603 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3698 (class 2620 OID 94010)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_device_uptime_201603 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3821 (class 2620 OID 94011)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON event_comments_201603 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3653 (class 2620 OID 94012)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_2016 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3707 (class 2620 OID 94013)
+-- TOC entry 2905 (class 2620 OID 95056)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -13318,7 +9000,7 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON events_diskspace_2016 FOR EACH ROW
 
 
 --
--- TOC entry 3689 (class 2620 OID 94014)
+-- TOC entry 2909 (class 2620 OID 95096)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -13326,7 +9008,15 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON events_device_uptime_2016 FOR EACH
 
 
 --
--- TOC entry 3771 (class 2620 OID 94015)
+-- TOC entry 2911 (class 2620 OID 95135)
+-- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER on_update_row BEFORE UPDATE ON events_2016 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
+
+
+--
+-- TOC entry 2914 (class 2620 OID 95177)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -13334,7 +9024,7 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_2016 FOR EACH ROW EXEC
 
 
 --
--- TOC entry 3671 (class 2620 OID 94016)
+-- TOC entry 2918 (class 2620 OID 95216)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -13342,23 +9032,7 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON events_dbsizes_2016 FOR EACH ROW E
 
 
 --
--- TOC entry 3812 (class 2620 OID 94017)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON event_comments_2016 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3723 (class 2620 OID 94018)
--- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_1990 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
-
-
---
--- TOC entry 3738 (class 2620 OID 94019)
+-- TOC entry 2920 (class 2620 OID 95970)
 -- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -13366,7 +9040,55 @@ CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_2015 FOR EACH ROW EXEC
 
 
 --
--- TOC entry 3530 (class 2606 OID 94020)
+-- TOC entry 2923 (class 2620 OID 96027)
+-- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER on_update_row BEFORE UPDATE ON events_jobs_1990 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
+
+
+--
+-- TOC entry 2925 (class 2620 OID 96114)
+-- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER on_update_row BEFORE UPDATE ON events_diskspace_2015 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
+
+
+--
+-- TOC entry 2927 (class 2620 OID 96140)
+-- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER on_update_row BEFORE UPDATE ON events_device_uptime_2015 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
+
+
+--
+-- TOC entry 2930 (class 2620 OID 96162)
+-- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER on_update_row BEFORE UPDATE ON events_dbsizes_2015 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
+
+
+--
+-- TOC entry 2933 (class 2620 OID 96257)
+-- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER on_update_row BEFORE UPDATE ON notification_area FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
+
+
+--
+-- TOC entry 2935 (class 2620 OID 96278)
+-- Name: on_update_row; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER on_update_row BEFORE UPDATE ON event_comments_2016 FOR EACH ROW EXECUTE PROCEDURE on_update_row_update_ts();
+
+
+--
+-- TOC entry 2803 (class 2606 OID 94020)
 -- Name: fk_account_contacts_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13375,7 +9097,7 @@ ALTER TABLE ONLY account_contacts
 
 
 --
--- TOC entry 3614 (class 2606 OID 94025)
+-- TOC entry 2823 (class 2606 OID 94025)
 -- Name: fk_account_user_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13384,7 +9106,7 @@ ALTER TABLE ONLY account_users
 
 
 --
--- TOC entry 3532 (class 2606 OID 94030)
+-- TOC entry 2805 (class 2606 OID 94030)
 -- Name: fk_accounts_iddivision; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13393,7 +9115,7 @@ ALTER TABLE ONLY accounts
 
 
 --
--- TOC entry 3533 (class 2606 OID 94035)
+-- TOC entry 2806 (class 2606 OID 94035)
 -- Name: fk_admins_idcontact_idcontact; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13402,7 +9124,7 @@ ALTER TABLE ONLY admins
 
 
 --
--- TOC entry 3531 (class 2606 OID 94040)
+-- TOC entry 2804 (class 2606 OID 94040)
 -- Name: fk_contacts_ididtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13411,7 +9133,7 @@ ALTER TABLE ONLY contacts
 
 
 --
--- TOC entry 3534 (class 2606 OID 94045)
+-- TOC entry 2807 (class 2606 OID 94045)
 -- Name: fk_equipments_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13420,16 +9142,7 @@ ALTER TABLE ONLY equipments
 
 
 --
--- TOC entry 3615 (class 2606 OID 94050)
--- Name: fk_event_comments_201512_idadmin; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY event_comments_201512
-    ADD CONSTRAINT fk_event_comments_201512_idadmin FOREIGN KEY (idadmin) REFERENCES contacts(idcontact) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3535 (class 2606 OID 94055)
+-- TOC entry 2808 (class 2606 OID 94055)
 -- Name: fk_event_comments_attach_idattach; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13438,79 +9151,7 @@ ALTER TABLE ONLY event_comments_attachments
 
 
 --
--- TOC entry 3537 (class 2606 OID 94060)
--- Name: fk_events_201512_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_201512
-    ADD CONSTRAINT fk_events_201512_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3538 (class 2606 OID 94065)
--- Name: fk_events_201512_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_201512
-    ADD CONSTRAINT fk_events_201512_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3541 (class 2606 OID 94070)
--- Name: fk_events_201601_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_201601
-    ADD CONSTRAINT fk_events_201601_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3542 (class 2606 OID 94075)
--- Name: fk_events_201601_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_201601
-    ADD CONSTRAINT fk_events_201601_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3543 (class 2606 OID 94080)
--- Name: fk_events_201602_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_201602
-    ADD CONSTRAINT fk_events_201602_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3544 (class 2606 OID 94085)
--- Name: fk_events_201602_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_201602
-    ADD CONSTRAINT fk_events_201602_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3545 (class 2606 OID 94090)
--- Name: fk_events_201603_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_201603
-    ADD CONSTRAINT fk_events_201603_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3546 (class 2606 OID 94095)
--- Name: fk_events_201603_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_201603
-    ADD CONSTRAINT fk_events_201603_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3539 (class 2606 OID 94100)
+-- TOC entry 2828 (class 2606 OID 95138)
 -- Name: fk_events_2016_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13519,7 +9160,7 @@ ALTER TABLE ONLY events_2016
 
 
 --
--- TOC entry 3540 (class 2606 OID 94105)
+-- TOC entry 2829 (class 2606 OID 95143)
 -- Name: fk_events_2016_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13528,7 +9169,7 @@ ALTER TABLE ONLY events_2016
 
 
 --
--- TOC entry 3536 (class 2606 OID 94110)
+-- TOC entry 2809 (class 2606 OID 94110)
 -- Name: fk_events_comments_idadmin; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13537,79 +9178,7 @@ ALTER TABLE ONLY event_comments
 
 
 --
--- TOC entry 3547 (class 2606 OID 94115)
--- Name: fk_events_dbsizes_201512_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_dbsizes_201512
-    ADD CONSTRAINT fk_events_dbsizes_201512_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3548 (class 2606 OID 94120)
--- Name: fk_events_dbsizes_201512_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_dbsizes_201512
-    ADD CONSTRAINT fk_events_dbsizes_201512_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3551 (class 2606 OID 94125)
--- Name: fk_events_dbsizes_201601_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_dbsizes_201601
-    ADD CONSTRAINT fk_events_dbsizes_201601_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3552 (class 2606 OID 94130)
--- Name: fk_events_dbsizes_201601_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_dbsizes_201601
-    ADD CONSTRAINT fk_events_dbsizes_201601_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3553 (class 2606 OID 94135)
--- Name: fk_events_dbsizes_201602_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_dbsizes_201602
-    ADD CONSTRAINT fk_events_dbsizes_201602_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3554 (class 2606 OID 94140)
--- Name: fk_events_dbsizes_201602_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_dbsizes_201602
-    ADD CONSTRAINT fk_events_dbsizes_201602_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3555 (class 2606 OID 94145)
--- Name: fk_events_dbsizes_201603_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_dbsizes_201603
-    ADD CONSTRAINT fk_events_dbsizes_201603_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3556 (class 2606 OID 94150)
--- Name: fk_events_dbsizes_201603_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_dbsizes_201603
-    ADD CONSTRAINT fk_events_dbsizes_201603_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3549 (class 2606 OID 94155)
+-- TOC entry 2832 (class 2606 OID 95219)
 -- Name: fk_events_dbsizes_2016_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13618,7 +9187,7 @@ ALTER TABLE ONLY events_dbsizes_2016
 
 
 --
--- TOC entry 3550 (class 2606 OID 94160)
+-- TOC entry 2833 (class 2606 OID 95224)
 -- Name: fk_events_dbsizes_2016_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13627,79 +9196,25 @@ ALTER TABLE ONLY events_dbsizes_2016
 
 
 --
--- TOC entry 3557 (class 2606 OID 94165)
--- Name: fk_events_device_uptime_201512_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2810 (class 2606 OID 94966)
+-- Name: fk_events_dbsizes_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY events_device_uptime_201512
-    ADD CONSTRAINT fk_events_device_uptime_201512_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3558 (class 2606 OID 94170)
--- Name: fk_events_device_uptime_201512_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_device_uptime_201512
-    ADD CONSTRAINT fk_events_device_uptime_201512_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
+ALTER TABLE ONLY events_dbsizes
+    ADD CONSTRAINT fk_events_dbsizes_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- TOC entry 3561 (class 2606 OID 94175)
--- Name: fk_events_device_uptime_201601_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2811 (class 2606 OID 94971)
+-- Name: fk_events_dbsizes_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY events_device_uptime_201601
-    ADD CONSTRAINT fk_events_device_uptime_201601_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3562 (class 2606 OID 94180)
--- Name: fk_events_device_uptime_201601_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_device_uptime_201601
-    ADD CONSTRAINT fk_events_device_uptime_201601_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
+ALTER TABLE ONLY events_dbsizes
+    ADD CONSTRAINT fk_events_dbsizes_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
 
 
 --
--- TOC entry 3563 (class 2606 OID 94185)
--- Name: fk_events_device_uptime_201602_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_device_uptime_201602
-    ADD CONSTRAINT fk_events_device_uptime_201602_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3564 (class 2606 OID 94190)
--- Name: fk_events_device_uptime_201602_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_device_uptime_201602
-    ADD CONSTRAINT fk_events_device_uptime_201602_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3565 (class 2606 OID 94195)
--- Name: fk_events_device_uptime_201603_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_device_uptime_201603
-    ADD CONSTRAINT fk_events_device_uptime_201603_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3566 (class 2606 OID 94200)
--- Name: fk_events_device_uptime_201603_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_device_uptime_201603
-    ADD CONSTRAINT fk_events_device_uptime_201603_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3559 (class 2606 OID 94205)
+-- TOC entry 2826 (class 2606 OID 95099)
 -- Name: fk_events_device_uptime_2016_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13708,7 +9223,7 @@ ALTER TABLE ONLY events_device_uptime_2016
 
 
 --
--- TOC entry 3560 (class 2606 OID 94210)
+-- TOC entry 2827 (class 2606 OID 95104)
 -- Name: fk_events_device_uptime_2016_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13717,79 +9232,25 @@ ALTER TABLE ONLY events_device_uptime_2016
 
 
 --
--- TOC entry 3567 (class 2606 OID 94215)
--- Name: fk_events_diskspace_201512_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2812 (class 2606 OID 94940)
+-- Name: fk_events_device_uptime_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY events_diskspace_201512
-    ADD CONSTRAINT fk_events_diskspace_201512_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3568 (class 2606 OID 94220)
--- Name: fk_events_diskspace_201512_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_diskspace_201512
-    ADD CONSTRAINT fk_events_diskspace_201512_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
+ALTER TABLE ONLY events_device_uptime
+    ADD CONSTRAINT fk_events_device_uptime_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- TOC entry 3571 (class 2606 OID 94225)
--- Name: fk_events_diskspace_201601_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2813 (class 2606 OID 94945)
+-- Name: fk_events_device_uptime_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY events_diskspace_201601
-    ADD CONSTRAINT fk_events_diskspace_201601_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3572 (class 2606 OID 94230)
--- Name: fk_events_diskspace_201601_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_diskspace_201601
-    ADD CONSTRAINT fk_events_diskspace_201601_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
+ALTER TABLE ONLY events_device_uptime
+    ADD CONSTRAINT fk_events_device_uptime_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
 
 
 --
--- TOC entry 3573 (class 2606 OID 94235)
--- Name: fk_events_diskspace_201602_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_diskspace_201602
-    ADD CONSTRAINT fk_events_diskspace_201602_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3574 (class 2606 OID 94240)
--- Name: fk_events_diskspace_201602_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_diskspace_201602
-    ADD CONSTRAINT fk_events_diskspace_201602_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3575 (class 2606 OID 94245)
--- Name: fk_events_diskspace_201603_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_diskspace_201603
-    ADD CONSTRAINT fk_events_diskspace_201603_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3576 (class 2606 OID 94250)
--- Name: fk_events_diskspace_201603_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_diskspace_201603
-    ADD CONSTRAINT fk_events_diskspace_201603_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3569 (class 2606 OID 94255)
+-- TOC entry 2824 (class 2606 OID 95059)
 -- Name: fk_events_diskspace_2016_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13798,7 +9259,7 @@ ALTER TABLE ONLY events_diskspace_2016
 
 
 --
--- TOC entry 3570 (class 2606 OID 94260)
+-- TOC entry 2825 (class 2606 OID 95064)
 -- Name: fk_events_diskspace_2016_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13807,7 +9268,25 @@ ALTER TABLE ONLY events_diskspace_2016
 
 
 --
--- TOC entry 3528 (class 2606 OID 94265)
+-- TOC entry 2815 (class 2606 OID 94991)
+-- Name: fk_events_diskspace_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY events_diskspace
+    ADD CONSTRAINT fk_events_diskspace_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 2814 (class 2606 OID 94986)
+-- Name: fk_events_events_diskspace_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY events_diskspace
+    ADD CONSTRAINT fk_events_events_diskspace_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2801 (class 2606 OID 94265)
 -- Name: fk_events_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13816,7 +9295,7 @@ ALTER TABLE ONLY events
 
 
 --
--- TOC entry 3529 (class 2606 OID 94270)
+-- TOC entry 2802 (class 2606 OID 94270)
 -- Name: fk_events_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13825,25 +9304,7 @@ ALTER TABLE ONLY events
 
 
 --
--- TOC entry 3579 (class 2606 OID 94275)
--- Name: fk_events_jobs_199001_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_199001
-    ADD CONSTRAINT fk_events_jobs_199001_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3580 (class 2606 OID 94280)
--- Name: fk_events_jobs_199001_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_199001
-    ADD CONSTRAINT fk_events_jobs_199001_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3577 (class 2606 OID 94285)
+-- TOC entry 2836 (class 2606 OID 96030)
 -- Name: fk_events_jobs_1990_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13852,7 +9313,7 @@ ALTER TABLE ONLY events_jobs_1990
 
 
 --
--- TOC entry 3578 (class 2606 OID 94290)
+-- TOC entry 2837 (class 2606 OID 96035)
 -- Name: fk_events_jobs_1990_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -13861,187 +9322,7 @@ ALTER TABLE ONLY events_jobs_1990
 
 
 --
--- TOC entry 3583 (class 2606 OID 94295)
--- Name: fk_events_jobs_201503_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201503
-    ADD CONSTRAINT fk_events_jobs_201503_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3584 (class 2606 OID 94300)
--- Name: fk_events_jobs_201503_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201503
-    ADD CONSTRAINT fk_events_jobs_201503_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3585 (class 2606 OID 94305)
--- Name: fk_events_jobs_201504_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201504
-    ADD CONSTRAINT fk_events_jobs_201504_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3586 (class 2606 OID 94310)
--- Name: fk_events_jobs_201504_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201504
-    ADD CONSTRAINT fk_events_jobs_201504_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3587 (class 2606 OID 94315)
--- Name: fk_events_jobs_201505_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201505
-    ADD CONSTRAINT fk_events_jobs_201505_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3588 (class 2606 OID 94320)
--- Name: fk_events_jobs_201505_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201505
-    ADD CONSTRAINT fk_events_jobs_201505_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3589 (class 2606 OID 94325)
--- Name: fk_events_jobs_201506_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201506
-    ADD CONSTRAINT fk_events_jobs_201506_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3590 (class 2606 OID 94330)
--- Name: fk_events_jobs_201506_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201506
-    ADD CONSTRAINT fk_events_jobs_201506_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3591 (class 2606 OID 94335)
--- Name: fk_events_jobs_201507_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201507
-    ADD CONSTRAINT fk_events_jobs_201507_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3592 (class 2606 OID 94340)
--- Name: fk_events_jobs_201507_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201507
-    ADD CONSTRAINT fk_events_jobs_201507_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3593 (class 2606 OID 94345)
--- Name: fk_events_jobs_201508_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201508
-    ADD CONSTRAINT fk_events_jobs_201508_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3594 (class 2606 OID 94350)
--- Name: fk_events_jobs_201508_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201508
-    ADD CONSTRAINT fk_events_jobs_201508_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3595 (class 2606 OID 94355)
--- Name: fk_events_jobs_201509_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201509
-    ADD CONSTRAINT fk_events_jobs_201509_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3596 (class 2606 OID 94360)
--- Name: fk_events_jobs_201509_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201509
-    ADD CONSTRAINT fk_events_jobs_201509_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3597 (class 2606 OID 94365)
--- Name: fk_events_jobs_201510_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201510
-    ADD CONSTRAINT fk_events_jobs_201510_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3598 (class 2606 OID 94370)
--- Name: fk_events_jobs_201510_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201510
-    ADD CONSTRAINT fk_events_jobs_201510_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3599 (class 2606 OID 94375)
--- Name: fk_events_jobs_201511_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201511
-    ADD CONSTRAINT fk_events_jobs_201511_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3600 (class 2606 OID 94380)
--- Name: fk_events_jobs_201511_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201511
-    ADD CONSTRAINT fk_events_jobs_201511_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3601 (class 2606 OID 94385)
--- Name: fk_events_jobs_201512_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201512
-    ADD CONSTRAINT fk_events_jobs_201512_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3602 (class 2606 OID 94390)
--- Name: fk_events_jobs_201512_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201512
-    ADD CONSTRAINT fk_events_jobs_201512_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3581 (class 2606 OID 94395)
+-- TOC entry 2834 (class 2606 OID 96054)
 -- Name: fk_events_jobs_2015_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -14050,7 +9331,7 @@ ALTER TABLE ONLY events_jobs_2015
 
 
 --
--- TOC entry 3582 (class 2606 OID 94400)
+-- TOC entry 2835 (class 2606 OID 96059)
 -- Name: fk_events_jobs_2015_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -14059,61 +9340,7 @@ ALTER TABLE ONLY events_jobs_2015
 
 
 --
--- TOC entry 3605 (class 2606 OID 94405)
--- Name: fk_events_jobs_201601_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201601
-    ADD CONSTRAINT fk_events_jobs_201601_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3606 (class 2606 OID 94410)
--- Name: fk_events_jobs_201601_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201601
-    ADD CONSTRAINT fk_events_jobs_201601_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3607 (class 2606 OID 94415)
--- Name: fk_events_jobs_201602_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201602
-    ADD CONSTRAINT fk_events_jobs_201602_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3608 (class 2606 OID 94420)
--- Name: fk_events_jobs_201602_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201602
-    ADD CONSTRAINT fk_events_jobs_201602_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3609 (class 2606 OID 94425)
--- Name: fk_events_jobs_201603_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201603
-    ADD CONSTRAINT fk_events_jobs_201603_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 3610 (class 2606 OID 94430)
--- Name: fk_events_jobs_201603_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY events_jobs_201603
-    ADD CONSTRAINT fk_events_jobs_201603_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
-
-
---
--- TOC entry 3603 (class 2606 OID 94435)
+-- TOC entry 2830 (class 2606 OID 95180)
 -- Name: fk_events_jobs_2016_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -14122,7 +9349,7 @@ ALTER TABLE ONLY events_jobs_2016
 
 
 --
--- TOC entry 3604 (class 2606 OID 94440)
+-- TOC entry 2831 (class 2606 OID 95185)
 -- Name: fk_events_jobs_2016_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -14131,7 +9358,43 @@ ALTER TABLE ONLY events_jobs_2016
 
 
 --
--- TOC entry 3611 (class 2606 OID 94445)
+-- TOC entry 2816 (class 2606 OID 95001)
+-- Name: fk_events_jobs_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY events_jobs
+    ADD CONSTRAINT fk_events_jobs_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2817 (class 2606 OID 95006)
+-- Name: fk_events_jobs_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY events_jobs
+    ADD CONSTRAINT fk_events_jobs_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 2818 (class 2606 OID 95016)
+-- Name: fk_events_raid_idaccount; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY events_raid
+    ADD CONSTRAINT fk_events_raid_idaccount FOREIGN KEY (idaccount) REFERENCES accounts(idcontact) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2819 (class 2606 OID 95021)
+-- Name: fk_events_raid_ideventtype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY events_raid
+    ADD CONSTRAINT fk_events_raid_ideventtype FOREIGN KEY (ideventtype) REFERENCES eventtypes(ideventtype) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 2820 (class 2606 OID 94445)
 -- Name: fk_groups_iddivision; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -14140,7 +9403,7 @@ ALTER TABLE ONLY groups
 
 
 --
--- TOC entry 3612 (class 2606 OID 94450)
+-- TOC entry 2821 (class 2606 OID 94450)
 -- Name: fk_phones_idphonetype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -14149,7 +9412,7 @@ ALTER TABLE ONLY phones
 
 
 --
--- TOC entry 3613 (class 2606 OID 94455)
+-- TOC entry 2822 (class 2606 OID 94455)
 -- Name: fk_phones_idprovider; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -14158,7 +9421,7 @@ ALTER TABLE ONLY phones
 
 
 --
--- TOC entry 3952 (class 0 OID 0)
+-- TOC entry 3067 (class 0 OID 0)
 -- Dependencies: 8
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -14169,7 +9432,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2016-03-20 07:15:50 ECT
+-- Completed on 2016-03-20 20:38:51 ECT
 
 --
 -- PostgreSQL database dump complete

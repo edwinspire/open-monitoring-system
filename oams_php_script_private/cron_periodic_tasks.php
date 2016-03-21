@@ -1,10 +1,6 @@
 <?php
-include_once "oams_db.php";
-
-$count_seconds = 0;
-$last_ts = array();
-
-    $db = new oamsDB();
+require_once "lib/custom/uDC/pguDC.php";
+    $db = new pguDC();
     $db->connect();
 
 $tresult = pg_query_params($db->connection, "SELECT * FROM fun_set_expired_events();", array());

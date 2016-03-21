@@ -89,7 +89,7 @@ return $r;
 public function logout() {
 
     if (isset($_COOKIE['oams_idadmin'])) {
-        $result = pg_query_params($this->connection, "SELECT fun_logout($1::text, $2::text) as result;", array($_COOKIE['oams_idadmin'], $_COOKIE['oams_sessionid'])); //$_SERVER['HTTP_USER_AGENT'], $_SERVER['REMOTE_ADDR'], session_id()  
+        $result = pg_query_params($this->connection, "SELECT fun_logout($1::bigint, $2::text) as result;", array($_COOKIE['oams_idadmin'], $_COOKIE['oams_sessionid'])); //$_SERVER['HTTP_USER_AGENT'], $_SERVER['REMOTE_ADDR'], session_id()  
     }
 
 	setcookie("oams_fullname", "anonymous", time()+1);
