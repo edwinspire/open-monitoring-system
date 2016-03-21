@@ -1,5 +1,5 @@
 <?php
-require_once "lib/custom/uDC/pguDC.php";
+require_once "/mnt/a9fad31c-8f37-4e7e-a5c7-72813634828d/Desarrollo/open-ams/lib/custom/uDC/pguDC.php";
     $db = new pguDC();
     $db->connect();
 
