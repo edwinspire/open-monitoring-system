@@ -18,6 +18,7 @@ case "select":
 $result = $db->select_where_result_as_json(array(), array($_POST["udc_referential_field"]=>$_POST[$_POST["udc_referential_field"]]));
 break;
 case "update":
+//print_r($_POST);
 $result = $db->update_resutl_as_json($_POST, array($_POST["udc_referential_field"]=>$_POST[$_POST["udc_referential_field"]]), array("ts", "groups"));
 break;
 case "insert":

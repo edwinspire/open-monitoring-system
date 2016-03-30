@@ -376,7 +376,6 @@ return $d;
 
 // Hacemos que automaticamente ignore las llaves del where
 $ignore_data = array_unique(array_merge(array_keys($where), $ignore_data));
-//print_r($ignore_data);
 $dt_data = $this->data_to_array($data, $ignore_data); 
 $dt_where = $this->data_to_array($where);
 
