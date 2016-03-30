@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.4.6
 -- Dumped by pg_dump version 9.4.6
--- Started on 2016-03-30 13:31:19 ECT
+-- Started on 2016-03-30 13:38:18 ECT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -3422,7 +3422,7 @@ COMMENT ON FUNCTION fun_sufix_name_by_date(idate timestamp without time zone) IS
 
 
 --
--- TOC entry 336 (class 1255 OID 89958)
+-- TOC entry 335 (class 1255 OID 89958)
 -- Name: fun_udc_mapper(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3610,7 +3610,7 @@ COMMENT ON FUNCTION notifications_before_insert() IS 'Acciones y comprobaciones 
 
 
 --
--- TOC entry 335 (class 1255 OID 89962)
+-- TOC entry 336 (class 1255 OID 89962)
 -- Name: on_changed_table(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -3620,7 +3620,7 @@ CREATE FUNCTION on_changed_table() RETURNS trigger
 
 
 BEGIN
-/*
+
 RAISE NOTICE '1) Inicia Trigger on_changed_table';
 
 UPDATE sys_table_ts SET ts = now() WHERE table_name = TG_TABLE_NAME;
@@ -3651,7 +3651,7 @@ END IF;
 
 
 END;
-*/
+
 
 RETURN NULL;
 END;$$;
@@ -3661,7 +3661,7 @@ ALTER FUNCTION public.on_changed_table() OWNER TO postgres;
 
 --
 -- TOC entry 3109 (class 0 OID 0)
--- Dependencies: 335
+-- Dependencies: 336
 -- Name: FUNCTION on_changed_table(); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -9643,7 +9643,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2016-03-30 13:31:20 ECT
+-- Completed on 2016-03-30 13:38:19 ECT
 
 --
 -- PostgreSQL database dump complete
