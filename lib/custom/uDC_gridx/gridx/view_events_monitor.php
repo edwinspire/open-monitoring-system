@@ -33,10 +33,17 @@ $db->use_table("events");
 $result = $db->delete_selection_result_as_json($_POST["udc_referential_field"], json_decode($_POST["udc_selected_id"]));
 break;
 case "grid_export":
+/*
 //print_r($_POST);
 header('Content-type: application/vnd.oasis.opendocument.spreadsheet');
 header("Content-Disposition:attachment;filename=events_".date('Ymd-His').".ods");
 $result = $db->export_as_html(true, "Eventos", array(), array(), "account_name, priority", 0, $_POST["udc_referential_field"], json_decode($_POST["udc_selected_id"]));
+*/
+//$db->use_table("view_farma_lista_precios");
+header('Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+header("Content-Disposition:attachment;filename=report.xlsx");
+//($header = true, $title = "", $return_fields = array(), $where = array(), $orderby="", $limit = 0, $and_field_any = "", $and_values_any = array())
+$result = $db->export_as_xlsx(true, "Eventos", array(), array(), "dateevent", 0, "idevent", json_decode($_POST["udc_selected_id"]));
 break;
 
 }
