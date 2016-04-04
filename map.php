@@ -21,8 +21,7 @@
                 "dijit/MenuItem",
                 "dijit/PopupMenuBarItem",
                 "dijit/Toolbar",
-                "dijit/form/Button",
-                "w_common_tooltipdialogconfirmation/w_common_tooltipdialogconfirmation"
+                "dijit/form/Button"
             ]);
         </script>
         <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "styles.css";
@@ -63,7 +62,7 @@ break;
 echo "var geodata = ".$result."\n\r";
 ?>
 </script>
-        <script type="text/javascript" src="oams_map.js"></script>
+        <script type="text/javascript" src="map.js"></script>
     </head>
     <body data-maq-flow-layout="true" data-maq-comptype="desktop" class="claro" data-maq-ws="collapse" id="myapp" data-maq-appstates="{}">
 
