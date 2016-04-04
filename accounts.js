@@ -59,7 +59,7 @@ switch(_id){
 case 'account_tab_map':
 var iframemap = '';
 if(_idaccount){
-iframemap = '<iframe  src="oams_map.php?idcontact='+_idaccount+'&maptype=1"  frameBorder="0" frameborder="0"  seamless="seamless"></iframe> ';
+iframemap = '<iframe  src="map.php?idcontact='+_idaccount+'&maptype=1"  frameBorder="0" frameborder="0"  seamless="seamless"></iframe> ';
 }
 account_map.set("content", iframemap);
 break;
