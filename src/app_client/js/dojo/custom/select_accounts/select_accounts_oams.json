@@ -1,0 +1,25 @@
+{
+    "id": "select_accounts",
+    "name": "select_accounts",
+    "spec": "1.0",
+    "version": "1.0",
+    "require": [
+        {
+            "type": "javascript",
+            "src": "dojo/dojo.js",
+            "$library": "dojo"
+        },
+        {
+            "$library": "dojo",
+            "format": "amd",
+            "src": "select_accounts/select_accounts",
+            "type": "javascript-module"
+        }
+    ],
+    "library": {
+        "dojo": {
+            "src": "../../dojo/dojo/dojo.js"
+        }
+    },
+    "content": "<div></div>"
+}

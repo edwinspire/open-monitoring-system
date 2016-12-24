@@ -1,0 +1,19 @@
+.grid_icon_refresh_red > a > i{
+color: #FF4444;
+}
+
+.grid_icon_refresh_yellow > a > i{
+color: #FFF944;
+}
+
+.grid_icon_refresh_blue > a > i{
+color: #3197FF;
+}
+
+.grid_icon_refresh_green > a > i{
+color: #64FF31;
+}
+
+.grid_icon_refresh_white > a > i{
+color: white;
+}

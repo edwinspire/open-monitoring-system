@@ -1,0 +1,629 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8; no-cache">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Open Monitor System</title>
+
+
+  <!-- Bootstrap -->
+  <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- jVectorMap -->
+  <!-- Custom Theme Style -->
+  <link href="css/custom.css" rel="stylesheet">
+  <link href="css/dgrid_columns.css" rel="stylesheet">
+  <link href="js/dojo/dojo/dgrid/css/dgrid.css" rel="stylesheet">
+  <link href="js/dojo/custom/uDCGridWidget/uDCGridWidget.css" rel="stylesheet">
+  <link href="js/dojo/custom/Switch/Switch.css" rel="stylesheet">
+  <link href="css/themes_dijit/claro_plain/claro_plain.css" rel="stylesheet">
+
+<script>
+      //Setup Polymer options
+      window.Polymer = {
+        dom: 'shadow',
+        lazyRegister: true
+      };
+
+      // Load webcomponentsjs polyfill if browser does not support native Web Components
+      (function() {
+        'use strict';
+
+        var onload = function() {
+          // For native Imports, manually fire WebComponentsReady so user code
+          // can use the same code path for native and polyfill'd imports.
+          if (!window.HTMLImports) {
+            document.dispatchEvent(
+              new CustomEvent('WebComponentsReady', {bubbles: true})
+            );
+          }
+        };
+
+        var webComponentsSupported = (
+          'registerElement' in document
+          && 'import' in document.createElement('link')
+          && 'content' in document.createElement('template')
+        );
+
+        if (!webComponentsSupported) {
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = '/bower_components/webcomponentsjs/webcomponents-lite.min.js';
+          script.onload = onload;
+          document.head.appendChild(script);
+        } else {
+          onload();
+        }
+      })();
+
+
+    </script>
+
+
+<link rel="import" href="bower_components/polymer/polymer.html">
+
+
+  <!-- OpenLayers_v3 -->
+<!--   <script src="vendors/OpenLayers_v3-17-1/ol.js"></script> -->
+
+  <script type="text/javascript" src="js/dojo/dojo/dojo/dojo.js" 
+  data-dojo-config="'parseOnLoad':true,'async':true, 'packages':[
+  {'name':'widgets','location':'../custom'}
+  ,{'name':'Alert','location':'../../custom/Alert'}
+  ,{'name':'Chat','location':'../../custom/Chat'}
+  ,{'name':'CollapseButton','location':'../../custom/CollapseButton'}
+  ,{'name':'ContactGroup','location':'../../custom/ContactGroup'}
+  ,{'name':'ContactMap','location':'../../custom/ContactMap'}
+  ,{'name':'ContactWidget','location':'../../custom/ContactWidget'}
+  ,{'name':'DateTextbox','location':'../../custom/DateTextbox'}
+  ,{'name':'Extends','location':'../../custom/Extends'}
+  ,{'name':'FilteringSelectAccounts','location':'../../custom/FilteringSelectAccounts'}
+  ,{'name':'FilteringSelectGlobalStore','location':'../../custom/FilteringSelectGlobalStore'}
+  ,{'name':'Geolocations','location':'../../custom/Geolocations'}
+  ,{'name':'GlobalLiveStore','location':'../../custom/GlobalLiveStore'}
+  ,{'name':'Input','location':'../../custom/Input'}
+  ,{'name':'LiveStore','location':'../../custom/LiveStore'}
+  ,{'name':'Map','location':'../../custom/Map'}
+  ,{'name':'MapPoint','location':'../../custom/MapPoint'}
+  ,{'name':'EventDetails','location':'../../custom/EventDetails'}
+  ,{'name':'SelectGender','location':'../../custom/SelectGender'}
+  ,{'name':'Switch','location':'../../custom/Switch'}
+  ,{'name':'account_contacts_users','location':'../../custom/account_contacts_users'}
+  ,{'name':'account_data','location':'../../custom/account_data'}
+  ,{'name':'account_equipments','location':'../../custom/account_equipments'}
+  ,{'name':'account_events_isopen','location':'../../custom/account_events_isopen'}
+  ,{'name':'app_account','location':'../../custom/app_account'}
+  ,{'name':'app_accounts_table','location':'../../custom/app_accounts_table'}
+  ,{'name':'app_event_admin','location':'../../custom/app_event_admin'}
+  ,{'name':'app_lista_precios_eco','location':'../../custom/app_lista_precios_eco'}
+  ,{'name':'app_lista_precios_medi','location':'../../custom/app_lista_precios_medi'}
+  ,{'name':'app_lista_precios_pnatural','location':'../../custom/app_lista_precios_pnatural'}
+  ,{'name':'app_lista_precios_promo_eco','location':'../../custom/app_lista_precios_promo_eco'}
+  ,{'name':'app_lista_precios_promo_medi','location':'../../custom/app_lista_precios_promo_medi'}
+  ,{'name':'app_monitor_general','location':'../../custom/app_monitor_general'}
+  ,{'name':'app_monitor_network_devices','location':'../../custom/app_monitor_network_devices'}
+  ,{'name':'app_tables_views_config','location':'../../custom/app_tables_views_config'}
+  ,{'name':'bs_button','location':'../../custom/bs_button'}
+  ,{'name':'select','location':'../../custom/select'}
+  ,{'name':'select_account_states','location':'../../custom/select_account_states'}
+  ,{'name':'select_account_types','location':'../../custom/select_account_types'}
+  ,{'name':'select_accounts','location':'../../custom/select_accounts'}
+  ,{'name':'FilteringSelectLiveStore','location':'../../custom/FilteringSelectLiveStore'}
+  ,{'name':'select_divisions','location':'../../custom/select_divisions'}
+  ,{'name':'select_group','location':'../../custom/select_group'}
+  ,{'name':'select_identification_types','location':'../../custom/select_identification_types'}
+  ,{'name':'socketio','location':'../../custom/socketio'}
+  ,{'name':'top_tile','location':'../../custom/top_tile'}
+  ,{'name':'uDC','location':'../../custom/uDC'}
+  ,{'name':'uDCGrid','location':'../../custom/uDCGrid'}
+  ,{'name':'uDCGridWidget','location':'../../custom/uDCGridWidget'}
+  ,{'name':'utils','location':'../../custom/utils'}
+  ,{'name':'contact_means_of_contact','location':'../../custom/contact_means_of_contact'}
+  ,{'name':'contact_data','location':'../../custom/contact_data'}
+  ,{'name':'app_login_report','location':'../../custom/app_login_report'}
+  ]"></script>
+
+  <!-- REQUIRE DOJO -->
+  <script>require([      
+    "dojo/parser",
+    "dijit/layout/AccordionContainer",
+    "dijit/layout/ContentPane",
+    "dijit/layout/BorderContainer",
+    "dijit/form/Form",
+    "dijit/MenuBar",
+    "dijit/PopupMenuBarItem",
+    "dijit/MenuItem",
+    "dijit/layout/StackContainer",
+    "dijit/layout/StackController",
+    "dijit/layout/LinkPane",
+    "dijit/Menu",
+    "dijit/layout/TabContainer",
+    "dijit/TitlePane",
+    "dijit/form/Button",
+    "dijit/form/ComboButton",
+    "dijit/form/DropDownButton",
+    "EventDetails/EventDetails",
+    "dijit/form/ToggleButton",
+    "dijit/form/CheckBox",
+    "dijit/form/RadioButton",
+    "dijit/form/ComboBox",
+    "dijit/form/Select",
+    "dijit/form/FilteringSelect",
+    "dijit/form/MultiSelect",
+    "dijit/form/HorizontalSlider",
+    "dijit/form/HorizontalRule",
+    "dijit/form/HorizontalRuleLabels",
+    "dijit/form/VerticalSlider",
+    "dijit/form/VerticalRule",
+    "dijit/form/VerticalRuleLabels",
+    "dijit/form/NumberSpinner",
+    "dojox/form/TimeSpinner",
+    "dijit/form/TextBox",
+    "dijit/form/CurrencyTextBox",
+    "dijit/form/DateTextBox",
+    "dijit/form/NumberTextBox",
+    "dijit/form/SimpleTextarea",
+    "dijit/form/Textarea",
+    "dijit/form/ValidationTextBox",
+    "dijit/form/TimeTextBox",
+    "dijit/Toolbar",
+    "dijit/Editor",
+    "dojox/form/Rating",
+    "dijit/Calendar",
+    "dijit/ColorPalette",
+    "dijit/TooltipDialog",
+    "dijit/popup",
+    "dijit/Tooltip",
+    "dijit/Dialog",
+    "dojo/store/JsonRest",
+    'dojo/request',
+    'uDC/uDC',
+    'uDCGrid/uDCGrid',
+    "GlobalLiveStore/GlobalLiveStore",
+    "dgrid/OnDemandGrid",
+    "account_events_isopen/account_events_isopen",
+    'uDCGridWidget/uDCGridWidget',
+    'dojo/dom-construct',
+    'dojo/query',
+    "dojo/window",
+    "dojo/dom-style",
+    "dojo/ready",
+    'dojo/request',
+    "dojo/on",
+    "dojo/_base/array",
+    "dojo/dom-class",
+    "dojo/fx",
+    "Input/Input",
+    "utils/String",
+"contact_data/contact_data",
+"FilteringSelectLiveStore/FilteringSelectLiveStore",
+"FilteringSelectGlobalStore/FilteringSelectGlobalStore",
+"FilteringSelectAccounts/FilteringSelectAccounts",
+"Switch/Switch",
+"DateTextbox/DateTextbox",
+"CollapseButton/CollapseButton",
+"ContactWidget/ContactWidget",
+"SelectGender/SelectGender",
+"ContactMap/ContactMap",
+"Map/Map",
+"ContactGroup/ContactGroup",
+"account_contacts_users/account_contacts_users",
+"account_equipments/account_equipments",
+"app_account/app_account",
+"account_data/account_data",
+"app_monitor_general/app_monitor_general", 
+"app_lista_precios_promo_eco/app_lista_precios_promo_eco",
+"app_lista_precios_promo_medi/app_lista_precios_promo_medi", 
+"app_lista_precios_pnatural/app_lista_precios_pnatural", 
+"app_lista_precios_eco/app_lista_precios_eco", 
+"app_lista_precios_medi/app_lista_precios_medi", 
+"app_monitor_network_devices/app_monitor_network_devices",
+"Geolocations/Geolocations",
+"contact_means_of_contact/contact_means_of_contact",
+"app_login_report/app_login_report"
+]);
+</script>
+
+<link rel="import" href="wc/socketio-eventserver.html">
+<link rel="import" href="wc/user-notifications.html">
+<link rel="import" href="wc/ol-map.html">
+<link rel="import" href="wc/user-eventstatustype.html">
+<link rel="import" href="bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="bower_components/paper-dialog/paper-dialog.html">
+
+
+<!-- Custom JS -->
+<script src="js/custom.js"></script>
+
+<script src="oms.js"></script>  
+
+</head>
+
+<body data-maq-flow-layout="true" data-maq-comptype="desktop"  data-maq-ws="collapse" id="myapp" data-maq-appstates="{}" class="claro nav-sm">
+
+  <style>
+    .container_preloader{
+      z-index:999999;
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      background: #ededed;
+      text-align:center;
+    }
+
+    .preloader {
+      display:inline-block;
+      margin-top: 20%;
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #20374f;
+      border-bottom: 16px solid #20374f;
+      width: 60px;
+      height: 60px;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+
+  <div class="container_preloader">
+    <div class="preloader"></div>
+  </div>   
+
+
+  <script>
+    require(["dojo/_base/fx", "dojo/on", "dojo/ready"], function(fx, on, ready){
+     ready(function(){
+
+      dojo.query(".container_preloader").forEach(function(node, index, nodelist){
+    // for each node in the array returned by dojo.query,
+    // execute the following code
+    setTimeout(
+      function(){
+
+        var f = fx.fadeOut({ node: node });
+        on(f, "End", function(){
+          dojo.destroy(node);
+        });
+        f.play();    
+
+      }
+      , 2000);     
+
+  });
+
+    });
+   });
+ </script>
+ 
+
+
+ <div class="container body">
+  <div class="main_container">  
+
+    <!-- ********************************************************************* -->
+    <div class="col-md-3 left_col menu_master" id="menu_left_col">
+      <div class="left_col scroll-view">
+        <div class="navbar nav_title" style="border: 0;">
+          <a href="/" class="site_title"><img src="images/favicon.png" alt="..."></i> <span>OMS</span></a>
+        </div>
+
+        <div class="clearfix"></div>           
+
+
+        <!-- ********************************************************************* -->
+        <!-- sidebar menu -->
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+          <div class="menu_section">
+            <h3>MONITOREO</h3>
+            <ul class="nav side-menu">
+              <li><a><i class="fa fa-th"></i> Monitor <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu" style="display: none">
+                  <li id="MonitorGeneral"><a href="#">General</a></li>
+                  <li id="Monitor_NetworkDevices"><a href="#">Equipos de red</a></li>
+
+                  <!--      <li><a href="monitor_eventtype.php">Por tipo eventos</a> -->
+                </li>
+              </ul>
+            </li>
+
+                  <!--
+                           <li><a id="EventAdminApp"><i class="fa fa-sitemap"></i> Incidencias <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu" style="display: none">
+                        <li><a href="#">Abiertos</a></li>
+                        <li><a>Por tipo de evento<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu" style="display: none">
+                            <li class="sub_menu"><a href="level2.php">Level Two</a>
+                            </li>
+                            <li><a href="#level2_1">Level Two</a>
+                            </li>
+                            <li><a href="#level2_2">Level Two</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a href="#level1_2">Level One</a>
+                        </li>
+                    </ul> 
+                  </li>                     
+                  
+                </ul>
+              -->
+
+              
+
+
+
+            </div>
+
+
+            <div class="menu_section">
+              <h3>GENERAL</h3>
+              <ul class="nav side-menu">
+
+                <li><a><i class="fa fa-bank"></i> Empresa <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li id="GeneralEmpresaAbonados"><a href="#">Abonados</a></li>
+                    <li id="GeneralEmpresaGeolocalizacion" ><a href="#">Distribución Geográfica</a></li>                                                  
+<!-- <li><a href="map.php?maptype=0&with_contacts_users=false&with_menu=false">Distribución Geográfica</a>
+</li> -->
+
+
+
+
+</ul>
+</li>                    
+
+<li style="display:  none;"><a><i class="fa fa-globe"></i>Ubicación<span class="fa fa-chevron-down"></span></a>
+ <ul class="nav child_menu" style="display: none">
+  <li><a href="#level1_1">Todos</a></li>
+
+  <li><a>ETAFASHION<span class="fa fa-chevron-down"></span></a>                        
+    <ul class="nav child_menu" style="display: none"><li><a href="#level2_2">TODOS</a></li>                            
+    </ul>
+  </li>
+  <li><a>FARMAENLACE<span class="fa fa-chevron-down"></span></a>                       
+   <ul class="nav child_menu" style="display: none">                           
+     <li><a href="divisions.php?group=5">ECONOMICAS</a></li>                             
+     <li><a href="divisions.php?group=7">MATRIZ QUITO</a></li>                            
+     <li><a href="divisions.php?group=6">MEDICITY</a></li>                             
+     <li><a href="divisions.php?group=9">PAF</a></li>                             
+     <li><a href="divisions.php?group=8">SALA CAPACITACION</a></li><li><a href="#level2_2">TODOS</a></li>                            
+   </ul>
+ </li>
+ <li><a>PUNTO NATURAL<span class="fa fa-chevron-down"></span></a>                        
+  <ul class="nav child_menu" style="display: none"><li><a href="#level2_2">TODOS</a></li>                            
+  </ul>
+</li>
+<li><a>RM<span class="fa fa-chevron-down"></span></a>                        
+  <ul class="nav child_menu" style="display: none"><li><a href="#level2_2">TODOS</a></li>                            
+  </ul>
+</li>
+
+
+                        <!--
+                        <li><a>Level One<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu" style="display: none">
+                            <li class="sub_menu"><a href="level2.php">Level Two</a>
+                            </li>
+                            <li><a href="#level2_1">Level Two</a>
+                            </li>
+                            <li><a href="#level2_2">Level Two</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a href="#level1_2">Level One</a>
+                        </li> -->
+                      </ul> 
+
+
+
+                    </li>
+
+                  </ul> 
+                </div>
+
+                
+
+                <div class="menu_section">
+                  <h3>UTILITARIOS</h3>
+                  <ul class="nav side-menu">            
+
+                    <li><a><i class="fa fa-usd"></i> Lista de Precios <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu" style="display: none">
+                        <li><a>Farmaenlace<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu" style="display: none">
+                            <li class="sub_menu"><a href="#"></a>
+                            </li>
+                          </li>
+                          <li id="utilitarios_lista_precios_farma_promo_eco"><a href="#">Promo Eco</a></li>
+                          <li id="utilitarios_lista_precios_farma_promo_medi"><a href="#">Promo Medi</a></li>
+                          <li id="utilitarios_lista_precios_farma_eco"><a href="#">Economica</a></li>
+                          <li id="utilitarios_lista_precios_farma_medi"><a href="#">Medicity</a></li>
+                        </ul>
+                      </li>
+                      <li id="utilitarios_lista_precios_pnatural"><a href="#">Punto Natural</a>
+                      </li>
+                    </ul>
+                  </li>
+
+                </ul>
+              </div>      
+              
+              
+              <div class="menu_section">
+                <h3>ADMINISTRACION</h3>
+                <ul class="nav side-menu">            
+
+                  <li><a><i class="glyphicon glyphicon-cog"></i> Tablas - Vistas <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu" style="display: none">
+                      <li id="admin_tables_views_edit"><a href="#">Editar</a>
+                      </li>
+                    </ul>
+                  </li>
+
+                </ul>
+              </div>   
+              
+
+                            <div class="menu_section">
+                <h3>REPORTES</h3>
+                <ul class="nav side-menu">            
+
+                  <li><a><i class="glyphicon glyphicon-cog"></i> Reportes <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu" style="display: none">
+                      <li id="Idapp_login_report"><a href="#">Login</a>
+                      </li>
+                    </ul>
+                  </li>
+
+                </ul>
+              </div>   
+              
+              
+              <!-- -->
+              <div class="menu_section" style="display: none;">
+                <h3></h3>
+                <ul class="nav side-menu">            
+
+                  <li><a id="support_empty_button_to_close_the_remaining_items_when_loading_an_app"><i class=""></i>  <span class=""></span></a>
+                  </li>
+
+                </ul>
+              </div>  
+              <!-- -->                          
+              
+
+
+            </div>
+            <!-- /sidebar menu -->
+            <!-- ********************************************************************* -->
+
+            
+            <div class="clearfix"></div>         
+
+            <!-- ********************************************************************* -->
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small" id="sidebar-footer_id">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Recargar" onclick="document.location.reload(true);">
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="/njs/logout">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+            <!-- ********************************************************************* -->
+            
+
+
+
+          </div>
+        </div>
+        <!-- ********************************************************************* -->
+
+
+        <!-- ********************************************************************* -->
+        <!-- top navigation -->
+        <div class="top_nav">
+
+          <div class="nav_menu" id="nav_menu_id">
+            <nav class="" role="navigation">
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="images/favicon.png" alt="">
+                    <span id="FullName">User</span>
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="javascript:;">  Profile</a>
+                    </li>
+                    <li>
+                      <a href="javascript:;">
+                        <span class="badge bg-red pull-right">50%</span>
+                        <span>Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="javascript:;">Help</a>
+                    </li>
+                    <li><a href="/"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    </li>
+                  </ul>
+                </li>
+
+                <span data-dojo-type="Chat/Chat"  ></span>  
+<!--
+              <span data-dojo-type="alert/alert"  ></span>
+               <span data-dojo-type="alert/alert"  ></span>    
+                 <span data-dojo-type="alert/alert"  ></span>   
+               -->
+             </ul>
+           </nav>
+         </div>
+
+       </div>
+       <!-- /top navigation -->
+       <!-- ********************************************************************* -->
+
+
+       <!-- page content -->
+       <div class="right_col" id="PageContent" role="main">
+
+       </div>  
+
+
+
+<!--  <div class="right_col" id="PageContent" role="main" data-dojo-type="dijit/layout/ContentPane">
+    Hi, pretty boring huh?
+  </div>        --> 
+
+  <!-- /page content -->
+
+  <!-- footer content -->
+  <footer id="footer_id">
+    <div class="pull-right">
+      Open Monitoring System on <a href="#">Github</a>  <hello-world2 who="Unicorn"></hello-world2>
+    </div>
+    <div class="clearfix"></div>
+
+  </footer>
+  <!-- /footer content -->
+</div>
+</div>
+
+<!-- <div data-dojo-type="notification_area/notification_area"></div> -->
+<div data-dojo-type="GlobalLiveStore/GlobalLiveStore"></div>
+
+<socketio-eventserver></socketio-eventserver>
+<user-notifications></user-notifications>
+
+
+
+</body>
+</html>
+

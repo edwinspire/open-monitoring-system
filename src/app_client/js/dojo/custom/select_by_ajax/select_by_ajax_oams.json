@@ -1,0 +1,25 @@
+{
+    "id": "select_by_ajax",
+    "name": "select_by_ajax",
+    "spec": "1.0",
+    "version": "1.0",
+    "require": [
+        {
+            "type": "javascript",
+            "src": "dojo/dojo.js",
+            "$library": "dojo"
+        },
+        {
+            "$library": "dojo",
+            "format": "amd",
+            "src": "select_by_ajax/select_by_ajax",
+            "type": "javascript-module"
+        }
+    ],
+    "library": {
+        "dojo": {
+            "src": "../../dojo/dojo/dojo.js"
+        }
+    },
+    "content": "<div></div>"
+}

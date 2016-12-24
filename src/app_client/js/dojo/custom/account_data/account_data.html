@@ -1,0 +1,185 @@
+<div class="col-md-12 col-sm-12 col-xs-12" style="padding-top: 10px;">
+
+
+	<!---->
+	
+	<fieldset>
+		<legend >Habilitado</legend>
+
+		<span class="input-group">
+			<div name="enabled" class="account_form_basic_class_udc " data-dojo-type="Switch/Switch" value="false"></div> 
+		</span>
+	</fieldset>  
+
+
+	<fieldset>
+		<legend>Account</legend>
+		<span class="input-group">
+		<input data-dojo-type="dijit/form/ValidationTextBox"   class="account_form_basic_class_udc " placeholder="Abonado" required="true" value="" name="account"></input>
+		</span>
+	</fieldset>  
+	
+	
+	<fieldset>
+		<legend>Nombre</legend>
+		<span class="input-group">
+		<input data-dojo-type="dijit/form/ValidationTextBox" class="account_form_basic_class_udc " placeholder="Nombre" name="first_name"></input>        
+		</span>
+	</fieldset>  
+	
+	
+	<fieldset>
+		<legend>Apellido</legend>
+		<span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-user" placeholder="Apellido" name="last_name" class="account_form_basic_class_udc "></span>         
+	</fieldset>  
+	
+
+	<fieldset>
+		<legend>Cumpleanos</legend>
+		<div data-dojo-type="DateTextbox/DateTextbox" class="account_form_basic_class_udc " name="birthday"></div>
+	</fieldset> 
+
+
+
+	<fieldset>
+		<legend >Tipe ID</legend>
+		
+		<span class="input-group">        
+			<div class="account_form_basic_class_udc " name="ididtype" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['identification_types'], requestQuery: {_uDCTable: 'identification_types'}, identifier: 'ididtype', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'name'"></div>    
+		</span>         
+		
+
+		
+	</fieldset>
+	
+
+
+
+	
+
+	
+	<fieldset>
+		<legend>Identification</legend>
+		<span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-barcode" placeholder="Identificación" name="identification" class="account_form_basic_class_udc "></span>         
+	</fieldset>  
+	
+	
+	<fieldset>
+		<legend>Codigo Postal</legend>
+		<span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-envelope" placeholder="Código postal" name="postal_code" class="account_form_basic_class_udc "></span>          
+	</fieldset>  
+	
+	
+	<fieldset>
+		<legend>Genero</legend>
+		<div data-dojo-type="SelectGender/SelectGender" class="account_form_basic_class_udc " name="gender"></div>
+	</fieldset>  
+	
+	
+	<fieldset>
+		<legend>Latitud</legend>
+		<span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-map-marker" placeholder="Latitud" value="0.0" class="account_form_basic_class_udc " name="geox"></span>         
+	</fieldset>  
+	
+	
+	<fieldset>
+		<legend>Longitud</legend>
+		<span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-map-marker" placeholder="Longitud"  value="0.0" class="account_form_basic_class_udc " name="geoy"></span>         
+	</fieldset>  
+	
+	
+	
+	<fieldset>
+		<legend>IdAccountState</legend>
+		
+		<span class="input-group">                   
+			<div class="account_form_basic_class_udc " name="idaccountstate" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['account_states'], requestQuery: {_uDCTable: 'account_states'}, identifier: 'idaccountstate', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'state'"></div>                          
+		</span>
+		
+		<!-- <div data-dojo-type="FilteringSelectAjax/FilteringSelectAjax" data-select-config="{Url: 'php/query/select_by_ajax.php', LoadOnCreate: true, Table: 'account_states', FieldLabel: 'state', FieldValue: 'idaccountstate'}" class="account_form_basic_class_udc " name="idaccountstate"></div> -->
+	</fieldset>  
+	
+
+	<fieldset>
+		<legend>IdAccountType</legend>
+		
+		<span class="input-group">        
+			<div class="account_form_basic_class_udc " name="idaccounttype" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['account_types'], requestQuery: {_uDCTable: 'account_types'}, identifier: 'idaccounttype', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'type'"></div>    
+		</span>                    
+		
+		<!-- <div data-dojo-type="FilteringSelectAjax/FilteringSelectAjax" data-select-config="{Url: 'php/query/select_by_ajax.php', LoadOnCreate: true, Table: 'account_types', FieldLabel: 'type', FieldValue: 'idaccounttype'}" class="account_form_basic_class_udc " name="idaccounttype"></div> -->
+	</fieldset>  
+
+	
+	<fieldset>
+		<legend>Fecha Inicio</legend>
+		<div  data-dojo-type="DateTextbox/DateTextbox" class="account_form_basic_class_udc " name="start_date"></div>
+	</fieldset> 
+
+	<fieldset>
+		<legend>Fecha Fin</legend>
+		<div data-dojo-type="DateTextbox/DateTextbox" class="account_form_basic_class_udc " name="end_date"></div>
+	</fieldset>                      
+	
+	
+	<fieldset>
+		<legend>Empresa</legend>
+
+		<span class="input-group">    
+			<div class="account_form_basic_class_udc " name="iddivision" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['divisions'], requestQuery: {_uDCTable: 'divisions'}, identifier: 'iddivision', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'name'" data-dojo-attach-point="Division"></div>  
+		</span>
+
+
+</fieldset> 
+
+
+<fieldset>
+	<legend>Grupos</legend>
+
+	<div data-dojo-type="ContactGroup/ContactGroup" class="input-group account_form_basic_class_udc" name="groups" data-dojo-attach-point="TGroups"></div>   
+	
+</fieldset>   
+
+<div class="clearfix"></div>
+
+<div class="col-md-6 col-sm-6 col-xs-12 col-xl-12">
+	<fieldset class="WidthFull">
+		<legend>Direccion</legend>
+		<textarea  type="text" data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;" name="address" class="account_form_basic_class_udc "></textarea>
+	</fieldset>                         
+</div>
+
+<div class="col-md-6 col-sm-6 col-xs-12 col-xl-12">
+	<fieldset class="WidthFull">
+		<legend>Direccion Ref</legend>
+		<textarea  type="text" data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;" class="account_form_basic_class_udc " name="address_ref"></textarea>
+	</fieldset>    
+</div>
+
+<div class="clearfix"></div>
+
+
+
+
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+	<fieldset class="WidthFull">
+		<legend>Notas</legend>
+		<textarea data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;" class="account_form_basic_class_udc "  placeholder='Notas' name="note" class="account_form_basic_class_udc "></textarea>
+	</fieldset>  
+</div>
+<!-- -->
+
+<div data-dojo-type="contact_means_of_contact/contact_means_of_contact" data-dojo-attach-point="CMC"></div>
+
+
+<!-- -->
+<div data-dojo-type="uDC/uDC" data-dojo-attach-point="uDC" data-dojo-props="hiddenFields: [{name: 'idcontact'}], selectorClass: '.account_form_basic_class_udc', nodeContainer: '${id}', target: '/njs/db/table/accounts', table: 'accounts', idProperty: 'idcontact',  targetFieldtypes: '/njs/db/uDCFieldTypes'"></div>
+<!-- -->
+
+
+
+
+
+</div>
+

@@ -1,0 +1,25 @@
+{
+    "id": "app_lista_precios_promo_medi",
+    "name": "app_lista_precios_promo_medi",
+    "spec": "1.0",
+    "version": "1.0",
+    "require": [
+        {
+            "type": "javascript",
+            "src": "dojo/dojo.js",
+            "$library": "dojo"
+        },
+        {
+            "$library": "dojo",
+            "format": "amd",
+            "src": "app_lista_precios_promo_medi/app_lista_precios_promo_medi",
+            "type": "javascript-module"
+        }
+    ],
+    "library": {
+        "dojo": {
+            "src": "../../dojo/dojo/dojo.js"
+        }
+    },
+    "content": "<div></div>"
+}

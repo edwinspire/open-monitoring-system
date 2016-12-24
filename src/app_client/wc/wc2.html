@@ -1,0 +1,98 @@
+<!-- Imports x-tag -->
+<!-- <script src="../js/x-tag/x-tag-core.min.js"></script> -->
+
+<!-- Defines element markup -->
+<template>
+    <p>Hello <strong></strong> :)</p>
+<input type="s" id="ggg" name="a"/>
+
+</template>
+
+<script>
+
+
+
+
+
+
+(function(window, document, undefined) {
+    // Refers to the "importer", which is index.html
+    var thatDoc = document;
+    // Refers to the "importee", which is src/hello-world.html
+    var thisDoc = document._currentScript.ownerDocument;
+    // Gets content from <template>
+    var template = thisDoc.querySelector('template').content;
+    xtag.register('hello-world2', {
+        lifecycle: {
+            created: function() {
+                // Caches <strong> DOM query
+                this.strong = template.querySelector('strong');
+                // Creates the shadow root
+                this.shadowRoot = this.createShadowRoot();
+                this.uiSetWho();
+            },
+            attributeChanged: function() {
+                this.uiSetWho();
+            }
+        },
+        accessors: {
+            who: {
+                attribute: {},
+                get: function(){
+                    return this.getAttribute('who') || "World"
+                },
+                set: function(value){
+                    this.xtag.data.who = value;
+                }
+            }
+        },
+        methods: {
+            uiSetWho: function() {
+                // Sets "who" value into <strong>
+                this.strong.textContent = this.who;
+                // Removes shadow root content
+                this.shadowRoot.innerHTML = '';
+                // Adds a template clone into shadow root
+                var clone = thatDoc.importNode(template, true);
+                this.shadowRoot.appendChild(clone);
+            }
+        }
+    });
+})(window, document);
+
+
+
+
+require([
+    "dojo/store/Memory", "dijit/form/FilteringSelect", "dojo/domReady!"
+], function(Memory, FilteringSelect){
+    var stateStore = new Memory({
+        data: [
+            {name:"Alabama", id:"AL"},
+            {name:"Alaska", id:"AK"},
+            {name:"American Samoa", id:"AS"},
+            {name:"Arizona", id:"AZ"},
+            {name:"Arkansas", id:"AR"},
+            {name:"Armed Forces Europe", id:"AE"},
+            {name:"Armed Forces Pacific", id:"AP"},
+            {name:"Armed Forces the Americas", id:"AA"},
+            {name:"California", id:"CA"},
+            {name:"Colorado", id:"CO"},
+            {name:"Connecticut", id:"CT"},
+            {name:"Delaware", id:"DE"}
+        ]
+    });
+
+
+    //var thisDoc = dojo.doc._currentScript.ownerDocument;
+   // var it = thisDoc.querySelector('input').content;
+
+    var filteringSelect = new FilteringSelect({
+        id: "ggg",
+        name: "state",
+        value: "CA",
+        store: stateStore,
+        searchAttr: "name"
+    }, "stateSelect").startup();
+});
+</script>

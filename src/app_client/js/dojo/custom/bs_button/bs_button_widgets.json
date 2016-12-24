@@ -1,0 +1,27 @@
+{
+    "version": "1.0",
+    "localPath": true,
+    "customWidgetSpec": 1,
+    "categories": {
+        "custom": {
+            "name": "Custom widget",
+            "description": "Custom widget",
+            "widgetClass": "dijit"
+        }
+    },
+    "widgets": [
+        {
+            "name": "bs_button",
+            "description": "bs_button",
+            "type": "bs_button/bs_button",
+            "category": "custom",
+            "iconLocal": true,
+            "icon": "app/davinci/img/maqetta.png",
+            "properties": {
+                "style": "display: inline;"
+            }
+        }
+    ],
+    "name": "bs_button",
+    "longName": "bs_button"
+}

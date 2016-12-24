@@ -1,0 +1,64 @@
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../wc/css-bootstrap.html">
+
+
+<dom-module id="user-eventstatustype">
+	<template>
+
+    <style include="css-bootstrap">
+
+    </style>
+
+    <div class="btn-group  btn-group-sm btn-group-justified" id="BlockButton" style="margin-bottom: 3px;">
+      <a class="btn btn-default" type="button" id="BChangeStatus"><span class="glyphicon glyphicon-certificate" aria-hidden="true"></span> Cambiar estado</a>
+      <a class="btn btn-default" type="button" id="WGeo"></a>                                               
+
+    </div>
+	</template>
+
+
+
+	<script>
+		Polymer({
+			is: 'user-eventstatustype',
+			 ready: function() {
+         
+var t = this;
+
+		require([
+			"dojo/dom-construct",
+			"dojo/dom-style", 
+			'dojo/on',
+			"dojo/topic",
+			"dojo/cookie"
+			], function (domConstruct, domStyle, on, topic, cookie) {
+
+
+				// topic.subscribe("/event/user/notify", function(data){
+				// 	console.log(data);
+				// 	_Notify(data);
+				// });
+
+
+
+
+
+
+
+});
+
+
+
+
+
+// Fin de ready
+      }
+		});
+
+
+
+
+
+</script>
+</dom-module>

@@ -1,0 +1,120 @@
+<div>
+
+      <fieldset>
+        <legend>DETALLE DEL EVENTO</legend>
+
+    <div class="btn-group  btn-group-sm btn-group-justified" data-dojo-attach-point="BlockButton" style="margin-bottom: 3px;">
+      <a class="btn btn-default" type="button" data-dojo-attach-point="BChangeStatus"><span class="glyphicon glyphicon-certificate" aria-hidden="true"></span> Cambiar estado</a>
+      <a class="btn btn-default" type="button" data-dojo-attach-point="WGeo"></a>                                               
+
+    </div>
+
+    <!-- --------------------- -->
+<span style="display: none">
+
+  <div data-dojo-type="uDC/uDC" data-dojo-attach-point="uDCChangeStatus" data-dojo-props="hiddenFields: [{name: 'idevent'}], selectorClass: '.change_status_event', nodeContainer: '${id}_ChangeStatus', target: '/njs/db/table/account_events_comments', table: 'event_comments', idProperty: 'idevent',  targetFieldtypes: '/njs/db/uDCFieldTypes'"></div>
+
+    <div data-dojo-attach-point="DialogChangeStatus" id="${id}_ChangeStatus" data-dojo-type="dijit/TooltipDialog" style="width: 250px;">
+            <fieldset>
+        <legend>Estado</legend>
+        <span class="input-group">
+      <div class="change_status_event " data-dojo-attach-point="SelectEventStatus" name="ideventstatustype" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['event_statustypes'], requestQuery: {_uDCTable: 'event_statustypes_to_client'}, identifier: 'ideventstatustype', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'label_status'"></div>    
+        </span>       
+      </fieldset> 
+
+            <div>
+        <fieldset>
+          <legend>Motivo</legend>
+          <div data-dojo-type="dijit/Editor" disabled="false" class="change_status_event" name="comment_event"></div>
+<!--           <textarea data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;" class="change_status_event"  placeholder='Detalle' name="comment_event" ></textarea> -->
+        </fieldset>  
+      </div>
+
+<div class="dijitDialogPaneActionBar">
+<button type="button" data-dojo-attach-point="DialogCStatusOK" class="btn btn-default btn-xs">Aceptar</button>
+<button type="button" data-dojo-attach-point="DialogCStatusCancel" class="btn btn-default btn-xs">Cancelar</button>
+</div>
+    </div>
+    
+    </span>
+
+
+      <fieldset style="display: none;"style="display: none;" class="idevent">
+        <legend>IDEvento</legend>
+        <span class="value">-</span>         
+      </fieldset>  
+
+
+      <fieldset style="display: none;" class="dateevent">
+        <legend>Fecha</legend>
+        <span class="value">-</span>       
+      </fieldset>  
+
+      <fieldset style="display: none;" class="priority">
+        <legend>Prioridad</legend>
+        <span  class="value">-</span>
+      </fieldset> 
+
+
+            <fieldset style="display: none;" class="status">
+        <legend>Estado</legend>
+        <span class="value">-</span>
+      </fieldset> 
+
+                  <fieldset style="display: none;" class="equipment">
+        <legend>Equipo</legend>
+        <span class="value">-</span>
+      </fieldset> 
+
+
+      <fieldset style="display: none;" class="eventtype">
+        <legend>Tipo Evento</legend>
+          <span class="value">-</span>
+      </fieldset>  
+
+
+
+
+
+      <div class="clearfix"></div>
+
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <fieldset style="display: none;" class="description WidthFull">
+          <legend>Descripción</legend>
+          <div class="value" ></div>
+        </fieldset>  
+      </div>      
+
+   </fieldset>  
+
+<user-eventstatustype></user-eventstatustype>
+
+
+    <div data-dojo-type="uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TEComments" 
+    data-dojo-props="uDCColumns:{target: '/njs/db/dgrid_table_structure', fields: ['comment_event', 'ideventstatustype']}, UrlExport:'',  target: '/njs/db/table/account_events_comments', refreshOnTableChanged: ['event_comments'], Title:'EVENTOS - Comentarios', table: 'event_comments', idProperty: 'ideventcomment', rowFingerPrint: 'footprint_row'"></div>
+
+
+
+
+
+<style is="custom-style">
+  paper-dialog.colored {
+    border: 2px solid;
+    border-color: var(--paper-blue-500);
+    color: var(--paper-blue-500);
+        width: 75%;
+    height: 75%;
+  }
+
+  paper-dialog.size-position {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    width: 300px;
+    height: 300px;
+    overflow: auto;
+  }
+</style>
+
+</div>

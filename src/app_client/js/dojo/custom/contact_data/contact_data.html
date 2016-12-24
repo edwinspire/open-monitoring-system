@@ -1,0 +1,137 @@
+<div class="col-md-12 col-sm-12 col-xs-12" style="padding-top: 10px;">
+
+<!-- 	<div data-dojo-type="uDC/uDC" data-dojo-attach-point="uDCContact" ></div> -->
+	<!---->
+	
+	<fieldset>
+		<legend >Habilitado</legend>
+
+		<span class="input-group">
+			<div name="enabled" class="contact_form_basic_class_udc " data-dojo-type="Switch/Switch" value="false"/>
+		</span>
+	</fieldset>  
+
+	
+	<fieldset>
+		<legend>Nombre</legend>
+		<span class="input-group">
+			<input data-dojo-type="dijit/form/ValidationTextBox" class="contact_form_basic_class_udc " placeholder="Nombre" name="first_name"/>        
+		</span>
+	</fieldset>  
+	
+	
+	<fieldset>
+		<legend>Apellido</legend>
+		<span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-user" placeholder="Apellido" name="last_name" class="contact_form_basic_class_udc "></span>         
+	</fieldset>  
+	
+
+	<fieldset>
+		<legend>Cumpleaños</legend>
+		<div data-dojo-type="DateTextbox/DateTextbox" class="contact_form_basic_class_udc " name="birthday"></div>
+	</fieldset> 
+
+
+
+	<fieldset>
+		<legend >Tipe ID</legend>
+		
+		<span class="input-group">        
+			<div class="contact_form_basic_class_udc " name="ididtype" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['identification_types'], requestQuery: {_uDCTable: 'identification_types'}, identifier: 'ididtype', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'name'"></div>    
+		</span>         
+		
+
+		
+	</fieldset>
+	
+
+
+
+	
+
+	
+	<fieldset>
+		<legend>Identification</legend>
+		<span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-barcode" placeholder="Identificación" name="identification" class="contact_form_basic_class_udc "></span>         
+	</fieldset>  
+	
+	
+	<fieldset>
+		<legend>Codigo Postal</legend>
+		<span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-envelope" placeholder="Código postal" name="postal_code" class="contact_form_basic_class_udc "></span>          
+	</fieldset>  
+	
+	
+	<fieldset>
+		<legend>Genero</legend>
+		<div data-dojo-type="SelectGender/SelectGender" class="contact_form_basic_class_udc " name="gender"></div>
+	</fieldset>  
+	
+	
+	<fieldset>
+		<legend>Latitud</legend>
+		<span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-map-marker" placeholder="Latitud" value="0.0" class="contact_form_basic_class_udc " name="geox"></span>         
+	</fieldset>  
+	
+	
+	<fieldset>
+		<legend>Longitud</legend>
+		<span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-map-marker" placeholder="Longitud"  value="0.0" class="contact_form_basic_class_udc " name="geoy"></span>         
+	</fieldset>  
+
+	
+	<fieldset>
+		<legend>Fecha Inicio</legend>
+		<div  data-dojo-type="DateTextbox/DateTextbox" class="contact_form_basic_class_udc " name="start_date"></div>
+	</fieldset> 
+
+
+
+<!-- <fieldset>
+	<legend>Grupos</legend>
+
+	<div data-dojo-type="ContactGroup/ContactGroup" class="input-group contact_form_basic_class_udc" name="groups" data-dojo-attach-point="TGroups"></div>   
+	
+</fieldset>    -->
+
+<div class="clearfix"></div>
+
+<div class="col-md-6 col-sm-6 col-xs-12 col-xl-12">
+	<fieldset class="WidthFull">
+		<legend>Direccion</legend>
+		<textarea  type="text" data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;" name="address" class="contact_form_basic_class_udc "></textarea>
+	</fieldset>                         
+</div>
+
+<div class="col-md-6 col-sm-6 col-xs-12 col-xl-12">
+	<fieldset class="WidthFull">
+		<legend>Direccion Ref</legend>
+		<textarea  type="text" data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;" class="contact_form_basic_class_udc " name="address_ref"></textarea>
+	</fieldset>    
+</div>
+
+<div class="clearfix"></div>
+
+
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+	<fieldset class="WidthFull">
+		<legend>Notas</legend>
+		<textarea data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;" class="contact_form_basic_class_udc "  placeholder='Notas' name="note" class="contact_form_basic_class_udc "></textarea>
+	</fieldset>  
+</div>
+<!-- -->
+
+<div data-dojo-type="contact_means_of_contact/contact_means_of_contact" data-dojo-attach-point="CMC"></div>
+
+
+
+
+
+
+
+
+
+
+</div>
+

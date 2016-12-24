@@ -1,0 +1,25 @@
+{
+  "name": "oms-node",
+  "version": "0.0.1",
+  "description": "Open Monitoring System",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "events": "^1.1.1",
+    "express": "^4.14.0",
+    "express-sse": "^0.3.2",
+    "http": "0.0.0",
+    "nodemailer": "^2.6.4",
+    "path": "^0.12.7",
+    "pg-promise": "^5.3.4",
+    "promise": "^7.1.1",
+    "socket.io": "^1.5.0",
+    "telegraf": "^3.3.1",
+    "util": "^0.10.3"
+  },
+  "keywords": [
+    "OMS"
+  ],
+  "author": "Edwin De La Cruz",
+  "license": "LGPL"
+}

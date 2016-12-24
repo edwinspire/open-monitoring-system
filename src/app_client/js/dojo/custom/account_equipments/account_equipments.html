@@ -1,0 +1,87 @@
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <!---->
+
+
+  <div class="col-md-6 col-sm-6 col-xs-12 col-xl-12">
+    <div data-dojo-type="uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TGeneral" 
+    data-dojo-props="uDCColumns:{target: '/njs/db/dgrid_table_structure', fields: ['equipment', 'mark', 'model', 'serial_number', 'description', 'note']}, UrlExport:'',  target: '/njs/db/table/account_equipments', refreshOnTableChanged: ['equipments', 'network_devices'], Title:'EVENTOS - Equipos de red', table: 'equipments', idProperty: 'idequipment', rowFingerPrint: 'footprint_row'"></div>
+  </div>
+
+  <span style="display: none;">
+
+  </span>
+
+  <!-- -->
+
+
+
+
+  <!-- -->
+  <div class="col-md-6 col-sm-6 col-xs-12 col-xl-12">
+    <div data-dojo-type="uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TNetwork" data-dojo-props="uDCColumns:{target: '/njs/db/dgrid_table_structure', fields: ['equipment', 'mark', 'model', 'serial_number', 'description', 'ip', 'username', 'pwd', 'monitored',  'note']}, UrlExport:'',  target: '/njs/db/table/account_equipments',  refreshOnTableChanged: ['network_devices'], Title:'EVENTOS - Equipos de red', table: 'network_devices', idProperty: 'idequipment', rowFingerPrint: 'footprint_row', newForm: {title: 'Equipo de red', target:'', nodeContainer: '${id}_fnne', idProperty: 'idaccount',  targetFieldtypes: '/njs/db/uDCFieldTypes', selectorClass: '.widget_udc_account_new_network_equipment',  hiddenFields: [{name: 'idaccount'}]}"></div>
+  </div>
+
+  <span style="display: none;">
+
+    <div id="${id}_fnne" style="max-width: 460px;" >
+
+     <fieldset>
+      <legend>Equipo</legend>
+      <span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-star" class="widget_udc_account_new_network_equipment" placeholder="Equipo" required="true" value="" name="equipment"></span>
+    </fieldset>
+
+
+    <fieldset>
+      <legend>Marca</legend>
+      <span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-user" class="widget_udc_account_new_network_equipment " placeholder="marca" name="mark"></span>
+    </fieldset>
+
+
+    <fieldset>
+      <legend>Modelo</legend>
+      <span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-user" placeholder="modelo" name="model" class="widget_udc_account_new_network_equipment "></span>
+    </fieldset>
+
+    <fieldset>
+      <legend>Descripción</legend>
+      <span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-user" placeholder="description" name="description" class="widget_udc_account_new_network_equipment "></span>
+    </fieldset>
+
+    <fieldset>
+      <legend>Numero Serie</legend>
+      <span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-user" placeholder="modelo" name="serial_number" class="widget_udc_account_new_network_equipment "></span>
+    </fieldset>
+
+    <fieldset>
+      <legend>Cod. Ref.</legend>
+      <span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-user" placeholder="ref" name="code_ref" class="widget_udc_account_new_network_equipment "></span>
+    </fieldset>
+
+    <fieldset>
+      <legend>IP</legend>
+      <span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-user" placeholder="modelo" name="ip" class="widget_udc_account_new_network_equipment "></span>
+    </fieldset>
+
+    <fieldset>
+      <legend>MAC</legend>
+      <span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-user" placeholder="mac" name="mac" class="widget_udc_account_new_network_equipment "></span>
+    </fieldset>
+
+    <fieldset>
+      <legend>UserName</legend>
+      <span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-user" placeholder="user" name="username" class="widget_udc_account_new_network_equipment "></span>
+    </fieldset>
+
+    <fieldset>
+      <legend>Password</legend>
+      <span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-user" type="password" placeholder="4321" name="pwd"
+      class="widget_udc_account_new_network_equipment "></span>
+    </fieldset>
+
+
+
+  </div>
+
+</span>
+<!-- -->
+</div>

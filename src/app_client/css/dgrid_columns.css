@@ -1,0 +1,47 @@
+.field-priority { 
+        width: 30px; 
+}
+.field-label_status { 
+        width: 70px; 
+}
+.field-idevent { 
+        width: 70px; 
+}
+.field-dGrid_Select { 
+        width: 25; 
+}
+.field-dateevent { 
+        width: 80px; 
+}
+.field-account { 
+        width: 55px; 
+}
+.field-status_label { 
+        width: 60px; 
+}
+.field-ip { 
+        width: 125px; 
+}
+
+.dgrid-row-odd {
+    background: #F2F5F9;
+}
+
+		.dgrid-row:hover {
+				background-color: #def;
+			}
+
+
+.levelbg0{background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 100%);}
+.levelbg1{background: linear-gradient(to right, rgba(255,25,25,1) 0%,rgba(125,185,232,0) 100%);}
+.levelbg2{background: linear-gradient(to right, rgba(255,64,13,1) 0%,rgba(125,185,232,0) 100%);}
+.levelbg3{background: linear-gradient(to right, rgba(255,128,26,1) 0%,rgba(125,185,232,0) 100%);}
+.levelbg4{background: linear-gradient(to right, rgba(255,191,38,1) 0%,rgba(125,185,232,0) 100%);}
+.levelbg5{background: linear-gradient(to right, rgba(255,255,51,1) 0%,rgba(125,185,232,0) 100%);}
+.levelbg6{background: linear-gradient(to right, rgba(191,230,38,1) 0%,rgba(125,185,232,0) 100%);}
+.levelbg7{background: linear-gradient(to right, rgba(128,204,26,1) 0%,rgba(125,185,232,0) 100%);}
+.levelbg8{background: linear-gradient(to right, rgba(64,179,13,1) 0%,rgba(125,185,232,0) 100%); }
+.levelbg9{background: linear-gradient(to right, rgba(64,179,64,1) 0%,rgba(125,185,232,0) 100%);}
+.levelbg10{background: linear-gradient(to right, rgba(128,204,128,1) 0%,rgba(125,185,232,0) 100%);}
+
+

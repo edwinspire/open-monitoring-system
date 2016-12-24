@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "localPath": true,
+    "customWidgetSpec": 1,
+    "categories": {
+        "custom": {
+            "name": "Custom widget",
+            "description": "Custom widget",
+            "widgetClass": "dijit"
+        }
+    },
+    "widgets": [
+        {
+            "name": "select_account_types",
+            "description": "select_account_types",
+            "type": "select_account_types/select_account_types",
+            "category": "custom",
+            "iconLocal": true,
+            "icon": "app/davinci/img/maqetta.png"
+        }
+    ],
+    "name": "select_account_types",
+    "longName": "select_account_types"
+}

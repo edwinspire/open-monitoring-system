@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "localPath": true,
+    "customWidgetSpec": 1,
+    "categories": {
+        "custom": {
+            "name": "Custom widget",
+            "description": "Custom widget",
+            "widgetClass": "dijit"
+        }
+    },
+    "widgets": [
+        {
+            "name": "app_tables_views_config",
+            "description": "app_tables_views_config",
+            "type": "app_tables_views_config/app_tables_views_config",
+            "category": "custom",
+            "iconLocal": true,
+            "icon": "app/davinci/img/maqetta.png"
+        }
+    ],
+    "name": "app_tables_views_config",
+    "longName": "app_tables_views_config"
+}

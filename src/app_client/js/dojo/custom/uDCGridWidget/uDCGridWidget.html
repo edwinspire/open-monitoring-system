@@ -1,0 +1,59 @@
+<div data-dojo-attach-point="Contenedor" class="col-md-12 col-sm-12 col-xs-12">
+
+  <div data-dojo-attach-point="XPanel" class="x_panel">
+    <div class="x_title">
+      <h2><span data-dojo-attach-point="TitleGrid" class="title">Basic Tables</span></h2>
+      <ul class="nav navbar-right panel_toolbox">
+        <li><a><span data-dojo-attach-point="CollapseLink" data-dojo-type="CollapseButton/CollapseButton"></span></a>
+        </li>
+        <li data-dojo-attach-point="Refresh"><a><i class="fa fa-refresh"></i></a></li>
+        <li data-dojo-attach-point="DisabledRefreshTempo"><a><i class="fa fa-history"></i></a> </li>
+        <li style="display: none;" data-dojo-attach-point="Add"><a><i class="glyphicon glyphicon-plus"></i></a> </li>
+        <li style="display: none;" data-dojo-attach-point="Delete"><a><i class="glyphicon glyphicon-trash"></i></a> </li>
+        <li style="display: none;" data-dojo-attach-point="Export"><a ><i class="glyphicon glyphicon-export"></i></a> </li>
+        <li style="margin-left: 20px; padding-top: 5px;">
+          <div data-dojo-type="Input/Input" data-dojo-attach-point="Search" data-intermediate_changes="true" data-input-icon="glyphicon glyphicon-search"></div>
+        </li>
+
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+    <div data-dojo-attach-point="XContent" class="x_content">
+
+      <div data-dojo-attach-point="Contenedor" class="tundra"></div>
+
+    </div>
+  </div>
+
+  <div data-dojo-type="uDC/uDC" data-dojo-attach-point="uDC"></div>
+
+  <!-- -->
+  <span style="display: none">
+    <div data-dojo-attach-point="DialogNew" title="Nuevo registro" data-dojo-type="dijit/Dialog">
+     <form  data-dojo-attach-point="HTMLForm"> <span data-dojo-attach-point="DialogNewContent" ></span> </form>
+
+  <div class="dijitDialogPaneActionBar">
+    <button type="button" data-dojo-attach-point="DialogNewOK" class="btn btn-default btn-xs">Aceptar</button>
+    <button type="button" data-dojo-attach-point="DialogNewCancel" class="btn btn-default btn-xs">Cancelar</button>
+  </div>
+</div>
+
+</span>
+
+<!-- -->
+<span style="display: none">
+    <div data-dojo-attach-point="DialogDisabledRefresh"  data-dojo-type="dijit/TooltipDialog" style="width: 160px;">
+      Detener actualización de la tabla por  <input data-dojo-type="dijit/form/NumberSpinner"
+    data-dojo-attach-point="DisabledRefreshTime"
+    value="60"
+    data-dojo-props="smallDelta:10, constraints:{min:10, max:600,places:0}" style="width: 75px;"/>  segundos.
+<div class="dijitDialogPaneActionBar">
+<button type="button" data-dojo-attach-point="DialogDisabledRefreshOK" class="btn btn-default btn-xs">Aceptar</button>
+<button type="button" data-dojo-attach-point="DialogDisabledRefreshCancel" class="btn btn-default btn-xs">Cancelar</button>
+</div>
+    </div>
+    
+    </span>
+
+
+</div>
