@@ -9,8 +9,9 @@
     'dojo/on',
     "dijit/popup",
     "dojo/dom-style",
-    "dojo/query"
-    ], function (declare, _Widget, _Templated, templateString, on, popup, domStyle, query) {
+    "dojo/query",
+    "dijit/Editor", "dijit/_editor/plugins/AlwaysShowToolbar"
+    ], function (declare, _Widget, _Templated, templateString, on, popup, domStyle, query, Editor, AlwaysShowToolbar) {
 
         return declare([_Widget, _Templated], {
             widgetsInTemplate: true,
@@ -19,6 +20,15 @@
             postCreate: function () {
 
                 var t = this;
+
+        // var myEditor = new Editor({
+        //     height: '',
+        //     extraPlugins: [AlwaysShowToolbar]
+        // }, t.XXX);
+        // myEditor.startup();
+        t.CommentField.startup();
+
+
                 on(t.BChangeStatus, 'click', function (e) {
                     if(t.uDCChangeStatus.getField('idevent')){
                         popup.open({

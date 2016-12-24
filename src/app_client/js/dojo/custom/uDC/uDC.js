@@ -698,7 +698,7 @@ _post: function (_data, _query_type) {
 
           }else{
 
-console.trace('No ha definido parametros para buscar los tipos de datos', t.targetFieldtypes, t.table);
+//console.trace('No ha definido parametros para buscar los tipos de datos', t.targetFieldtypes, t.table);
             deferred = new Deferred();
             deferred.resolve([]);
             return  deferred.promise;

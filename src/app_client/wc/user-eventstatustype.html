@@ -11,15 +11,19 @@
 		</style>
 
 		<div class="btn-group  btn-group-sm btn-group-justified" id="BlockButton" style="margin-bottom: 3px;">
-			<a class="btn btn-default" type="button" id="BChangeStatus"><span class="glyphicon glyphicon-certificate" aria-hidden="true"></span> Cambiar estado</a>
-			<a class="btn btn-default" type="button" id="WGeo"></a>                                               
-
+			<a class="btn btn-default" type="button"></a>                                   
 		</div>
 	</template>
 
 
 
 	<script>
+
+						function SelectBtn(e){
+							console.debug(e);
+
+						}
+
 		Polymer({
 			is: 'user-eventstatustype',
 			properties: {
@@ -37,9 +41,15 @@
 				},
 				field_label: {
 					type: String
+				},
+				value: {
+					type: String
 				}
 
 
+			},
+			_Select: function(e){
+				console.debug(e);
 			},
 			ready: function() {
 
@@ -52,9 +62,10 @@
 				require([
 					"dojo/dom-construct",
 					"dojo/dom-style", 
-					'dojo/on',
-					"dojo/topic"
-					], function (domConstruct, domStyle, on, topic) {
+					"dojo/_base/array",
+					"dojo/topic",
+					'dojo/request'
+					], function (domConstruct, domStyle, array, topic, request) {
 
 
 						topic.subscribe("/event/table/changed/"+t.table, function(data){
@@ -63,19 +74,28 @@
 
 						request_data();
 
+						function SelectBtnxxxx(e){
+							console.debug(e);
+
+						}
 
 						function request_data(){
 
-
+							domConstruct.empty(t.$.BlockButton);
 							return  request.post(t.target, {
-								data: {},
+								data: {_uDCTable: t.table},
 								preventCache: true,
 								handleAs: 'json'
 							}).then(
 							function (response) {
-								console.log(response);
+							//	console.log(response);
 //t.store = Observable(new Memory({ data: {identifier: t.field_identifier, items: response}}));
+array.forEach(response, function(item){
+	var b = domConstruct.place('<a onclick="SelectBtn(this)" value="'+item.ideventstatustype+'" class="btn btn-default" type="button">'+item.label_status+'</a> ', t.$.BlockButton);
 
+//SelectBtn(b);
+
+});
 
 },
 function (e) {
