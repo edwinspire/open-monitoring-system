@@ -1,4 +1,4 @@
 Open Alarm Management System
 ===================
 
-**<i>Open AMS</i>** is Alarm monitoring software  for general-purpose web interface and PostgreSQL as a database.
+**<i>Open Monitoring System</i>** Application for general purpose monitoring, adaptable with PostgreSQL database and web interface.
