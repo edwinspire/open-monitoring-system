@@ -15,7 +15,7 @@ define(['dojo/_base/declare',
                 win.GlobalLiveStore._store = {};
                 win.GlobalLiveStore.Store = function(_args){
 
-                   var storeID = MD5(dojo.toJson(_args), dojox.encoding.digests.outputTypes.Hex);            
+                 var storeID = MD5(dojo.toJson(_args), dojox.encoding.digests.outputTypes.Hex);            
 
 //console.log(_args);
 if(!win.GlobalLiveStore._store[storeID]){
@@ -24,12 +24,6 @@ if(!win.GlobalLiveStore._store[storeID]){
 
 return win.GlobalLiveStore._store[storeID];
 }
-
-
-
-
-
-
 
 
 }

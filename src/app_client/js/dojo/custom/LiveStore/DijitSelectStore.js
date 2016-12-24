@@ -41,20 +41,16 @@ if (Object.prototype.toString.call(t.refreshOnTableChanged) === '[object Array]'
 
   array.forEach(t.refreshOnTableChanged, function(item, i){
 
-    //console.debug('DijitSelectStore Subscribe a cambios en la tabla '+item);
-
-   t._subscribe.push(topic.subscribe("/event/table/changed/"+item, function(data){
-			  // t.Select(t._last_select);
-			 //  console.debug('La tabla '+item+' ha cambiado y la Grid se ha actualizado');
-      t.request();
-    }));
- });
+    t._subscribe.push(topic.subscribe("/event/table/changed/"+item, function(data){
+       t.request();
+     }));
+  });
 
 }
 
 if(t.requestQuery){
 
-this.request(t.requestQuery);
+  this.request(t.requestQuery);
 
 }
 
@@ -75,23 +71,20 @@ request: function(_query){
 
  //console.debug(this);
 
-  return  request.post(this.target, {
-    data: this.requestQuery,
-    preventCache: true,
-    handleAs: 'json'
-  }).then(
-  function (response) {
+ return  request.post(this.target, {
+  data: this.requestQuery,
+  preventCache: true,
+  handleAs: 'json'
+}).then(
+function (response) {
 //console.log(response);
 t.objectStore = Observable(new Memory({ data: {identifier: t.identifier, items: response}}));
 
 },
 function (e) {
-                    // Display the error returned
-                  //  t._notifications({ Urgency: 1, Message: e, Title: 'Error!' });
-                  //  t.emit('onError', { error: e });
-                  console.error(e, t.target);
-                }
-                );
+  console.error(e, t.target);
+}
+);
 
 }
 
