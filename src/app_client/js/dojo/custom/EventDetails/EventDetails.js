@@ -9,9 +9,8 @@
     'dojo/on',
     "dijit/popup",
     "dojo/dom-style",
-    "dojo/query",
-    "dijit/Editor", "dijit/_editor/plugins/AlwaysShowToolbar"
-    ], function (declare, _Widget, _Templated, templateString, on, popup, domStyle, query, Editor, AlwaysShowToolbar) {
+    "dojo/query"
+    ], function (declare, _Widget, _Templated, templateString, on, popup, domStyle, query) {
 
         return declare([_Widget, _Templated], {
             widgetsInTemplate: true,

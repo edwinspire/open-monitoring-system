@@ -20,36 +20,38 @@
 	<script>
 
 						function SelectBtn(e){
-							console.debug(e);
+							console.debug(e, e.getAttribute('data-value'));
 
 						}
 
 		Polymer({
 			is: 'user-eventstatustype',
 			properties: {
-				points: {
-					target: String
-				},
 				store: {
+					reflectToAttribute: true,
 					type: Object
 				},
 				field_identifier: {
-					type: String
+					type: String,
+					reflectToAttribute: true
 				},
 				table: {
-					type: String
+					type: String,
+					reflectToAttribute: true
 				},
 				field_label: {
-					type: String
+					type: String,
+					reflectToAttribute: true
 				},
 				value: {
-					type: String
+					type: String,
+					reflectToAttribute: true
 				}
 
 
 			},
-			_Select: function(e){
-				console.debug(e);
+			xxx: function(){
+				alert();
 			},
 			ready: function() {
 
@@ -67,17 +69,11 @@
 					'dojo/request'
 					], function (domConstruct, domStyle, array, topic, request) {
 
-
 						topic.subscribe("/event/table/changed/"+t.table, function(data){
 							t.request_data();
 						});
 
 						request_data();
-
-						function SelectBtnxxxx(e){
-							console.debug(e);
-
-						}
 
 						function request_data(){
 
@@ -91,10 +87,8 @@
 							//	console.log(response);
 //t.store = Observable(new Memory({ data: {identifier: t.field_identifier, items: response}}));
 array.forEach(response, function(item){
-	var b = domConstruct.place('<a onclick="SelectBtn(this)" value="'+item.ideventstatustype+'" class="btn btn-default" type="button">'+item.label_status+'</a> ', t.$.BlockButton);
-
-//SelectBtn(b);
-
+	var b = domConstruct.place('<a onclick="this." data-value="'+item.ideventstatustype+'" class="btn btn-default" type="button">'+item.label_status+'</a> ', t.$.BlockButton);
+	//console.debug(b.getAttribute('data-value'));
 });
 
 },

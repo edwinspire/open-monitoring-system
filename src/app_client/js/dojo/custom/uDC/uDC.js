@@ -124,7 +124,7 @@ try {
      f.node.set('value', value, _noeventchanged);
 
            } catch (e) {
-            console.error(_field, e);
+            console.error(_field, f, e);
           }
 
    return this;
@@ -433,6 +433,7 @@ try{
       try{
         field.node.reset();
       }catch(e){
+        t.setField(field.name, '', false);
         console.error(e, field);
       }
     });
@@ -449,7 +450,9 @@ t._ConnectionsOnChange.push(
     var row = t._store.get(name);
     row.changed = true;
 
-    if (this.isValid()) {
+    console.debug(name+' ha cambiado ', _w);
+
+    if (_w.isValid()) {
 
      row.value = t._value_to_pg(row);
      row.isvalid = true;
