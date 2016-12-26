@@ -450,7 +450,7 @@ t._ConnectionsOnChange.push(
     var row = t._store.get(name);
     row.changed = true;
 
-    console.debug(name+' ha cambiado ', _w);
+    //console.debug(name+' ha cambiado ', _w);
 
     if (_w.isValid()) {
 
