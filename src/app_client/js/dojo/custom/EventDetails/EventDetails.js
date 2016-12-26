@@ -20,37 +20,20 @@
 
                 var t = this;
 
-        // var myEditor = new Editor({
-        //     height: '',
-        //     extraPlugins: [AlwaysShowToolbar]
-        // }, t.XXX);
-        // myEditor.startup();
         t.CommentField.startup();
 
         on(t.SelectEventStatus, 'Change', function(){
-            
+
             if(t.uDCChangeStatus.getField('idevent')){
                 domStyle.set(t.ContentEditor, 'display', 'inline-block');
             }
         });
 
 
-                // on(t.BChangeStatus, 'click', function (e) {
-                //     if(t.uDCChangeStatus.getField('idevent')){
-                //         popup.open({
-                //             popup: t.DialogChangeStatus,
-                //             around: t.BChangeStatus
-                //         });
-                //     }
-                // });
 
                 on(t.DialogCStatusCancel, 'click', function (e) {
                     domStyle.set(t.ContentEditor, 'display', 'none');
                 });
-
-               //  on(t.WGeo, 'click', function (e) {
-               //     t.dropdownDialog.open();
-               // });
 
                on(t.DialogCStatusOK, 'click', function (e) {
                  t.uDCChangeStatus.Insert().then(function(){
@@ -141,13 +124,6 @@ _set_and_hide_show_field: function(field, value){
 
 
 },
-// _setIdeventAttr: { node: "IdEvent", type: "innerHTML" },
-// _setDateeventAttr: { node: "DateEvent", type: "innerHTML" },
-// _setPriorityAttr: { node: "Priority", type: "innerHTML" },
-// _setDescriptionAttr: { node: "Description", type: "innerHTML" },
-// _setStatusAttr: { node: "LabelStatus", type: "innerHTML" },
-// _setEquipmentAttr: { node: "Equipment", type: "innerHTML" },
-// _setEventtypeAttr: { node: "Eventtype", type: "innerHTML" },
 Clear: function(){
 
 }
