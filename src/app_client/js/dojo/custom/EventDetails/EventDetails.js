@@ -27,40 +27,46 @@
         // myEditor.startup();
         t.CommentField.startup();
 
+        on(t.SelectEventStatus, 'Change', function(){
+            
+            if(t.uDCChangeStatus.getField('idevent')){
+                domStyle.set(t.ContentEditor, 'display', 'inline-block');
+            }
+        });
 
-                on(t.BChangeStatus, 'click', function (e) {
-                    if(t.uDCChangeStatus.getField('idevent')){
-                        popup.open({
-                            popup: t.DialogChangeStatus,
-                            around: t.BChangeStatus
-                        });
-                    }
-                });
+
+                // on(t.BChangeStatus, 'click', function (e) {
+                //     if(t.uDCChangeStatus.getField('idevent')){
+                //         popup.open({
+                //             popup: t.DialogChangeStatus,
+                //             around: t.BChangeStatus
+                //         });
+                //     }
+                // });
 
                 on(t.DialogCStatusCancel, 'click', function (e) {
-                    popup.close(t.DialogChangeStatus);
-
-                    
+                    domStyle.set(t.ContentEditor, 'display', 'none');
                 });
 
-                on(t.WGeo, 'click', function (e) {
-                   t.dropdownDialog.open();
-               });
+               //  on(t.WGeo, 'click', function (e) {
+               //     t.dropdownDialog.open();
+               // });
 
-                on(t.DialogCStatusOK, 'click', function (e) {
-                   t.uDCChangeStatus.Insert().then(function(){
-                       t.uDCChangeStatus.Clear();
-                   }); 
-                   popup.close(t.DialogChangeStatus);
-               });
-
-
-
+               on(t.DialogCStatusOK, 'click', function (e) {
+                 t.uDCChangeStatus.Insert().then(function(){
+                     t.uDCChangeStatus.Clear();
+                     domStyle.set(t.ContentEditor, 'display', 'none');
+                 }); 
+                  // popup.close(t.DialogChangeStatus);
+              });
 
 
 
 
-            },
+
+
+
+           },
 
         /**
  * Accept decimal input and return issue an error message.

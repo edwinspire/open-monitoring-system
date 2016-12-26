@@ -3,11 +3,11 @@
   <fieldset>
     <legend>DETALLE DEL EVENTO</legend>
 
-    <div class="btn-group  btn-group-sm btn-group-justified" data-dojo-attach-point="BlockButton" style="margin-bottom: 3px;">
+<!--     <div class="btn-group  btn-group-sm btn-group-justified" data-dojo-attach-point="BlockButton" style="margin-bottom: 3px;">
       <a class="btn btn-default" type="button" data-dojo-attach-point="BChangeStatus"><span class="glyphicon glyphicon-certificate" aria-hidden="true"></span> Cambiar estado</a>
       <a class="btn btn-default" type="button" data-dojo-attach-point="WGeo"></a>                                               
 
-    </div>
+    </div> -->
 
     <!-- --------------------- -->
 <!--     <span style="display: none">
@@ -97,15 +97,18 @@
       <legend>Cambiar Estado</legend>
 
       <div data-dojo-attach-point='SelectEventStatus' data-dojo-type="evenstatustype_user_buttons/evenstatustype_user_buttons" class="change_status_event" name="ideventstatustype"></div>          
-      <div data-dojo-attach-point="CommentField" data-dojo-type="dijit/Editor"  class="change_status_event" style="height: 150px;" name="comment_event"></div>
-    </fieldset>  
 
-    <div class="clearfix"></div>
+    <div style="display: none;" data-dojo-attach-point="ContentEditor">
+      <div data-dojo-attach-point="CommentField" data-dojo-type="dijit/Editor"  class="change_status_event" name="comment_event"></div>
 
-    <div >
+    <div style="padding: 3px;">
       <button type="button" data-dojo-attach-point="DialogCStatusOK" class="btn btn-default btn-xs">Aceptar</button>
       <button type="button" data-dojo-attach-point="DialogCStatusCancel" class="btn btn-default btn-xs">Cancelar</button>
+    </div>      
     </div>
+
+    </fieldset>  
+
   </div>
 
 
