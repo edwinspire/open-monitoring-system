@@ -1,7 +1,7 @@
 define(['dojo/_base/declare',
 	'dijit/_Widget',
 	'dijit/_Templated',
-	'dojo/text!account_data/account_data.html',
+	'dojo/text!contact_data/contact_data.html',
 	"dojo/on",
 	"uDC/uDC"
 	], function (declare, _Widget, _Templated, templateString,  on, uDC) {
@@ -17,7 +17,7 @@ define(['dojo/_base/declare',
         uDCContact: {},
         postCreate: function () {
         	var t = this;
-this.uDCContact = new uDC({});
+//this.uDCContact = new uDC({});
           /*
                        t.uDC.on('onSelect', function(e){
 	       t.TGroups.set('groups', e.data.iddivision, e.data.groups);                            
@@ -28,7 +28,7 @@ this.uDCContact = new uDC({});
 	       t.TGroups.set('groups', t.Division.get('value'), []);                            
   });
   */            
-console.log(this.uDCContact, this.CMC);
+//console.log(this.uDCContact, this.CMC);
 
 
 
