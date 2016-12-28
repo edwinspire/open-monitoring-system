@@ -3,6 +3,5 @@
 #*.sh
 *.bat
 *.log
-**farm*
 farm*
 
