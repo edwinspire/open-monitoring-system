@@ -12,24 +12,59 @@
 
 
   <!-- Bootstrap -->
-<!--   <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"> -->
+   <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<!--  <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"> -->
   <!-- jVectorMap -->
   <!-- Custom Theme Style -->
-<!--   <link href="css/custom.css" rel="stylesheet">
-  <link href="css/dgrid_columns.css" rel="stylesheet">
+   <link href="css/custom.css" rel="stylesheet">
+<!--  <link href="css/dgrid_columns.css" rel="stylesheet">
   <link href="js/dojo/dojo/dgrid/css/dgrid.css" rel="stylesheet">
   <link href="js/dojo/custom/uDCGridWidget/uDCGridWidget.css" rel="stylesheet">
   <link href="js/dojo/custom/Switch/Switch.css" rel="stylesheet"> -->
   <link href="css/themes_dijit/claro_plain/claro_plain.css" rel="stylesheet">
 
+  <!-- <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script> -->
+
+
 <script>
 
+      // Load webcomponentsjs polyfill if browser does not support native Web Components
+      (function() {
+        'use strict';
+
+        var onload = function() {
+          // For native Imports, manually fire WebComponentsReady so user code
+          // can use the same code path for native and polyfill'd imports.
+          if (!window.HTMLImports) {
+            document.dispatchEvent(
+              new CustomEvent('WebComponentsReady', {bubbles: true})
+            );
+          }
+        };
+
+        var webComponentsSupported = (
+          'registerElement' in document
+          && 'import' in document.createElement('link')
+          && 'content' in document.createElement('template')
+        );
+
+        if (!webComponentsSupported) {
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = '/bower_components/webcomponentsjs/webcomponents.min.js';
+          script.onload = onload;
+          document.head.appendChild(script);
+        } else {
+          onload();
+        }
+      })();
 
 
     </script>
 
-<script src="js/x-tag/x-tag-core.min.js"></script>
+    <script src="js/x-tag/x-tag-core.min.js"></script>
+
+
 
 
   <!-- OpenLayers_v3 -->
@@ -94,7 +129,7 @@
   ]"></script>
 
   <!-- REQUIRE DOJO -->
-  <script>require([      
+<!--   <script>require([      
     "dojo/parser",
     "dijit/layout/AccordionContainer",
     "dijit/layout/ContentPane",
@@ -194,7 +229,7 @@
 "contact_means_of_contact/contact_means_of_contact",
 "app_login_report/app_login_report"
 ]);
-</script>
+</script> -->
 
 <!-- <link rel="import" href="wc/socketio-eventserver.html">
 <link rel="import" href="wc/user-notifications.html">
@@ -218,25 +253,36 @@
 
 xtag.register('x-clock', {
     content: function(){/*
-
-  <div id="mycal" data-dojo-type="dijit/Calendar" value="2009-08-07" data-dojo-props="isDisabledDate:dojo.date.locale.isWeekend"></div>
-  <div data-dojo-type="dijit/Editor" id="myEditor">
-    <p>This is the initial content.</p>
-</div> 
+<div class="claro"><label for="date1">Drop down Date box:</label><input type="text" name="date1" data-internalid="date1" value="2005-12-30"    data-dojo-type="dijit/form/DateTextBox"    required="true" />  <div data-internalid="mycal" data-dojo-type="dijit/Calendar" value="2009-08-07" data-dojo-props="isDisabledDate:dojo.date.locale.isWeekend"></div>  <div data-dojo-type="dijit/Editor" data-internalid="myEditor">    <p>This is the initial content.</p></div> </div>
     */},
   lifecycle: {
     created: function(){
       //this.start();
 
 var t = this;
+console.log(t);
 
 require([
-    "dojo/store/Memory", "dijit/form/FilteringSelect", "dijit/registry", "dojo/ready"
-], function(Memory, FilteringSelect, registry, ready){
+    "dojo/store/Memory", "dijit/form/FilteringSelect", "dijit/registry", "dojo/ready", "dojo/parser", "dojo/query", "dijit/form/DateTextBox", "dijit/Calendar" , "dijit/Editor"
+], function(Memory, FilteringSelect, registry, ready, parser, query){
 
 ready(function(){
 
-console.log(dijit.byId('mycal'), registry.byNode(t.querySelector("#mycal")), t.querySelector("#mycal"));
+
+console.debug(dojo.query("[data-internalid]", t));
+
+
+ // var el = document.createElement('div');
+ // var shadow = el.createShadowRoot();
+ // shadow.innerHTML = '';
+ // t.appendChild(el);
+
+
+ //        setTimeout(function(){
+ //          parser.parse()
+ //        }, 5000);
+
+//console.log(dijit.byId('mycal'), registry.byNode(t.querySelector("#mycal")), t.querySelector("#mycal"));
 
 });
 
@@ -282,6 +328,7 @@ console.log(dijit.byId('mycal'), registry.byNode(t.querySelector("#mycal")), t.q
 
  <div class="container body"> </div>
 
+<x-clock></x-clock>
 <x-clock></x-clock>
 
 
