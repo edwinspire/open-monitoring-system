@@ -2,12 +2,17 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../wc/css-bootstrap.html">
 <link rel="import" href="../wc/css-claroplain.html">
+@import url("css/themes_dijit/claro_plain/claro_plain.css");
 
 
 <dom-module id="contact-form">
 	<template>
 
+
+
 		<style include="css-bootstrap ">
+
+    @import url("css/themes_dijit/claro_plain/claro_plain.css");
 
 .input-group{
   width: 30px;
@@ -5060,7 +5065,7 @@ ul.notifications {
 			},
 			ready: function() {
 
-this.scopeSubtree(this.$.container, false);
+//this.scopeSubtree(this.$.container, false);
 
 				// var t = this;
 				// t.target = '/njs/db/Select_Generic_to_Store';
@@ -5073,10 +5078,11 @@ this.scopeSubtree(this.$.container, false);
 					"dojo/dom-style", 
 					"dojo/_base/array",
 					"dojo/topic",
-					'dojo/request'
-					], function (domConstruct, domStyle, array, topic, request) {
+					'dojo/request',
+          "dojo/parser"
+					], function (domConstruct, domStyle, array, topic, request, parser) {
 
-
+ parser.parse();
 
 
 

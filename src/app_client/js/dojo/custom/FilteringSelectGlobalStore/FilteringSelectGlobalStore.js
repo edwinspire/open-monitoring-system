@@ -27,7 +27,7 @@ if(t.GlobalLiveStore){
 	try{
 		t.set('store', win.GlobalLiveStore.Store(t.GlobalLiveStore));
 	}catch(e){
-		console.error(e);
+		console.warn(e);
 	}
 }
 
