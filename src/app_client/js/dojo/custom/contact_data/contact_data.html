@@ -4,29 +4,29 @@
 	<fieldset>
 		<legend >Habilitado</legend>
 
-		<span class="input-group">
-			<div name="enabled" class="contact_form_basic_class_udc " data-dojo-type="Switch/Switch" value="false"/>
-		</span>
+
+			<input name="enabled" class="contact_form_basic_class_udc " data-dojo-type="dijit/form/CheckBox" value="false"/>
+
 	</fieldset>  
 
 	
 	<fieldset>
 		<legend>Nombre</legend>
-		<span class="input-group">
+	
 			<input data-dojo-type="dijit/form/ValidationTextBox" class="contact_form_basic_class_udc " placeholder="Nombre" name="first_name"/>        
-		</span>
+	
 	</fieldset>  
 	
 	
 	<fieldset>
 		<legend>Apellido</legend>
-		<span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-user" placeholder="Apellido" name="last_name" class="contact_form_basic_class_udc "></span>         
+		<div data-dojo-type="dijit/form/ValidationTextBox" data-input-icon="glyphicon glyphicon-user" placeholder="Apellido" name="last_name" class="contact_form_basic_class_udc"></div>         
 	</fieldset>  
 	
 
 	<fieldset>
 		<legend>Cumpleaños</legend>
-		<div data-dojo-type="DateTextbox/DateTextbox" class="contact_form_basic_class_udc " name="birthday"></div>
+		<div data-dojo-type="dijit/form/DateTextBox" class="contact_form_basic_class_udc " name="birthday"></div>
 	</fieldset> 
 
 
@@ -34,9 +34,9 @@
 	<fieldset>
 		<legend >Tipe ID</legend>
 		
-		<span class="input-group">        
+	      
 			<div class="contact_form_basic_class_udc " name="ididtype" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['identification_types'], requestQuery: {_uDCTable: 'identification_types'}, identifier: 'ididtype', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'name'"></div>    
-		</span>         
+	      
 		
 
 		
@@ -50,37 +50,45 @@
 	
 	<fieldset>
 		<legend>Identification</legend>
-		<span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-barcode" placeholder="Identificación" name="identification" class="contact_form_basic_class_udc "></span>         
+		<span data-dojo-type="dijit/form/ValidationTextBox" data-input-icon="glyphicon glyphicon-barcode" placeholder="Identificación" name="identification" class="contact_form_basic_class_udc "></span>         
 	</fieldset>  
 	
 	
 	<fieldset>
 		<legend>Codigo Postal</legend>
-		<span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-envelope" placeholder="Código postal" name="postal_code" class="contact_form_basic_class_udc "></span>          
+		<span data-dojo-type="dijit/form/ValidationTextBox" data-input-icon="glyphicon glyphicon-envelope" placeholder="Código postal" name="postal_code" class="contact_form_basic_class_udc "></span>          
 	</fieldset>  
 	
 	
 	<fieldset>
 		<legend>Genero</legend>
-		<div data-dojo-type="SelectGender/SelectGender" class="contact_form_basic_class_udc " name="gender"></div>
+	<!-- 	<div data-dojo-type="SelectGender/SelectGender" class="contact_form_basic_class_udc " name="gender"></div> -->
+
+    <select data-dojo-type="dijit/form/FilteringSelect"  value="0" intermediateChanges="false"  class="contact_form_basic_class_udc " name="gender" trim="false" uppercase="false" lowercase="false" propercase="false" required="true" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200" >
+        <option value="0" selected="true">Indefinido</option>
+<option value="1" selected="true">Hombre</option>
+<option value="2" selected="true">Mujer</option>
+<option value="3" selected="true">No definido</option>
+    </select>
+
 	</fieldset>  
 	
 	
 	<fieldset>
 		<legend>Latitud</legend>
-		<span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-map-marker" placeholder="Latitud" value="0.0" class="contact_form_basic_class_udc " name="geox"></span>         
+		<span data-dojo-type="dijit/form/ValidationTextBox" data-input-icon="glyphicon glyphicon-map-marker" placeholder="Latitud" value="0.0" class="contact_form_basic_class_udc " name="geox"></span>         
 	</fieldset>  
 	
 	
 	<fieldset>
 		<legend>Longitud</legend>
-		<span data-dojo-type="Input/Input" data-input-icon="glyphicon glyphicon-map-marker" placeholder="Longitud"  value="0.0" class="contact_form_basic_class_udc " name="geoy"></span>         
+		<span data-dojo-type="dijit/form/ValidationTextBox" data-input-icon="glyphicon glyphicon-map-marker" placeholder="Longitud"  value="0.0" class="contact_form_basic_class_udc " name="geoy"></span>         
 	</fieldset>  
 
 	
 	<fieldset>
 		<legend>Fecha Inicio</legend>
-		<div  data-dojo-type="DateTextbox/DateTextbox" class="contact_form_basic_class_udc " name="start_date"></div>
+		<div  data-dojo-type="dijit/form/DateTextBox" class="contact_form_basic_class_udc " name="start_date"></div>
 	</fieldset> 
 
 

@@ -1,5 +1,6 @@
 require(["dojo/ready", 
   "dojo/cookie",
+  "EventServerIO/EventServerIO",
   "dojo/_base/connect",
   "dojo/_base/window", 
   "dojo/on",
@@ -24,6 +25,7 @@ require(["dojo/ready",
   "app_login_report/app_login_report"
   ], function(ready, 
     cookie,
+    EventServerIO,
     connect, 
     win,
     on,
@@ -49,7 +51,7 @@ require(["dojo/ready",
     ){
    ready(function(){
 
-
+var ESIO = new EventServerIO();
 
     var FullName = dojo.byId('FullName');
 //     var SIDEBAR_MENU = dojo.byId('sidebar-menu');
