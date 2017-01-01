@@ -1,6 +1,6 @@
 require(["dojo/ready", 
   "dojo/cookie",
-  "EventServerIO/EventServerIO",
+  "Widget/EventServerIO/EventServerIO",
   "dojo/_base/connect",
   "dojo/_base/window", 
   "dojo/on",
