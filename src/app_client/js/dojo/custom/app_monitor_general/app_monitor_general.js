@@ -1,7 +1,7 @@
 define(['dojo/_base/declare',
     'dijit/_Widget',
     'dijit/_Templated',
-    'dojo/text!app_monitor_general/app_monitor_general.html',
+    'dojo/text!Widget/app_monitor_general/app_monitor_general.html',
     "dojo/dom-class",
     "dojo/on"
 ], function (declare, _Widget, _Templated, templateString, domClass, on) {
