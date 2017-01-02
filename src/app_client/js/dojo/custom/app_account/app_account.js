@@ -10,7 +10,11 @@ define(['dojo/_base/declare',
   "dijit/TooltipDialog",
   "dijit/popup",
   "dojo/topic",
-  "dojo/dom-attr"
+  "dojo/dom-attr",
+  "dijit/layout/StackContainer",
+  "dijit/layout/ContentPane",
+  "dijit/layout/StackController",
+  "Widget/PageContainer/PageContainer"
   ], function (declare, _Widget, _Templated, templateString, domClass, on, query, domStyle, domClass, w, TTD, popup, topic, domAttr) {
 /**
      * Application Account
@@ -30,8 +34,12 @@ t.SelectAccounts.searchDelay = 600;
 
 domStyle.set(t.domNode, 'min-height', w.getBox().h-70+'px');
 
+
+//t.SelectorPage.as_page();
+
+
 on(t.WData, 'click', function () {
-  t.SelectorPage.select(0);
+  t.SelectorPage.selectPage(0);
   t._ChangeWidget(this);
   // domStyle.set(t.Basic.domNode, "display", "block");
   // t._widgetResize(t.Basic);
@@ -42,7 +50,8 @@ on(t.WGeo, 'click', function () {
   // domStyle.set(t.AccountMap, "display", "block");
   // //t._widgetResize(t.AccountMap);
   //console.debug(t.Basic.uDC.getData());
-  t.SelectorPage.select(1);
+  //t.SelectorPage.selectChild(t.AccountMapX, true);
+  t.SelectorPage.selectPage(1);
   t.AccountMap.render();
 });	
 
@@ -50,21 +59,22 @@ on(t.WContacts, 'click', function () {
   t._ChangeWidget(this);
   // domStyle.set(t.ContactsUsers.domNode, "display", "block");
   // t._widgetResize(t.ContactsUsers);
-  t.SelectorPage.select(2);
+  //t.SelectorPage.selectChild(t.ContactsUsers, true);
+  t.SelectorPage.selectPage(2);
 });	 
 
 on(t.WUsers, 'click', function () {
   t._ChangeWidget(this);
   // domStyle.set(t.ContactsUsers.domNode, "display", "block");
   // t._widgetResize(t.ContactsUsers);
-  t.SelectorPage.select(3);
+  t.SelectorPage.selectPage(3);
 });	 
 
 on(t.WEquipment, 'click', function () {
   t._ChangeWidget(this);
   // domStyle.set(t.Equipments.domNode, "display", "block");
   // t._widgetResize(t.Equipments);
-  t.SelectorPage.select(4);
+  t.SelectorPage.selectPage(4);
 });	  
 
 
@@ -72,7 +82,7 @@ on(t.WEvents, 'click', function () {
   t._ChangeWidget(this);
   // domStyle.set(t.EventsIsOpen.domNode, "display", "block");
   // t._widgetResize(t.EventsIsOpen);
-  t.SelectorPage.select(5);
+  t.SelectorPage.selectPage(5);
 });	            
 
 

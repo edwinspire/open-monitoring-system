@@ -7,25 +7,25 @@
 
 
      <ul class="nav navbar-right panel_toolbox" style="height: 25px;">
-     <li><a data-dojo-attach-point="NewAccount"><i class="glyphicon glyphicon-plus"></i></a> </li>
+       <li><a data-dojo-attach-point="NewAccount"><i class="glyphicon glyphicon-plus"></i></a> </li>
 
-<span style="display: none;">
-  
-      <div data-dojo-attach-point="DTTNewAccount" data-dojo-type="dijit/TooltipDialog">
+       <span style="display: none;">
+
+        <div data-dojo-attach-point="DTTNewAccount" data-dojo-type="dijit/TooltipDialog">
           <div>Desea agregar un nuevo abonado?</div>
 
-  <div class="dijitDialogPaneActionBar">
-    <button type="button" data-dojo-attach-point="DTTNewAccountOK" class="btn btn-default btn-xs">Si</button>
-    <button type="button" data-dojo-attach-point="DTTNewAccountCancel" class="btn btn-default btn-xs">No</button>
-  </div>
-    </div>
+          <div class="dijitDialogPaneActionBar">
+            <button type="button" data-dojo-attach-point="DTTNewAccountOK" class="btn btn-default btn-xs">Si</button>
+            <button type="button" data-dojo-attach-point="DTTNewAccountCancel" class="btn btn-default btn-xs">No</button>
+          </div>
+        </div>
 
-</span>
+      </span>
 
 
-       <li><a data-dojo-attach-point="Save"><i class="glyphicon glyphicon-floppy-save"></i></a> </li>
-       <li><a data-dojo-attach-point="Save2"><i class="glyphicon glyphicon-zoom-in"></i></a> </li>
-       <li style="margin-left: 10px; padding-top: 3px; margin-right: 5px;">
+      <li><a data-dojo-attach-point="Save"><i class="glyphicon glyphicon-floppy-save"></i></a> </li>
+      <li><a data-dojo-attach-point="Save2"><i class="glyphicon glyphicon-zoom-in"></i></a> </li>
+      <li style="margin-left: 10px; padding-top: 3px; margin-right: 5px;">
 
         <!-- <div data-dojo-type="FilteringSelectAjax/FilteringSelectAjax" data-dojo-attach-point="SelectAccounts" data-select-config="{Url: 'php/query/accounts_list_for_select.php', LoadOnCreate: true, Table: 'view_accounts', FieldLabel: 'account__name', FieldValue: 'idcontact'}"></div> -->
 
@@ -53,16 +53,21 @@
 
 
 
-<iron-pages data-dojo-attach-point="SelectorPage" selected="0">
-    <div class="widgetMember" data-dojo-type="account_data/account_data" data-dojo-attach-point="Basic"></div> 
-    <ol-map class="widgetMember" data-dojo-attach-point="AccountMap" points='{points: []}' ></ol-map>
-    <div class="widgetMember" data-dojo-type="account_contacts_users/account_contacts_users" data-dojo-attach-point="ContactsUsers" ></div>
-    <div class="widgetMember" data-dojo-type="account_contacts_users/account_contacts_users" data-dojo-attach-point="ContactsUsersXXX" ></div>
-    <div class="widgetMember" data-dojo-type="account_equipments/account_equipments" data-dojo-attach-point="Equipments" ></div>
-    <div class="widgetMember" data-dojo-type="account_events_isopen/account_events_isopen" data-dojo-attach-point="EventsIsOpen" ></div> 
-</iron-pages>
+<!-- <iron-pages data-dojo-attach-point="SelectorPage" selected="0">
 
-  </div>
+</iron-pages> -->
+
+
+<div data-dojo-type="PageContainer/PageContainer" data-dojo-attach-point="SelectorPage">
+<div class="widgetMember" data-dojo-type="account_data/account_data" data-dojo-attach-point="Basic" data-label="Datos Basicos" data-selected="true"></div> 
+  <ol-map class="widgetMember" data-dojo-attach-point="AccountMap" points='{points: []}' data-label="Ubicacion Geográfica" data-selected="true"></ol-map>  
+  <div class="widgetMember" data-dojo-type="account_contacts_users/account_contacts_users" data-label="Contactos" data-dojo-attach-point="ContactsUsers" ></div>
+  <div class="widgetMember" data-dojo-type="account_contacts_users/account_contacts_users" data-label="Usuarios" data-dojo-attach-point="ContactsUsersXXX" ></div>
+  <div class="widgetMember" data-dojo-type="account_equipments/account_equipments" data-label="Equipos" data-dojo-attach-point="Equipments" ></div>
+  <div class="widgetMember" data-dojo-type="account_events_isopen/account_events_isopen" data-label="Incidentes" data-dojo-attach-point="EventsIsOpen" ></div> 
+</div>
+
+</div>
 
 
 

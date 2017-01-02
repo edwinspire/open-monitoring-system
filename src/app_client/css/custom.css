@@ -1,3 +1,12 @@
+.PageContainerPageHide{
+display: none;
+}
+
+.PageContainerPageShow{
+display: inline-block;
+height: 100%;
+width: 100%;
+}
 
 .input-group{
   width: 30px;
