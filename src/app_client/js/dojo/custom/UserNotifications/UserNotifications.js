@@ -144,7 +144,7 @@ if (args.Closable) {
     });
 }
 
-node.innerHTML = ' <div class="'+ bsc +'"> <iron-icon icon="vaadin-icons:bell-o"></iron-icon><span class="notificacion_area_title">' + args.Title + '</span>  <div class="notificacion_area_message">' + args.Message + '</div> <audio autoplay><source src="' + args.Snd + '" type="audio/ogg"> <source src="media/snd/notify.mp3" type="audio/mpeg"> </audio> </div>';
+node.innerHTML = ' <div class="'+ bsc +'"> <span class="glyphicon '+args.IconClass+'" aria-hidden="true"></span><span class="notificacion_area_title">' + args.Title + '</span>  <div class="notificacion_area_message">' + args.Message + '</div> <audio autoplay><source src="' + args.Snd + '" type="audio/ogg"> <source src="media/snd/notify.mp3" type="audio/mpeg"> </audio> </div>';
 
 
 //Polymer.dom(containerNotify).appendChild(node);
