@@ -17,7 +17,7 @@ define(["dojo/_base/declare",
 
 					if(domAttr.has(child, 'data-label')){
 
-
+// TODO Aqui deberiamos insertar un contenedor para ubicar ahi los botones que se deben crear dinamicamente al crear el widget
 						
 					}else{
 

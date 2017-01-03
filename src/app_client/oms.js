@@ -1,6 +1,7 @@
 require(["dojo/ready", 
   "dojo/cookie",
   "Widget/EventServerIO/EventServerIO",
+  "Widget/UserNotifications/UserNotifications",
   "dojo/_base/connect",
   "dojo/_base/window", 
   "dojo/on",
@@ -26,6 +27,7 @@ require(["dojo/ready",
   ], function(ready, 
     cookie,
     EventServerIO,
+    UserNotifications,
     connect, 
     win,
     on,
@@ -52,6 +54,8 @@ require(["dojo/ready",
    ready(function(){
 
 var ESIO = new EventServerIO();
+var NOTIF = new UserNotifications();
+
 
     var FullName = dojo.byId('FullName');
 //     var SIDEBAR_MENU = dojo.byId('sidebar-menu');
