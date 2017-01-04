@@ -53,7 +53,7 @@ require(["dojo/ready",
     ){
    ready(function(){
 
-// var ESIO = new EventServerIO();
+ var ESIO = new EventServerIO();
 var NOTIF = new UserNotifications();
 
 
