@@ -8,7 +8,7 @@ define(['dojo/_base/declare',
          
 constructor: function(){
 
-                var socket = io.connect('ws://'+document.location.host);
+                var socket = io.connect('http://'+document.location.host);
 
                 socket.on('connection', function(client) {  
                     console.log('Client connected. web component..');
