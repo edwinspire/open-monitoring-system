@@ -20,8 +20,8 @@
       <ul class="nav side-menu">
         <li><a><iron-icon icon="menu" class="icon"></iron-icon>Monitor <iron-icon icon="arrow-drop-down" class="drop_down"></iron-icon></a>
           <ul class="nav child_menu" style="display: none">
-            <li><a data-trigger="monitoreo_general">General</a></li>
-            <li><a data-trigger="monitoreo_equipos_red">Equipos de red</a></li>
+            <li><a data-itemclick="monitoreo_general">General</a></li>
+            <li><a data-itemclick="monitoreo_equipos_red">Equipos de red</a></li>
           </ul>
         </li>
       </ul>
@@ -167,7 +167,7 @@
   .menu_section {
     padding: 5px;
     border-top-color: #35516d;
-    border-bottom-color: black;
+    border-bottom-color: #11273d;
     border-style: solid;
     border-width: 1px;
   }
@@ -1326,6 +1326,10 @@
         //observer: '_pointsChanged'
       }
     },
+          handleClick: function(e, name_item) {
+            console.debug(e, name_item);
+        this.fire('clickitem', {name: name_item});
+      },
     ready: function() {
 
       var WComponent = this;
@@ -1353,6 +1357,10 @@ var setContentHeight = function () {
             //domStyle.set(RIGHT_COL, 'min-height', dojo.window.getBox().h+'px');
           };
 
+
+query("[data-itemclick]", SIDEBAR_MENU).on("click", function(ev){
+WComponent.handleClick(ev, domAttr.get(this, "data-itemclick"));
+});
 
 
           query("a", SIDEBAR_MENU).on("click", function(ev){
