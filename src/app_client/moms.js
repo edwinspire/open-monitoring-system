@@ -1,5 +1,7 @@
 require(["dojo/ready", 
   "dojo/cookie",
+  "dojo/fx",
+  "dojo/fx/Toggler",
   "Widget/EventServerIO/EventServerIO",
   "Widget/UserNotifications/UserNotifications",
   "dojo/_base/connect",
@@ -26,6 +28,8 @@ require(["dojo/ready",
   "app_login_report/app_login_report"
   ], function(ready, 
     cookie,
+    coreFx,
+    Toggler,
     EventServerIO,
     UserNotifications,
     connect, 
@@ -58,6 +62,28 @@ var Mainmenu = dojo.byId("main_menu");
 on(Mainmenu, "clickitem", function(e){
 console.debug(e);
 }); 
+
+var toggler = new Toggler({
+    node: "MenuContainer",
+    showFunc: coreFx.wipeIn,
+    hideFunc: coreFx.wipeOut
+  });
+
+on("ToogleMenu", "Click", function(e){
+
+if(this.isshow){
+  toggler.show();
+  this.isshow = true;
+}else{
+toogler.hide();
+this.isshow = false;
+}
+
+});
+
+  
+
+
 
 /*
  var ESIO = new EventServerIO();
