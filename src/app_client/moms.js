@@ -69,13 +69,13 @@ var toggler = new Toggler({
     hideFunc: coreFx.wipeOut
   });
 
-on("ToogleMenu", "Click", function(e){
+on(dojo.byId("ToogleMenu"), "click", function(e){
 
 if(this.isshow){
   toggler.show();
   this.isshow = true;
 }else{
-toogler.hide();
+toggler.hide();
 this.isshow = false;
 }
 
