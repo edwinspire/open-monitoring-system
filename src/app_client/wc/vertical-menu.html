@@ -1,0 +1,174 @@
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+
+
+
+
+<dom-module id="vertical-menu">
+	<template>
+
+
+    <div id="ContainerMenu" class="shadow">
+
+      <button class="accordion"> <iron-icon icon="vaadin-icons:institution" style="float: left; padding-right: 5px;"></iron-icon> <div class="label">Section 1</div></button>
+      <div class="panel">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> 
+      </div>
+
+
+
+      <button class="accordion"><iron-icon icon="vaadin-icons:institution" style="float: left; padding-right: 5px;"></iron-icon> <div class="label">Section 2</div> </button>
+      <div class="panel submenu">
+
+        <div class="accordion"> <iron-icon icon="vaadin-icons:file-tree-small" style="float: left; padding-right: 5px;"></iron-icon><div class="label">Section 2 - A</div></div>
+        <div class="panel">
+          <p>
+         
+
+<ul class="c">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Coca Cola</li>
+</ul>
+
+          </p>
+        </div>
+
+      </div>
+
+
+
+
+      <button class="accordion">Section 3</button>
+      <div id="foo" class="panel">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+
+    </div>
+
+
+  </template>
+
+  <style>
+
+ul.c {list-style-type: square;}
+
+.label{
+padding: 5px;  
+}
+    .shadow{
+      -webkit-box-shadow: 9px 9px 14px -8px rgba(0,0,0,0.87);
+      -moz-box-shadow: 9px 9px 14px -8px rgba(0,0,0,0.87);
+      box-shadow: 9px 9px 14px -8px rgba(0,0,0,0.87);
+      background: #142331;
+    }
+
+    .submenu{
+      margin-left: 20px;
+
+    }
+
+    button.accordion {
+      background-color: #2a3f54;
+      color: white;
+      cursor: pointer;
+      padding: 15px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 15px;
+      transition: 0.4s;
+      border-style: solid;
+      border-bottom-color: black;
+      border-top-color: #425669;
+      border-width: 1px;
+      vertical-align: middle;
+      border-left-width: 0px;
+
+
+    }
+
+    button.accordion.active, button.accordion:hover {
+      background-color: #142331;
+    }
+
+    div.panel {
+     # padding: 0 15px;
+     background-color: #142331;
+     max-height: 0;
+     overflow: hidden;
+     transition: 0.6s ease-in-out;
+     opacity: 0;
+     color: white;
+
+
+   }
+
+   div.panel.show {
+    opacity: 1;
+    max-height: 500px;  
+    background-color: #142331;
+     margin-left: 20px;
+  }
+</style>
+
+
+<script>
+
+
+  Polymer({
+   is: 'vertical-menu',
+   properties: {
+    points: {
+      type: Array
+        //notify: true,
+        //observer: '_pointsChanged'
+      }
+    },
+    ready: function() {
+
+      var WComponent = this;
+
+
+      require(["dojo/ready", 
+        "dojo/query"
+        ], function (ready, query) {
+          ready(function () {
+
+            query(".accordion", WComponent.$.ContainerMenu).on("click", function(e){
+              this.classList.toggle("active");
+              this.nextElementSibling.classList.toggle("show");
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+          });
+        }
+        );
+
+
+
+
+
+// Fin de ready
+}
+});
+
+
+
+
+
+</script>
+</dom-module>

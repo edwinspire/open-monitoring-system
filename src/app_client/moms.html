@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8; no-cache">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Open Monitor System</title>
+
+
+  <!-- Bootstrap -->
+  <!-- <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+  <!-- <link href="vendors/font-awesome/css/font-awesome.css" rel="stylesheet"> -->
+  <!-- jVectorMap -->
+  <!-- Custom Theme Style -->
+  <link href="css/main.css" rel="stylesheet">
+  <link href="css/dgrid_columns.css" rel="stylesheet">
+  <link href="js/dojo/dojo/dgrid/css/dgrid.css" rel="stylesheet">
+  <link href="js/dojo/custom/uDCGridWidget/uDCGridWidget.css" rel="stylesheet">
+  <link href="js/dojo/custom/Switch/Switch.css" rel="stylesheet">
+  <link href="css/themes_dijit/claro_plain/claro_plain.css" rel="stylesheet">
+
+<script>
+      //Setup Polymer options
+      window.Polymer = {
+        dom: 'shadow',
+        lazyRegister: true
+      };
+
+      // Load webcomponentsjs polyfill if browser does not support native Web Components
+      (function() {
+        'use strict';
+
+        var onload = function() {
+          // For native Imports, manually fire WebComponentsReady so user code
+          // can use the same code path for native and polyfill'd imports.
+          if (!window.HTMLImports) {
+            document.dispatchEvent(
+              new CustomEvent('WebComponentsReady', {bubbles: true})
+            );
+          }
+        };
+
+        var webComponentsSupported = (
+          'registerElement' in document
+          && 'import' in document.createElement('link')
+          && 'content' in document.createElement('template')
+        );
+
+        if (!webComponentsSupported) {
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = '/bower_components/webcomponentsjs/webcomponents-lite.min.js';
+          script.onload = onload;
+          document.head.appendChild(script);
+        } else {
+          onload();
+        }
+      })();
+
+
+    </script>
+
+
+<link rel="import" href="bower_components/polymer/polymer-micro.html">
+
+
+  <script type="text/javascript" src="js/dojo/dojo/dojo/dojo.js" 
+  data-dojo-config="'parseOnLoad':true,'async':true, 'packages':[
+  {'name':'widgets','location':'../custom'}
+  ,{'name':'Widget','location':'../../custom'}
+  ,{'name':'Alert','location':'../../custom/Alert'}
+  ,{'name':'Chat','location':'../../custom/Chat'}
+  ,{'name':'CollapseButton','location':'../../custom/CollapseButton'}
+  ,{'name':'ContactGroup','location':'../../custom/ContactGroup'}
+  ,{'name':'ContactMap','location':'../../custom/ContactMap'}
+  ,{'name':'ContactWidget','location':'../../custom/ContactWidget'}
+  ,{'name':'DateTextbox','location':'../../custom/DateTextbox'}
+  ,{'name':'Extends','location':'../../custom/Extends'}
+  ,{'name':'FilteringSelectAccounts','location':'../../custom/FilteringSelectAccounts'}
+  ,{'name':'FilteringSelectGlobalStore','location':'../../custom/FilteringSelectGlobalStore'}
+  ,{'name':'Geolocations','location':'../../custom/Geolocations'}
+  ,{'name':'GlobalLiveStore','location':'../../custom/GlobalLiveStore'}
+  ,{'name':'Input','location':'../../custom/Input'}
+  ,{'name':'LiveStore','location':'../../custom/LiveStore'}
+  ,{'name':'Map','location':'../../custom/Map'}
+  ,{'name':'MapPoint','location':'../../custom/MapPoint'}
+  ,{'name':'EventDetails','location':'../../custom/EventDetails'}
+  ,{'name':'SelectGender','location':'../../custom/SelectGender'}
+  ,{'name':'Switch','location':'../../custom/Switch'}
+  ,{'name':'account_contacts_users','location':'../../custom/account_contacts_users'}
+  ,{'name':'account_data','location':'../../custom/account_data'}
+  ,{'name':'account_equipments','location':'../../custom/account_equipments'}
+  ,{'name':'account_events_isopen','location':'../../custom/account_events_isopen'}
+  ,{'name':'app_account','location':'../../custom/app_account'}
+  ,{'name':'app_accounts_table','location':'../../custom/app_accounts_table'}
+  ,{'name':'app_event_admin','location':'../../custom/app_event_admin'}
+  ,{'name':'app_monitor_network_devices','location':'../../custom/app_monitor_network_devices'}
+  ,{'name':'app_tables_views_config','location':'../../custom/app_tables_views_config'}
+  ,{'name':'bs_button','location':'../../custom/bs_button'}
+  ,{'name':'select','location':'../../custom/select'}
+  ,{'name':'select_account_states','location':'../../custom/select_account_states'}
+  ,{'name':'select_account_types','location':'../../custom/select_account_types'}
+  ,{'name':'select_accounts','location':'../../custom/select_accounts'}
+  ,{'name':'FilteringSelectLiveStore','location':'../../custom/FilteringSelectLiveStore'}
+  ,{'name':'select_divisions','location':'../../custom/select_divisions'}
+  ,{'name':'select_group','location':'../../custom/select_group'}
+  ,{'name':'select_identification_types','location':'../../custom/select_identification_types'}
+  ,{'name':'socketio','location':'../../custom/socketio'}
+  ,{'name':'top_tile','location':'../../custom/top_tile'}
+  ,{'name':'uDC','location':'../../custom/uDC'}
+  ,{'name':'evenstatustype_user_buttons','location':'../../custom/evenstatustype_user_buttons'}
+  ,{'name':'uDCGrid','location':'../../custom/uDCGrid'}
+  ,{'name':'uDCGridWidget','location':'../../custom/uDCGridWidget'}
+  ,{'name':'utils','location':'../../custom/utils'}
+  ,{'name':'contact_means_of_contact','location':'../../custom/contact_means_of_contact'}
+  ,{'name':'contact_data','location':'../../custom/contact_data'}
+  ,{'name':'app_login_report','location':'../../custom/app_login_report'}
+  ]"></script>
+
+  <!-- REQUIRE DOJO -->
+  <script>require([      
+    "dojo/parser",
+    "EventDetails/EventDetails",
+    "dijit/Toolbar",
+    "dijit/Editor",
+    "dijit/Calendar",
+    "dijit/TooltipDialog",
+    "dijit/popup",
+    "dijit/Tooltip",
+    "dijit/Dialog",
+    "evenstatustype_user_buttons/evenstatustype_user_buttons",
+    'uDC/uDC',
+    'uDCGrid/uDCGrid',
+    "GlobalLiveStore/GlobalLiveStore",
+    "dgrid/OnDemandGrid",
+    "account_events_isopen/account_events_isopen",
+    'uDCGridWidget/uDCGridWidget',
+    "Input/Input",
+    "utils/String",
+    "Extends/Editor",
+"contact_data/contact_data",
+"FilteringSelectLiveStore/FilteringSelectLiveStore",
+"FilteringSelectGlobalStore/FilteringSelectGlobalStore",
+"FilteringSelectAccounts/FilteringSelectAccounts",
+"Switch/Switch",
+"DateTextbox/DateTextbox",
+"CollapseButton/CollapseButton",
+"ContactWidget/ContactWidget",
+"SelectGender/SelectGender",
+"ContactMap/ContactMap",
+"Map/Map",
+"ContactGroup/ContactGroup",
+"account_contacts_users/account_contacts_users",
+"account_equipments/account_equipments",
+"app_account/app_account",
+"account_data/account_data",
+"app_monitor_network_devices/app_monitor_network_devices",
+"Geolocations/Geolocations",
+"contact_means_of_contact/contact_means_of_contact",
+"app_login_report/app_login_report"
+]);
+</script>
+
+<link rel="import" href="bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="wc/ol-map.html">
+<link rel="import" href="wc/user-eventstatustype.html">
+<link rel="import" href="wc/vertical-menu.html">
+
+<!-- Custom JS -->
+<!-- <script src="js/custom.js"></script>
+ -->
+<!-- <script src="oms.js"></script>   -->
+
+</head>
+
+<!-- <body data-maq-flow-layout="true" data-maq-comptype="desktop"  data-maq-ws="collapse" id="myapp" data-maq-appstates="{}" class="claro nav-sm"> -->
+<body data-maq-flow-layout="true" data-maq-comptype="desktop" class="claro" data-maq-ws="collapse" id="myapp" data-maq-appstates="{}" style="width: 100%; height: 100%;">
+
+  <style>
+
+   .container_preloader{
+      z-index:999999;
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      background: #ededed;
+      text-align:center;
+    }
+
+    .preloader {
+      display:inline-block;
+      margin-top: 20%;
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #20374f;
+      border-bottom: 16px solid #20374f;
+      width: 60px;
+      height: 60px;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+
+  <div class="container_preloader">
+    <div class="preloader"></div>
+  </div>   
+
+
+  <script>
+    require(["dojo/_base/fx", "dojo/on", "dojo/ready"], function(fx, on, ready){
+     ready(function(){
+
+      dojo.query(".container_preloader").forEach(function(node, index, nodelist){
+    // for each node in the array returned by dojo.query,
+    // execute the following code
+    setTimeout(
+      function(){
+
+        var f = fx.fadeOut({ node: node });
+        on(f, "End", function(){
+          dojo.destroy(node);
+        });
+        f.play();    
+
+      }
+      , 2000);     
+
+  });
+
+    });
+   });
+ </script>
+ 
+
+
+ <div style="width: 100%; height: 100%;">
+  <div style="background-color: #ededed; height: 34px; width: auto; border-style: solid; border-color: #c3d7e8; border-width: 1px; border-top-width: 0px;
+    border-right-width: 0px; border-bottom-width: 1px; border-left-width: 0px;">
+   <div style="padding: 5px; color: #2a3f54"><iron-icon icon="vaadin-icons:menu"></iron-icon> Open Monitoring System</div> </div>
+  
+
+  <div style="height: 100%; width: 30%; background-color: #2a3f54; left: -1px; position: absolute; z-index: 900; float: none;">
+    
+<vertical-menu></vertical-menu>
+
+  </div>
+
+
+
+  <div data-dojo-type="dijit/layout/ContentPane" title="Pane" doLayout="false" style="width: 100%; height: 100%;"></div>
+</div>
+
+
+
+<input type="file" accept="image/*" capture="camera" />
+<input type="file" accept="video/*;capture=camcorder">
+<input type="file" accept="image/*">
+
+<!-- <socketio-eventserver></socketio-eventserver> -->
+<!-- <user-notifications></user-notifications> -->
+
+
+
+</body>
+</html>
+
