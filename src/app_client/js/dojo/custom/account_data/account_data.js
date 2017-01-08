@@ -3,7 +3,14 @@ define(['dojo/_base/declare',
     'dijit/_Templated',
     'dojo/text!account_data/account_data.html',
     "dojo/on",
-        "uDC/uDC"
+        "uDC/uDC",
+        "Switch/Switch",
+        "dijit/form/ValidationTextBox",
+        "DateTextbox/DateTextbox",
+        "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
+        "SelectGender/SelectGender",
+        "ContactGroup/ContactGroup",
+        "dijit/form/Textarea" 
 ], function (declare, _Widget, _Templated, templateString,  on) {
     /**
      * Account Data

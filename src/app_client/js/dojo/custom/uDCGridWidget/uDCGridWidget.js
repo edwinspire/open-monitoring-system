@@ -30,7 +30,13 @@ define(['dojo/_base/declare',
     "dijit/form/TextBox",
     "dijit/Dialog",
     "dijit/TooltipDialog",
-    "dijit/form/NumberSpinner"
+    "dijit/form/NumberSpinner",
+      "dijit/Toolbar",
+  "dijit/form/Button",
+  "dijit/form/DropDownButton",
+  "dijit/DropDownMenu",
+  "dijit/MenuItem",
+  "dijit/TooltipDialog", "dijit/form/DropDownButton", "dijit/form/TextBox", "dijit/form/Button", "dijit/ConfirmTooltipDialog", "dijit/ConfirmDialog"
     ], function (declare, _Widget, _Templated, templateString, topic, Memory, Trackable, Filter, uDCGrid, domConstruct, query, w, domStyle, ready, request, on, array, domClass, fx, TTD, popup, DijitRegistry, TT, Script, Evented) {
 
         return declare([_Widget, _Templated, Evented], {

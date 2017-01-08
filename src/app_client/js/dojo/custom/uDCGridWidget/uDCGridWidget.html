@@ -1,37 +1,65 @@
 <div data-dojo-attach-point="Contenedor" >
 
-  <div data-dojo-attach-point="XPanel" class="x_panel" style="background: #203142; height: 23px; color: white;">
-     <span data-dojo-attach-point="TitleGrid" class="title">Basic Tables</span>
-      <ul style="display: none;" class="nav navbar-right panel_toolbox">
-        <li><a><span data-dojo-attach-point="CollapseLink" data-dojo-type="CollapseButton/CollapseButton"></span></a>
-        </li>
-        <li data-dojo-attach-point="Refresh"><a><i class="fa fa-refresh"></i></a></li>
-        <li data-dojo-attach-point="DisabledRefreshTempo"><a><i class="fa fa-history"></i></a> </li>
-        <li style="display: none;" data-dojo-attach-point="Add"><a><i class="glyphicon glyphicon-plus"></i></a> </li>
-        <li style="display: none;" data-dojo-attach-point="Delete"><a><i class="glyphicon glyphicon-trash"></i></a> </li>
-        <li style="display: none;" data-dojo-attach-point="Export"><a ><i class="glyphicon glyphicon-export"></i></a> </li>
-        <li style="margin-left: 20px; padding-top: 5px;">
-          
-        </li>
-      </ul>
+  <div data-dojo-type="dijit/Toolbar">
+    <span>Esta es la tabla</span>
+    <button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'" onClick="myDialog.show();">Agregar</button>
+    <button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'">Eliminar</button>
+    <button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'">Exportar</button>
+    <button data-dojo-type="dijit/form/Button" data-dojo-props="disabled:true">Disabled</button>
+    <button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'">Icon</button>
 
-      <input data-dojo-type="dijit/form/TextBox" style="float: right; color: black;" data-dojo-attach-point="Search" data-dojo-props="intermediateChanges:true"></input>
+<div data-dojo-type="dijit/form/DropDownButton">
+    <span>Register</span>
+    <div data-dojo-type="dijit/ConfirmTooltipDialog">
+        <label for="name2">Name:</label> <input data-dojo-type="dijit/form/TextBox" id="name2" name="name2" /><br />
+        <label for="hobby2">Hobby:</label> <input data-dojo-type="dijit/form/TextBox" id="hobby2" name="hobby2" /><br />
     </div>
-    <div data-dojo-attach-point="XContent" class="x_content" style="width: 100%; clear: both; background: white;">
+</div>
 
-      <div data-dojo-attach-point="Contenedor"></div>
-
+    <div data-dojo-type="dijit/form/DropDownButton">
+      <span>Basemaps</span>
+      <div data-dojo-type="dijit/DropDownMenu">
+        <div data-dojo-type="dijit/MenuItem">Imagery</div>
+        <div data-dojo-type="dijit/MenuItem">Road</div>
+        <div data-dojo-type="dijit/MenuItem">Hybrid</div>
+      </div>
     </div>
+    <input data-dojo-type="dijit/form/TextBox" data-dojo-props="intermediateChanges:true"></input>
+  </div>
 
 
-  <div data-dojo-type="uDC/uDC" data-dojo-attach-point="uDC"></div>
+  <div data-dojo-attach-point="XPanel" class="x_panel" style="display: none; background: #203142; height: 23px; color: white;">
+   <span data-dojo-attach-point="TitleGrid" class="title">Basic Tables</span>
+   <ul style="display: none;" class="nav navbar-right panel_toolbox">
+    <li><a><span data-dojo-attach-point="CollapseLink" data-dojo-type="CollapseButton/CollapseButton"></span></a>
+    </li>
+    <li data-dojo-attach-point="Refresh"><a><i class="fa fa-refresh"></i></a></li>
+    <li data-dojo-attach-point="DisabledRefreshTempo"><a><i class="fa fa-history"></i></a> </li>
+    <li style="display: none;" data-dojo-attach-point="Add"><a><i class="glyphicon glyphicon-plus"></i></a> </li>
+    <li style="display: none;" data-dojo-attach-point="Delete"><a><i class="glyphicon glyphicon-trash"></i></a> </li>
+    <li style="display: none;" data-dojo-attach-point="Export"><a ><i class="glyphicon glyphicon-export"></i></a> </li>
+    <li style="margin-left: 20px; padding-top: 5px;">
 
-  <!-- -->
-  <span style="display: none">
-    <div data-dojo-attach-point="DialogNew" title="Nuevo registro" data-dojo-type="dijit/Dialog">
-     <form  data-dojo-attach-point="HTMLForm"> <span data-dojo-attach-point="DialogNewContent" ></span> </form>
+    </li>
+  </ul>
 
-  <div class="dijitDialogPaneActionBar">
+  <input data-dojo-type="dijit/form/TextBox" style="float: right; color: black;" data-dojo-attach-point="Search" data-dojo-props="intermediateChanges:true"></input>
+</div>
+<div data-dojo-attach-point="XContent" class="x_content" style="width: 100%; clear: both; background: white;">
+
+  <div data-dojo-attach-point="Contenedor"></div>
+
+</div>
+
+
+<div data-dojo-type="uDC/uDC" data-dojo-attach-point="uDC"></div>
+
+<!-- -->
+<span style="display: none">
+  <div data-dojo-attach-point="DialogNew" title="Nuevo registro" data-dojo-type="dijit/Dialog">
+   <form  data-dojo-attach-point="HTMLForm"> <span data-dojo-attach-point="DialogNewContent" ></span> </form>
+
+   <div class="dijitDialogPaneActionBar">
     <button type="button" data-dojo-attach-point="DialogNewOK" class="btn btn-default btn-xs">Aceptar</button>
     <button type="button" data-dojo-attach-point="DialogNewCancel" class="btn btn-default btn-xs">Cancelar</button>
   </div>
@@ -41,18 +69,35 @@
 
 <!-- -->
 <span style="display: none">
-    <div data-dojo-attach-point="DialogDisabledRefresh"  data-dojo-type="dijit/TooltipDialog" style="width: 160px;">
-      Detener actualización de la tabla por  <input data-dojo-type="dijit/form/NumberSpinner"
+  <div data-dojo-attach-point="DialogDisabledRefresh"  data-dojo-type="dijit/TooltipDialog" style="width: 160px;">
+    Detener actualización de la tabla por  <input data-dojo-type="dijit/form/NumberSpinner"
     data-dojo-attach-point="DisabledRefreshTime"
     value="60"
     data-dojo-props="smallDelta:10, constraints:{min:10, max:600,places:0}" style="width: 75px;"/>  segundos.
-<div class="dijitDialogPaneActionBar">
-<button type="button" data-dojo-attach-point="DialogDisabledRefreshOK" class="btn btn-default btn-xs">Aceptar</button>
-<button type="button" data-dojo-attach-point="DialogDisabledRefreshCancel" class="btn btn-default btn-xs">Cancelar</button>
-</div>
+    <div class="dijitDialogPaneActionBar">
+      <button type="button" data-dojo-attach-point="DialogDisabledRefreshOK" class="btn btn-default btn-xs">Aceptar</button>
+      <button type="button" data-dojo-attach-point="DialogDisabledRefreshCancel" class="btn btn-default btn-xs">Cancelar</button>
     </div>
-    
-    </span>
+  </div>
+
+</span>
+
+
+
+
+
+<div data-dojo-type="dijit/ConfirmDialog" data-dojo-id="myDialog" title="Name and Address">
+    <table>
+        <tr>
+            <td><label for="name">Name:</label></td>
+            <td><input data-dojo-type="dijit/form/TextBox" name="name"></td>
+        </tr>
+        <tr>
+            <td><label for="address">Address:</label></td>
+            <td><input data-dojo-type="dijit/form/TextBox" name="address"></td>
+        </tr>
+    </table>
+</div>
 
 
 </div>

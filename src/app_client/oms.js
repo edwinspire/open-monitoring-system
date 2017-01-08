@@ -45,6 +45,9 @@ var PageContent = dijit.byId('PageContent');
         case 'monitoreo_general':
         OpenApp(app_monitor_general);
         break;
+                case 'GeneralEmpresaAbonados':
+        OpenApp(app_account);
+        break;
       }
     }); 
 

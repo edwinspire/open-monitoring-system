@@ -14,7 +14,8 @@ define(['dojo/_base/declare',
   "dijit/layout/StackContainer",
   "dijit/layout/ContentPane",
   "dijit/layout/StackController",
-  "Widget/PageContainer/PageContainer"
+  "Widget/PageContainer/PageContainer",
+  "FilteringSelectGlobalStore/FilteringSelectGlobalStore"
   ], function (declare, _Widget, _Templated, templateString, domClass, on, query, domStyle, domClass, w, TTD, popup, topic, domAttr) {
 /**
      * Application Account
@@ -28,137 +29,131 @@ define(['dojo/_base/declare',
        var t = this;
 
 
-//	console.log(t.SelectAccounts.Config);
-t.SelectAccounts.queryExpr = '*${0}*';
-t.SelectAccounts.searchDelay = 600;
+// //	console.log(t.SelectAccounts.Config);
+// t.SelectAccounts.queryExpr = '*${0}*';
+// t.SelectAccounts.searchDelay = 600;
 
-domStyle.set(t.domNode, 'min-height', w.getBox().h-70+'px');
-
-
-//t.SelectorPage.as_page();
+// domStyle.set(t.domNode, 'min-height', w.getBox().h-70+'px');
 
 
-on(t.WData, 'click', function () {
-  t.SelectorPage.selectPage(0);
-  t._ChangeWidget(this);
-  // domStyle.set(t.Basic.domNode, "display", "block");
-  // t._widgetResize(t.Basic);
-});		
-
-on(t.WGeo, 'click', function () {
-  t._ChangeWidget(this);
-  // domStyle.set(t.AccountMap, "display", "block");
-  // //t._widgetResize(t.AccountMap);
-  //console.debug(t.Basic.uDC.getData());
-  //t.SelectorPage.selectChild(t.AccountMapX, true);
-  t.SelectorPage.selectPage(1);
-  t.AccountMap.render();
-});	
-
-on(t.WContacts, 'click', function () {
-  t._ChangeWidget(this);
-  // domStyle.set(t.ContactsUsers.domNode, "display", "block");
-  // t._widgetResize(t.ContactsUsers);
-  //t.SelectorPage.selectChild(t.ContactsUsers, true);
-  t.SelectorPage.selectPage(2);
-});	 
-
-on(t.WUsers, 'click', function () {
-  t._ChangeWidget(this);
-  // domStyle.set(t.ContactsUsers.domNode, "display", "block");
-  // t._widgetResize(t.ContactsUsers);
-  t.SelectorPage.selectPage(3);
-});	 
-
-on(t.WEquipment, 'click', function () {
-  t._ChangeWidget(this);
-  // domStyle.set(t.Equipments.domNode, "display", "block");
-  // t._widgetResize(t.Equipments);
-  t.SelectorPage.selectPage(4);
-});	  
+// //t.SelectorPage.as_page();
 
 
-on(t.WEvents, 'click', function () {
-  t._ChangeWidget(this);
-  // domStyle.set(t.EventsIsOpen.domNode, "display", "block");
-  // t._widgetResize(t.EventsIsOpen);
-  t.SelectorPage.selectPage(5);
-});	            
+// on(t.WData, 'click', function () {
+//   t.SelectorPage.selectPage(0);
+//   t._ChangeWidget(this);
+//   // domStyle.set(t.Basic.domNode, "display", "block");
+//   // t._widgetResize(t.Basic);
+// });		
+
+// on(t.WGeo, 'click', function () {
+//   t._ChangeWidget(this);
+//   // domStyle.set(t.AccountMap, "display", "block");
+//   // //t._widgetResize(t.AccountMap);
+//   //console.debug(t.Basic.uDC.getData());
+//   //t.SelectorPage.selectChild(t.AccountMapX, true);
+//   t.SelectorPage.selectPage(1);
+//   t.AccountMap.render();
+// });	
+
+// on(t.WContacts, 'click', function () {
+//   t._ChangeWidget(this);
+//   // domStyle.set(t.ContactsUsers.domNode, "display", "block");
+//   // t._widgetResize(t.ContactsUsers);
+//   //t.SelectorPage.selectChild(t.ContactsUsers, true);
+//   t.SelectorPage.selectPage(2);
+// });	 
+
+// on(t.WUsers, 'click', function () {
+//   t._ChangeWidget(this);
+//   // domStyle.set(t.ContactsUsers.domNode, "display", "block");
+//   // t._widgetResize(t.ContactsUsers);
+//   t.SelectorPage.selectPage(3);
+// });	 
+
+// on(t.WEquipment, 'click', function () {
+//   t._ChangeWidget(this);
+//   // domStyle.set(t.Equipments.domNode, "display", "block");
+//   // t._widgetResize(t.Equipments);
+//   t.SelectorPage.selectPage(4);
+// });	  
 
 
-on(t.Save, 'click', function () {
-  console.log('Se hecho click en guardar');
-  t.Basic.Update();
-});
+// on(t.WEvents, 'click', function () {
+//   t._ChangeWidget(this);
+//   // domStyle.set(t.EventsIsOpen.domNode, "display", "block");
+//   // t._widgetResize(t.EventsIsOpen);
+//   t.SelectorPage.selectPage(5);
+// });	            
 
 
-on(t.NewAccount, 'click', function (e) {
-
- popup.open({
-  popup: t.DTTNewAccount,
-  around: t.NewAccount
-});
-
-});
-
-on(t.DTTNewAccountOK, 'click', function(){
-// Bloquear todos los campos y botones necesarios
-t._disable_element(t.ContentForms, true);
-
-// Debemos resetear los campos de todos los forms y tablas cargadas al momento
-t.Basic.Clear();
-t.ContactsUsers.Clear();
-
-// Debemos desbloquear el area para que sea editable
-t._disable_element(t.ContentForms, false);
-});
+// on(t.Save, 'click', function () {
+//   console.log('Se hecho click en guardar');
+//   t.Basic.Update();
+// });
 
 
-on(t.DTTNewAccount, 'mouseleave', DTTNewAccountClose);
-on(t.DTTNewAccountCancel, 'click', DTTNewAccountClose);
+// on(t.NewAccount, 'click', function (e) {
 
-function DTTNewAccountClose(){
-  popup.close(t.DTTNewAccount);
-}
+//  popup.open({
+//   popup: t.DTTNewAccount,
+//   around: t.NewAccount
+// });
+
+// });
+
+// on(t.DTTNewAccountOK, 'click', function(){
+// // Bloquear todos los campos y botones necesarios
+// t._disable_element(t.ContentForms, true);
+
+// // Debemos resetear los campos de todos los forms y tablas cargadas al momento
+// t.Basic.Clear();
+// t.ContactsUsers.Clear();
+
+// // Debemos desbloquear el area para que sea editable
+// t._disable_element(t.ContentForms, false);
+// });
 
 
+// on(t.DTTNewAccount, 'mouseleave', DTTNewAccountClose);
+// on(t.DTTNewAccountCancel, 'click', DTTNewAccountClose);
 
-t.Basic.uDC.on('onSelect', function(e){
- //console.debug(e);
-var point = {center: true};
-point.geox = e.data.geox;
-point.geoy = e.data.geoy;
-point.fullname = e.data.last_name+' '+e.data.first_name;
-
- t.AccountMap.setPoints([point]);
-});
+// function DTTNewAccountClose(){
+//   popup.close(t.DTTNewAccount);
+// }
 
 
 
-t.SelectAccounts.on('Change', function (e) {
-  var idaccount = t.SelectAccounts.get('value');   
+// t.Basic.uDC.on('onSelect', function(e){
+ 
+// var point = {center: true};
+// point.geox = e.data.geox;
+// point.geoy = e.data.geoy;
+// point.fullname = e.data.last_name+' '+e.data.first_name;
 
-  if(idaccount > 0){
-   t.Basic.set("idaccount", idaccount);
-   // t.AccountMap.set('idcontact', idaccount);
+//  t.AccountMap.setPoints([point]);
+// });
 
-// domAttr.set(t.AccountMap, "points", {points: [{"idcontact": idaccount, "ts":"2016-11-29T04:00:02.108Z","enabled":true,"first_name": idaccount, "last_name":"MEDI","birthday":"2012-02-27T05:00:00.000Z","identification":"212","ididtype":3,"postal_code":null,"gender":0,"geox":-0.16647499799728,"geoy":-78.483703613281,"note":null,"address":"AMAZONAS N41 170 E ISLA TORTUGA","address_ref":" ","groups":[6],"footprint_row":5464}]});
-// domAttr.set(t.AccountMap, "idaccount", idaccount)
 
-t.ContactsUsers.set('idaccount', idaccount);
-t.Equipments.set('idaccount', idaccount);
-t.EventsIsOpen.set('idaccount', idaccount);
-t._disable_element(t.ContentForms, false);
-}else{
-  t._disable_element(t.ContentForms, true);
-  t._notifications({ Urgency: 10, Message: 'No ha seleccionado un registro correcto', Title: 'Selección Incorrecta' });
 
-}
+// t.SelectAccounts.on('Change', function (e) {
+//   var idaccount = t.SelectAccounts.get('value');   
 
-                 // ContentForms
-             //   t.set('idaccount', t.SelectAccounts.get('value'));
-              //  t.emit('Change', { idaccount: t.SelectAccounts.get('value') });
-            });                                                	
+//   if(idaccount > 0){
+//    t.Basic.set("idaccount", idaccount);
+
+
+// t.ContactsUsers.set('idaccount', idaccount);
+// t.Equipments.set('idaccount', idaccount);
+// t.EventsIsOpen.set('idaccount', idaccount);
+// t._disable_element(t.ContentForms, false);
+// }else{
+//   t._disable_element(t.ContentForms, true);
+//   t._notifications({ Urgency: 10, Message: 'No ha seleccionado un registro correcto', Title: 'Selección Incorrecta' });
+
+// }
+
+//             });                                                	
 
 
 },
