@@ -1,9 +1,8 @@
-<div data-dojo-attach-point="Contenedor" class="col-md-12 col-sm-12 col-xs-12">
+<div data-dojo-attach-point="Contenedor" >
 
-  <div data-dojo-attach-point="XPanel" class="x_panel">
-    <div class="x_title">
-      <h2><span data-dojo-attach-point="TitleGrid" class="title">Basic Tables</span></h2>
-      <ul class="nav navbar-right panel_toolbox">
+  <div data-dojo-attach-point="XPanel" class="x_panel" style="background: #203142; height: 23px; color: white;">
+     <span data-dojo-attach-point="TitleGrid" class="title">Basic Tables</span>
+      <ul style="display: none;" class="nav navbar-right panel_toolbox">
         <li><a><span data-dojo-attach-point="CollapseLink" data-dojo-type="CollapseButton/CollapseButton"></span></a>
         </li>
         <li data-dojo-attach-point="Refresh"><a><i class="fa fa-refresh"></i></a></li>
@@ -12,18 +11,18 @@
         <li style="display: none;" data-dojo-attach-point="Delete"><a><i class="glyphicon glyphicon-trash"></i></a> </li>
         <li style="display: none;" data-dojo-attach-point="Export"><a ><i class="glyphicon glyphicon-export"></i></a> </li>
         <li style="margin-left: 20px; padding-top: 5px;">
-          <input data-dojo-type="dijit/form/TextBox" data-dojo-attach-point="Search" data-dojo-props="intermediateChanges:true"></input>
+          
         </li>
-
       </ul>
-      <div class="clearfix"></div>
-    </div>
-    <div data-dojo-attach-point="XContent" class="x_content">
 
-      <div data-dojo-attach-point="Contenedor" class="tundra"></div>
+      <input data-dojo-type="dijit/form/TextBox" style="float: right; color: black;" data-dojo-attach-point="Search" data-dojo-props="intermediateChanges:true"></input>
+    </div>
+    <div data-dojo-attach-point="XContent" class="x_content" style="width: 100%; clear: both; background: white;">
+
+      <div data-dojo-attach-point="Contenedor"></div>
 
     </div>
-  </div>
+
 
   <div data-dojo-type="uDC/uDC" data-dojo-attach-point="uDC"></div>
 
