@@ -1247,43 +1247,44 @@
    properties: {
     visible: {
       type: Boolean,
-        notify: true,
-        observer: '_visibleChanged'
-      }
-    },
-      _visibleChanged: function(newValue, oldValue) {
+      notify: true,
+      observer: '_visibleChanged'
+    }
+  },
+  _visibleChanged: function(newValue, oldValue) {
     this.fire('visiblechanged', {visible: newValue});
   },
-          handleClick: function(e, name_item) {
+  handleClick: function(e, name_item) {
            // console.debug(e, name_item);
-        this.fire('clickitem', {name: name_item});
-      },
-    ready: function() {
+           this.fire('clickitem', {name: name_item});
+         },
+         ready: function() {
 
-      var WComponent = this;
+          var WComponent = this;
 
 
-      require(["dojo/ready", "dojo/on", "dojo/dom-class", "dojo/_base/window", "dojo/query", "dojo/dom-attr", "dojo/dom-style", "dojo/NodeList-fx", "dojo/fx", "dojo/_base/fx", "dojo/NodeList-traverse", "dojo/NodeList-dom"], function(ready, on, domClass, win, query, domAttr, domStyle, nodeListFx, fx, baseFx){
-       ready(function(){
+          require(["dojo/ready", "dojo/on", "dojo/dom-class", "dojo/query", "dojo/dom-attr", "dojo/dom-style", "dojo/NodeList-fx", "dojo/fx", "dojo/_base/fx"], function(ready, on, domClass, query, domAttr, domStyle, nodeListFx, fx, baseFx){
+           ready(function(){
 
-        var slideArgs = {node: WComponent,
-        top: (dojo.marginBox(WComponent).t).toString(), unit: "px"
-      };
+            var slideArgs = {node: WComponent, top: (dojo.marginBox(WComponent).t).toString(), unit: "px"};
+            var widthMenu = parseInt(domStyle.getComputedStyle(WComponent).width, 10);        
 
-on(WComponent, "visiblechanged", function(e){
+            on(WComponent, "visiblechanged", function(e){
 
-console.debug(e.detail.visible, domStyle.getComputedStyle(WComponent).width);
+              console.debug(e.detail.visible, domStyle.getComputedStyle(WComponent).width);
 
-if(e.detail.visible){
-      slideArgs.left = 0;
+              if(e.detail.visible){
+                slideArgs.left = 0;
+              }else{
+                slideArgs.left = (dojo.marginBox(WComponent).l - widthMenu).toString();
+              }
 
-}else{
+console.debug(slideArgs);
+              dojo.fx.slideTo(slideArgs).play();
+            });
 
-      slideArgs.left = (dojo.marginBox(WComponent).l -250).toString();
-}
 
-      dojo.fx.slideTo(slideArgs).play();
-});
+            WComponent.visible = true;
 
 /**
  * To change this license header, choose License Headers in Project Properties.
@@ -1291,9 +1292,9 @@ if(e.detail.visible){
  * and open the template in the editor.
  */
 
- var CURRENT_URL = window.location.href.split('?')[0];
+ //var CURRENT_URL = window.location.href.split('?')[0];
 
- var BODY = win.body();
+ //var BODY = win.body();
  //var MENU_TOGGLE = WComponent.$.menu_toggle;
  var SIDEBAR_MENU = WComponent.$.sidebar_menu;
 
@@ -1303,9 +1304,9 @@ var setContentHeight = function () {
           };
 
 
-query("[data-itemclick]", SIDEBAR_MENU).on("click", function(ev){
-WComponent.handleClick(ev, domAttr.get(this, "data-itemclick"));
-});
+          query("[data-itemclick]", SIDEBAR_MENU).on("click", function(ev){
+            WComponent.handleClick(ev, domAttr.get(this, "data-itemclick"));
+          });
 
 
           query("a", SIDEBAR_MENU).on("click", function(ev){
@@ -1398,7 +1399,7 @@ setContentHeight();
 
 
 });
-     });
+         });
 
 
 
