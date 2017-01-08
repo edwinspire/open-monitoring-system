@@ -37,13 +37,13 @@ require(["dojo/ready",
     ){
    ready(function(){
 
-
+var PageContent = dijit.byId('PageContent');
     var Mainmenu = dojo.byId("MainMenu");
     on(Mainmenu, "clickitem", function(e){
       console.debug(e);
       switch(e.detail.name){
         case 'monitoreo_general':
-        OpenApp(new app_monitor_general());
+        OpenApp(app_monitor_general);
         break;
       }
     }); 
@@ -54,6 +54,8 @@ require(["dojo/ready",
     });
 
     var widget  = {};
+
+
 
 
 
@@ -136,15 +138,18 @@ dojo.connect(dojo.byId("utilitarios_lista_precios_farma_medi"), 'onclick', funct
 */
 
 
-function OpenApp(_widget){
+function OpenApp(appClass){
 
-  if(widget.app){
-    widget.app.destroy();
-  }
+PageContent.destroyDescendants();
+new appClass().placeAt(PageContent);
+Mainmenu.visible = false;
+  // if(widget.app){
+  //   widget.app.destroy();
+  // }
 
-  domConstruct.empty(PageContent);
-  widget.app = _widget;
-  domConstruct.place(_widget.domNode, PageContent, 'only');
+  // domConstruct.empty(PageContent);
+  // widget.app = _widget;
+  // domConstruct.place(_widget.domNode, PageContent, 'only');
 }
 
 
