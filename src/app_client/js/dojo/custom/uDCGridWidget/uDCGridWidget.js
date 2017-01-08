@@ -1,7 +1,7 @@
 define(['dojo/_base/declare',
     'dijit/_Widget',
     'dijit/_Templated',
-    'dojo/text!uDCGridWidget/uDCGridWidget.html',
+    'dojo/text!Widget/uDCGridWidget/uDCGridWidget.html',
     "dojo/topic",
     'dstore/Memory',
     'dstore/Trackable',
@@ -24,7 +24,13 @@ define(['dojo/_base/declare',
     "dojo/request/script",
     "dojo/Evented",
     "uDC/uDC", 
-    "dijit/form/Form"
+    "dijit/form/Form",
+    "CollapseButton/CollapseButton",
+    "Input/Input",
+    "dijit/form/TextBox",
+    "dijit/Dialog",
+    "dijit/TooltipDialog",
+    "dijit/form/NumberSpinner"
     ], function (declare, _Widget, _Templated, templateString, topic, Memory, Trackable, Filter, uDCGrid, domConstruct, query, w, domStyle, ready, request, on, array, domClass, fx, TTD, popup, DijitRegistry, TT, Script, Evented) {
 
         return declare([_Widget, _Templated, Evented], {
