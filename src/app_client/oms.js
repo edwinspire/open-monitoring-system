@@ -53,8 +53,6 @@ var PageContent = dijit.byId('PageContent');
       Mainmenu.visible = !Mainmenu.visible; 
     });
 
-    var widget  = {};
-
 
 
 

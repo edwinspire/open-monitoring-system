@@ -1124,7 +1124,7 @@
 
             on(WComponent, "visiblechanged", function(e){
 
-              console.debug(e.detail.visible, domStyle.getComputedStyle(WComponent).width);
+             // console.debug(e.detail.visible, domStyle.getComputedStyle(WComponent).width);
 
               if(e.detail.visible){
                 slideArgs.left = 0;
@@ -1132,7 +1132,7 @@
                 slideArgs.left = (dojo.marginBox(WComponent).l - widthMenu).toString();
               }
 
-console.debug(slideArgs);
+//console.debug(slideArgs);
               dojo.fx.slideTo(slideArgs).play();
             });
 
