@@ -63,22 +63,35 @@ on(Mainmenu, "clickitem", function(e){
 console.debug(e);
 }); 
 
-var toggler = new Toggler({
-    node: "MenuContainer",
-    showFunc: coreFx.wipeIn,
-    hideFunc: coreFx.wipeOut
-  });
+var MenuContainer = dojo.byId("MenuContainer");
+MenuContainer.isshow = false;
 
 on(dojo.byId("ToogleMenu"), "click", function(e){
 
-if(this.isshow){
-  toggler.show();
-  this.isshow = true;
-}else{
-toggler.hide();
-this.isshow = false;
-}
+console.debug(e, this.isshow);
 
+if(this.isshow){
+      var slideArgs = {
+        node: MenuContainer,
+top: (dojo.marginBox(MenuContainer).t).toString(),
+left: 0,
+        unit: "px"
+      };
+      dojo.fx.slideTo(slideArgs).play();
+  this.isshow = false;
+
+}else{
+
+      var slideArgs = {
+        node: MenuContainer,
+        top: (dojo.marginBox(MenuContainer).t).toString(),
+        left: (dojo.marginBox(MenuContainer).l -250).toString(),
+        unit: "px"
+      };
+      dojo.fx.slideTo(slideArgs).play();
+this.isshow = true;
+}
+  
 });
 
   
