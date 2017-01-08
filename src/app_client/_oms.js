@@ -1,7 +1,5 @@
 require(["dojo/ready", 
   "dojo/cookie",
-  "dojo/fx",
-  "dojo/fx/Toggler",
   "Widget/EventServerIO/EventServerIO",
   "Widget/UserNotifications/UserNotifications",
   "dojo/_base/connect",
@@ -28,8 +26,6 @@ require(["dojo/ready",
   "app_login_report/app_login_report"
   ], function(ready, 
     cookie,
-    coreFx,
-    Toggler,
     EventServerIO,
     UserNotifications,
     connect, 
@@ -57,48 +53,6 @@ require(["dojo/ready",
     ){
    ready(function(){
 
-
-var Mainmenu = dojo.byId("main_menu");
-on(Mainmenu, "clickitem", function(e){
-console.debug(e);
-}); 
-
-var MenuContainer = dojo.byId("MenuContainer");
-MenuContainer.isshow = false;
-
-on(dojo.byId("ToogleMenu"), "click", function(e){
-
-console.debug(e, this.isshow);
-
-if(this.isshow){
-      var slideArgs = {
-        node: MenuContainer,
-top: (dojo.marginBox(MenuContainer).t).toString(),
-left: 0,
-        unit: "px"
-      };
-      dojo.fx.slideTo(slideArgs).play();
-  this.isshow = false;
-
-}else{
-
-      var slideArgs = {
-        node: MenuContainer,
-        top: (dojo.marginBox(MenuContainer).t).toString(),
-        left: (dojo.marginBox(MenuContainer).l -250).toString(),
-        unit: "px"
-      };
-      dojo.fx.slideTo(slideArgs).play();
-this.isshow = true;
-}
-  
-});
-
-  
-
-
-
-/*
  var ESIO = new EventServerIO();
 var NOTIF = new UserNotifications();
 
@@ -191,7 +145,7 @@ dojo.connect(dojo.byId("utilitarios_lista_precios_farma_medi"), 'onclick', funct
   OpenApp(new app_lista_precios_medi());
 });
 
-*/
+
 
 
 function OpenApp(_widget){

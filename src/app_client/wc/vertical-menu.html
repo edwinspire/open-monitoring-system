@@ -689,81 +689,6 @@
     height: 280px;
   }
 
-  /** Contacts **/
-  .profile_details:nth-child(3n){
-    clear:both;
-  }
-
-  .profile_details .profile_view {
-    display: inline-block;
-    padding: 10px 0 0;
-    background: #fff;
-  }
-
-  .profile_details .profile_view .divider {
-    border-top: 1px solid #e5e5e5;
-    padding-top: 5px;
-    margin-top: 5px;
-  }
-
-  .profile_details .profile_view .ratings {
-    margin-bottom: 0;
-  }
-
-  .profile_details .profile_view .bottom {
-    background: #F2F5F7;
-    padding: 9px 0;
-    border-top: 1px solid #E6E9ED;
-  }
-
-  .profile_details .profile_view .left {
-    margin-top: 20px;
-  }
-
-  .profile_details .profile_view .left p {
-    margin-bottom: 3px;
-  }
-
-  .profile_details .profile_view .right {
-    margin-top: 0px;
-    padding: 10px;
-  }
-
-  .profile_details .profile_view .img-circle {
-    border: 1px solid #E6E9ED;
-    padding: 2px;
-  }
-
-  .profile_details .profile_view h2 {
-    margin: 5px 0;
-  }
-
-  .profile_details .profile_view .ratings {
-    text-align: left;
-    font-size: 16px;
-  }
-
-  .profile_details .profile_view .brief {
-    margin: 0;
-    font-weight: 300;
-  }
-
-  .profile_details .profile_left {
-    background: white;
-  }
-
-  .pagination.pagination-split li {
-    display: inline-block;
-    margin-right: 3px;
-  }
-
-  .pagination.pagination-split li a {
-    border-radius: 4px;
-    color: #768399;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-  }
-  /** Contacts **/
 
 
   .sidebar-widget {
@@ -1320,14 +1245,17 @@
   Polymer({
    is: 'vertical-menu',
    properties: {
-    points: {
-      type: Array
-        //notify: true,
-        //observer: '_pointsChanged'
+    visible: {
+      type: Boolean,
+        notify: true,
+        observer: '_visibleChanged'
       }
     },
+      _visibleChanged: function(newValue, oldValue) {
+    this.fire('visiblechanged', {visible: newValue});
+  },
           handleClick: function(e, name_item) {
-            console.debug(e, name_item);
+           // console.debug(e, name_item);
         this.fire('clickitem', {name: name_item});
       },
     ready: function() {
@@ -1338,7 +1266,24 @@
       require(["dojo/ready", "dojo/on", "dojo/dom-class", "dojo/_base/window", "dojo/query", "dojo/dom-attr", "dojo/dom-style", "dojo/NodeList-fx", "dojo/fx", "dojo/_base/fx", "dojo/NodeList-traverse", "dojo/NodeList-dom"], function(ready, on, domClass, win, query, domAttr, domStyle, nodeListFx, fx, baseFx){
        ready(function(){
 
+        var slideArgs = {node: WComponent,
+        top: (dojo.marginBox(WComponent).t).toString(), unit: "px"
+      };
 
+on(WComponent, "visiblechanged", function(e){
+
+console.debug(e.detail.visible, domStyle.getComputedStyle(WComponent).width);
+
+if(e.detail.visible){
+      slideArgs.left = 0;
+
+}else{
+
+      slideArgs.left = (dojo.marginBox(WComponent).l -250).toString();
+}
+
+      dojo.fx.slideTo(slideArgs).play();
+});
 
 /**
  * To change this license header, choose License Headers in Project Properties.

@@ -1,5 +1,7 @@
 require(["dojo/ready", 
   "dojo/cookie",
+  "dojo/fx",
+  "dojo/fx/Toggler",
   "Widget/EventServerIO/EventServerIO",
   "Widget/UserNotifications/UserNotifications",
   "dojo/_base/connect",
@@ -26,6 +28,8 @@ require(["dojo/ready",
   "app_login_report/app_login_report"
   ], function(ready, 
     cookie,
+    coreFx,
+    Toggler,
     EventServerIO,
     UserNotifications,
     connect, 
@@ -53,6 +57,49 @@ require(["dojo/ready",
     ){
    ready(function(){
 
+
+var Mainmenu = dojo.byId("MainMenu");
+on(Mainmenu, "clickitem", function(e){
+console.debug(e);
+}); 
+
+//var menuVisible = false;
+
+on(dojo.byId("ToogleMenu"), "click", function(e){
+
+Mainmenu.visible = !Mainmenu.visible;
+
+// console.debug(e, this.isshow);
+
+// if(this.isshow){
+//       var slideArgs = {
+//         node: Mainmenu,
+// top: (dojo.marginBox(Mainmenu).t).toString(),
+// left: 0,
+//         unit: "px"
+//       };
+//       dojo.fx.slideTo(slideArgs).play();
+//   this.isshow = false;
+
+// }else{
+
+//       var slideArgs = {
+//         node: Mainmenu,
+//         top: (dojo.marginBox(Mainmenu).t).toString(),
+//         left: (dojo.marginBox(Mainmenu).l -250).toString(),
+//         unit: "px"
+//       };
+//       dojo.fx.slideTo(slideArgs).play();
+// this.isshow = true;
+// }
+  
+});
+
+  
+
+
+
+/*
  var ESIO = new EventServerIO();
 var NOTIF = new UserNotifications();
 
@@ -145,18 +192,15 @@ dojo.connect(dojo.byId("utilitarios_lista_precios_farma_medi"), 'onclick', funct
   OpenApp(new app_lista_precios_medi());
 });
 
-
+*/
 
 
 function OpenApp(_widget){
-
 
   if(widget.app){
     widget.app.destroy();
   }
 
-//console.log(registry.findWidgets(PageContent));
-//console.log(widget);
 domConstruct.empty(PageContent);
 widget.app = _widget;
 domConstruct.place(_widget.domNode, PageContent, 'only');
