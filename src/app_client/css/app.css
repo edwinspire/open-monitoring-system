@@ -29,11 +29,16 @@
  *
  * [1] http://www.w3.org/TR/CSS21/cascade.html#cascade
  */
-html,body {
-	height: 100%;
-	width: 100%;
-}
-*{
-font-size: 0.97em;
-}
+ html, body {
+ 	height: 100%;
+ 	width: 100%;
+ 	padding: 0;
+ 	margin: 0;
+ 	border: 0;
+ 	 	background: #E5E7EA;
+ }
+
+ body{
+ 	font-size: 0.95em;
+ }
 

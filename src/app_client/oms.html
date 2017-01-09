@@ -16,9 +16,16 @@
   <link href="js/dojo/dojo/dgrid/css/dgrid.css" rel="stylesheet">
   <link href="js/dojo/custom/uDCGridWidget/uDCGridWidget.css" rel="stylesheet">
   <link href="js/dojo/custom/Switch/Switch.css" rel="stylesheet">
-<!--   <link href="css/themes_dijit/claro_plain/claro_plain.css" rel="stylesheet"> -->
+  <!--   <link href="css/themes_dijit/claro_plain/claro_plain.css" rel="stylesheet"> -->
 
-<script>
+  <style>@import "css/themes/flat/flat.css";@import "css/themes/flat/flat.css";@import "css/app.css";</style>
+  <link href="css/themes/flat/dgrid/flat.css" rel="stylesheet">
+
+
+
+
+
+  <script>
       //Setup Polymer options
       window.Polymer = {
         dom: 'shadow',
@@ -35,7 +42,7 @@
           if (!window.HTMLImports) {
             document.dispatchEvent(
               new CustomEvent('WebComponentsReady', {bubbles: true})
-            );
+              );
           }
         };
 
@@ -43,7 +50,7 @@
           'registerElement' in document
           && 'import' in document.createElement('link')
           && 'content' in document.createElement('template')
-        );
+          );
 
         if (!webComponentsSupported) {
           var script = document.createElement('script');
@@ -60,83 +67,90 @@
     </script>
 
 
-<link rel="import" href="bower_components/polymer/polymer-micro.html">
+    <link rel="import" href="bower_components/polymer/polymer-micro.html">
 
 
-  <script type="text/javascript" src="js/dojo/dojo/dojo/dojo.js" 
-  data-dojo-config="'parseOnLoad':true,'async':true, 'packages':[
-  {'name':'widgets','location':'../custom'}
-  ,{'name':'Widget','location':'../../custom'}
-  ,{'name':'Alert','location':'../../custom/Alert'}
-  ,{'name':'Chat','location':'../../custom/Chat'}
-  ,{'name':'CollapseButton','location':'../../custom/CollapseButton'}
-  ,{'name':'ContactGroup','location':'../../custom/ContactGroup'}
-  ,{'name':'ContactMap','location':'../../custom/ContactMap'}
-  ,{'name':'ContactWidget','location':'../../custom/ContactWidget'}
-  ,{'name':'DateTextbox','location':'../../custom/DateTextbox'}
-  ,{'name':'Extends','location':'../../custom/Extends'}
-  ,{'name':'FilteringSelectAccounts','location':'../../custom/FilteringSelectAccounts'}
-  ,{'name':'FilteringSelectGlobalStore','location':'../../custom/FilteringSelectGlobalStore'}
-  ,{'name':'Geolocations','location':'../../custom/Geolocations'}
-  ,{'name':'GlobalLiveStore','location':'../../custom/GlobalLiveStore'}
-  ,{'name':'Input','location':'../../custom/Input'}
-  ,{'name':'LiveStore','location':'../../custom/LiveStore'}
-  ,{'name':'Map','location':'../../custom/Map'}
-  ,{'name':'MapPoint','location':'../../custom/MapPoint'}
-  ,{'name':'EventDetails','location':'../../custom/EventDetails'}
-  ,{'name':'SelectGender','location':'../../custom/SelectGender'}
-  ,{'name':'Switch','location':'../../custom/Switch'}
-  ,{'name':'account_contacts_users','location':'../../custom/account_contacts_users'}
-  ,{'name':'account_data','location':'../../custom/account_data'}
-  ,{'name':'account_equipments','location':'../../custom/account_equipments'}
-  ,{'name':'account_events_isopen','location':'../../custom/account_events_isopen'}
-  ,{'name':'app_account','location':'../../custom/app_account'}
-  ,{'name':'app_accounts_table','location':'../../custom/app_accounts_table'}
-  ,{'name':'app_event_admin','location':'../../custom/app_event_admin'}
-  ,{'name':'app_monitor_network_devices','location':'../../custom/app_monitor_network_devices'}
-  ,{'name':'app_tables_views_config','location':'../../custom/app_tables_views_config'}
-  ,{'name':'bs_button','location':'../../custom/bs_button'}
-  ,{'name':'select','location':'../../custom/select'}
-  ,{'name':'select_account_states','location':'../../custom/select_account_states'}
-  ,{'name':'select_account_types','location':'../../custom/select_account_types'}
-  ,{'name':'select_accounts','location':'../../custom/select_accounts'}
-  ,{'name':'FilteringSelectLiveStore','location':'../../custom/FilteringSelectLiveStore'}
-  ,{'name':'select_divisions','location':'../../custom/select_divisions'}
-  ,{'name':'select_group','location':'../../custom/select_group'}
-  ,{'name':'select_identification_types','location':'../../custom/select_identification_types'}
-  ,{'name':'socketio','location':'../../custom/socketio'}
-  ,{'name':'top_tile','location':'../../custom/top_tile'}
-  ,{'name':'uDC','location':'../../custom/uDC'}
-  ,{'name':'evenstatustype_user_buttons','location':'../../custom/evenstatustype_user_buttons'}
-  ,{'name':'uDCGrid','location':'../../custom/uDCGrid'}
-  ,{'name':'utils','location':'../../custom/utils'}
-  ,{'name':'contact_means_of_contact','location':'../../custom/contact_means_of_contact'}
-  ,{'name':'contact_data','location':'../../custom/contact_data'}
-  ,{'name':'app_login_report','location':'../../custom/app_login_report'}
-  ]"></script>
+    <script type="text/javascript" src="js/dojo/dojo/dojo/dojo.js" 
+    data-dojo-config="'parseOnLoad':true,'async':true, 'packages':[
+    {'name':'widgets','location':'../custom'}
+    ,{'name':'Widget','location':'../../custom'}
+    ,{'name':'Alert','location':'../../custom/Alert'}
+    ,{'name':'Chat','location':'../../custom/Chat'}
+    ,{'name':'CollapseButton','location':'../../custom/CollapseButton'}
+    ,{'name':'ContactGroup','location':'../../custom/ContactGroup'}
+    ,{'name':'ContactMap','location':'../../custom/ContactMap'}
+    ,{'name':'ContactWidget','location':'../../custom/ContactWidget'}
+    ,{'name':'DateTextbox','location':'../../custom/DateTextbox'}
+    ,{'name':'Extends','location':'../../custom/Extends'}
+    ,{'name':'FilteringSelectAccounts','location':'../../custom/FilteringSelectAccounts'}
+    ,{'name':'FilteringSelectGlobalStore','location':'../../custom/FilteringSelectGlobalStore'}
+    ,{'name':'Geolocations','location':'../../custom/Geolocations'}
+    ,{'name':'GlobalLiveStore','location':'../../custom/GlobalLiveStore'}
+    ,{'name':'Input','location':'../../custom/Input'}
+    ,{'name':'LiveStore','location':'../../custom/LiveStore'}
+    ,{'name':'Map','location':'../../custom/Map'}
+    ,{'name':'MapPoint','location':'../../custom/MapPoint'}
+    ,{'name':'EventDetails','location':'../../custom/EventDetails'}
+    ,{'name':'SelectGender','location':'../../custom/SelectGender'}
+    ,{'name':'Switch','location':'../../custom/Switch'}
+    ,{'name':'account_contacts_users','location':'../../custom/account_contacts_users'}
+    ,{'name':'account_data','location':'../../custom/account_data'}
+    ,{'name':'account_equipments','location':'../../custom/account_equipments'}
+    ,{'name':'account_events_isopen','location':'../../custom/account_events_isopen'}
+    ,{'name':'app_account','location':'../../custom/app_account'}
+    ,{'name':'app_accounts_table','location':'../../custom/app_accounts_table'}
+    ,{'name':'app_event_admin','location':'../../custom/app_event_admin'}
+    ,{'name':'app_monitor_network_devices','location':'../../custom/app_monitor_network_devices'}
+    ,{'name':'app_tables_views_config','location':'../../custom/app_tables_views_config'}
+    ,{'name':'bs_button','location':'../../custom/bs_button'}
+    ,{'name':'select','location':'../../custom/select'}
+    ,{'name':'select_account_states','location':'../../custom/select_account_states'}
+    ,{'name':'select_account_types','location':'../../custom/select_account_types'}
+    ,{'name':'select_accounts','location':'../../custom/select_accounts'}
+    ,{'name':'FilteringSelectLiveStore','location':'../../custom/FilteringSelectLiveStore'}
+    ,{'name':'select_divisions','location':'../../custom/select_divisions'}
+    ,{'name':'select_group','location':'../../custom/select_group'}
+    ,{'name':'select_identification_types','location':'../../custom/select_identification_types'}
+    ,{'name':'socketio','location':'../../custom/socketio'}
+    ,{'name':'top_tile','location':'../../custom/top_tile'}
+    ,{'name':'uDC','location':'../../custom/uDC'}
+    ,{'name':'evenstatustype_user_buttons','location':'../../custom/evenstatustype_user_buttons'}
+    ,{'name':'uDCGrid','location':'../../custom/uDCGrid'}
+    ,{'name':'utils','location':'../../custom/utils'}
+    ,{'name':'contact_means_of_contact','location':'../../custom/contact_means_of_contact'}
+    ,{'name':'contact_data','location':'../../custom/contact_data'}
+    ,{'name':'app_login_report','location':'../../custom/app_login_report'}
+    ]"></script>
 
-  <!-- REQUIRE DOJO -->
-  <script>require([
-  "dojo",      
-    "dojo/parser",
-    "dojo/ready",
-    "utils/String",
-    "Extends/Editor"
-    ]);
-</script>
+    <!-- REQUIRE DOJO -->
+    <script>require([
+      "dojo",    
+      "dijit/dijit",
+      "dojo/parser",
+      "utils/String",
+      "Extends/Editor",
+      "dijit/form/Button",
+      "dijit/form/DropDownButton",
+      "dijit/ConfirmTooltipDialog",
+      "dijit/form/TextBox",
+      "dijit/MenuItem",
+      "dijit/Toolbar",
+      "dijit/DropDownMenu"
+      ]);
+    </script>
 
-<link rel="import" href="bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="bower_components/vaadin-icons/vaadin-icons.html">
-<link rel="import" href="wc/ol-map.html">
-<link rel="import" href="wc/user-eventstatustype.html">
-<link rel="import" href="wc/vertical-menu.html">
+    <link rel="import" href="bower_components/iron-icon/iron-icon.html">
+    <link rel="import" href="bower_components/vaadin-icons/vaadin-icons.html">
+    <link rel="import" href="wc/ol-map.html">
+    <link rel="import" href="wc/user-eventstatustype.html">
+    <link rel="import" href="wc/vertical-menu.html">
 
-<script src="oms.js"></script>   
+    <script src="oms.js"></script>   
 
-  <style>
+    <style>
 
 
-   .container_preloader{
+     .container_preloader{
       z-index:999999;
       height: 100%;
       width: 100%;
@@ -170,12 +184,9 @@
   </style>
 
 
-<style>@import "css/themes/flat/flat.css";@import "css/themes/flat/flat.css";@import "css/app.css";
-</style>
-
 </head>
 
-<body data-maq-flow-layout="true" data-maq-comptype="desktop" class="flat" data-maq-ws="collapse" id="myapp" data-maq-appstates="{}" style="background: #ededed;">
+<body  class="flat" id="myapp">
 
 
   <div class="container_preloader">
@@ -213,12 +224,16 @@
  <div style="width: 100%; height: 95%;">
   <div class="dijit dijitToolbar">
    <div style="padding: 5px; width: 100%;" ><iron-icon icon="vaadin-icons:menu" id="ToogleMenu"></iron-icon> Open Monitoring System</div> </div>
-  
-<vertical-menu id="MainMenu" style="height: auto; width: 250px; background-color: #2a3f54; left: 0px; position: absolute; z-index: 900; float: none;"></vertical-menu>
+
+   <vertical-menu id="MainMenu" style="height: auto; width: 250px; background-color: #2a3f54; left: 0px; position: absolute; z-index: 900; float: none;"></vertical-menu>
 
 
-  <div data-dojo-type="dijit/layout/ContentPane" title="Pane" id="PageContent" doLayout="false" style="width: 100%; height: 100%;"></div>
-</div>
+   <div data-dojo-type="dijit/layout/ContentPane" title="Pane" id="PageContent" doLayout="false" style="width: 100%; height: 100%;">
+
+
+
+   </div>
+ </div>
 
 
 </body>

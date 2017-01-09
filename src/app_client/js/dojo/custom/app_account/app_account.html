@@ -1,5 +1,43 @@
 <div>
 
+  <div data-dojo-type="dijit/Toolbar">
+    <span>Esta es la tabla</span>
+    <button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'" onClick="myDialog.show();">Agregar</button>
+    <button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'">Eliminar</button>
+    <button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'">Exportar</button>
+    <button data-dojo-type="dijit/form/Button" data-dojo-props="disabled:true">Disabled</button>
+    <button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'">Icon</button>
+
+        <div data-dojo-type="dijit/form/DropDownButton">
+          <span>Confirm Tooltip Dialog</span>
+          <div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Login'">
+            <table>
+              <tr>
+                <td><label for="user">User:</label></td>
+                <td><input data-dojo-type="dijit/form/TextBox"></td>
+              </tr>
+              <tr>
+                <td><label for="pwd">Password:</label></td>
+                <td><input data-dojo-type="dijit/form/TextBox" type="password"></td>
+              </tr>
+            </table>
+          </div>
+        </div>  
+
+    <div data-dojo-type="dijit/form/DropDownButton">
+      <span>Basemaps</span>
+      <div data-dojo-type="dijit/DropDownMenu">
+        <div data-dojo-type="dijit/MenuItem">Imagery</div>
+        <div data-dojo-type="dijit/MenuItem">Road</div>
+        <div data-dojo-type="dijit/MenuItem">Hybrid</div>
+      </div>
+    </div>
+      <select data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" autoComplete='false' data-dojo-attach-point="SelectAccounts" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['accounts', 'admins'], requestQuery: {_uDCTable: 'view_accounts'}, identifier: 'idcontact', target: '/njs/db/Select_Generic_to_Store'}, autoComplete:false, searchAttr: 'account__name'"></select>  
+  </div>
+
+
+
+
 
   <div class="app_container x_content">
 
@@ -27,7 +65,6 @@
       <li><a data-dojo-attach-point="Save2"><i class="glyphicon glyphicon-zoom-in"></i></a> </li>
       <li style="margin-left: 10px; padding-top: 3px; margin-right: 5px;">
 
-        <!-- <div data-dojo-type="FilteringSelectAjax/FilteringSelectAjax" data-dojo-attach-point="SelectAccounts" data-select-config="{Url: 'php/query/accounts_list_for_select.php', LoadOnCreate: true, Table: 'view_accounts', FieldLabel: 'account__name', FieldValue: 'idcontact'}"></div> -->
 
         <div data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" autoComplete='false' data-dojo-attach-point="SelectAccounts" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['accounts', 'admins'], requestQuery: {_uDCTable: 'view_accounts'}, identifier: 'idcontact', target: '/njs/db/Select_Generic_to_Store'}, autoComplete:false, searchAttr: 'account__name'"></div>      
 
