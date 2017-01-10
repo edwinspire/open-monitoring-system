@@ -5,12 +5,14 @@ define(['dojo/_base/declare',
   "uDCGrid/uDCGrid",
   "dojo/dom-construct",
   "dojo/on",
+  "dojo/dom-style",
+  "dojo/window",
   "dojo/topic",
   'dstore/Memory',
   'dstore/Trackable',
   "dijit/form/TextBox",
   "uDC/uDC"
-  ],function(declare,_Widget,_Templated,templateString, uDCGrid, domConstruct, on){
+  ],function(declare,_Widget,_Templated,templateString, uDCGrid, domConstruct, on, domStyle,  w){
 
    return declare([ _Widget, _Templated], {
      widgetsInTemplate:true,
@@ -30,10 +32,8 @@ define(['dojo/_base/declare',
      postCreate: function () {
       var t = this;
 
-console.debug(t);
-
-
       t.Search.on('Change', function (e) {
+        console.debug(e);
             t.Grid.Filter(e.value);
           });
 
