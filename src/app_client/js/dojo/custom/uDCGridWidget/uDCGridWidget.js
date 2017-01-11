@@ -11,7 +11,8 @@ define(['dojo/_base/declare',
   'dstore/Memory',
   'dstore/Trackable',
   "dijit/form/TextBox",
-  "uDC/uDC"
+  "uDC/uDC",
+  "dijit/ToolbarSeparator"
   ],function(declare,_Widget,_Templated,templateString, uDCGrid, domConstruct, on, domStyle,  w){
 
    return declare([ _Widget, _Templated], {

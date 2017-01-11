@@ -1,44 +1,69 @@
 <div style="height: 200px;">
 
-<span data-dojo-type="dijit/Toolbar">
-<label style="text-transform: uppercase; font-weight: bold; text-decoration: underline;" data-dojo-attach-point="TitleGrid">Table</label>
-<input type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="Boton1" tabIndex="-1" intermediateChanges="false" label="Button 1" iconClass="dijitNoIcon"></input>
-    <div data-dojo-type="dijit/form/DropDownButton">
-      <span>Con menu</span>
-      <div data-dojo-type="dijit/DropDownMenu">
-        <div data-dojo-type="dijit/MenuItem">Imagery</div>
-        <div data-dojo-type="dijit/MenuItem">Road</div>
-        <div data-dojo-type="dijit/MenuItem">Hybrid</div>
-      </div>
-    </div>
-<input type="button" data-dojo-type="dijit/form/Button" tabIndex="-1" intermediateChanges="false" label="Button de  rpeuab" iconClass="dijitNoIcon"></input>
+	<span data-dojo-type="dijit/Toolbar">
+		<label style="text-transform: uppercase; font-weight: bold; text-decoration: underline;" data-dojo-attach-point="TitleGrid">Table</label>
+		<span data-dojo-type="dijit/ToolbarSeparator"></span>
+		<div data-dojo-type="dijit/form/DropDownButton">
+			<span>Agregar</span>
+			<div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Agregar Registro'">
+				<table>
+					<tr>
+						<td><label for="user">User:</label></td>
+						<td><input data-dojo-type="dijit/form/TextBox"></td>
+					</tr>
+					<tr>
+						<td><label for="pwd">Password:</label></td>
+						<td><input data-dojo-type="dijit/form/TextBox" type="password"></td>
+					</tr>
+				</table>
+			</div>
+		</div>  
 
-        <div data-dojo-type="dijit/form/DropDownButton">
-          <span>Confirm Tooltip Dialog</span>
-          <div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Login'">
-            <table>
-              <tr>
-                <td><label for="user">User:</label></td>
-                <td><input data-dojo-type="dijit/form/TextBox"></td>
-              </tr>
-              <tr>
-                <td><label for="pwd">Password:</label></td>
-                <td><input data-dojo-type="dijit/form/TextBox" type="password"></td>
-              </tr>
-            </table>
-          </div>
-        </div>  
+		<div data-dojo-type="dijit/form/DropDownButton">
+			<span>Eliminar Selección</span>
+			<div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Agregar Registro'">
+				Realmente sea eliminar los registros seleccionados?
+			</div>
+		</div>  
 
-<input type="button" data-dojo-type="dijit/form/Button" tabIndex="-1" intermediateChanges="false" label="Button 3" iconClass="dijitNoIcon"></input>
+<span data-dojo-type="dijit/ToolbarSeparator"></span>
 
-<input data-dojo-attach-point="Search" data-dojo-type="dijit/form/TextBox" value="" data-dojo-props="intermediateChanges:true"></input>
-</span>
+		<div data-dojo-type="dijit/form/DropDownButton">
+			<span>Con menu</span>
+			<div data-dojo-type="dijit/DropDownMenu">
+				<div data-dojo-type="dijit/MenuItem">Imagery</div>
+				<div data-dojo-type="dijit/MenuItem">Road</div>
+				<div data-dojo-type="dijit/MenuItem">Hybrid</div>
+			</div>
+		</div>
+		<input type="button" data-dojo-type="dijit/form/Button" tabIndex="-1" intermediateChanges="false" label="Button de  rpeuab" iconClass="dijitNoIcon"></input>
+
+		<div data-dojo-type="dijit/form/DropDownButton">
+			<span>Confirm Tooltip Dialog</span>
+			<div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Login'">
+				<table>
+					<tr>
+						<td><label for="user">User:</label></td>
+						<td><input data-dojo-type="dijit/form/TextBox"></td>
+					</tr>
+					<tr>
+						<td><label for="pwd">Password:</label></td>
+						<td><input data-dojo-type="dijit/form/TextBox" type="password"></td>
+					</tr>
+				</table>
+			</div>
+		</div>  
+
+		<input type="button" data-dojo-type="dijit/form/Button" tabIndex="-1" intermediateChanges="false" label="Button 3" iconClass="dijitNoIcon"></input>
+
+		<input data-dojo-attach-point="Search" data-dojo-type="dijit/form/TextBox" value="" data-dojo-props="intermediateChanges:true"></input>
+	</span>
 
 
-      <div data-dojo-attach-point="Contenedor"></div>
+	<div data-dojo-attach-point="Contenedor"></div>
 
 
-  <div data-dojo-type="uDC/uDC" data-dojo-attach-point="uDC"></div>
+	<div data-dojo-type="uDC/uDC" data-dojo-attach-point="uDC"></div>
 
 
 

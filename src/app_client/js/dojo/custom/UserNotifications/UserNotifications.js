@@ -106,31 +106,31 @@ _notify_browser: function(args){
 },
 _notify_browser_not_support: function(args){
 
-    var bsc = 'NotificationArea ';
+    var bsc = 'UserNotifications ';
 
     if (args.Urgency <= 2) {
               //  bsc = '#d80000';
-              bsc = bsc+'level12';
+              bsc = bsc+'UserNotifications_12';
               
           } else if (args.Urgency <= 4) {
                // bsc = '#ff6100';
-               bsc = bsc+'level34';
+               bsc = bsc+'UserNotifications_34';
                
            } else if (args.Urgency <= 6) {
                // bsc = '#ffc700';
-               bsc = bsc+'level56';
+               bsc = bsc+'UserNotifications_56';
                
            } else if (args.Urgency <= 8) {
                // bsc = '#ffe100';
-               bsc = bsc+'level78';
+               bsc = bsc+'UserNotifications_78';
                
            } else if (args.Urgency <= 10) {
                // bsc = '#ffe100';
-               bsc = bsc+'level910';
+               bsc = bsc+'UserNotifications_910';
                
            } else {
                // bsc = '#8b9fb2';
-               bsc = 'NotificationArea';
+               bsc = 'UserNotifications';
            }
 
 
