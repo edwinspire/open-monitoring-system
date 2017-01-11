@@ -26,15 +26,27 @@
 			</div>
 		</div>  
 
-
 		<span data-dojo-type="dijit/ToolbarSeparator"></span>
 
 		<div data-dojo-type="dijit/form/DropDownButton" data-dojo-props="iconClass:'dijitEditorIconCreateLink'">
 			<span>Refresco</span>
+			<div data-dojo-type="dijit/DropDownMenu">
+				<div data-dojo-attach-point="RefreshAuto" data-dojo-type="dijit/RadioMenuItem" data-dojo-props="group: 'g1'">Automático</div>
+				<div data-dojo-attach-point="RefreshUnabled" data-dojo-type="dijit/RadioMenuItem" data-dojo-props="group: 'g1', checked:true">Desactivado</div>
+				<div data-dojo-attach-point="RefreshTempo" data-dojo-type="dijit/RadioMenuItem" data-dojo-props="group: 'g1'"><span data-dojo-attach-point="LabelRefreshTimer">120</span> seg. </div>
+
+			</div>
+		</div>
+
+
+
+
+<!-- 		<div data-dojo-type="dijit/form/DropDownButton" data-dojo-props="iconClass:'dijitEditorIconCreateLink'">
+			<span>Refresco</span>
 			<div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Agregar Registro'">
 			Detener actualización de la tabla por  <input data-dojo-type="dijit/form/NumberSpinner" data-dojo-attach-point="DisabledRefreshTime" value="60" data-dojo-props="smallDelta:10, constraints:{min:10, max:600,places:0}" style="width: 75px;"/>  segundos.
 			</div>
-		</div>  
+		</div>   -->
 
 
 		<span data-dojo-type="dijit/ToolbarSeparator"></span>

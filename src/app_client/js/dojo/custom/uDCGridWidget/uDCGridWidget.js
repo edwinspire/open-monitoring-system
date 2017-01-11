@@ -14,7 +14,11 @@ define(['dojo/_base/declare',
   "uDC/uDC",
   "dijit/ToolbarSeparator",
   "dijit/form/NumberSpinner",
-  "dijit/ConfirmTooltipDialog"
+  "dijit/ConfirmTooltipDialog",
+  "dijit/RadioMenuItem",
+  "dijit/MenuItem",
+  "dijit/PopupMenuItem",
+  "dijit/Menu"
   ],function(declare,_Widget,_Templated,templateString, uDCGrid, domConstruct, on, domStyle,  w){
 
    return declare([ _Widget, _Templated], {
@@ -40,48 +44,33 @@ define(['dojo/_base/declare',
             t.Grid.Filter(e.value);
           });
 
-/*
+
           t._IntervalRefresh = setInterval(function () {
             if (t.Grid.refreshMode == 3) {
+t.LabelRefreshTimer.innerHTML = '213213213';
+console.debug('Tempo');
 
-              if (domClass.contains(t.DisabledRefreshTempo, "grid_icon_refresh_red")) {
-                domClass.remove(t.DisabledRefreshTempo, "grid_icon_refresh_red");
-                domClass.add(t.DisabledRefreshTempo, "grid_icon_refresh_white");
-              } else {
-                domClass.remove(t.DisabledRefreshTempo, "grid_icon_refresh_white");
-                domClass.add(t.DisabledRefreshTempo, "grid_icon_refresh_red");
-              }
-
-              domClass.replace(t.Refresh, "grid_icon_refresh_red", "grid_icon_refresh_green grid_icon_refresh_white grid_icon_refresh_blue");
             }
-          }, 500);
+          }, 1000);
 
 
-          on(t.Refresh, 'click', function (e) {
+          on(t.RefreshAuto, 'click', function (e) {
             t.Grid.refreshMode = 1;
-            domClass.replace(t.DisabledRefreshTempo, "grid_icon_refresh_white", "grid_icon_refresh_green grid_icon_refresh_red grid_icon_refresh_blue");
-            domClass.replace(t.Refresh, "grid_icon_refresh_white", "grid_icon_refresh_green grid_icon_refresh_red grid_icon_refresh_blue");
+            t.set('labeltimerrefresh', '120');
+           // domClass.replace(t.DisabledRefreshTempo, "grid_icon_refresh_white", "grid_icon_refresh_green grid_icon_refresh_red grid_icon_refresh_blue");
+           // domClass.replace(t.Refresh, "grid_icon_refresh_white", "grid_icon_refresh_green grid_icon_refresh_red grid_icon_refresh_blue");
             console.log('Se activa el refresco ');
             t.Grid.Select(t.Grid._last_select);
              
               });
 
-
-          on(t.DialogDisabledRefreshOK, 'click', function (e) {
+          on(t.RefreshTempo, 'click', function (e) {
             t.Grid.refreshMode = 3;
-            var timeDes = Number(t.DisabledRefreshTime.get('value') * 1000);
-              
-              popup.close(t.DialogDisabledRefresh);
-              setTimeout(function () {
-                on.emit(t.Refresh, 'click', {});
-              }, timeDes);
+            t.LabelRefreshTimer.innerHTML = 120;
             });
 
-          on(t.DialogDisabledRefreshCancel, 'click', function (e) {
-            popup.close(t.DialogDisabledRefresh);
-          });
 
-
+/*
 
           on.once(t.Add, "click", function(){
 
