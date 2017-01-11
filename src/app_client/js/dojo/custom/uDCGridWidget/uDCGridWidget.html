@@ -21,7 +21,7 @@
 
 		<div data-dojo-type="dijit/form/DropDownButton">
 			<span>Eliminar Selección</span>
-			<div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Agregar Registro'">
+			<div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Eliminar seleccionados'">
 				Realmente sea eliminar los registros seleccionados?
 			</div>
 		</div>  
@@ -29,7 +29,7 @@
 
 		<span data-dojo-type="dijit/ToolbarSeparator"></span>
 
-		<div data-dojo-type="dijit/form/DropDownButton">
+		<div data-dojo-type="dijit/form/DropDownButton" data-dojo-props="iconClass:'dijitEditorIconCreateLink'">
 			<span>Refresco</span>
 			<div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Agregar Registro'">
 			Detener actualización de la tabla por  <input data-dojo-type="dijit/form/NumberSpinner" data-dojo-attach-point="DisabledRefreshTime" value="60" data-dojo-props="smallDelta:10, constraints:{min:10, max:600,places:0}" style="width: 75px;"/>  segundos.
