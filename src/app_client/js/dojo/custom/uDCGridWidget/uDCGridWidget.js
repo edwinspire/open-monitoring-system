@@ -12,7 +12,9 @@ define(['dojo/_base/declare',
   'dstore/Trackable',
   "dijit/form/TextBox",
   "uDC/uDC",
-  "dijit/ToolbarSeparator"
+  "dijit/ToolbarSeparator",
+  "dijit/form/NumberSpinner",
+  "dijit/ConfirmTooltipDialog"
   ],function(declare,_Widget,_Templated,templateString, uDCGrid, domConstruct, on, domStyle,  w){
 
    return declare([ _Widget, _Templated], {
