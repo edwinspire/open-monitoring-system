@@ -6,7 +6,6 @@ define(['dojo/_base/declare',
     "dojo/cookie",
     "dojox/encoding/digests/MD5",
     "dojo/_base/window"
-
     ], function (declare, domConstruct, domStyle, on, topic, cookie, MD5, win) {
 
         return declare(null, {
@@ -107,27 +106,27 @@ _notify_browser: function(args){
 },
 _notify_browser_not_support: function(args){
 
-    var bsc = '';
+    var bsc = 'NotificationArea ';
 
     if (args.Urgency <= 2) {
               //  bsc = '#d80000';
-              bsc = 'NotificationArea_12';
+              bsc = bsc+'level12';
               
           } else if (args.Urgency <= 4) {
                // bsc = '#ff6100';
-               bsc = 'NotificationArea_34';
+               bsc = bsc+'level34';
                
            } else if (args.Urgency <= 6) {
                // bsc = '#ffc700';
-               bsc = 'NotificationArea_56';
+               bsc = bsc+'level56';
                
            } else if (args.Urgency <= 8) {
                // bsc = '#ffe100';
-               bsc = 'NotificationArea_78';
+               bsc = bsc+'level78';
                
            } else if (args.Urgency <= 10) {
                // bsc = '#ffe100';
-               bsc = 'NotificationArea_910';
+               bsc = bsc+'level910';
                
            } else {
                // bsc = '#8b9fb2';
@@ -146,12 +145,8 @@ if (args.Closable) {
 
 node.innerHTML = ' <div class="'+ bsc +'"> <span class="glyphicon '+args.IconClass+'" aria-hidden="true"></span><span class="notificacion_area_title">' + args.Title + '</span>  <div class="notificacion_area_message">' + args.Message + '</div> <audio autoplay><source src="' + args.Snd + '" type="audio/ogg"> <source src="media/snd/notify.mp3" type="audio/mpeg"> </audio> </div>';
 
-
-//Polymer.dom(containerNotify).appendChild(node);
-//Polymer.dom(t.$.container).appendChild(node);
 domConstruct.place(node, this.idWidgetGlobal, 'first');
 
-// Este bloque hace que pasado el Timeout la notificacion se cierre automaticamente
 setTimeout(function () {
     domConstruct.destroy(node);
 }, args.Timeout * 1000);

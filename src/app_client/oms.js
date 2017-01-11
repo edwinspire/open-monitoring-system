@@ -60,11 +60,10 @@ var PageContent = dijit.byId('PageContent');
 
 
 
-/*
- var ESIO = new EventServerIO();
+var ESIO = new EventServerIO();
 var NOTIF = new UserNotifications();
 
-
+/*
 
 
 FullName.innerHTML = cookie('oms_fullname');
