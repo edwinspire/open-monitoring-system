@@ -163,7 +163,7 @@ disabled: function(_disable){
 },
 Filter: function (searchTerm) {
 
-    //console.log('Filtar por: ' + searchTerm);
+console.log('Filtar por: ' + searchTerm);
 
     var t = this;
     t._searchTerm = searchTerm;
@@ -188,6 +188,7 @@ Filter: function (searchTerm) {
                 setToMemory = t._GridStore.filter(mainFilter);
               }
 
+console.debug(setToMemory);
               t.set("collection", setToMemory);
             },
 

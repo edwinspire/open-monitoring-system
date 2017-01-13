@@ -40,7 +40,7 @@ define(['dojo/_base/declare',
 
 				t.Search.on('Change', function (e) {
 					console.debug(e);
-					t.Grid.Filter(e.value);
+					t.Grid.Filter(e);
 				});
 
 
@@ -48,7 +48,7 @@ define(['dojo/_base/declare',
 					if (t.Grid.refreshMode == 3 && t._RemainDisabledRefresh > 0) {
 						t._RemainDisabledRefresh--;
 						t.RefreshTempo.set('label', 'Desactivado por '+t._RemainDisabledRefresh+' seg.');
-						console.debug('Tempo', t.LabelRefreshTimer);
+						
 
 					}else if(t._RemainDisabledRefresh < 1){
 						t.RefreshTempo.set('label', 'Desactivar');
@@ -62,14 +62,12 @@ define(['dojo/_base/declare',
 
 				on(t.RefreshAuto, 'click', function (e) {
 					t.Grid.refreshMode = 1;
-					console.log('Se activa el refresco ');
 					t.Grid.Select(t.Grid._last_select);
 				});
 
 				on(t.RefreshTempo, 'click', function (e) {
 					t.Grid.refreshMode = 3;
 					t.RefreshTempo.set('label', 'Desactivar');
-					console.debug(t.LabelRefreshTimer);
 					t._RemainDisabledRefresh = 120;
 				});
 
