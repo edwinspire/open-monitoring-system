@@ -38,7 +38,12 @@ t.SelectAccounts.searchDelay = 600;
 domStyle.set(t.domNode, 'min-height', w.getBox().h-70+'px');
 
 t.TabMaster.watch("selectedChildWidget", function(name, oval, nval){
-    console.log("selected child changed from ", oval, " to ", nval);
+  console.log("selected child changed from ", oval, " to ", nval);
+
+  if(nval.title == "Geolocalizacion"){
+    t.AccountMap.render();
+  }
+
 });
 
 // //t.SelectorPage.as_page();
@@ -131,13 +136,13 @@ t.TabMaster.watch("selectedChildWidget", function(name, oval, nval){
 
 t.Basic.uDC.on('onSelect', function(e){
  
-var point = {center: true};
-point.geox = e.data.geox;
-point.geoy = e.data.geoy;
-point.fullname = e.data.last_name+' '+e.data.first_name;
-console.debug(point)
- t.AccountMap.setPoints([point]);
- t.AccountMap.render();
+  var point = {center: true};
+  point.geox = e.data.geox;
+  point.geoy = e.data.geoy;
+  point.fullname = e.data.last_name+' '+e.data.first_name;
+  console.debug(point)
+  t.AccountMap.setPoints([point]);
+  t.AccountMap.render();
 });
 
 
@@ -159,7 +164,7 @@ t.SelectAccounts.on('Change', function (e) {
 
 }
 
-            });                                                	
+});                                                	
 
 
 },
