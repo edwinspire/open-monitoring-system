@@ -37,6 +37,9 @@ t.SelectAccounts.searchDelay = 600;
 
 domStyle.set(t.domNode, 'min-height', w.getBox().h-70+'px');
 
+t.TabMaster.watch("selectedChildWidget", function(name, oval, nval){
+    console.log("selected child changed from ", oval, " to ", nval);
+});
 
 // //t.SelectorPage.as_page();
 
@@ -126,15 +129,16 @@ domStyle.set(t.domNode, 'min-height', w.getBox().h-70+'px');
 
 
 
-// t.Basic.uDC.on('onSelect', function(e){
+t.Basic.uDC.on('onSelect', function(e){
  
-// var point = {center: true};
-// point.geox = e.data.geox;
-// point.geoy = e.data.geoy;
-// point.fullname = e.data.last_name+' '+e.data.first_name;
-
-//  t.AccountMap.setPoints([point]);
-// });
+var point = {center: true};
+point.geox = e.data.geox;
+point.geoy = e.data.geoy;
+point.fullname = e.data.last_name+' '+e.data.first_name;
+console.debug(point)
+ t.AccountMap.setPoints([point]);
+ t.AccountMap.render();
+});
 
 
 

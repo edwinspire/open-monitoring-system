@@ -37,12 +37,12 @@
 
 
 	<div style="width: 100%; height: 700px;">
-		<div data-dojo-type="dijit/layout/TabContainer" style="width: 100%; height: 100%;">
+		<div data-dojo-type="dijit/layout/TabContainer" data-dojo-attach-point="TabMaster" style="width: 100%; height: 100%;">
 			<div data-dojo-type="dijit/layout/ContentPane" title="Datos Generales" data-dojo-props="selected:true">
 				<div class="widgetMember" data-dojo-type="account_data/account_data" data-dojo-attach-point="Basic" data-label="Datos Basicos" data-selected="true"></div>
 			</div>
 			<div data-dojo-type="dijit/layout/ContentPane" title="Geolocalizacion">
-				Lorem ipsum and all around - second...
+				<ol-map class="widgetMember" data-dojo-attach-point="AccountMap" points='{points: []}' data-label="Ubicacion Geográfica" data-selected="true"></ol-map>  
 			</div>
 			<div data-dojo-type="dijit/layout/ContentPane" title="Contactos" data-dojo-props="closable:true">
 				Lorem ipsum and all around - last...

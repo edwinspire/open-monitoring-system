@@ -69,6 +69,7 @@
     },
     setPoints: function(_p){
       this.points = _p;
+      console.debug(_p);
       this.fire('changed', {points: _p});
     },
     render: function(){
@@ -95,7 +96,7 @@ ready: function() {
    "dojo/keys",
    "dojo/_base/array",
    "../../vendors/OpenLayers_v3-17-1/ol.js",
-   "dojo/store/Memory"
+   "dojo/store/Memory"  
    ], function (ready,  domAttr, TTD, PopUp, on, win, domStyle, dwin, keys, array, ol, Memory) {
     ready(function () {
 
@@ -156,7 +157,7 @@ BaseMap.updateSize();
 
       on(WComponent, 'changed', function(ps){
 
-//console.debug('El punto ha cambiado', ps);
+console.debug('El punto ha cambiado', ps);
       //console.log('Dispara e evento', WComponent.idProperty, ps.detail.points);
       //domStyle.set(WComponent, 'height', dwin.getBox().h-125+'px');
       domStyle.set(WComponent.$.map, 'height', dwin.getBox().h-125+'px');
