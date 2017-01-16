@@ -15,7 +15,9 @@ define(['dojo/_base/declare',
   "dijit/layout/ContentPane",
   "dijit/layout/StackController",
   "Widget/PageContainer/PageContainer",
-  "FilteringSelectGlobalStore/FilteringSelectGlobalStore"
+  "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
+  "dijit/layout/TabContainer",
+  "account_data/account_data"
   ], function (declare, _Widget, _Templated, templateString, domClass, on, query, domStyle, domClass, w, TTD, popup, topic, domAttr) {
 /**
      * Application Account

@@ -1,98 +1,66 @@
 <div>
 
-  <div data-dojo-type="dijit/Toolbar">
-    <span>Esta es la tabla</span>
-    <button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'" onClick="myDialog.show();">Agregar</button>
-    <button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'">Eliminar</button>
-    <button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'">Exportar</button>
-    <button data-dojo-type="dijit/form/Button" data-dojo-props="disabled:true">Disabled</button>
-    <button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'">Icon</button>
+	<div data-dojo-type="dijit/Toolbar">
+		<span>Esta es la tabla</span>
+		<button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'" onClick="myDialog.show();">Agregar</button>
+		<button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'">Eliminar</button>
+		<button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'">Exportar</button>
+		<button data-dojo-type="dijit/form/Button" data-dojo-props="disabled:true">Disabled</button>
+		<button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'">Icon</button>
 
-        <div data-dojo-type="dijit/form/DropDownButton">
-          <span>Confirm Tooltip Dialog</span>
-          <div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Login'">
-            <table>
-              <tr>
-                <td><label for="user">User:</label></td>
-                <td><input data-dojo-type="dijit/form/TextBox"></td>
-              </tr>
-              <tr>
-                <td><label for="pwd">Password:</label></td>
-                <td><input data-dojo-type="dijit/form/TextBox" type="password"></td>
-              </tr>
-            </table>
-          </div>
-        </div>  
+		<div data-dojo-type="dijit/form/DropDownButton">
+			<span>Confirm Tooltip Dialog</span>
+			<div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Login'">
+				<table>
+					<tr>
+						<td><label for="user">User:</label></td>
+						<td><input data-dojo-type="dijit/form/TextBox"></td>
+					</tr>
+					<tr>
+						<td><label for="pwd">Password:</label></td>
+						<td><input data-dojo-type="dijit/form/TextBox" type="password"></td>
+					</tr>
+				</table>
+			</div>
+		</div>  
 
-    <div data-dojo-type="dijit/form/DropDownButton">
-      <span>Basemaps</span>
-      <div data-dojo-type="dijit/DropDownMenu">
-        <div data-dojo-type="dijit/MenuItem">Imagery</div>
-        <div data-dojo-type="dijit/MenuItem">Road</div>
-        <div data-dojo-type="dijit/MenuItem">Hybrid</div>
-      </div>
-    </div>
-      <select data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" autoComplete='false' data-dojo-attach-point="SelectAccounts" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['accounts', 'admins'], requestQuery: {_uDCTable: 'view_accounts'}, identifier: 'idcontact', target: '/njs/db/Select_Generic_to_Store'}, autoComplete:false, searchAttr: 'account__name'"></select>  
-  </div>
-
-
+		<div data-dojo-type="dijit/form/DropDownButton">
+			<span>Basemaps</span>
+			<div data-dojo-type="dijit/DropDownMenu">
+				<div data-dojo-type="dijit/MenuItem">Imagery</div>
+				<div data-dojo-type="dijit/MenuItem">Road</div>
+				<div data-dojo-type="dijit/MenuItem">Hybrid</div>
+			</div>
+		</div>
+		<select data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" autoComplete='false' data-dojo-attach-point="SelectAccounts" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['accounts', 'admins'], requestQuery: {_uDCTable: 'view_accounts'}, identifier: 'idcontact', target: '/njs/db/Select_Generic_to_Store'}, autoComplete:false, searchAttr: 'account__name'"></select>  
+	</div>
 
 
+	<div style="width: 100%; height: 700px;">
+		<div data-dojo-type="dijit/layout/TabContainer" style="width: 100%; height: 100%;">
+			<div data-dojo-type="dijit/layout/ContentPane" title="Datos Generales" data-dojo-props="selected:true">
+				<div class="widgetMember" data-dojo-type="account_data/account_data" data-dojo-attach-point="Basic" data-label="Datos Basicos" data-selected="true"></div>
+			</div>
+			<div data-dojo-type="dijit/layout/ContentPane" title="Geolocalizacion">
+				Lorem ipsum and all around - second...
+			</div>
+			<div data-dojo-type="dijit/layout/ContentPane" title="Contactos" data-dojo-props="closable:true">
+				Lorem ipsum and all around - last...
+			</div>
 
-  <div class="app_container x_content">
+			<div data-dojo-type="dijit/layout/ContentPane" title="Usuarios" data-dojo-props="closable:true">
+				Lorem ipsum and all around - last...
+			</div>
 
-    <div class="app_title"><strong data-dojo-attach-point="TitleAccount" class="app_title_label">Abonado</strong>
+			<div data-dojo-type="dijit/layout/ContentPane" title="Equipos" data-dojo-props="closable:true">
+				Lorem ipsum and all around - last...
+			</div>
+			<div data-dojo-type="dijit/layout/ContentPane" title="Incidentes" data-dojo-props="closable:true">
+				Lorem ipsum and all around - last...
+			</div>
+		</div>
+	</div>
 
-
-     <ul class="nav navbar-right panel_toolbox" style="height: 25px;">
-       <li><a data-dojo-attach-point="NewAccount"><i class="glyphicon glyphicon-plus"></i></a> </li>
-
-       <span style="display: none;">
-
-        <div data-dojo-attach-point="DTTNewAccount" data-dojo-type="dijit/TooltipDialog">
-          <div>Desea agregar un nuevo abonado?</div>
-
-          <div class="dijitDialogPaneActionBar">
-            <button type="button" data-dojo-attach-point="DTTNewAccountOK" class="btn btn-default btn-xs">Si</button>
-            <button type="button" data-dojo-attach-point="DTTNewAccountCancel" class="btn btn-default btn-xs">No</button>
-          </div>
-        </div>
-
-      </span>
-
-
-      <li><a data-dojo-attach-point="Save"><i class="glyphicon glyphicon-floppy-save"></i></a> </li>
-      <li><a data-dojo-attach-point="Save2"><i class="glyphicon glyphicon-zoom-in"></i></a> </li>
-      <li style="margin-left: 10px; padding-top: 3px; margin-right: 5px;">
-
-
-        <div data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" autoComplete='false' data-dojo-attach-point="SelectAccounts" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['accounts', 'admins'], requestQuery: {_uDCTable: 'view_accounts'}, identifier: 'idcontact', target: '/njs/db/Select_Generic_to_Store'}, autoComplete:false, searchAttr: 'account__name'"></div>      
-
-
-      </li>
-    </ul>
-
-
-  </div>
-
-
-  <div  class="element-disabled" data-dojo-attach-point="ContentForms">
-    <div class="btn-group  btn-group-sm btn-group-justified" data-dojo-attach-point="BlockButton" style="margin-bottom: 3px;">
-      <a class="btn btn-default" type="button" data-dojo-attach-point="WData"><span class="glyphicon glyphicon-certificate" aria-hidden="true"></span> Datos</a>
-      <a class="btn btn-default" type="button" data-dojo-attach-point="WGeo"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Geolocalización</a>
-      <a class="btn btn-default" type="button" data-dojo-attach-point="WContacts"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Contactos</a>
-      <a class="btn btn-default" type="button" data-dojo-attach-point="WUsers"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Usuarios</a>
-      <a class="btn btn-default" type="button" data-dojo-attach-point="WEquipment"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span> Equipos</a>  
-
-      <a class="btn btn-default" type="button" data-dojo-attach-point="WEvents"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span> Incidentes</a>                                                       
-
-    </div>
-
-
-
-<!-- <iron-pages data-dojo-attach-point="SelectorPage" selected="0">
-
-</iron-pages> -->
 
 
 <!-- <div data-dojo-type="PageContainer/PageContainer" data-dojo-attach-point="SelectorPage">
@@ -104,12 +72,7 @@
   <div class="widgetMember" data-dojo-type="account_events_isopen/account_events_isopen" data-label="Incidentes" data-dojo-attach-point="EventsIsOpen" ></div> 
 </div> -->
 
-</div>
 
-
-
-
-</div>
 
 
 
