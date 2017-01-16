@@ -15,7 +15,8 @@ require(["dojo/ready",
   "app_accounts_table/app_accounts_table", 
   "app_account/app_account",
   "app_tables_views_config/app_tables_views_config",
-  "app_login_report/app_login_report"
+  "app_login_report/app_login_report",
+  
   ], function(ready, 
     cookie,
     EventServerIO,

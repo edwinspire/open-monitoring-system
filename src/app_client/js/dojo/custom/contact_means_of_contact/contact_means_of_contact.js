@@ -9,7 +9,8 @@
  	'dojo/_base/declare',
  	'dijit/_Widget',
  	'dijit/_Templated',
- 	'dojo/text!contact_means_of_contact/contact_means_of_contact.html'
+ 	'dojo/text!contact_means_of_contact/contact_means_of_contact.html',
+  "Widget/uDCGridWidget/uDCGridWidget"
  	], function (declare, _Widget, _Templated, templateString) {
     /**
      * Micro Data Connector

@@ -3,21 +3,30 @@ define(['dojo/_base/declare',
     'dijit/_Templated',
     'dojo/text!account_data/account_data.html',
     "dojo/on",
-        "uDC/uDC",
-        "Switch/Switch",
-        "dijit/form/ValidationTextBox",
-        "DateTextbox/DateTextbox",
-        "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
-        "SelectGender/SelectGender",
-        "ContactGroup/ContactGroup",
-        "dijit/form/Textarea" 
-], function (declare, _Widget, _Templated, templateString,  on) {
+    "uDC/uDC",
+    "Switch/Switch",
+    "dijit/form/ValidationTextBox",
+    "DateTextbox/DateTextbox",
+    "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
+    "SelectGender/SelectGender",
+    "ContactGroup/ContactGroup",
+    "dijit/form/Textarea",
+    "DateTextbox/DateTextbox",
+    "Switch/Switch",
+    "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
+    "SelectGender/SelectGender",
+    "ContactGroup/ContactGroup",
+    "dijit/form/Textarea",
+    "DateTextbox/DateTextbox",
+    "contact_means_of_contact/contact_means_of_contact" ,
+    "uDC/uDC"
+    ], function (declare, _Widget, _Templated, templateString,  on) {
     /**
      * Account Data
      *
      * @module account_data/account_data
      */
-    return declare([_Widget, _Templated], {
+     return declare([_Widget, _Templated], {
         widgetsInTemplate: true,
         templateString: templateString,
         IdAccount: -999,
@@ -25,15 +34,15 @@ define(['dojo/_base/declare',
         postCreate: function () {
             var t = this;
             
-          
-                       t.uDC.on('onSelect', function(e){
-	       t.TGroups.set('groups', e.data.iddivision, e.data.groups);                            
-  });
-               
-                       t.Division.on('Change', function(e){
-                       console.log('Cambia la division', e, t.Division.get('value'));
-	       t.TGroups.set('groups', t.Division.get('value'), []);                            
-  });
+
+            t.uDC.on('onSelect', function(e){
+                t.TGroups.set('groups', e.data.iddivision, e.data.groups);                            
+            });
+
+            t.Division.on('Change', function(e){
+             console.log('Cambia la division', e, t.Division.get('value'));
+             t.TGroups.set('groups', t.Division.get('value'), []);                            
+         });
 
 
 
@@ -59,13 +68,13 @@ define(['dojo/_base/declare',
             return this.IdAccount;
         },
         Update: function(){
-        this.uDC.Update();
+            this.uDC.Update();
         },
         Clear: function(){
-                this.uDC.Clear();
+            this.uDC.Clear();
                // this.TPhones.Clear();
                // this.TEmails.Clear();
-        }
+           }
 
 
 
@@ -78,5 +87,5 @@ define(['dojo/_base/declare',
 
 
 
-    });
-});
+       });
+ });
