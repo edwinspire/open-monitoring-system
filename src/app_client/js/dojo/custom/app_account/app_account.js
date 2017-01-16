@@ -31,11 +31,11 @@ define(['dojo/_base/declare',
        var t = this;
 
 
-// //	console.log(t.SelectAccounts.Config);
-// t.SelectAccounts.queryExpr = '*${0}*';
-// t.SelectAccounts.searchDelay = 600;
+//	console.log(t.SelectAccounts.Config);
+t.SelectAccounts.queryExpr = '*${0}*';
+t.SelectAccounts.searchDelay = 600;
 
-// domStyle.set(t.domNode, 'min-height', w.getBox().h-70+'px');
+domStyle.set(t.domNode, 'min-height', w.getBox().h-70+'px');
 
 
 // //t.SelectorPage.as_page();
@@ -138,24 +138,24 @@ define(['dojo/_base/declare',
 
 
 
-// t.SelectAccounts.on('Change', function (e) {
-//   var idaccount = t.SelectAccounts.get('value');   
+t.SelectAccounts.on('Change', function (e) {
+  var idaccount = t.SelectAccounts.get('value');   
 
-//   if(idaccount > 0){
-//    t.Basic.set("idaccount", idaccount);
+  if(idaccount > 0){
+   t.Basic.set("idaccount", idaccount);
 
 
 // t.ContactsUsers.set('idaccount', idaccount);
 // t.Equipments.set('idaccount', idaccount);
 // t.EventsIsOpen.set('idaccount', idaccount);
 // t._disable_element(t.ContentForms, false);
-// }else{
-//   t._disable_element(t.ContentForms, true);
-//   t._notifications({ Urgency: 10, Message: 'No ha seleccionado un registro correcto', Title: 'Selección Incorrecta' });
+}else{
+  t._disable_element(t.ContentForms, true);
+  t._notifications({ Urgency: 10, Message: 'No ha seleccionado un registro correcto', Title: 'Selección Incorrecta' });
 
-// }
+}
 
-//             });                                                	
+            });                                                	
 
 
 },

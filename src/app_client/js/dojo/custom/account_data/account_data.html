@@ -5,25 +5,25 @@
 	<fieldset>
 		<legend >Habilitado</legend>
 
-		<span class="input-group">
+		
 			<div name="enabled" class="account_form_basic_class_udc " data-dojo-type="Switch/Switch" value="false"></div> 
-		</span>
+		
 	</fieldset>  
 
 
 	<fieldset>
 		<legend>Account</legend>
-		<span class="input-group">
+		
 			<input data-dojo-type="dijit/form/ValidationTextBox"   class="account_form_basic_class_udc " placeholder="Abonado" required="true" value="" name="account"></input>
-		</span>
+		
 	</fieldset>  
 	
 	
 	<fieldset>
 		<legend>Nombre</legend>
-		<span class="input-group">
+	
 			<input data-dojo-type="dijit/form/ValidationTextBox" class="account_form_basic_class_udc " placeholder="Nombre" name="first_name"></input>        
-		</span>
+	
 	</fieldset>  
 
 	
@@ -38,7 +38,7 @@
 
 	<fieldset>
 		<legend>Cumpleanos</legend>
-		<div data-dojo-type="DateTextbox/DateTextbox" class="account_form_basic_class_udc " name="birthday"></div>
+		<div data-dojo-type="dijit/form/DateTextBox" class="account_form_basic_class_udc " name="birthday"></div>
 	</fieldset> 
 
 
@@ -46,9 +46,9 @@
 	<fieldset>
 		<legend >Tipe ID</legend>
 		
-		<span class="input-group">        
+		     
 			<div class="account_form_basic_class_udc " name="ididtype" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['identification_types'], requestQuery: {_uDCTable: 'identification_types'}, identifier: 'ididtype', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'name'"></div>    
-		</span>         
+		       
 		
 
 		
@@ -95,9 +95,8 @@
 	<fieldset>
 		<legend>IdAccountState</legend>
 		
-		<span class="input-group">                   
+                 
 			<div class="account_form_basic_class_udc " name="idaccountstate" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['account_states'], requestQuery: {_uDCTable: 'account_states'}, identifier: 'idaccountstate', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'state'"></div>                          
-		</span>
 		
 
 	</fieldset>  
@@ -108,9 +107,9 @@
 	<fieldset>
 		<legend>IdAccountType</legend>
 		
-		<span class="input-group">        
+		       
 			<div class="account_form_basic_class_udc " name="idaccounttype" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['account_types'], requestQuery: {_uDCTable: 'account_types'}, identifier: 'idaccounttype', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'type'"></div>    
-		</span>                    
+		             
 		
 
 	</fieldset>  
@@ -118,23 +117,21 @@
 	
 	<fieldset>
 		<legend>Fecha Inicio</legend>
-		<div  data-dojo-type="DateTextbox/DateTextbox" class="account_form_basic_class_udc " name="start_date"></div>
+		<div  data-dojo-type="dijit/form/DateTextBox" class="account_form_basic_class_udc " name="start_date"></div>
 	</fieldset> 
 
 	<fieldset>
 		<legend>Fecha Fin</legend>
-		<div data-dojo-type="DateTextbox/DateTextbox" class="account_form_basic_class_udc " name="end_date"></div>
+		<div data-dojo-type="dijit/form/DateTextBox" class="account_form_basic_class_udc " name="end_date"></div>
 	</fieldset>                      
 	
 	
 	<fieldset>
 		<legend>Empresa</legend>
 
-		<span class="input-group">    
+		   
 			<div class="account_form_basic_class_udc " name="iddivision" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['divisions'], requestQuery: {_uDCTable: 'divisions'}, identifier: 'iddivision', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'name'" data-dojo-attach-point="Division"></div>  
-		</span>
-
-
+		
 	</fieldset> 
 
 
