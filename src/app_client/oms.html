@@ -11,13 +11,15 @@
   <title>Open Monitor System</title>
 
   <!-- Custom Theme Style -->
+<!--   <link rel="stylesheet" type="text/css" href="js/dojo/custom/menu_master/menu_master.css"> -->
+  <link rel="stylesheet" type="text/css" href="vendors/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="js/dojo/custom/UserNotifications/UserNotifications.css">
   <link href="css/dgrid_columns.css" rel="stylesheet">
   <link href="js/dojo/dojo/dgrid/css/dgrid.css" rel="stylesheet">
   <link href="js/dojo/custom/uDCGridWidget/uDCGridWidget.css" rel="stylesheet">
   <link href="js/dojo/custom/Switch/Switch.css" rel="stylesheet">
   
-  <style>@import "css/themes/flat/flat.css";@import "css/themes/flat/flat.css";@import "css/app.css";</style>
+  <style>@import "css/themes/flat/flat.css"; @import "css/themes/flat/flat.css";@import "css/app.css";</style>
   <link href="css/themes/flat/dgrid/flat.css" rel="stylesheet">
 
 
@@ -139,11 +141,9 @@
       ]);
     </script>
 
-    <link rel="import" href="bower_components/iron-icon/iron-icon.html">
-    <link rel="import" href="bower_components/vaadin-icons/vaadin-icons.html">
-    <link rel="import" href="wc/vertical-menu.html">
-
-    <link rel="import" href="wc/ol-map.html">
+    <!-- <link rel="import" href="bower_components/iron-icon/iron-icon.html">
+    <link rel="import" href="bower_components/vaadin-icons/vaadin-icons.html"> -->
+   <!--  <link rel="import" href="wc/vertical-menu.html"> -->
     <link rel="import" href="wc/user-eventstatustype.html">
     
 
@@ -224,9 +224,11 @@
 
 
  <div style="width: 98%; height: 100%;">
-  <div class="dijit dijitToolbar">  <div style="padding: 5px; width: 100%;" > <i class="fi-address-book" id="ToogleMenu"></i> Open Monitoring System</div> </div>
-
+  <div class="dijit dijitToolbar">  <div style="padding: 5px; width: 100%;" > <i class="fa fa-bars fa-2x" id="ToogleMenu" aria-hidden="true"></i> Open Monitoring System</div> </div>
+<!-- 
   <vertical-menu id="MainMenu" style="height: 100%; width: 250px; background-color: #2a3f54; left: 0px; position: absolute; z-index: 900; float: none;"></vertical-menu>
+ -->
+ <div data-dojo-type="Widget/menu_master/menu_master" id="MainMenu" style="background: #fffD44; height: 100%; width: 250px; left: 0px; position: absolute; z-index: 900; float: none;"></div>
 
 
   <div data-dojo-type="dijit/layout/ContentPane" title="Pane" id="PageContent" doLayout="false" style="width: 100%; height: 100%;">
@@ -237,6 +239,8 @@
 </div>
 
 <div data-dojo-type="GlobalLiveStore/GlobalLiveStore"></div>
+
+
 
 </body>
 </html>

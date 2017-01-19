@@ -41,10 +41,10 @@ require(["dojo/ready",
 
 
 var PageContent = dijit.byId('PageContent');
-    var Mainmenu = dojo.byId("MainMenu");
-    on(Mainmenu, "clickitem", function(e){
+    var Mainmenu = dijit.byId("MainMenu");
+    Mainmenu.on("clickitem", function(e){
       console.debug(e);
-      switch(e.detail.name){
+      switch(e){
         case 'monitoreo_general':
         OpenApp(app_monitor_general);
         break;
@@ -54,9 +54,12 @@ var PageContent = dijit.byId('PageContent');
       }
     }); 
 
+var menuVisible = true;
 
     on(dojo.byId("ToogleMenu"), "click", function(e){
-      Mainmenu.visible = !Mainmenu.visible; 
+      //Mainmenu.visible = !Mainmenu.visible;
+      menuVisible = !menuVisible;
+Mainmenu.isVisible(menuVisible);
     });
 
 
@@ -145,7 +148,7 @@ function OpenApp(appClass){
 
 PageContent.destroyDescendants();
 new appClass().placeAt(PageContent);
-Mainmenu.visible = false;
+Mainmenu.isVisible(false);
   // if(widget.app){
   //   widget.app.destroy();
   // }
