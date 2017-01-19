@@ -42,7 +42,8 @@
 				<div class="widgetMember" data-dojo-type="account_data/account_data" data-dojo-attach-point="Basic" data-label="Datos Basicos" data-selected="true"></div>
 			</div>
 			<div data-dojo-type="dijit/layout/ContentPane" title="Geolocalizacion">
-				<ol-map class="widgetMember" data-dojo-attach-point="AccountMap" points='{points: []}' data-label="Ubicacion Geográfica" data-selected="true"></ol-map>  
+				<!-- <ol-map class="widgetMember" data-dojo-attach-point="AccountMap" points='{points: []}' data-label="Ubicacion Geográfica" data-selected="true"></ol-map>   -->
+				<div data-dojo-type="Widget/map_points/map_points" data-dojo-attach-point="AccountMap"> </div>
 			</div>
 			<div data-dojo-type="dijit/layout/ContentPane" title="Contactos" data-dojo-props="closable:true">
 				Lorem ipsum and all around - last...

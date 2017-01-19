@@ -17,7 +17,8 @@ define(['dojo/_base/declare',
   "Widget/PageContainer/PageContainer",
   "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
   "dijit/layout/TabContainer",
-  "account_data/account_data"
+  "account_data/account_data",
+  "Widget/map_points/map_points"
   ], function (declare, _Widget, _Templated, templateString, domClass, on, query, domStyle, domClass, w, TTD, popup, topic, domAttr) {
 /**
      * Application Account
@@ -142,7 +143,7 @@ t.Basic.uDC.on('onSelect', function(e){
   point.fullname = e.data.last_name+' '+e.data.first_name;
   console.debug(point)
   t.AccountMap.setPoints([point]);
-  t.AccountMap.render();
+  //t.AccountMap.render();
 });
 
 

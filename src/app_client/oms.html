@@ -113,6 +113,7 @@
     ,{'name':'socketio','location':'../../custom/socketio'}
     ,{'name':'top_tile','location':'../../custom/top_tile'}
     ,{'name':'uDC','location':'../../custom/uDC'}
+    ,{'name':'map_points','location':'../../custom/map_points'}
     ,{'name':'evenstatustype_user_buttons','location':'../../custom/evenstatustype_user_buttons'}
     ,{'name':'uDCGrid','location':'../../custom/uDCGrid'}
     ,{'name':'utils','location':'../../custom/utils'}
@@ -140,9 +141,11 @@
 
     <link rel="import" href="bower_components/iron-icon/iron-icon.html">
     <link rel="import" href="bower_components/vaadin-icons/vaadin-icons.html">
+    <link rel="import" href="wc/vertical-menu.html">
+
     <link rel="import" href="wc/ol-map.html">
     <link rel="import" href="wc/user-eventstatustype.html">
-    <link rel="import" href="wc/vertical-menu.html">
+    
 
     <script src="oms.js"></script>   
 
@@ -221,17 +224,17 @@
 
 
  <div style="width: 98%; height: 100%;">
-  <div class="dijit dijitToolbar">  <div style="padding: 5px; width: 100%;" ><iron-icon icon="vaadin-icons:menu" id="ToogleMenu"></iron-icon> Open Monitoring System</div> </div>
+  <div class="dijit dijitToolbar">  <div style="padding: 5px; width: 100%;" > <i class="fi-address-book" id="ToogleMenu"></i> Open Monitoring System</div> </div>
 
-   <vertical-menu id="MainMenu" style="height: 100%; width: 250px; background-color: #2a3f54; left: 0px; position: absolute; z-index: 900; float: none;"></vertical-menu>
-
-
-   <div data-dojo-type="dijit/layout/ContentPane" title="Pane" id="PageContent" doLayout="false" style="width: 100%; height: 100%;">
+  <vertical-menu id="MainMenu" style="height: 100%; width: 250px; background-color: #2a3f54; left: 0px; position: absolute; z-index: 900; float: none;"></vertical-menu>
 
 
+  <div data-dojo-type="dijit/layout/ContentPane" title="Pane" id="PageContent" doLayout="false" style="width: 100%; height: 100%;">
 
-   </div>
- </div>
+
+
+  </div>
+</div>
 
 <div data-dojo-type="GlobalLiveStore/GlobalLiveStore"></div>
 

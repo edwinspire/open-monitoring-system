@@ -38,6 +38,8 @@ require(["dojo/ready",
     ){
    ready(function(){
 
+
+
 var PageContent = dijit.byId('PageContent');
     var Mainmenu = dojo.byId("MainMenu");
     on(Mainmenu, "clickitem", function(e){
