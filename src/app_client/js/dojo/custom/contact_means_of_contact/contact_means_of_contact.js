@@ -10,8 +10,10 @@
  	'dijit/_Widget',
  	'dijit/_Templated',
  	'dojo/text!contact_means_of_contact/contact_means_of_contact.html',
-  "Widget/uDCGridWidget/uDCGridWidget"
- 	], function (declare, _Widget, _Templated, templateString) {
+  "Widget/uDCGridWidget/uDCGridWidget",
+  "dijit/layout/TabContainer",
+  "dijit/layout/ContentPane"
+  ], function (declare, _Widget, _Templated, templateString) {
     /**
      * Micro Data Connector
      *
@@ -21,13 +23,15 @@
       widgetsInTemplate: true,
       templateString: templateString,
       IdAccount: -9,
-              _setIdcontactAttr: function (_id) {
-            this.IdAccount = _id;
-            //this.uDC.Select(this.IdAccount);                       
-            this.TPhones.Grid.Select({idcontact: this.IdAccount});                                    
-            this.TEmails.Grid.Select({idcontact: this.IdAccount}); 
-
-        },
+      _setIdcontactAttr: function (_id) {
+        this.IdAccount = _id;
+        this.TPhones.Grid.Select({idcontact: this.IdAccount});                                    
+        this.TEmails.Grid.Select({idcontact: this.IdAccount}); 
+this.resize();
+      },
+      resize: function(r){
+        this.TabMaster.resize(r);
+      }
 
 
 
@@ -35,4 +39,4 @@
         // Fin de funciones //
         //************************************//
       });
-});
+   });

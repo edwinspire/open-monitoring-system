@@ -188,9 +188,9 @@ resize: function() {
  var t = this;
  t.Basic.resize();
  //t.AccountMap.resize();
- t.ContactsUsers.resize();
- t.Equipments.resize();
- t.EventsIsOpen.resize();
+ //t.ContactsUsers.resize();
+ //t.Equipments.resize();
+ //t.EventsIsOpen.resize();
 },
 _widgetResize: function(_w){
  _w.resize();

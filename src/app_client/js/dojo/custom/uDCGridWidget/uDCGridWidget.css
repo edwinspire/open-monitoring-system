@@ -17,3 +17,7 @@ color: #64FF31;
 .grid_icon_refresh_white > a > i{
 color: white;
 }
+
+.grid_container{
+	 border-color: #d6d6d6; border-style: solid; border-width: 1px; min-height: 200px;
+}

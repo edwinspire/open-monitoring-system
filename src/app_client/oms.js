@@ -148,7 +148,9 @@ function OpenApp(appClass){
 
 PageContent.destroyDescendants();
 new appClass().placeAt(PageContent);
+PageContent.resize();
 Mainmenu.isVisible(false);
+
   // if(widget.app){
   //   widget.app.destroy();
   // }

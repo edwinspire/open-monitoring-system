@@ -166,9 +166,6 @@ var client = new XmppClient({
 
 client.on('online', function() {
     console.log('XMPP online');
-
-    //client.setPresence('away', 'Recibiendo eventos');
-
     var stanza = new XmppClient.Stanza('message', {to: 'edwinspire@suchat.org', type: 'chat'})
     .c('body').t('Open Monitoring System - Se ha iniciado el servidor\n '+Date.now())
     client.send(stanza);
@@ -210,11 +207,15 @@ cl.on('stanza',
 
     var app = express();
 
-//    var pathname = path.join(__dirname, '../app_client'/);
+app.use(express.static(process.env.EXPRESS_STATIC_DIR, {setHeaders: setFontHeaders}));
 
-app.use(express.static(process.env.EXPRESS_STATIC_DIR));
+function setFontHeaders(res) {
+  res.setHeader('Accept-Ranges', 'none');
+}
+
 app.use(cookieParser());
 app.use(compression());
+//app.set('Accept-Ranges', 'none');
 //app.use( express.bodyParser());       // to support JSON-encoded bodies
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -617,17 +618,15 @@ res.status(401).json({});
 });
 
 app.use(function(req, res, next) {
-
-
   res.status(404).send('Sorry cant find that!');
 });
 
 
-
+//*******************************************************//
+//*******************************************************//
 
 //** Arranca el servidor **//
 var port = process.env.PORT || 80;
-
 
 app.use(function(err, req, res, next) {
     console.error(err.stack);

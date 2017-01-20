@@ -1,5 +1,9 @@
 <div>
 
+<div style="background: #F5F5F5">
+
+<div style="display: inline-block;">
+	
 	<div data-dojo-type="dijit/Toolbar">
 		<span>Esta es la tabla</span>
 		<button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'" onClick="myDialog.show();">Agregar</button>
@@ -24,25 +28,24 @@
 			</div>
 		</div>  
 
-		<div data-dojo-type="dijit/form/DropDownButton">
-			<span>Basemaps</span>
-			<div data-dojo-type="dijit/DropDownMenu">
-				<div data-dojo-type="dijit/MenuItem">Imagery</div>
-				<div data-dojo-type="dijit/MenuItem">Road</div>
-				<div data-dojo-type="dijit/MenuItem">Hybrid</div>
-			</div>
-		</div>
-		<select data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" autoComplete='false' data-dojo-attach-point="SelectAccounts" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['accounts', 'admins'], requestQuery: {_uDCTable: 'view_accounts'}, identifier: 'idcontact', target: '/njs/db/Select_Generic_to_Store'}, autoComplete:false, searchAttr: 'account__name'"></select>  
-	</div>
+	</div>	
+
+</div>
+
+	<select data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" autoComplete='false' data-dojo-attach-point="SelectAccounts" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['accounts', 'admins'], requestQuery: {_uDCTable: 'view_accounts'}, identifier: 'idcontact', target: '/njs/db/Select_Generic_to_Store'}, autoComplete:false, searchAttr: 'account__name'"></select> 
 
 
-	<div style="width: 100%; height: 700px;">
-		<div data-dojo-type="dijit/layout/TabContainer" data-dojo-attach-point="TabMaster" style="width: 100%; height: 100%;">
+</div>
+
+
+
+
+	<div style="width: 100%; height: auto;">
+		<div data-dojo-type="dijit/layout/TabContainer" data-dojo-attach-point="TabMaster" style="width: 100%; height: auto;">
 			<div data-dojo-type="dijit/layout/ContentPane" title="Datos Generales" data-dojo-props="selected:true">
 				<div class="widgetMember" data-dojo-type="account_data/account_data" data-dojo-attach-point="Basic" data-label="Datos Basicos" data-selected="true"></div>
 			</div>
 			<div data-dojo-type="dijit/layout/ContentPane" title="Geolocalizacion">
-				<!-- <ol-map class="widgetMember" data-dojo-attach-point="AccountMap" points='{points: []}' data-label="Ubicacion Geográfica" data-selected="true"></ol-map>   -->
 				<div data-dojo-type="Widget/map_points/map_points" data-dojo-attach-point="AccountMap"> </div>
 			</div>
 			<div data-dojo-type="dijit/layout/ContentPane" title="Contactos" data-dojo-props="closable:true">
