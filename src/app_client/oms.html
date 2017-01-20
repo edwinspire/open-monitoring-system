@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8; no-cache">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;">
   <!-- Meta, title, CSS, favicons, etc. -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,7 @@
 
   <!-- Custom Theme Style -->
   <link rel="stylesheet" type="text/css" href="js/dojo/custom/menu_master/menu_master.css">
-  <link rel="stylesheet" type="text/css" href="vendors/font-awesome/css/font-awesome.min.css">
+<!--   <link rel="stylesheet" type="text/css" href="vendors/font-awesome/css/font-awesome.min.css"> -->
   <link rel="stylesheet" type="text/css" href="js/dojo/custom/UserNotifications/UserNotifications.css">
   <link href="css/dgrid_columns.css" rel="stylesheet">
   <link href="js/dojo/dojo/dgrid/css/dgrid.css" rel="stylesheet">
@@ -21,9 +21,6 @@
   
   <style>@import "css/themes/flat/flat.css"; @import "css/themes/flat/flat.css";@import "css/app.css";</style>
   <link href="css/themes/flat/dgrid/flat.css" rel="stylesheet">
-
-
-
 
 
   <script>
@@ -224,10 +221,8 @@
 
 
  <div style="width: 98%; height: auto;">
-  <div class="dijit dijitToolbar">  <div style="padding: 5px; width: 100%;" > <i class="fa fa-bars fa-2x" id="ToogleMenu" aria-hidden="true"></i> Open Monitoring System</div> </div>
-<!-- 
-  <vertical-menu id="MainMenu" style="height: 100%; width: 250px; background-color: #2a3f54; left: 0px; position: absolute; z-index: 900; float: none;"></vertical-menu>
- -->
+  <div class="dijit dijitToolbar">  <div style="padding: 5px; width: 100%;" > <span data-dojo-type="Widget/icon_svg/icon_svg" id="ToogleMenu"></span> <div style="display: inline-block; position: absolute; top: 15px;" >Open Monitoring System</div> </div> </div>
+
  <div data-dojo-type="Widget/menu_master/menu_master" id="MainMenu" style="background: #F5F5F5; height: 100%; width: 250px; left: 0px; position: absolute; z-index: 900; float: none; border-top-color: #d6d6d6; border-style: solid; border-width: 1px; border-bottom-style: none; border-left-style: none; border-right-style: none;"></div>
 
 
