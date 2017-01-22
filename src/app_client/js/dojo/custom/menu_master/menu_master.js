@@ -3,7 +3,7 @@ define(['dojo/_base/declare',
     'dijit/_Templated',
     'dojo/text!Widget/menu_master/menu_master.html',
     "dojo/Evented",
-    "dojo/on", "dojo/dom-class", "dojo/query", "dojo/dom-attr", "dojo/dom-style", "dojo/NodeList-fx", "dojo/fx", "dojo/_base/fx", "dojo/NodeList-traverse"
+    "dojo/on", "dojo/dom-class", "dojo/query", "dojo/dom-attr", "dojo/dom-style", "dojo/NodeList-fx", "dojo/fx", "dojo/_base/fx", "dojo/NodeList-traverse", "Widget/icon_svg/icon_svg"
     ], function (declare, _Widget, _Templated, templateString, Evented, on, domClass, query, domAttr, domStyle, nodeListFx, fx, baseFx) {
 
         return declare([_Widget, _Templated, Evented], {
