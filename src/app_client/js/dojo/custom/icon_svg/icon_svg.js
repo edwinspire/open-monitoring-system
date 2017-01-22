@@ -7,11 +7,19 @@ define(['dojo/_base/declare',
     return declare([_Widget, _Templated], {
         widgetsInTemplate: true,
         templateString: templateString,
-
+        path_base: 'vendors/foundation-icons/svgs/',
         postCreate: function () {
+console.log(this.icon);
+if(this.icon){
+this.set("icon", this.icon);	
+}
 
 
-        }
+        },
+_setIconAttr: function(icon){
+this.Image.src = this.path_base+icon;
+}
+
 
     });
 });
