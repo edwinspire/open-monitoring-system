@@ -10,7 +10,7 @@ require(["dojo/ready",
   "Widget/app_lista_precios_pnatural/app_lista_precios_pnatural", 
   "Widget/app_lista_precios_eco/app_lista_precios_eco", 
   "Widget/app_lista_precios_medi/app_lista_precios_medi", 
-  "app_monitor_network_devices/app_monitor_network_devices", 
+  "Widget/app_monitor_network_devices/app_monitor_network_devices", 
   "Geolocations/Geolocations", 
   "app_accounts_table/app_accounts_table", 
   "app_account/app_account",
@@ -47,6 +47,9 @@ var PageContent = dijit.byId('PageContent');
       switch(e){
         case 'monitoreo_general':
         OpenApp(app_monitor_general);
+        break;
+                case 'monitoreo_equipos_red':
+        OpenApp(app_monitor_network_devices);
         break;
                 case 'GeneralEmpresaAbonados':
         OpenApp(app_account);
