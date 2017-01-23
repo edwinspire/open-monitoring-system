@@ -3,7 +3,7 @@ define(['dojo/_base/declare',
     'dijit/_Templated',
     'dojo/text!Widget/menu_master/menu_master.html',
     "dojo/Evented",
-    "dojo/on", "dojo/dom-class", "dojo/query", "dojo/dom-attr", "dojo/dom-style", "dojo/NodeList-fx", "dojo/fx", "dojo/_base/fx", "dojo/NodeList-traverse", "Widget/icon_svg/icon_svg"
+    "dojo/on", "dojo/dom-class", "dojo/query", "dojo/dom-attr", "dojo/dom-style", "dojo/NodeList-fx", "dojo/fx", "dojo/_base/fx", "dojo/NodeList-traverse", "Widget/icon_svg/icon_svg", "dijit/layout/AccordionContainer", "dijit/layout/ContentPane",  "dijit/TitlePane", "dijit/form/Button"
     ], function (declare, _Widget, _Templated, templateString, Evented, on, domClass, query, domAttr, domStyle, nodeListFx, fx, baseFx) {
 
         return declare([_Widget, _Templated, Evented], {
@@ -16,57 +16,57 @@ define(['dojo/_base/declare',
                       
 
 
-                query("[data-itemclick]", t.sidebar_menu).on("click", function(ev){
+                query("[data-itemclick]", t.domNode).on("click", function(ev){
                     console.debug(domAttr.get(this, "data-itemclick"));
                     t.emit('clickitem', domAttr.get(this, "data-itemclick"));
                 });
 
 
-                query("a", t.sidebar_menu).on("click", function(ev){
+  //               query("a", t.sidebar_menu).on("click", function(ev){
 
 
-                    var li = this.parentNode;
+  //                   var li = this.parentNode;
 
-                    if (domClass.contains(li, "active")) {
+  //                   if (domClass.contains(li, "active")) {
 
-           // $li.removeClass('active');
-           domClass.remove(li, "active");
-
-
-           query("ul:first", li).first().style({"display": "none"});
+  //          // $li.removeClass('active');
+  //          domClass.remove(li, "active");
 
 
-
-       } else {
-            // prevent closing menu if we are on child menu
-            if (!domClass.contains(li.parentNode, "child_menu")) {
-              query('li', t.sidebar_menu).removeClass('active');
+  //          query("ul:first", li).first().style({"display": "none"});
 
 
 
-              query('li ul', t.sidebar_menu).forEach(function(nodex){
-
-                domStyle.set(nodex, "display", "none");
-
-            });
-
+  //      } else {
+  //           // prevent closing menu if we are on child menu
+  //           if (!domClass.contains(li.parentNode, "child_menu")) {
+  //             query('li', t.sidebar_menu).removeClass('active');
 
 
-          }
+
+  //             query('li ul', t.sidebar_menu).forEach(function(nodex){
+
+  //               domStyle.set(nodex, "display", "none");
+
+  //           });
 
 
-          domClass.add(li, 'active');
 
-          query("ul:first", li).first().style({"display": "block"});
+  //         }
+
+
+  //         domClass.add(li, 'active');
+
+  //         query("ul:first", li).first().style({"display": "block"});
           
 
 
 
 
 
-      }
+  //     }
 
-  });
+  // });
 
 
 

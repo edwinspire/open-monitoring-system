@@ -1,152 +1,62 @@
   <div>
 
-   <!-- ********************************************************************* -->
-   <!-- sidebar menu -->
-   <div data-dojo-attach-point="sidebar_menu" class="main_menu_side hidden-print main_menu" style="height: 100%;">
+    <div data-dojo-type="dijit/layout/AccordionContainer" style="height: 75%;">
+      <div data-dojo-type="dijit/layout/ContentPane" title="INCIDENTES"  selected="true">
 
-    <div class="menu_section">
-      <h3 style="margin-top: 10px;">MONITOREO</h3>
-      <ul class="nav side-menu">
-        <li><a><span data-dojo-type="Widget/icon_svg/icon_svg" data-dojo-props="icon: 'navicon.svg'"></span>Monitor <span data-dojo-type="Widget/icon_svg/icon_svg" data-dojo-props="icon: 'angle-down.svg'"></span>
-</a>
-          <ul class="nav child_menu" style="display: none">
-            <li><a data-itemclick="monitoreo_general">General</a></li>
-            <li><a data-itemclick="monitoreo_equipos_red">Equipos de red</a></li>
-          </ul>
-        </li>
-      </ul>
+        <div class="asbutton">TODOS</div>
+        <div class="asbutton">ASIGNADOS</div>
+
+        
+      </div>
+
+      <div data-dojo-type="dijit/layout/ContentPane" title="MONITOREO">
+
+        <div class="asbutton" data-itemclick="monitoreo_equipos_red">EQUIPOS DE RED</div>
+
+      </div>
+      <div data-dojo-type="dijit/layout/ContentPane" title="GENERAL">
+
+        <div  data-dojo-type="dijit/TitlePane" data-dojo-props="title: 'EMPRESA', open: false">
+          <div class="asbutton" data-itemclick="GeneralEmpresaAbonados">ABONADOS</div>
+          <div class="asbutton" data-itemclick="GeneralEmpresaGeolocalizacion">UBICACION GEOGRAFICA</div>
+        </div>
+
+      </div>
+      <div data-dojo-type="dijit/layout/ContentPane" title="UTILITARIOS">
+        <div data-dojo-type="dijit/TitlePane" data-dojo-props="title: 'LISTA DE PRECIOS', open: false">
+
+          <div data-dojo-type="dijit/TitlePane" data-dojo-props="title: 'FARMAENLACE', open: false  ">
+            <div class="asbutton">Medicity</div>
+            <div class="asbutton">Economicas</div>
+            <div class="asbutton">PAF</div>
+          </div>
+
+          <div class="asbutton">PUNTO NATURAL</div>
+
+        </div>
+      </div>
+      <div data-dojo-type="dijit/layout/ContentPane" title="ADMINISTRACION">
+
+
+
+
+
+
+      </div>
+      <div data-dojo-type="dijit/layout/ContentPane" title="REPORTES">
+
+        <div id="tp2" data-dojo-type="dijit/TitlePane" data-dojo-props="title: 'I\'m a TitlePane Too'">
+          Click arrow to close me.
+        </div>
+
+        <div id="tp23" data-dojo-type="dijit/TitlePane" data-dojo-props="title: 'I\'m a TitlePane Too'">
+          Click arrow to close me.
+        </div>
+
+
+      </div>
     </div>
 
 
 
-    <div class="menu_section">
-      <h3>GENERAL</h3>
-      <ul class="nav side-menu">
-
-        <li><a><span data-dojo-type="Widget/icon_svg/icon_svg" data-dojo-props="icon: 'navicon.svg'"></span> Empresa <i class="fa fa-caret-down" aria-hidden="true"></i>
-</a>
-          <ul class="nav child_menu" style="display: none">
-            <li data-itemclick="GeneralEmpresaAbonados"><a href="#">Abonados</a></li>
-            <li data-itemclick="GeneralEmpresaGeolocalizacion" ><a href="#">Distribución Geográfica</a></li>                                                  
-
-          </ul>
-        </li>                    
-
-        <li style="display:  none;"><a><span data-dojo-type="Widget/icon_svg/icon_svg" data-dojo-props="icon: 'angle-down.svg'"></span>Ubicación<i class="fa fa-caret-down" aria-hidden="true"></i>
-</a>
-         <ul class="nav child_menu" style="display: none">
-          <li><a href="#level1_1">Todos</a></li>
-
-          <li><a>ETAFASHION<i class="fa fa-caret-down" aria-hidden="true"></i>
-</a>                        
-            <ul class="nav child_menu" style="display: none"><li><a href="#level2_2">TODOS</a></li>                            
-            </ul>
-          </li>
-          <li><a>FARMAENLACE<i class="fa fa-caret-down" aria-hidden="true"></i>
-</a>                       
-           <ul class="nav child_menu" style="display: none">                           
-             <li><a href="divisions.php?group=5">ECONOMICAS</a></li>                             
-             <li><a href="divisions.php?group=7">MATRIZ QUITO</a></li>                            
-             <li><a href="divisions.php?group=6">MEDICITY</a></li>                             
-             <li><a href="divisions.php?group=9">PAF</a></li>                             
-             <li><a href="divisions.php?group=8">SALA CAPACITACION</a></li><li><a href="#level2_2">TODOS</a></li>                            
-           </ul>
-         </li>
-         <li><a>PUNTO NATURAL<i class="fa fa-caret-down" aria-hidden="true"></i>
-</a>                        
-          <ul class="nav child_menu" style="display: none"><li><a href="#level2_2">TODOS</a></li>                            
-          </ul>
-        </li>
-        <li><a>RM<i class="fa fa-caret-down" aria-hidden="true"></i>
-</a>                        
-          <ul class="nav child_menu" style="display: none"><li><a href="#level2_2">TODOS</a></li>                            
-          </ul>
-        </li>
-
-
-      </ul> 
-
-
-
-    </li>
-
-  </ul> 
-</div>
-
-
-
-<div class="menu_section">
-  <h3>UTILITARIOS</h3>
-  <ul class="nav side-menu">            
-
-    <li><a><i class="fa fa-bars fa-lg icon_menu icon_menu"></i> Lista de Precios <i class="fa fa-caret-down" aria-hidden="true"></i>
-</a>
-      <ul class="nav child_menu" style="display: none">
-        <li><a>Farmaenlace<i class="fa fa-caret-down" aria-hidden="true"></i>
-</a>
-          <ul class="nav child_menu" style="display: none">
-          <li data-dojo-attach-point="utilitarios_lista_precios_farma_promo_eco"><a href="#">Promo Eco</a></li>
-          <li data-dojo-attach-point="utilitarios_lista_precios_farma_promo_medi"><a href="#">Promo Medi</a></li>
-          <li data-dojo-attach-point="utilitarios_lista_precios_farma_eco"><a href="#">Economica</a></li>
-          <li data-dojo-attach-point="utilitarios_lista_precios_farma_medi"><a href="#">Medicity</a></li>
-        </ul>
-      </li>
-      <li data-dojo-attach-point="utilitarios_lista_precios_pnatural"><a href="#">Punto Natural</a>
-      </li>
-    </ul>
-  </li>
-
-</ul>
-</div>      
-
-
-<div class="menu_section">
-  <h3>ADMINISTRACION</h3>
-  <ul class="nav side-menu">            
-
-    <li><a><span data-dojo-type="Widget/icon_svg/icon_svg" data-dojo-props="icon: 'angle-down.svg'"></span> Tablas - Vistas <i class="fa fa-caret-down" aria-hidden="true"></i>
-</a>
-      <ul class="nav child_menu" style="display: none">
-        <li data-dojo-attach-point="admin_tables_views_edit"><a href="#">Editar</a>
-        </li>
-      </ul>
-    </li>
-
-  </ul>
-</div>   
-
-
-<div class="menu_section">
-  <h3>REPORTES</h3>
-  <ul class="nav side-menu">            
-
-    <li><a><span data-dojo-type="Widget/icon_svg/icon_svg" data-dojo-props="icon: 'angle-down.svg'"></span> Reportes <i class="fa fa-caret-down" aria-hidden="true"></i>
-</a>
-      <ul class="nav child_menu" style="display: none">
-        <li data-dojo-attach-point="Idapp_login_report"><a href="#">Login</a>
-        </li>
-      </ul>
-    </li>
-
-  </ul>
-</div>   
-
-
-<!-- -->
-<div class="menu_section" style="display: none;">
-  <h3>-----</h3>
-  <ul class="nav side-menu">            
-
-    <li><a ><i class=""></i>  <span class=""></span></a>
-    </li>
-
-  </ul>
-</div>  
-<!-- -->                          
-
-
-
-</div>
-<!-- /sidebar menu -->
-<!-- ********************************************************************* -->
-</div>
+  </div>
