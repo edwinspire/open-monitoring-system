@@ -32,12 +32,12 @@ define(['dojo/_base/declare',
 
             t._BaseMap = new ol.Map({layers: [new ol.layer.Tile({source: new ol.source.OSM()}), new ol.layer.Vector({source: t._vectorSourceMap})], target: t.map, view: new ol.View({center: [0, 0], zoom: 10}) });
 
-            t._Styles['Eco'] = t._CreateStyle('images/eco.png');
-            t._Styles['Medi'] = t._CreateStyle('images/medi.png');
-            t._Styles['PAF'] = t._CreateStyle('images/paf.png');
-            t._Styles['DIFARMES'] = t._CreateStyle('images/difarmes.png');
-            t._Styles['PNatural'] = t._CreateStyle('images/pnatural.png');
-            t._Styles['Default'] = t._CreateStyle('images/default.png');    
+            t._Styles['Eco'] = t._CreateStyle('applib/images/eco.png');
+            t._Styles['Medi'] = t._CreateStyle('applib/images/medi.png');
+            t._Styles['PAF'] = t._CreateStyle('applib/images/paf.png');
+            t._Styles['DIFARMES'] = t._CreateStyle('applib/images/difarmes.png');
+            t._Styles['PNatural'] = t._CreateStyle('applib/images/pnatural.png');
+            t._Styles['Default'] = t._CreateStyle('applib/images/default.png');    
 
 
 
@@ -192,7 +192,7 @@ setPoints: function(ps){
 
 
           if(item.fullname.indexOf("ECO") == 0){
-            t._Styles['Eco'].src = 'images/default.png';
+            t._Styles['Eco'].src = 'applib/images/default.png';
             featurething.setStyle(t._Styles['Eco']);
         }else if(item.fullname.indexOf("MEDI") == 0){
             featurething.setStyle(t._Styles['Medi']);

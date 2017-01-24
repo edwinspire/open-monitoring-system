@@ -10,7 +10,7 @@
   "dojo/window",
   "dojo/dom-class",
   'dojo/has',
-  "dgrid/OnDemandGrid",     
+  'dgrid/Grid',
   'dgrid/Keyboard',
   'dstore/Memory',
   'dstore/Trackable',
