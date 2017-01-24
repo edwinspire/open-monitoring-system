@@ -58,6 +58,12 @@ legend{
   border-left-style: none;
 }
 
+.ToolBarTitle{
+        text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 
  .NotificationArea{ 
  	width: 300px; 

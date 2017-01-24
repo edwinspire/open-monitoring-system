@@ -1,10 +1,12 @@
 define(['dojo/_base/declare',
     'dijit/_Widget',
     'dijit/_Templated',
-    'dojo/text!account_contacts_users/account_contacts_users.html',
-    "dojo/dom-class",
-    "dojo/on"
-], function (declare, _Widget, _Templated, templateString, domClass, on) {
+    'dojo/text!Widget/account_contacts_users/account_contacts_users.html',
+"Widget/uDCGridWidget/uDCGridWidget",
+"Widget/contact_data/contact_data",
+"dijit/layout/BorderContainer",
+"dijit/layout/ContentPane"
+], function (declare, _Widget, _Templated, templateString) {
     /**
      * Account Contacts Users Widget
      *
@@ -40,6 +42,7 @@ t.CData.set('idcontact', e.idcontact);
 resize: function(){
 this.TContacts.resize();
         // this.TUsers.resize();
+        this.BorderContainer.resize();
          return this;
 },
 Clear: function(){

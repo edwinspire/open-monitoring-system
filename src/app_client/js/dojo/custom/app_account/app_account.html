@@ -5,15 +5,11 @@
 <div style="display: inline-block;">
 	
 	<div data-dojo-type="dijit/Toolbar">
-		<span>Esta es la tabla</span>
-		<button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'" onClick="myDialog.show();">Agregar</button>
-		<button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'">Eliminar</button>
-		<button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'">Exportar</button>
-		<button data-dojo-type="dijit/form/Button" data-dojo-props="disabled:true">Disabled</button>
-		<button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave'">Icon</button>
+		<label class="ToolBarTitle" >Abonados</label>
+		<span data-dojo-type="dijit/ToolbarSeparator"></span>
 
-		<div data-dojo-type="dijit/form/DropDownButton">
-			<span>Confirm Tooltip Dialog</span>
+		<div data-dojo-type="dijit/form/DropDownButton" data-dojo-props="iconClass:'dijitIconSave'">
+			<span>Agregar</span>
 			<div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Login'">
 				<table>
 					<tr>
@@ -27,6 +23,10 @@
 				</table>
 			</div>
 		</div>  
+
+		<button data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIconSave', disabled:true">Eliminar</button>
+		<button data-dojo-type="dijit/form/Button" data-dojo-props="disabled:true">Disabled</button>
+
 
 	</div>	
 
@@ -48,18 +48,18 @@
 			<div data-dojo-type="dijit/layout/ContentPane" title="Geolocalizacion">
 				<div data-dojo-type="Widget/map_points/map_points" data-dojo-attach-point="AccountMap"> </div>
 			</div>
-			<div data-dojo-type="dijit/layout/ContentPane" title="Contactos" data-dojo-props="closable:true">
+			<div data-dojo-type="dijit/layout/ContentPane" title="Contactos" data-dojo-props="closable:false">
+				  <div class="widgetMember" data-dojo-type="Widget/account_contacts_users/account_contacts_users" data-label="Contactos" data-dojo-attach-point="ContactsUsers" ></div>
+			</div>
+
+			<div data-dojo-type="dijit/layout/ContentPane" title="Usuarios" data-dojo-props="closable:false">
 				Lorem ipsum and all around - last...
 			</div>
 
-			<div data-dojo-type="dijit/layout/ContentPane" title="Usuarios" data-dojo-props="closable:true">
+			<div data-dojo-type="dijit/layout/ContentPane" title="Equipos" data-dojo-props="closable:false">
 				Lorem ipsum and all around - last...
 			</div>
-
-			<div data-dojo-type="dijit/layout/ContentPane" title="Equipos" data-dojo-props="closable:true">
-				Lorem ipsum and all around - last...
-			</div>
-			<div data-dojo-type="dijit/layout/ContentPane" title="Incidentes" data-dojo-props="closable:true">
+			<div data-dojo-type="dijit/layout/ContentPane" title="Incidentes" data-dojo-props="closable:false">
 				Lorem ipsum and all around - last...
 			</div>
 		</div>

@@ -6,6 +6,10 @@
 }
 .asbutton:hover { 
     background-color: #f2f2f2;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #f2f2f2;
+    border-style: none;
 }
 
 

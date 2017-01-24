@@ -18,7 +18,9 @@ define(['dojo/_base/declare',
   "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
   "dijit/layout/TabContainer",
   "account_data/account_data",
-  "Widget/map_points/map_points"
+  "Widget/map_points/map_points",
+  "dijit/ToolbarSeparator",
+  "Widget/account_contacts_users/account_contacts_users"
   ], function (declare, _Widget, _Templated, templateString, domClass, on, query, domStyle, domClass, w, TTD, popup, topic, domAttr) {
 /**
      * Application Account
@@ -155,7 +157,7 @@ t.SelectAccounts.on('Change', function (e) {
    t.Basic.set("idaccount", idaccount);
 
 
-// t.ContactsUsers.set('idaccount', idaccount);
+ t.ContactsUsers.set('idaccount', idaccount);
 // t.Equipments.set('idaccount', idaccount);
 // t.EventsIsOpen.set('idaccount', idaccount);
 // t._disable_element(t.ContentForms, false);
