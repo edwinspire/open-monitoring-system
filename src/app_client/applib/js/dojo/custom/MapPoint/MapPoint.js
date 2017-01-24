@@ -10,7 +10,7 @@ define(['dojo/_base/declare',
     return declare([_Widget, _Templated], {
         widgetsInTemplate: true,
         templateString: templateString,
-        baseUrl: '/js/dojo/custom/MapPoint/media/',
+        baseUrl: 'applib/js/dojo/custom/MapPoint/media/',
         _image: 'flag-3.png',
         _pathImage: function () {
             return this.baseUrl + this._image;

@@ -7,7 +7,7 @@ define(['dojo/_base/declare',
         return declare([_Widget, _Templated], {
             widgetsInTemplate: true,
             templateString: templateString,
-            path_base: 'vendors/fa-svg/svg-black/',
+            path_base: 'applib/vendors/fa-svg/svg-black/',
             postCreate: function () {
                 console.log(this.icon);
                 if(this.icon){

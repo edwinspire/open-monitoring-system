@@ -11,15 +11,15 @@
   <title>Open Monitor System</title>
 
   <!-- Custom Theme Style -->
-  <link rel="stylesheet" type="text/css" href="js/dojo/custom/menu_master/menu_master.css">
-  <link rel="stylesheet" type="text/css" href="js/dojo/custom/UserNotifications/UserNotifications.css">
-  <link href="css/dgrid_columns.css" rel="stylesheet">
-  <link href="js/dojo/dojo/dgrid/css/dgrid.css" rel="stylesheet">
-  <link href="js/dojo/custom/uDCGridWidget/uDCGridWidget.css" rel="stylesheet">
-  <link href="js/dojo/custom/Switch/Switch.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="applib/js/dojo/custom/menu_master/menu_master.css">
+  <link rel="stylesheet" type="text/css" href="applib/js/dojo/custom/UserNotifications/UserNotifications.css">
+  <link href="applib/css/dgrid_columns.css" rel="stylesheet">
+  <link href="applib/js/dojo/dojo/dgrid/css/dgrid.css" rel="stylesheet">
+  <link href="applib/js/dojo/custom/uDCGridWidget/uDCGridWidget.css" rel="stylesheet">
+  <link href="applib/js/dojo/custom/Switch/Switch.css" rel="stylesheet">
   
-  <style>@import "css/themes/flat/flat.css"; @import "css/themes/flat/flat.css";@import "css/app.css";</style>
-  <link href="css/themes/flat/dgrid/flat.css" rel="stylesheet">
+  <style>@import "applib/css/themes/flat/flat.css"; @import "applib/css/themes/flat/flat.css";@import "applib/css/app.css";</style>
+  <link href="applib/css/themes/flat/dgrid/flat.css" rel="stylesheet">
 
 
   <script>
@@ -52,7 +52,7 @@
         if (!webComponentsSupported) {
           var script = document.createElement('script');
           script.async = true;
-          script.src = '/bower_components/webcomponentsjs/webcomponents-lite.min.js';
+          script.src = '/applib/bower_components/webcomponentsjs/webcomponents-lite.min.js';
           script.onload = onload;
           document.head.appendChild(script);
         } else {
@@ -64,10 +64,10 @@
     </script>
 
 
-    <link rel="import" href="bower_components/polymer/polymer-micro.html">
+    <link rel="import" href="applib/bower_components/polymer/polymer-micro.html">
 
 
-    <script type="text/javascript" src="js/dojo/dojo/dojo/dojo.js" 
+    <script type="text/javascript" src="applib/js/dojo/dojo/dojo/dojo.js" 
     data-dojo-config="'parseOnLoad':true,'async':true, 'packages':[
     {'name':'widgets','location':'../custom'}
     ,{'name':'Widget','location':'../../custom'}
@@ -117,7 +117,6 @@
     ,{'name':'utils','location':'../../custom/utils'}
     ,{'name':'contact_means_of_contact','location':'../../custom/contact_means_of_contact'}
     ,{'name':'contact_data','location':'../../custom/contact_data'}
-    ,{'name':'app_login_report','location':'../../custom/app_login_report'}
     ]"></script>
 
     <!-- REQUIRE DOJO -->
@@ -137,8 +136,8 @@
       ]);
     </script>
 
-    <link rel="import" href="wc/user-eventstatustype.html">
-   <script src="oms.js"></script>   
+    <link rel="import" href="applib/wc/user-eventstatustype.html">
+   <script src="applib/js/oms.js"></script>   
 
     <style>
 

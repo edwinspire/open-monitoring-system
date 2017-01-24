@@ -236,7 +236,9 @@ define(['dojo/_base/declare',
       	topic.publish("/event/user/notify", [_n]);
       },
       resize: function(){
-      	this.Grid.resize();
+      	if(this.Grid){
+          this.Grid.resize();
+        }
       },
       Clear: function(){
       	this.Grid.Clear();

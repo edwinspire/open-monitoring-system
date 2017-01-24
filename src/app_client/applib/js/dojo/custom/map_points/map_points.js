@@ -11,7 +11,7 @@ define(['dojo/_base/declare',
     "dojo/window",
     "dojo/keys",
     "dojo/_base/array",
-    "../../vendors/OpenLayers_v3-17-1/ol.js",
+    "../../applib/vendors/OpenLayers_v3-17-1/ol.js",
     "dojo/store/Memory" 
     ], function (declare, _Widget, _Templated, templateString,   domAttr, TTD, PopUp, on, win, domStyle, dwin, keys, array, ol, Memory) {
     /**
