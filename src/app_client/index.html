@@ -1,134 +1,204 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html >
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <!-- Meta, title, CSS, favicons, etc. -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Login - Open Monitoring System</title>
+  
+  
+  
+ <!--      <link rel="stylesheet" href="css/style.css"> -->
+<style type="text/css">
+  
+/* ---------- GENERAL ---------- */
+* {
+  box-sizing: border-box;
+}
+*:before, *:after {
+  box-sizing: border-box;
+}
 
-  <title>Login | Open Monitoring System</title>
-<!-- 
-  <link rel="stylesheet" type="text/css" href="vendors/font-awesome/css/font-awesome.min.css"> -->
-  <!-- Bootstrap -->
-  <link href="applib/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+body {
+  background: #eaeaea;
+  color: #999;
+  font: 400 16px/1.5em sans-serif;
+  margin: 0;
+}
 
-  <!-- Custom Theme Style -->
-  <link href="applib/css/custom.css" rel="stylesheet"> 
+h3 {
+  margin: 0;
+}
 
+a {
+  color: #999;
+  text-decoration: none;
+}
 
+a:hover {
+  color: #1dabb8;
+}
 
-  <script type="text/javascript">
-    function CCache(){
-      window.location.reload(true)
-    }
+fieldset {
+  border: none;
+  margin: 0;
+}
 
+input {
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+  -webkit-appearance: none;
+}
 
+input:focus {
+  outline: none;
+}
 
+input[type="submit"] {
+  cursor: pointer;
+}
 
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before, .clearfix:after {
+  content: ' ';
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
 
+.container {
+  left: 50%;
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
 
-  </script>
+/* ---------- LOGIN-FORM ---------- */
+#login-form {
+  width: 300px;
+}
 
+#login-form h3 {
+  background-color: #282830;
+  border-radius: 5px 5px 0 0;
+  color: #fff;
+  font-size: 14px;
+  padding: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
 
-  <style type="text/css">
+#login-form fieldset {
+  background: #fff;
+  border-radius: 0 0 5px 5px;
+  padding: 20px;
+  position: relative;
+}
 
-    body {
-      background: linear-gradient(92deg, #ededed, #ededed, #ededed, #314a65, #ededed, #ededed, #ededed);
-      background-size: 1400% 1400%;
+#login-form fieldset:before {
+  background-color: #fff;
+  content: "";
+  height: 8px;
+  left: 50%;
+  margin: -4px 0 0 -4px;
+  position: absolute;
+  top: 0;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  width: 8px;
+}
 
-      -webkit-animation: AnimationName 28s ease infinite;
-      -moz-animation: AnimationName 28s ease infinite;
-      -o-animation: AnimationName 28s ease infinite;
-      animation: AnimationName 28s ease infinite;
-    }
+#login-form input {
+  font-size: 14px;
+}
 
+#login-form input[type="text"],
+#login-form input[type="password"] {
+  border: 1px solid #dcdcdc;
+  padding: 12px 10px;
+  width: 100%;
+}
 
+#login-form input[type="text"] {
+  border-radius: 3px 3px 0 0;
+}
 
-    @-webkit-keyframes AnimationName {
-      0%{background-position:0% 51%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 51%}
-    }
-    @-moz-keyframes AnimationName {
-      0%{background-position:0% 51%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 51%}
-    }
-    @-o-keyframes AnimationName {
-      0%{background-position:0% 51%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 51%}
-    }
-    @keyframes AnimationName { 
-      0%{background-position:0% 51%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 51%}
-    }
-  </style>
+#login-form input[type="password"] {
+  border-top: none;
+  border-radius: 0px 0px 3px 3px;
+}
 
+#login-form input[type="submit"] {
+  background: #1dabb8;
+  border-radius: 3px;
+  color: #fff;
+  float: right;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 12px 20px;
+}
+
+#login-form input[type="submit"]:hover {
+  background: #198d98;
+}
+
+#login-form footer {
+  font-size: 12px;
+  margin-top: 16px;
+}
+
+.info {
+  background: #e5e5e5;
+  border-radius: 50%;
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  margin: 0 10px 0 0;
+  text-align: center;
+  width: 20px;
+}
+
+  
+</style>
+
+  
 </head>
 
 <body>
- <div class="">
+  <div class="container">
 
-  <a class="hiddenanchor" id="toregister"></a>
-  <a class="hiddenanchor" id="tologin"></a>
+  <div id="login-form">
 
-  <div id="wrapper">
+    <h3>Login</h3>
 
+    <fieldset>
 
+      <form action="/njs/login" method="post" name="Login_Form oams">
 
+        <input type="text" name="user" id="u" placeholder="Usuario" required >
 
-    <div id="login" class=" form">
+        <input type="password" required name="pwd" placeholder="Contrasena" required> <!-- JS because of IE support; better: placeholder="Password" -->
 
-      <section class="login_content">
-        <h1>Open Monitoring System</h1>
-        <form action="/njs/login" method="post" name="Login_Form oams">
-          <h1>OMS</h1>
+        <input type="submit" value="Login">
 
-          <div class="clearfix"></div>
-          <div class="separator"/>              
-          <div>
-            <label for="u">Usuario</label>
-            <input type="text" class="form-control" name="user" id="u" placeholder="Usuario" required="" />
-          </div>
-          <div>
+        <footer class="clearfix">
 
-           <div class="clearfix"></div>
+          <p><span class="info">?</span><a href="#">Forgot Password</a></p>
 
+        </footer>
 
-           <label for="p">Password</label>
-           <input type="password" class="form-control" name="pwd" placeholder="Contrasena" id="p" required="" />
-         </div>
+      </form>
 
-         <div class="clearfix"></div>
-         <div class="separator"/>              
+    </fieldset>
 
-         <br />
-
-         <div class="clearfix"></div>
-
-         <input type="submit" name="oms_submit"  class="btn btn-default submit" value="Aceptar"></input>
-         <input type="button" onclick="CCache()" class="btn btn-default" value="Borrar cache"></input>
-         <a class="reset_pass" href="#">Olvido su clave?</a>
-       </div>
-       <div class="clearfix"></div>
-       <div class="separator">
-
-        <div class="clearfix"></div>
-        <br />
-        <div>
-
-        </div>
-      </div>
-    </form>
-  </section>
-</div>
-
+  </div> <!-- end login-form -->
 
 </div>
-</div>     
+  
+  
 </body>
 </html>
