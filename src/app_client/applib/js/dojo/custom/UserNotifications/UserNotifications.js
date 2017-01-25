@@ -48,7 +48,7 @@ _args: function(a) {
     }
 
 
-    a.Snd = 'media/snd/notify.ogg';
+    a.Snd = 'applib/media/snd/notify.ogg';
 
 
     if (a.Timeout === undefined || a.Timeout < 2) {
