@@ -3,76 +3,78 @@ define(['dojo/_base/declare',
 	'dijit/_Templated',
 	'dojo/text!Widget/uDCGridWidget/uDCGridWidget.html',
   "dojo/Evented",
-	"uDCGrid/uDCGrid",
-	"dojo/dom-construct",
-	"dojo/on",
-	"dojo/dom-style",
-	"dojo/window",
-	"dojo/topic",
-	'dstore/Memory',
-	'dstore/Trackable',
-	"dijit/form/TextBox",
-	"uDC/uDC",
-	"dijit/ToolbarSeparator",
-	"dijit/form/NumberSpinner",
-	"dijit/ConfirmTooltipDialog",
-	"dijit/RadioMenuItem",
-	"dijit/MenuItem",
-	"dijit/PopupMenuItem",
-	"dijit/Menu"
-	],function(declare,_Widget,_Templated,templateString, Evented, uDCGrid, domConstruct, on, domStyle,  w){
+  "uDCGrid/uDCGrid",
+  "dojo/dom-construct",
+  "dojo/on",
+  "dojo/dom-style",
+  "dojo/window",
+  "dojo/topic",
+  'dstore/Memory',
+  'dstore/Trackable',
+  "dijit/form/TextBox",
+  "uDC/uDC",
+  "dijit/ToolbarSeparator",
+  "dijit/form/NumberSpinner",
+  "dijit/ConfirmTooltipDialog",
+  "dijit/RadioMenuItem",
+  "dijit/MenuItem",
+  "dijit/PopupMenuItem",
+  "dijit/Menu"
+  ],function(declare,_Widget,_Templated,templateString, Evented, uDCGrid, domConstruct, on, domStyle,  w){
 
-		return declare([ _Widget, _Templated, Evented], {
-			widgetsInTemplate:true,
-			templateString:templateString,
-			Config: {},
-			Grid: null,
-			_enable_load: false,
-			refreshMode: 0,
+    return declare([ _Widget, _Templated, Evented], {
+     widgetsInTemplate:true,
+     templateString:templateString,
+     Config: {},
+     Grid: null,
+     _enable_load: false,
+     refreshMode: 0,
 
-			_GStructure: {},
-			_IntervalRefresh: null,
-			_RemainDisabledRefresh: 0,
-			_last_select: null,
-			initialQuery: false,
-			_setTitlegridAttr: { node: "TitleGrid", type: "innerHTML" },
-			postCreate: function () {
-				var t = this;
+     _GStructure: {},
+     _IntervalRefresh: null,
+     _RemainDisabledRefresh: 0,
+     _last_select: null,
+     initialQuery: false,
+     _setTitlegridAttr: { node: "TitleGrid", type: "innerHTML" },
+     postCreate: function () {
+      var t = this;
 
-				t.Search.on('Change', function (e) {
-					console.debug(e);
-					t.Grid.Filter(e);
-				});
-
-
-				t._IntervalRefresh = setInterval(function () {
-					if (t.Grid.refreshMode == 3 && t._RemainDisabledRefresh > 0) {
-						t._RemainDisabledRefresh--;
-						t.RefreshTempo.set('label', 'Desactivado por '+t._RemainDisabledRefresh+' seg.');
-						
-
-					}else if(t._RemainDisabledRefresh < 1){
-						t.RefreshTempo.set('label', 'Desactivar');
-						t.Grid.refreshMode = 1;
-						t._RemainDisabledRefresh = 120;	
-					}else{
-						t.RefreshTempo.set('label', 'Desactivar');
-					}
-				}, 1000);
+      t.Search.on('Change', function (e) {
+       console.debug(e);
+       t.Grid.Filter(e);
+     });
 
 
-				on(t.RefreshAuto, 'click', function (e) {
-					t.Grid.refreshMode = 1;
-					t.Grid.Select(t.Grid._last_select);
-				});
+      t._IntervalRefresh = setInterval(function () {
+       if (t.Grid.refreshMode == 3 && t._RemainDisabledRefresh > 0) {
+        t._RemainDisabledRefresh--;
+        t.RefreshTempo.set('label', 'Desactivado por '+t._RemainDisabledRefresh+' seg.');
 
-				on(t.RefreshTempo, 'click', function (e) {
-					t.Grid.refreshMode = 3;
-					t.RefreshTempo.set('label', 'Desactivar');
-					t._RemainDisabledRefresh = 120;
-				});
+
+      }else if(t._RemainDisabledRefresh < 1){
+        t.RefreshTempo.set('label', 'Desactivar');
+        t.Grid.refreshMode = 1;
+        t._RemainDisabledRefresh = 120;	
+      }else{
+        t.RefreshTempo.set('label', 'Desactivar');
+      }
+    }, 1000);
+
+
+      on(t.RefreshAuto, 'click', function (e) {
+       t.Grid.refreshMode = 1;
+       t.Grid.Select(t.Grid._last_select);
+     });
+
+      on(t.RefreshTempo, 'click', function (e) {
+       t.Grid.refreshMode = 3;
+       t.RefreshTempo.set('label', 'Desactivar');
+       t._RemainDisabledRefresh = 120;
+     });
 
 /*
+
+
 
           on.once(t.Add, "click", function(){
 
@@ -128,29 +130,29 @@ define(['dojo/_base/declare',
           t._create_grid();
 
 
-      },
-      uninitialize: function(){
-      	var t = this;
-      	console.log('Llama para matar el widget');
-      	clearInterval(t._IntervalRefresh);
+        },
+        uninitialize: function(){
+         var t = this;
+         console.log('Llama para matar el widget');
+         clearInterval(t._IntervalRefresh);
 
 
-      	t.Grid.uninitialize();
+         t.Grid.uninitialize();
 
-      	t.Grid.destroy();
-      	delete t.Grid;
-      	t.Grid = null;
+         t.Grid.destroy();
+         delete t.Grid;
+         t.Grid = null;
 
-      },     
-      _setFormnewrowAttr: function (_node, _udc_class, _title) {
-      	var t = this;
-      	console.log(_node);
-      	if (_title) {
-      		t.DialogNew.set('title', _title);
-      	}
-      	t.uDC.set('config', { SelectorClass: _udc_class, NodeContainer: t.DialogNew.domNode });
-      	domConstruct.place(_node, t.DialogNewContent, "replace");
-      	return this;
+       },     
+       _setFormnewrowAttr: function (_node, _udc_class, _title) {
+         var t = this;
+         console.log(_node);
+         if (_title) {
+          t.DialogNew.set('title', _title);
+        }
+        t.uDC.set('config', { SelectorClass: _udc_class, NodeContainer: t.DialogNew.domNode });
+        domConstruct.place(_node, t.DialogNewContent, "replace");
+        return this;
       },
       _create_grid: function () {
 
@@ -272,5 +274,5 @@ define(['dojo/_base/declare',
 
 
 
-  });
+    });
 });
