@@ -20,7 +20,9 @@ define(['dojo/_base/declare',
   "account_data/account_data",
   "Widget/map_points/map_points",
   "dijit/ToolbarSeparator",
-  "Widget/account_contacts_users/account_contacts_users"
+  "Widget/account_contacts_users/account_contacts_users",
+  "Widget/account_equipments/account_equipments",
+  "Widget/event_management/event_management"  
   ], function (declare, _Widget, _Templated, templateString, domClass, on, query, domStyle, domClass, w, TTD, popup, topic, domAttr) {
 /**
      * Application Account
@@ -158,8 +160,8 @@ t.SelectAccounts.on('Change', function (e) {
 
 
  t.ContactsUsers.set('idaccount', idaccount);
-// t.Equipments.set('idaccount', idaccount);
-// t.EventsIsOpen.set('idaccount', idaccount);
+ t.Equipments.set('idaccount', idaccount);
+ t.EventsIsOpen.set('idaccount', idaccount);
 // t._disable_element(t.ContentForms, false);
 }else{
   t._disable_element(t.ContentForms, true);

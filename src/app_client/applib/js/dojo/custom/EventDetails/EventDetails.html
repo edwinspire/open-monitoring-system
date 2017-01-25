@@ -62,21 +62,21 @@
 
       <div data-dojo-attach-point='SelectEventStatus' data-dojo-type="evenstatustype_user_buttons/evenstatustype_user_buttons" class="change_status_event" name="ideventstatustype"></div>          
 
-    <div style="display: none; width: 100%;" data-dojo-attach-point="ContentEditor">
-      <div data-dojo-attach-point="CommentField" data-dojo-type="dijit/Editor" class="change_status_event" name="comment_event"></div>
+      <div style="display: none; width: 100%;" data-dojo-attach-point="ContentEditor">
+        <div data-dojo-attach-point="CommentField" data-dojo-type="dijit/Editor" class="change_status_event" name="comment_event"></div>
 
-    <div style="padding: 3px;">
-      <button type="button" data-dojo-attach-point="DialogCStatusOK" class="btn btn-default btn-xs">Aceptar</button>
-      <button type="button" data-dojo-attach-point="DialogCStatusCancel" class="btn btn-default btn-xs">Cancelar</button>
-    </div>      
-    </div>
+        <div style="padding: 3px;">
+          <button type="button" data-dojo-attach-point="DialogCStatusOK" class="btn btn-default btn-xs">Aceptar</button>
+          <button type="button" data-dojo-attach-point="DialogCStatusCancel" class="btn btn-default btn-xs">Cancelar</button>
+        </div>      
+      </div>
 
     </fieldset>  
 
   </div>
 
 
-  <div data-dojo-type="uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TEComments" 
+  <div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TEComments" 
   data-dojo-props="uDCColumns:{target: '/njs/db/dgrid_table_structure', fields: ['comment_event', 'ideventstatustype']}, UrlExport:'',  target: '/njs/db/table/account_events_comments', refreshOnTableChanged: ['event_comments'], Title:'EVENTOS - Comentarios', table: 'event_comments', idProperty: 'ideventcomment', rowFingerPrint: 'footprint_row'"></div>
 
 

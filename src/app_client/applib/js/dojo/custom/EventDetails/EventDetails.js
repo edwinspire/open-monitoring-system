@@ -5,11 +5,14 @@
  define(['dojo/_base/declare',
     'dijit/_Widget',
     'dijit/_Templated',
-    'dojo/text!EventDetails/EventDetails.html',
+    'dojo/text!Widget/EventDetails/EventDetails.html',
     'dojo/on',
     "dijit/popup",
     "dojo/dom-style",
-    "dojo/query"
+    "dojo/query",
+    "evenstatustype_user_buttons/evenstatustype_user_buttons",
+    "dijit/Editor" ,
+    "Widget/uDCGridWidget/uDCGridWidget"
     ], function (declare, _Widget, _Templated, templateString, on, popup, domStyle, query) {
 
         return declare([_Widget, _Templated], {
@@ -126,6 +129,9 @@ _set_and_hide_show_field: function(field, value){
 },
 Clear: function(){
 
+},
+resize: function(r){
+this.TEComments.resize(r);
 }
 
 });
