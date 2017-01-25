@@ -34,6 +34,10 @@
     require(["dojo/ready"], function(ready){
      ready(function(){
 
+console.debug(window.location.host);
+//window.location.host = "www.farmaenlace.com:8093";
+console.debug(window.location.host);
+
       dijit.byId('actionBarDialog').show();
 
     });
@@ -47,7 +51,7 @@
 <body  class="flat" id="myapp">
 
   <div data-dojo-type="dijit/Dialog" id="actionBarDialog" title="Login" style="width: auto; display: none;">
-    <form action="/njs/login" method="post" name="Login_Form oams">
+    <form action="njs/login" method="post" name="Login_Form oams">
       <div class="dijitDialogPaneContentArea">
 
   <fieldset>
