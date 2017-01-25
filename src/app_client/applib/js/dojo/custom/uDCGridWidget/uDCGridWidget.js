@@ -2,6 +2,7 @@ define(['dojo/_base/declare',
 	'dijit/_Widget',
 	'dijit/_Templated',
 	'dojo/text!Widget/uDCGridWidget/uDCGridWidget.html',
+  "dojo/Evented",
 	"uDCGrid/uDCGrid",
 	"dojo/dom-construct",
 	"dojo/on",
@@ -19,9 +20,9 @@ define(['dojo/_base/declare',
 	"dijit/MenuItem",
 	"dijit/PopupMenuItem",
 	"dijit/Menu"
-	],function(declare,_Widget,_Templated,templateString, uDCGrid, domConstruct, on, domStyle,  w){
+	],function(declare,_Widget,_Templated,templateString, Evented, uDCGrid, domConstruct, on, domStyle,  w){
 
-		return declare([ _Widget, _Templated], {
+		return declare([ _Widget, _Templated, Evented], {
 			widgetsInTemplate:true,
 			templateString:templateString,
 			Config: {},
@@ -206,7 +207,7 @@ define(['dojo/_base/declare',
 
       		var row = t.Grid.row(e);
       		console.debug('Row clicked:', row);
-      		on.emit(t, 'ClickRow', row.data);
+      		t.emit('ClickRow', row.data);
 
       	});
 

@@ -26,8 +26,8 @@ define(['dojo/_base/declare',
     t.SelectAccountUser.queryExpr = '*${0}*';
 //t.CollapseLink.set('contentelement', t.XContent);
 //t.CollapseLink.Down();
-this.GridEvents.on('ClickRow', function(e){
-//console.log(e);
+t.GridEvents.on('ClickRow', function(e){
+console.log(e);
 t.EDetails.set('event', e);
 });
 
