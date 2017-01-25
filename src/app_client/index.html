@@ -1,204 +1,81 @@
+
 <!DOCTYPE html>
-<html >
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Login - Open Monitoring System</title>
-  
-  
-  
- <!--      <link rel="stylesheet" href="css/style.css"> -->
-<style type="text/css">
-  
-/* ---------- GENERAL ---------- */
-* {
-  box-sizing: border-box;
-}
-*:before, *:after {
-  box-sizing: border-box;
-}
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-body {
-  background: #eaeaea;
-  color: #999;
-  font: 400 16px/1.5em sans-serif;
-  margin: 0;
-}
+  <title>Open Monitor System</title>
 
-h3 {
-  margin: 0;
-}
+  <style>@import "applib/css/themes/flat/flat.css"; @import "applib/css/themes/flat/flat.css";@import "applib/css/app.css";</style>
+  <link href="applib/css/themes/flat/dgrid/flat.css" rel="stylesheet">
 
-a {
-  color: #999;
-  text-decoration: none;
-}
+  <script type="text/javascript" src="applib/js/dojo/dojo/dojo/dojo.js" 
+  data-dojo-config="'parseOnLoad':true,'async':true, 'packages':[
+  {'name':'widgets','location':'../custom'}
+  ,{'name':'Widget','location':'../../custom'}
+  ]"></script>
 
-a:hover {
-  color: #1dabb8;
-}
+  <!-- REQUIRE DOJO -->
+  <script>require([
+    "dojo",    
+    "dijit/dijit",
+    "dojo/parser",
+    "dijit/Dialog",
+    "dijit/form/Button"
+    ]);
+  </script>
 
-fieldset {
-  border: none;
-  margin: 0;
-}
+  <script type="text/javascript">
 
-input {
-  border: none;
-  font-family: inherit;
-  font-size: inherit;
-  margin: 0;
-  -webkit-appearance: none;
-}
+    require(["dojo/ready"], function(ready){
+     ready(function(){
 
-input:focus {
-  outline: none;
-}
+      dijit.byId('actionBarDialog').show();
 
-input[type="submit"] {
-  cursor: pointer;
-}
+    });
+   });
 
-.clearfix {
-  *zoom: 1;
-}
-.clearfix:before, .clearfix:after {
-  content: ' ';
-  display: table;
-}
-.clearfix:after {
-  clear: both;
-}
+</script>
 
-.container {
-  left: 50%;
-  position: fixed;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-}
 
-/* ---------- LOGIN-FORM ---------- */
-#login-form {
-  width: 300px;
-}
-
-#login-form h3 {
-  background-color: #282830;
-  border-radius: 5px 5px 0 0;
-  color: #fff;
-  font-size: 14px;
-  padding: 20px;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-#login-form fieldset {
-  background: #fff;
-  border-radius: 0 0 5px 5px;
-  padding: 20px;
-  position: relative;
-}
-
-#login-form fieldset:before {
-  background-color: #fff;
-  content: "";
-  height: 8px;
-  left: 50%;
-  margin: -4px 0 0 -4px;
-  position: absolute;
-  top: 0;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-  width: 8px;
-}
-
-#login-form input {
-  font-size: 14px;
-}
-
-#login-form input[type="text"],
-#login-form input[type="password"] {
-  border: 1px solid #dcdcdc;
-  padding: 12px 10px;
-  width: 100%;
-}
-
-#login-form input[type="text"] {
-  border-radius: 3px 3px 0 0;
-}
-
-#login-form input[type="password"] {
-  border-top: none;
-  border-radius: 0px 0px 3px 3px;
-}
-
-#login-form input[type="submit"] {
-  background: #1dabb8;
-  border-radius: 3px;
-  color: #fff;
-  float: right;
-  font-weight: bold;
-  margin-top: 20px;
-  padding: 12px 20px;
-}
-
-#login-form input[type="submit"]:hover {
-  background: #198d98;
-}
-
-#login-form footer {
-  font-size: 12px;
-  margin-top: 16px;
-}
-
-.info {
-  background: #e5e5e5;
-  border-radius: 50%;
-  display: inline-block;
-  height: 20px;
-  line-height: 20px;
-  margin: 0 10px 0 0;
-  text-align: center;
-  width: 20px;
-}
-
-  
-</style>
-
-  
 </head>
 
-<body>
-  <div class="container">
+<body  class="flat" id="myapp">
 
-  <div id="login-form">
+  <div data-dojo-type="dijit/Dialog" id="actionBarDialog" title="Login" style="width: auto; display: none;">
+    <form action="/njs/login" method="post" name="Login_Form oams">
+      <div class="dijitDialogPaneContentArea">
 
-    <h3>Login</h3>
+  <fieldset>
+    <legend>Usuario</legend>
+    
+      <input data-dojo-type="dijit/form/ValidationTextBox"  placeholder="usuario" required name="user" type="text"></input>
+    
+  </fieldset>  
 
-    <fieldset>
 
-      <form action="/njs/login" method="post" name="Login_Form oams">
+  <fieldset>
+    <legend>Password</legend>
+    
+      <input data-dojo-type="dijit/form/ValidationTextBox" required name="pwd" type="password"></input>
+    
+  </fieldset>  
 
-        <input type="text" name="user" id="u" placeholder="Usuario" required >
+     </div>
+     <div class="dijitDialogPaneActionBar">
+      <button data-dojo-type="dijit/form/Button" type="submit" id="ok" data-dojo-props="class:'alt-alt alt-success',    iconClass:'dijitIconKey'">OK</button>
+      <button data-dojo-type="dijit/form/Button" type="reset">Cancel</button>
+    </div>
 
-        <input type="password" required name="pwd" placeholder="Contrasena" required> <!-- JS because of IE support; better: placeholder="Password" -->
-
-        <input type="submit" value="Login">
-
-        <footer class="clearfix">
-
-          <p><span class="info">?</span><a href="#">Forgot Password</a></p>
-
-        </footer>
-
-      </form>
-
-    </fieldset>
-
-  </div> <!-- end login-form -->
+  </form>
 
 </div>
-  
-  
+
+
 </body>
 </html>
+
