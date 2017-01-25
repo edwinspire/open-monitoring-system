@@ -4450,7 +4450,7 @@ table.dojoDndAvatar {
 }
 .flat .dijitComboBox .dijitArrowButton {
   width: 20px;
-  padding: 4px;
+  padding: 1px;
 }
 .flat .dijitToolbar .dijitComboBox .dijitArrowButtonInner {
   border: none;
@@ -4738,7 +4738,7 @@ table.dojoDndAvatar {
   transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
 }
 .flat .dijitTextArea {
-  padding: 4px 6px;
+  padding: 1px 2px;
 }
 .flat .dijitTextBox .dijitInputField {
   padding: 0 4px;
@@ -4777,7 +4777,7 @@ table.dojoDndAvatar {
 .flat .dijitTextBox .dijitInputInner,
 .flat .dijitValidationTextBox .dijitValidationContainer,
 .flat .dijitTextBox .dijitInputField .dijitPlaceHolder {
-  padding: 4px;
+  padding: 1px;
 }
 .flat .dijitTextBoxHover {
   border-color: #2196f3;

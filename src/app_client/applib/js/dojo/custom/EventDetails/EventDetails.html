@@ -39,16 +39,11 @@
 
 
 
-
-    <div class="clearfix"></div>
-
-
-    <div class="col-md-12 col-sm-12 col-xs-12">
-      <fieldset style="display: none;" class="description WidthFull">
-        <legend>Descripción</legend>
-        <div class="value" ></div>
-      </fieldset>  
-    </div>      
+    <fieldset style="display: none; width: 100%" class="description WidthFull">
+      <legend>Descripción</legend>
+      <div class="value" ></div>
+    </fieldset>  
+    
 
   </fieldset>  
 
@@ -59,6 +54,60 @@
 
     <fieldset id="${id}_ChangeStatus">
       <legend>Cambiar Estado</legend>
+
+
+
+      <span data-dojo-type="dijit/Toolbar">
+
+        <div data-dojo-type="dijit/form/DropDownButton" data-dojo-attach-point="Add" data-dojo-props="disabled:true">
+        <span>Comentario</span>
+          <div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Agregar Registro'">
+            <table>
+              <tr>
+                <td><label for="user">User:</label></td>
+                <td><input data-dojo-type="dijit/form/TextBox"></td>
+              </tr>
+              <tr>
+                <td><label for="pwd">Password:</label></td>
+                <td><input data-dojo-type="dijit/form/TextBox" type="password"></td>
+              </tr>
+            </table>
+          </div>
+        </div>  
+
+        <div data-dojo-type="dijit/form/DropDownButton" data-dojo-props="disabled:true">
+          <span>Eliminar Selección</span>
+          <div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Eliminar seleccionados'">
+            Realmente sea eliminar los registros seleccionados?
+          </div>
+        </div>  
+
+        <span data-dojo-type="dijit/ToolbarSeparator"></span>
+
+        <div data-dojo-type="dijit/form/DropDownButton" data-dojo-props="iconClass:'dijitEditorIconCreateLink'">
+          <span>Refresco</span>
+          <div data-dojo-type="dijit/DropDownMenu">
+            <div data-dojo-attach-point="RefreshAuto" data-dojo-type="dijit/RadioMenuItem" data-dojo-props="group: 'g1', checked:true">Automático</div>
+            <div data-dojo-attach-point="RefreshTempo" data-dojo-type="dijit/RadioMenuItem" data-dojo-props="group: 'g1'">Desactivar</div>
+
+          </div>
+        </div>
+
+      </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       <div data-dojo-attach-point='SelectEventStatus' data-dojo-type="evenstatustype_user_buttons/evenstatustype_user_buttons" class="change_status_event" name="ideventstatustype"></div>          
 

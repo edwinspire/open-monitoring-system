@@ -12,7 +12,12 @@
     "dojo/query",
     "evenstatustype_user_buttons/evenstatustype_user_buttons",
     "dijit/Editor" ,
-    "Widget/uDCGridWidget/uDCGridWidget"
+    "Widget/uDCGridWidget/uDCGridWidget",
+    "dijit/Toolbar",
+    "dijit/ToolbarSeparator",
+    "dijit/form/DropDownButton",
+    "dijit/ConfirmTooltipDialog",
+    "dijit/form/TextBox"
     ], function (declare, _Widget, _Templated, templateString, on, popup, domStyle, query) {
 
         return declare([_Widget, _Templated], {
