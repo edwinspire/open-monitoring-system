@@ -3,7 +3,7 @@ define(['dojo/_base/declare',
 	'dijit/_Templated',
 	'dojo/text!Widget/uDCGridWidget/uDCGridWidget.html',
   "dojo/Evented",
-  "uDCGrid/uDCGrid",
+  "Widget/uDCGrid/uDCGrid",
   "dijit/layout/ContentPane",
   "dojo/dom-construct",
   "dojo/on",
@@ -13,7 +13,7 @@ define(['dojo/_base/declare',
   'dstore/Memory',
   'dstore/Trackable',
   "dijit/form/TextBox",
-  "uDC/uDC",
+  "Widget/uDC/uDC",
   "dijit/ToolbarSeparator",
   "dijit/form/NumberSpinner",
   "dijit/ConfirmTooltipDialog",
@@ -39,6 +39,8 @@ define(['dojo/_base/declare',
      _setTitlegridAttr: { node: "TitleGrid", type: "innerHTML" },
      postCreate: function () {
       var t = this;
+
+      t.startup();
 
       t.Search.on('Change', function (e) {
        console.debug(e);
@@ -220,6 +222,10 @@ define(['dojo/_base/declare',
 
       	if(t.newForm){
 
+
+dojo.place(t.newForm, t.ContainerDialogNew, 'only');
+
+
       		var conf = t.newForm;
       		if(!conf.table || conf.table.length < 1){
       			conf.table = t.table || 'uDCGridWidget.undefined.table.uDC';
@@ -237,36 +243,34 @@ define(['dojo/_base/declare',
       	}
 
 
-      	return t;
-      },
-      _notifications: function (_n) {
-      	topic.publish("/event/user/notify", [_n]);
-      },
-      resize: function(){
-      	if(this.Grid){
-          this.Grid.resize();
-        }
-      },
-      Clear: function(){
-      	this.Grid.Clear();
-      	return this;
-      },
-      disabledGrid: function(_disabled){
-      	this.Grid.disabled(_disabled);
-      },
-      _disabled: function(_disable){
-
-      	if(_disable){
-      		domClass.add(this.domNode, "element-disabled");
-      	}else{
-      		domClass.remove(this.domNode, "element-disabled");
-      	}
-      	return this;
-      }
 
 
+return t;
+},
+_notifications: function (_n) {
+ topic.publish("/event/user/notify", [_n]);
+},
+resize: function(){
+ if(this.Grid){
+  this.Grid.resize();
+}
+},
+Clear: function(){
+ this.Grid.Clear();
+ return this;
+},
+disabledGrid: function(_disabled){
+ this.Grid.disabled(_disabled);
+},
+_disabled: function(_disable){
 
-
+ if(_disable){
+  domClass.add(this.domNode, "element-disabled");
+}else{
+  domClass.remove(this.domNode, "element-disabled");
+}
+return this;
+}
 
 
 
@@ -278,5 +282,9 @@ define(['dojo/_base/declare',
 
 
 
-    });
+
+
+
+
+});
 });

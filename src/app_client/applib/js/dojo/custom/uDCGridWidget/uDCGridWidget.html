@@ -5,9 +5,9 @@
 		<span data-dojo-type="dijit/ToolbarSeparator"></span>
 		<div data-dojo-type="dijit/form/DropDownButton" data-dojo-attach-point="Add" data-dojo-props="disabled:false">
 			<span>Agregar</span>
-			<div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-attach-point="CTTDialog" data-dojo-props="title:'Agregar Registro'">
+			<div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-attach-point="CTTDialogNew" data-dojo-props="title:'Agregar Registro'">
 
-
+<div data-dojo-attach-point="ContainerDialogNew"></div>
 
 			</div>
 		</div>  
@@ -34,7 +34,7 @@
 		<span data-dojo-type="dijit/ToolbarSeparator"></span>
 
 		<label>Buscar:</label>
-		<input data-dojo-attach-point="Search" data-dojo-type="dijit/form/TextBox" value="" data-dojo-props="intermediateChanges:true"></input>
+		<input data-dojo-attach-point="Search" data-dojo-type="dijit/form/TextBox" type="search" value="" data-dojo-props="intermediateChanges:true"></input>
 	</span>
 
 
