@@ -1,7 +1,7 @@
 <div>
 
 
-	<div data-dojo-type="uDC/uDC" data-dojo-attach-point="uDC" data-dojo-props="hiddenFields: [{name: 'idcontact'}],  nodeContainer: '${id}', target: '/njs/db/table/accounts', table: 'accounts', idProperty: 'idcontact',  targetFieldtypes: '/njs/db/uDCFieldTypes'">
+	<div data-dojo-type="uDC/uDC" data-dojo-attach-point="uDC" data-dojo-props="hiddenFields: [{name: 'idcontact'}], target: '/njs/db/table/accounts', table: 'accounts', idProperty: 'idcontact',  targetFieldtypes: '/njs/db/uDCFieldTypes'">
 		
 	<fieldset>
 		<legend >Habilitado</legend>
@@ -30,7 +30,7 @@
 
 	<fieldset>
 		<legend>Cumpleanos</legend>
-		<input data-dojo-type="dijit/form/DateTextBox" data-dojo-attach-point="Cumple" data-dojo-props="onClick: function(){ console.debug(this); }" name="birthday"></input>
+		<input data-dojo-type="dijit/form/DateTextBox" name="birthday"></input>
 	</fieldset> 
 
 
@@ -110,20 +110,20 @@
 	</fieldset>  
 
 
-		<fieldset class="WidthFull">
+		<fieldset style="display: inherit;">
 			<legend>Direccion</legend>
 			<textarea  type="text" data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;" name="address" ></textarea>
 		</fieldset>                         
 
 
-		<fieldset class="WidthFull">
+		<fieldset style="display: inherit;">
 			<legend>Direccion Ref</legend>
 			<textarea  type="text" data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;"  name="address_ref"></textarea>
 		</fieldset>    
 
 
 
-	<fieldset class="WidthFull">
+	<fieldset style="display: inherit;">
 		<legend>Notas</legend>
 		<textarea data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;"   placeholder='Notas' name="note" ></textarea>
 	</fieldset>  
