@@ -7,9 +7,9 @@
  */
  define([
  	'dojo/_base/declare',
-    "dijit/layout/ContentPane",
- 	'dojo/request', 'dojo/query', "dojo/Evented", "dijit/registry", "dojo/dom-attr", "dojo/_base/array", "dojo/on", "dojo/topic", "dojo/Deferred", "dojo/store/Memory"
- 	], function (declare, ContentPane, _2, _3, Evented, _5, _6, _7, _8, topic, Deferred, Memory) {
+  "dijit/layout/ContentPane",
+  'dojo/request', 'dojo/query', "dojo/Evented", "dijit/registry", "dojo/dom-attr", "dojo/_base/array", "dojo/on", "dojo/topic", "dojo/Deferred", "dojo/store/Memory"
+  ], function (declare, ContentPane, request, query, Evented, Registry, domAttr, array, on, topic, Deferred, Memory) {
     /**
      * Micro Data Connector
      *
@@ -20,7 +20,6 @@
       table: '',
       idProperty: '',
       selectorClass: '',
-      nodeContainer: '',
       hiddenFields: [],
       fieldTypes: [],
       targetFieldtypes: "/njs/db/uDCFieldTypes",	
@@ -37,100 +36,99 @@
  	 	 * @property {string}  nodeContainer - Id del contenedor donde se buscaran los campos que tengan el selectorClass 	 	 
  	 	 * @property {string}  selectorClass - Selector CSS para buscar los campos que van a pertenecer a este uDC
  	 	 * @property {string}  targetFieldtypes - Url de donde se obtendran los tipos de datos de cada campo
-     */
-     constructor: function(args){
-      dojo.safeMixin(this, args);
-    },
-    postCreate: function () {
-      this.targetFieldtypes = "/njs/db/uDCFieldTypes";
-      this.inherited(arguments);
-      var t = this;
-      t._store = new Memory({ data: null, idProperty: 'namefield'});
-      t._Build();
-    },
-    _HiddenFieldCreate: function (_name, _data_type) {
-      var t = this;
-      var r = { name: _name, value: '', type: 'HiddenField' }; 
+      */
 
-      t._store.put({node: r, namefield: r.name, value: null, isvalid: false, send: false, changed: false, type: _data_type});
+      postCreate: function () {
+        this.targetFieldtypes = "/njs/db/uDCFieldTypes";
+//        this.inherited(arguments);
+        var t = this;
+        t._store = new Memory({ data: null, idProperty: 'namefield'});
 
-      r.get = function (v) {
-       var g = null;
-       switch (v) {
+        t._Build();
+      },
+      _HiddenFieldCreate: function (_name, _data_type) {
+        var t = this;
+        var r = { name: _name, value: '', type: 'HiddenField' }; 
+
+        t._store.put({node: r, namefield: r.name, value: null, isvalid: false, send: false, changed: false, type: _data_type});
+
+        r.get = function (v) {
+         var g = null;
+         switch (v) {
+          case 'name':
+          g = this.name;
+          break;
+          case 'value':
+          g = this.value;
+          break;
+        }
+        return g;
+      }
+
+      r.set = function (_p, _v, _noeventchanged) {
+
+       switch (_p) {
         case 'name':
-        g = this.name;
+        this.name = _v;
         break;
         case 'value':
-        g = this.value;
+        this.value = _v;
+
+        _noeventchanged = _noeventchanged || true;
+
+        var sf = t._store.get(this.name);
+
+        if (_noeventchanged) {
+
+          sf.changed = true;
+          sf.isvalid = true;
+          sf.send = true;
+          sf.value = _v;
+
+        }else{
+          sf.changed = false;
+        }
+
+        t._store.put(sf);
+
         break;
       }
-      return g;
-    }
+    };
 
-    r.set = function (_p, _v, _noeventchanged) {
+    r.isValid = function () { return true; }
+    r.reset = function(){console.debug('No esta implementado el reset en campos ocultos uDC');}
 
-     switch (_p) {
-      case 'name':
-      this.name = _v;
-      break;
-      case 'value':
-      this.value = _v;
+    return r;
+  },
+  setField: function (_field, _value, _noeventchanged) {
+   var t = this;
+   var name;
+   var value;
+   var f = t._store.get(_field);
 
-      _noeventchanged = _noeventchanged || true;
+   _noeventchanged = _noeventchanged || true;
 
-      var sf = t._store.get(this.name);
+   try{
+     value = t._value_pg_to_field(_field, _value);
+   }catch(e){
+     console.warn(e);
+   }
 
-      if (_noeventchanged) {
-
-sf.changed = true;
-sf.isvalid = true;
-sf.send = true;
-sf.value = _v;
-
-}else{
-  sf.changed = false;
-}
-
-t._store.put(sf);
-
-break;
-}
-};
-
-r.isValid = function () { return true; }
-r.reset = function(){console.debug('No esta implementado el reset en campos ocultos uDC');}
-
-return r;
-},
-setField: function (_field, _value, _noeventchanged) {
-	var t = this;
-	var name;
-	var value;
-  var f = t._store.get(_field);
-
-_noeventchanged = _noeventchanged || true;
-
-try{
-	value = t._value_pg_to_field(_field, _value);
-}catch(e){
-	console.warn(e);
-}
-
-try {          
+   try {          
      f.node.set('value', value, _noeventchanged);
 
-           } catch (e) {
-            console.error(_field, f, e);
-          }
+   } catch (e) {
+    console.error(_field, f, e);
+  }
 
-   return this;
- },
+  return this;
+},
 getField: function(_field){
 
  var t = this;
 
 // Obtiene
- try{
+try{
   return t._store.get(_field).value;
 }catch(e){
   console.warn(e, 'No existe valor para el campo '+_field);
@@ -149,10 +147,9 @@ _BindFields: function (_fieldTypes) {
 //            var r = false;
 var storeFielTypes = new Memory({ data: _fieldTypes, idProperty: 'field'});
 
-if (t.nodeContainer && t.selectorClass) {
 
   if (Array.isArray(t.hiddenFields)) {
-   _7.forEach(t.hiddenFields, function (item, i) {
+   array.forEach(t.hiddenFields, function (item, i) {
     t._HiddenFieldCreate(item.name, storeFielTypes.get(item.name).data_type);
   });
  }else{
@@ -161,54 +158,50 @@ if (t.nodeContainer && t.selectorClass) {
 
 
  var f = [];
-
- if (t.nodeContainer !== 'undefined') {
-   f = _3(t.selectorClass, dojo.byId(t.nodeContainer));
- } else {
-   console.warn('No ha definido node_container, se buscara dentro de uDC usando la clase ' + t.selectorClass);
-   f = _3(t.selectorClass, t.domNode);
- }
-
+var ft = "";
 
  var name;
 
- f.forEach(function (node, i) {
+ console.debug(t.Cumple);
 
-var d = _5.byNode(node);
+ query("*[name]", t.domNode).forEach(function (node, i) {
 
-if (d) {
-	name = d.get('name');
-	if (name) {
-ft = 'text';
-  try{
-ft = storeFielTypes.get(name).data_type;    
-  }catch(e){
-    console.error(e, name, storeFielTypes);
-  }
 
-  t._store.put({node: d, namefield: name, value: null, isvalid: false, send: false, changed: false, type: ft});
+  var d = Registry.byNode(node);
+console.log(node, d);
+  if (d) {
+   name = d.get('name');
+   if (name) {
+    ft = 'text';
+    try{
+      ft = storeFielTypes.get(name).data_type;    
+    }catch(e){
+      console.error(e, name, storeFielTypes);
+    }
 
-try {
- d.isValid();
-} catch (e) {
- d.isValid = function () { return true; }
-}
+    t._store.put({node: d, namefield: name, value: null, isvalid: false, send: false, changed: false, type: ft});
 
-t._ConnectDijitOnChanged(d);
-}
+    try {
+     d.isValid();
+   } catch (e) {
+     d.isValid = function () { return true; }
+   }
+
+   t._ConnectDijitOnChanged(d);
+ }
 
 } else {
 	d = node;
 	if (d) {
 		try {
 			name = node.name;
-		//	t._wdojo[name] = node;
-    ft = storeFielTypes.get(name).data_type;    
-  } catch (e) {
-   console.warn(e);
+
+      ft = storeFielTypes.get(name).data_type;    
+    } catch (e) {
+     console.warn(e);
+   }
+   t._store.put({node: d, namefield: name, value: null, isvalid: false, send: false, changed: false, type: ft});
  }
- t._store.put({node: d, namefield: name, value: null, isvalid: false, send: false, changed: false, type: ft});
-}
 }
 
 });
@@ -217,57 +210,52 @@ t._ConnectDijitOnChanged(d);
 
  r = true;
  
-                         //  deferred.resolve("success");
-                       } else {
-                        console.warn('No ha declarado los parametros node y/o selector_class ');
-                          //  deferred.resolve("success");
-                        } 
-
-                        return this;
-                      },
-
-                      _RemoveOnChangeHandler: function(){
-                       var t = this; 
-                       _7.forEach(t._ConnectionsOnChange, function(e){
-                        e.remove();
-          	});
-                       return this;        
-                     },
-                     _Build: function(){
-                       var t = this;
-
-if (t.targetFieldtypes) {
-
-	t._get_fieldtypes().then(function (results) {
-
-		t._BindFields(results);
-
-	});
-
-}  else{
-	t._BindFields();
-} 
 
 return this;
 },
+
+_RemoveOnChangeHandler: function(){
+ var t = this; 
+ array.forEach(t._ConnectionsOnChange, function(e){
+  e.remove();
+});
+ return this;        
+},
+_Build: function(){
+ var t = this;
+
+ if (t.targetFieldtypes) {
+
+   t._get_fieldtypes().then(function (results) {
+
+    t._BindFields(results);
+
+  });
+
+ }  else{
+   t._BindFields();
+ } 
+
+ return this;
+},
 _setConfigAttr: function (_config, _bind, _force) {
-	var t = this;
-	if (_force) {
+ var t = this;
+ if (_force) {
 
-             } else {
+ } else {
 
-              for (var item in _config) {
-               try {
-                t[item] = _config[item];
-              } catch (e) {
-                console.error(e);
-              }
-            }
+  for (var item in _config) {
+   try {
+    t[item] = _config[item];
+  } catch (e) {
+    console.error(e);
+  }
+}
 
-          }
-          if (!_bind != 'undefined') {
-            t._Build();
-          }
+}
+if (!_bind != 'undefined') {
+  t._Build();
+}
 
        // console.debug(t);
 
@@ -288,126 +276,126 @@ _setConfigAttr: function (_config, _bind, _force) {
 
             var fieldsInvalid = t._store.query({isvalid: false, send: true, changed: true});
 
-         if(fieldsInvalid.length > 0){
+            if(fieldsInvalid.length > 0){
 
-          fieldsInvalid.forEach(function(field){
-            t._notifications({ Urgency: 2, Message: field.msg, Title: 'Datos inválidos!' });
-          });
+              fieldsInvalid.forEach(function(field){
+                t._notifications({ Urgency: 2, Message: field.msg, Title: 'Datos inválidos!' });
+              });
 
-          return false;
-        }else{
-          var rf = {};
-          t._store.query({isvalid: true, send: true, changed: true}).forEach(function(field){
-            rf[field.namefield] = field.value;
-          });
+              return false;
+            }else{
+              var rf = {};
+              t._store.query({isvalid: true, send: true, changed: true}).forEach(function(field){
+                rf[field.namefield] = field.value;
+              });
 
-          return rf;
-        }
-      },
-      _value_to_pg: function (_row) {
-
-       var _value = String(_row.node.get('value'));
-       var t = this;
-       var r = null;
-
-       try{
-
-        var typeF = _row.type;
-
-        if(typeF.indexOf("[]") > -1){
-          typeF = "[]";
-        }
-
-        switch (typeF) {
-          case 'timestamp without time zone':
-          r = _value;
-          break;
-          case 'timestamp with time zone':
-          r = _value;
-          break;
-          case 'boolean':
-          r = _value.to_boolean();
-          break;
-          case 'integer':
-          r = _value.to_int();
-          break;
-          case 'float':
-          r = _value.to_float();
-          break;
-          case 'double precision':
-          r = _value.to_float();
-          break;
-          case 'number':
-          r = _value.to_number();
-          break;
-          case '[]':
-          r = '{'+_value+'}';
-          break;                        
-          default:
-          r = _value;
-          break;
-
-        }
-
-      }catch(e){
-        console.warn(e, _row);
-        r = _value;
-      }            
-
-      return r;
-    },
-    _value_pg_to_field: function (_type, _v) {
-     var t = this;
-     var r = null;
-     var _value = String(_v);
-
-try{
-
-		switch (_type) {
-			case 'timestamp without time zone':
-			r = _value.fromISO_to_date();
-			break;
-			case 'timestamp with time zone':
-			r = _value.fromISO_to_date();
-			break;
-			case 'boolean':
-			r = _value.to_boolean();
-			break;
-			case 'integer':
-			r = _value.to_int();
-			break;
-			case 'float':
-			r = _value.to_float();
-			break;
-			case 'double precision':
-			r = _value.to_float();
-			break;
-			case 'number':
-			r = _value.to_number();
-			break;
-			default:
-			r = _v;
-			break;
-
-		}
-
-}catch(e){
-	console.warn(e);
-	r = _value;
-}
-
-             return r;
-           },
-           _set_values_onload: function (_v) {
-            var t = this;
-
-          t._store.query().forEach(function(field){
-            try{
-              field.node.set('value', t._value_pg_to_field(field.type, _v[field.namefield]), false);
-            }catch(e){
-              console.error(e, field);
+              return rf;
             }
-          });
+          },
+          _value_to_pg: function (_row) {
+
+           var _value = String(_row.node.get('value'));
+           var t = this;
+           var r = null;
+
+           try{
+
+            var typeF = _row.type;
+
+            if(typeF.indexOf("[]") > -1){
+              typeF = "[]";
+            }
+
+            switch (typeF) {
+              case 'timestamp without time zone':
+              r = _value;
+              break;
+              case 'timestamp with time zone':
+              r = _value;
+              break;
+              case 'boolean':
+              r = _value.to_boolean();
+              break;
+              case 'integer':
+              r = _value.to_int();
+              break;
+              case 'float':
+              r = _value.to_float();
+              break;
+              case 'double precision':
+              r = _value.to_float();
+              break;
+              case 'number':
+              r = _value.to_number();
+              break;
+              case '[]':
+              r = '{'+_value+'}';
+              break;                        
+              default:
+              r = _value;
+              break;
+
+            }
+
+          }catch(e){
+            console.warn(e, _row);
+            r = _value;
+          }            
+
+          return r;
+        },
+        _value_pg_to_field: function (_type, _v) {
+         var t = this;
+         var r = null;
+         var _value = String(_v);
+
+         try{
+
+          switch (_type) {
+           case 'timestamp without time zone':
+           r = _value.fromISO_to_date();
+           break;
+           case 'timestamp with time zone':
+           r = _value.fromISO_to_date();
+           break;
+           case 'boolean':
+           r = _value.to_boolean();
+           break;
+           case 'integer':
+           r = _value.to_int();
+           break;
+           case 'float':
+           r = _value.to_float();
+           break;
+           case 'double precision':
+           r = _value.to_float();
+           break;
+           case 'number':
+           r = _value.to_number();
+           break;
+           default:
+           r = _v;
+           break;
+
+         }
+
+       }catch(e){
+         console.warn(e);
+         r = _value;
+       }
+
+       return r;
+     },
+     _set_values_onload: function (_v) {
+      var t = this;
+
+      t._store.query().forEach(function(field){
+        try{
+          field.node.set('value', t._value_pg_to_field(field.type, _v[field.namefield]), false);
+        }catch(e){
+          console.error(e, field);
+        }
+      });
 
     /**
      * Emite el evento cuando los datos se han cargado.
@@ -434,17 +422,17 @@ try{
       }
     });
 
-  return t;
-},
-_ConnectDijitOnChanged: function (_w) {
- var t = this;
-t._ConnectionsOnChange.push(
+     return t;
+   },
+   _ConnectDijitOnChanged: function (_w) {
+     var t = this;
+     t._ConnectionsOnChange.push(
 
-	_w.on('Change', function (v) {
+       _w.on('Change', function (v) {
 
-		var name = _w.get('name');
-    var row = t._store.get(name);
-    row.changed = true;
+        var name = _w.get('name');
+        var row = t._store.get(name);
+        row.changed = true;
 
     //console.debug(name+' ha cambiado ', _w);
 
@@ -455,104 +443,104 @@ t._ConnectionsOnChange.push(
      row.send = true;
      row.msg = '';
 
-                  } else if (!this.attr("required")) {
+   } else if (!this.attr("required")) {
 
-                   row.value = null;
-                   row.isvalid = false;
-                   row.send = false;
-                   row.msg = '';
+     row.value = null;
+     row.isvalid = false;
+     row.send = false;
+     row.msg = '';
 
-                 } else if (this.attr("required")) {
+   } else if (this.attr("required")) {
 
-                    row.value = null;
-                    row.isvalid = false;
-                    row.send = true; 
-                    row.msg = 'El campo '+name+' es requerido.';                   
-                    
-                  }
+    row.value = null;
+    row.isvalid = false;
+    row.send = true; 
+    row.msg = 'El campo '+name+' es requerido.';                   
 
-                  t._store.put(row);
+  }
 
-                })
+  t._store.put(row);
 
-	);
+})
 
-return t;
-},
-_ConnectDojoOnChanged: function (_input) {
-	var t = this;
-	console.warn('No esta implementado');
-	return t;
-},
-_post: function (_data, _query_type) {
-	var t = this;
-	var r;
+       );
 
-	var count_fields = 0;
-	for (var field in _data) {
-		if (_data.hasOwnProperty(field)) {
-			++count_fields;
-		}
-	}
+     return t;
+   },
+   _ConnectDojoOnChanged: function (_input) {
+     var t = this;
+     console.warn('No esta implementado');
+     return t;
+   },
+   _post: function (_data, _query_type) {
+     var t = this;
+     var r;
+
+     var count_fields = 0;
+     for (var field in _data) {
+      if (_data.hasOwnProperty(field)) {
+       ++count_fields;
+     }
+   }
 
 
-  if (count_fields > 0) {
+   if (count_fields > 0) {
     if (_data) {
      _data.UdcAction = _query_type;
      _data.UdcTable = t.table;
 
-                 _data.uDCidProperty = t.idProperty;
+     _data.uDCidProperty = t.idProperty;
 
-                 if (_query_type == 'insert') {
-                 	r =  t._internal_post(_data);
-                 } else if (_query_type != 'insert' && _data.uDCidProperty) {
-                 	r = t._internal_post(_data);
-                 } else {
-                 	console.warn('La operacion ' + _query_type + ' requiere del parametro idProperty');
-                 }
+     if (_query_type == 'insert') {
+      r =  t._internal_post(_data);
+    } else if (_query_type != 'insert' && _data.uDCidProperty) {
+      r = t._internal_post(_data);
+    } else {
+      console.warn('La operacion ' + _query_type + ' requiere del parametro idProperty');
+    }
 
 
 
-               } else {
-                console.log('no hay datos para enviar');
-              }
+  } else {
+    console.log('no hay datos para enviar');
+  }
 
-            } else {
-              console.warn('No hay campos registrados/configurados a este udc');
-            }
+} else {
+  console.warn('No hay campos registrados/configurados a este udc');
+}
 
-            if(!r){
-              deferred = new Deferred();
-              deferred.resolve("success");
-              r = deferred.promise;
-            }
+if(!r){
+  deferred = new Deferred();
+  deferred.resolve("success");
+  r = deferred.promise;
+}
 
-            return r;
-          },
-          _internal_post: function (_data) {
-            var t = this;
+return r;
+},
+_internal_post: function (_data) {
+  var t = this;
 
-            var data_send = {};
+  var data_send = {};
 
-            for (var index in _data) {
+  for (var index in _data) {
 
-                if (_data[index] && _data[index].constructor.toString().indexOf("Array") > -1) {
+    if (_data[index] && _data[index].constructor.toString().indexOf("Array") > -1) {
 
-                    data_send[index] = '{' + _data[index].toString() + '}';
-                  } else {
-                   data_send[index] = _data[index];
-                 }
+      data_send[index] = '{' + _data[index].toString() + '}';
+    } else {
+     data_send[index] = _data[index];
+   }
 
-               }
+ }
 
-           return  _2.post(t.target, {
-           	data: data_send,
-           	preventCache: true,
-           	handleAs: 'json'
-           }).then(
-           function (response) {
+ return  request.post(t.target, {
+  data: data_send,
+  preventCache: true,
+  handleAs: 'json'
+}).then(
+function (response) {
 
-          switch (data_send.UdcAction) {
+  switch (data_send.UdcAction) {
                         /////// De aqui hacia abajo es la nueva version /////////////////
                         case 'select':
                         t._set_values_onload(response[0]);
@@ -591,8 +579,8 @@ _post: function (_data, _query_type) {
 
                           }
 
-                  },
-                  function (e) {
+                        },
+                        function (e) {
                     // Display the error returned
                     t._notifications({ Urgency: 1, Message: e, Title: 'Error!' });
                     t.emit('onError', { error: e });
@@ -600,17 +588,17 @@ _post: function (_data, _query_type) {
                   }, 
                   function(f){
 
-}
-);
+                  }
+                  );
 
-         },
-         _request_success_fail: function(response){
-          t._notifications({ Urgency: 2, Message: response.data.code, Title: 'La operacion ha fallado'});
-        },
-        _notifications: function (_args) {
-          topic.publish("/event/user/notify", _args);
+},
+_request_success_fail: function(response){
+  t._notifications({ Urgency: 2, Message: response.data.code, Title: 'La operacion ha fallado'});
+},
+_notifications: function (_args) {
+  topic.publish("/event/user/notify", _args);
 
-        },        
+},        
                 /**
          * Hace un reset de todos los campos
          * @memberof OpenMonitoringSystem.uDC.uDC
@@ -686,10 +674,10 @@ _post: function (_data, _query_type) {
         },
         _get_fieldtypes: function () {
           var t = this;
-         
+
           if(t.table && t.table.length > 0 && t.targetFieldtypes && t.targetFieldtypes.length > 0){
 
-            return _2.post(t.targetFieldtypes, {
+            return request.post(t.targetFieldtypes, {
              data: { uDCTable: t.table },
              preventCache: true,
              handleAs: 'json'
@@ -698,11 +686,11 @@ _post: function (_data, _query_type) {
           }else{
 
 //console.trace('No ha definido parametros para buscar los tipos de datos', t.targetFieldtypes, t.table);
-            deferred = new Deferred();
-            deferred.resolve([]);
-            return  deferred.promise;
+deferred = new Deferred();
+deferred.resolve([]);
+return  deferred.promise;
 
-          }
+}
  //                 return requestFieldTypes;
 }
 

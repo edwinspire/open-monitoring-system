@@ -3,22 +3,14 @@ define(['dojo/_base/declare',
     'dijit/_Templated',
     'dojo/text!account_data/account_data.html',
     "dojo/on",
-    "uDC/uDC",
-    "Switch/Switch",
     "dijit/form/ValidationTextBox",
-    "DateTextbox/DateTextbox",
+    "dijit/form/DateTextBox" ,
     "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
     "SelectGender/SelectGender",
     "ContactGroup/ContactGroup",
     "dijit/form/Textarea",
-    "DateTextbox/DateTextbox",
-    "Switch/Switch",
-    "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
-    "SelectGender/SelectGender",
-    "ContactGroup/ContactGroup",
-    "dijit/form/Textarea",
-    "DateTextbox/DateTextbox",
     "contact_means_of_contact/contact_means_of_contact" ,
+    "dijit/form/CheckBox",
     "uDC/uDC"
     ], function (declare, _Widget, _Templated, templateString,  on) {
     /**
@@ -34,6 +26,7 @@ define(['dojo/_base/declare',
         postCreate: function () {
             var t = this;
             
+console.log(t.Cumple);
 
             t.uDC.on('onSelect', function(e){
                 t.TGroups.set('groups', e.data.iddivision, e.data.groups);                            
