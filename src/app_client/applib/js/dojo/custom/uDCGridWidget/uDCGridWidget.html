@@ -3,19 +3,12 @@
 	<span data-dojo-type="dijit/Toolbar">
 		<label class="ToolBarTitle" data-dojo-attach-point="TitleGrid">Table</label>
 		<span data-dojo-type="dijit/ToolbarSeparator"></span>
-		<div data-dojo-type="dijit/form/DropDownButton" data-dojo-attach-point="Add" data-dojo-props="disabled:true">
+		<div data-dojo-type="dijit/form/DropDownButton" data-dojo-attach-point="Add" data-dojo-props="disabled:false">
 			<span>Agregar</span>
-			<div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Agregar Registro'">
-				<table>
-					<tr>
-						<td><label for="user">User:</label></td>
-						<td><input data-dojo-type="dijit/form/TextBox"></td>
-					</tr>
-					<tr>
-						<td><label for="pwd">Password:</label></td>
-						<td><input data-dojo-type="dijit/form/TextBox" type="password"></td>
-					</tr>
-				</table>
+			<div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-attach-point="CTTDialog" data-dojo-props="title:'Agregar Registro'">
+
+
+
 			</div>
 		</div>  
 

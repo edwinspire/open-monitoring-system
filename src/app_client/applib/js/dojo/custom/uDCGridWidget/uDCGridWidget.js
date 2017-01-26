@@ -4,6 +4,7 @@ define(['dojo/_base/declare',
 	'dojo/text!Widget/uDCGridWidget/uDCGridWidget.html',
   "dojo/Evented",
   "uDCGrid/uDCGrid",
+  "dijit/layout/ContentPane",
   "dojo/dom-construct",
   "dojo/on",
   "dojo/dom-style",
@@ -20,7 +21,7 @@ define(['dojo/_base/declare',
   "dijit/MenuItem",
   "dijit/PopupMenuItem",
   "dijit/Menu"
-  ],function(declare,_Widget,_Templated,templateString, Evented, uDCGrid, domConstruct, on, domStyle,  w){
+  ],function(declare,_Widget,_Templated,templateString, Evented, uDCGrid, ContentPane, domConstruct, on, domStyle,  w){
 
     return declare([ _Widget, _Templated, Evented], {
      widgetsInTemplate:true,
@@ -71,6 +72,9 @@ define(['dojo/_base/declare',
        t.RefreshTempo.set('label', 'Desactivar');
        t._RemainDisabledRefresh = 120;
      });
+
+
+
 
 /*
 

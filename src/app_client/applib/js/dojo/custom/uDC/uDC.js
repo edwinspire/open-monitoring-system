@@ -7,19 +7,15 @@
  */
  define([
  	'dojo/_base/declare',
- 	'dijit/_Widget',
- 	'dijit/_Templated',
- 	'dojo/text!uDC/uDC.html',
+    "dijit/layout/ContentPane",
  	'dojo/request', 'dojo/query', "dojo/Evented", "dijit/registry", "dojo/dom-attr", "dojo/_base/array", "dojo/on", "dojo/topic", "dojo/Deferred", "dojo/store/Memory"
- 	], function (declare, _Widget, _Templated, templateString, _2, _3, _4, _5, _6, _7, _8, topic, Deferred, Memory) {
+ 	], function (declare, ContentPane, _2, _3, Evented, _5, _6, _7, _8, topic, Deferred, Memory) {
     /**
      * Micro Data Connector
      *
      * @module uDC/uDC
      */
-     return declare([_Widget, _Templated, _4], {
-      widgetsInTemplate: true,
-      templateString: templateString,
+     return declare([ContentPane, Evented], {
       target: '',
       table: '',
       idProperty: '',
