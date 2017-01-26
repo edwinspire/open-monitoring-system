@@ -5,7 +5,7 @@
 		
 	<fieldset>
 		<legend >Habilitado</legend>
-		<div name="enabled"  data-dojo-type="dijit/form/CheckBox" checked="false"></div> 
+		<div name="enabled"  data-dojo-type="dijit/form/CheckBox"  checked="false"></div> 
 	</fieldset>  
 
 
@@ -30,7 +30,7 @@
 
 	<fieldset>
 		<legend>Cumpleanos</legend>
-		<input data-dojo-type="dijit/form/DateTextBox" data-dojo-attach-point="Cumple" name="birthday"></input>
+		<input data-dojo-type="dijit/form/DateTextBox" data-dojo-attach-point="Cumple" data-dojo-props="onClick: function(){ console.debug(this); }" name="birthday"></input>
 	</fieldset> 
 
 
