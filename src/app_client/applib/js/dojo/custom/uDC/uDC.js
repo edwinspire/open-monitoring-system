@@ -144,6 +144,8 @@ getData: function(){
 _BindFields: function (_fieldTypes) {
 
   var t = this;  
+
+  t.startup();
 //            var r = false;
 var storeFielTypes = new Memory({ data: _fieldTypes, idProperty: 'field'});
 
@@ -162,13 +164,15 @@ var ft = "";
 
  var name;
 
- console.debug(t.Cumple);
+ //console.debug(t.getDescendants());
 
- query("*[name]", t.domNode).forEach(function (node, i) {
+ t.getDescendants().forEach(function (node, i) {
 
+console.log(node);
 
-  var d = Registry.byNode(node);
-console.log(node, d);
+  //var d = Registry.byNode(node);
+  var d = node;
+
   if (d) {
    name = d.get('name');
    if (name) {
