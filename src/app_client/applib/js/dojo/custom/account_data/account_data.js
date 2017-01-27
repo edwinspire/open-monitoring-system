@@ -11,7 +11,8 @@ define(['dojo/_base/declare',
     "dijit/form/Textarea",
     "contact_means_of_contact/contact_means_of_contact" ,
     "dijit/form/CheckBox",
-    "uDC/uDC"
+    "dijit/form/TextBox",
+    "Widget/uDC/uDC"
     ], function (declare, _Widget, _Templated, templateString,  on) {
     /**
      * Account Data
