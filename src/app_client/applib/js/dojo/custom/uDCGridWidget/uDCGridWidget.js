@@ -30,7 +30,7 @@ define(['dojo/_base/declare',
      Grid: null,
      _enable_load: false,
      refreshMode: 0,
-
+     DialogAddContent: false,
      _GStructure: {},
      _IntervalRefresh: null,
      _RemainDisabledRefresh: 0,
@@ -76,7 +76,28 @@ define(['dojo/_base/declare',
      });
 
 
+      t.CTTDialogNew.on('Execute', function(e){
+        console.debug(e);
+        t.emit('addok', e);
+      });
 
+      t.CTTDialogNew.on('Cancel', function(e){
+        console.debug(e);
+        t.emit('addcancel', e);
+      });
+
+
+      on.once(t.Add, "Click", function(){
+
+        console.debug(dojo.byId(t.DialogAddContent), t.DialogAddContent);
+
+        if(t.DialogAddContent){
+          dojo.place(dojo.byId(t.DialogAddContent), t.ContainerDialogNew, 'only');
+        }
+
+        
+
+      });
 
 /*
 
@@ -166,6 +187,8 @@ define(['dojo/_base/declare',
 
       	domConstruct.empty(t.Contenedor);
 
+console.log(t.target);
+
 
       	t.Grid = new uDCGrid({
       		target: t.target,
@@ -220,57 +243,33 @@ define(['dojo/_base/declare',
       	});
 
 
-      	if(t.newForm){
 
+        return t;
+      },
+      _notifications: function (_n) {
+       topic.publish("/event/user/notify", [_n]);
+     },
+     resize: function(){
+       if(this.Grid){
+        this.Grid.resize();
+      }
+    },
+    Clear: function(){
+     this.Grid.Clear();
+     return this;
+   },
+   disabledGrid: function(_disabled){
+     this.Grid.disabled(_disabled);
+   },
+   _disabled: function(_disable){
 
-dojo.place(t.newForm, t.ContainerDialogNew, 'only');
-
-
-      		var conf = t.newForm;
-      		if(!conf.table || conf.table.length < 1){
-      			conf.table = t.table || 'uDCGridWidget.undefined.table.uDC';
-      		}
-
-      		if(!conf.target || conf.target.length < 1){
-      			conf.target = t.target || 'uDCGridWidget.undefined.target.uDC';
-      		}
-
-      		console.debug(conf);            
-      		t.uDC.set('config', conf);
-      		domStyle.set(t.Add, 'display', 'block');
-      	}else{
-
-      	}
-
-
-
-
-return t;
-},
-_notifications: function (_n) {
- topic.publish("/event/user/notify", [_n]);
-},
-resize: function(){
- if(this.Grid){
-  this.Grid.resize();
-}
-},
-Clear: function(){
- this.Grid.Clear();
- return this;
-},
-disabledGrid: function(_disabled){
- this.Grid.disabled(_disabled);
-},
-_disabled: function(_disable){
-
- if(_disable){
-  domClass.add(this.domNode, "element-disabled");
-}else{
-  domClass.remove(this.domNode, "element-disabled");
-}
-return this;
-}
+     if(_disable){
+      domClass.add(this.domNode, "element-disabled");
+    }else{
+      domClass.remove(this.domNode, "element-disabled");
+    }
+    return this;
+  }
 
 
 

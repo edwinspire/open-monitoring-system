@@ -5,7 +5,9 @@ define(['dojo/_base/declare',
     "dojo/dom-class",
     "dojo/on",
     "dijit/form/TextBox",
-    "Widget/uDCGridWidget/uDCGridWidget"
+    "Widget/uDCGridWidget/uDCGridWidget",
+    "dijit/layout/ContentPane",
+    "dijit/layout/TabContainer"
 ], function (declare, _Widget, _Templated, templateString, domClass, on) {
 /**
      * Account Equipments
@@ -35,6 +37,7 @@ define(['dojo/_base/declare',
          // return this.account_equipments.get('value');
         } ,
         resize: function(){
+            this.Tab.resize();
         	this.TGeneral.resize();
         	        	this.TNetwork.resize();
         },

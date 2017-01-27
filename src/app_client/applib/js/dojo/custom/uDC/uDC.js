@@ -168,8 +168,6 @@ var ft = "";
 
  t.getDescendants().forEach(function (node, i) {
 
-console.log(node);
-
   //var d = Registry.byNode(node);
   var d = node;
 
