@@ -83,13 +83,7 @@
       "dojo/parser",
       "utils/String",
       "Extends/Editor",
-      "dijit/form/Button",
-      "dijit/form/DropDownButton",
-      "dijit/ConfirmTooltipDialog",
-      "dijit/form/TextBox",
-      "dijit/MenuItem",
-      "dijit/Toolbar",
-      "dijit/DropDownMenu"
+      "app_accounts_table/app_accounts_table"
       ]);
     </script>
 
@@ -155,7 +149,7 @@
 
         var f = fx.fadeOut({ node: node });
         on(f, "End", function(){
-          domConstruct.destroy(node);
+        //  domConstruct.destroy(node);
         });
         f.play();    
 

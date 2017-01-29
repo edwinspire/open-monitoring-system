@@ -1,7 +1,7 @@
 define(['dojo/_base/declare',
   'dijit/_Widget',
   'dijit/_Templated',
-  'dojo/text!app_account/app_account.html',
+  'dojo/text!Widget/app_account/app_account.html',
   "dojo/dom-class",
   "dojo/on", "dojo/query",
   "dojo/dom-style",

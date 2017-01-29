@@ -13,7 +13,7 @@ require(["dojo/ready",
 	"Widget/app_monitor_network_devices/app_monitor_network_devices", 
 	"Geolocations/Geolocations", 
 	"app_accounts_table/app_accounts_table", 
-	"app_account/app_account",
+	"Widget/app_account/app_account",
 	"Widget/app_tables_views_config/app_tables_views_config"
 	], function(ready, 
 		cookie,
