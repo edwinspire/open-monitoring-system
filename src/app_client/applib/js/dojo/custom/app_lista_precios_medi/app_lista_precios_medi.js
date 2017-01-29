@@ -3,7 +3,8 @@ define(['dojo/_base/declare',
     'dijit/_Templated',
     'dojo/text!Widget/app_lista_precios_medi/app_lista_precios_medi.html',
     "dojo/dom-class",
-    "dojo/on"
+    "dojo/on",
+    "Widget/uDCGridWidget/uDCGridWidget"
 ], function (declare, _Widget, _Templated, templateString, domClass, on) {
 
     return declare([_Widget, _Templated], {

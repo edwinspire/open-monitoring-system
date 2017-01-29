@@ -64,6 +64,17 @@ legend{
   text-decoration: underline;
 }
 
+.SeparatorHorizontal{
+  width: 100%;
+  height: 1px;
+  margin: 2px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#9e9e9e+71,000000+100&0.65+70,0+100 */
+  background: -moz-linear-gradient(left,  rgba(158,158,158,0.65) 70%, rgba(158,158,158,0.63) 71%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  rgba(158,158,158,0.65) 70%,rgba(158,158,158,0.63) 71%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  rgba(158,158,158,0.65) 70%,rgba(158,158,158,0.63) 71%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a69e9e9e', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
+}
+
 
 .NotificationArea{ 
   width: 300px; 
