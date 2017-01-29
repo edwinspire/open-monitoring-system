@@ -138,7 +138,7 @@
 
 
   <script>
-    require(["dojo/_base/fx", "dojo/on", "dojo/ready", "dojo/dom-construct"], function(fx, on, ready, domConstruct){
+    require(["dojo/_base/fx", "dojo/on", "dojo/ready", "dojo/dom-style"], function(fx, on, ready, domStyle){
      ready(function(){
 
       dojo.query(".container_preloader").forEach(function(node, index, nodelist){
@@ -149,7 +149,7 @@
 
         var f = fx.fadeOut({ node: node });
         on(f, "End", function(){
-        //  domConstruct.destroy(node);
+         domStyle.set(node, 'display', 'none');
         });
         f.play();    
 
