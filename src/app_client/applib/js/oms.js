@@ -57,6 +57,15 @@ require(["dojo/ready",
 					case 'MenuUtilListaPrecioEco':
 					OpenApp(app_lista_precios_eco);
 					break;					
+					case 'MenuUtilListaPrecioPAF':
+					//OpenApp(app_lista_precios_paf);
+					break;					
+					case 'MenuUtilListaPrecioMediPromo':
+					OpenApp(app_lista_precios_promo_medi);
+					break;					
+					case 'MenuUtilListaPrecioEco':
+					OpenApp(app_lista_precios_promo_eco);
+					break;					
 				}
 			}); 
 
