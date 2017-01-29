@@ -63,7 +63,7 @@ require(["dojo/ready",
 					case 'MenuUtilListaPrecioMediPromo':
 					OpenApp(app_lista_precios_promo_medi);
 					break;					
-					case 'MenuUtilListaPrecioEco':
+					case 'MenuUtilListaPrecioEcoPromo':
 					OpenApp(app_lista_precios_promo_eco);
 					break;					
 				}
