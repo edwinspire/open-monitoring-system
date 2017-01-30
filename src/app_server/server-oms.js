@@ -403,10 +403,12 @@ app.post("/njs/login", function(req, res){
         var u = r[0]['fun_login_system'];
 
         sessionUsers.add_user(u, req, res);
-        res.redirect('/oms.html');
+        //res.redirect('/oms.html');
+        res.status(200).json({success: true});
 
     }else{
-     res.redirect('/njs/logout');
+     //res.redirect('/njs/logout');
+     res.status(403).json({success: false});
  }
 
 }, function(error){
