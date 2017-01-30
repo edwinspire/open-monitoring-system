@@ -12,7 +12,6 @@ require(["dojo/ready",
 	"Widget/app_lista_precios_medi/app_lista_precios_medi", 
 	"Widget/app_monitor_network_devices/app_monitor_network_devices", 
 	"Geolocations/Geolocations", 
-	"app_accounts_table/app_accounts_table", 
 	"Widget/app_account/app_account",
 	"Widget/app_tables_views_config/app_tables_views_config"
 	], function(ready, 
@@ -29,7 +28,6 @@ require(["dojo/ready",
 		app_lista_precios_medi, 
 		app_monitor_network_devices, 
 		app_geolocations, 
-		app_accounts_table, 
 		app_account,
 		app_tables_views_config
 		){
@@ -57,8 +55,8 @@ require(["dojo/ready",
 					case 'MenuUtilListaPrecioEco':
 					OpenApp(app_lista_precios_eco);
 					break;					
-					case 'MenuUtilListaPrecioPAF':
-					//OpenApp(app_lista_precios_paf);
+					case 'MenuAdminViewTables':
+					OpenApp(app_tables_views_config);
 					break;					
 					case 'MenuUtilListaPrecioMediPromo':
 					OpenApp(app_lista_precios_promo_medi);

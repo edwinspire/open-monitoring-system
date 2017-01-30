@@ -1,51 +1,19 @@
-<div>
+<div style="width: 100%;">
+
+ <div data-dojo-type="dijit/layout/BorderContainer" design="headline" data-dojo-attach-point="BorderContainer" persist="false" gutters="true" style="min-width: 10em; min-height: 1px; z-index: 0; width: 100%; height: 800px;">
+   <div data-dojo-type="dijit/layout/ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="left" splitter="true" maxSize="Infinity" style="width: 40%;" doLayout="false">
 
 
-<div class="app_container x_content">
+   <div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TTableView" data-dojo-props="uDCColumns:{target: '/njs/db/dgrid_table_structure', fields: ['title_dgrid', 'row_selector_dgrid', 'tv_name', 'dgrid_selectionmode', 'dgrid_allowtextselection', 'dgrid_deselectonrefresh']}, UrlExport:'',  target: '/njs/db/table/udc_tables_views', initialQuery: {}, refreshOnTableChanged: ['udc_tables_views'], Title:'XXXXXXXXXXXXXXXXXXX', table: 'udc_tables_views', idProperty: 'idtableview', rowFingerPrint: 'footprint_row'"></div>
 
-<div class="app_title"><strong data-dojo-attach-point="TitleAccount" class="app_title_label">TABLAS Y VISTAS</strong>
+  </div>
 
+  <div data-dojo-type="dijit/layout/ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="center" splitter="false" maxSize="Infinity" doLayout="false">
 
-             <ul class="nav navbar-right panel_toolbox" style="height: 25px;">
-                     <li><a data-dojo-attach-point="Save"><i class="glyphicon glyphicon-floppy-save"></i></a> </li>
-			<li><a data-dojo-attach-point="Save2"><i class="glyphicon glyphicon-floppy-save"></i></a> </li>
-                                            <li style="margin-left: 10px; padding-top: 3px; margin-right: 5px;">
-                      </li>
-                    </ul>
+   <div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TTableColumns" data-dojo-props="uDCColumns:{target: '/njs/db/dgrid_table_structure', fields: ['column_name', 'data_type', 'column_default', 'column_label', 'column_width', 'dgrid_rendercell', 'dgrid_formatter', 'dgrid_classname', 'show', 'column_position', 'dgrid_editable', 'dgrid_sortable', 'dgrid_editon', 'dgrid_resizable', 'dgrid_editor', 'dgrid_editor_args']}, UrlExport:'',  target: '/njs/db/table/udc_columns', initialQuery: {}, refreshOnTableChanged: ['udc_columns'], Title:'YYYYYYYYYYYYYYYYYYYYYY', table: 'udc_columns', idProperty: 'idcolumn', rowFingerPrint: 'footprint_row'"></div>
 
-
+ </div>
 </div>
-
-
-
-      <div class="col-md-4 col-sm-4 col-xs-12 col-xl-4">
-        <div data-dojo-type="uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TTableView" data-dojo-props="uDCColumns:{target: '/njs/db/dgrid_table_structure', fields: ['title_dgrid', 'row_selector_dgrid', 'tv_name', 'dgrid_selectionmode', 'dgrid_allowtextselection', 'dgrid_deselectonrefresh']}, UrlExport:'',  target: '/njs/db/table/udc_tables_views', initialQuery: {}, refreshOnTableChanged: ['udc_tables_views'], Title:'XXXXXXXXXXXXXXXXXXX', table: 'udc_tables_views', idProperty: 'idtableview', rowFingerPrint: 'footprint_row'"></div>
-      </div>
-
-      <span style="display: none;">
-
-</span>
-
-      <!-- -->
-
-
-
-
-      <!-- -->
-      <div class="col-md-8 col-sm-8 col-xs-12 col-xl-8">
-        <div data-dojo-type="uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TTableColumns" data-dojo-props="uDCColumns:{target: '/njs/db/dgrid_table_structure', fields: ['column_name', 'data_type', 'column_default', 'column_label', 'column_width', 'dgrid_rendercell', 'dgrid_formatter', 'dgrid_classname', 'show', 'column_position', 'dgrid_editable', 'dgrid_sortable', 'dgrid_editon', 'dgrid_resizable', 'dgrid_editor', 'dgrid_editor_args']}, UrlExport:'',  target: '/njs/db/table/udc_columns', initialQuery: {}, refreshOnTableChanged: ['udc_columns'], Title:'YYYYYYYYYYYYYYYYYYYYYY', table: 'udc_columns', idProperty: 'idcolumn', rowFingerPrint: 'footprint_row'"></div>
-      </div>
-
-
-
-
-
-
-
-
-
-</div>
-
 
 
 </div>
