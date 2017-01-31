@@ -14,8 +14,7 @@ require(["dojo/ready",
 	"Geolocations/Geolocations", 
 	"Widget/app_account/app_account",
 	"Widget/app_tables_views_config/app_tables_views_config",
-  "Widget/app_events_open_admin/app_events_open_admin",
-  "Widget/app_callcenter/app_callcenter"
+  "Widget/app_events_open_admin/app_events_open_admin"
   ], function(ready, 
     cookie,
     EventServerIO,
@@ -32,8 +31,7 @@ require(["dojo/ready",
     app_geolocations, 
     app_account,
     app_tables_views_config,
-    app_events_open_admin,
-    app_callcenter
+    app_events_open_admin
     ){
     ready(function(){
 
@@ -72,7 +70,7 @@ require(["dojo/ready",
        OpenApp(app_events_open_admin);
        break;  
        case 'MenuCallCenter':
-       OpenApp(app_callcenter);
+      // OpenApp(app_callcenter);
        break;    				
      }
    }); 
