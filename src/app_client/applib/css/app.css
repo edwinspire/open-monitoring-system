@@ -57,15 +57,15 @@ legend{
 }
 
 .BarHeader{
-height: 30px;
-width: 100%;
-color: white;
-font-weight: bold;
-text-transform: uppercase;
-background: -moz-linear-gradient(left, rgba(33,150,243,1) 0%, rgba(33,150,243,0.56) 44%, rgba(125,185,232,0) 100%);
-background: -webkit-linear-gradient(left, rgba(33,150,243,1) 0%,rgba(33,150,243,0.56) 44%,rgba(125,185,232,0) 100%);
-background: linear-gradient(to right, rgba(33,150,243,1) 0%,rgba(33,150,243,0.56) 44%,rgba(125,185,232,0) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2196f3', endColorstr='#007db9e8',GradientType=1 );
+  height: 30px;
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: -moz-linear-gradient(left, rgba(33,150,243,1) 0%, rgba(33,150,243,0.56) 44%, rgba(125,185,232,0) 100%);
+  background: -webkit-linear-gradient(left, rgba(33,150,243,1) 0%,rgba(33,150,243,0.56) 44%,rgba(125,185,232,0) 100%);
+  background: linear-gradient(to right, rgba(33,150,243,1) 0%,rgba(33,150,243,0.56) 44%,rgba(125,185,232,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2196f3', endColorstr='#007db9e8',GradientType=1 );
 }
 
 .ToolBarTitle{
@@ -76,8 +76,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2196f3', end
 
 .TitleHeader{
   display: inline-flex;
-    position: relative;
-    top: -7px;
+  position: relative;
+  top: -7px;
+  color: white;
+}
+
+.ContentWidgets{
+  /* Firefox */
+  height: -moz-calc(100% - 30px);
+  /* WebKit */
+  height: -webkit-calc(100% - 30px);
+  /* Opera */
+  height: -o-calc(100% - 30px);
+  /* Standard */
+  height: calc(100% - 30px);
+  background: #F5F5F5;
 }
 
 .SeparatorHorizontal{

@@ -13,74 +13,79 @@ require(["dojo/ready",
 	"Widget/app_monitor_network_devices/app_monitor_network_devices", 
 	"Geolocations/Geolocations", 
 	"Widget/app_account/app_account",
-	"Widget/app_tables_views_config/app_tables_views_config"
-	], function(ready, 
-		cookie,
-		EventServerIO,
-		UserNotifications, 
-		on,
-		domConstruct, 
-		app_monitor_general, 
-		app_lista_precios_promo_eco, 
-		app_lista_precios_promo_medi, 
-		app_lista_precios_pnatural, 
-		app_lista_precios_eco, 
-		app_lista_precios_medi, 
-		app_monitor_network_devices, 
-		app_geolocations, 
-		app_account,
-		app_tables_views_config
-		){
-		ready(function(){
+	"Widget/app_tables_views_config/app_tables_views_config",
+  "Widget/app_events_open_admin/app_events_open_admin"
+  ], function(ready, 
+    cookie,
+    EventServerIO,
+    UserNotifications, 
+    on,
+    domConstruct, 
+    app_monitor_general, 
+    app_lista_precios_promo_eco, 
+    app_lista_precios_promo_medi, 
+    app_lista_precios_pnatural, 
+    app_lista_precios_eco, 
+    app_lista_precios_medi, 
+    app_monitor_network_devices, 
+    app_geolocations, 
+    app_account,
+    app_tables_views_config,
+    app_events_open_admin
+    ){
+    ready(function(){
 
 
 
-			var PageContent = dijit.byId('PageContent');
-			var Mainmenu = dijit.byId("MainMenu");
-			Mainmenu.on("clickitem", function(e){
-				console.debug(e);
-				switch(e){
-					case 'monitoreo_general':
-					OpenApp(app_monitor_general);
-					break;
-					case 'monitoreo_equipos_red':
-					OpenApp(app_monitor_network_devices);
-					break;
-					case 'GeneralEmpresaAbonados':
-					OpenApp(app_account);
-					break;
-					case 'MenuUtilListaPrecioMedi':
-					OpenApp(app_lista_precios_medi);
-					break;					
-					case 'MenuUtilListaPrecioEco':
-					OpenApp(app_lista_precios_eco);
-					break;					
-					case 'MenuAdminViewTables':
-					OpenApp(app_tables_views_config);
-					break;					
-					case 'MenuUtilListaPrecioMediPromo':
-					OpenApp(app_lista_precios_promo_medi);
-					break;					
-					case 'MenuUtilListaPrecioEcoPromo':
-					OpenApp(app_lista_precios_promo_eco);
-					break;					
-				}
-			}); 
+     var PageContent = dijit.byId('PageContent');
+     var Mainmenu = dijit.byId("MainMenu");
+     Mainmenu.on("clickitem", function(e){
+      console.debug(e);
+      switch(e){
+       case 'monitoreo_general':
+       OpenApp(app_monitor_general);
+       break;
+       case 'monitoreo_equipos_red':
+       OpenApp(app_monitor_network_devices);
+       break;
+       case 'GeneralEmpresaAbonados':
+       OpenApp(app_account);
+       break;
+       case 'MenuUtilListaPrecioMedi':
+       OpenApp(app_lista_precios_medi);
+       break;					
+       case 'MenuUtilListaPrecioEco':
+       OpenApp(app_lista_precios_eco);
+       break;					
+       case 'MenuAdminViewTables':
+       OpenApp(app_tables_views_config);
+       break;					
+       case 'MenuUtilListaPrecioMediPromo':
+       OpenApp(app_lista_precios_promo_medi);
+       break;					
+       case 'MenuUtilListaPrecioEcoPromo':
+       OpenApp(app_lista_precios_promo_eco);
+       break;	
+       case 'MenuEventsAll':
+       OpenApp(app_events_open_admin);
+       break;    				
+     }
+   }); 
 
-			var menuVisible = true;
+     var menuVisible = true;
 
-			on(dojo.byId("ToogleMenu"), "click", function(e){
+     on(dojo.byId("ToogleMenu"), "click", function(e){
       //Mainmenu.visible = !Mainmenu.visible;
       menuVisible = !menuVisible;
       Mainmenu.isVisible(menuVisible);
-  });
+    });
 
 
 
 
 
-			var ESIO = new EventServerIO();
-			var NOTIF = new UserNotifications();
+     var ESIO = new EventServerIO();
+     var NOTIF = new UserNotifications();
 
 /*
 
@@ -175,4 +180,4 @@ function OpenApp(appClass){
 
 
 });
-	});
+  });
