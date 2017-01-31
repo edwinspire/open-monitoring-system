@@ -14,7 +14,7 @@ require(["dojo/ready",
 	"Geolocations/Geolocations", 
 	"Widget/app_account/app_account",
 	"Widget/app_tables_views_config/app_tables_views_config",
-  "Widget/app_events_open_admin/app_events_open_admin"
+  "Widget/app_events_open_admin/app_events_open_admin",
   "Widget/app_callcenter/app_callcenter"
   ], function(ready, 
     cookie,
@@ -71,7 +71,7 @@ require(["dojo/ready",
        case 'MenuEventsAll':
        OpenApp(app_events_open_admin);
        break;  
-              case 'MenuCallCenter':
+       case 'MenuCallCenter':
        OpenApp(app_callcenter);
        break;    				
      }
