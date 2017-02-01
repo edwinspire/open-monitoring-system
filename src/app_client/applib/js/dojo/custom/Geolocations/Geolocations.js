@@ -1,7 +1,7 @@
 define(['dojo/_base/declare',
     'dijit/_Widget',
     'dijit/_Templated',
-    'dojo/text!Geolocations/Geolocations.html',
+    'dojo/text!Widget/Geolocations/Geolocations.html',
     "dojo/dom-style",
     "dojo/window",
     "dojo/on"
@@ -13,14 +13,13 @@ define(['dojo/_base/declare',
             postCreate: function () {
                 var t = this;
 
-                var t = this;
-                t.CollapseLink.set('contentelement', t.XContent);
+                // t.CollapseLink.set('contentelement', t.XContent);
 
-                on(t.CollapseLink, 'click', function(){
-                    domStyle.set(t.MapIframe, 'height', w.getBox().h-120+'px');
-                });
+                // on(t.CollapseLink, 'click', function(){
+                //     domStyle.set(t.MapIframe, 'height', w.getBox().h-120+'px');
+                // });
 
-                domStyle.set(t.XContent, 'height', w.getBox().h-120+'px');
+                domStyle.set(t.domNode, 'height', w.getBox().h-120+'px');
                 this.MapIframe.src = "map.html?maptype=all_contacts";
 
             }

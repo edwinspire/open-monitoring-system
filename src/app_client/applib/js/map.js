@@ -5,7 +5,8 @@ require(["dojo/ready",
 'dojo/on',
 "dojo/_base/window",
 "dojo/keys",
-"dojo/_base/array"
+"dojo/_base/array",
+"dojo/_base/array",
 ], function (ready,  domAttr, TTD, PopUp, on, win, keys, array) {
     ready(function () {
 
@@ -56,12 +57,12 @@ PopUp.close(TooltipPoint);
       
 var Styles = {};
  
-Styles['Eco'] = CreateStyle('images/eco.png');
-Styles['Medi'] = CreateStyle('images/medi.png');
-Styles['PAF'] = CreateStyle('images/paf.png');
-Styles['DIFARMES'] = CreateStyle('images/difarmes.png');
-Styles['PNatural'] = CreateStyle('images/pnatural.png');
-Styles['Default'] = CreateStyle('images/default.png');                                                                
+Styles['Eco'] = CreateStyle('applib/images/eco.png');
+Styles['Medi'] = CreateStyle('applib/images/medi.png');
+Styles['PAF'] = CreateStyle('applib/images/paf.png');
+Styles['DIFARMES'] = CreateStyle('applib/images/difarmes.png');
+Styles['PNatural'] = CreateStyle('applib/images/pnatural.png');
+Styles['Default'] = CreateStyle('applib/images/default.png');                                                                
       
 
 

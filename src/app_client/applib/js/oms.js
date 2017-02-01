@@ -11,7 +11,7 @@ require(["dojo/ready",
 	"Widget/app_lista_precios_eco/app_lista_precios_eco", 
 	"Widget/app_lista_precios_medi/app_lista_precios_medi", 
 	"Widget/app_monitor_network_devices/app_monitor_network_devices", 
-	"Geolocations/Geolocations", 
+	"Widget/Geolocations/Geolocations", 
 	"Widget/app_account/app_account",
 	"Widget/app_tables_views_config/app_tables_views_config",
   "Widget/app_events_open_admin/app_events_open_admin"
@@ -69,8 +69,8 @@ require(["dojo/ready",
        case 'MenuEventsAll':
        OpenApp(app_events_open_admin);
        break;  
-       case 'MenuCallCenter':
-      // OpenApp(app_callcenter);
+       case 'GeneralEmpresaGeolocalizacion':
+       OpenApp(app_geolocations);
        break;    				
      }
    }); 
