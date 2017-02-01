@@ -27,8 +27,6 @@ define(['dojo/_base/declare',
         postCreate: function () {
             var t = this;
             
-console.log(t.Cumple);
-
             t.uDC.on('onSelect', function(e){
                 t.TGroups.set('groups', e.data.iddivision, e.data.groups);                            
             });

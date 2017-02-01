@@ -102,10 +102,10 @@ t.TabMaster.watch("selectedChildWidget", function(name, oval, nval){
 // });	            
 
 
-// on(t.Save, 'click', function () {
-//   console.log('Se hecho click en guardar');
-//   t.Basic.Update();
-// });
+on(t.Save, 'click', function () {
+  console.log('Se hecho click en guardar');
+  t.Basic.Update();
+});
 
 
 // on(t.NewAccount, 'click', function (e) {
@@ -159,11 +159,11 @@ t.SelectAccounts.on('Change', function (e) {
    t.Basic.set("idaccount", idaccount);
 
 
- t.ContactsUsers.set('idaccount', idaccount);
- t.Equipments.set('idaccount', idaccount);
- t.EventsIsOpen.set('idaccount', idaccount);
-// t._disable_element(t.ContentForms, false);
-}else{
+   t.ContactsUsers.set('idaccount', idaccount);
+   t.Equipments.set('idaccount', idaccount);
+   t.EventsIsOpen.set('idaccount', idaccount);
+
+ }else{
   t._disable_element(t.ContentForms, true);
   t._notifications({ Urgency: 10, Message: 'No ha seleccionado un registro correcto', Title: 'Selección Incorrecta' });
 

@@ -36,99 +36,98 @@
  	 	 * @property {string}  nodeContainer - Id del contenedor donde se buscaran los campos que tengan el selectorClass 	 	 
  	 	 * @property {string}  selectorClass - Selector CSS para buscar los campos que van a pertenecer a este uDC
  	 	 * @property {string}  targetFieldtypes - Url de donde se obtendran los tipos de datos de cada campo
-     */
+      */
 
-     postCreate: function () {
-      this.targetFieldtypes = "/njs/db/uDCFieldTypes";
-//        this.inherited(arguments);
-var t = this;
-t._store = new Memory({ data: null, idProperty: 'namefield'});
+      postCreate: function () {
+        this.targetFieldtypes = "/njs/db/uDCFieldTypes";
+        var t = this;
+        t._store = new Memory({ data: null, idProperty: 'namefield'});
 
-t._Build();
-},
-_HiddenFieldCreate: function (_name, _data_type) {
-  var t = this;
-  var r = { name: _name, value: '', type: 'HiddenField' }; 
+        t._Build();
+      },
+      _HiddenFieldCreate: function (_name, _data_type) {
+        var t = this;
+        var r = { name: _name, value: '', type: 'HiddenField' }; 
 
-  t._store.put({node: r, namefield: r.name, value: null, isvalid: false, send: false, changed: false, type: _data_type});
+        t._store.put({node: r, namefield: r.name, value: null, isvalid: false, send: false, changed: false, type: _data_type});
 
-  r.get = function (v) {
-   var g = null;
-   switch (v) {
-    case 'name':
-    g = this.name;
-    break;
-    case 'value':
-    g = this.value;
-    break;
-  }
-  return g;
-}
+        r.get = function (v) {
+         var g = null;
+         switch (v) {
+          case 'name':
+          g = this.name;
+          break;
+          case 'value':
+          g = this.value;
+          break;
+        }
+        return g;
+      }
 
-r.set = function (_p, _v, _noeventchanged) {
+      r.set = function (_p, _v, _noeventchanged) {
 
- switch (_p) {
-  case 'name':
-  this.name = _v;
-  break;
-  case 'value':
-  this.value = _v;
+       switch (_p) {
+        case 'name':
+        this.name = _v;
+        break;
+        case 'value':
+        this.value = _v;
 
-  _noeventchanged = _noeventchanged || true;
+        _noeventchanged = _noeventchanged || true;
 
-  var sf = t._store.get(this.name);
+        var sf = t._store.get(this.name);
 
-  if (_noeventchanged) {
+        if (_noeventchanged) {
 
-    sf.changed = true;
-    sf.isvalid = true;
-    sf.send = true;
-    sf.value = _v;
+          sf.changed = true;
+          sf.isvalid = true;
+          sf.send = true;
+          sf.value = _v;
+
+        }else{
+          sf.changed = false;
+        }
+
+        t._store.put(sf);
+
+        break;
+      }
+    };
+
+    r.isValid = function () { return true; }
+    r.reset = function(){console.debug('No esta implementado el reset en campos ocultos uDC');}
+
+    return r;
+  },
+  setField: function (_field, _value, _noeventchanged) {
+   var t = this;
+   var name;
+   var value;
+   var f = t._store.get(_field);
+
+
+   if(f){
+     _noeventchanged = _noeventchanged || true;
+
+     try{
+       value = t._value_pg_to_field(_field, _value);
+     }catch(e){
+       console.warn(e);
+     }
+
+     try { 
+
+       f.node.set('value', value, _noeventchanged);
+
+     } catch (e) {
+      console.error(t.table, _field, f, e);
+    }
 
   }else{
-    sf.changed = false;
+    console.error('No se pudo obtener el campos '+_field+' usando la tabla '+t.table);
   }
 
-  t._store.put(sf);
-
-  break;
-}
-};
-
-r.isValid = function () { return true; }
-r.reset = function(){console.debug('No esta implementado el reset en campos ocultos uDC');}
-
-return r;
-},
-setField: function (_field, _value, _noeventchanged) {
- var t = this;
- var name;
- var value;
- var f = t._store.get(_field);
-
-
-if(f){
- _noeventchanged = _noeventchanged || true;
-
- try{
-   value = t._value_pg_to_field(_field, _value);
- }catch(e){
-   console.warn(e);
- }
-
- try { 
-  
-   f.node.set('value', value, _noeventchanged);
-
- } catch (e) {
-  console.error(t.table, _field, f, e);
-}
-
-}else{
-console.error('No se pudo obtener el campos '+_field+' usando la tabla '+t.table);
-}
-
-return this;
+  return this;
 },
 getField: function(_field){
 
@@ -154,35 +153,30 @@ _BindFields: function (_fieldTypes) {
 
   t.startup();
 
-//            var r = false;
-var storeFielTypes = new Memory({ data: _fieldTypes, idProperty: 'field'});
+  var storeFielTypes = new Memory({ data: _fieldTypes, idProperty: 'field'});
+
+  if (Array.isArray(t.hiddenFields)) {
+   array.forEach(t.hiddenFields, function (item, i) {
+
+    try{
+      t._HiddenFieldCreate(item.name, storeFielTypes.get(item.name).data_type);
+    }catch(e){
+      console.warn(e, t.target, t.table);
+    }
+
+  });
+ }else{
+   console.log('No hay campos ocultos / internos');
+ }
 
 
-if (Array.isArray(t.hiddenFields)) {
- array.forEach(t.hiddenFields, function (item, i) {
+ var f = [];
+ var ft = "";
 
-  try{
-    t._HiddenFieldCreate(item.name, storeFielTypes.get(item.name).data_type);
-  }catch(e){
-    console.warn(e, t.target, t.table);
-  }
+ var name;
 
-});
-}else{
- console.log('No hay campos ocultos / internos');
-}
+  t.getDescendants().forEach(function (node, i) {
 
-
-var f = [];
-var ft = "";
-
-var name;
-
- //console.debug(t.getDescendants());
-
- t.getDescendants().forEach(function (node, i) {
-
-  //var d = Registry.byNode(node);
   var d = node;
 
   if (d) {
@@ -222,7 +216,7 @@ var name;
 
 });
 
-
+console.debug(t._store);
 
  r = true;
  
@@ -701,7 +695,7 @@ _notifications: function (_args) {
 
           }else{
 
-console.warn('Faltan parametros, Table: '+t.table+' Target: '+t.targetFieldtypes);
+            console.warn('Faltan parametros, Table: '+t.table+' Target: '+t.targetFieldtypes);
 //console.trace('No ha definido parametros para buscar los tipos de datos', t.targetFieldtypes, t.table);
 deferred = new Deferred();
 deferred.resolve([]);
