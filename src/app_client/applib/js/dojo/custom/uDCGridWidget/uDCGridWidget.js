@@ -13,7 +13,6 @@ define(['dojo/_base/declare',
   'dstore/Memory',
   'dstore/Trackable',
   "dijit/form/TextBox",
-  "Widget/uDC/uDC",
   "dijit/ToolbarSeparator",
   "dijit/form/NumberSpinner",
   "dijit/ConfirmTooltipDialog",
@@ -77,12 +76,10 @@ define(['dojo/_base/declare',
 
 
       t.CTTDialogNew.on('Execute', function(e){
-        console.debug(e);
         t.emit('addok', e);
       });
 
       t.CTTDialogNew.on('Cancel', function(e){
-        console.debug(e);
         t.emit('addcancel', e);
       });
 
@@ -171,76 +168,76 @@ define(['dojo/_base/declare',
          t.Grid = null;
 
        },     
-       _setFormnewrowAttr: function (_node, _udc_class, _title) {
-         var t = this;
-         console.log(_node);
-         if (_title) {
-          t.DialogNew.set('title', _title);
-        }
-        t.uDC.set('config', { SelectorClass: _udc_class, NodeContainer: t.DialogNew.domNode });
-        domConstruct.place(_node, t.DialogNewContent, "replace");
-        return this;
-      },
+      //  _setFormnewrowAttr: function (_node, _udc_class, _title) {
+      //    var t = this;
+      //    console.log(_node);
+      //    if (_title) {
+      //     t.DialogNew.set('title', _title);
+      //   }
+      //   t.uDC.set('config', { SelectorClass: _udc_class, NodeContainer: t.DialogNew.domNode });
+      //   domConstruct.place(_node, t.DialogNewContent, "replace");
+      //   return this;
+      // },
       _create_grid: function () {
 
       	var t = this;
 
       	domConstruct.empty(t.Contenedor);
 
-console.log(t.target);
+        console.log(t.target);
 
 
-      	t.Grid = new uDCGrid({
-      		target: t.target,
-      		selectionMode: "none",
-      		refreshOnTableChanged: t.refreshOnTableChanged,
-      		initialQuery: t.initialQuery,
-      		uDCColumns: t.uDCColumns,
-      		table: t.table,
-      		rowFingerPrint: t.rowFingerPrint,
-      		idProperty: t.idProperty
+        t.Grid = new uDCGrid({
+          target: t.target,
+          selectionMode: "none",
+          refreshOnTableChanged: t.refreshOnTableChanged,
+          initialQuery: t.initialQuery,
+          uDCColumns: t.uDCColumns,
+          table: t.table,
+          rowFingerPrint: t.rowFingerPrint,
+          idProperty: t.idProperty
 
-      	}, t.Contenedor);
-
-
-      	t.Grid.startup();
+        }, t.Contenedor);
 
 
-      	on(t.Grid, 'dgrid-set-properties', function (event) {
-
-      		t.set('titlegrid', event.properties.title_dgrid);
-
-      		setTimeout(function(){
-      			t.resize();
-      		}, 2000);
-      	});
+        t.Grid.startup();
 
 
-      	t.Grid.on('dgrid-error', function (event) {
+        on(t.Grid, 'dgrid-set-properties', function (event) {
 
-      		console.error(event);
-      	});
+          t.set('titlegrid', event.properties.title_dgrid);
 
-      	t.Grid.on('dgrid-refresh-complete', function (event) {
-
-      		domStyle.set(t.Contenedor, 'height', w.getBox().h-120+'px');
-
-      	});
+          setTimeout(function(){
+           t.resize();
+         }, 2000);
+        });
 
 
+        t.Grid.on('dgrid-error', function (event) {
 
-      	t.Grid.on('dgrid-select', function (event) {
+          console.error(event);
+        });
 
-      	});
+        t.Grid.on('dgrid-refresh-complete', function (event) {
+
+          domStyle.set(t.Contenedor, 'height', w.getBox().h-120+'px');
+
+        });
 
 
-      	t.Grid.on('.dgrid-row:click', function (e) {
 
-      		var row = t.Grid.row(e);
-      		console.debug('Row clicked:', row);
-      		t.emit('ClickRow', row.data);
+        t.Grid.on('dgrid-select', function (event) {
 
-      	});
+        });
+
+
+        t.Grid.on('.dgrid-row:click', function (e) {
+
+          var row = t.Grid.row(e);
+          console.debug('Row clicked:', row);
+          t.emit('ClickRow', row.data);
+
+        });
 
 
 

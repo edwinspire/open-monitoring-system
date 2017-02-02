@@ -36,98 +36,101 @@
  	 	 * @property {string}  nodeContainer - Id del contenedor donde se buscaran los campos que tengan el selectorClass 	 	 
  	 	 * @property {string}  selectorClass - Selector CSS para buscar los campos que van a pertenecer a este uDC
  	 	 * @property {string}  targetFieldtypes - Url de donde se obtendran los tipos de datos de cada campo
-      */
+     */
 
-      postCreate: function () {
-        this.targetFieldtypes = "/njs/db/uDCFieldTypes";
-        var t = this;
-        t._store = new Memory({ data: null, idProperty: 'namefield'});
+     postCreate: function () {
+      this.targetFieldtypes = "/njs/db/uDCFieldTypes";
+      var t = this;
+      t._store = new Memory({ data: null, idProperty: 'namefield'});
 
-        t._Build();
-      },
-      _HiddenFieldCreate: function (_name, _data_type) {
-        var t = this;
-        var r = { name: _name, value: '', type: 'HiddenField' }; 
+      t._Build();
+    },
+    _HiddenFieldCreate: function (_name, _data_type) {
+      var t = this;
+      var r = { name: _name, value: '', type: 'HiddenField' }; 
 
-        t._store.put({node: r, namefield: r.name, value: null, isvalid: false, send: false, changed: false, type: _data_type});
+      t._store.put({node: r, namefield: r.name, value: null, isvalid: false, send: false, changed: false, type: _data_type});
 
-        r.get = function (v) {
-         var g = null;
-         switch (v) {
-          case 'name':
-          g = this.name;
-          break;
-          case 'value':
-          g = this.value;
-          break;
-        }
-        return g;
-      }
-
-      r.set = function (_p, _v, _noeventchanged) {
-
-       switch (_p) {
+      r.get = function (v) {
+       var g = null;
+       switch (v) {
         case 'name':
-        this.name = _v;
+        g = this.name;
         break;
         case 'value':
-        this.value = _v;
-
-        _noeventchanged = _noeventchanged || true;
-
-        var sf = t._store.get(this.name);
-
-        if (_noeventchanged) {
-
-          sf.changed = true;
-          sf.isvalid = true;
-          sf.send = true;
-          sf.value = _v;
-
-        }else{
-          sf.changed = false;
-        }
-
-        t._store.put(sf);
-
+        g = this.value;
         break;
       }
-    };
-
-    r.isValid = function () { return true; }
-    r.reset = function(){console.debug('No esta implementado el reset en campos ocultos uDC');}
-
-    return r;
-  },
-  setField: function (_field, _value, _noeventchanged) {
-   var t = this;
-   var name;
-   var value;
-   var f = t._store.get(_field);
-
-
-   if(f){
-     _noeventchanged = _noeventchanged || true;
-
-     try{
-       value = t._value_pg_to_field(_field, _value);
-     }catch(e){
-       console.warn(e);
-     }
-
-     try { 
-
-       f.node.set('value', value, _noeventchanged);
-
-     } catch (e) {
-      console.error(t.table, _field, f, e);
+      return g;
     }
 
-  }else{
-    console.error('No se pudo obtener el campos '+_field+' usando la tabla '+t.table);
+    r.set = function (_p, _v, _noeventchanged) {
+
+     switch (_p) {
+      case 'name':
+      this.name = _v;
+      break;
+      case 'value':
+      this.value = _v;
+
+      _noeventchanged = _noeventchanged || true;
+
+      var sf = t._store.get(this.name);
+
+      if (_noeventchanged) {
+
+        sf.changed = true;
+        sf.isvalid = true;
+        sf.send = true;
+        sf.value = _v;
+
+      }else{
+        sf.changed = false;
+      }
+
+      t._store.put(sf);
+
+      break;
+    }
+  };
+
+  r.isValid = function () { return true; }
+  r.reset = function(){console.debug('No esta implementado el reset en campos ocultos uDC');}
+
+  return r;
+},
+setField: function (_field, _value, _noeventchanged) {
+ var t = this;
+ var name;
+ var value;
+ var f = t._store.get(_field);
+ console.debug(_field, _value, f);
+
+ if(f){
+   _noeventchanged = _noeventchanged || true;
+
+   try{
+     value = t._value_pg_to_field(_field, _value);
+   }catch(e){
+     console.warn(e);
+   }
+
+   try { 
+
+     f.node.set('value', value, _noeventchanged);
+
+   } catch (e) {
+    console.error(t.table, _field, f, e);
   }
 
-  return this;
+}else{
+  console.error('No se pudo obtener el campos '+_field+' usando la tabla '+t.table);
+}
+
+return this;
+},
+_setFieldAttr: function (_field, _value, _noeventchanged) {
+  return this.setField(_field, _value, _noeventchanged);
 },
 getField: function(_field){
 
@@ -175,7 +178,7 @@ _BindFields: function (_fieldTypes) {
 
  var name;
 
-  t.getDescendants().forEach(function (node, i) {
+ t.getDescendants().forEach(function (node, i) {
 
   var d = node;
 
@@ -216,7 +219,7 @@ _BindFields: function (_fieldTypes) {
 
 });
 
-console.debug(t._store);
+ console.debug(t._store);
 
  r = true;
  
@@ -444,34 +447,34 @@ if (!_bind != 'undefined') {
         var row = t._store.get(name);
         row.changed = true;
 
-    //console.debug(name+' ha cambiado ', _w);
+        console.debug(name+' ha cambiado ', _w);
 
-    if (_w.isValid()) {
+        if (_w.isValid()) {
 
-     row.value = t._value_to_pg(row);
-     row.isvalid = true;
-     row.send = true;
-     row.msg = '';
+         row.value = t._value_to_pg(row);
+         row.isvalid = true;
+         row.send = true;
+         row.msg = '';
 
-   } else if (!this.attr("required")) {
+       } else if (!this.attr("required")) {
 
-     row.value = null;
-     row.isvalid = false;
-     row.send = false;
-     row.msg = '';
+         row.value = null;
+         row.isvalid = false;
+         row.send = false;
+         row.msg = '';
 
-   } else if (this.attr("required")) {
+       } else if (this.attr("required")) {
 
-    row.value = null;
-    row.isvalid = false;
-    row.send = true; 
-    row.msg = 'El campo '+name+' es requerido.';                   
+        row.value = null;
+        row.isvalid = false;
+        row.send = true; 
+        row.msg = 'El campo '+name+' es requerido.';                   
 
-  }
+      }
 
-  t._store.put(row);
+      t._store.put(row);
 
-})
+    })
 
        );
 

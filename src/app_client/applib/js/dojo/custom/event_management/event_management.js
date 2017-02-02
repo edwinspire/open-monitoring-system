@@ -40,7 +40,7 @@ t.EDetails.set('event', e);
 
      
          this.GridEvents.Grid.Select({idaccount: _v});
-         this.GridEvents.uDC.setField('idaccount', _v);   
+       //  this.GridEvents.uDC.setField('idaccount', _v);   
          this.SelectAccountUser.request({_uDCTable: 'view_account_contacts', idaccount: _v});
          this.SelectAccountEquipments.request({_uDCTable: 'equipments_by_account', idaccount: _v});
         //  this.TNetwork.uDC.set('field', 'idaccount', _v);

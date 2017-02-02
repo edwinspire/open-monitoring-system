@@ -11,7 +11,8 @@
   
 <span style="display: none;">
 
-    <div  data-dojo-type="Widget/uDC/uDC" id="${id}_fnne" data-dojo-props="hiddenFields: [{name: 'idaccount'}], target: '/njs/db/table/account_equipments', table: 'network_devices', idProperty: 'idaccount',  targetFieldtypes: '/njs/db/uDCFieldTypes'" style="max-width: 460px;" >
+  <span id="${id}_fnne" >
+  	  <div  data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCNewNetworkEquipment" data-dojo-props="hiddenFields: [{name: 'idaccount'}], target: '/njs/db/table/account_equipments', table: 'network_devices', idProperty: 'idaccount',  targetFieldtypes: '/njs/db/uDCFieldTypes'" style="max-width: 460px;">
 
      <fieldset>
       <legend>Equipo</legend>
@@ -69,6 +70,7 @@
 
 
   </div>
+  </span>
 
 </span>
 
