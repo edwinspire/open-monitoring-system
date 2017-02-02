@@ -3,7 +3,11 @@ define(['dojo/_base/declare',
   'dijit/_Templated',
   'dojo/text!Widget/account_events_management/account_events_management.html',
   "dojo/dom-class",
-  "dojo/on"
+  "dojo/on",
+  "Widget/EventDetails/EventDetails",
+  "Widget/uDCGridWidget/uDCGridWidget",
+  "FilteringSelectLiveStore/FilteringSelectLiveStore",
+  "dijit/form/Textarea"
   ], function (declare, _Widget, _Templated, templateString, domClass, on) {
 /**
      * Account Events is Open

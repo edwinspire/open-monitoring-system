@@ -50,77 +50,24 @@
 
   <div >
 
-    <div data-dojo-type="uDC/uDC" data-dojo-attach-point="uDCChangeStatus" data-dojo-props="hiddenFields: [{name: 'idevent'}], selectorClass: '.change_status_event', nodeContainer: '${id}_ChangeStatus', target: '/njs/db/table/account_events_comments', table: 'event_comments', idProperty: 'idevent',  targetFieldtypes: '/njs/db/uDCFieldTypes'"></div>
-
-    <fieldset id="${id}_ChangeStatus">
-      <legend>Cambiar Estado</legend>
+    <div data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCChangeStatus" data-dojo-props="hiddenFields: [{name: 'idevent'}], selectorClass: '.change_status_event', nodeContainer: '${id}_ChangeStatus', target: '/njs/db/table/account_events_comments', table: 'event_comments', idProperty: 'idevent',  targetFieldtypes: '/njs/db/uDCFieldTypes'"></div>
 
 
-
-      <span data-dojo-type="dijit/Toolbar">
-
-        <div data-dojo-type="dijit/form/DropDownButton" data-dojo-attach-point="Add" data-dojo-props="disabled:true">
-        <span>Comentario</span>
-          <div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Agregar Registro'">
-            <table>
-              <tr>
-                <td><label for="user">User:</label></td>
-                <td><input data-dojo-type="dijit/form/TextBox"></td>
-              </tr>
-              <tr>
-                <td><label for="pwd">Password:</label></td>
-                <td><input data-dojo-type="dijit/form/TextBox" type="password"></td>
-              </tr>
-            </table>
-          </div>
-        </div>  
-
-        <div data-dojo-type="dijit/form/DropDownButton" data-dojo-props="disabled:true">
-          <span>Eliminar Selección</span>
-          <div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Eliminar seleccionados'">
-            Realmente sea eliminar los registros seleccionados?
-          </div>
-        </div>  
-
-        <span data-dojo-type="dijit/ToolbarSeparator"></span>
-
-        <div data-dojo-type="dijit/form/DropDownButton" data-dojo-props="iconClass:'dijitEditorIconCreateLink'">
-          <span>Refresco</span>
-          <div data-dojo-type="dijit/DropDownMenu">
-            <div data-dojo-attach-point="RefreshAuto" data-dojo-type="dijit/RadioMenuItem" data-dojo-props="group: 'g1', checked:true">Automático</div>
-            <div data-dojo-attach-point="RefreshTempo" data-dojo-type="dijit/RadioMenuItem" data-dojo-props="group: 'g1'">Desactivar</div>
-
-          </div>
-        </div>
-
-      </span>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <div data-dojo-attach-point="ContainerChangeStatus" open="false" data-dojo-type="dijit/TitlePane" style="width: 100%; height: auto;" data-dojo-props="title: 'CAMBIAR ESTADO'">
 
       <div data-dojo-attach-point='SelectEventStatus' data-dojo-type="evenstatustype_user_buttons/evenstatustype_user_buttons" class="change_status_event" name="ideventstatustype"></div>          
 
-      <div style="display: none; width: 100%;" data-dojo-attach-point="ContentEditor">
+      
         <div data-dojo-attach-point="CommentField" data-dojo-type="dijit/Editor" class="change_status_event" name="comment_event"></div>
 
         <div style="padding: 3px;">
           <button type="button" data-dojo-attach-point="DialogCStatusOK" class="btn btn-default btn-xs">Aceptar</button>
           <button type="button" data-dojo-attach-point="DialogCStatusCancel" class="btn btn-default btn-xs">Cancelar</button>
         </div>      
-      </div>
+    
 
-    </fieldset>  
+    </div>
+
 
   </div>
 

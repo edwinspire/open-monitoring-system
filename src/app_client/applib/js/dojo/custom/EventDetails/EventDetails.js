@@ -17,7 +17,14 @@
     "dijit/ToolbarSeparator",
     "dijit/form/DropDownButton",
     "dijit/ConfirmTooltipDialog",
-    "dijit/form/TextBox"
+    "dijit/form/TextBox",
+    "dijit/TitlePane",
+    "Widget/uDC/uDC",
+    "dijit/Toolbar",
+    "dijit/form/DropDownButton",
+    "dijit/ConfirmTooltipDialog",
+    "dijit/form/TextBox",
+    "dijit/RadioMenuItem"
     ], function (declare, _Widget, _Templated, templateString, on, popup, domStyle, query) {
 
         return declare([_Widget, _Templated], {
