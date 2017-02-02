@@ -23,6 +23,9 @@ define(['dojo/_base/declare',
             t.uDCNewNetworkEquipment.Insert();
         });
 
+           t.TGeneral.on('addok', function(e){
+            t.uDCNewEquipment.Insert();
+        });
 
        },
        _setIdaccountAttr: function (_v) {
@@ -31,6 +34,8 @@ define(['dojo/_base/declare',
            this.TGeneral.Grid.Select({idaccount: _v});
            this.TNetwork.Grid.Select({idaccount: _v});
            this.uDCNewNetworkEquipment.set('field', 'idaccount', _v);
+           this.uDCNewEquipment.set('field', 'idaccount', _v);
+
        },
        _getValueAttr: function () {
          // return this.account_equipments.get('value');
