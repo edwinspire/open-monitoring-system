@@ -32,9 +32,9 @@ define(['dojo/_base/declare',
             });
 
             t.Division.on('Change', function(e){
-             console.log('Cambia la division', e, t.Division.get('value'));
-             t.TGroups.set('groups', t.Division.get('value'), []);                            
-         });
+               console.log('Cambia la division', e, t.Division.get('value'));
+               t.TGroups.set('groups', t.Division.get('value'), []);                            
+           });
 
 
 

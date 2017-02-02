@@ -3,111 +3,111 @@
 
 	<div data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDC" data-dojo-props="hiddenFields: [{name: 'idcontact'}], target: '/njs/db/table/accounts', table: 'accounts', idProperty: 'idcontact',  targetFieldtypes: '/njs/db/uDCFieldTypes'">
 		
-	<fieldset>
-		<legend >Habilitado</legend>
-		<div name="enabled"  data-dojo-type="dijit/form/CheckBox"  checked="false"></div> 
-	</fieldset>  
+		<fieldset>
+			<legend >Habilitado</legend>
+			<div name="enabled"  data-dojo-type="dijit/form/CheckBox"  checked="false"></div> 
+		</fieldset>  
 
 
-	<fieldset>
-		<legend>Account</legend>
-		<input data-dojo-type="dijit/form/ValidationTextBox"    placeholder="Abonado" required="true" value="" name="account"></input>
-	</fieldset>  
-	
-	
-	<fieldset>
-		<legend>Nombre</legend>
-		<input data-dojo-type="dijit/form/ValidationTextBox"  placeholder="Nombre" name="first_name"></input>        
-	</fieldset>  
+		<fieldset>
+			<legend>Account</legend>
+			<input data-dojo-type="dijit/form/ValidationTextBox"    placeholder="Abonado" required="true" value="" name="account"></input>
+		</fieldset>  
+		
+		
+		<fieldset>
+			<legend>Nombre</legend>
+			<input data-dojo-type="dijit/form/ValidationTextBox"  placeholder="Nombre" name="first_name"></input>        
+		</fieldset>  
 
-	
-	
-	<fieldset>
-		<legend>Apellido</legend>
-		<span data-dojo-type="dijit/form/ValidationTextBox" placeholder="Apellido" name="last_name" ></span>         
-	</fieldset>  
-	
+		
+		
+		<fieldset>
+			<legend>Apellido</legend>
+			<span data-dojo-type="dijit/form/ValidationTextBox" placeholder="Apellido" name="last_name" ></span>         
+		</fieldset>  
+		
 
-	<fieldset>
-		<legend>Cumpleanos</legend>
-		<input data-dojo-type="dijit/form/DateTextBox" name="birthday"></input>
-	</fieldset> 
-
-
-
-	<fieldset>
-		<legend >Tipe ID</legend>     
-		<div  name="ididtype" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['identification_types'], requestQuery: {_uDCTable: 'identification_types'}, identifier: 'ididtype', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'name'"></div>    
-	</fieldset>
-	
-	
-	<fieldset>
-		<legend>Identification</legend>
-		<span data-dojo-type="dijit/form/ValidationTextBox" placeholder="Identificación" name="identification" ></span>         
-	</fieldset>  
-	
-	
-	<fieldset>
-		<legend>Codigo Postal</legend>
-		<span data-dojo-type="dijit/form/ValidationTextBox" placeholder="Código postal" name="postal_code" ></span>          
-	</fieldset>  
-	
-	
-	<fieldset>
-		<legend>Genero</legend>
-		<div data-dojo-type="SelectGender/SelectGender"  name="gender"></div>
-	</fieldset>  
-	
-	
-	<fieldset>
-		<legend>Latitud</legend>
-		<span data-dojo-type="dijit/form/ValidationTextBox" placeholder="Latitud" value="0.0"  name="geox"></span>         
-	</fieldset>  
-	
-	
-	<fieldset>
-		<legend>Longitud</legend>
-		<span data-dojo-type="dijit/form/ValidationTextBox" placeholder="Longitud"  value="0.0"  name="geoy"></span>         
-	</fieldset>  
-	
-	
-
-	
-	<fieldset>
-		<legend>IdAccountState</legend>
-		<div  name="idaccountstate" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['account_states'], requestQuery: {_uDCTable: 'account_states'}, identifier: 'idaccountstate', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'state'"></div>                          
-	</fieldset>  
-	
+		<fieldset>
+			<legend>Cumpleanos</legend>
+			<input data-dojo-type="dijit/form/DateTextBox" name="birthday"></input>
+		</fieldset> 
 
 
 
-	<fieldset>
-		<legend>IdAccountType</legend>
-		<div  name="idaccounttype" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['account_types'], requestQuery: {_uDCTable: 'account_types'}, identifier: 'idaccounttype', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'type'"></div>    
-	</fieldset>  
+		<fieldset>
+			<legend >Tipe ID</legend>     
+			<div  name="ididtype" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['identification_types'], requestQuery: {_uDCTable: 'identification_types'}, identifier: 'ididtype', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'name'"></div>    
+		</fieldset>
+		
+		
+		<fieldset>
+			<legend>Identification</legend>
+			<span data-dojo-type="dijit/form/ValidationTextBox" placeholder="Identificación" name="identification" ></span>         
+		</fieldset>  
+		
+		
+		<fieldset>
+			<legend>Codigo Postal</legend>
+			<span data-dojo-type="dijit/form/ValidationTextBox" placeholder="Código postal" name="postal_code" ></span>          
+		</fieldset>  
+		
+		
+		<fieldset>
+			<legend>Genero</legend>
+			<div data-dojo-type="SelectGender/SelectGender"  name="gender"></div>
+		</fieldset>  
+		
+		
+		<fieldset>
+			<legend>Latitud</legend>
+			<span data-dojo-type="dijit/form/ValidationTextBox" placeholder="Latitud" value="0.0"  name="geox"></span>         
+		</fieldset>  
+		
+		
+		<fieldset>
+			<legend>Longitud</legend>
+			<span data-dojo-type="dijit/form/ValidationTextBox" placeholder="Longitud"  value="0.0"  name="geoy"></span>         
+		</fieldset>  
+		
+		
 
-	
-	<fieldset>
-		<legend>Fecha Inicio</legend>
-		<input  data-dojo-type="dijit/form/DateTextBox"  name="start_date"></input>
-	</fieldset> 
-
-	<fieldset>
-		<legend>Fecha Fin</legend>
-		<input data-dojo-type="dijit/form/DateTextBox"  name="end_date"></input>
-	</fieldset>                      
-	
-	
-	<fieldset>
-		<legend>Empresa</legend>
-		<div  name="iddivision" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['divisions'], requestQuery: {_uDCTable: 'divisions'}, identifier: 'iddivision', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'name'" data-dojo-attach-point="Division"></div>  
-	</fieldset> 
+		
+		<fieldset>
+			<legend>IdAccountState</legend>
+			<div  name="idaccountstate" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['account_states'], requestQuery: {_uDCTable: 'account_states'}, identifier: 'idaccountstate', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'state'"></div>                          
+		</fieldset>  
+		
 
 
-	<fieldset>
-		<legend>Grupos</legend>
-		<div data-dojo-type="ContactGroup/ContactGroup" class="input-group account_form_basic_class_udc" name="groups" data-dojo-attach-point="TGroups"></div>   
-	</fieldset>  
+
+		<fieldset>
+			<legend>IdAccountType</legend>
+			<div  name="idaccounttype" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['account_types'], requestQuery: {_uDCTable: 'account_types'}, identifier: 'idaccounttype', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'type'"></div>    
+		</fieldset>  
+
+		
+		<fieldset>
+			<legend>Fecha Inicio</legend>
+			<input  data-dojo-type="dijit/form/DateTextBox"  name="start_date"></input>
+		</fieldset> 
+
+		<fieldset>
+			<legend>Fecha Fin</legend>
+			<input data-dojo-type="dijit/form/DateTextBox"  name="end_date"></input>
+		</fieldset>                      
+		
+		
+		<fieldset>
+			<legend>Empresa</legend>
+			<div  name="iddivision" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['divisions'], requestQuery: {_uDCTable: 'divisions'}, identifier: 'iddivision', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'name'" data-dojo-attach-point="Division"></div>  
+		</fieldset> 
+
+
+		<fieldset>
+			<legend>Grupos</legend>
+			<div data-dojo-type="ContactGroup/ContactGroup" class="input-group account_form_basic_class_udc" name="groups" data-dojo-attach-point="TGroups"></div>   
+		</fieldset>  
 
 
 		<fieldset style="display: inherit;">
@@ -123,12 +123,12 @@
 
 
 
-	<fieldset style="display: inherit;">
-		<legend>Notas</legend>
-		<textarea data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;"   placeholder='Notas' name="note" ></textarea>
-	</fieldset>  
-	
-	
+		<fieldset style="display: inherit;">
+			<legend>Notas</legend>
+			<textarea data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;"   placeholder='Notas' name="note" ></textarea>
+		</fieldset>  
+		
+		
 
 
 	</div>

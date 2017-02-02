@@ -51,6 +51,7 @@ t.TabMaster.watch("selectedChildWidget", function(name, oval, nval){
 
 });
 
+
 // //t.SelectorPage.as_page();
 
 
@@ -108,14 +109,10 @@ on(t.Save, 'click', function () {
 });
 
 
-// on(t.NewAccount, 'click', function (e) {
+t.AddAccount.on('Execute', function(){
+  t.uDCNewAccount.Insert();
+});
 
-//  popup.open({
-//   popup: t.DTTNewAccount,
-//   around: t.NewAccount
-// });
-
-// });
 
 // on(t.DTTNewAccountOK, 'click', function(){
 // // Bloquear todos los campos y botones necesarios
@@ -140,7 +137,7 @@ on(t.Save, 'click', function () {
 
 
 t.Basic.uDC.on('onSelect', function(e){
- 
+
   var point = {center: true};
   point.geox = e.data.geox;
   point.geoy = e.data.geoy;

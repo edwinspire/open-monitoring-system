@@ -10,17 +10,59 @@
 
 				<div data-dojo-type="dijit/form/DropDownButton" data-dojo-props="iconClass:'dijitIconNewTask'">
 					<span>Agregar</span>
-					<div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-props="title:'Login'">
-						<table>
-							<tr>
-								<td><label for="user">User:</label></td>
-								<td><input data-dojo-type="dijit/form/TextBox"></td>
-							</tr>
-							<tr>
-								<td><label for="pwd">Password:</label></td>
-								<td><input data-dojo-type="dijit/form/TextBox" type="password"></td>
-							</tr>
-						</table>
+					<div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-attach-point="AddAccount" data-dojo-props="title:'Login'">
+
+						<div data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCNewAccount" data-dojo-props="hiddenFields: [], target: '/njs/db/table/accounts', table: 'accounts', targetFieldtypes: '/njs/db/uDCFieldTypes'">
+							
+							<fieldset>
+								<legend >Habilitado</legend>
+								<div name="enabled"  data-dojo-type="dijit/form/CheckBox"  checked="true"></div> 
+							</fieldset>  
+
+
+							<fieldset>
+								<legend>Account</legend>
+								<input data-dojo-type="dijit/form/ValidationTextBox"    placeholder="Abonado" required="true" value="" name="account"></input>
+							</fieldset>  
+							
+							
+							<fieldset>
+								<legend>Nombre</legend>
+								<input data-dojo-type="dijit/form/ValidationTextBox"  placeholder="Nombre" name="first_name"></input>        
+							</fieldset>  
+
+							
+							
+							<fieldset>
+								<legend>Apellido</legend>
+								<span data-dojo-type="dijit/form/ValidationTextBox" placeholder="Apellido" name="last_name" ></span>         
+							</fieldset>  
+							
+
+							<fieldset>
+								<legend >Tipe ID</legend>     
+								<div  name="ididtype" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['identification_types'], requestQuery: {_uDCTable: 'identification_types'}, identifier: 'ididtype', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'name'"></div>    
+							</fieldset>
+							
+							
+							<fieldset>
+								<legend>Identification</legend>
+								<span data-dojo-type="dijit/form/ValidationTextBox" placeholder="Identificación" name="identification" ></span>         
+							</fieldset>  
+							
+							
+							<fieldset>
+								<legend>Empresa</legend>
+								<div  name="iddivision" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['divisions'], requestQuery: {_uDCTable: 'divisions'}, identifier: 'iddivision', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'name'" data-dojo-attach-point="Division"></div>  
+							</fieldset> 
+
+
+							<fieldset style="display: inherit;">
+								<legend>Notas</legend>
+								<textarea data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;"   placeholder='Notas' name="note" ></textarea>
+							</fieldset>  
+						</div>
+
 					</div>
 				</div>  
 				<button data-dojo-type="dijit/form/Button" data-dojo-attach-point="Save" data-dojo-props="iconClass:'dijitIconSave'">Guardar</button>
