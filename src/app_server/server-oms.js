@@ -36,6 +36,7 @@
     "custom/postgres/udc_tables_columns",
     "custom/postgres/udc_table_groups",
     "custom/postgres/udc_table_account_events_isopen",
+    "custom/postgres/udc_table_events_isopen",
     "custom/postgres/udc_table_events",
     "custom/postgres/udc_account_events_comments"  
     ], function(request, on, array, crypto, http, sio, path, fs, url, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, XmppClient, Telegraf, pgOMS, MD5, sessionusers){
@@ -347,6 +348,9 @@ app.post("/njs/db/table/*", function(req, res){
         case "account_events_isopen":
         PostgreSQL.udc_table_account_events_isopen(req, res);
         break;
+        case "view_events_isopen":
+        PostgreSQL.udc_table_events_isopen(req, res);
+        break;        
         case "groups":
         PostgreSQL.udc_table_groups(req, res);
         break;

@@ -1,7 +1,7 @@
 define(['dojo/_base/declare',
     'dijit/_Widget',
     'dijit/_Templated',
-    'dojo/text!account_data/account_data.html',
+    'dojo/text!Widget/account_data/account_data.html',
     "dojo/on",
     "dijit/form/ValidationTextBox",
     "dijit/form/DateTextBox" ,

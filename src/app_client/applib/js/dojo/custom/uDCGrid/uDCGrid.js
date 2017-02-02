@@ -163,12 +163,12 @@ disabled: function(_disable){
 },
 Filter: function (searchTerm) {
 
-console.log('Filtar por: ' + searchTerm);
+  console.log('Filtar por: ' + searchTerm);
 
-    var t = this;
-    t._searchTerm = searchTerm;
+  var t = this;
+  t._searchTerm = searchTerm;
 
-    var setToMemory;
+  var setToMemory;
             // if the search is empty, "turn off" filter
             if (t._searchTerm === "") {
               setToMemory = t._GridStore;
@@ -188,25 +188,25 @@ console.log('Filtar por: ' + searchTerm);
                 setToMemory = t._GridStore.filter(mainFilter);
               }
 
-console.debug(setToMemory);
+              console.debug(setToMemory);
               t.set("collection", setToMemory);
             },
 
             Select: function (_data, _clear_grid_before) {
               var t = this;
              // console.log(_data, t.table);
-              _clear_grid_before = _clear_grid_before || false;
-              if(_clear_grid_before){
-                t.Clear();
-              }
+             _clear_grid_before = _clear_grid_before || false;
+             if(_clear_grid_before){
+              t.Clear();
+            }
 
-              if (_data) {
+            if (_data) {
 
-                if(t._enabledload){
+              if(t._enabledload){
 
-                  t._enabledload = false;
-                  t._waiting_select = false;
-                  t._last_select = _data;
+                t._enabledload = false;
+                t._waiting_select = false;
+                t._last_select = _data;
              //   console.log(t._enabledload, t.refreshMode);
              if (!(t.refreshMode == 2 || t.refreshMode == 3)) {
               return t.request(_data, "select_rows");
@@ -216,18 +216,18 @@ console.debug(setToMemory);
 
          }else{
         //  console.debug('Se pone un select en espera al momento no habilitado');
-          t._waiting_select = _data;
-        }
-
-      } else {
-        console.warn('La tabla requiere datos para hacer un select', _data, t._last_select);
+        t._waiting_select = _data;
       }
 
-      deferred = new Deferred();
-      deferred.resolve("success");
-      return deferred.promise;
+    } else {
+      console.warn('La tabla requiere datos para hacer un select', _data, t._last_select);
+    }
 
-    },
+    deferred = new Deferred();
+    deferred.resolve("success");
+    return deferred.promise;
+
+  },
         // Esta funcion es universal y sirve para enviar o recibir datos desde el servidor
         request: function (_param, _action) {
           var t = this;
@@ -257,44 +257,41 @@ if (t.target) {
                     switch (_action) {
                       case "update":
 
-//t.Clear();
-
-if (response.rowCount > 0) {
-  t.save();
-  t._notifications({ Urgency: 10, Message: 'Update ' + response.rowCount + ' row(s)', Title: 'Registro actualizado' });
-} else {
-  t.revert();
-//                                    t.Select(t._last_select);
-t._notifications({ Urgency: 2, Message: response.Error, Title: 'Registro no actualizado' });
-}
+                      if (response.rowCount > 0) {
+                        t.save();
+                        t._notifications({ Urgency: 10, Message: 'Update ' + response.rowCount + ' row(s)', Title: 'Registro actualizado' });
+                      } else {
+                        t.revert();
+                        t.Select(t._last_select);
+                        t._notifications({ Urgency: 2, Message: response.Error, Title: 'Registro no actualizado' });
+                      }
 
 
-break;
-case "select_rows":
-var myData = {
-  identifier: "unique_id", items: []
-};
+                      break;
+                      case "select_rows":
+                      var myData = {
+                        identifier: "unique_id", items: []
+                      };
 
-array.forEach(response, function (item, i) {
-  var item_temp = item;
-  item_temp.unique_id = i + 1;
-                                  //  console.debug(item_temp);
-                                  myData.items.push(item_temp);
-                                });
+                      array.forEach(response, function (item, i) {
+                        var item_temp = item;
+                        item_temp.unique_id = i + 1;
+                        myData.items.push(item_temp);
+                      });
 
-t._grid_setData(myData.items);
+                      t._grid_setData(myData.items);
 
-break;
-case "delete_rows":
+                      break;
+                      case "delete_rows":
 
-if (response.Delete > 0) {
-  t._notifications({ Urgency: 10, Message: 'Delete ' + response.Delete + ' row(s)', Title: 'Registro eliminado' });
-} else {
-  t._notifications({ Urgency: 2, Message: response.error, Title: 'Registro no eliminado' });
-}
+                      if (response.Delete > 0) {
+                        t._notifications({ Urgency: 10, Message: 'Delete ' + response.Delete + ' row(s)', Title: 'Registro eliminado' });
+                      } else {
+                        t._notifications({ Urgency: 2, Message: response.error, Title: 'Registro no eliminado' });
+                      }
 
-break;
-default:
+                      break;
+                      default:
                                 // t.emit('onresponseserver', response);
                                 break;
                               }
@@ -327,13 +324,13 @@ default:
 
 
 
-                       );
+                            );
 
                   r.then(function(){
-                //    domClass.replace(t.Refresh, "grid_icon_refresh_white", "grid_icon_refresh_blue grid_icon_refresh_green grid_icon_refresh_green grid_icon_refresh_yellow grid_icon_refresh_red");
-                t._enabledload = true;
-                switch(_action){
-                  case 'update':
+                    
+                    t._enabledload = true;
+                    switch(_action){
+                      case 'update':
                                        // t.revert();
                                        t.Select(t._last_select);
                                       //  t._notifications({ Urgency: 1, Message: 'Error '+error.response.data.data.code, Title: 'No se pudo actualizar' });
@@ -343,12 +340,12 @@ default:
                                      // t.resize();
                                      if(t._waiting_select){
                                      // console.debug('Select en espera va a procesarse '+t.table);
-                                      t.Select(t._waiting_select);
-                                    }
-                                    break;
-                                  }
+                                     t.Select(t._waiting_select);
+                                   }
+                                   break;
+                                 }
 
-                                });
+                               });
 
 
                 } else {
