@@ -51,7 +51,7 @@ define(['dojo/_base/declare',
 
 						b = b+'<input class="EventStatusTypeRadio" data-dojo-type="dijit/form/RadioButton" value="'+item.ideventstatustype+'" name="ideventstatustype">&nbsp;'+item.label_status+'&nbsp;&nbsp;';
 
-});
+          });
 
 					t.BlockButton.set('content', b);
 					t._clicks_handle_events = on(t.domNode, ".EventStatusTypeRadio:click", function(e){
@@ -74,8 +74,10 @@ define(['dojo/_base/declare',
 			_setValueAttr: function (_v, _emitChanged) {
 				var t = this;
 				t.value = String(_v);
+        console.debug(_v, t.value);
 
 				registry.getEnclosingWidget(query('[name=ideventstatustype][value='+t.value+']', t.domNode)[0]).set('checked', true);
+        on.emit(t.domNode, 'Change', {value: t.value});
 
 			},
 			_getValueAttr: function () {

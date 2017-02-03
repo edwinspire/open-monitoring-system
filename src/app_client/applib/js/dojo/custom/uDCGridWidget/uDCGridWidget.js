@@ -42,7 +42,7 @@ define(['dojo/_base/declare',
       t.startup();
 
       t.Search.on('Change', function (e) {
-       console.debug(e);
+       //console.debug(e);
        t.Grid.Filter(e);
      });
 
@@ -86,7 +86,7 @@ define(['dojo/_base/declare',
 
       on.once(t.Add, "Click", function(){
 
-        console.debug(dojo.byId(t.DialogAddContent), t.DialogAddContent);
+     //   console.debug(dojo.byId(t.DialogAddContent), t.DialogAddContent);
 
         if(t.DialogAddContent){
           dojo.place(dojo.byId(t.DialogAddContent), t.ContainerDialogNew, 'only');
@@ -234,7 +234,7 @@ define(['dojo/_base/declare',
         t.Grid.on('.dgrid-row:click', function (e) {
 
           var row = t.Grid.row(e);
-          console.debug('Row clicked:', row);
+        //  console.debug('Row clicked:', row);
           t.emit('ClickRow', row.data);
 
         });

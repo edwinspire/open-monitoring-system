@@ -40,10 +40,10 @@ on(t.DialogCStatusCancel, 'click', function (e) {
 });
 
 on(t.DialogCStatusOK, 'click', function (e) {
- t.uDCChangeStatus.Insert().then(function(){
-     t.uDCChangeStatus.Clear();
-     t.ContainerChangeStatus.set('open', false);
- }); 
+   t.uDCChangeStatus.Insert().then(function(){
+       t.uDCChangeStatus.Clear();
+       t.ContainerChangeStatus.set('open', false);
+   }); 
                   // popup.close(t.DialogChangeStatus);
               });
 
@@ -98,7 +98,6 @@ _set_and_hide_show_field: function(field, value){
 
     var t = this;
     query('.'+field, this.domNode).forEach(function(fielset){
-        console.debug(fielset);
 
         query('.value', fielset).forEach(function(f, i){
 

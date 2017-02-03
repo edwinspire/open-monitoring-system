@@ -188,7 +188,6 @@ Filter: function (searchTerm) {
                 setToMemory = t._GridStore.filter(mainFilter);
               }
 
-              console.debug(setToMemory);
               t.set("collection", setToMemory);
             },
 
@@ -241,13 +240,11 @@ Filter: function (searchTerm) {
           _data.UdcTable = t.table;
           _data.UdcIdProperty = t.idProperty;
 
-//console.log(t.target, _data);
+          if (t.target) {
 
-if (t.target) {
-
-  var r = request.post(t.target, {
-    data: _data,
-    preventCache: true,
+            var r = request.post(t.target, {
+              data: _data,
+              preventCache: true,
                     // Parse data from xml
                     handleAs: "json"
                   }
