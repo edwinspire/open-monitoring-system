@@ -24,8 +24,23 @@ define(['dojo/_base/declare',
       templateString: templateString,
       postCreate: function () {
        var t = this;
+
+       t.SelectAccounts.queryExpr = '*${0}*';
        t.SelectAccountEquipments.queryExpr = '*${0}*';
        t.SelectAccountUser.queryExpr = '*${0}*';
+
+       t.SelectAccounts.on('Change', function(e){
+        console.log(e);
+
+        t.SelectAccountUser.request({_uDCTable: 'view_account_contacts', idaccount: e});
+        t.SelectAccountEquipments.request({_uDCTable: 'equipments_by_account', idaccount: e});
+
+      });
+
+       t.GridEvents.on('addok', function(e){
+        t.uDCNewEvent.Insert();
+      });
+
        t.GridEvents.on('ClickRow', function(e){
         console.log(e);
         t.EDetails.set('event', e);

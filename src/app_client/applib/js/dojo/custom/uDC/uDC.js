@@ -179,13 +179,9 @@ _BindFields: function (_fieldTypes) {
 
  var name;
 
-// console.debug(t);
-
  t.getDescendants().forEach(function (node, i) {
 
-  var d = node;
-
-  console.debug(node);
+  var d = node; 
 
   if (d) {
    name = d.get('name');
@@ -224,9 +220,7 @@ _BindFields: function (_fieldTypes) {
 
 });
 
- console.debug(t._store);
-
- r = true;
+  r = true;
  
 
  return this;
