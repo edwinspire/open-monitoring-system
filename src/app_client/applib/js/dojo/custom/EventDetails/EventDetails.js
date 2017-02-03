@@ -10,7 +10,7 @@
     "dijit/popup",
     "dojo/dom-style",
     "dojo/query",
-    "evenstatustype_user_buttons/evenstatustype_user_buttons",
+    "Widget/evenstatustype_user_buttons/evenstatustype_user_buttons",
     "dijit/Editor" ,
     "Widget/uDCGridWidget/uDCGridWidget",
     "dijit/Toolbar",
