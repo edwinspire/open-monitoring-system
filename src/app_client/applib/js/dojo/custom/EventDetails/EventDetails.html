@@ -1,65 +1,66 @@
 <div>
 
-    <fieldset style="display: none;" style="display: none;" class="idevent">
-      <legend>IDEvento</legend>
-      <span class="value">-</span>         
-    </fieldset>  
+  <fieldset style="display: none;" style="display: none;" class="idevent">
+    <legend>IDEvento</legend>
+    <span class="value">-</span>         
+  </fieldset>  
 
 
-    <fieldset style="display: none;" class="dateevent">
-      <legend>Fecha</legend>
-      <span class="value">-</span>       
-    </fieldset>  
+  <fieldset style="display: none;" class="dateevent">
+    <legend>Fecha</legend>
+    <span class="value">-</span>       
+  </fieldset>  
 
-    <fieldset style="display: none;" class="priority">
-      <legend>Prioridad</legend>
-      <span  class="value">-</span>
-    </fieldset> 
-
-
-    <fieldset style="display: none;" class="status">
-      <legend>Estado</legend>
-      <span class="value">-</span>
-    </fieldset> 
-
-    <fieldset style="display: none;" class="equipment">
-      <legend>Equipo</legend>
-      <span class="value">-</span>
-    </fieldset> 
+  <fieldset style="display: none;" class="priority">
+    <legend>Prioridad</legend>
+    <span  class="value">-</span>
+  </fieldset> 
 
 
-    <fieldset style="display: none;" class="eventtype">
-      <legend>Tipo Evento</legend>
-      <span class="value">-</span>
-    </fieldset>  
+  <fieldset style="display: none;" class="status">
+    <legend>Estado</legend>
+    <span class="value">-</span>
+  </fieldset> 
+
+  <fieldset style="display: none;" class="equipment">
+    <legend>Equipo</legend>
+    <span class="value">-</span>
+  </fieldset> 
+
+
+  <fieldset style="display: none;" class="eventtype">
+    <legend>Tipo Evento</legend>
+    <span class="value">-</span>
+  </fieldset>  
 
 
 
 
-    <fieldset style="display: none; width: 90%" class="description WidthFull">
-      <legend>Descripción</legend>
-      <div class="value" ></div>
-    </fieldset>  
-    
+  <fieldset style="display: none; width: 90%" class="description WidthFull">
+    <legend>Descripción</legend>
+    <div class="value" ></div>
+  </fieldset>  
+
+
+  <div data-dojo-attach-point="ContainerChangeStatus" open="false" data-dojo-type="dijit/TitlePane" style="width: 100%; height: auto;" data-dojo-props="title: 'CAMBIAR ESTADO'">
+
     <div data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCChangeStatus" data-dojo-props="hiddenFields: [{name: 'idevent'}], target: '/njs/db/table/account_events_comments', table: 'event_comments', idProperty: 'idevent',  targetFieldtypes: '/njs/db/uDCFieldTypes'" doLayout="false">
-      
-    <div data-dojo-attach-point="ContainerChangeStatus" open="false" data-dojo-type="dijit/TitlePane" style="width: 100%; height: auto;" data-dojo-props="title: 'CAMBIAR ESTADO'">
 
       <div data-dojo-attach-point='SelectEventStatus' data-dojo-type="Widget/evenstatustype_user_buttons/evenstatustype_user_buttons"  name="ideventstatustype"></div>          
+      <div data-dojo-attach-point="CommentField" data-dojo-type="dijit/Editor" name="comment_event"></div>
 
-      
-        <div data-dojo-attach-point="CommentField" data-dojo-type="dijit/Editor" name="comment_event"></div>
+    </div>  
 
-        <div style="padding: 3px;">
-          <button type="button" data-dojo-attach-point="DialogCStatusOK" class="btn btn-default btn-xs">Aceptar</button>
-          <button type="button" data-dojo-attach-point="DialogCStatusCancel" class="btn btn-default btn-xs">Cancelar</button>
-        </div>      
-    
+    <div style="padding: 3px;">
+      <button type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="DialogCStatusOK" class="alt-primary" data-dojo-props="iconClass:'dijitIconSave'">Aceptar</button>
+      <button type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="DialogCStatusCancel" >Cancelar</button>
+    </div>    
 
-    </div>
+  </div>
 
 
-    </div>
+
+
 
 
 
