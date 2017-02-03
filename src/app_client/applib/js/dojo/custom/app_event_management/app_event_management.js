@@ -29,7 +29,7 @@ define(['dojo/_base/declare',
        t.GridEvents.on('ClickRow', function(e){
         console.log(e);
         t.EDetails.set('event', e);
-        t.AccountDetails.set(e.idaccount);
+        t.AccountDetails.set('idaccount', e.idaccount);
       });
 
 
