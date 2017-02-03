@@ -11,20 +11,18 @@
     "dojo/dom-style",
     "dojo/query",
     "Widget/evenstatustype_user_buttons/evenstatustype_user_buttons",
-    "dijit/Editor" ,
     "Widget/uDCGridWidget/uDCGridWidget",
+    "Widget/uDC/uDC",
     "dijit/Toolbar",
+    "dijit/Editor",
     "dijit/ToolbarSeparator",
     "dijit/form/DropDownButton",
     "dijit/ConfirmTooltipDialog",
     "dijit/form/TextBox",
     "dijit/TitlePane",
-    "Widget/uDC/uDC",
-    "dijit/Toolbar",
-    "dijit/form/DropDownButton",
     "dijit/ConfirmTooltipDialog",
     "dijit/form/TextBox",
-    "dijit/RadioMenuItem"
+    "dijit/layout/TabContainer"
     ], function (declare, _Widget, _Templated, templateString, on, popup, domStyle, query) {
 
         return declare([_Widget, _Templated], {
@@ -37,15 +35,15 @@
 
 //        t.CommentField.startup();
 
-                on(t.DialogCStatusCancel, 'click', function (e) {
-                    t.ContainerChangeStatus.set('open', false);
-                });
+on(t.DialogCStatusCancel, 'click', function (e) {
+    t.ContainerChangeStatus.set('open', false);
+});
 
-               on(t.DialogCStatusOK, 'click', function (e) {
-                 t.uDCChangeStatus.Insert().then(function(){
-                     t.uDCChangeStatus.Clear();
-                   t.ContainerChangeStatus.set('open', false);
-                 }); 
+on(t.DialogCStatusOK, 'click', function (e) {
+ t.uDCChangeStatus.Insert().then(function(){
+     t.uDCChangeStatus.Clear();
+     t.ContainerChangeStatus.set('open', false);
+ }); 
                   // popup.close(t.DialogChangeStatus);
               });
 
@@ -55,7 +53,7 @@
 
 
 
-           },
+},
 
         /**
  * Accept decimal input and return issue an error message.
@@ -134,7 +132,7 @@ Clear: function(){
 
 },
 resize: function(r){
-this.TEComments.resize(r);
+    this.TEComments.resize(r);
 }
 
 });

@@ -1,0 +1,24 @@
+	<div style="width: 100%; height: auto;">
+		<div data-dojo-type="dijit/layout/TabContainer" data-dojo-attach-point="TabMaster"  doLayout="false" style="width: 100%; height: auto;">
+			<div data-dojo-type="dijit/layout/ContentPane" title="Datos Generales" data-dojo-props="selected:true">
+				<div class="widgetMember" data-dojo-type="Widget/account_data/account_data" data-dojo-attach-point="Basic" data-label="Datos Basicos" data-selected="true"></div>
+			</div>
+			<div data-dojo-type="dijit/layout/ContentPane" title="Geolocalizacion">
+				<div data-dojo-type="Widget/map_points/map_points" data-dojo-attach-point="AccountMap"> </div>
+			</div>
+			<div data-dojo-type="dijit/layout/ContentPane" title="Contactos" data-dojo-props="closable:false">
+				<div class="widgetMember" data-dojo-type="Widget/account_contacts_users/account_contacts_users" data-label="Contactos" data-dojo-attach-point="ContactsUsers" ></div>
+			</div>
+
+			<div data-dojo-type="dijit/layout/ContentPane" title="Usuarios" data-dojo-props="closable:false">
+				Lorem ipsum and all around - last...
+			</div>
+
+			<div data-dojo-type="dijit/layout/ContentPane" title="Equipos" data-dojo-props="closable:false">
+				<div class="widgetMember" data-dojo-type="Widget/account_equipments/account_equipments" data-label="Equipos" data-dojo-attach-point="Equipments"></div>
+			</div>
+			<div data-dojo-type="dijit/layout/ContentPane" title="Incidentes" data-dojo-props="closable:false">
+				<div class="widgetMember" data-dojo-type="Widget/account_events_management/account_events_management" data-label="Incidentes" data-dojo-attach-point="EventsIsOpen" ></div> 
+			</div>
+		</div>
+	</div>

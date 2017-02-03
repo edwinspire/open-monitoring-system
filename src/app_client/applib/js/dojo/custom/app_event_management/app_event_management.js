@@ -11,7 +11,8 @@ define(['dojo/_base/declare',
   "Widget/uDC/uDC",
   "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
   "dijit/form/Textarea",
-  "FilteringSelectLiveStore/FilteringSelectLiveStore"
+  "FilteringSelectLiveStore/FilteringSelectLiveStore",
+  "Widget/account_details/account_details"
   ], function (declare, _Widget, _Templated, templateString, domClass, on) {
 /**
      * Account Events is Open
@@ -28,6 +29,7 @@ define(['dojo/_base/declare',
        t.GridEvents.on('ClickRow', function(e){
         console.log(e);
         t.EDetails.set('event', e);
+        t.AccountDetails.set(e.idaccount);
       });
 
 
