@@ -78,12 +78,8 @@ require(["dojo/ready",
      }
    }); 
 
-     var menuVisible = true;
-
      on(dojo.byId("ToogleMenu"), "click", function(e){
-      //Mainmenu.visible = !Mainmenu.visible;
-      menuVisible = !menuVisible;
-      Mainmenu.isVisible(menuVisible);
+      Mainmenu.toggle();
     });
 
 
@@ -93,97 +89,14 @@ require(["dojo/ready",
      var ESIO = new EventServerIO();
      var NOTIF = new UserNotifications();
 
-/*
+     function OpenApp(appClass){
+
+       PageContent.destroyDescendants();
+       new appClass().placeAt(PageContent);
+       PageContent.resize();
+       Mainmenu.isVisible(false);
+     }
 
 
-FullName.innerHTML = cookie('oms_fullname');
-//on(node, mouse.enter, hoverHandler);
-
-
-///////////////////////////////////////////////////////////
-dojo.connect(GeneralEmpresaAbonados, 'onclick', function(){
-  OpenApp(new app_account());
-});
-
-
-///////////////////////////////////////////////////////////
-dojo.connect(dojo.byId("admin_tables_views_edit"), 'onclick', function(){
-  OpenApp(new app_tables_views_config());
-});
-
-
-///////////////////////////////////////////////////////////
-dojo.connect(dojo.byId('Idapp_login_report'), 'onclick', function(){
-  OpenApp(new app_login_report());
-});
-
-
-
-///////////////////////////////////////////////////////////
-dojo.connect(dojo.byId("GeneralEmpresaGeolocalizacion"), 'onclick', function(){
-  OpenApp(new app_geolocations());
-});   
-
-
-//////////////////////////////////////////////////////
-dojo.connect(MonitorGeneral, 'onclick', function(){
-  OpenApp(new app_monitor_general());
-}); 
-
-//////////////////////////////////////////////////////
-dojo.connect(Monitor_NetworkDevices, 'onclick', function(){
-  OpenApp(new app_monitor_network_devices());
-}); 
-
-
-///////////////////////////////////////////////////////////
-dojo.connect(dojo.byId("utilitarios_lista_precios_farma_promo_eco"), 'onclick', function(){
-  OpenApp(new app_lista_precios_promo_eco());
-});
-
-
-///////////////////////////////////////////////////////////
-dojo.connect(dojo.byId("utilitarios_lista_precios_farma_promo_medi"), 'onclick', function(){
-  OpenApp(new app_lista_precios_promo_medi());
-});
-
-
-///////////////////////////////////////////////////////////
-dojo.connect(dojo.byId("utilitarios_lista_precios_pnatural"), 'onclick', function(){
-  OpenApp(new app_lista_precios_pnatural());
-});
-
-
-///////////////////////////////////////////////////////////
-dojo.connect(dojo.byId("utilitarios_lista_precios_farma_eco"), 'onclick', function(){
-  OpenApp(new app_lista_precios_eco());
-});
-
-
-///////////////////////////////////////////////////////////
-dojo.connect(dojo.byId("utilitarios_lista_precios_farma_medi"), 'onclick', function(){
-  OpenApp(new app_lista_precios_medi());
-});
-
-*/
-
-
-function OpenApp(appClass){
-
-	PageContent.destroyDescendants();
-	new appClass().placeAt(PageContent);
-	PageContent.resize();
-	Mainmenu.isVisible(false);
-
-  // if(widget.app){
-  //   widget.app.destroy();
-  // }
-
-  // domConstruct.empty(PageContent);
-  // widget.app = _widget;
-  // domConstruct.place(_widget.domNode, PageContent, 'only');
-}
-
-
-});
+   });
   });
