@@ -37,6 +37,7 @@
     "custom/postgres/udc_table_groups",
     "custom/postgres/udc_table_account_events_isopen",
     "custom/postgres/udc_table_events_isopen",
+    "custom/postgres/udc_table_events_details",
     "custom/postgres/udc_table_events",
     "custom/postgres/udc_account_events_comments"  
     ], function(request, on, array, crypto, http, sio, path, fs, url, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, XmppClient, Telegraf, pgOMS, MD5, sessionusers){
@@ -58,11 +59,11 @@
         }, 60*1000);
 
 
-sessionUsers.on('dead_session', function(datauser){
+        sessionUsers.on('dead_session', function(datauser){
 
-    sessionUsers.remove(datauser.id);
+            sessionUsers.remove(datauser.id);
 
-    PostgreSQL.logout(datauser).then(function(results){
+            PostgreSQL.logout(datauser).then(function(results){
 // Usuario a sido deslogueado
 
 }, function(error){
@@ -70,7 +71,7 @@ sessionUsers.on('dead_session', function(datauser){
 });
 
 
-});
+        });
 
 /*
         const hash = crypto.createHash('sha256');
@@ -208,14 +209,14 @@ cl.on('stanza',
 
     var app = express();
 
-app.use(express.static(process.env.EXPRESS_STATIC_DIR, {setHeaders: setFontHeaders}));
+    app.use(express.static(process.env.EXPRESS_STATIC_DIR, {setHeaders: setFontHeaders}));
 
-function setFontHeaders(res) {
-  res.setHeader('Accept-Ranges', 'none');
-}
+    function setFontHeaders(res) {
+      res.setHeader('Accept-Ranges', 'none');
+  }
 
-app.use(cookieParser());
-app.use(compression());
+  app.use(cookieParser());
+  app.use(compression());
 //app.set('Accept-Ranges', 'none');
 //app.use( express.bodyParser());       // to support JSON-encoded bodies
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
@@ -337,8 +338,8 @@ app.post("/njs/db/table/*", function(req, res){
 
     if(u){
 
-     var table = req.path.replace("/njs/db/table/", "");
-     switch(table){
+       var table = req.path.replace("/njs/db/table/", "");
+       switch(table){
         case "account_events_comments":
         PostgreSQL.udc_account_events_comments(req, res);
         break;        
@@ -351,6 +352,9 @@ app.post("/njs/db/table/*", function(req, res){
         case "view_events_isopen":
         PostgreSQL.udc_table_events_isopen(req, res);
         break;        
+        case "view_events_details":
+        PostgreSQL.udc_table_events_details(req, res);
+        break; 
         case "groups":
         PostgreSQL.udc_table_groups(req, res);
         break;

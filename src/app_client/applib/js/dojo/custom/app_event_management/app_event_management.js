@@ -6,13 +6,13 @@ define(['dojo/_base/declare',
   "dojo/on",
   "dijit/layout/ContentPane",
   "dijit/layout/BorderContainer",
+  "dijit/form/Textarea",
   "Widget/uDCGridWidget/uDCGridWidget",
   "Widget/EventDetails/EventDetails",
   "Widget/uDC/uDC",
+  "Widget/account_details/account_details",
   "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
-  "dijit/form/Textarea",
-  "FilteringSelectLiveStore/FilteringSelectLiveStore",
-  "Widget/account_details/account_details"
+  "FilteringSelectLiveStore/FilteringSelectLiveStore"
   ], function (declare, _Widget, _Templated, templateString, domClass, on) {
 /**
      * Account Events is Open
