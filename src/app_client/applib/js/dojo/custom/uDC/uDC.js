@@ -556,7 +556,6 @@ function (response) {
                         /////// De aqui hacia abajo es la nueva version /////////////////
                         case 'select':
                         t._set_values_onload(response[0]);
-                            //                                    t._set_values_onload();
 
                             t.emit('onSelect', { data: response[0]});
                             break;
@@ -576,7 +575,7 @@ function (response) {
                             } else {
                             	t._request_success_fail(response);
                             }
-                            //console.log(response);
+
                             t.emit('onUpdate', { data: response });
                             break;
                             case 'delete':

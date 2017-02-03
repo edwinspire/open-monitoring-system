@@ -88,13 +88,13 @@ define(['dojo/_base/declare',
 
      //   console.debug(dojo.byId(t.DialogAddContent), t.DialogAddContent);
 
-        if(t.DialogAddContent){
-          dojo.place(dojo.byId(t.DialogAddContent), t.ContainerDialogNew, 'only');
-        }
+     if(t.DialogAddContent){
+      dojo.place(dojo.byId(t.DialogAddContent), t.ContainerDialogNew, 'only');
+    }
 
-        
+    
 
-      });
+  });
 
 /*
 
@@ -232,11 +232,8 @@ define(['dojo/_base/declare',
 
 
         t.Grid.on('.dgrid-row:click', function (e) {
-
           var row = t.Grid.row(e);
-        //  console.debug('Row clicked:', row);
           t.emit('ClickRow', row.data);
-
         });
 
 

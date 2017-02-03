@@ -76,7 +76,7 @@ _setIdaccountAttr: function(_idaccount){
 },
 resize: function() {
  var t = this;
- t.Basic.resize();
+ t.TabMaster.resize();
  //t.AccountMap.resize();
  //t.ContactsUsers.resize();
  //t.Equipments.resize();

@@ -23,14 +23,17 @@
       widgetsInTemplate: true,
       templateString: templateString,
       IdAccount: -9,
+      postCreate: function(){
+       // this.resize();        
+      },
       _setIdcontactAttr: function (_id) {
         this.IdAccount = _id;
         this.TPhones.Grid.Select({idcontact: this.IdAccount});                                    
         this.TEmails.Grid.Select({idcontact: this.IdAccount}); 
-this.resize();
+        this.resize();
       },
-      resize: function(r){
-        this.TabMaster.resize(r);
+      resize: function(){
+        this.TabMaster.resize();
       }
 
 

@@ -40,10 +40,9 @@
   "dijit/form/TimeTextBox",
   "dijit/form/FilteringSelect",
   "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
-  "Switch/Switch",
   "dojo/parser",
   "dojo/has!touch?dojo/touch:dojo/mouse"
-  ], function(declare, on, win, domClass, has, Grid, Keyboard, Memory, Trackable, Selection, Selector, Pagination, Editor, ColumnReorder, ColumnResizer, ColumnHider, request, array, topic, Deferred, Filter, TextBox, CheckBox,  HorizontalSlider, VerticalSlider, NumberSpinner, TimeSpinner, CurrencyTextBox, DateTextBox, NumberTextBox, SimpleTextarea, Textarea, TimeTextBox, FilteringSelect, FilteringSelectGlobalStore, Switch) {
+  ], function(declare, on, win, domClass, has, Grid, Keyboard, Memory, Trackable, Selection, Selector, Pagination, Editor, ColumnReorder, ColumnResizer, ColumnHider, request, array, topic, Deferred, Filter, TextBox, CheckBox,  HorizontalSlider, VerticalSlider, NumberSpinner, TimeSpinner, CurrencyTextBox, DateTextBox, NumberTextBox, SimpleTextarea, Textarea, TimeTextBox, FilteringSelect, FilteringSelectGlobalStore) {
     /**
      * Micro Data Connector dGrid
      *
@@ -109,10 +108,6 @@ t.getProperties();
 
  //**  **//
  t.on('dgrid-datachange', function (event) {
-                // var cell = grid.cell(evt);
-                //console.log('los datos de una fila han cambiado');
-
-
 
                 var data = {};
                 data[t.idProperty] = event.cell.row.id;
@@ -163,322 +158,295 @@ disabled: function(_disable){
 },
 Filter: function (searchTerm) {
 
-  console.log('Filtar por: ' + searchTerm);
-
   var t = this;
   t._searchTerm = searchTerm;
 
   var setToMemory;
-            // if the search is empty, "turn off" filter
-            if (t._searchTerm === "") {
-              setToMemory = t._GridStore;
-            } else {
-              var mainFilter;
-                // go though each column, applying the filter for each:
-                array.forEach(t._GridFieldsToFilter, function (columnName) {
 
-                  var filter = new Filter().match(columnName, new RegExp(t._searchTerm + "+", "i"));
-                    //console.log(filter);
-                    if (mainFilter) {
-                      mainFilter = new Filter().or(mainFilter, filter);
-                    } else {
-                      mainFilter = filter;
-                    }
-                  });
-                setToMemory = t._GridStore.filter(mainFilter);
-              }
+  if (t._searchTerm === "") {
+    setToMemory = t._GridStore;
+  } else {
+    var mainFilter;
 
-              t.set("collection", setToMemory);
-            },
+    array.forEach(t._GridFieldsToFilter, function (columnName) {
 
-            Select: function (_data, _clear_grid_before) {
-              var t = this;
-             // console.log(_data, t.table);
-             _clear_grid_before = _clear_grid_before || false;
-             if(_clear_grid_before){
-              t.Clear();
-            }
+      var filter = new Filter().match(columnName, new RegExp(t._searchTerm + "+", "i"));
 
-            if (_data) {
+      if (mainFilter) {
+        mainFilter = new Filter().or(mainFilter, filter);
+      } else {
+        mainFilter = filter;
+      }
+    });
+    setToMemory = t._GridStore.filter(mainFilter);
+  }
 
-              if(t._enabledload){
+  t.set("collection", setToMemory);
+},
 
-                t._enabledload = false;
-                t._waiting_select = false;
-                t._last_select = _data;
-             //   console.log(t._enabledload, t.refreshMode);
-             if (!(t.refreshMode == 2 || t.refreshMode == 3)) {
-              return t.request(_data, "select_rows");
-            }else{
-             console.warn('Select no esta habilitado ', t.refreshMode);
-           }
+Select: function (_data, _clear_grid_before) {
+  var t = this;
+  _clear_grid_before = _clear_grid_before || false;
+  if(_clear_grid_before){
+    t.Clear();
+  }
 
-         }else{
-        //  console.debug('Se pone un select en espera al momento no habilitado');
-        t._waiting_select = _data;
+  if (_data) {
+
+    if(t._enabledload){
+
+      t._enabledload = false;
+      t._waiting_select = false;
+      t._last_select = _data;
+      if (!(t.refreshMode == 2 || t.refreshMode == 3)) {
+        return t.request(_data, "select_rows");
+      }else{
+       console.warn('Select no esta habilitado ', t.refreshMode);
+     }
+
+   }else{
+    t._waiting_select = _data;
+  }
+
+} else {
+  console.warn('La tabla requiere datos para hacer un select', _data, t._last_select);
+}
+
+deferred = new Deferred();
+deferred.resolve("success");
+return deferred.promise;
+
+},
+
+request: function (_param, _action) {
+  var t = this;
+  var _data = {};
+
+  if (_param) {
+    _data = _param;
+  }
+
+  _data.UdcAction = _action;
+  _data.UdcTable = t.table;
+  _data.UdcIdProperty = t.idProperty;
+
+  if (t.target) {
+
+    var r = request.post(t.target, {
+      data: _data,
+      preventCache: true,
+      handleAs: "json"
+    }
+    ).then(
+    function (response) {
+      switch (_action) {
+        case "update":
+
+        if (response.rowCount > 0) {
+          t.save();
+          t._notifications({ Urgency: 10, Message: 'Update ' + response.rowCount + ' row(s)', Title: 'Registro actualizado' });
+        } else {
+          t.revert();
+          t.Select(t._last_select);
+          t._notifications({ Urgency: 2, Message: response.Error, Title: 'Registro no actualizado' });
+        }
+
+
+        break;
+        case "select_rows":
+        var myData = {
+          identifier: "unique_id", items: []
+        };
+
+        array.forEach(response, function (item, i) {
+          var item_temp = item;
+          item_temp.unique_id = i + 1;
+          myData.items.push(item_temp);
+        });
+
+        t._grid_setData(myData.items);
+
+        break;
+        case "delete_rows":
+
+        if (response.Delete > 0) {
+          t._notifications({ Urgency: 10, Message: 'Delete ' + response.Delete + ' row(s)', Title: 'Registro eliminado' });
+        } else {
+          t._notifications({ Urgency: 2, Message: response.error, Title: 'Registro no eliminado' });
+        }
+
+        break;
+        default:
+
+        break;
       }
 
-    } else {
-      console.warn('La tabla requiere datos para hacer un select', _data, t._last_select);
-    }
 
-    deferred = new Deferred();
-    deferred.resolve("success");
-    return deferred.promise;
-
-  },
-        // Esta funcion es universal y sirve para enviar o recibir datos desde el servidor
-        request: function (_param, _action) {
-          var t = this;
-          var _data = {};
-
-          if (_param) {
-            _data = _param;
+    },
+    function (error) {
+      console.warn(error);
+      switch(error.response.status){
+        case 404:
+        t._notifications({ Urgency: 2, Message: error.response.url+' no encontrada', Title: 'Error 404' });
+        break;
+        case 500:
+        if(error.response.data){
+          switch(_action){
+            case 'update':
+            t.revert();
+            t._notifications({ Urgency: 1, Message: 'Error '+error.response.data.data.code, Title: 'No se pudo actualizar' });
+            break;
+            default:
+            t._notifications({ Urgency: 1, Message: 'Error '+error.response.data.data.code, Title: 'Error en el servidor' });
+            break;
           }
 
-          _data.UdcAction = _action;
-          _data.UdcTable = t.table;
-          _data.UdcIdProperty = t.idProperty;
+        }
+        break;
 
-          if (t.target) {
-
-            var r = request.post(t.target, {
-              data: _data,
-              preventCache: true,
-                    // Parse data from xml
-                    handleAs: "json"
-                  }
-                  ).then(
-                  function (response) {
-                    //    console.log(response);
-                    switch (_action) {
-                      case "update":
-
-                      if (response.rowCount > 0) {
-                        t.save();
-                        t._notifications({ Urgency: 10, Message: 'Update ' + response.rowCount + ' row(s)', Title: 'Registro actualizado' });
-                      } else {
-                        t.revert();
-                        t.Select(t._last_select);
-                        t._notifications({ Urgency: 2, Message: response.Error, Title: 'Registro no actualizado' });
-                      }
-
-
-                      break;
-                      case "select_rows":
-                      var myData = {
-                        identifier: "unique_id", items: []
-                      };
-
-                      array.forEach(response, function (item, i) {
-                        var item_temp = item;
-                        item_temp.unique_id = i + 1;
-                        myData.items.push(item_temp);
-                      });
-
-                      t._grid_setData(myData.items);
-
-                      break;
-                      case "delete_rows":
-
-                      if (response.Delete > 0) {
-                        t._notifications({ Urgency: 10, Message: 'Delete ' + response.Delete + ' row(s)', Title: 'Registro eliminado' });
-                      } else {
-                        t._notifications({ Urgency: 2, Message: response.error, Title: 'Registro no eliminado' });
-                      }
-
-                      break;
-                      default:
-                                // t.emit('onresponseserver', response);
-                                break;
-                              }
-
-
-                            },
-                            function (error) {
-                              console.warn(error);
-                              switch(error.response.status){
-                                case 404:
-                                t._notifications({ Urgency: 2, Message: error.response.url+' no encontrada', Title: 'Error 404' });
-                                break;
-                                case 500:
-                                if(error.response.data){
-                                  switch(_action){
-                                    case 'update':
-                                    t.revert();
-                                    t._notifications({ Urgency: 1, Message: 'Error '+error.response.data.data.code, Title: 'No se pudo actualizar' });
-                                    break;
-                                    default:
-                                    t._notifications({ Urgency: 1, Message: 'Error '+error.response.data.data.code, Title: 'Error en el servidor' });
-                                    break;
-                                  }
-
-                                }
-                                break;
-
-                              }
-                            }
+      }
+    }
 
 
 
-                            );
+    );
 
-                  r.then(function(){
-                    
-                    t._enabledload = true;
-                    switch(_action){
-                      case 'update':
-                                       // t.revert();
-                                       t.Select(t._last_select);
-                                      //  t._notifications({ Urgency: 1, Message: 'Error '+error.response.data.data.code, Title: 'No se pudo actualizar' });
-                                      break;
-                                      case 'select_rows':
-                                      t._enabledload = true;
-                                     // t.resize();
-                                     if(t._waiting_select){
-                                     // console.debug('Select en espera va a procesarse '+t.table);
-                                     t.Select(t._waiting_select);
-                                   }
-                                   break;
-                                 }
+    r.then(function(){
 
-                               });
+      t._enabledload = true;
+      switch(_action){
+        case 'update':
+        t.Select(t._last_select);
+        break;
+        case 'select_rows':
+        t._enabledload = true;
+        if(t._waiting_select){
+         t.Select(t._waiting_select);
+       }
+       break;
+     }
+
+   });
 
 
-                } else {
-                  t._enabledload = true;
-                  console.warn('No ha definido un Target = ', t.target);
-                }
-                return r;
-              },
-              _notifications: function (_n) {
-               topic.publish("/event/user/notify", _n);
-             },
-             Update: function (_data) {
-              var t = this;
-        //    console.log(t);
-        if (t.idProperty && t.idProperty.length > 0) {
-
-         return t.request(_data, "update");                
-
-       } else {
-        console.warn('El idProperty es necesario para actualizaciones de registros');
-        t.revert();
-              // return t.Select(t._last_select);
-            }
-           // return t;
-         },
-         delete_selection: function () {
-          return this.selected(null, 'delete_selection');
-        },
-
-        _grid_setData: function (_data) {
-          var t = this;
-
-            // console.log(w.getBox().h-65);
-            //domStyle.set(t.Contenedor, 'height', w.getBox().h-120+'px');
-            //console.log(t.Grid.collection);
-            t._GridStore.setData(_data);
-            //console.log(_data);
-            t.set('collection', t._GridStore);
-
-        //    console.log(_data);
-        t.Filter(t._searchTerm);
-        return t;
-      },
-      getProperties: function(){
-       var t = this;
-
-        	//console.log(this);
-          if(t.uDCColumns.target && t.uDCColumns.target.length > 0){
-
-            var getCol = request.post(t.uDCColumns.target, {
-              data: {UdcTable: t.table, Fields: JSON.stringify(t.uDCColumns.fields)},
-              preventCache: true,
-                            // Parse data from xml
-                            handleAs: "javascript"
-                          }
-                          ).then(
-                          function (response) {
-
-                           var columns = [];
-
-                           t.uDCProperties = response[0];
-
-                           if(t.uDCProperties.dgrid_selectionmode){
-                             t.selectionMode = t.uDCProperties.dgrid_selectionmode;
-                           }else{
-                             t.SelectionMode = "none";
-                           }
-
-                           array.forEach(t.uDCProperties.udc_column_definition, function(column, i){
-
-                            var c = column;
-
-                            if(c.editOn && c.editOn == "dbclick" && has("touch")){
-                              alert('Es touch');
-                              c.editOn = "click";
-                            }
-
-// HorizontalSlider, VerticalSlider, NumberSpinner, TimeSpinner, CurrencyTextBox, DateTextBox, NumberTextBox, SimpleTextarea, Textarea, TimeTextBox
-
-if(c.editor){
-  switch(c.editor){
-    case 'HorizontalSlider':
-    c.editor = HorizontalSlider;
-    break;
-    case 'VerticalSlider':
-    c.editor = VerticalSlider;
-    break;
-    case 'NumberSpinner':
-    c.editor = NumberSpinner;
-    break;
-    case 'TimeSpinner':
-    c.editor = TimeSpinner;
-    break;
-    case 'CurrencyTextBox':
-    c.editor = CurrencyTextBox;
-    break;
-    case 'checkbox':
-    c.editor = CheckBox;
-    break;
-    case 'DateTextBox':
-    c.editor = DateTextBox;
-    break;
-    case 'NumberTextBox':
-    c.editor = NumberTextBox;
-    break;
-    case 'SimpleTextarea':
-    c.editor = SimpleTextarea;
-    break;
-    case 'Textarea':
-    c.editor = Textarea;
-    break;
-    case 'TimeTextBox':
-    c.editor = TimeTextBox;
-    break;
-    case 'Switch':
-    c.editor = Switch;
-    break;
-    case 'FilteringSelectGlobalStore':
-    c.editor = FilteringSelectGlobalStore;
-    break;
-
-    case 'FilteringSelect':
-    c.editor = FilteringSelect;
-    break;
-
-    default:
-    c.editor = 'text';
-    break;
+  } else {
+    t._enabledload = true;
+    console.warn('No ha definido un Target = ', t.target);
   }
-}
+  return r;
+},
+_notifications: function (_n) {
+ topic.publish("/event/user/notify", _n);
+},
+Update: function (_data) {
+  var t = this;
+  if (t.idProperty && t.idProperty.length > 0) {
 
-if(array.indexOf(t.uDCColumns.fields, c.field) >= 0){
-  columns.push(c);
-}
+   return t.request(_data, "update");                
 
-});
+ } else {
+  console.warn('El idProperty es necesario para actualizaciones de registros');
+  t.revert();
+}
+},
+delete_selection: function () {
+  return this.selected(null, 'delete_selection');
+},
+
+_grid_setData: function (_data) {
+  var t = this;
+  t._GridStore.setData(_data);
+  t.set('collection', t._GridStore);
+  t.Filter(t._searchTerm);
+  return t;
+},
+getProperties: function(){
+ var t = this;
+
+ if(t.uDCColumns.target && t.uDCColumns.target.length > 0){
+
+  var getCol = request.post(t.uDCColumns.target, {
+    data: {UdcTable: t.table, Fields: JSON.stringify(t.uDCColumns.fields)},
+    preventCache: true,
+
+    handleAs: "javascript"
+  }
+  ).then(
+  function (response) {
+
+   var columns = [];
+
+   t.uDCProperties = response[0];
+
+   if(t.uDCProperties.dgrid_selectionmode){
+     t.selectionMode = t.uDCProperties.dgrid_selectionmode;
+   }else{
+     t.SelectionMode = "none";
+   }
+
+   array.forEach(t.uDCProperties.udc_column_definition, function(column, i){
+
+    var c = column;
+
+    if(c.editOn && c.editOn == "dbclick" && has("touch")){
+      alert('Es touch');
+      c.editOn = "click";
+    }
+
+    if(c.editor){
+      switch(c.editor){
+        case 'HorizontalSlider':
+        c.editor = HorizontalSlider;
+        break;
+        case 'VerticalSlider':
+        c.editor = VerticalSlider;
+        break;
+        case 'NumberSpinner':
+        c.editor = NumberSpinner;
+        break;
+        case 'TimeSpinner':
+        c.editor = TimeSpinner;
+        break;
+        case 'CurrencyTextBox':
+        c.editor = CurrencyTextBox;
+        break;
+        case 'checkbox':
+        c.editor = CheckBox;
+        break;
+        case 'DateTextBox':
+        c.editor = DateTextBox;
+        break;
+        case 'NumberTextBox':
+        c.editor = NumberTextBox;
+        break;
+        case 'SimpleTextarea':
+        c.editor = SimpleTextarea;
+        break;
+        case 'Textarea':
+        c.editor = Textarea;
+        break;
+        case 'TimeTextBox':
+        c.editor = TimeTextBox;
+        break;
+        case 'FilteringSelectGlobalStore':
+        c.editor = FilteringSelectGlobalStore;
+        break;
+
+        case 'FilteringSelect':
+        c.editor = FilteringSelect;
+        break;
+
+        default:
+        c.editor = 'text';
+        break;
+      }
+    }
+
+    if(array.indexOf(t.uDCColumns.fields, c.field) >= 0){
+      columns.push(c);
+    }
+
+  });
 
 //console.log(columns);
 
@@ -491,7 +459,7 @@ function (error) {
 }
 );
 
-                          getCol.then(function (results) {
+  getCol.then(function (results) {
                         //   console.log('Se supone que se han seteado las columnas');
                                           //** Sirve para usar un filtro que buscara en todos los campos **//
                                           t._GridFieldsToFilter = [];
@@ -505,19 +473,19 @@ function (error) {
                                           t.Select(t.initialQuery);
                                         });        
 
-                        }else{
-                          t._enabledload = true;  
-                          console.warn('Grid no tiene target para obtener la estructura');
-                        }
+}else{
+  t._enabledload = true;  
+  console.warn('Grid no tiene target para obtener la estructura');
+}
 
 
-                      },
-                      Clear: function () {
-                        this._grid_setData([]);
-                        return this;
-                      },
-                      uninitialize: function(){
-                        var t = this;
+},
+Clear: function () {
+  this._grid_setData([]);
+  return this;
+},
+uninitialize: function(){
+  var t = this;
                       //  console.debug('Llama para matar el uDCGrid');
 	//clearInterval(t._IntervalRefresh);
 //alert();
