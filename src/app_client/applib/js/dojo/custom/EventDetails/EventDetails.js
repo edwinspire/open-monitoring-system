@@ -35,25 +35,16 @@
 
                 var t = this;
 
-        t.CommentField.startup();
-
-        on(t.SelectEventStatus, 'Change', function(){
-
-            if(t.uDCChangeStatus.getField('idevent')){
-                domStyle.set(t.ContentEditor, 'display', 'inline-block');
-            }
-        });
-
-
+//        t.CommentField.startup();
 
                 on(t.DialogCStatusCancel, 'click', function (e) {
-                    domStyle.set(t.ContentEditor, 'display', 'none');
+                    t.ContainerChangeStatus.set('open', false);
                 });
 
                on(t.DialogCStatusOK, 'click', function (e) {
                  t.uDCChangeStatus.Insert().then(function(){
                      t.uDCChangeStatus.Clear();
-                     domStyle.set(t.ContentEditor, 'display', 'none');
+                   t.ContainerChangeStatus.set('open', false);
                  }); 
                   // popup.close(t.DialogChangeStatus);
               });

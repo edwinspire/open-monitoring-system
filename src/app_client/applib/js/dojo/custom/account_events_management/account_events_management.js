@@ -34,7 +34,7 @@ define(['dojo/_base/declare',
          console.log('Se quiere account_events_assignment setear a '+_v);
      
      this.EventsIsOpen.Grid.Select({idaccount: _v});
-     this.EventsIsOpen.uDC.setField('idaccount', _v);   
+//     this.EventsIsOpen.uDC.setField('idaccount', _v);   
      this.SelectAccountUser.request({_uDCTable: 'view_account_contacts', idaccount: _v});
      this.SelectAccountEquipments.request({_uDCTable: 'equipments_by_account', idaccount: _v});
       },

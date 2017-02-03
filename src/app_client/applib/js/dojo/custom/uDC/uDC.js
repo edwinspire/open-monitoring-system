@@ -156,6 +156,7 @@ _BindFields: function (_fieldTypes) {
 
   t.startup();
 
+
   var storeFielTypes = new Memory({ data: _fieldTypes, idProperty: 'field'});
 
   if (Array.isArray(t.hiddenFields)) {
@@ -178,9 +179,13 @@ _BindFields: function (_fieldTypes) {
 
  var name;
 
+// console.debug(t);
+
  t.getDescendants().forEach(function (node, i) {
 
   var d = node;
+
+  console.debug(node);
 
   if (d) {
    name = d.get('name');

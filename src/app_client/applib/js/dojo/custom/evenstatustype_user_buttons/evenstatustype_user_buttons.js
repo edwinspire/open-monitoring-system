@@ -29,10 +29,6 @@ define(['dojo/_base/declare',
 
 				t._request();     
 
-				setTimeout(function(){
-					t.set('value', 0);
-				}, 5000);  
-
 			},
 			_request: function(){
 				var t = this;
@@ -54,12 +50,6 @@ define(['dojo/_base/declare',
 					array.forEach(response, function(item, i){
 
 						b = b+'<input class="EventStatusTypeRadio" data-dojo-type="dijit/form/RadioButton" value="'+item.ideventstatustype+'" name="ideventstatustype">&nbsp;'+item.label_status+'&nbsp;&nbsp;';
-
-  //         dojo.connect(button, "onclick", function (e) {
-  //   //console.debug(e, e.target.getAttribute('data-value'));
-  //   t.value = e.target.getAttribute('data-value');
-  //   on.emit(t.domNode, 'Change', {value: t.value});
-  // });
 
 });
 
@@ -85,7 +75,7 @@ define(['dojo/_base/declare',
 				var t = this;
 				t.value = String(_v);
 
-				registry.getEnclosingWidget(query('[name=ideventstatustype][value='+t.value+']')[0]).set('checked', true);
+				registry.getEnclosingWidget(query('[name=ideventstatustype][value='+t.value+']', t.domNode)[0]).set('checked', true);
 
 			},
 			_getValueAttr: function () {

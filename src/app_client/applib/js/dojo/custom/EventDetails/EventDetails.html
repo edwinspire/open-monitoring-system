@@ -48,17 +48,14 @@
   </fieldset>  
 
 
-  <div >
-
-    <div data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCChangeStatus" data-dojo-props="hiddenFields: [{name: 'idevent'}], selectorClass: '.change_status_event', nodeContainer: '${id}_ChangeStatus', target: '/njs/db/table/account_events_comments', table: 'event_comments', idProperty: 'idevent',  targetFieldtypes: '/njs/db/uDCFieldTypes'"></div>
-
-
+    <div data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCChangeStatus" data-dojo-props="hiddenFields: [{name: 'idevent'}], target: '/njs/db/table/account_events_comments', table: 'event_comments', idProperty: 'idevent',  targetFieldtypes: '/njs/db/uDCFieldTypes'" doLayout="false", style="width: 100%;">
+      
     <div data-dojo-attach-point="ContainerChangeStatus" open="false" data-dojo-type="dijit/TitlePane" style="width: 100%; height: auto;" data-dojo-props="title: 'CAMBIAR ESTADO'">
 
-      <div data-dojo-attach-point='SelectEventStatus' data-dojo-type="Widget/evenstatustype_user_buttons/evenstatustype_user_buttons" class="change_status_event" name="ideventstatustype"></div>          
+      <div data-dojo-attach-point='SelectEventStatus' data-dojo-type="Widget/evenstatustype_user_buttons/evenstatustype_user_buttons"  name="ideventstatustype"></div>          
 
       
-        <div data-dojo-attach-point="CommentField" data-dojo-type="dijit/Editor" class="change_status_event" name="comment_event"></div>
+        <div data-dojo-attach-point="CommentField" data-dojo-type="dijit/Editor" name="comment_event"></div>
 
         <div style="padding: 3px;">
           <button type="button" data-dojo-attach-point="DialogCStatusOK" class="btn btn-default btn-xs">Aceptar</button>
@@ -69,7 +66,11 @@
     </div>
 
 
-  </div>
+    </div>
+
+
+
+
 
 
   <div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TEComments" 
