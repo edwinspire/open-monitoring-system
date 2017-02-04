@@ -47,7 +47,7 @@ var vs = win.getBox();
 
 console.debug(vs.h);
 //PageContent.set("height", (vs.h-30000)+'px');
- domStyle.set(PageContent.domNode, "height", (vs.h-30)+'px');
+ domStyle.set(PageContent.domNode, "height", (vs.h-40)+'px');
 
      Mainmenu.on("clickitem", function(e){
       console.debug(e);

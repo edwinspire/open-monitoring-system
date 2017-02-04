@@ -29,39 +29,36 @@ define(['dojo/_base/declare',
        var t = this;
 
        var vs = win.getBox();
-       domStyle.set(this.domNode, "height", (vs.h-30+30)+'px');
+       console.debug(vs);
+       domStyle.set(this.BorderContainer.domNode, "height", (vs.h-30-16)+'px');
+       this.BorderContainer.resize();
 
-      //  on(window, 'resize', function(){
-      //   //  vs = win.getBox();
-      // //  domStyle.set(t.domNode, "height", (vs.h-30+30)+'px');        
-      // });
-
-       aspect.after(t.CLeft, "resize", function(e) {
-        t.GridEvents.set('sizecontainer', {height: domStyle.get(t.CLeft.domNode, "height")});
+      aspect.after(t.CLeft, "resize", function(e) {
+        t.GridEvents.set('sizecontainer', {height: domStyle.get(t.CLeft.domNode, "height")-10});
       });
 
-       t.SelectAccounts.queryExpr = '*${0}*';
-       t.SelectAccountEquipments.queryExpr = '*${0}*';
-       t.SelectAccountUser.queryExpr = '*${0}*';
+      t.SelectAccounts.queryExpr = '*${0}*';
+      t.SelectAccountEquipments.queryExpr = '*${0}*';
+      t.SelectAccountUser.queryExpr = '*${0}*';
 
-       t.SelectAccounts.on('Change', function(e){
+      t.SelectAccounts.on('Change', function(e){
         t.SelectAccountUser.request({_uDCTable: 'view_account_contacts', idaccount: e});
         t.SelectAccountEquipments.request({_uDCTable: 'equipments_by_account', idaccount: e});
       });
 
-       t.GridEvents.on('addok', function(e){
+      t.GridEvents.on('addok', function(e){
         t.uDCNewEvent.Insert();
       });
 
-       t.GridEvents.on('ClickRow', function(e){
+      t.GridEvents.on('ClickRow', function(e){
         console.log(e);
         t.EDetails.set('event', e);
         t.AccountDetails.set('idaccount', e.idaccount);
       });
 
 
-     },
-     _setIdaccountAttr: function (_v) {
+    },
+    _setIdaccountAttr: function (_v) {
         // console.log('Se quiere account_events_assignment setear a '+_v);     
        //  this.GridEvents.Grid.Select({});
        //  this.SelectAccountUser.request({_uDCTable: 'view_account_contacts', idaccount: _v});
@@ -71,10 +68,10 @@ define(['dojo/_base/declare',
          // return this.account_events_assignment.get('value');
        } ,
        resize: function(){
-        this.BorderContainer.resize();
+       // this.BorderContainer.resize();
 
-      },
-      reset: function () {
+     },
+     reset: function () {
           //  this.account_events_assignment.reset();
         }      
 
