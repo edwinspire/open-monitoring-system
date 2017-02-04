@@ -80,18 +80,6 @@ legend{
   color: white;
 }
 
-.ContentWidgets{
-  /* Firefox */
-  height: -moz-calc(100% - 30px);
-  /* WebKit */
-  height: -webkit-calc(100% - 30px);
-  /* Opera */
-  height: -o-calc(100% - 30px);
-  /* Standard */
-  height: calc(100% - 30px);
-  background: #F5F5F5;
-}
-
 .SeparatorHorizontal{
   width: 100%;
   height: 1px;

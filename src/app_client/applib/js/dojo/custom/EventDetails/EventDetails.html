@@ -5,7 +5,6 @@
     <span class="value">-</span>         
   </fieldset>  
 
-
   <fieldset style="display: none;" class="dateevent">
     <legend>Fecha</legend>
     <span class="value">-</span>       
@@ -15,7 +14,6 @@
     <legend>Prioridad</legend>
     <span  class="value">-</span>
   </fieldset> 
-
 
   <fieldset style="display: none;" class="status">
     <legend>Estado</legend>
@@ -27,22 +25,18 @@
     <span class="value">-</span>
   </fieldset> 
 
-
   <fieldset style="display: none;" class="eventtype">
     <legend>Tipo Evento</legend>
     <span class="value">-</span>
   </fieldset>  
 
-
-
-
-  <fieldset style="display: none; width: 90%" class="description WidthFull">
+  <fieldset style="display: none; width: 90%" class="description">
     <legend>Descripción</legend>
     <div class="value" ></div>
   </fieldset>  
 
 
-  <div data-dojo-attach-point="ContainerChangeStatus" open="false" data-dojo-type="dijit/TitlePane" style="width: 100%; height: auto;" data-dojo-props="title: 'CAMBIAR ESTADO'">
+  <div data-dojo-attach-point="ContainerChangeStatus" open="false" data-dojo-type="dijit/TitlePane" data-dojo-props="title: 'CAMBIAR ESTADO'">
 
     <div data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCChangeStatus" data-dojo-props="hiddenFields: [{name: 'idevent'}], target: '/njs/db/table/account_events_comments', table: 'event_comments', idProperty: 'idevent',  targetFieldtypes: '/njs/db/uDCFieldTypes'" doLayout="false">
 
@@ -59,15 +53,8 @@
   </div>
 
 
-
-
-
-
-
   <div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TEComments" 
   data-dojo-props="uDCColumns:{target: '/njs/db/dgrid_table_structure', fields: ['comment_event', 'ideventstatustype']}, UrlExport:'',  target: '/njs/db/table/account_events_comments', refreshOnTableChanged: ['event_comments'], Title:'EVENTOS - Comentarios', table: 'event_comments', idProperty: 'ideventcomment', rowFingerPrint: 'footprint_row'"></div>
-
-
 
 
 </div>

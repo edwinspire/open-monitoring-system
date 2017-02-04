@@ -42,9 +42,8 @@ define(['dojo/_base/declare',
       t.startup();
 
       t.Search.on('Change', function (e) {
-       //console.debug(e);
-       t.Grid.Filter(e);
-     });
+        t.Grid.Filter(e);
+      });
 
 
       t._IntervalRefresh = setInterval(function () {
@@ -86,184 +85,128 @@ define(['dojo/_base/declare',
 
       on.once(t.Add, "Click", function(){
 
-     //   console.debug(dojo.byId(t.DialogAddContent), t.DialogAddContent);
+       if(t.DialogAddContent){
+        dojo.place(dojo.byId(t.DialogAddContent), t.ContainerDialogNew, 'only');
+      }   
 
-     if(t.DialogAddContent){
-      dojo.place(dojo.byId(t.DialogAddContent), t.ContainerDialogNew, 'only');
-    }
+    });
 
-    
-
-  });
-
-/*
+      t._create_grid();
 
 
-
-          on.once(t.Add, "click", function(){
-
-                    if (t.newForm && t.newForm.title) {
-                      t.DialogNew.set('title', t.newForm.title);
-                    }
-
-
-                    if (t.newForm && t.newForm.nodeContainer) {
-                      var _n =  dojo.byId(t.newForm.nodeContainer);
-
-                      if (_n) {
-                        domConstruct.place(_n, t.DialogNewContent, "replace");
-                      }
-                    }  
-                    
-                  });
-
-
-
-
-
-          on(t.Add, 'click', function (e) {
-
-            t.HTMLForm.reset();
-            t.DialogNew.show();
-          });
-
-          on(t.DialogNewCancel, 'click', function (e) {
-            t.DialogNew.hide();
-          });
-
-
-          on(t.DialogNewOK, 'click', function (e) {
-
-            t.uDC.Insert();
-            t.DialogNew.hide();
-          });
-
-
-
-
-          on(t.DisabledRefreshTempo, 'click', function (e) {
-            popup.open({
-              popup: t.DialogDisabledRefresh,
-              around: t.DisabledRefreshTempo
-            });
-          });
-
-          t.CollapseLink.set('contentelement', t.XContent);
-          */
-
-          t._create_grid();
-
-
-        },
-        uninitialize: function(){
-         var t = this;
-         console.log('Llama para matar el widget');
-         clearInterval(t._IntervalRefresh);
-
-
-         t.Grid.uninitialize();
-
-         t.Grid.destroy();
-         delete t.Grid;
-         t.Grid = null;
-
-       },     
-      //  _setFormnewrowAttr: function (_node, _udc_class, _title) {
-      //    var t = this;
-      //    console.log(_node);
-      //    if (_title) {
-      //     t.DialogNew.set('title', _title);
-      //   }
-      //   t.uDC.set('config', { SelectorClass: _udc_class, NodeContainer: t.DialogNew.domNode });
-      //   domConstruct.place(_node, t.DialogNewContent, "replace");
-      //   return this;
-      // },
-      _create_grid: function () {
-
-      	var t = this;
-
-      	domConstruct.empty(t.Contenedor);
-
-        console.log(t.target);
-
-
-        t.Grid = new uDCGrid({
-          target: t.target,
-          selectionMode: "none",
-          refreshOnTableChanged: t.refreshOnTableChanged,
-          initialQuery: t.initialQuery,
-          uDCColumns: t.uDCColumns,
-          table: t.table,
-          rowFingerPrint: t.rowFingerPrint,
-          idProperty: t.idProperty
-
-        }, t.Contenedor);
-
-
-        t.Grid.startup();
-
-
-        on(t.Grid, 'dgrid-set-properties', function (event) {
-
-          t.set('titlegrid', event.properties.title_dgrid);
-
-          setTimeout(function(){
-           t.resize();
-         }, 2000);
-        });
-
-
-        t.Grid.on('dgrid-error', function (event) {
-
-          console.error(event);
-        });
-
-        t.Grid.on('dgrid-refresh-complete', function (event) {
-
-          domStyle.set(t.Contenedor, 'height', w.getBox().h-120+'px');
-
-        });
-
-
-
-        t.Grid.on('dgrid-select', function (event) {
-
-        });
-
-
-        t.Grid.on('.dgrid-row:click', function (e) {
-          var row = t.Grid.row(e);
-          t.emit('ClickRow', row.data);
-        });
-
-
-
-        return t;
-      },
-      _notifications: function (_n) {
-       topic.publish("/event/user/notify", [_n]);
-     },
-     resize: function(){
-       if(this.Grid){
-        this.Grid.resize();
-      }
     },
-    Clear: function(){
-     this.Grid.Clear();
-     return this;
-   },
-   disabledGrid: function(_disabled){
-     this.Grid.disabled(_disabled);
-   },
-   _disabled: function(_disable){
+    uninitialize: function(){
+     var t = this;
+     console.log('Llama para matar el widget');
+     clearInterval(t._IntervalRefresh);
 
-     if(_disable){
-      domClass.add(this.domNode, "element-disabled");
-    }else{
-      domClass.remove(this.domNode, "element-disabled");
+
+     t.Grid.uninitialize();
+
+     t.Grid.destroy();
+     delete t.Grid;
+     t.Grid = null;
+
+   },     
+   _create_grid: function () {
+
+     var t = this;
+
+     domConstruct.empty(t.Contenedor);
+
+     t.Grid = new uDCGrid({
+      target: t.target,
+      selectionMode: "none",
+      refreshOnTableChanged: t.refreshOnTableChanged,
+      initialQuery: t.initialQuery,
+      uDCColumns: t.uDCColumns,
+      table: t.table,
+      rowFingerPrint: t.rowFingerPrint,
+      // className: "dgrid-autoheight",
+      idProperty: t.idProperty
+
+    }, t.Contenedor);
+
+     t.Grid.startup();
+
+
+     on(t.Grid, 'dgrid-set-properties', function (event) {
+      t.set('titlegrid', event.properties.title_dgrid);
+    });
+
+
+     t.Grid.on('dgrid-error', function (event) {
+      console.error(event);
+    });
+
+     t.Grid.on('dgrid-refresh-complete', function (event) {
+
+      //domStyle.set(t.Grid.domNode, 'max-height', w.getBox().h-50+'px');
+    //  domStyle.set(t.Grid.domNode, 'height', '100%');
+ //t.resize();
+    });
+
+
+
+     t.Grid.on('dgrid-select', function (event) {
+
+     });
+
+
+     t.Grid.on('.dgrid-row:click', function (e) {
+      var row = t.Grid.row(e);
+      t.emit('ClickRow', row.data);
+    });
+
+
+
+     return t;
+   },
+   _notifications: function (_n) {
+     topic.publish("/event/user/notify", [_n]);
+   },
+   resize: function(wh){
+     if(this.Grid){
+      this.Grid.resize(wh);
     }
-    return this;
+  },
+  _setSizecontainerAttr: function(size){
+var t = this;
+var h = domStyle.get(t.TBar.domNode, 'height');
+var w = domStyle.get(t.TBar.domNode, 'width');
+
+if(size.height){
+h = size.height - h;
+domStyle.set(t.Grid.domNode, 'height', h+'px');
+console.debug(size, h, w);
+}
+
+if(size.width){
+w = size.width - w;
+domStyle.set(t.Grid.domNode, 'width', w+'px');
+}
+
+
+
+
+  //   
+  },
+  Clear: function(){
+   this.Grid.Clear();
+   return this;
+ },
+ disabledGrid: function(_disabled){
+   this.Grid.disabled(_disabled);
+ },
+ _disabled: function(_disable){
+
+   if(_disable){
+    domClass.add(this.domNode, "element-disabled");
+  }else{
+    domClass.remove(this.domNode, "element-disabled");
   }
+  return this;
+}
 
 
 
@@ -280,4 +223,4 @@ define(['dojo/_base/declare',
 
 
 });
-});
+  });

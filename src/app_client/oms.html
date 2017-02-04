@@ -16,7 +16,6 @@
   <link href="applib/css/dgrid_columns.css" rel="stylesheet">
   <link href="applib/js/dojo/dojo/dgrid/css/dgrid.css" rel="stylesheet">
   <link href="applib/js/dojo/custom/uDCGridWidget/uDCGridWidget.css" rel="stylesheet">
-  <link href="applib/js/dojo/custom/Switch/Switch.css" rel="stylesheet">
   
   <style>@import "applib/css/themes/flat/flat.css"; @import "applib/css/themes/flat/flat.css";@import "applib/css/app.css";</style>
   <link href="applib/css/themes/flat/dgrid/flat.css" rel="stylesheet">
@@ -25,100 +24,100 @@
 
 
 
-    <script type="text/javascript" src="applib/js/dojo/dojo/dojo/dojo.js" 
-    data-dojo-config="'parseOnLoad':true,'async':true, 'packages':[
-    {'name':'widgets','location':'../custom'}
-    ,{'name':'Widget','location':'../../custom'}
-    ,{'name':'Alert','location':'../../custom/Alert'}
-    ,{'name':'Chat','location':'../../custom/Chat'}
-    ,{'name':'CollapseButton','location':'../../custom/CollapseButton'}
-    ,{'name':'ContactGroup','location':'../../custom/ContactGroup'}
-    ,{'name':'ContactMap','location':'../../custom/ContactMap'}
-    ,{'name':'ContactWidget','location':'../../custom/ContactWidget'}
-    ,{'name':'DateTextbox','location':'../../custom/DateTextbox'}
-    ,{'name':'Extends','location':'../../custom/Extends'}
-    ,{'name':'FilteringSelectAccounts','location':'../../custom/FilteringSelectAccounts'}
-    ,{'name':'FilteringSelectGlobalStore','location':'../../custom/FilteringSelectGlobalStore'}
-    ,{'name':'Geolocations','location':'../../custom/Geolocations'}
-    ,{'name':'GlobalLiveStore','location':'../../custom/GlobalLiveStore'}
-    ,{'name':'LiveStore','location':'../../custom/LiveStore'}
-    ,{'name':'Map','location':'../../custom/Map'}
-    ,{'name':'MapPoint','location':'../../custom/MapPoint'}
-    ,{'name':'EventDetails','location':'../../custom/EventDetails'}
-    ,{'name':'SelectGender','location':'../../custom/SelectGender'}
-    ,{'name':'app_accounts_table','location':'../../custom/app_accounts_table'}
-    ,{'name':'app_event_admin','location':'../../custom/app_event_admin'}
-    ,{'name':'app_monitor_network_devices','location':'../../custom/app_monitor_network_devices'}
-    ,{'name':'app_tables_views_config','location':'../../custom/app_tables_views_config'}
-    ,{'name':'bs_button','location':'../../custom/bs_button'}
-    ,{'name':'select','location':'../../custom/select'}
-    ,{'name':'select_account_states','location':'../../custom/select_account_states'}
-    ,{'name':'select_account_types','location':'../../custom/select_account_types'}
-    ,{'name':'select_accounts','location':'../../custom/select_accounts'}
-    ,{'name':'FilteringSelectLiveStore','location':'../../custom/FilteringSelectLiveStore'}
-    ,{'name':'select_divisions','location':'../../custom/select_divisions'}
-    ,{'name':'select_group','location':'../../custom/select_group'}
-    ,{'name':'select_identification_types','location':'../../custom/select_identification_types'}
-    ,{'name':'socketio','location':'../../custom/socketio'}
-    ,{'name':'top_tile','location':'../../custom/top_tile'}
-    ,{'name':'uDC','location':'../../custom/uDC'}
-    ,{'name':'Switch','location':'../../custom/Switch'}
-    ,{'name':'map_points','location':'../../custom/map_points'}
-    ,{'name':'evenstatustype_user_buttons','location':'../../custom/evenstatustype_user_buttons'}
-    ,{'name':'uDCGrid','location':'../../custom/uDCGrid'}
-    ,{'name':'utils','location':'../../custom/utils'}
-    ,{'name':'contact_means_of_contact','location':'../../custom/contact_means_of_contact'}
-    ]"></script>
+  <script type="text/javascript" src="applib/js/dojo/dojo/dojo/dojo.js" 
+  data-dojo-config="'parseOnLoad':true,'async':true, 'packages':[
+  {'name':'widgets','location':'../custom'}
+  ,{'name':'Widget','location':'../../custom'}
+  ,{'name':'Alert','location':'../../custom/Alert'}
+  ,{'name':'Chat','location':'../../custom/Chat'}
+  ,{'name':'CollapseButton','location':'../../custom/CollapseButton'}
+  ,{'name':'ContactGroup','location':'../../custom/ContactGroup'}
+  ,{'name':'ContactMap','location':'../../custom/ContactMap'}
+  ,{'name':'ContactWidget','location':'../../custom/ContactWidget'}
+  ,{'name':'DateTextbox','location':'../../custom/DateTextbox'}
+  ,{'name':'Extends','location':'../../custom/Extends'}
+  ,{'name':'FilteringSelectAccounts','location':'../../custom/FilteringSelectAccounts'}
+  ,{'name':'FilteringSelectGlobalStore','location':'../../custom/FilteringSelectGlobalStore'}
+  ,{'name':'Geolocations','location':'../../custom/Geolocations'}
+  ,{'name':'GlobalLiveStore','location':'../../custom/GlobalLiveStore'}
+  ,{'name':'LiveStore','location':'../../custom/LiveStore'}
+  ,{'name':'Map','location':'../../custom/Map'}
+  ,{'name':'MapPoint','location':'../../custom/MapPoint'}
+  ,{'name':'EventDetails','location':'../../custom/EventDetails'}
+  ,{'name':'SelectGender','location':'../../custom/SelectGender'}
+  ,{'name':'app_accounts_table','location':'../../custom/app_accounts_table'}
+  ,{'name':'app_event_admin','location':'../../custom/app_event_admin'}
+  ,{'name':'app_monitor_network_devices','location':'../../custom/app_monitor_network_devices'}
+  ,{'name':'app_tables_views_config','location':'../../custom/app_tables_views_config'}
+  ,{'name':'bs_button','location':'../../custom/bs_button'}
+  ,{'name':'select','location':'../../custom/select'}
+  ,{'name':'select_account_states','location':'../../custom/select_account_states'}
+  ,{'name':'select_account_types','location':'../../custom/select_account_types'}
+  ,{'name':'select_accounts','location':'../../custom/select_accounts'}
+  ,{'name':'FilteringSelectLiveStore','location':'../../custom/FilteringSelectLiveStore'}
+  ,{'name':'select_divisions','location':'../../custom/select_divisions'}
+  ,{'name':'select_group','location':'../../custom/select_group'}
+  ,{'name':'select_identification_types','location':'../../custom/select_identification_types'}
+  ,{'name':'socketio','location':'../../custom/socketio'}
+  ,{'name':'top_tile','location':'../../custom/top_tile'}
+  ,{'name':'uDC','location':'../../custom/uDC'}
+  ,{'name':'Switch','location':'../../custom/Switch'}
+  ,{'name':'map_points','location':'../../custom/map_points'}
+  ,{'name':'evenstatustype_user_buttons','location':'../../custom/evenstatustype_user_buttons'}
+  ,{'name':'uDCGrid','location':'../../custom/uDCGrid'}
+  ,{'name':'utils','location':'../../custom/utils'}
+  ,{'name':'contact_means_of_contact','location':'../../custom/contact_means_of_contact'}
+  ]"></script>
 
-    <!-- REQUIRE DOJO -->
-    <script>require([
-      "dojo",    
-      "dijit/dijit",
-      "dojo/parser",
-      "utils/String",
-      "Extends/Editor",
-      "app_accounts_table/app_accounts_table"
-      ]);
-    </script>
+  <!-- REQUIRE DOJO -->
+  <script>require([
+    "dojo",    
+    "dijit/dijit",
+    "dojo/parser",
+    "utils/String",
+    "Extends/Editor",
+    "app_accounts_table/app_accounts_table"
+    ]);
+  </script>
 
-    <!-- <link rel="import" href="applib/wc/user-eventstatustype.html"> -->
-   <script src="applib/js/oms.js"></script>   
+  <!-- <link rel="import" href="applib/wc/user-eventstatustype.html"> -->
+  <script src="applib/js/oms.js"></script>   
 
-    <style>
+  <style>
 
 
-     .container_preloader{
-      z-index:999999;
-      height: 100%;
-      width: 100%;
-      position: fixed;
-      background: #ededed;
-      text-align:center;
-    }
+   .container_preloader{
+    z-index:999999;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background: #ededed;
+    text-align:center;
+  }
 
-    .preloader {
-      display:inline-block;
-      margin-top: 20%;
-      border: 20px solid #f3f3f3;
-      border-radius: 50%;
-      border-top: 20px solid #20374f;
-      border-bottom: 20px solid #20374f;
-      width: 25px;
-      height: 25px;
-      -webkit-animation: spin 2s linear infinite;
-      animation: spin 2s linear infinite;
-    }
+  .preloader {
+    display:inline-block;
+    margin-top: 20%;
+    border: 20px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 20px solid #20374f;
+    border-bottom: 20px solid #20374f;
+    width: 25px;
+    height: 25px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
 
-    @-webkit-keyframes spin {
-      0% { -webkit-transform: rotate(0deg); }
-      100% { -webkit-transform: rotate(360deg); }
-    }
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-  </style>
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
 
 
 </head>
@@ -144,7 +143,7 @@
         var f = fx.fadeOut({ node: node });
         on(f, "End", function(){
          domStyle.set(node, 'display', 'none');
-        });
+       });
         f.play();    
 
       }
@@ -158,18 +157,19 @@
  
 
 
- <div style="width: 100%; height: auto;">
+ <div >
   <div class="BarHeader"> <i class="dijitIcon flat-menu" id="ToogleMenu" style="cursor: pointer; padding: 5px;
     font-size: 2.5em;"></i> <div class="TitleHeader">Open Monitoring System</div>  </div>
 
- <div data-dojo-type="Widget/menu_master/menu_master" id="MainMenu" style="height: 90%; width: 250px; left: 0px; position: absolute; z-index: 900; float: none; border-top-color: #d6d6d6;"></div>
+    <div data-dojo-type="Widget/menu_master/menu_master" id="MainMenu" style="height: 90%; width: 250px; left: 0px; position: absolute; z-index: 900; float: none; border-top-color: #d6d6d6;"></div>
 
-  <div data-dojo-type="dijit/layout/ContentPane" title="Pane" id="PageContent" doLayout="false"  style=" height: auto;">
+    <div data-dojo-type="dijit/layout/ContentPane" title="Pane" id="PageContent" doLayout="false">
+    </div>
+
+
   </div>
 
-</div>
-
-<div data-dojo-type="GlobalLiveStore/GlobalLiveStore"></div>
+  <div data-dojo-type="GlobalLiveStore/GlobalLiveStore"></div>
 
 
 

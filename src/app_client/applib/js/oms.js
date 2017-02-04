@@ -1,5 +1,7 @@
 require(["dojo/ready", 
 	"dojo/cookie",
+  "dojo/window",
+  "dojo/dom-style",
 	"Widget/EventServerIO/EventServerIO",
 	"Widget/UserNotifications/UserNotifications",
 	"dojo/on",
@@ -17,6 +19,8 @@ require(["dojo/ready",
   "Widget/app_event_management/app_event_management"
   ], function(ready, 
     cookie,
+    win,
+    domStyle,
     EventServerIO,
     UserNotifications, 
     on,
@@ -36,9 +40,15 @@ require(["dojo/ready",
     ready(function(){
 
 
+var vs = win.getBox();
 
      var PageContent = dijit.byId('PageContent');
      var Mainmenu = dijit.byId("MainMenu");
+
+console.debug(vs.h);
+//PageContent.set("height", (vs.h-30000)+'px');
+ domStyle.set(PageContent.domNode, "height", (vs.h-30)+'px');
+
      Mainmenu.on("clickitem", function(e){
       console.debug(e);
       switch(e){
@@ -92,8 +102,9 @@ require(["dojo/ready",
      function OpenApp(appClass){
 
        PageContent.destroyDescendants();
-       new appClass().placeAt(PageContent);
+      var app = new appClass().placeAt(PageContent);
        PageContent.resize();
+       //app.resize();
        Mainmenu.isVisible(false);
      }
 
