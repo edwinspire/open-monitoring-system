@@ -122,7 +122,6 @@ define(['dojo/_base/declare',
       uDCColumns: t.uDCColumns,
       table: t.table,
       rowFingerPrint: t.rowFingerPrint,
-      // className: "dgrid-autoheight",
       idProperty: t.idProperty
 
     }, t.Contenedor);
@@ -140,10 +139,7 @@ define(['dojo/_base/declare',
     });
 
      t.Grid.on('dgrid-refresh-complete', function (event) {
-
-      //domStyle.set(t.Grid.domNode, 'max-height', w.getBox().h-50+'px');
-    //  domStyle.set(t.Grid.domNode, 'height', '100%');
- //t.resize();
+      t.autoHeight();
     });
 
 
@@ -158,54 +154,60 @@ define(['dojo/_base/declare',
       t.emit('ClickRow', row.data);
     });
 
-
+t.autoHeight();
 
      return t;
    },
-   _notifications: function (_n) {
-     topic.publish("/event/user/notify", [_n]);
-   },
-   resize: function(wh){
-     if(this.Grid){
-      this.Grid.resize(wh);
-    }
+   autoHeight: function(){
+    var t = this;
+    var h = domStyle.get(t.domNode.parentElement, 'height') - (domStyle.get(t.TBar.domNode, 'height')+15);
+    domStyle.set(t.Grid.domNode, 'height', h+'px');
+    console.debug(domStyle.get(t.domNode.parentElement, 'height'), domStyle.get(t.domNode, 'height'), h);
   },
-  _setSizecontainerAttr: function(size){
-var t = this;
-var h = domStyle.get(t.TBar.domNode, 'height');
-var w = domStyle.get(t.TBar.domNode, 'width');
+  _notifications: function (_n) {
+   topic.publish("/event/user/notify", [_n]);
+ },
+ resize: function(wh){
+   if(this.Grid){
+    this.Grid.resize(wh);
+  }
+},
+_setSizecontainerAttr: function(size){
+  var t = this;
+  var h = domStyle.get(t.TBar.domNode, 'height');
+  var w = domStyle.get(t.TBar.domNode, 'width');
 
-if(size.height){
-h = size.height - h;
-domStyle.set(t.Grid.domNode, 'height', h+'px');
-console.debug(size, h, w);
-}
+  if(size.height){
+    h = size.height - h;
+    domStyle.set(t.Grid.domNode, 'height', h+'px');
+    console.debug(size, h, w);
+  }
 
-if(size.width){
-w = size.width - w;
-domStyle.set(t.Grid.domNode, 'width', w+'px');
-}
+  if(size.width){
+    w = size.width - w;
+    domStyle.set(t.Grid.domNode, 'width', w+'px');
+  }
 
 
 
 
   //   
-  },
-  Clear: function(){
-   this.Grid.Clear();
-   return this;
- },
- disabledGrid: function(_disabled){
-   this.Grid.disabled(_disabled);
- },
- _disabled: function(_disable){
+},
+Clear: function(){
+ this.Grid.Clear();
+ return this;
+},
+disabledGrid: function(_disabled){
+ this.Grid.disabled(_disabled);
+},
+_disabled: function(_disable){
 
-   if(_disable){
-    domClass.add(this.domNode, "element-disabled");
-  }else{
-    domClass.remove(this.domNode, "element-disabled");
-  }
-  return this;
+ if(_disable){
+  domClass.add(this.domNode, "element-disabled");
+}else{
+  domClass.remove(this.domNode, "element-disabled");
+}
+return this;
 }
 
 
@@ -223,4 +225,4 @@ domStyle.set(t.Grid.domNode, 'width', w+'px');
 
 
 });
-  });
+});

@@ -158,7 +158,7 @@ transporter.sendMail(mailOptions, function(error, info){
     console.log('Message sent: ' + info.response);
 });
 
-
+/*
 var client = new XmppClient({
     jid: 'farmaoms@suchat.org',
     password: 'farmaspire',
@@ -186,6 +186,7 @@ client.on('chat', function(from, message) {
 client.on('error', function(err) {
     console.error(err);
 });
+*/
 
 /*
 cl.on('stanza',
@@ -209,11 +210,11 @@ cl.on('stanza',
 
     var app = express();
 
-    app.use(express.static(process.env.EXPRESS_STATIC_DIR, {setHeaders: setFontHeaders}));
+  //   app.use(express.static(process.env.EXPRESS_STATIC_DIR, {setHeaders: setFontHeaders}));
 
-    function setFontHeaders(res) {
-      res.setHeader('Accept-Ranges', 'none');
-  }
+  //   function setFontHeaders(res) {
+  //     res.setHeader('Accept-Ranges', 'none');
+  // }
 
   app.use(cookieParser());
   app.use(compression());
