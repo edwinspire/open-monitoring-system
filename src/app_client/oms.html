@@ -3,14 +3,12 @@
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;">
-  <!-- Meta, title, CSS, favicons, etc. -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Open Monitor System</title>
 
-  <!-- Custom Theme Style -->
   <link rel="stylesheet" type="text/css" href="applib/js/dojo/custom/menu_master/menu_master.css">
   <link rel="stylesheet" type="text/css" href="applib/js/dojo/custom/UserNotifications/UserNotifications.css">
   <link href="applib/css/dgrid_columns.css" rel="stylesheet">
@@ -76,12 +74,9 @@
     ]);
   </script>
 
-  <!-- <link rel="import" href="applib/wc/user-eventstatustype.html"> -->
   <script src="applib/js/oms.js"></script>   
 
   <style>
-
-
    .container_preloader{
     z-index:999999;
     height: 100%;
@@ -131,27 +126,25 @@
      ready(function(){
 
       dojo.query(".container_preloader").forEach(function(node, index, nodelist){
-    // for each node in the array returned by dojo.query,
-    // execute the following code
-    setTimeout(
-      function(){
 
-        var f = fx.fadeOut({ node: node });
-        on(f, "End", function(){
-         domStyle.set(node, 'display', 'none');
-       });
-        f.play();    
+        setTimeout(
+          function(){
 
-      }
-      , 1000);     
+            var f = fx.fadeOut({ node: node });
+            on(f, "End", function(){
+             domStyle.set(node, 'display', 'none');
+           });
+            f.play();    
 
-  });
+          }
+          , 1000);     
+
+      });
 
     });
    });
  </script>
  
-
 
  <div id=MainContainer>
   <div class="BarHeader PSheight25"> <i class="dijitIcon flat-menu" id="ToogleMenu" style="cursor: pointer; padding: 5px;
