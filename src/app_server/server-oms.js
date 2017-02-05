@@ -155,7 +155,7 @@ transporter.sendMail(mailOptions, function(error, info){
     if(error){
         return console.log(error);
     }
-    console.log('Message sent: ' + info.response);
+    console.log('Message email sent: ' + info.response);
 });
 
 /*
@@ -667,9 +667,9 @@ var pgEventNotif = PostgreSQL.on('notifying_the_user', function(r){
     //console.log('-- Envia notificacion de postgres', r);
     sio.emit('notifying_the_user', JSON.stringify(r));
 
-    var stanza = new XmppClient.Stanza('message', {to: 'edwinspire@suchat.org', type: 'chat'})
-    .c('body').t(r.title.replace('</br>', '\n')+'\n'+r.body.replace('</br>', '\n'));
-    client.send(stanza);
+    // var stanza = new XmppClient.Stanza('message', {to: 'edwinspire@suchat.org', type: 'chat'})
+    // .c('body').t(r.title.replace('</br>', '\n')+'\n'+r.body.replace('</br>', '\n'));
+    // client.send(stanza);
 });
 
 
