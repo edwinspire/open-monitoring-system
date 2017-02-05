@@ -94,6 +94,8 @@ Mainmenu.on("clickitem", function(e){
    case 'MenuEventsAll':
 //   OpenApp(app_event_management);
 StackContainer.selectChild(dijit.byId("id_app_event_management"));
+//dijit.byId("id_app_event_management").startup();
+//dijit.byId("id_app_event_management").resize();
    break;  
    // case 'GeneralEmpresaGeolocalizacion':
    // OpenApp(app_geolocations);
@@ -123,8 +125,8 @@ ResizeContainer();
 function ResizeContainer(){
   var vs = win.getBox();
   console.debug(vs);
-  domStyle.set(PageContent.domNode, "height", (vs.h-30-16)+'px');
-  PageContent.resize();
+  domStyle.set(myStackContainer, "height", (vs.h-30-16)+'px');
+  //myStackContainer.resize();
 }
 
 on(window, 'resize', function(){
@@ -136,7 +138,7 @@ aspect.after(window, "resize", function(e) {
   ResizeContainer();        
       });
 
-   //  ResizeContainer();
+    ResizeContainer();
 
 
    });

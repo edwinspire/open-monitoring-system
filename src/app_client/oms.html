@@ -39,7 +39,6 @@
   ,{'name':'MapPoint','location':'../../custom/MapPoint'}
   ,{'name':'EventDetails','location':'../../custom/EventDetails'}
   ,{'name':'SelectGender','location':'../../custom/SelectGender'}
-  ,{'name':'app_accounts_table','location':'../../custom/app_accounts_table'}
   ,{'name':'app_event_admin','location':'../../custom/app_event_admin'}
   ,{'name':'app_monitor_network_devices','location':'../../custom/app_monitor_network_devices'}
   ,{'name':'app_tables_views_config','location':'../../custom/app_tables_views_config'}
@@ -70,13 +69,38 @@
     "dojo/parser",
     "utils/String",
     "Extends/Editor",
-    "app_accounts_table/app_accounts_table"
+    "Widget/app_account/app_account",
+    "Widget/app_event_management/app_event_management"
     ]);
   </script>
 
   <script src="applib/js/oms.js"></script>   
 
-  <style>
+  <script>
+    require(["dojo/_base/fx", "dojo/on", "dojo/ready", "dojo/dom-style"], function(fx, on, ready, domStyle){
+     ready(function(){
+
+      dojo.query(".container_preloader").forEach(function(node, index, nodelist){
+
+        setTimeout(
+          function(){
+
+            var f = fx.fadeOut({ node: node });
+            on(f, "End", function(){
+             domStyle.set(node, 'display', 'none');
+           });
+            f.play();    
+
+          }
+          , 1000);     
+
+      });
+
+    });
+   });
+ </script>
+
+ <style>
    .container_preloader{
     z-index:999999;
     height: 100%;
@@ -120,50 +144,23 @@
     <div class="preloader"></div>
   </div>   
 
+  <div data-dojo-type="Widget/GlobalLiveStore/GlobalLiveStore"></div>
 
-  <script>
-    require(["dojo/_base/fx", "dojo/on", "dojo/ready", "dojo/dom-style"], function(fx, on, ready, domStyle){
-     ready(function(){
+  <div id=MainContainer>
+    <div class="BarHeader PSheight25"> <i class="dijitIcon flat-menu" id="ToogleMenu" style="cursor: pointer; padding: 5px;
+      font-size: 2.5em;"></i> <div class="TitleHeader">Open Monitoring System</div>  </div>
 
-      dojo.query(".container_preloader").forEach(function(node, index, nodelist){
+      <div data-dojo-type="Widget/menu_master/menu_master" id="MainMenu" style="height: 90%; width: 250px; left: 0px; position: absolute; z-index: 900; float: none; border-top-color: #d6d6d6;"></div>
 
-        setTimeout(
-          function(){
-
-            var f = fx.fadeOut({ node: node });
-            on(f, "End", function(){
-             domStyle.set(node, 'display', 'none');
-           });
-            f.play();    
-
-          }
-          , 1000);     
-
-      });
-
-    });
-   });
- </script>
- 
-
- <div id=MainContainer>
-  <div class="BarHeader PSheight25"> <i class="dijitIcon flat-menu" id="ToogleMenu" style="cursor: pointer; padding: 5px;
-    font-size: 2.5em;"></i> <div class="TitleHeader">Open Monitoring System</div>  </div>
-
-    <div data-dojo-type="Widget/menu_master/menu_master" id="MainMenu" style="height: 90%; width: 250px; left: 0px; position: absolute; z-index: 900; float: none; border-top-color: #d6d6d6;"></div>
-
-    <div data-dojo-type="dijit/layout/StackContainer" id="myStackContainer">
-    <div data-dojo-type="Widget/app_event_management/app_event_management" id="id_app_event_management"> </div>
-      <div data-dojo-type="Widget/app_account/app_account" id="id_app_account"></div>
-    </div>
-<!-- 
-    <div data-dojo-type="Widget/app_event_management/app_event_management" title="Pane" id="PageContent" doLayout="false" class="PSheight75">
-    </div> -->
-
+      <div data-dojo-type="dijit/layout/StackContainer" id="myStackContainer">
+        <div data-dojo-type="Widget/app_event_management/app_event_management" id="id_app_event_management"> </div>
+        <div data-dojo-type="Widget/app_account/app_account" id="id_app_account"></div>
+        
+      </div>
 
   </div>
 
-  <div data-dojo-type="GlobalLiveStore/GlobalLiveStore"></div>
+  
 
 
 

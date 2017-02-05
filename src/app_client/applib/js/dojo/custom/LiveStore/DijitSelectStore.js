@@ -8,7 +8,7 @@ define(["dojo/_base/declare",
   "dojo/_base/array",
   "dijit/_WidgetBase"
   ], function(declare, lang, ObjectStore, Memory, Observable, request, topic, array, _WidgetBase) {
-    return  declare("LiveStore/DijitSelectStore", [ObjectStore], {
+    return  declare("Widget/LiveStore/DijitSelectStore", [ObjectStore], {
 
       target: '',
       handleAs: 'json',

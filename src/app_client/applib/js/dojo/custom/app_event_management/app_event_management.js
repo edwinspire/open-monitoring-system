@@ -49,8 +49,12 @@ define(['dojo/_base/declare',
        domStyle.set(this.BorderContainer.domNode, "height", (vs.h-30-16)+'px');
        this.BorderContainer.resize();
 
+    //domStyle.set(t.TABEvents.domNode, 'height', (domStyle.get(t.TABEvents.domNode.parentElement, 'height')-10)+'px');
+
        aspect.after(t.CLeft, "resize", function(e) {
-        t.GridEvents.set('sizecontainer', {height: domStyle.get(t.CLeft.domNode, "height")-10});
+        //t.GridEvents.set('sizecontainer', {height: domStyle.get(t.CLeft.domNode, "height")-10});
+        t.GridEvents.autoHeight();
+        t.TABEvents.resize();
       });
 
        t.SelectAccounts.queryExpr = '*${0}*';
@@ -72,7 +76,6 @@ define(['dojo/_base/declare',
         t.AccountDetails.set('idaccount', e.idaccount);
       });
 
-
      },
      _setIdaccountAttr: function (_v) {
         // console.log('Se quiere account_events_assignment setear a '+_v);     
@@ -84,10 +87,12 @@ define(['dojo/_base/declare',
          // return this.account_events_assignment.get('value');
        } ,
        resize: function(){
-       // this.BorderContainer.resize();
+         this.BorderContainer.resize();
+         this.TABEvents.resize();
+         this.CPEvents.resize();
 
-     },
-     reset: function () {
+       },
+       reset: function () {
           //  this.account_events_assignment.reset();
         }      
 
