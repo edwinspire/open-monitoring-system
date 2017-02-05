@@ -152,7 +152,16 @@
 
     <div data-dojo-type="Widget/menu_master/menu_master" id="MainMenu" style="height: 90%; width: 250px; left: 0px; position: absolute; z-index: 900; float: none; border-top-color: #d6d6d6;"></div>
 
-    <div data-dojo-type="dijit/layout/ContentPane" title="Pane" id="PageContent" doLayout="false" class="PSheight75">
+<button id="previous" data-dojo-type="dijit/form/Button" data-dojo-props="onClick:function(){myStackContainer.back()}">&lt;</button>
+    <span data-dojo-type="dijit/layout/StackController" data-dojo-props="containerId:'stackContainer'"></span>
+<button id="next" data-dojo-type="dijit/form/Button" data-dojo-props="onClick:function(){myStackContainer.forward()}">&gt;</button>
+
+<div data-dojo-type="dijit/layout/StackContainer" data-dojo-id="myStackContainer">
+    <div data-dojo-type="dijit/layout/ContentPane" title="Questions"> </div>
+    <div data-dojo-type="Widget/app_account/app_account" title="Answers"></div>
+</div>
+
+    <div data-dojo-type="Widget/app_event_management/app_event_management" title="Pane" id="PageContent" doLayout="false" class="PSheight75">
     </div>
 
 

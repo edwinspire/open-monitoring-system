@@ -7,7 +7,10 @@ define(['dojo/_base/declare',
   "dojo/window",
   "dojo/dom-style",
   "dojo/aspect",
-   "dijit/registry",
+  "dijit/registry",
+  "dijit/layout/StackContainer",
+  "dijit/layout/ContentPane",
+  "dijit/layout/StackController",
   "dijit/layout/ContentPane",
   "dijit/layout/BorderContainer",
   "dijit/form/Textarea",
@@ -17,7 +20,19 @@ define(['dojo/_base/declare',
   "Widget/account_details/account_details",
   "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
   "FilteringSelectLiveStore/FilteringSelectLiveStore"
-  ], function (declare, _Widget, _Templated, templateString, domClass, on, win, domStyle, aspect, registry) {
+  ], function (declare, 
+    _Widget, 
+    _Templated, 
+    templateString, 
+    domClass, 
+    on, 
+    win, 
+    domStyle, 
+    aspect, 
+    registry, 
+    StackContainer, 
+    ContentPane, 
+    StackController) {
 /**
      * Account Events is Open
      *
