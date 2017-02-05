@@ -46,6 +46,7 @@ require(["dojo/ready",
 
       var PageContent = dijit.byId('PageContent');
       var Mainmenu = dijit.byId("MainMenu");
+      var StackContainer = dijit.byId("myStackContainer");
 
 // console.debug(vs.h);
 //  domStyle.set(PageContent.domNode, "height", (vs.h-40)+'px');
@@ -62,39 +63,41 @@ require(["dojo/ready",
 Mainmenu.on("clickitem", function(e){
   console.debug(e);
   switch(e){
-   case 'monitoreo_general':
-   OpenApp(app_monitor_general);
-   break;
-   case 'monitoreo_equipos_red':
-   OpenApp(app_monitor_network_devices);
-   break;
+   // case 'monitoreo_general':
+   // OpenApp(app_monitor_general);
+   // break;
+   // case 'monitoreo_equipos_red':
+   // OpenApp(app_monitor_network_devices);
+   // break;
    case 'GeneralEmpresaAbonados':
-   OpenApp(app_account);
+   //OpenApp(app_account);
+   StackContainer.selectChild(dijit.byId("id_app_account"));
    break;
-   case 'MenuUtilListaPrecioMedi':
-   OpenApp(app_lista_precios_medi);
-   break;					
-   case 'MenuUtilListaPrecioEco':
-   OpenApp(app_lista_precios_eco);
-   break;					
-   case 'MenuAdminViewTables':
-   OpenApp(app_tables_views_config);
-   break;					
-   case 'MenuUtilListaPrecioMediPromo':
-   OpenApp(app_lista_precios_promo_medi);
-   break;					
-   case 'MenuUtilListaPrecioEcoPromo':
-   OpenApp(app_lista_precios_promo_eco);
-   break;	
-   case 'MenuUtilListaPrecioPN':
-   OpenApp(app_lista_precios_pnatural);
-   break;        
+   // case 'MenuUtilListaPrecioMedi':
+   // OpenApp(app_lista_precios_medi);
+   // break;					
+   // case 'MenuUtilListaPrecioEco':
+   // OpenApp(app_lista_precios_eco);
+   // break;					
+   // case 'MenuAdminViewTables':
+   // OpenApp(app_tables_views_config);
+   // break;					
+   // case 'MenuUtilListaPrecioMediPromo':
+   // OpenApp(app_lista_precios_promo_medi);
+   // break;					
+   // case 'MenuUtilListaPrecioEcoPromo':
+   // OpenApp(app_lista_precios_promo_eco);
+   // break;	
+   // case 'MenuUtilListaPrecioPN':
+   // OpenApp(app_lista_precios_pnatural);
+   // break;        
    case 'MenuEventsAll':
-   OpenApp(app_event_management);
+//   OpenApp(app_event_management);
+StackContainer.selectChild(dijit.byId("id_app_event_management"));
    break;  
-   case 'GeneralEmpresaGeolocalizacion':
-   OpenApp(app_geolocations);
-   break;    				
+   // case 'GeneralEmpresaGeolocalizacion':
+   // OpenApp(app_geolocations);
+   // break;    				
  }
 }); 
 
@@ -133,7 +136,7 @@ aspect.after(window, "resize", function(e) {
   ResizeContainer();        
       });
 
-     ResizeContainer();
+   //  ResizeContainer();
 
 
    });
