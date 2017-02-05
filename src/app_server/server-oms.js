@@ -210,11 +210,12 @@ cl.on('stanza',
 
     var app = express();
 
-  //   app.use(express.static(process.env.EXPRESS_STATIC_DIR, {setHeaders: setFontHeaders}));
+   app.use(express.static(process.env.EXPRESS_STATIC_DIR, {setHeaders: setFontHeaders}));
 
-  //   function setFontHeaders(res) {
-  //     res.setHeader('Accept-Ranges', 'none');
-  // }
+   function setFontHeaders(res) {
+     //res.setHeader('Accept-Ranges', 'none');
+     // Por el momento no tiene funcion
+ }
 
   app.use(cookieParser());
   app.use(compression());
