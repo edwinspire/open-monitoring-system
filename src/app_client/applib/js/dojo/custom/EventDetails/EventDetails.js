@@ -44,6 +44,12 @@
                  }); 
              });
 
+                t.TEComments.on('addok', function(e){
+                    t.uDCAddCommentSimple.Insert();
+                });
+
+
+
             },
 
         /**
@@ -65,6 +71,8 @@
     t.SelectEventStatus.set('value', _v.ideventstatustype);
     t.TEComments.Grid.Select({idevent: _v.idevent});
     t.uDCChangeStatus.setField('idevent', _v.idevent);   
+    t.uDCAddCommentSimple.setField('idevent', _v.idevent);      
+    t.uDCAddCommentSimple.setField('ideventstatustype', _v.ideventstatustype);     
 
 
 },
