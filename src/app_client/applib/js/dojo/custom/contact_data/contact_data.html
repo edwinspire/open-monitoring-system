@@ -5,7 +5,7 @@
 		<legend >Habilitado</legend>
 
 
-			<input name="enabled" class="contact_form_basic_class_udc " data-dojo-type="dijit/form/CheckBox" value="false"/>
+			<input name="enabled"  data-dojo-type="dijit/form/CheckBox" value="false"/>
 
 	</fieldset>  
 
@@ -13,20 +13,20 @@
 	<fieldset>
 		<legend>Nombre</legend>
 	
-			<input data-dojo-type="dijit/form/ValidationTextBox" class="contact_form_basic_class_udc " placeholder="Nombre" name="first_name"/>        
+			<input data-dojo-type="dijit/form/ValidationTextBox"  placeholder="Nombre" name="first_name"/>        
 	
 	</fieldset>  
 	
 	
 	<fieldset>
 		<legend>Apellido</legend>
-		<div data-dojo-type="dijit/form/ValidationTextBox" data-input-icon="glyphicon glyphicon-user" placeholder="Apellido" name="last_name" class="contact_form_basic_class_udc"></div>         
+		<div data-dojo-type="dijit/form/ValidationTextBox" data-input-icon="glyphicon glyphicon-user" placeholder="Apellido" name="last_name" ></div>         
 	</fieldset>  
 	
 
 	<fieldset>
 		<legend>Cumpleaños</legend>
-		<div data-dojo-type="dijit/form/DateTextBox" class="contact_form_basic_class_udc " name="birthday"></div>
+		<div data-dojo-type="dijit/form/DateTextBox"  name="birthday"></div>
 	</fieldset> 
 
 
@@ -35,7 +35,7 @@
 		<legend >Tipe ID</legend>
 		
 	      
-			<div class="contact_form_basic_class_udc " name="ididtype" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['identification_types'], requestQuery: {_uDCTable: 'identification_types'}, identifier: 'ididtype', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'name'"></div>    
+			<div  name="ididtype" data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['identification_types'], requestQuery: {_uDCTable: 'identification_types'}, identifier: 'ididtype', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'name'"></div>    
 	      
 		
 
@@ -50,21 +50,21 @@
 	
 	<fieldset>
 		<legend>Identification</legend>
-		<span data-dojo-type="dijit/form/ValidationTextBox" data-input-icon="glyphicon glyphicon-barcode" placeholder="Identificación" name="identification" class="contact_form_basic_class_udc "></span>         
+		<span data-dojo-type="dijit/form/ValidationTextBox" data-input-icon="glyphicon glyphicon-barcode" placeholder="Identificación" name="identification" ></span>         
 	</fieldset>  
 	
 	
 	<fieldset>
 		<legend>Codigo Postal</legend>
-		<span data-dojo-type="dijit/form/ValidationTextBox" data-input-icon="glyphicon glyphicon-envelope" placeholder="Código postal" name="postal_code" class="contact_form_basic_class_udc "></span>          
+		<span data-dojo-type="dijit/form/ValidationTextBox" data-input-icon="glyphicon glyphicon-envelope" placeholder="Código postal" name="postal_code" ></span>          
 	</fieldset>  
 	
 	
 	<fieldset>
 		<legend>Genero</legend>
-	<!-- 	<div data-dojo-type="SelectGender/SelectGender" class="contact_form_basic_class_udc " name="gender"></div> -->
+	<!-- 	<div data-dojo-type="SelectGender/SelectGender"  name="gender"></div> -->
 
-    <select data-dojo-type="dijit/form/FilteringSelect"  value="0" intermediateChanges="false"  class="contact_form_basic_class_udc " name="gender" trim="false" uppercase="false" lowercase="false" propercase="false" required="true" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200" >
+    <select data-dojo-type="dijit/form/FilteringSelect"  value="0" intermediateChanges="false"   name="gender" trim="false" uppercase="false" lowercase="false" propercase="false" required="true" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200" >
         <option value="0" selected="true">Indefinido</option>
 <option value="1" selected="true">Hombre</option>
 <option value="2" selected="true">Mujer</option>
@@ -76,19 +76,19 @@
 	
 	<fieldset>
 		<legend>Latitud</legend>
-		<span data-dojo-type="dijit/form/ValidationTextBox" data-input-icon="glyphicon glyphicon-map-marker" placeholder="Latitud" value="0.0" class="contact_form_basic_class_udc " name="geox"></span>         
+		<span data-dojo-type="dijit/form/ValidationTextBox" data-input-icon="glyphicon glyphicon-map-marker" placeholder="Latitud" value="0.0"  name="geox"></span>         
 	</fieldset>  
 	
 	
 	<fieldset>
 		<legend>Longitud</legend>
-		<span data-dojo-type="dijit/form/ValidationTextBox" data-input-icon="glyphicon glyphicon-map-marker" placeholder="Longitud"  value="0.0" class="contact_form_basic_class_udc " name="geoy"></span>         
+		<span data-dojo-type="dijit/form/ValidationTextBox" data-input-icon="glyphicon glyphicon-map-marker" placeholder="Longitud"  value="0.0"  name="geoy"></span>         
 	</fieldset>  
 
 	
 	<fieldset>
 		<legend>Fecha Inicio</legend>
-		<div  data-dojo-type="dijit/form/DateTextBox" class="contact_form_basic_class_udc " name="start_date"></div>
+		<div  data-dojo-type="dijit/form/DateTextBox"  name="start_date"></div>
 	</fieldset> 
 
 
@@ -99,14 +99,14 @@
 <div class="col-md-6 col-sm-6 col-xs-12 col-xl-12">
 	<fieldset class="WidthFull">
 		<legend>Direccion</legend>
-		<textarea  type="text" data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;" name="address" class="contact_form_basic_class_udc "></textarea>
+		<textarea  type="text" data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;" name="address" ></textarea>
 	</fieldset>                         
 </div>
 
 <div class="col-md-6 col-sm-6 col-xs-12 col-xl-12">
 	<fieldset class="WidthFull">
 		<legend>Direccion Ref</legend>
-		<textarea  type="text" data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;" class="contact_form_basic_class_udc " name="address_ref"></textarea>
+		<textarea  type="text" data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;"  name="address_ref"></textarea>
 	</fieldset>    
 </div>
 
@@ -117,13 +117,13 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
 	<fieldset class="WidthFull">
 		<legend>Notas</legend>
-		<textarea data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;" class="contact_form_basic_class_udc "  placeholder='Notas' name="note" class="contact_form_basic_class_udc "></textarea>
+		<textarea data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;"   placeholder='Notas' name="note" ></textarea>
 	</fieldset>  
 </div>
 
 
 
-<div data-dojo-type="contact_means_of_contact/contact_means_of_contact" data-dojo-attach-point="CMC"></div>
+<div data-dojo-type="Widget/contact_means_of_contact/contact_means_of_contact" data-dojo-attach-point="CMC"></div>
 
 
 
