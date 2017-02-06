@@ -9,7 +9,7 @@
  	'dojo/_base/declare',
  	'dijit/_Widget',
  	'dijit/_Templated',
- 	'dojo/text!contact_means_of_contact/contact_means_of_contact.html',
+ 	'dojo/text!Widget/contact_means_of_contact/contact_means_of_contact.html',
   "Widget/uDCGridWidget/uDCGridWidget",
   "dijit/layout/TabContainer",
   "dijit/layout/ContentPane"

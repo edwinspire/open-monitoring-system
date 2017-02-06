@@ -3,7 +3,7 @@ define(['dojo/_base/declare',
 	'dijit/_Templated',
 	'dojo/text!Widget/contact_data/contact_data.html',
 	"dojo/on",
-	"uDC/uDC"
+	"Widget/uDC/uDC"
 	], function (declare, _Widget, _Templated, templateString,  on, uDC) {
     /**
      * Account Data

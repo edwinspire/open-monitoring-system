@@ -1,7 +1,7 @@
 define(['dojo/_base/declare',
     'dijit/_Widget',
     'dijit/_Templated',
-    'dojo/text!ContactGroup/ContactGroup.html',
+    'dojo/text!Widget/ContactGroup/ContactGroup.html',
     'dojo/request',
     "dojo/on",
     "dojo/_base/array",

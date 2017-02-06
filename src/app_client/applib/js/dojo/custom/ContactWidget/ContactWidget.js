@@ -1,8 +1,8 @@
 define(['dojo/_base/declare',
     'dijit/_Widget',
     'dijit/_Templated',
-    'dojo/text!ContactWidget/ContactWidget.html',
-"uDC/uDC"
+    'dojo/text!Widget/ContactWidget/ContactWidget.html',
+"Widget/uDC/uDC"
 ], function (declare, _Widget, _Templated, templateString, uDataControl) {
 
     return declare([_Widget, _Templated], {

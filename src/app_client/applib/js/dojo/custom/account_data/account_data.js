@@ -9,7 +9,7 @@ define(['dojo/_base/declare',
     "SelectGender/SelectGender",
     "ContactGroup/ContactGroup",
     "dijit/form/Textarea",
-    "contact_means_of_contact/contact_means_of_contact" ,
+    "Widget/contact_means_of_contact/contact_means_of_contact" ,
     "dijit/form/CheckBox",
     "dijit/form/TextBox",
     "Widget/uDC/uDC"

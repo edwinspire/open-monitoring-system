@@ -6,6 +6,7 @@ define(['dojo/_base/declare',
     "dojo/on",
     "dijit/form/TextBox",
     "Widget/uDCGridWidget/uDCGridWidget",
+    "Widget/uDC/uDC",
     "dijit/layout/ContentPane",
     "dijit/layout/TabContainer"
     ], function (declare, _Widget, _Templated, templateString, domClass, on) {
