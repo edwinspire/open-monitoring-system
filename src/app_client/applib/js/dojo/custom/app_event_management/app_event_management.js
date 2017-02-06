@@ -47,10 +47,11 @@ define(['dojo/_base/declare',
        var vs = win.getBox();
        console.debug(vs);
        domStyle.set(this.BorderContainer.domNode, "height", (vs.h-30-16)+'px');
-       this.BorderContainer.resize();
-       this.TABEvents.resize();
+       
+       //t.CPEvents.startup();
+       // t.CPEvents.resize();
 
-t.TABEvents.selectChild(t.TABEvents1);
+//t.TABEvents.selectChild(t.TABEvents1);
 
 //     var TABEvents = new TabContainer({
 //         style: "height: 100%; width: 100%;"
@@ -76,7 +77,7 @@ t.TABEvents.selectChild(t.TABEvents1);
 
     aspect.after(t.CLeft, "resize", function(e) {
       t.GridEvents.autoHeight();
-      t.TABEvents.resize();
+  //    t.TABEvents.resize();
     });
 
     t.SelectAccounts.queryExpr = '*${0}*';
@@ -100,7 +101,9 @@ t.TABEvents.selectChild(t.TABEvents1);
       //t.TABEvents.selectChild(t.AccountDetails);
     });
 
-t.startup();
+//t.startup();
+
+this.BorderContainer.resize();
   },
   _setIdaccountAttr: function (_v) {
 
@@ -110,8 +113,9 @@ t.startup();
        } ,
        resize: function(){
         this.BorderContainer.resize();
-        this.TABEvents.resize();
+    //    this.TABEvents.resize();
          // this.CPEvents.resize();
+         this.CPEvents.resize();
 
        },
        reset: function () {

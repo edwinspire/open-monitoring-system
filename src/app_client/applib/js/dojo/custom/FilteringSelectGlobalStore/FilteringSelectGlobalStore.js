@@ -16,7 +16,7 @@ define(["dojo/_base/declare",
 				this.inherited(arguments);
 
 				var t = this; 
-				console.debug(win.GlobalLiveStore);
+//				console.debug(win.GlobalLiveStore);
 
 				if(t.GlobalLiveStore){
 					t.autoComplete = false;

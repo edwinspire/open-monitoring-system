@@ -43,7 +43,7 @@
     ], function(request, on, array, crypto, http, sio, path, fs, url, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, XmppClient, Telegraf, pgOMS, MD5, sessionusers){
 
 
-        var pgParam = {user: 'postgres', pwd: 'pg4321', host: '192.168.251.174', db: 'oms'};
+        var pgParam = {user: 'postgres', pwd: 'pg4321', host: 'localhost', db: 'oms'};
         var sessionUsers = new sessionusers();
         var PostgreSQL = new pgOMS(pgParam);
 

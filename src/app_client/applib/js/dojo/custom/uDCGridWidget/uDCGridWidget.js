@@ -162,7 +162,7 @@ t.autoHeight();
     var t = this;
     var h = domStyle.get(t.domNode.parentElement, 'height') - (domStyle.get(t.TBar.domNode, 'height')+15);
     domStyle.set(t.Grid.domNode, 'height', h+'px');
-    console.debug(domStyle.get(t.domNode.parentElement, 'height'), domStyle.get(t.domNode, 'height'), h);
+//    console.debug(domStyle.get(t.domNode.parentElement, 'height'), domStyle.get(t.domNode, 'height'), h);
   },
   _notifications: function (_n) {
    topic.publish("/event/user/notify", [_n]);
