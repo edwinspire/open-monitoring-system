@@ -48,67 +48,34 @@ define(['dojo/_base/declare',
        console.debug(vs);
        domStyle.set(this.BorderContainer.domNode, "height", (vs.h-30-16)+'px');
        
-       //t.CPEvents.startup();
-       // t.CPEvents.resize();
+       aspect.after(t.CLeft, "resize", function(e) {
+        t.GridEvents.autoHeight();
+});
 
-//t.TABEvents.selectChild(t.TABEvents1);
+       t.SelectAccounts.queryExpr = '*${0}*';
+       t.SelectAccountEquipments.queryExpr = '*${0}*';
+       t.SelectAccountUser.queryExpr = '*${0}*';
 
-//     var TABEvents = new TabContainer({
-//         style: "height: 100%; width: 100%;"
-//     }, t.CPEvents.domNode);
+       t.SelectAccounts.on('Change', function(e){
+        t.SelectAccountUser.request({_uDCTable: 'view_account_contacts', idaccount: e});
+        t.SelectAccountEquipments.request({_uDCTable: 'equipments_by_account', idaccount: e});
+      });
 
-//     var cp1 = new ContentPane({
-//          title: "DETALLE EVENT"});
-//     TABEvents.addChild(cp1);
+       t.GridEvents.on('addok', function(e){
+        t.uDCNewEvent.Insert();
+      });
 
-//     var cp2 = new ContentPane({
-//          title: "DETALLE ABONADO"});
-//     TABEvents.addChild(cp2);
+       t.GridEvents.on('ClickRow', function(e){
+        t.EDetails.set('event', e);
+        t.AccountDetails.set('idaccount', e.idaccount);
+      });
 
+       this.BorderContainer.resize();
+     },
+     _setIdaccountAttr: function (_v) {
 
-// var EDetails = new EventDetails();
-// cp1.addChild(EDetails);
-
-// var AccountDetails = new account_details();
-// cp2.addChild(AccountDetails);
-
-    //t.TABEvents.startup();
-
-
-    aspect.after(t.CLeft, "resize", function(e) {
-      t.GridEvents.autoHeight();
-  //    t.TABEvents.resize();
-    });
-
-    t.SelectAccounts.queryExpr = '*${0}*';
-    t.SelectAccountEquipments.queryExpr = '*${0}*';
-    t.SelectAccountUser.queryExpr = '*${0}*';
-
-    t.SelectAccounts.on('Change', function(e){
-      t.SelectAccountUser.request({_uDCTable: 'view_account_contacts', idaccount: e});
-      t.SelectAccountEquipments.request({_uDCTable: 'equipments_by_account', idaccount: e});
-    });
-
-    t.GridEvents.on('addok', function(e){
-      t.uDCNewEvent.Insert();
-    });
-
-    t.GridEvents.on('ClickRow', function(e){
-//      console.log(e);
-      t.EDetails.set('event', e);
-      t.AccountDetails.set('idaccount', e.idaccount);
-      //t.TABEvents.resize();
-      //t.TABEvents.selectChild(t.AccountDetails);
-    });
-
-//t.startup();
-
-this.BorderContainer.resize();
-  },
-  _setIdaccountAttr: function (_v) {
-
-  },
-  _getValueAttr: function () {
+     },
+     _getValueAttr: function () {
          // return this.account_events_assignment.get('value');
        } ,
        resize: function(){

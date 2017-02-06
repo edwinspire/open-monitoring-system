@@ -1,6 +1,6 @@
 <div >
 
-	<div data-dojo-type="dijit/layout/BorderContainer" design="headline" data-dojo-attach-point="BorderContainer" persist="false" gutters="true" style="min-width: 10em; min-height: 1px; z-index: 0; width: 100%; min-height: 50%; background: red;">
+	<div data-dojo-type="dijit/layout/BorderContainer" design="headline" data-dojo-attach-point="BorderContainer" persist="false" gutters="true" style="min-width: 10em; min-height: 1px; z-index: 0; width: 100%; min-height: 50%;">
 		<div data-dojo-type="dijit/layout/ContentPane" data-dojo-attach-point="CLeft" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="left" splitter="true" maxSize="Infinity" style="width: 40%;" doLayout="true">
 			
 			<div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="GridEvents"  data-dojo-props="uDCColumns:{target: '/njs/db/dgrid_table_structure', fields: ['dateevent', 'label_status', 'label_eventtype', 'priority', 'description', 'account_name', 'admin_assigned']}, DialogAddContent: '${id}_fnne', UrlExport:'',  target: '/njs/db/table/view_events_details', initialQuery: {}, refreshOnTableChanged: ['events'], Title:'EVENTOS - Abiertos', table: 'view_events_details', idProperty: 'idevent'"></div> 
@@ -58,13 +58,13 @@
 
 
 
-		<div data-dojo-type="dijit/layout/TabContainer"  extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="center" splitter="false" maxSize="Infinity" doLayout="false" data-dojo-attach-point="CPEvents">
+		<div data-dojo-type="dijit/layout/TabContainer"  extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="center" splitter="false" maxSize="Infinity" doLayout="true" data-dojo-attach-point="CPEvents">
 
-			<div data-dojo-type="dijit/layout/ContentPane" data-dojo-attach-point="TABEvents1" title="DETALLE DEL EVENTO" doLayout="true" >
+			<div data-dojo-type="dijit/layout/ContentPane" data-dojo-attach-point="TABEvents1" title="DETALLE DEL EVENTO" doLayout="false" >
 				<div data-dojo-type="Widget/EventDetails/EventDetails" data-dojo-attach-point="EDetails" ></div>  
 			</div>
 
-			<div data-dojo-type="dijit/layout/ContentPane" title="DETALLE DEL ABONADO" doLayout="true" >
+			<div data-dojo-type="dijit/layout/ContentPane" title="DETALLE DEL ABONADO" doLayout="false" >
 				<div data-dojo-type="Widget/account_details/account_details" data-dojo-props="selected:true"   data-dojo-attach-point="AccountDetails"></div>
 			</div>
 			
