@@ -57,18 +57,17 @@
 
 
 
-		<div data-dojo-type="dijit/layout/ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="center" splitter="false" maxSize="Infinity" doLayout="true" style="background: red;" data-dojo-attach-point="CPEvents">
+		<div data-dojo-type="dijit/layout/ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="center" splitter="false" maxSize="Infinity" doLayout="true" data-dojo-attach-point="CPEvents">
 
-
-			<div data-dojo-type="dijit/layout/TabContainer" data-dojo-attach-point="TABEvents" style="width: 100%; background: yellow;" doLayout="true">
-				<div data-dojo-type="dijit/layout/ContentPane" title="DETALLE DEL EVENTO" doLayout="false" style="background: blue;" data-dojo-props="selected:true">
-					<div data-dojo-type="Widget/EventDetails/EventDetails" data-dojo-attach-point="EDetails"></div>  
+			<div data-dojo-type="dijit/layout/TabContainer" data-dojo-attach-point="TABEvents" style="width: 100%;  background: yellow;" doLayout="false">
+				<div data-dojo-type="dijit/layout/ContentPane" data-dojo-attach-point="TABEvents1" title="DETALLE DEL EVENTO" doLayout="false" style="background: blue;">
+					<div data-dojo-type="Widget/EventDetails/EventDetails" data-dojo-attach-point="EDetails" ></div>  
 				</div>
 
-				<div data-dojo-type="dijit/layout/ContentPane" title="DETALLE DEL ABONADO" doLayout="false" data-dojo-props="closable:false">
-					<div data-dojo-type="Widget/account_details/account_details"  data-dojo-attach-point="AccountDetails"></div>
+				<div data-dojo-type="dijit/layout/ContentPane" title="DETALLE DEL ABONADO" doLayout="false" >
+					<div data-dojo-type="Widget/account_details/account_details" data-dojo-props="selected:true"   data-dojo-attach-point="AccountDetails"></div>
 				</div>
-			</div>
+			</div> 
 
 
 		</div>

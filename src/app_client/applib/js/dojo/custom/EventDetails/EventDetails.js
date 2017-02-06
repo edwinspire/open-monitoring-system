@@ -33,6 +33,7 @@
 
                 var t = this;
 
+
                 on(t.DialogCStatusCancel, 'click', function (e) {
                     t.ContainerChangeStatus.set('open', false);
                 });

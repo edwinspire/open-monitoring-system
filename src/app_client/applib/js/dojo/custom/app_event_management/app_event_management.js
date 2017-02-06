@@ -8,9 +8,9 @@ define(['dojo/_base/declare',
   "dojo/dom-style",
   "dojo/aspect",
   "dijit/registry",
-  "dijit/layout/StackContainer",
-  "dijit/layout/ContentPane",
-  "dijit/layout/StackController",
+  "dijit/layout/TabContainer",
+  "Widget/EventDetails/EventDetails",
+  "Widget/account_details/account_details",
   "dijit/layout/ContentPane",
   "dijit/layout/BorderContainer",
   "dijit/form/Textarea",
@@ -29,10 +29,10 @@ define(['dojo/_base/declare',
     win, 
     domStyle, 
     aspect, 
-    registry, 
-    StackContainer, 
     ContentPane, 
-    StackController) {
+    TabContainer,
+    EventDetails,
+    account_details) {
 /**
      * Account Events is Open
      *
@@ -48,48 +48,70 @@ define(['dojo/_base/declare',
        console.debug(vs);
        domStyle.set(this.BorderContainer.domNode, "height", (vs.h-30-16)+'px');
        this.BorderContainer.resize();
+       this.TABEvents.resize();
 
-    //domStyle.set(t.TABEvents.domNode, 'height', (domStyle.get(t.TABEvents.domNode.parentElement, 'height')-10)+'px');
+t.TABEvents.selectChild(t.TABEvents1);
 
-       aspect.after(t.CLeft, "resize", function(e) {
-        //t.GridEvents.set('sizecontainer', {height: domStyle.get(t.CLeft.domNode, "height")-10});
-        t.GridEvents.autoHeight();
-        t.TABEvents.resize();
-      });
+//     var TABEvents = new TabContainer({
+//         style: "height: 100%; width: 100%;"
+//     }, t.CPEvents.domNode);
 
-       t.SelectAccounts.queryExpr = '*${0}*';
-       t.SelectAccountEquipments.queryExpr = '*${0}*';
-       t.SelectAccountUser.queryExpr = '*${0}*';
+//     var cp1 = new ContentPane({
+//          title: "DETALLE EVENT"});
+//     TABEvents.addChild(cp1);
 
-       t.SelectAccounts.on('Change', function(e){
-        t.SelectAccountUser.request({_uDCTable: 'view_account_contacts', idaccount: e});
-        t.SelectAccountEquipments.request({_uDCTable: 'equipments_by_account', idaccount: e});
-      });
+//     var cp2 = new ContentPane({
+//          title: "DETALLE ABONADO"});
+//     TABEvents.addChild(cp2);
 
-       t.GridEvents.on('addok', function(e){
-        t.uDCNewEvent.Insert();
-      });
 
-       t.GridEvents.on('ClickRow', function(e){
-        console.log(e);
-        t.EDetails.set('event', e);
-        t.AccountDetails.set('idaccount', e.idaccount);
-      });
+// var EDetails = new EventDetails();
+// cp1.addChild(EDetails);
 
-     },
-     _setIdaccountAttr: function (_v) {
-        // console.log('Se quiere account_events_assignment setear a '+_v);     
-       //  this.GridEvents.Grid.Select({});
-       //  this.SelectAccountUser.request({_uDCTable: 'view_account_contacts', idaccount: _v});
-       //  this.SelectAccountEquipments.request({_uDCTable: 'equipments_by_account', idaccount: _v});
-     },
-     _getValueAttr: function () {
+// var AccountDetails = new account_details();
+// cp2.addChild(AccountDetails);
+
+    //t.TABEvents.startup();
+
+
+    aspect.after(t.CLeft, "resize", function(e) {
+      t.GridEvents.autoHeight();
+      t.TABEvents.resize();
+    });
+
+    t.SelectAccounts.queryExpr = '*${0}*';
+    t.SelectAccountEquipments.queryExpr = '*${0}*';
+    t.SelectAccountUser.queryExpr = '*${0}*';
+
+    t.SelectAccounts.on('Change', function(e){
+      t.SelectAccountUser.request({_uDCTable: 'view_account_contacts', idaccount: e});
+      t.SelectAccountEquipments.request({_uDCTable: 'equipments_by_account', idaccount: e});
+    });
+
+    t.GridEvents.on('addok', function(e){
+      t.uDCNewEvent.Insert();
+    });
+
+    t.GridEvents.on('ClickRow', function(e){
+//      console.log(e);
+      t.EDetails.set('event', e);
+      t.AccountDetails.set('idaccount', e.idaccount);
+      //t.TABEvents.resize();
+      //t.TABEvents.selectChild(t.AccountDetails);
+    });
+
+t.startup();
+  },
+  _setIdaccountAttr: function (_v) {
+
+  },
+  _getValueAttr: function () {
          // return this.account_events_assignment.get('value');
        } ,
        resize: function(){
-         this.BorderContainer.resize();
-         this.TABEvents.resize();
-         this.CPEvents.resize();
+        this.BorderContainer.resize();
+        this.TABEvents.resize();
+         // this.CPEvents.resize();
 
        },
        reset: function () {
