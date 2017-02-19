@@ -1,0 +1,112 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "dojo@~1.11",
+        "scope": null,
+        "escapedName": "dojo",
+        "name": "dojo",
+        "rawSpec": "~1.11",
+        "spec": ">=1.11.0 <1.12.0",
+        "type": "range"
+      },
+      "/home/edwinspire/Desarrollo/Node/dojo-node-boilerplate/src/app-client"
+    ]
+  ],
+  "_from": "dojo@>=1.11.0 <1.12.0",
+  "_id": "dojo@1.11.3",
+  "_inCache": true,
+  "_location": "/dojo",
+  "_nodeVersion": "6.9.1",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/dojo-1.11.3.tgz_1482183222442_0.47613187367096543"
+  },
+  "_npmUser": {
+    "name": "sitepen",
+    "email": "labs@sitepen.com"
+  },
+  "_npmVersion": "3.10.8",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "dojo@~1.11",
+    "scope": null,
+    "escapedName": "dojo",
+    "name": "dojo",
+    "rawSpec": "~1.11",
+    "spec": ">=1.11.0 <1.12.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/",
+    "/dijit",
+    "/dojox"
+  ],
+  "_resolved": "https://registry.npmjs.org/dojo/-/dojo-1.11.3.tgz",
+  "_shasum": "b3169fc0e015da187be61c6bb593cf03c5213bf6",
+  "_shrinkwrap": null,
+  "_spec": "dojo@~1.11",
+  "_where": "/home/edwinspire/Desarrollo/Node/dojo-node-boilerplate/src/app-client",
+  "bugs": {
+    "url": "http://bugs.dojotoolkit.org/"
+  },
+  "dependencies": {},
+  "description": "Dojo core is a powerful, lightweight library that makes common tasks quicker and easier. Animate elements, manipulate the DOM, and query with easy CSS syntax, all without sacrificing performance.",
+  "devDependencies": {
+    "dojo": "1.11.3",
+    "formidable": "1.0.17",
+    "glob": "3.2.7",
+    "http-proxy": "0.10.3",
+    "intern-geezer": "2.2.2",
+    "jsgi-node": "0.3.1",
+    "sinon": "1.12.2"
+  },
+  "directories": {
+    "lib": "."
+  },
+  "dist": {
+    "shasum": "b3169fc0e015da187be61c6bb593cf03c5213bf6",
+    "tarball": "https://registry.npmjs.org/dojo/-/dojo-1.11.3.tgz"
+  },
+  "dojoBuild": "dojo.profile.js",
+  "gitHead": "b1d13a798887fd6f3d045a512655f283a338a245",
+  "homepage": "http://dojotoolkit.org/",
+  "keywords": [
+    "JavaScript",
+    "Dojo",
+    "Toolkit"
+  ],
+  "license": "BSD-3-Clause OR AFL-2.1",
+  "main": "main",
+  "maintainers": [
+    {
+      "name": "csnover",
+      "email": "npm@zetafleet.com"
+    },
+    {
+      "name": "dojotoolkit",
+      "email": "kitsonk@dojotoolkit.org"
+    },
+    {
+      "name": "sitepen",
+      "email": "labs@sitepen.com"
+    }
+  ],
+  "name": "dojo",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dojo/dojo.git"
+  },
+  "scripts": {
+    "test": "intern-client config=tests/dojo.intern",
+    "test-coverage": "intern-client config=tests/dojo.intern reporters=console reporters=lcovhtml",
+    "test-local": "intern-runner config=tests/dojo.intern.local",
+    "test-local-coverage": "intern-runner config=tests/dojo.intern.local reporters=runner reporters=lcovhtml",
+    "test-proxy": "intern-runner config=tests/dojo.intern.proxy proxyOnly=true",
+    "test-remote": "intern-runner config=tests/dojo.intern",
+    "test-remote-coverage": "intern-runner config=tests/dojo.intern reporters=runner reporters=lcovhtml"
+  },
+  "version": "1.11.3"
+}

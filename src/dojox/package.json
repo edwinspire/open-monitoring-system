@@ -1,0 +1,94 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "dojox@~1.11",
+        "scope": null,
+        "escapedName": "dojox",
+        "name": "dojox",
+        "rawSpec": "~1.11",
+        "spec": ">=1.11.0 <1.12.0",
+        "type": "range"
+      },
+      "/home/edwinspire/Desarrollo/Node/dojo-node-boilerplate/src/app-client"
+    ]
+  ],
+  "_from": "dojox@>=1.11.0 <1.12.0",
+  "_id": "dojox@1.11.3",
+  "_inCache": true,
+  "_location": "/dojox",
+  "_nodeVersion": "6.9.1",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/dojox-1.11.3.tgz_1482187568364_0.4397195631172508"
+  },
+  "_npmUser": {
+    "name": "sitepen",
+    "email": "labs@sitepen.com"
+  },
+  "_npmVersion": "3.10.8",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "dojox@~1.11",
+    "scope": null,
+    "escapedName": "dojox",
+    "name": "dojox",
+    "rawSpec": "~1.11",
+    "spec": ">=1.11.0 <1.12.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/dojox/-/dojox-1.11.3.tgz",
+  "_shasum": "34b799d197f8b1f2a7504fcf39ca41571134db13",
+  "_shrinkwrap": null,
+  "_spec": "dojox@~1.11",
+  "_where": "/home/edwinspire/Desarrollo/Node/dojo-node-boilerplate/src/app-client",
+  "bugs": {
+    "url": "http://bugs.dojotoolkit.org/"
+  },
+  "dependencies": {
+    "dijit": "1.11.3",
+    "dojo": "1.11.3"
+  },
+  "description": "Dojo eXtensions, a rollup of many useful sub-projects and varying states of maturity – from very stable and robust, to alpha and experimental. See individual projects contain README files for details.",
+  "devDependencies": {},
+  "directories": {
+    "lib": "."
+  },
+  "dist": {
+    "shasum": "34b799d197f8b1f2a7504fcf39ca41571134db13",
+    "tarball": "https://registry.npmjs.org/dojox/-/dojox-1.11.3.tgz"
+  },
+  "dojoBuild": "dojox.profile.js",
+  "gitHead": "2c5cb326759f8fe5b0a140a70b309d6b7631c8d0",
+  "homepage": "http://dojotoolkit.org/",
+  "keywords": [
+    "JavaScript",
+    "Dojo",
+    "Toolkit",
+    "DojoX"
+  ],
+  "license": "BSD-3-Clause OR AFL-2.1",
+  "main": "main",
+  "maintainers": [
+    {
+      "name": "dojotoolkit",
+      "email": "kitsonk@dojotoolkit.org"
+    },
+    {
+      "name": "sitepen",
+      "email": "labs@sitepen.com"
+    }
+  ],
+  "name": "dojox",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dojo/dojox.git"
+  },
+  "scripts": {},
+  "version": "1.11.3"
+}
