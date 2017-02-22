@@ -1,15 +1,15 @@
 define(['dojo/_base/declare',
-            "dojo/topic",
-            "socketio/socketio",
-            "dojo/cookie"
+    "dojo/topic",
+    "socketio/socketio",
+    "dojo/cookie"
     ], function (declare, topic, io, cookie) {
 
         return declare(null, {
-         
-constructor: function(){
+           
+            constructor: function(){
 
                 var socket = io.connect('//'+document.location.host);
-
+                
                 socket.on('connection', function(client) {  
                     console.log('Client connected. web component..');
                     socket.emit('heartbeat', {sessionidclient: cookie('oms_sessionidclient'), token: cookie('oms_sessiontoken')});
@@ -60,8 +60,8 @@ constructor: function(){
 
 
 
-}
+            }
 
 
-    });
+        });
     });

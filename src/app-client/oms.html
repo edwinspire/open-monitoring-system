@@ -19,7 +19,7 @@
   <link href="applib/css/themes/flat/dgrid/flat.css" rel="stylesheet">
 
   <script type="text/javascript" src="applib/js/dojo/dojo/dojo/dojo.js" 
-  data-dojo-config="'parseOnLoad':true,'async':true, 'packages':[
+  data-dojo-config="'parseOnLoad':true,'async':true,  useXDomain: true, 'packages':[
   {'name':'widgets','location':'../custom'}
   ,{'name':'Widget','location':'../../custom'}
   ,{'name':'ContactGroup','location':'../../custom/ContactGroup'}
@@ -145,7 +145,7 @@
 
   </div>
 
-  <div data-dojo-type="GlobalLiveStore/GlobalLiveStore"></div>
+  <div data-dojo-type="Widget/GlobalLiveStore/GlobalLiveStore"></div>
 
 
 
