@@ -18,6 +18,7 @@ require(["dojo/request",
 	"dojo/node!nodemailer",
 	"api/postgres/oms", 
 	"dojox/encoding/digests/MD5", 
+	"api/config", 
 	"api/session_users/session_users", 
 	"api/postgres/udc_dgrid_structure", 
 	"api/postgres/oms_query_builder", 
@@ -36,12 +37,15 @@ require(["dojo/request",
 	"api/postgres/udc_table_events_details",
 	"api/postgres/udc_table_events",
 	"api/postgres/udc_account_events_comments"  
-	], function(request, on, array, crypto, http, sio, path, fs, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, sessionusers){
+	], function(request, on, array, crypto, http, sio, path, fs, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, Config, sessionusers){
 
 
-		var pgParam = {user: 'postgres', pwd: 'pg4321', host: 'localhost', db: 'oms'};
+var ConfigParameter = new Config();
+
+console.log(ConfigParameter);
+
 		var sessionUsers = new sessionusers();
-		var PostgreSQL = new pgOMS(pgParam);
+		var PostgreSQL = new pgOMS(ConfigParameter.pgConnectionParameters);
 
 
 		setInterval(function(){
@@ -72,33 +76,10 @@ require(["dojo/request",
 
 
 		process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
-
-		var smtpConfig = {
-			host: 'mail.farmaenlace.com',
-			port: 465,
-//ignoreTLS:false,
-    secure: true, // use SSL 
-    auth: {
-    	user: 'edwindelacruz',
-    	pass: '1715021828'
-    }
-};
-
-
 // create reusable transporter object using the default SMTP transport 
-var transporter = nodeMailer.createTransport(smtpConfig);
-
-// setup e-mail data with unicode symbols 
-var mailOptions = {
-    from: '"Edwin De La Cruz 👥" <edwindelacruz@farmaenlace.com>', // sender address 
-    to: 'edwinspire@gmail.com', // list of receivers 
-    subject: 'Open Monitoring System Start ✔ '+Date.now(), // Subject line 
-    text: 'El servidor ha sido iniciado 🐴', // plaintext body 
-    html: '<b>El servidor ha sido iniciado 🐴</b>' // html body 
-};
-
+var transporter = nodeMailer.createTransport(ConfigParameter.smtpConfig);
 // send mail with defined transport object 
-transporter.sendMail(mailOptions, function(error, info){
+transporter.sendMail(ConfigParameter.mailOptions, function(error, info){
 	if(error){
 		return console.log(error);
 	}
@@ -496,7 +477,7 @@ app.use(function(req, res, next) {
 //*******************************************************//
 
 //** Arranca el servidor **//
-var port = process.env.PORT || 80;
+var port = process.env.PORT || ConfigParameter.ServerPort ||80;
 
 app.use(function(err, req, res, next) {
 	console.error(err.stack);
