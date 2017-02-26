@@ -74,9 +74,32 @@ mssql.connect({
 }).then(function() {
     // Query 
     
+var srtquery = `
+DECLARE @Fecha AS varchar(10)
+SET @Fecha = '2017/02/24'
+
+SELECT c.oficina, count(*) AS CanTotal, '#Registros' AS TipoTrx
+FROM tbl_maestromovinvent c(nolock) 
+INNER JOIN tbl_movinvent d(nolock) ON c.num_mov = d.num_mov AND c.tipo_mov = d.tipo_mov and c.oficina = d.oficina and c.serie_factura = d.serie_factura
+WHERE convert(varchar,c.FechaRegistro,111) = @Fecha AND c.tipo_mov in ('TRASPASOS','STRASPASOS','AJUSMAS','AJUSMEN','I') and c.num_mov <> 1
+GROUP BY c.oficina
+UNION ALL
+SELECT c.oficina, sum(d.cantidad), 'Entradas'
+FROM tbl_maestromovinvent c(nolock) 
+INNER JOIN tbl_movinvent d(nolock) ON c.num_mov = d.num_mov AND c.tipo_mov = d.tipo_mov and c.oficina = d.oficina and c.serie_factura = d.serie_factura
+WHERE convert(varchar,c.FechaRegistro,111) = @Fecha AND c.tipo_mov in ('TRASPASOS','AJUSMAS','I') and c.num_mov <> 1
+GROUP BY c.oficina
+UNION ALL
+SELECT c.oficina, sum(d.cantidad),'Salidas'
+FROM tbl_maestromovinvent c(nolock) 
+INNER JOIN tbl_movinvent d(nolock) ON c.num_mov = d.num_mov AND c.tipo_mov = d.tipo_mov and c.oficina = d.oficina and c.serie_factura = d.serie_factura
+WHERE convert(varchar,c.FechaRegistro,111) = @Fecha AND c.tipo_mov IN ('STRASPASOS','AJUSMEN') and c.num_mov <> 1
+GROUP BY c.oficina ORDER BY c.oficina, TipoTrx 
+`;
+
     new mssql.Request()
  //   .input('input_parameter', sql.Int, value);
-    .query('SELECT @@VERSION').then(function(recordset) {
+    .query(srtquery).then(function(recordset) {
         console.dir(recordset);
     }).catch(function(err) {
         // ... error checks 
