@@ -121,7 +121,7 @@ query: function(_query, _param){
 		if(err) {
 			
 			console.log(err);
-			t.emit("tschange", err);
+		//	t.emit("tschange", err);
 			deferred.reject(err);
 			done();
 			//res.status(500).json({success: false, data: err});

@@ -22,9 +22,9 @@ ServerPort: 80,
 
 constructor: function(){
 
-this.ServerPort = 80;
+this.ServerPort = 8080;
 this.pgConnectionParameters = {user: 'postgres', pwd: 'pg4321', host: '192.168.251.174', db: 'oms'};
-this.smtpConfig = {host: 'mail.farmaenlace.com', port: 465, ignoreTLS:false, secure: true, auth: {user: 'edwindelacruz', pass: '1715021828'}};
+this.smtpConfig = {host: 'mail.farmaenlace.com', port: 465, ignoreTLS:false, secure: true, auth: {user: 'edwindelacruz', pass: 'embarazador'}};
 this.mailOptions = {
     from: '"Edwin De La Cruz 👥" <edwindelacruz@farmaenlace.com>', // sender address 
     to: 'edwinspire@gmail.com', // list of receivers 
