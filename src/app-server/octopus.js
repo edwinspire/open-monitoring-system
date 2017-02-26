@@ -11,6 +11,7 @@ require(["dojo/request",
 	"dojo/node!nodemailer",
 	"api/postgres/oms", 
 	"dojox/encoding/digests/MD5", 
+	"dstore/Memory",
 	"api/config", 
 	"api/postgres/udc_dgrid_structure", 
 	"api/postgres/oms_query_builder", 
@@ -29,7 +30,7 @@ require(["dojo/request",
 	"api/postgres/udc_table_events_details",
 	"api/postgres/udc_table_events",
 	"api/postgres/udc_account_events_comments"  
-	], function(request, on, array, crypto, path, fs, pathToRegexp, pG, compression, mssql, nodeMailer, pgOMS, MD5, Config){
+	], function(request, on, array, crypto, path, fs, pathToRegexp, pG, compression, mssql, nodeMailer, pgOMS, MD5, Memory, Config){
 
 
 var ConfigParameter = new Config();
@@ -65,7 +66,7 @@ transporter.sendMail(ConfigParameter.mailOptions, function(error, info){
 
 mssql.connect({
     user: 'sa',
-    password: 'sql',
+    password: 'sqlsa',
     server: '192.168.238.10', // You can use 'localhost\\instance' to connect to named instance 
     database: 'msdb',
     options: {
@@ -73,7 +74,8 @@ mssql.connect({
     }
 }).then(function() {
     // Query 
-    
+var msSQLConnection = this;    
+
 var srtquery = `
 DECLARE @Fecha AS varchar(10)
 SET @Fecha = '2017/02/24'
@@ -100,14 +102,28 @@ GROUP BY c.oficina ORDER BY c.oficina, TipoTrx
     new mssql.Request()
  //   .input('input_parameter', sql.Int, value);
     .query(srtquery).then(function(recordset) {
+   
+
+msSQLConnection.close();
+
         console.dir(recordset);
+
+
+ var MovInvMatriz = new Memory({data:recordset, idProperty: 'oficina'});
+
+console.log(MovInvMatriz);
+
+
+
     }).catch(function(err) {
         // ... error checks 
+        console.log(err);
     });
  
 
 }).catch(function(err) {
     // ... error checks 
+    console.log(err);
 });
 
 
