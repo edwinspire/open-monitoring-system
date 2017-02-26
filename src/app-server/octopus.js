@@ -36,7 +36,6 @@ var ConfigParameter = new Config();
 
 console.log(ConfigParameter);
 
-		var sessionUsers = new sessionusers();
 		var PostgreSQL = new pgOMS(ConfigParameter.pgConnectionParameters);
 
 
