@@ -63,6 +63,30 @@ transporter.sendMail(ConfigParameter.mailOptions, function(error, info){
 */
 
 
+mssql.connect({
+    user: 'sa',
+    password: 'sql',
+    server: '192.168.238.10', // You can use 'localhost\\instance' to connect to named instance 
+    database: 'msdb',
+ 
+    options: {
+        encrypt: true // Use this if you're on Windows Azure 
+    }
+}).then(function() {
+    // Query 
+    
+    new mssql.Request();
+ //   .input('input_parameter', sql.Int, value);
+    .query('SELECT @@VERSION').then(function(recordset) {
+        console.dir(recordset);
+    }).catch(function(err) {
+        // ... error checks 
+    });
+ 
+
+}).catch(function(err) {
+    // ... error checks 
+});
 
 
 
