@@ -23,6 +23,9 @@ dojoConfig = {
 		name: "app",
 		location: "app"
 	},{
+		name: "dstore",
+		location: "dstore"
+	},{
 		name: "app-server",
 		location: "app-server"
 	},{
