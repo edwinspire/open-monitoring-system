@@ -51,54 +51,38 @@ mssql.connect({
     }
 }).then(function() {
     // Query 
-var msSQLConnectionPV = this;    
 
-var srtquery = `
-DECLARE @Fecha AS varchar(10)
-SET @Fecha = '2017/02/24'
+MovInvMatriz.filter({oficina: oficina}).forEach(function(movimiento){
+//console.log("== ", reg);
 
-SELECT count(*) AS CanTotal, 'Registros' AS TipoTrx
-FROM [ITE_Pos].[fact].[tbl_MovimientoInventario_cab] c(nolock) 
-INNER JOIN [ITE_Pos].[fact].[tbl_MovimientoInventario_det] d(nolock) on c.num_mov = d.num_mov AND c.tipo_mov = d.tipo_mov and c.serie_factura = d.serie_factura
-WHERE convert(varchar,c.FechaRegistro,111) = @Fecha AND c.tipo_mov IN ('TRASPASOS','STRASPASOS','AJUSMAS','AJUSMEN','I') and c.num_mov <> 1
-UNION ALL
-SELECT sum(d.cantidad), 'Entradas'
-FROM [ITE_Pos].[fact].[tbl_MovimientoInventario_cab] c(nolock) 
-INNER JOIN [ITE_Pos].[fact].[tbl_MovimientoInventario_det] d(nolock) ON c.num_mov = d.num_mov AND c.tipo_mov = d.tipo_mov and c.serie_factura = d.serie_factura
-WHERE convert(varchar,c.FechaRegistro,111) = @Fecha AND c.tipo_mov IN ('TRASPASOS','AJUSMAS','I') and c.num_mov <> 1
-UNION ALL
-SELECT sum(d.cantidad),'Salidas' FROM [ITE_Pos].[fact].[tbl_MovimientoInventario_cab] c(nolock) 
-INNER JOIN [ITE_Pos].[fact].[tbl_MovimientoInventario_det] d(nolock) ON c.num_mov = d.num_mov AND c.tipo_mov = d.tipo_mov and c.serie_factura = d.serie_factura
-WHERE convert(varchar,c.FechaRegistro,111) = @Fecha AND c.tipo_mov IN ('STRASPASOS','AJUSMEN') and c.num_mov <> 1
+var srtquery = `USE ITE_Pos
+SELECT serie_factura, (select TOP(1)codigo from ITE_Articulo.art.tbl_articulo(nolock) where codigo = @codigo) as exite_material FROM [ITE_Pos].[fact].[tbl_MovimientoInventario_cab] c(nolock) WHERE serie_factura = @serie_factura;
 `;
 
     new mssql.Request()
- //   .input('input_parameter', sql.Int, value);
+    .input('serie_factura', sql.String, movimiento.serie_factura);
+    .input('codigo', sql.String, movimiento.codigo_producto);
     .query(srtquery).then(function(recordset) {
    
-console.log(oficina, ip);
-//msSQLConnectionPV.close();
-
-        //console.dir(recordset);
-        array.forEach(recordset, function(item){
-
-console.log(item);
-MovInvMatriz.filter({oficina: oficina, TipoTrx: item.TipoTrx}).forEach(function(reg){
-//console.log("== ", reg);
-var nItem = reg;
-nItem["CanTotalPV"] = item.CanTotal;
-console.log("==> ", nItem);
-MovInvMatriz.put(nItem);
-});
-
-
-        });
-
+var mov = movimiento;
+mov['serie_factura_pv'] = recordset.serie_factura;
+mov['existe_material'] = recordset.existe_material;
+console.log(mov);
+MovInvConsolidado.put(mov);
 
     }).catch(function(err) {
         // ... error checks 
         console.log(err);
     });
+
+
+
+// var nItem = reg;
+// nItem["CanTotalPV"] = item.CanTotal;
+// console.log("==> ", nItem);
+// MovInvConsolidado.put(nItem);
+});
+
  
 
 }).catch(function(err) {
@@ -137,36 +121,16 @@ var msSQLConnection = this;
 
 var srtquery = `
 USE EasyGestionEmpresarial
-DECLARE @Fecha AS varchar(10)
-SET @Fecha = '2017/02/24'
-
-SELECT c.oficina, count(*) AS CanTotal, 'Registros' AS TipoTrx
+SELECT c.oficina, c.num_mov, c.tipo_mov, d.codigo_producto, d.cantidad, c.dui, c.FechaRegistro,d.FechaIngreso, c.Fecha_Vencimiento_Pago, c.numero_doc_inv, c.serie_factura, d.serie_factura, CAST( CASE WHEN c.serie_factura = d.serie_factura  THEN 'true'  ELSE 'false' END AS text) as coincide
 FROM tbl_maestromovinvent c(nolock) 
-INNER JOIN tbl_movinvent d(nolock) ON c.num_mov = d.num_mov AND c.tipo_mov = d.tipo_mov and c.oficina = d.oficina and c.serie_factura = d.serie_factura
-WHERE convert(varchar,c.FechaRegistro,111) = @Fecha AND c.tipo_mov in ('TRASPASOS','STRASPASOS','AJUSMAS','AJUSMEN','I') and c.num_mov <> 1
-GROUP BY c.oficina
-UNION ALL
-SELECT c.oficina, sum(d.cantidad), 'Entradas'
-FROM tbl_maestromovinvent c(nolock) 
-INNER JOIN tbl_movinvent d(nolock) ON c.num_mov = d.num_mov AND c.tipo_mov = d.tipo_mov and c.oficina = d.oficina and c.serie_factura = d.serie_factura
-WHERE convert(varchar,c.FechaRegistro,111) = @Fecha AND c.tipo_mov in ('TRASPASOS','AJUSMAS','I') and c.num_mov <> 1
-GROUP BY c.oficina
-UNION ALL
-SELECT c.oficina, sum(d.cantidad),'Salidas'
-FROM tbl_maestromovinvent c(nolock) 
-INNER JOIN tbl_movinvent d(nolock) ON c.num_mov = d.num_mov AND c.tipo_mov = d.tipo_mov and c.oficina = d.oficina and c.serie_factura = d.serie_factura
-WHERE convert(varchar,c.FechaRegistro,111) = @Fecha AND c.tipo_mov IN ('STRASPASOS','AJUSMEN') and c.num_mov <> 1
-GROUP BY c.oficina ORDER BY c.oficina, TipoTrx 
+INNER JOIN tbl_movinvent d(nolock) ON c.num_mov = d.num_mov AND c.tipo_mov = d.tipo_mov AND c.oficina = d.oficina 
+WHERE convert(varchar,c.FechaRegistro,111) BETWEEN '2017/02/23' and '2017/02/23'
+AND c.tipo_mov in ('TRASPASOS','STRASPASOS','AJUSMAS','AJUSMEN','I') and c.num_mov <> 1
 `;
 
     new mssql.Request()
  //   .input('input_parameter', sql.Int, value);
     .query(srtquery).then(function(recordset) {
-   
-
-//msSQLConnection.close();
-
-  //      console.dir(recordset);
 
 
  MovInvMatriz = new Memory({data:recordset});
@@ -174,9 +138,7 @@ GROUP BY c.oficina ORDER BY c.oficina, TipoTrx
 //console.log(MovInvMatriz);
 
 			PostgreSQL.query("SELECT accounts.idcontact, accounts.enabled AS enabled_account, (accounts.last_name ||' '|| accounts.first_name) as account_name, accounts.identification,   accounts.idaccountstate,   accounts.account,   accounts.iddivision,   network_devices.idequipment,   network_devices.equipment,   network_devices.ip,   network_devices.mac,   network_devices.username,   network_devices.pwd,   network_devices.port,   network_devices.monitored,   network_devices.report_validator FROM   public.accounts,   public.network_devices WHERE   network_devices.idaccount = accounts.idcontact AND iddivision = 6;", []).then(function(response){
-			//	console.log(response);
 
- //var MovInvPV = new Memory({data:response.rows, idProperty: 'account'});
  //console.log(MovInvPV);
 array.forEach(response.rows, function(oficina){
 
@@ -192,7 +154,7 @@ setTimeout(function(){
 var Resultado = "";
 
 //console.log(MovInvMatriz);
-MovInvMatriz.forEach(function(mov){
+MovInvConsolidado.forEach(function(mov){
 Resultado = Resultado+mov.oficina+"|\t"+mov.CanTotal+"|\t"+mov.CanTotalPV+"|\t"+mov.TipoTrx+"¡</br>\n\r";
 
 });
@@ -203,7 +165,12 @@ Resultado = Resultado+mov.oficina+"|\t"+mov.CanTotal+"|\t"+mov.CanTotalPV+"|\t"+
     to: 'edwinspire@gmail.com, edwindelacruz@farmaenlace.com', // list of receivers 
     subject: 'Open Monitoring System Start ✔ '+Date.now(), // Subject line 
     text: "Revision Movimientos Inventarios ETA", // plaintext body 
-    html: Resultado// html body 
+    html: "Revision movimientos ETA",// html body
+    attachments: [
+    {   // binary buffer as an attachment
+        filename: 'movimientos.txt',
+        content: new Buffer(Resultado,'utf-8')
+    }]
 };
 // send mail with defined transport object 
 transporter.sendMail(mailOptions, function(error, info){
