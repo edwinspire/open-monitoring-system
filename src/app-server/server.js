@@ -43,17 +43,17 @@ require(["dojo/request",
 		var sessionUsers = new sessionusers();
 		var PostgreSQL = new pgOMS({user: process.env.PG_USER, pwd: process.env.PG_PWD, host: process.env.PG_HOST, db: process.env.PG_DB});
 
-// Obtenemos la configuracion desde el servidor
+// Obtenemos configuraciones desde el servidor
 PostgreSQL.get_config_from_db().then(function(){
 
 
 	setInterval(function(){
 		console.log('Tareas periodicas');
 		PostgreSQL.query("SELECT * FROM fun_set_expired_events();", []).then(function(response){
-			console.log(response);
+			//console.log(response);
 		});
 		PostgreSQL.query("SELECT * FROM fun_remove_notifications_old();", []).then(function(response){
-			console.log(response);
+			//console.log(response);
 		});
 	}, 60*1000);
 
@@ -124,7 +124,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 app.get('/map.html',  function(req, res){
 
-    // if(sessionUsers.isauthorized(req, res, true)){
     	var geodata = [];
 
     	var send = function(status, content, arraygeo){
@@ -132,8 +131,6 @@ app.get('/map.html',  function(req, res){
     		res.write(content.replace('@@points@@', JSON.stringify(arraygeo)));
     		res.end();  
     	}
-
-
 
     	fs.readFile(process.env.EXPRESS_STATIC_DIR+'/map_template.html', 'utf8', function (err, data) {
     		if (err) {
@@ -258,9 +255,6 @@ PostgreSQL.receiver_event(req, res);
 ////////////////////////////////////////////////////////////////////////////////////////
 app.post("/njs/login", function(req, res){
 
- //res.status(500).json({});
-
-
  PostgreSQL.login(req, res).then(function(results){
 
  	var r =  results.rows;
@@ -269,16 +263,13 @@ app.post("/njs/login", function(req, res){
  		var u = r[0]['fun_login_system'];
 
  		sessionUsers.add_user(u, req, res);
-        //res.redirect('/oms.html');
         res.status(200).json({success: true});
 
     }else{
-     //res.redirect('/njs/logout');
      res.status(403).json({success: false});
  }
 
 }, function(error){
-        //res.status(500).json(error);
         res.redirect('/njs/logout');
     });
 
@@ -369,6 +360,9 @@ app.post("/njs/db/Select_Generic_to_Store", function(req, res){
 				break;
 			}
 
+   PostgreSQL.response_query(res, qp.query, qp.param);
+
+/*
 			pG.connect(PostgreSQL.connString(), (err, client, done) => {
     // Handle connection errors
     if(err) {
@@ -388,6 +382,7 @@ app.post("/njs/db/Select_Generic_to_Store", function(req, res){
 });
 
 });
+			*/
 
 		}else{
 			res.status(404).json({success: false, data: {}});
@@ -419,9 +414,11 @@ app.post("/njs/db/uDCFieldTypes", function(req, res){
 app.post("/njs/db/generic_select", function(req, res){
 
 
-	var cq = PostgreSQL.Select(req.body.UdcTable, []).build();
+	var qp = PostgreSQL.Select(req.body.UdcTable, []).build();
 
-//var q = 'SELECT * FROM   public.udc_tables_views,   public//.udc_columns WHERE udc_tables_views.idtableview = udc_columns.idtableview ORDER BY udc_tables_views.tv_name, udc_columns.column_position;';
+PostgreSQL.response_query(res, qp.query, qp.param);
+
+/*
 pG.connect(PostgreSQL.connString(), (err, client, done) => {
     // Handle connection errors
     if(err) {
@@ -438,10 +435,10 @@ var query = client.query(cq.query, cq.param);
   query.on('end', (result1) => {
   	res.json(result1.rows);
   	done();
-    //t.emit("get_dgrid_structure", t.tv_structure);
 });
 
 });
+*/
 
 
 });
@@ -466,20 +463,6 @@ app.post("/njs/db/dgrid_table_structure", function(req, res){
 
    	if(req.body.UdcTable){
 
-   		// PostgreSQL.get_table_structure(req.body.UdcTable, req.body.Fields).then(function(result){
-
-   		// 	res.send(JSON.stringify(result, function(key, value){
-
-   		// 		if(typeof value === "string"){
-   		// 			return value.split("\n").join(' ');
-   		// 		}else if(value === null) {
-   		// 			return undefined;
-   		// 		}
-   		// 		return value;
-   		// 	}).replace(/(\"<jsfunction>|<\/jsfunction>\")/ig,''));
-
-   		// });
-
    		var structure = PostgreSQL.get_table_structure(req.body.UdcTable, req.body.Fields);
 
    		res.send(JSON.stringify(structure, function(key, value){
@@ -495,7 +478,6 @@ app.post("/njs/db/dgrid_table_structure", function(req, res){
    	}
 
    }else{
-//  res.writeHead(401);
 res.status(401).json({});
 }
 
