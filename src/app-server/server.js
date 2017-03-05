@@ -37,54 +37,67 @@ require(["dojo/request",
 	"api/postgres/udc_table_events_details",
 	"api/postgres/udc_table_events",
 	"api/postgres/udc_account_events_comments"  
-	], function(request, on, array, crypto, http, sio, path, fs, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, Config, sessionusers){
+	], function(request, on, array, crypto, http, socketIO, path, fs, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, Config, sessionusers){
 
-
-var ConfigParameter = new Config();
-
-console.log(ConfigParameter);
 
 		var sessionUsers = new sessionusers();
-		var PostgreSQL = new pgOMS(ConfigParameter.pgConnectionParameters);
+		var PostgreSQL = new pgOMS({user: process.env.PG_USER, pwd: process.env.PG_PWD, host: process.env.PG_HOST, db: process.env.PG_DB});
+
+// Obtenemos la configuracion desde el servidor
+PostgreSQL.get_config_from_db().then(function(){
 
 
-		setInterval(function(){
-			console.log('Tareas periodicas');
-			PostgreSQL.query("SELECT * FROM fun_set_expired_events();", []).then(function(response){
-				console.log(response);
-			});
-			PostgreSQL.query("SELECT * FROM fun_remove_notifications_old();", []).then(function(response){
-				console.log(response);
-			});
-		}, 60*1000);
+	setInterval(function(){
+		console.log('Tareas periodicas');
+		PostgreSQL.query("SELECT * FROM fun_set_expired_events();", []).then(function(response){
+			console.log(response);
+		});
+		PostgreSQL.query("SELECT * FROM fun_remove_notifications_old();", []).then(function(response){
+			console.log(response);
+		});
+	}, 60*1000);
 
 
-		sessionUsers.on('dead_session', function(datauser){
+	sessionUsers.on('dead_session', function(datauser){
 
-			sessionUsers.remove(datauser.id);
+		sessionUsers.remove(datauser.id);
 
-			PostgreSQL.logout(datauser).then(function(results){
+		PostgreSQL.logout(datauser).then(function(results){
 
-			}, function(error){
+		}, function(error){
 //res.status(500).json(error);
 });
 
 
-		});
+	});
 
 
-
-
-		process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+	var cnxSMTP = {host: process.env.SMPT_HOST, port: process.env.SMPT_PORT, ignoreTLS: process.env.SMPT_IGNORETLS, secure: process.env.SMPT_SECURE, auth: {user: process.env.SMPT_AUTH_USER, pass: process.env.SMPT_AUTH_PWD}};
+	console.log(cnxSMTP);
 // create reusable transporter object using the default SMTP transport 
-var transporter = nodeMailer.createTransport(ConfigParameter.smtpConfig);
-// send mail with defined transport object 
-transporter.sendMail(ConfigParameter.mailOptions, function(error, info){
+var transporter = nodeMailer.createTransport(cnxSMTP);
+
+// mailOptions = {
+//     from: '"Edwin De La Cruz 👥" <edwindelacruz@farmaenlace.com>', // sender address 
+//     to: 'edwinspire@gmail.com', // list of receivers 
+//     subject: 'Open Monitoring System Start ✔ '+Date.now(), // Subject line 
+//     text: 'El servidor ha sido iniciado en el puerto '+this.ServerPort, // plaintext body 
+//     html: '<b>El servidor ha sido iniciado en el puerto '+this.ServerPort+'</b>' // html body 
+// };
+
+PostgreSQL.configuration_server.filter({config_name: "mailOptions"}).forEach(function(config){
+//send mail with defined transport object 
+//console.log(config);
+transporter.sendMail(config.configuration, function(error, info){
 	if(error){
 		return console.log(error);
 	}
 	console.log('Message email sent: ' + info.response);
 });
+});
+
+
+
 
 
 
@@ -449,7 +462,23 @@ app.post("/njs/db/dgrid_table_structure", function(req, res){
 
    	if(req.body.UdcTable){
 
-   		res.send(JSON.stringify(PostgreSQL.get_table_structure(req.body.UdcTable, req.body.Fields), function(key, value){
+   		// PostgreSQL.get_table_structure(req.body.UdcTable, req.body.Fields).then(function(result){
+
+   		// 	res.send(JSON.stringify(result, function(key, value){
+
+   		// 		if(typeof value === "string"){
+   		// 			return value.split("\n").join(' ');
+   		// 		}else if(value === null) {
+   		// 			return undefined;
+   		// 		}
+   		// 		return value;
+   		// 	}).replace(/(\"<jsfunction>|<\/jsfunction>\")/ig,''));
+
+   		// });
+
+   		var structure = PostgreSQL.get_table_structure(req.body.UdcTable, req.body.Fields);
+
+   		res.send(JSON.stringify(structure, function(key, value){
 
    			if(typeof value === "string"){
    				return value.split("\n").join(' ');
@@ -477,7 +506,7 @@ app.use(function(req, res, next) {
 //*******************************************************//
 
 //** Arranca el servidor **//
-var port = process.env.PORT || ConfigParameter.ServerPort ||80;
+var port = process.env.PORT||80;
 
 app.use(function(err, req, res, next) {
 	console.error(err.stack);
@@ -488,7 +517,7 @@ app.use(function(err, req, res, next) {
 
 
 var server = http.createServer(app)
-, sio = sio.listen(server);
+, sio = socketIO.listen(server);
 
 
 PostgreSQL.on('get_dgrid_structure', function(tv){
@@ -558,5 +587,10 @@ server.listen(port, function(){
 
 
 
+});
 
+
+
+
+////////////////////////////////////////////////////////////
 });
