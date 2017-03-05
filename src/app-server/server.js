@@ -249,7 +249,7 @@ app.post("/njs/db/table/*", cors(), function(req, res){
 
 ////////////////////////////////////////////////////////////////////////////////////////
 app.post("/njs/receiver", cors(), function(req, res){
-
+// TODO Implementar un mecaniso de seguridad para impedir ingreso de eventos por algun hacker
 PostgreSQL.receiver_event(req, res);
 
 });
