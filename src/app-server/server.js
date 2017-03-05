@@ -176,9 +176,6 @@ app.get('/map.html',  function(req, res){
     		}
 
 
-
-
-
     	});
 
 
@@ -249,6 +246,13 @@ app.post("/njs/db/table/*", cors(), function(req, res){
 });
 
 
+
+////////////////////////////////////////////////////////////////////////////////////////
+app.post("/njs/receiver", cors(), function(req, res){
+
+PostgreSQL.receiver_event(req, res);
+
+});
 
 
 ////////////////////////////////////////////////////////////////////////////////////////

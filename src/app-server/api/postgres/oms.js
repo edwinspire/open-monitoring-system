@@ -235,7 +235,7 @@ send_notification_area: function(_table_notifications){
 	}
 
 },
-response_insert: function(req, res, _query, _param){
+response_insert: function(res, _query, _param){
 	var t = this;
 	pg.connect(t.connString(), (err, client, done) => {
 		if(err) {
@@ -257,7 +257,7 @@ response_insert: function(req, res, _query, _param){
 	});
 
 },
-response_query: function(req, res, _query, _param){
+response_query: function(res, _query, _param){
 	var t = this;
 	pg.connect(t.connString(), (err, client, done) => {
 		if(err) {
@@ -280,7 +280,7 @@ response_query: function(req, res, _query, _param){
 	});
 
 },
-response_update: function(rea, res, _query, _param){
+response_update: function(res, _query, _param){
 	var t = this;
 	pg.connect(t.connString(), (err, client, done) => {
 		if(err) {

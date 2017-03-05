@@ -17,7 +17,7 @@ udc_table_events: function(req, res, datauser){
             var w = {};
 
             qp = t.Select(post.UdcTable, []).orderBy(" tv_name ").build();
-            t.response_query(req, res, qp.query, qp.param);
+            t.response_query(res, qp.query, qp.param);
 
 
             break;
@@ -28,7 +28,7 @@ udc_table_events: function(req, res, datauser){
             w[post.UdcIdProperty] = post[post.UdcIdProperty]
 
             qp = t.Update(post.UdcTable, post, ['idtableview']).whereAnd([w], ['UdcTable', 'UdcIdProperty', 'UdcRowFingerPrintValue', 'UdcRowFingerPrint', 'UdcAction', 'title_dgrid']).build();
-            t.response_update(req, res, qp.query, qp.param);
+            t.response_update(res, qp.query, qp.param);
 
             break;
             case 'insert':
@@ -38,40 +38,33 @@ udc_table_events: function(req, res, datauser){
 
                 post['ideventreceptionmode'] = 1;
 
-if(datauser.isadmin){
-                post['idadmin'] = datauser.idadmin;
-                post['idadmin_assigned'] = datauser.idadmin;
-}
-
-    
+                if(datauser.isadmin){
+                    post['idadmin'] = datauser.idadmin;
+                    post['idadmin_assigned'] = datauser.idadmin;
+                }
 
                 qp = t.Insert(post.UdcTable, post, []).returning(' idevent ').build();
 
                 console.log(qp);
                 t.emit('tschange', qp);
 
-                t.response_insert(req, res, qp.query, qp.param);
+                t.response_insert(res, qp.query, qp.param);
             }else{
                 res.status(500).json({success: false, data: "Faltan parametros "+post.UdcAction, req: post});    
             }
 
-//w[post.UdcRowFingerPrint] = post.UdcRowFingerPrintValue;
-//w[post.UdcIdProperty] = post[post.UdcIdProperty]
+
+            break;
+            default:
+            res.status(500).json({success: false, data: "Intentando una accion invalida "+post.UdcAction, req: post});
+            break;
+
+        }
 
 
-break;
-default:
-res.status(500).json({success: false, data: "Intentando una accion invalida "+post.UdcAction, req: post});
-	//return false;
-    break;
-
-}
-
-
-
-}else{
-   res.status(500).json({success: false, data: "No ha definido una tabla a buscar"});
-}
+    }else{
+       res.status(500).json({success: false, data: "No ha definido una tabla a buscar"});
+   }
 
 
 }              
