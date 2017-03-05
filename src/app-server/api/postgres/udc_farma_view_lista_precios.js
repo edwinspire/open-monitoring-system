@@ -23,24 +23,24 @@ udc_farma_view_lista_precios: function(req, res){
 		switch(req.body.Selection){
 			case 'eco':
 			q = "SELECT * FROM view_farma_lista_precios  WHERE iddivision = 1 AND account_name ILIKE  'ECO%' ORDER BY account";
-			t.response_query(req, res, q, []);
+			t.response_query(res, q, []);
 			break;
 			case 'medi':
 			q = "SELECT * FROM view_farma_lista_precios  WHERE iddivision = 1 AND account_name ILIKE  'MEDI%' ORDER BY account";
-			t.response_query(req, res, q, []);
+			t.response_query(res, q, []);
 			break;
 			case 'pnatural':
 			q = "SELECT * FROM view_farma_lista_precios  WHERE account_name ILIKE  '%PUNTO%' ORDER BY account";
-			t.response_query(req, res, q, []);
+			t.response_query(res, q, []);
 			break;			
 			case 'promo_medi':
 			//q = "SELECT * FROM view_farma_lista_precios  WHERE iddivision = 1 AND  account = ANY($1::text[]) AND account_name ILIKE  'MEDI%' ORDER BY account";
 			q = "SELECT * FROM view_farma_lista_precios  WHERE iddivision = 1 AND account_name ILIKE  'MEDI%' ORDER BY account";
-			t.response_query(req, res, q, []);
+			t.response_query(res, q, []);
 			break;
 			case 'promo_eco':
 			q = "SELECT * FROM view_farma_lista_precios  WHERE iddivision = 1 AND  account = ANY($1::text[]) AND account_name ILIKE  'ECO%' ORDER BY account";
-			t.response_query(req, res, q, [list_promo2]);
+			t.response_query(res, q, [list_promo2]);
 			break;
 			default:
 			res.status(500).json({success: false, data: "Intentando una accion invalida "+post.UdcAction, req: post});
