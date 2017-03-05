@@ -3,27 +3,24 @@ define(['dojo/_base/declare',  "dojo/Evented", "dojo/node!crypto", "dojo/store/M
 
 		return declare('session_users.session_users', [Memory, Evented], {
 
-//store: {},
 //////////////////////////////////
 // The constructor
 constructor: function(args) {
-//this.session = {};
-dojo.safeMixin(this,args);
-var t = this;
-setInterval(function(){
-	t.query().forEach(function(item){
+	
+	dojo.safeMixin(this,args);
+	var t = this;
+	setInterval(function(){
+		t.query().forEach(function(item){
 
-		var time = Date.now() - item.heartbeat;
+			var time = Date.now() - item.heartbeat;
 
-//t.emit('newsession', {t: time, h: item.heartbeat});
-if(time > 30000){
-//	t.remove(item.id);
-t.emit('dead_session', item);
-}
+			if(time > 30000){
+				t.emit('dead_session', item);
+			}
 
 
-});
-}, 40*1000);
+		});
+	}, 40*1000);
 
 },
 ///////////////////////////////////////////////////////////////
@@ -45,18 +42,17 @@ decrypt: function(ciphertext, myPassword){
 },
 add_user: function(datauser, req, res){
 	datauser['heartbeat'] = Date.now();
-//var token = crypto.createHash('md5').update(req.connection.remoteAddress+Date.now()).digest("hex");
-datauser['login'] = Date.now();
-datauser['pwd'] = this.pwd(req);
-var sid = this.encrypt(JSON.stringify({idlogin: datauser.idlogin, IP: req.connection.remoteAddress, login: datauser.login}), datauser.pwd);
-datauser['id'] = sid;
-datauser['ip'] = req.connection.remoteAddress;
-this.put(datauser);
-res.cookie('oms_sessionidclient', sid, { maxAge: 3600000});
-res.cookie('oms_fullname', datauser.fullname, { maxAge: 3600000});
-this._remove_same_user_sessions(datauser);
-this.emit('newsession', {});
-return sid;
+	datauser['login'] = Date.now();
+	datauser['pwd'] = this.pwd(req);
+	var sid = this.encrypt(JSON.stringify({idlogin: datauser.idlogin, IP: req.connection.remoteAddress, login: datauser.login}), datauser.pwd);
+	datauser['id'] = sid;
+	datauser['ip'] = req.connection.remoteAddress;
+	this.put(datauser);
+	res.cookie('oms_sessionidclient', sid, { maxAge: 3600000});
+	res.cookie('oms_fullname', datauser.fullname, { maxAge: 3600000});
+	this._remove_same_user_sessions(datauser);
+	this.emit('newsession', {});
+	return sid;
 },
 datauser: function(sessionidclient){
 	var r = false;
@@ -89,20 +85,19 @@ pwd: function(req){
 },
 _remove_same_user_sessions: function(datauser){
 
-//this.emit('newsession', this.query({idlogin: datauser.idlogin}));
-var t = this;
+	var t = this;
 
-this.query({idlogin: datauser.idlogin}).forEach(function(item){
+	this.query({idlogin: datauser.idlogin}).forEach(function(item){
 
-	if(item.id != datauser.id){
-		t.remove(item.id);
-	}
+		if(item.id != datauser.id){
+			t.remove(item.id);
+		}
 
-});
+	});
 
 },
 users_status: function(){
-return this.query();	
+	return this.query();	
 }
 
 

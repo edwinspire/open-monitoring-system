@@ -37,7 +37,7 @@ udc_table_account_equipments: function(req, res){
 			t.response_insert(res, qp.query, qp.param);
 			break;			
 			default:
-			res.status(500).json({success: false, data: "Intentando una accion invalida "+post.UdcAction, req: post});=
+			res.status(500).json({success: false, data: "Intentando una accion invalida "+post.UdcAction, req: post});
 			break;
 
 		}
