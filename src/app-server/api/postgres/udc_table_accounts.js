@@ -18,7 +18,7 @@ udc_table_accounts: function(req, res){
 			w[post.uDCidProperty] = post[post.uDCidProperty];
 			if(w[post.uDCidProperty] > 0){
 				qp = t.Select(post.UdcTable, []).whereAnd([w]).build();
-				t.response_query(req, res, qp.query, qp.param);
+				t.response_query(res, qp.query, qp.param);
 			}else{
 				res.status(500).json({success: false, data: "ID no ha sido ingresado ", req: post});	
 			}
@@ -26,27 +26,25 @@ udc_table_accounts: function(req, res){
 			case 'insert':
 			var w = {};
 			qp = t.Insert(post.UdcTable, post, []).build();
-			t.response_insert(req, res, qp.query, qp.param);
+			t.response_insert(res, qp.query, qp.param);
 			break;	
 			case 'update':
 			var w = {};
-			//w[post.UdcRowFingerPrint] = post.UdcRowFingerPrintValue;
 			w[post.uDCidProperty] = post[post.uDCidProperty];
 
 			qp = t.Update(post.UdcTable, post, []).whereAnd([w], ["UdcAction", "UdcRowFingerPrint", "UdcRowFingerPrintValue", "UdcTable", "UdcIdProperty"]).build();
-			t.response_update(req, res, qp.query, qp.param);
+			t.response_update(res, qp.query, qp.param);
 			break;	
 			default:
 			res.status(500).json({success: false, data: "Intentando una accion invalida "+req.body.UdcAction, req: post});
-//	return false;
-break;
+			break;
 
-}
+		}
 
 
-}else{
-	res.status(500).json({success: false, data: "No ha definido una tabla a buscar"});
-}
+	}else{
+		res.status(500).json({success: false, data: "No ha definido una tabla a buscar"});
+	}
 
 
 }              

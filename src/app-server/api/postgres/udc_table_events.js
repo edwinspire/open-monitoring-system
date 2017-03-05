@@ -63,8 +63,8 @@ udc_table_events: function(req, res, datauser){
 
 
     }else{
-       res.status(500).json({success: false, data: "No ha definido una tabla a buscar"});
-   }
+     res.status(500).json({success: false, data: "No ha definido una tabla a buscar"});
+ }
 
 
 }              

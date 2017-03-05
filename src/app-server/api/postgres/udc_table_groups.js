@@ -18,21 +18,20 @@ udc_table_groups: function(req, res){
 			w["iddivision"] = post.iddivision;
 			qp = t.Select(post.UdcTable, []).whereAnd([w]).build();
 
-			t.response_query(req, res, qp.query, qp.param);
+			t.response_query(res, qp.query, qp.param);
 
 			break;
 			default:
 			res.status(500).json({success: false, data: "Intentando una accion invalida "+post.UdcAction, req: post});
-	//return false;
-	break;
+			break;
 
-}
-
+		}
 
 
-}else{
-	res.status(500).json({success: false, data: "No ha definido una tabla a buscar"});
-}
+
+	}else{
+		res.status(500).json({success: false, data: "No ha definido una tabla a buscar"});
+	}
 
 
 }              
