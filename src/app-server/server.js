@@ -20,7 +20,6 @@ require(["dojo/request",
 	"dojox/encoding/digests/MD5", 
 	"api/config", 
 	"api/session_users/session_users", 
-	"api/postgres/udc_dgrid_structure", 
 	"api/postgres/oms_query_builder", 
 	"api/postgres/udc_table_accounts", 
 	"api/postgres/udc_table_phones", 
@@ -124,59 +123,59 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 app.get('/map.html',  function(req, res){
 
-    	var geodata = [];
+	var geodata = [];
 
-    	var send = function(status, content, arraygeo){
-    		res.writeHead(status, { 'Content-Type': 'text/html' });
-    		res.write(content.replace('@@points@@', JSON.stringify(arraygeo)));
-    		res.end();  
-    	}
+	var send = function(status, content, arraygeo){
+		res.writeHead(status, { 'Content-Type': 'text/html' });
+		res.write(content.replace('@@points@@', JSON.stringify(arraygeo)));
+		res.end();  
+	}
 
-    	fs.readFile(process.env.EXPRESS_STATIC_DIR+'/map_template.html', 'utf8', function (err, data) {
-    		if (err) {
-    			send(500, err, []);
-    		}else{
+	fs.readFile(process.env.EXPRESS_STATIC_DIR+'/map_template.html', 'utf8', function (err, data) {
+		if (err) {
+			send(500, err, []);
+		}else{
 
-    			if(sessionUsers.isauthorized(req, res, true)){
+			if(sessionUsers.isauthorized(req, res, true)){
 
-    				if(req.query.maptype){
+				if(req.query.maptype){
 
-    					var q = 'SELECT * FROM contacts WHERE idcontact = $1::BIGINT;';
-    					var p = [-999];
+					var q = 'SELECT * FROM contacts WHERE idcontact = $1::BIGINT;';
+					var p = [-999];
 
-    					switch(req.query.maptype){
-    						case 'contact_only':
-    						if(req.query.idcontact){
-    							q = 'SELECT * FROM contacts WHERE idcontact = $1::BIGINT;';
-    							p = [req.query.idcontact]    
-    						}
-    						break;
-    						case 'all_contacts':
-    						q = 'SELECT * FROM contacts WHERE enabled = true;';
-    						p = [] 
-    						break;
-    					}
+					switch(req.query.maptype){
+						case 'contact_only':
+						if(req.query.idcontact){
+							q = 'SELECT * FROM contacts WHERE idcontact = $1::BIGINT;';
+							p = [req.query.idcontact]    
+						}
+						break;
+						case 'all_contacts':
+						q = 'SELECT * FROM contacts WHERE enabled = true;';
+						p = [] 
+						break;
+					}
 
-    					PostgreSQL.query(q, p).then(function(response){
-    						geodata = response.rows;
-    						send(200, data, geodata);
-    					});
+					PostgreSQL.query(q, p).then(function(response){
+						geodata = response.rows;
+						send(200, data, geodata);
+					});
 
-    				}else{
-    					send(500, 'maptype no defined', []);
-    				}
+				}else{
+					send(500, 'maptype no defined', []);
+				}
 
-    			}else{
-    				send(401, content, geodata);
-    			}
+			}else{
+				send(401, content, geodata);
+			}
 
-    		}
-
-
-    	});
+		}
 
 
-    });
+	});
+
+
+});
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -255,23 +254,23 @@ PostgreSQL.receiver_event(req, res);
 ////////////////////////////////////////////////////////////////////////////////////////
 app.post("/njs/login", function(req, res){
 
- PostgreSQL.login(req, res).then(function(results){
+	PostgreSQL.login(req, res).then(function(results){
 
- 	var r =  results.rows;
- 	if(r.length > 0 && r[0]['fun_login_system']){
+		var r =  results.rows;
+		if(r.length > 0 && r[0]['fun_login_system']){
 
- 		var u = r[0]['fun_login_system'];
+			var u = r[0]['fun_login_system'];
 
- 		sessionUsers.add_user(u, req, res);
-        res.status(200).json({success: true});
+			sessionUsers.add_user(u, req, res);
+			res.status(200).json({success: true});
 
-    }else{
-     res.status(403).json({success: false});
- }
+		}else{
+			res.status(403).json({success: false});
+		}
 
-}, function(error){
-        res.redirect('/njs/logout');
-    });
+	}, function(error){
+		res.redirect('/njs/logout');
+	});
 
 });
 
@@ -360,29 +359,7 @@ app.post("/njs/db/Select_Generic_to_Store", function(req, res){
 				break;
 			}
 
-   PostgreSQL.response_query(res, qp.query, qp.param);
-
-/*
-			pG.connect(PostgreSQL.connString(), (err, client, done) => {
-    // Handle connection errors
-    if(err) {
-    	done();
-    	console.log(err);
-    	res.status(500).json({success: false, data: err});
-    	return false;
-    }
-
-    var query = client.query(qp.query, qp.param);
-
-  // After all data is returned, close connection and return results
-  query.on('end', (result1) => {
-  	res.json(result1.rows);
-  	done();
-    //t.emit("get_dgrid_structure", t.tv_structure);
-});
-
-});
-			*/
+			PostgreSQL.response_query(res, qp.query, qp.param);
 
 		}else{
 			res.status(404).json({success: false, data: {}});
@@ -416,30 +393,7 @@ app.post("/njs/db/generic_select", function(req, res){
 
 	var qp = PostgreSQL.Select(req.body.UdcTable, []).build();
 
-PostgreSQL.response_query(res, qp.query, qp.param);
-
-/*
-pG.connect(PostgreSQL.connString(), (err, client, done) => {
-    // Handle connection errors
-    if(err) {
-    	done();
-    	console.log(err);
-    	res.status(500).json({success: false, data: err});
-    //return false;
-}
-
-console.log(cq);
-var query = client.query(cq.query, cq.param);
-
-  // After all data is returned, close connection and return results
-  query.on('end', (result1) => {
-  	res.json(result1.rows);
-  	done();
-});
-
-});
-*/
-
+	PostgreSQL.response_query(res, qp.query, qp.param);
 
 });
 
@@ -478,8 +432,8 @@ app.post("/njs/db/dgrid_table_structure", function(req, res){
    	}
 
    }else{
-res.status(401).json({});
-}
+   	res.status(401).json({});
+   }
 
 });
 

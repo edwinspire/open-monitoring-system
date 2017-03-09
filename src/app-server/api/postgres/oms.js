@@ -3,7 +3,7 @@
      *
      * @module postgres.oms
      */
-     define(['dojo/_base/declare',  "dojo/node!pg", "dojo/Evented", "dojo/Deferred", "dojo/_base/array", "dstore/Memory"
+     define(['dojo/_base/declare',  "dojo/node!pg", "dojo/Evented", "dojo/Deferred", "dojo/_base/array", "dstore/Memory", "api/postgres/udc_dgrid_structure"
      	], function (declare, pg, Evented, Deferred, array, Memory) {
 
      		return declare('postgres.oms', Evented, {
