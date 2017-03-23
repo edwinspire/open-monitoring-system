@@ -4,7 +4,7 @@ Description=Open Monitoring System
 [Service]
 ExecStart=/home/edwinspire/Documentos/Desarrollo/open-monitoring-system/openmonitoringsystem.js
 Restart=always
-User=nobody
+User=root
 Group=nobody
 Environment=PATH=/usr/bin:/usr/local/bin
 Environment=NODE_ENV=production
