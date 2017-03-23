@@ -153,6 +153,8 @@ query: function(_query, _param){
 	var deferred = new Deferred();
 	var t = this;	
 
+
+
 	pg.connect(t.connString(), (err, client, done) => {
 
 		if(err) {

@@ -2,7 +2,7 @@ process.env.PORT = 8080;
 
 process.env.PG_USER = 'postgres';
 process.env.PG_PWD = 'pg4321';
-process.env.PG_HOST = 'localhost';
+process.env.PG_HOST = '192.168.251.174';
 process.env.PG_DB = 'oms';
 
 process.env.SMPT_HOST = 'mail.localhost.com';

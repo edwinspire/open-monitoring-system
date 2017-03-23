@@ -6,10 +6,11 @@ Insert: function(_table, _fieldsValues, _omitfields){
 	var t = this;
 	_omitfields = _omitfields || [];
 	var r = {table: _table, fieldsValues: _fieldsValues, omitfields: _omitfields, _returning: false};
+	//console.dir(_table, _fieldsValues, _omitfields);
 
 	r.returning = function(_string_returning){
 		this._returning = _string_returning || false;
-return this;
+		return this;
 	}
 
 	r.build = function(){
@@ -33,11 +34,9 @@ return this;
 
 		q = q+array_types.join(", ")+") VALUES ("+array_fields.join(", ")+")";
 
-if(this._returning && this._returning.length > 0){
-	q = q+" RETURNING "+this._returning;
-}
-
-//t.emit('tschange', {ssss: q});
+		if(this._returning && this._returning.length > 0){
+			q = q+" RETURNING "+this._returning;
+		}
 
 		return {query: q, param: param};
 	}
@@ -290,9 +289,9 @@ Update: function(_table, _values_array, _omitfields){
 		return this;
 	}
 
-		r.returning = function(_string_returning){
+	r.returning = function(_string_returning){
 		this._returning = _string_returning || false;
-return this;
+		return this;
 	}
 
 	r.build = function(){
