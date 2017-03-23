@@ -1,8 +1,8 @@
 [Unit]
-Description=Open Monitoring System
+Description=Octopus (OMS)
 
 [Service]
-ExecStart=/home/edwinspire/Documentos/Desarrollo/open-monitoring-system/run_openmonitoringsystem.sh
+ExecStart=/home/edwinspire/Documentos/Desarrollo/open-monitoring-system/run_octopus.sh
 Restart=always
 User=root
 Group=nobody
