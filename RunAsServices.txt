@@ -5,6 +5,9 @@ Editar openmonitoringsystem.service modificando las rutas segun donde este ubica
 Copiar openmonitoringsystem.service en: 
 	/etc/systemd/system
 
+Informe a systemd del nuevo servicio:
+	systemctl daemon-reload	
+
 Iniciar con: 	
 	systemctl start openmonitoringsystem
 
