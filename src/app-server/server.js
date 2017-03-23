@@ -76,14 +76,6 @@ PostgreSQL.get_config_from_db().then(function(){
 // create reusable transporter object using the default SMTP transport 
 var transporter = nodeMailer.createTransport(cnxSMTP);
 
-// mailOptions = {
-//     from: '"Edwin De La Cruz 👥" <edwindelacruz@farmaenlace.com>', // sender address 
-//     to: 'edwinspire@gmail.com', // list of receivers 
-//     subject: 'Open Monitoring System Start ✔ '+Date.now(), // Subject line 
-//     text: 'El servidor ha sido iniciado en el puerto '+this.ServerPort, // plaintext body 
-//     html: '<b>El servidor ha sido iniciado en el puerto '+this.ServerPort+'</b>' // html body 
-// };
-
 PostgreSQL.configuration_server.filter({config_name: "mailOptions"}).forEach(function(config){
 //send mail with defined transport object 
 //console.log(config);
@@ -446,7 +438,6 @@ app.use(function(req, res, next) {
 //*******************************************************//
 
 //** Arranca el servidor **//
-var port = process.env.PORT||80;
 
 app.use(function(err, req, res, next) {
 	console.error(err.stack);
@@ -521,8 +512,8 @@ process.on('uncaughtException', function(error){
 });
 
 
-server.listen(port, function(){
-	console.log("Listening on " + port);
+server.listen(process.env.PORT, function(){
+	console.log("Listening on " + process.env.PORT);
 });
 
 
