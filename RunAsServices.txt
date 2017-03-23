@@ -1,0 +1,15 @@
+CORRER APLICACION COMO SERVICIO EN DEBIAN CON SYSTEMD
+
+Editar openmonitoringsystem.service modificando las rutas segun donde este ubicado el proyecto
+
+Copiar openmonitoringsystem.service en: 
+	/etc/systemd/system
+
+Iniciar con: 	
+	systemctl start openmonitoringsystem
+
+Habilitar al arranque del del sistema operativo:
+	systemctl enable openmonitoringsystem
+
+Mire los logs with:
+ 	journalctl -u openmonitoringsystem
