@@ -396,7 +396,6 @@ app.post("/njs/admin_status_login", function(req, res){
 
 	res.status(200).json(sessionUsers.users_status());
 
-
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////

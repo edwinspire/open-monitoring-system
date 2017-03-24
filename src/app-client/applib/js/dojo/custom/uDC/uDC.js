@@ -438,6 +438,9 @@ if (!_bind != 'undefined') {
    },
    _ConnectDijitOnChanged: function (_w) {
      var t = this;
+
+console.log(_w);
+
      t._ConnectionsOnChange.push(
 
        _w.on('Change', function (v) {
@@ -446,7 +449,7 @@ if (!_bind != 'undefined') {
         var row = t._store.get(name);
         row.changed = true;
 
-        console.debug(name+' ha cambiado ', _w);
+        console.debug(name+' ha cambiado ' +v);
 
         if (_w.isValid()) {
 

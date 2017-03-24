@@ -23,33 +23,30 @@ ping: function(task){
 	var deferred = new Deferred();
 	var t = this;
 
+	t._ping(host).then(function(isAlive){
 
-//console.log(task);
+		var event = {idequipment: task.idequipment, ideventtype: 134, roundtriptime: parseInt(isAlive.avg), description: task.ip};
+		var table = 'events_networkdevice_ping';
 
-t._ping(host).then(function(isAlive){
+		if(task.parameters && task.parameters.max && event.roundtriptime >= task.parameters.max){
+			event.ideventtype = 81;
+		}
 
-	var event = {idequipment: task.idequipment, ideventtype: 134, roundtriptime: parseInt(isAlive.avg), description: task.ip};
-	var table = 'events_networkdevice_ping';
+		if(!isAlive.alive){
+			table = 'events';
+			event.ideventtype = 135;
+		}
 
-	if(task.parameters && task.parameters.max && event.roundtriptime >= task.parameters.max){
-		event.ideventtype = 81;
-	}
-
-	if(!isAlive.alive){
-		table = 'events';
-		event.ideventtype = 135;
-	}
-
-	t.send_event_pg(table, event, []).then(function(result){
-		var ReturnData = {pg: result, ping: isAlive};
-		deferred.resolve(ReturnData);
+		t.send_event_pg(table, event, []).then(function(result){
+			var ReturnData = {pg: result, ping: isAlive};
+			deferred.resolve(ReturnData);
+		});
+	}, function(error){
+		console.error(error, task);
+		deferred.reject(error);
 	});
-}, function(error){
-	console.error(error, task);
-	deferred.reject(error);
-});
 
-return deferred.promise;
+	return deferred.promise;
 }
 
 

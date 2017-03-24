@@ -24,6 +24,7 @@ define(['dojo/_base/declare',
 				var t = this;
 
 				topic.subscribe("/event/table/changed/event_statustypes", function(data){
+					console.debug('Hubo cambio en los datos de event_statustypes');
 					t._request();
 				});
 
@@ -34,12 +35,14 @@ define(['dojo/_base/declare',
 				var t = this;
 
 				t.BlockButton.destroyDescendants();
+
+				console.debug(t._clicks_handle_events);
 				
 				if(t._clicks_handle_events){
 					t._clicks_handle_events.remove();
 				}
 
-				return  request.post(t.target, {
+				  request.post(t.target, {
 					data: {_uDCTable: 'event_statustypes_to_client'},
 					preventCache: true,
 					handleAs: 'json'
@@ -49,9 +52,9 @@ define(['dojo/_base/declare',
 					var b = '';
 					array.forEach(response, function(item, i){
 
-						b = b+'<input class="EventStatusTypeRadio" data-dojo-type="dijit/form/RadioButton" value="'+item.ideventstatustype+'" name="ideventstatustype">&nbsp;'+item.label_status+'&nbsp;&nbsp;';
+						b = b+'<input class="EventStatusTypeRadio" data-dojo-type="dijit/form/RadioButton" value="'+item.ideventstatustype+'" >&nbsp;'+item.label_status+'&nbsp;&nbsp;';
 
-          });
+					});
 
 					t.BlockButton.set('content', b);
 					t._clicks_handle_events = on(t.domNode, ".EventStatusTypeRadio:click", function(e){
@@ -74,10 +77,10 @@ define(['dojo/_base/declare',
 			_setValueAttr: function (_v, _emitChanged) {
 				var t = this;
 				t.value = String(_v);
-        console.debug(_v, t.value);
+				console.debug(_v, t.value);
 
-				registry.getEnclosingWidget(query('[name=ideventstatustype][value='+t.value+']', t.domNode)[0]).set('checked', true);
-        on.emit(t.domNode, 'Change', {value: t.value});
+				registry.getEnclosingWidget(query('[value='+t.value+']', t.domNode)[0]).set('checked', true);
+				on.emit(t.domNode, 'Change', {value: t.value});
 
 			},
 			_getValueAttr: function () {
