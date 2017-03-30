@@ -24,7 +24,7 @@ define(['dojo/_base/declare',
 				var t = this;
 
 				topic.subscribe("/event/table/changed/event_statustypes", function(data){
-					console.debug('Hubo cambio en los datos de event_statustypes');
+					//console.debug('Hubo cambio en los datos de event_statustypes');
 					t._request();
 				});
 
@@ -36,7 +36,7 @@ define(['dojo/_base/declare',
 
 				t.BlockButton.destroyDescendants();
 
-				console.debug(t._clicks_handle_events);
+				//console.debug(t._clicks_handle_events);
 				
 				if(t._clicks_handle_events){
 					t._clicks_handle_events.remove();

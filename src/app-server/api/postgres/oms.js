@@ -165,10 +165,12 @@ query: function(_query, _param){
 		}
 
 		var q = client.query(_query, _param, (error)=>{
+			
 			if(error){
 				t.emit("tschange", error);
 				deferred.reject(error);
 			}
+			done(error);
 		});
 
 		q.on('end', (result) => {
