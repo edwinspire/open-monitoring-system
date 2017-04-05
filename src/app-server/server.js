@@ -17,6 +17,7 @@ require(["dojo/request",
 	"dojo/node!body-parser", 
 	"dojo/node!nodemailer",
 	"api/postgres/oms", 
+	"api/mongodb/oms", 
 	"dojox/encoding/digests/MD5", 
 	"api/config", 
 	"api/session_users/session_users", 
@@ -36,11 +37,16 @@ require(["dojo/request",
 	"api/postgres/udc_table_events_details",
 	"api/postgres/udc_table_events",
 	"api/postgres/udc_account_events_comments"  
-	], function(request, on, array, crypto, http, socketIO, path, fs, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, Config, sessionusers){
+	], function(request, on, array, crypto, http, socketIO, path, fs, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, mongoOMS, MD5, Config, sessionusers){
 
 
 		var sessionUsers = new sessionusers();
 		var PostgreSQL = new pgOMS({user: process.env.PG_USER, pwd: process.env.PG_PWD, host: process.env.PG_HOST, db: process.env.PG_DB});
+
+
+var dbm = new mongoOMS();
+
+
 
 // Obtenemos configuraciones desde el servidor
 PostgreSQL.get_config_from_db().then(function(){
