@@ -1,5 +1,5 @@
 // Dojo 1.7+ (AMD)
-require(["dojo/_base/lang", "api/postgres/oms",  "dojo/node!pg", "dstore/Memory", "dojo/Deferred"], function(lang, OMS, pg, Memory, Deferred){
+require(["dojo/_base/lang", "api/postgres/oms",  "dojo/node!pg", "dojo/store/Memory", "dojo/Deferred"], function(lang, OMS, pg, Memory, Deferred){
   lang.extend(OMS, {
 
     _store_structure: new Memory(),
@@ -8,7 +8,7 @@ require(["dojo/_base/lang", "api/postgres/oms",  "dojo/node!pg", "dstore/Memory"
       var t = this;
       var resultado = [];
 
-      t._store_structure.filter({tv_name: _table}).forEach(function(r){
+      t._store_structure.query({tv_name: _table}).forEach(function(r){
         resultado.push(r);
       });
 

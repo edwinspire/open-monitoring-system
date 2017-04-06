@@ -1,5 +1,5 @@
 // Dojo 1.7+ (AMD)
-require(["dojo/_base/lang", "api/octopus/octopus",   "dojo/node!ping", "dojo/Deferred", "dojo/request"], function(lang, Octopus, Ping, Deferred, request){
+require(["dojo/_base/lang", "api/octopus/octopus",   "dojo/node!ping", "dojo/Deferred"], function(lang, Octopus, Ping, Deferred){
 	lang.extend(Octopus, {
 /////////////////////////////////////////
 _ping: function(host){

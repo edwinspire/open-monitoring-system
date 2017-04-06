@@ -3,7 +3,7 @@
      *
      * @module postgres.oms
      */
-     define(['dojo/_base/declare',  "dojo/node!pg", "dojo/Evented", "dojo/Deferred", "dojo/_base/array", "dstore/Memory", "api/postgres/udc_dgrid_structure"
+     define(['dojo/_base/declare',  "dojo/node!pg", "dojo/Evented", "dojo/Deferred", "dojo/_base/array", "dojo/store/Memory", "api/postgres/udc_dgrid_structure"
      	], function (declare, pg, Evented, Deferred, array, Memory) {
 
      		return declare('postgres.oms', Evented, {
@@ -95,7 +95,7 @@ get_config_from_db: function(){
 	t.query(q, []).then(function(result){
 		t.configuration_server = new Memory({data: result.rows, idProperty: 'config_name'});
 
-		t.configuration_server.filter().forEach(function(config){
+		t.configuration_server.query().forEach(function(config){
 			switch(config.config_name){
 				case "SMTP":
 

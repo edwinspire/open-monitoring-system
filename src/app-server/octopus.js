@@ -6,20 +6,15 @@ require(["dojo/request",
 	"dojo/node!path", 
 	"dojo/node!fs", 
 	"dojo/node!path-to-regexp", 
-	"dojo/node!pg", 
 	"dojo/node!compression", 
 	"dojo/node!mssql", 
 	"dojo/node!nodemailer",
 	"dojo/node!ftp",
-	"api/postgres/oms", 
-	"dojox/encoding/digests/MD5", 
-	"dstore/Memory",
 	"api/config", 
 	"api/octopus/octopus", 
-	"api/octopus/ping", 
 	"dojo/promise/all",
 	"dojo/request/node"
-	], function(request, on, locale, array, crypto, path, fs, pathToRegexp, pG, compression, mssql, nodeMailer, ClientFTP, pgOMS, MD5, Memory, Config, Octopus, all, nodeRequest){
+	], function(request, on, locale, array, crypto, path, fs, pathToRegexp, compression, mssql, nodeMailer, ClientFTP, Config, Octopus, all, nodeRequest){
 
 		console.log("Inicia Octopus");
 
