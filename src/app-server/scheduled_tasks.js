@@ -40,33 +40,38 @@ require(["dojo/request",
 
 							if(task.next_run){
 
-								STasks[task.function_name]().then(function(){
-									console.log();
-								});									
+								STasks.startTask(task).then(function(x){
+
+									//console.log(x);
+									STasks.endTask(task).then(function(){
+										console.log('Ha terminado la tarea');
+									}, function(error){
+										console.log(error);
+									});
+
+								});							
 
 							}else if(!task.next_run && Dojodate.difference(new Date(), task.task_start, 'second') < 0){
 
 
-								STasks[task.function_name]().then(function(){
-									console.log();
-								});	
+								STasks.startTask(task).then(function(x){
+
+									console.log(x);
+
+								});
+
 
 							}else{
 								console.log("No hizo nada");
 							}
 
 
-							if(task.config.interval && task.config.interval.minutes){
 
-							}
 
 
 						}else{
 
 							STasks.taskNoFound(task.idtask).then(function(){
-								//console.log(task);
-								//console.log(Object.prototype.toString.call(task.task_start), task.task_start.toString(),;
-								
 								console.dir('No existe la funcion '+task.function_name); 
 							});
 

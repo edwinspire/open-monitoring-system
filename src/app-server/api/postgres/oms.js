@@ -153,15 +153,13 @@ query: function(_query, _param){
 	var deferred = new Deferred();
 	var t = this;	
 
-
-
 	pg.connect(t.connString(), (err, client, done) => {
 
 		if(err) {
 			
 			console.log(err);
 			deferred.reject(err);
-			done();
+			done(err);
 		}
 
 		var q = client.query(_query, _param, (error)=>{

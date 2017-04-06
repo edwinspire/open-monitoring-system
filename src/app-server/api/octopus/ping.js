@@ -7,11 +7,16 @@ _ping: function(host){
 	var t = this;
 
 	if(host){
-		Ping.promise.probe(host).then(function(isAlive){
-			deferred.resolve(isAlive);
-		}, function(error){
+
+		try{
+			Ping.promise.probe(host).then(function(isAlive){
+				deferred.resolve(isAlive);
+			});
+		}catch(error){
 			deferred.reject(error);
-		});
+		}
+
+
 	}else{
 		deferred.reject('Invalid Host '+host);
 	}	
@@ -42,7 +47,6 @@ ping: function(task){
 			deferred.resolve(ReturnData);
 		});
 	}, function(error){
-		console.error(error, task);
 		deferred.reject(error);
 	});
 
