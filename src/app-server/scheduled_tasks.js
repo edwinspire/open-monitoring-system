@@ -16,7 +16,8 @@ require(["dojo/request",
 	"dojo/date/stamp",
 	"dojo/date",
 	"api/scheduled_tasks/run_ping",
-	"api/scheduled_tasks/run_check_movinv_sin_materiales"
+	"api/scheduled_tasks/run_check_movinv_sin_materiales",
+	"api/scheduled_tasks/run_check_articulos_sin_marca"
 	], function(request, on, locale, array, crypto, path, fs, pathToRegexp, pG, compression, mssql, nodeMailer, Config, ScheduledTasks, all, stamp, Dojodate){
 
 		console.log("Inicia scheduled_tasks");

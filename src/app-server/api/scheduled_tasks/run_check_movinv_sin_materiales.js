@@ -30,7 +30,53 @@ run_check_movinv_sin_materiales: function(task){
     .query(srtquery).then(function(recordset) {
 
     	console.log(recordset);
-    	deferred.resolve(true);
+
+    	if(recordset.length > 0){
+
+    		var Message = `
+    		<table style="border: 1px solid black; border-collapse: collapse;">
+    		<tr>
+    		<th style="border: 1px solid black; border-collapse: collapse;">OFICINA</th>
+    		<th style="border: 1px solid black; border-collapse: collapse;">NUM MOV</th> 
+    		<th style="border: 1px solid black; border-collapse: collapse;">TIPO MOV</th>
+    		<th style="border: 1px solid black; border-collapse: collapse;">CODIGO</th>
+    		<th style="border: 1px solid black; border-collapse: collapse;">FECHA</th>
+    		<th style="border: 1px solid black; border-collapse: collapse;">CANT</th>
+    		</tr>
+    		`;
+
+
+    		array.forEach(recordset, function(mov){
+    			var Compania = mov.Compania;
+    			var num_mov = mov.num_mov;
+    			var Oficina = mov.Oficina;
+    			var tipo_mov = mov.tipo_mov;
+    			var codigo_producto = mov.codigo_producto;
+    			var fecha_mov = mov.fecha_mov;
+    			var cantidad = mov.cantidad;
+    			Message = Message+`
+    			<tr>
+    			<td style="border: 1px solid black; border-collapse: collapse;">${Oficina}</td>
+    			<td style="border: 1px solid black; border-collapse: collapse;">${num_mov}</td>
+    			<td style="border: 1px solid black; border-collapse: collapse;">${tipo_mov}</td>
+    			<td style="border: 1px solid black; border-collapse: collapse;">${codigo_producto}</td>
+    			<td style="border: 1px solid black; border-collapse: collapse;">${fecha_mov}</td>
+    			<td style="border: 1px solid black; border-collapse: collapse;">${cantidad}</td>
+    			</tr>`;
+
+    		});
+
+    		Message = Message+`
+    		</table>
+    		`;
+
+    		t.send_event_pg('events', {idaccount: task.task_parameters.idaccount, ideventtype: 136, description: Message}, []).then(function(result){
+    			deferred.resolve(true);
+    		});
+
+    	}else{
+    		deferred.resolve(true);
+    	}
 
     }).catch(function(err) {
 
