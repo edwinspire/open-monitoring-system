@@ -55,6 +55,9 @@ PostgreSQL.get_config_from_db().then(function(){
 		PostgreSQL.query("SELECT * FROM fun_remove_notifications_old();", []).then(function(response){
 			//console.log(response);
 		});
+		PostgreSQL.query("SELECT * FROM fun_last_modified_table_remove_olds();", []).then(function(response){
+			//console.log(response);
+		});
 	}, 60*1000);
 
 
