@@ -29,7 +29,7 @@ run_check_articulos_sin_marca: function(task){
     new mssql.Request(cnxmatriz)
     .query(srtquery).then(function(recordset) {
 
-    	console.log(recordset);
+    	//console.log(recordset);
     	var Filas = recordset.length;
 
     	if(Filas > 0){
