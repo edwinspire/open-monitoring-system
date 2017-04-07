@@ -15,7 +15,8 @@ require(["dojo/request",
 	"dojo/promise/all",
 	"dojo/date/stamp",
 	"dojo/date",
-	"api/scheduled_tasks/run_ping"
+	"api/scheduled_tasks/run_ping",
+	"api/scheduled_tasks/run_check_movinv_sin_materiales"
 	], function(request, on, locale, array, crypto, path, fs, pathToRegexp, pG, compression, mssql, nodeMailer, Config, ScheduledTasks, all, stamp, Dojodate){
 
 		console.log("Inicia scheduled_tasks");
@@ -56,9 +57,14 @@ require(["dojo/request",
 
 								STasks.startTask(task).then(function(x){
 
-									console.log(x);
+										//console.log(x);
+										STasks.endTask(task).then(function(){
+											console.log('Ha terminado la tarea');
+										}, function(error){
+											console.log(error);
+										});
 
-								});
+									});
 
 
 							}else{

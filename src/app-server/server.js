@@ -77,7 +77,7 @@ PostgreSQL.get_config_from_db().then(function(){
 // create reusable transporter object using the default SMTP transport 
 var transporter = nodeMailer.createTransport(cnxSMTP);
 
-PostgreSQL.configuration_server.filter({config_name: "mailOptions"}).forEach(function(config){
+PostgreSQL.configuration_server.query({config_name: "mailOptions"}).forEach(function(config){
 //send mail with defined transport object 
 //console.log(config);
 transporter.sendMail(config.configuration, function(error, info){

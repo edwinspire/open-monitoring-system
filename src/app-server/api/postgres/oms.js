@@ -35,7 +35,7 @@ constructor: function(args) {
 
 		setInterval(function(){
 
-			var q = "SELECT table_name, ts FROM sys_table_ts;";
+			var q = "SELECT table_name, datetime_modif as ts FROM view_last_modif_tables;";
 			pg.connect(t.connString(), (err, client, done) => {
 				if(err) {
 					done();
