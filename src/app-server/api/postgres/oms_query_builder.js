@@ -6,7 +6,6 @@ Insert: function(_table, _fieldsValues, _omitfields){
 	var t = this;
 	_omitfields = _omitfields || [];
 	var r = {table: _table, fieldsValues: _fieldsValues, omitfields: _omitfields, _returning: false};
-	//console.dir(_table, _fieldsValues, _omitfields);
 
 	r.returning = function(_string_returning){
 		this._returning = _string_returning || false;
@@ -262,12 +261,13 @@ return r;
 // Obtiene un objecto con los campos y tipos validos
 get_tv_fieldtypes: function(_tableview){
 	var t = this;
-	var tableColumns = t.get_table_structure(_tableview)[0].udc_column_definition || {};
+	var tableColumns = t.get_table_schema(_tableview) || {};
 	var r = {};
 	array.forEach(tableColumns, function(field){
-		r[field.field] = field.data_type; 
+		r[field.column_name] = field.data_type; 
 	});
 
+//console.trace(r);
 	return r;
 },
 ////////////////////////////////////////////////////////////

@@ -30,19 +30,19 @@ ping: function(task){
 
 	t._ping(host).then(function(isAlive){
 
-		var event = {idequipment: task.idequipment, ideventtype: 134, roundtriptime: parseInt(isAlive.avg), description: task.ip};
-		var table = 'events_networkdevice_ping';
+		var event = {idequipment: task.idequipment, ideventtype: 134, description: task.ip, details: {roundtriptime: parseInt(isAlive.avg)}};
+		//var table = 'events_networkdevice_ping';
 
 		if(task.parameters && task.parameters.max && event.roundtriptime >= task.parameters.max){
 			event.ideventtype = 81;
 		}
 
 		if(!isAlive.alive){
-			table = 'events';
+			//table = 'events';
 			event.ideventtype = 135;
 		}
 
-		t.send_event_pg(table, event, []).then(function(result){
+		t.send_event_pg(event, []).then(function(result){
 			var ReturnData = {pg: result, ping: isAlive};
 			deferred.resolve(ReturnData);
 		});

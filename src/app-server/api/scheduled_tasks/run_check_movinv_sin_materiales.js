@@ -70,7 +70,7 @@ run_check_movinv_sin_materiales: function(task){
     		</table>
     		`;
 
-    		t.send_event_pg('events', {idaccount: task.task_parameters.idaccount, ideventtype: 136, description: Message}, []).then(function(result){
+    		t.send_event_pg({idaccount: task.task_parameters.idaccount, ideventtype: 136, description: Message}, []).then(function(result){
     			deferred.resolve(true);
     		});
 

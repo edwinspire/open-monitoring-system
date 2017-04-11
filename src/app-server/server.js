@@ -35,7 +35,8 @@ require(["dojo/request",
 	"api/postgres/udc_table_events_isopen",
 	"api/postgres/udc_table_events_details",
 	"api/postgres/udc_table_events",
-	"api/postgres/udc_account_events_comments"  
+	"api/postgres/udc_account_events_comments" ,
+	"api/postgres/gui_structure_table"  
 	], function(request, on, array, crypto, http, socketIO, path, fs, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, Config, sessionusers){
 
 
@@ -49,7 +50,7 @@ PostgreSQL.get_config_from_db().then(function(){
 
 	setInterval(function(){
 		console.log('Tareas periodicas');
-		PostgreSQL.query("SELECT * FROM fun_set_expired_events();", []).then(function(response){
+		PostgreSQL.query("SELECT * FROM events.fun_set_expired_events();", []).then(function(response){
 			//console.log(response);
 		});
 		PostgreSQL.query("SELECT * FROM fun_remove_notifications_old();", []).then(function(response){
@@ -371,13 +372,11 @@ app.post("/njs/db/Select_Generic_to_Store", function(req, res){
 app.post("/njs/db/uDCFieldTypes", function(req, res){
 
 	var t = this;
-	var def = PostgreSQL.get_table_structure(req.body.uDCTable);
-
-	if(def.length > 0){
-		res.json(def[0].udc_column_definition);
-	}else{
-		res.json([]);
-	}
+	var def = PostgreSQL.gui_structure_table(req.body.uDCTable).then(function(result){
+		res.json(result);
+	}, function(error){
+		res.json(error);
+	});
 
 });
 
@@ -412,7 +411,7 @@ app.post("/njs/db/dgrid_table_structure", function(req, res){
 
    	if(req.body.UdcTable){
 
-   		var structure = PostgreSQL.get_table_structure(req.body.UdcTable, req.body.Fields);
+   		PostgreSQL.gui_structure_table(req.body.UdcTable, req.body.Fields).then(function(structure){
 
    		res.send(JSON.stringify(structure, function(key, value){
 
@@ -423,6 +422,13 @@ app.post("/njs/db/dgrid_table_structure", function(req, res){
    			}
    			return value;
    		}).replace(/(\"<jsfunction>|<\/jsfunction>\")/ig,''));
+
+
+   		}, function(err){
+	res.status(500).json({});
+   		});
+
+
 
    	}
 

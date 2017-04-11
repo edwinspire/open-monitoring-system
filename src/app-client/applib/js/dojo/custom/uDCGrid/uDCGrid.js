@@ -13,6 +13,7 @@
   'dgrid/Grid',
   'dgrid/Keyboard',
   'dstore/Memory',
+  'dojo/store/Memory',
   'dstore/Trackable',
   'dgrid/Selection',
   'dgrid/Selector',
@@ -42,7 +43,7 @@
   "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
   "dojo/parser",
   "dojo/has!touch?dojo/touch:dojo/mouse"
-  ], function(declare, on, win, domClass, has, Grid, Keyboard, Memory, Trackable, Selection, Selector, Pagination, Editor, ColumnReorder, ColumnResizer, ColumnHider, request, array, topic, Deferred, Filter, TextBox, CheckBox,  HorizontalSlider, VerticalSlider, NumberSpinner, TimeSpinner, CurrencyTextBox, DateTextBox, NumberTextBox, SimpleTextarea, Textarea, TimeTextBox, FilteringSelect, FilteringSelectGlobalStore) {
+  ], function(declare, on, win, domClass, has, Grid, Keyboard, dMemory, Memory, Trackable, Selection, Selector, Pagination, Editor, ColumnReorder, ColumnResizer, ColumnHider, request, array, topic, Deferred, Filter, TextBox, CheckBox,  HorizontalSlider, VerticalSlider, NumberSpinner, TimeSpinner, CurrencyTextBox, DateTextBox, NumberTextBox, SimpleTextarea, Textarea, TimeTextBox, FilteringSelect, FilteringSelectGlobalStore) {
     /**
      * Micro Data Connector dGrid
      *
@@ -77,7 +78,7 @@
              rowFingerPrint: '',
              _searchTerm: '',
              _enabledload: false,
-             uDCProperties: {},
+             uDCProperties: new Memory(),
     /**
      * @class uDCGrid
      * @param args {object}
@@ -101,7 +102,7 @@
           t._last_select = t.initialQuery;
 
 //** Crea el store para los datos **//
-this._GridStore = new (declare([Memory, Trackable]))({ data: null, idProperty: this.idProperty });
+this._GridStore = new (declare([dMemory, Trackable]))({ data: null, idProperty: this.idProperty });
 
 //** Obtiene la estructura de las columnas **//
 t.getProperties();
@@ -376,17 +377,23 @@ getProperties: function(){
 
    var columns = [];
 
-   t.uDCProperties = response[0];
+   t.uDCProperties.setData(response);
 
+/*
    if(t.uDCProperties.dgrid_selectionmode){
      t.selectionMode = t.uDCProperties.dgrid_selectionmode;
    }else{
      t.SelectionMode = "none";
    }
+*/
 
-   array.forEach(t.uDCProperties.udc_column_definition, function(column, i){
+console.log(t.uDCProperties);
+
+   t.uDCProperties.query().forEach(function(column, i){
 
     var c = column;
+
+    console.log(c);
 
     if(c.editOn && c.editOn == "dbclick" && has("touch")){
       alert('Es touch');

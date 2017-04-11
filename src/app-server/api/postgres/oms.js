@@ -3,7 +3,7 @@
      *
      * @module postgres.oms
      */
-     define(['dojo/_base/declare',  "dojo/node!pg", "dojo/Evented", "dojo/Deferred", "dojo/_base/array", "dojo/store/Memory", "api/postgres/udc_dgrid_structure"
+     define(['dojo/_base/declare',  "dojo/node!pg", "dojo/Evented", "dojo/Deferred", "dojo/_base/array", "dojo/store/Memory"
      	], function (declare, pg, Evented, Deferred, array, Memory) {
 
      		return declare('postgres.oms', Evented, {
@@ -17,6 +17,7 @@
      			tv_structure: {},
      			_last_notification_area: 0,
      			configuration_server: {},
+     			_schema: new Memory(),
 
 //////////////////////////////////
 // The constructor
@@ -28,6 +29,12 @@ constructor: function(args) {
 	t._last_idnotify_notification_area = 0;
 	t.tv_structure= {};
 
+	t.get_schema().then(function(){
+
+
+	});
+
+/*
 	setTimeout(function(){
 
 		t.get_dgrid_fullstructure();
@@ -80,12 +87,65 @@ constructor: function(args) {
 
 		}, 1000);
 
+
 	}, 2000);
+	*/
 
 },
 startup: function(){
 	console.log('Startup');
 }, 
+get_schema: function(){
+	var t = this;
+	var q = 'SELECT * FROM view_table_schema;';
+	var deferred = new Deferred();
+
+	t.query(q, []).then(function(result){
+		t._schema = new Memory({data: result.rows, idProperty: 'tschema_tname'});
+		deferred.resolve(result);
+	});
+	return deferred.promise;
+},
+get_table_schema: function(_tschema_tname){
+	var t = this;
+	var resultado = [];
+
+	t._schema.query({tschema_tname: _tschema_tname}).forEach(function(r){
+		resultado.push(r);
+	});
+
+	return resultado;
+},
+get_change_in_tables: function(){
+	var deferred = new Deferred();
+	this.query("SELECT tschema_tname, table_name, datetime_modif as ts FROM view_last_modif_tables;").then(function(result){
+
+		array.forEach(result.rows, function(row){
+			var newts = Date.parse(row.ts);
+
+			if(typeof t._last_ts[row.table_name] === 'undefined'){
+
+				t._last_ts[row.table_name] = newts;
+				t.get_tv_structure(row.table_name);
+				t.send_notification_area(row.table_name);
+				t.emit("tschange", {table_name: row.table_name,  ts: newts});
+
+			}else{
+
+				if(t._last_ts[row.table_name]  !=  newts){
+					t._last_ts[row.table_name] = newts;
+					t.get_tv_structure(row.table_name);
+					t.send_notification_area(row.table_name);
+					t.emit("tschange", {table_name: row.table_name,  ts: newts});
+				}
+
+			}
+		});
+		deferred.resolve(true);
+
+	});
+	return deferred.promise;
+},
 get_config_from_db: function(){
 	var t = this;
 	var q = 'SELECT * FROM configuration_server WHERE enabled = true;';
@@ -133,7 +193,7 @@ get_config_from_db: function(){
 	return deferred.promise;
 },
 ///////////////////////////////////////////////////////////////
-get_tv_structure: function(_tv){
+x_get_tv_structure: function(_tv){
 
 	var t = this;
 
@@ -187,7 +247,7 @@ login: function(req, res){
 	var user = req.body.user || false;
 	var pwd = req.body.pwd || false;
 
-	var q = "SELECT * from fun_login_system($1::TEXT, $2::TEXT, $3::INET, $4::TEXT);";
+	var q = "SELECT * from public.fun_login_system($1::TEXT, $2::TEXT, $3::INET, $4::TEXT);";
 
 	return t.query(q, [user, pwd, req.connection.remoteAddress, req.headers['user-agent']]);
 },
@@ -205,7 +265,7 @@ send_notification_area: function(_table_notifications){
 
 	var t = this;
 
-	if(_table_notifications === "notification_area"){
+	if(_table_notifications === "public.notification_area"){
 
 		pg.connect(t.connString(), (err, client, done) => {
 
@@ -215,7 +275,7 @@ send_notification_area: function(_table_notifications){
 				return false;
 			}
 
-			var query = client.query("SELECT * FROM notification_area WHERE idnotify > $1::integer ORDER BY idnotify;", [t._last_idnotify_notification_area]);
+			var query = client.query("SELECT * FROM public.notification_area WHERE idnotify > $1::integer ORDER BY idnotify;", [t._last_idnotify_notification_area]);
 
 			query.on('row', (row) => {
 				t._last_idnotify_notification_area = row.idnotify;    
@@ -228,10 +288,6 @@ send_notification_area: function(_table_notifications){
   	done();
   });
   
-
-
-
-
 
 });
 	}

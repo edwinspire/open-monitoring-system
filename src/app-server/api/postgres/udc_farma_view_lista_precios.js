@@ -1,5 +1,5 @@
 // Dojo 1.7+ (AMD)
-require(["dojo/_base/lang", "api/postgres/oms",  "dojo/node!pg", "dojo/_base/array"], function(lang, OMS, pg, array){
+require(["dojo/_base/lang", "api/postgres/oms", "dojo/_base/array"], function(lang, OMS, array){
 	lang.extend(OMS, {
 /////////////////////////////////////////
 udc_farma_view_lista_precios: function(req, res){
