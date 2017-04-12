@@ -119,7 +119,7 @@ define(['dojo/_base/declare',
       selectionMode: "none",
       refreshOnTableChanged: t.refreshOnTableChanged,
       initialQuery: t.initialQuery,
-      uDCColumns: t.uDCColumns,
+      Gui: t.Gui,
       table: t.table,
       rowFingerPrint: t.rowFingerPrint,
       idProperty: t.idProperty
@@ -130,7 +130,8 @@ define(['dojo/_base/declare',
 
 
      on(t.Grid, 'dgrid-set-properties', function (event) {
-      t.set('titlegrid', event.properties.title_dgrid);
+      console.log(event);
+      t.set('titlegrid', event.properties.title_dgrid || event.properties.tschema_tname);
     });
 
 

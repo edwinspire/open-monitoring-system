@@ -67,7 +67,7 @@
              idProperty: '',
              refreshMode: 0,
              autoUpdateRow: false,
-             uDCColumns: {target: '', fields: []},
+             Gui: {target: '', fields: []},
              target: 'target.json',
              refreshOnTableChanged: [],
              _array_subscribe: [],
@@ -110,25 +110,25 @@ t.getProperties();
  //**  **//
  t.on('dgrid-datachange', function (event) {
 
-                var data = {};
-                data[t.idProperty] = event.cell.row.id;
+  var data = {};
+  data[t.idProperty] = event.cell.row.id;
 
-                data[event.cell.column.field] = event.value;
+  data[event.cell.column.field] = event.value;
 
-                if (t.rowFingerPrint) {
-                  try {
-                    data['UdcRowFingerPrint'] = t.rowFingerPrint;
-                    data['UdcRowFingerPrintValue'] = event.cell.row.data[t.rowFingerPrint];
-                  } catch (e) {
-                    console.error(e);
-                  }
-                }
+  if (t.rowFingerPrint) {
+    try {
+      data['UdcRowFingerPrint'] = t.rowFingerPrint;
+      data['UdcRowFingerPrintValue'] = event.cell.row.data[t.rowFingerPrint];
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
-                t.Update(data);
+  t.Update(data);
 
 
 
-              });
+});
 
 },
 _subscribe_table_changed: function(){
@@ -364,20 +364,29 @@ _grid_setData: function (_data) {
 getProperties: function(){
  var t = this;
 
- if(t.uDCColumns.target && t.uDCColumns.target.length > 0){
+if(!t.Gui){
+t.Gui = {};
+}
 
-  var getCol = request.post(t.uDCColumns.target, {
-    data: {UdcTable: t.table, Fields: JSON.stringify(t.uDCColumns.fields)},
-    preventCache: true,
+ if(!t.Gui.target || t.Gui.target.length < 3){
 
-    handleAs: "javascript"
-  }
-  ).then(
-  function (response) {
+  //t._enabledload = true;  
+  t.Gui.target = '/njs/db/gui/table_view_properties';
+  console.warn('Grid no tiene Gui.target para obtener la estructura, se usara la default');
+}
 
-   var columns = [];
+var getCol = request.post(t.Gui.target, {
+  data: {UdcTable: t.table, Fields: JSON.stringify(t.Gui.fields)},
+  preventCache: true,
 
-   t.uDCProperties = response[0];
+  handleAs: "javascript"
+}
+).then(
+function (response) {
+
+ var columns = [];
+
+ t.Gui.Properties = response[0];
 
 /*
    if(t.uDCProperties.dgrid_selectionmode){
@@ -385,89 +394,87 @@ getProperties: function(){
    }else{
      t.SelectionMode = "none";
    }
-*/
+   */
 
 //console.log(t.uDCProperties);
 
-   array.forEach(t.uDCProperties.columns_properties, function(column, i){
+array.forEach(t.Gui.Properties.columns_properties, function(column, i){
 
-    var c = column;
+  var c = column;
 
+  if(c.editOn && c.editOn == "dbclick" && has("touch")){
+    alert('Es touch');
+    c.editOn = "click";
+  }
+
+  if(c.editor){
+    switch(c.editor){
+      case 'HorizontalSlider':
+      c.editor = HorizontalSlider;
+      break;
+      case 'VerticalSlider':
+      c.editor = VerticalSlider;
+      break;
+      case 'NumberSpinner':
+      c.editor = NumberSpinner;
+      break;
+      case 'TimeSpinner':
+      c.editor = TimeSpinner;
+      break;
+      case 'CurrencyTextBox':
+      c.editor = CurrencyTextBox;
+      break;
+      case 'checkbox':
+      c.editor = CheckBox;
+      break;
+      case 'DateTextBox':
+      c.editor = DateTextBox;
+      break;
+      case 'NumberTextBox':
+      c.editor = NumberTextBox;
+      break;
+      case 'SimpleTextarea':
+      c.editor = SimpleTextarea;
+      break;
+      case 'Textarea':
+      c.editor = Textarea;
+      break;
+      case 'TimeTextBox':
+      c.editor = TimeTextBox;
+      break;
+      case 'FilteringSelectGlobalStore':
+      c.editor = FilteringSelectGlobalStore;
+      break;
+
+      case 'FilteringSelect':
+      c.editor = FilteringSelect;
+      break;
+
+      default:
+      c.editor = 'text';
+      break;
+    }
+  }
+
+  if(array.indexOf(t.Gui.fields, c.field) >= 0){
+    columns.push(c);
     console.log(c);
+  }
 
-    if(c.editOn && c.editOn == "dbclick" && has("touch")){
-      alert('Es touch');
-      c.editOn = "click";
-    }
-
-    if(c.editor){
-      switch(c.editor){
-        case 'HorizontalSlider':
-        c.editor = HorizontalSlider;
-        break;
-        case 'VerticalSlider':
-        c.editor = VerticalSlider;
-        break;
-        case 'NumberSpinner':
-        c.editor = NumberSpinner;
-        break;
-        case 'TimeSpinner':
-        c.editor = TimeSpinner;
-        break;
-        case 'CurrencyTextBox':
-        c.editor = CurrencyTextBox;
-        break;
-        case 'checkbox':
-        c.editor = CheckBox;
-        break;
-        case 'DateTextBox':
-        c.editor = DateTextBox;
-        break;
-        case 'NumberTextBox':
-        c.editor = NumberTextBox;
-        break;
-        case 'SimpleTextarea':
-        c.editor = SimpleTextarea;
-        break;
-        case 'Textarea':
-        c.editor = Textarea;
-        break;
-        case 'TimeTextBox':
-        c.editor = TimeTextBox;
-        break;
-        case 'FilteringSelectGlobalStore':
-        c.editor = FilteringSelectGlobalStore;
-        break;
-
-        case 'FilteringSelect':
-        c.editor = FilteringSelect;
-        break;
-
-        default:
-        c.editor = 'text';
-        break;
-      }
-    }
-
-    if(array.indexOf(t.uDCColumns.fields, c.field) >= 0){
-      columns.push(c);
-      console.log(c);
-    }
-
-  });
+});
 
 //console.log(columns);
 
 t.set('columns', columns);
 //console.log('Deberia emitir el noteventos');
-on.emit(t.domNode, 'dgrid-set-properties', {properties: t.uDCProperties});
+on.emit(t.domNode, 'dgrid-set-properties', {properties: t.Gui.Properties});
 },
 function (error) {
   console.error(error + ' ' + t.target);
 }
 );
 
-  getCol.then(function (results) {
+getCol.then(function (results) {
                         //   console.log('Se supone que se han seteado las columnas');
                                           //** Sirve para usar un filtro que buscara en todos los campos **//
                                           t._GridFieldsToFilter = [];
@@ -481,10 +488,7 @@ function (error) {
                                           t.Select(t.initialQuery);
                                         });        
 
-}else{
-  t._enabledload = true;  
-  console.warn('Grid no tiene target para obtener la estructura');
-}
+
 
 
 },

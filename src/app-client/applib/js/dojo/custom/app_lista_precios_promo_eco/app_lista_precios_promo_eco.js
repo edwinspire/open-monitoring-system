@@ -12,7 +12,7 @@ define(['dojo/_base/declare',
         templateString: templateString,
         postCreate: function () {
 	var t = this;
-	
+ //alert('Es estec');
 
         }      
                 
