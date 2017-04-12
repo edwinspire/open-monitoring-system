@@ -78,7 +78,7 @@
              rowFingerPrint: '',
              _searchTerm: '',
              _enabledload: false,
-             uDCProperties: new Memory(),
+             uDCProperties: {},
     /**
      * @class uDCGrid
      * @param args {object}
@@ -377,7 +377,7 @@ getProperties: function(){
 
    var columns = [];
 
-   t.uDCProperties.setData(response);
+   t.uDCProperties = response[0];
 
 /*
    if(t.uDCProperties.dgrid_selectionmode){
@@ -387,9 +387,9 @@ getProperties: function(){
    }
 */
 
-console.log(t.uDCProperties);
+//console.log(t.uDCProperties);
 
-   t.uDCProperties.query().forEach(function(column, i){
+   array.forEach(t.uDCProperties.columns_properties, function(column, i){
 
     var c = column;
 
@@ -451,6 +451,7 @@ console.log(t.uDCProperties);
 
     if(array.indexOf(t.uDCColumns.fields, c.field) >= 0){
       columns.push(c);
+      console.log(c);
     }
 
   });

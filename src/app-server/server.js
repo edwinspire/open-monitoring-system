@@ -36,7 +36,7 @@ require(["dojo/request",
 	"api/postgres/udc_table_events_details",
 	"api/postgres/udc_table_events",
 	"api/postgres/udc_account_events_comments" ,
-	"api/postgres/gui_structure_table"  
+	"api/postgres/gui_view_table_view_columns_properties"  
 	], function(request, on, array, crypto, http, socketIO, path, fs, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, Config, sessionusers){
 
 
@@ -398,6 +398,44 @@ app.post("/njs/db/generic_select", function(req, res){
 app.post("/njs/admin_status_login", function(req, res){
 
 	res.status(200).json(sessionUsers.users_status());
+
+});
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+app.post("/njs/db/gui/table_view_properties", function(req, res){
+
+   // var user = sessionUsers.user(res.cookie('oms_sessionidclient'), req);
+   res.type('application/javascript'); 
+
+   if(true){
+
+   	if(req.body.UdcTable){
+
+   		PostgreSQL.gui_view_table_view_columns_properties(req.body.UdcTable, req.body.Fields).then(function(structure){
+
+   		res.send(JSON.stringify(structure, function(key, value){
+
+   			if(typeof value === "string"){
+   				return value.split("\n").join(' ');
+   			}else if(value === null) {
+   				return undefined;
+   			}
+   			return value;
+   		}).replace(/(\"<jsfunction>|<\/jsfunction>\")/ig,''));
+
+
+   		}, function(err){
+	res.status(500).json({});
+   		});
+
+
+
+   	}
+
+   }else{
+   	res.status(401).json({});
+   }
 
 });
 
