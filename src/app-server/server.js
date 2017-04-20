@@ -36,7 +36,8 @@ require(["dojo/request",
 	"api/postgres/udc_table_events_details",
 	"api/postgres/udc_table_events",
 	"api/postgres/udc_account_events_comments" ,
-	"api/postgres/gui_view_table_view_columns_properties"  
+	"api/postgres/gui_view_table_view_columns_properties",
+	"api/postgres/schema_events"
 	], function(request, on, array, crypto, http, socketIO, path, fs, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, Config, sessionusers){
 
 
@@ -238,6 +239,23 @@ app.post("/njs/db/table/*", cors(), function(req, res){
 
 });
 
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+app.post("/njs/db/events/*", cors(), function(req, res){
+
+	var u = sessionUsers.isauthorized(req, res, true);
+
+	if(u){
+
+		var table = 'events.'+req.path.replace("/njs/db/events/", "");
+PostgreSQL.schema_events(table, req, res);
+
+	}else{
+		res.status(403).json({table: req.path});
+	}
+
+});
 
 
 ////////////////////////////////////////////////////////////////////////////////////////

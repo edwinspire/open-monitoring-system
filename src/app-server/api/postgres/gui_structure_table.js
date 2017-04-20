@@ -14,7 +14,7 @@ require(["dojo/_base/lang", "api/postgres/oms",  "dojo/store/Memory", "dojo/Defe
         deferred.resolve(t._gui_structure_table.query({tschema_tname: table}));
 
       }else{
-        var q = 'SELECT * FROM gui.view_structure WHERE tschema_tname = $1::TEXT ORDER BY column_position;';
+        var q = 'SELECT * FROM gui.view_table_view_columns_properties WHERE tschema_tname = $1::TEXT ORDER BY column_position;';
         //console.dir(table);
         t.query(q, [table]).then(function(result){
 

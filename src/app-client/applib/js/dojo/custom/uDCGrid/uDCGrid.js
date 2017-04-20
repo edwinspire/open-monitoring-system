@@ -18,6 +18,7 @@
   'dgrid/Selection',
   'dgrid/Selector',
   'dgrid/extensions/Pagination',
+  'dgrid/extensions/DijitRegistry',
   'dgrid/Editor',
   'dgrid/extensions/ColumnReorder',
   'dgrid/extensions/ColumnResizer',
@@ -41,15 +42,16 @@
   "dijit/form/TimeTextBox",
   "dijit/form/FilteringSelect",
   "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
+  "Widget/json_treeview/json_treeview",
   "dojo/parser",
   "dojo/has!touch?dojo/touch:dojo/mouse"
-  ], function(declare, on, win, domClass, has, Grid, Keyboard, dMemory, Memory, Trackable, Selection, Selector, Pagination, Editor, ColumnReorder, ColumnResizer, ColumnHider, request, array, topic, Deferred, Filter, TextBox, CheckBox,  HorizontalSlider, VerticalSlider, NumberSpinner, TimeSpinner, CurrencyTextBox, DateTextBox, NumberTextBox, SimpleTextarea, Textarea, TimeTextBox, FilteringSelect, FilteringSelectGlobalStore) {
+  ], function(declare, on, win, domClass, has, Grid, Keyboard, dMemory, Memory, Trackable, Selection, Selector, Pagination, DijitRegistry, Editor, ColumnReorder, ColumnResizer, ColumnHider, request, array, topic, Deferred, Filter, TextBox, CheckBox,  HorizontalSlider, VerticalSlider, NumberSpinner, TimeSpinner, CurrencyTextBox, DateTextBox, NumberTextBox, SimpleTextarea, Textarea, TimeTextBox, FilteringSelect, FilteringSelectGlobalStore, json_treeview) {
     /**
      * Micro Data Connector dGrid
      *
      * @module uDCGrid/uDCGrid
      */
-     return declare("uDCGrid/uDCGrid", [Grid, Keyboard, Selection, Selector, Pagination, Editor, ColumnReorder, ColumnResizer, ColumnHider], {
+     return declare("uDCGrid/uDCGrid", [Grid, Keyboard, Selection, Selector, Pagination, Editor, ColumnReorder, ColumnResizer, ColumnHider, DijitRegistry], {
 
       allowTextSelection: true,
       deselectOnRefresh: false,
@@ -364,11 +366,11 @@ _grid_setData: function (_data) {
 getProperties: function(){
  var t = this;
 
-if(!t.Gui){
-t.Gui = {};
+ if(!t.Gui){
+  t.Gui = {};
 }
 
- if(!t.Gui.target || t.Gui.target.length < 3){
+if(!t.Gui.target || t.Gui.target.length < 3){
 
   //t._enabledload = true;  
   t.Gui.target = '/njs/db/gui/table_view_properties';
@@ -378,7 +380,6 @@ t.Gui = {};
 var getCol = request.post(t.Gui.target, {
   data: {UdcTable: t.table, Fields: JSON.stringify(t.Gui.fields)},
   preventCache: true,
-
   handleAs: "javascript"
 }
 ).then(
@@ -396,72 +397,73 @@ function (response) {
    }
    */
 
-//console.log(t.uDCProperties);
+   console.log(response);
 
-array.forEach(t.Gui.Properties.columns_properties, function(column, i){
+   array.forEach(t.Gui.Properties.columns_properties, function(column, i){
 
-  var c = column;
+    var c = column;
 
-  if(c.editOn && c.editOn == "dbclick" && has("touch")){
-    alert('Es touch');
-    c.editOn = "click";
-  }
-
-  if(c.editor){
-    switch(c.editor){
-      case 'HorizontalSlider':
-      c.editor = HorizontalSlider;
-      break;
-      case 'VerticalSlider':
-      c.editor = VerticalSlider;
-      break;
-      case 'NumberSpinner':
-      c.editor = NumberSpinner;
-      break;
-      case 'TimeSpinner':
-      c.editor = TimeSpinner;
-      break;
-      case 'CurrencyTextBox':
-      c.editor = CurrencyTextBox;
-      break;
-      case 'checkbox':
-      c.editor = CheckBox;
-      break;
-      case 'DateTextBox':
-      c.editor = DateTextBox;
-      break;
-      case 'NumberTextBox':
-      c.editor = NumberTextBox;
-      break;
-      case 'SimpleTextarea':
-      c.editor = SimpleTextarea;
-      break;
-      case 'Textarea':
-      c.editor = Textarea;
-      break;
-      case 'TimeTextBox':
-      c.editor = TimeTextBox;
-      break;
-      case 'FilteringSelectGlobalStore':
-      c.editor = FilteringSelectGlobalStore;
-      break;
-
-      case 'FilteringSelect':
-      c.editor = FilteringSelect;
-      break;
-
-      default:
-      c.editor = 'text';
-      break;
+    if(c.editOn && c.editOn == "dbclick" && has("touch")){
+      alert('Es touch');
+      c.editOn = "click";
     }
-  }
 
-  if(array.indexOf(t.Gui.fields, c.field) >= 0){
-    columns.push(c);
-    console.log(c);
-  }
+    if(c.editor){
+      switch(c.editor){
+        case 'HorizontalSlider':
+        c.editor = HorizontalSlider;
+        break;
+        case 'VerticalSlider':
+        c.editor = VerticalSlider;
+        break;
+        case 'NumberSpinner':
+        c.editor = NumberSpinner;
+        break;
+        case 'TimeSpinner':
+        c.editor = TimeSpinner;
+        break;
+        case 'CurrencyTextBox':
+        c.editor = CurrencyTextBox;
+        break;
+        case 'checkbox':
+        c.editor = CheckBox;
+        break;
+        case 'DateTextBox':
+        c.editor = DateTextBox;
+        break;
+        case 'NumberTextBox':
+        c.editor = NumberTextBox;
+        break;
+        case 'SimpleTextarea':
+        c.editor = SimpleTextarea;
+        break;
+        case 'Textarea':
+        c.editor = Textarea;
+        break;
+        case 'TimeTextBox':
+        c.editor = TimeTextBox;
+        break;
+        case 'FilteringSelectGlobalStore':
+        c.editor = FilteringSelectGlobalStore;
+        break;
+        case 'FilteringSelect':
+        c.editor = FilteringSelect;
+        break;
+        case 'json_treeview':
+        c.editor = json_treeview;
+        break;
+        default:
+        c.editor = 'text';
+        break;
+      }
+    }
 
-});
+    if(array.indexOf(t.Gui.fields, c.field) >= 0){
+      columns.push(c);
+      console.log(c);
+    }
+
+  });
 
 //console.log(columns);
 
@@ -475,18 +477,17 @@ function (error) {
 );
 
 getCol.then(function (results) {
-                        //   console.log('Se supone que se han seteado las columnas');
-                                          //** Sirve para usar un filtro que buscara en todos los campos **//
-                                          t._GridFieldsToFilter = [];
-                                          for (var index in t.columns) {
-                                            t._GridFieldsToFilter.push(t.columns[index].field);
-                                          }
 
-                                          t._enabledload = true; 
-                                          t._subscribe_table_changed();
+  t._GridFieldsToFilter = [];
+  for (var index in t.columns) {
+    t._GridFieldsToFilter.push(t.columns[index].field);
+  }
 
-                                          t.Select(t.initialQuery);
-                                        });        
+  t._enabledload = true; 
+  t._subscribe_table_changed();
+
+  t.Select(t.initialQuery);
+});        
 
 
 

@@ -3,11 +3,11 @@ require(["dojo/_base/lang", "api/postgres/oms", "dojo/_base/array"], function(la
 	lang.extend(OMS, {
 /////////////////////////////////////////
 
-udc_table_events_details: function(req, res){
+schema_events: function(table, req, res){
 
 	var t = this;
 
-	if(req.body.UdcTable){
+	if(table){
 
 		var post = req.body;
 		var qp;
@@ -15,7 +15,7 @@ udc_table_events_details: function(req, res){
 		switch(post.UdcAction){
 			case 'select_rows':
 
-			qp = t.Select('view_events_isopen', []).orderBy(' dateevent DESC').build();
+			qp = t.Select(table, []).orderBy(' dateevent DESC').build();
 			t.response_query(res, qp.query, qp.param);
 			break;
 
