@@ -194,6 +194,8 @@ Select: function (_data, _clear_grid_before) {
     t.Clear();
   }
 
+
+
   if (_data) {
 
     if(t._enabledload){
@@ -373,8 +375,8 @@ getProperties: function(){
 if(!t.Gui.target || t.Gui.target.length < 3){
 
   //t._enabledload = true;  
-  t.Gui.target = '/njs/db/gui/table_view_properties';
-  console.warn('Grid no tiene Gui.target para obtener la estructura, se usara la default');
+  t.Gui.target = '/njs/db/gui/properties';
+  console.warn('Grid no tiene Gui.target para obtener la estructura, se usa la default');
 }
 
 var getCol = request.post(t.Gui.target, {

@@ -36,8 +36,9 @@ require(["dojo/request",
 	"api/postgres/udc_table_events_details",
 	"api/postgres/udc_table_events",
 	"api/postgres/udc_account_events_comments" ,
-	"api/postgres/gui_view_table_view_columns_properties",
-	"api/postgres/schema_events"
+	//"api/postgres/gui_view_table_view_columns_properties",
+	"api/postgres/schema_events",
+	"api/postgres/schema_gui"
 	], function(request, on, array, crypto, http, socketIO, path, fs, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, Config, sessionusers){
 
 
@@ -47,7 +48,6 @@ require(["dojo/request",
 
 // Obtenemos configuraciones desde el servidor
 PostgreSQL.get_config_from_db().then(function(){
-
 
 	setInterval(function(){
 		console.log('Tareas periodicas');
@@ -83,8 +83,7 @@ PostgreSQL.get_config_from_db().then(function(){
 var transporter = nodeMailer.createTransport(cnxSMTP);
 
 PostgreSQL.configuration_server.query({config_name: "mailOptions"}).forEach(function(config){
-//send mail with defined transport object 
-//console.log(config);
+
 transporter.sendMail(config.configuration, function(error, info){
 	if(error){
 		return console.log(error);
@@ -258,6 +257,8 @@ PostgreSQL.schema_events(table, req, res);
 });
 
 
+
+
 ////////////////////////////////////////////////////////////////////////////////////////
 app.post("/njs/receiver", cors(), function(req, res){
 // TODO Implementar un mecaniso de seguridad para impedir ingreso de eventos por algun hacker
@@ -420,17 +421,17 @@ app.post("/njs/admin_status_login", function(req, res){
 });
 
 
+
 ////////////////////////////////////////////////////////////////////////////////////////
-app.post("/njs/db/gui/table_view_properties", function(req, res){
+app.post("/njs/db/gui/*", cors(), function(req, res){
 
-   // var user = sessionUsers.user(res.cookie('oms_sessionidclient'), req);
-   res.type('application/javascript'); 
+	var u = sessionUsers.isauthorized(req, res, true);
 
-   if(true){
-
-   	if(req.body.UdcTable){
-
-   		PostgreSQL.gui_view_table_view_columns_properties(req.body.UdcTable, req.body.Fields).then(function(structure){
+	if(u){
+var table = 'gui.'+req.path.replace("/njs/db/gui/", "");
+switch(table){
+	case 'gui.properties':
+   		PostgreSQL._schema_gui_properties(req.body.UdcTable, req.body.Fields).then(function(structure){
 
    		res.send(JSON.stringify(structure, function(key, value){
 
@@ -447,52 +448,20 @@ app.post("/njs/db/gui/table_view_properties", function(req, res){
 	res.status(500).json({});
    		});
 
+	break;
+	default:
+PostgreSQL.schema_gui(table, req, res);
+	break;
+}
 
 
-   	}
-
-   }else{
-   	res.status(401).json({});
-   }
-
-});
-
-////////////////////////////////////////////////////////////////////////////////////////
-app.post("/njs/db/dgrid_table_structure", function(req, res){
-
-   // var user = sessionUsers.user(res.cookie('oms_sessionidclient'), req);
-   res.type('application/javascript'); 
-
-   if(true){
-
-   	if(req.body.UdcTable){
-
-   		PostgreSQL.gui_structure_table(req.body.UdcTable, req.body.Fields).then(function(structure){
-
-   		res.send(JSON.stringify(structure, function(key, value){
-
-   			if(typeof value === "string"){
-   				return value.split("\n").join(' ');
-   			}else if(value === null) {
-   				return undefined;
-   			}
-   			return value;
-   		}).replace(/(\"<jsfunction>|<\/jsfunction>\")/ig,''));
-
-
-   		}, function(err){
-	res.status(500).json({});
-   		});
-
-
-
-   	}
-
-   }else{
-   	res.status(401).json({});
-   }
+	}else{
+		res.status(403).json({table: req.path});
+	}
 
 });
+
+
 
 app.use(function(req, res, next) {
 	res.status(404).send('Sorry cant find that!'+' '+process.env.EXPRESS_STATIC_DIR+' '+req.originalUrl);

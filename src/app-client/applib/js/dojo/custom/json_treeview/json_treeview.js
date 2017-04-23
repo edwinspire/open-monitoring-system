@@ -29,7 +29,7 @@ for(var index in _v) {
      datajson.push({ id: 'AF', name: attr, parent: 'world'});
 }
 */
-
+/*
 
     myStore = new Memory({
         data: [
@@ -86,8 +86,8 @@ for(var index in _v) {
     tree.placeAt(t.domNode);
     tree.startup();
 
-
-
+*/
+this.domNode.innerHTML = JSON.stringify(_v);
 
 },
 _getValueAttr: function () {
