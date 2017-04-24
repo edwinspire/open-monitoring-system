@@ -38,7 +38,7 @@
 
   <div data-dojo-attach-point="ContainerChangeStatus" open="false" data-dojo-type="dijit/TitlePane" data-dojo-props="title: 'CAMBIAR ESTADO'">
 
-    <div data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCChangeStatus" data-dojo-props="hiddenFields: [{name: 'idevent'}], target: '/njs/db/table/account_events_comments', table: 'event_comments', idProperty: 'idevent',  targetFieldtypes: '/njs/db/uDCFieldTypes'" doLayout="false">
+    <div data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCChangeStatus" data-dojo-props="hiddenFields: [{name: 'idevent'}], target: '/njs/db/table/account_events_comments', table: 'events.comments', idProperty: 'idevent'" doLayout="false">
 
       <div data-dojo-attach-point='SelectEventStatus' data-dojo-type="Widget/evenstatustype_user_buttons/evenstatustype_user_buttons"  name="ideventstatustype"></div>          
       <div data-dojo-type="dijit/Editor" name="comment_event"></div>
@@ -54,11 +54,11 @@
 
 
   <div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TEComments" 
-  data-dojo-props="uDCColumns:{target: '/njs/db/dgrid_table_structure', fields: ['comment_event', 'ideventstatustype']}, UrlExport:'',  target: '/njs/db/table/account_events_comments', refreshOnTableChanged: ['event_comments'], Title:'EVENTOS - Comentarios', table: 'event_comments', idProperty: 'ideventcomment', rowFingerPrint: 'footprint_row', DialogAddContent: '${id}_neweventcomment'"></div>
+  data-dojo-props="Gui:{fields: ['comment_event', 'ideventstatustype']}, UrlExport:'',  target: '/njs/db/table/account_events_comments', refreshOnTableChanged: ['events.comments'], Title:'EVENTOS - Comentarios', table: 'events.comments', idProperty: 'ideventcomment', rowFingerPrint: 'footprint_row', DialogAddContent: '${id}_neweventcomment'"></div>
 
 
 <span style="display: none;">
-        <div  id="${id}_neweventcomment" data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCAddCommentSimple" data-dojo-props="hiddenFields: [{name: 'idevent'}, {name: 'ideventstatustype'}], target: '/njs/db/table/account_events_comments', table: 'event_comments', idProperty: 'idevent',  targetFieldtypes: '/njs/db/uDCFieldTypes'" doLayout="true">
+        <div  id="${id}_neweventcomment" data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCAddCommentSimple" data-dojo-props="hiddenFields: [{name: 'idevent'}, {name: 'ideventstatustype'}], target: '/njs/db/table/account_events_comments', table: 'events.comments', idProperty: 'idevent'" doLayout="true">
        
       <div  style="width: 300px; height: 250px;" data-dojo-type="dijit/Editor" name="comment_event"></div>
 

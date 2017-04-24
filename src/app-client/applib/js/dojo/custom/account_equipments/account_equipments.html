@@ -3,13 +3,13 @@
     <div data-dojo-type="dijit/layout/TabContainer" data-dojo-attach-point="Tab" style="width: 100%; height: 400px;">
         <div data-dojo-type="dijit/layout/ContentPane" title="Lista General" data-dojo-props="selected:true">
     <div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TGeneral" 
-    data-dojo-props="uDCColumns:{target: '/njs/db/dgrid_table_structure', fields: ['equipment', 'mark', 'model', 'serial_number', 'description', 'note']}, UrlExport:'',  target: '/njs/db/table/account_equipments', refreshOnTableChanged: ['equipments', 'network_devices'], Title:'EVENTOS - Equipos de red', table: 'equipments', idProperty: 'idequipment', rowFingerPrint: 'footprint_row', DialogAddContent: '${id}_fne'"></div>
+    data-dojo-props="Gui:{fields: ['equipment', 'mark', 'model', 'serial_number', 'description', 'note']}, UrlExport:'',  target: '/njs/db/table/account_equipments', refreshOnTableChanged: ['public.equipments', 'public.network_devices'], Title:'EVENTOS - Equipos de red', table: 'public.equipments', idProperty: 'idequipment', rowFingerPrint: 'footprint_row', DialogAddContent: '${id}_fne'"></div>
 
 
 <span style="display: none;">
 
   <span id="${id}_fne" >
-      <div  data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCNewEquipment" data-dojo-props="hiddenFields: [{name: 'idaccount'}], target: '/njs/db/table/account_equipments', table: 'equipments', idProperty: 'idaccount',  targetFieldtypes: '/njs/db/uDCFieldTypes'" style="max-width: 460px;">
+      <div  data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCNewEquipment" data-dojo-props="hiddenFields: [{name: 'idaccount'}], target: '/njs/db/table/account_equipments', table: 'public.equipments', idProperty: 'idaccount'" style="max-width: 460px;">
 
      <fieldset>
       <legend>Equipo</legend>
@@ -53,12 +53,12 @@
         </div>
 
         <div data-dojo-type="dijit/layout/ContentPane" title="Equipos de red">
-    <div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TNetwork" data-dojo-props="uDCColumns:{target: '/njs/db/dgrid_table_structure', fields: ['equipment', 'mark', 'model', 'serial_number', 'description', 'ip', 'username', 'pwd', 'monitored',  'note']}, UrlExport:'',  target: '/njs/db/table/account_equipments',  refreshOnTableChanged: ['network_devices'], Title:'EVENTOS - Equipos de red', table: 'network_devices', idProperty: 'idequipment', rowFingerPrint: 'footprint_row', DialogAddContent: '${id}_fnne'"></div>
+    <div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TNetwork" data-dojo-props="Gui:{fields: ['equipment', 'mark', 'model', 'serial_number', 'description', 'ip', 'username', 'pwd', 'monitored',  'note']}, UrlExport:'',  target: '/njs/db/table/account_equipments',  refreshOnTableChanged: ['public.network_devices'], Title:'EVENTOS - Equipos de red', table: 'public.network_devices', idProperty: 'idequipment', rowFingerPrint: 'footprint_row', DialogAddContent: '${id}_fnne'"></div>
   
 <span style="display: none;">
 
   <span id="${id}_fnne" >
-  	  <div  data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCNewNetworkEquipment" data-dojo-props="hiddenFields: [{name: 'idaccount'}], target: '/njs/db/table/account_equipments', table: 'network_devices', idProperty: 'idaccount',  targetFieldtypes: '/njs/db/uDCFieldTypes'" style="max-width: 460px;">
+  	  <div  data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCNewNetworkEquipment" data-dojo-props="hiddenFields: [{name: 'idaccount'}], target: '/njs/db/table/account_equipments', table: 'public.network_devices', idProperty: 'idaccount'" style="max-width: 460px;">
 
      <fieldset>
       <legend>Equipo</legend>

@@ -194,7 +194,7 @@ Select: function (_data, _clear_grid_before) {
     t.Clear();
   }
 
-
+console.log(_data);
 
   if (_data) {
 
@@ -232,7 +232,7 @@ request: function (_param, _action) {
   }
 
   _data.UdcAction = _action;
-  _data.UdcTable = t.table;
+  _data._subscribe_table_changed = t.table;
   _data.UdcIdProperty = t.idProperty;
 
   if (t.target) {
@@ -380,7 +380,7 @@ if(!t.Gui.target || t.Gui.target.length < 3){
 }
 
 var getCol = request.post(t.Gui.target, {
-  data: {UdcTable: t.table, Fields: JSON.stringify(t.Gui.fields)},
+  data: {__table: t.table, Fields: JSON.stringify(t.Gui.fields)},
   preventCache: true,
   handleAs: "javascript"
 }
@@ -399,9 +399,11 @@ function (response) {
    }
    */
 
-   console.log(response);
+   console.log(t.table, response);
 
-   array.forEach(t.Gui.Properties.columns_properties, function(column, i){
+ if(t.Gui && t.Gui.Properties){
+
+  array.forEach(t.Gui.Properties.columns_properties, function(column, i){
 
     var c = column;
 
@@ -467,6 +469,11 @@ function (response) {
 
   });
 
+
+ }else{
+
+console.warn('No se pudo obtener datos del GUI para la tabla '+t.table);
+ }
 //console.log(columns);
 
 t.set('columns', columns);

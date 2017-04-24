@@ -67,7 +67,7 @@ define(['dojo/_base/declare',
 
        t.GridEvents.on('ClickRow', function(e){
         t.EDetails.set('event', e);
-        t.AccountDetails.set('idaccount', e.idaccount);
+        //--Activar t.AccountDetails.set('idaccount', e.idaccount);
       });
 
        this.BorderContainer.resize();

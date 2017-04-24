@@ -193,17 +193,6 @@ get_config_from_db: function(){
 	return deferred.promise;
 },
 ///////////////////////////////////////////////////////////////
-x_get_tv_structure: function(_tv){
-
-	var t = this;
-
-	if(_tv == 'udc_columns' || _tv == 'udc_tables_views'){
-		t.get_dgrid_fullstructure();
-	}
-
-	return true;
-},
-///////////////////////////////////////////////////////////////
 connString: function(){
 	return "pg://"+this.user+":"+this.pwd+"@"+this.host+":"+this.port+"/"+this.db;
 },

@@ -2,17 +2,17 @@
 
 	<div data-dojo-type="dijit/layout/TabContainer" data-dojo-attach-point="TabMaster" doLayout="false">
 	<div data-dojo-type="dijit/layout/ContentPane" title="Telefonos" data-dojo-props="selected:true">
-			<div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TPhones"  data-dojo-props="uDCColumns:{target: '/njs/db/dgrid_table_structure', fields: ['enabled', 'number', 'ext', 'note', 'idprovider']}, UrlExport:'',  target: '/njs/db/table/phones', refreshOnTableChanged: ['phones'], Title:'EVENTOS - Equipos de red', table: 'phones', idProperty: 'idphone'"></div>    
+			<div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TPhones"  data-dojo-props="Gui:{ fields: ['enabled', 'number', 'ext', 'note', 'idprovider']}, UrlExport:'',  target: '/njs/db/table/phones', refreshOnTableChanged: ['public.phones'], Title:'EVENTOS - Equipos de red', table: 'public.phones', idProperty: 'idphone'"></div>    
 		</div>
 
 
 		<div data-dojo-type="dijit/layout/ContentPane" title="Email">
-			<div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TEmails" data-dojo-props="uDCColumns:{target: '/njs/db/dgrid_table_structure', fields: ['email', 'note', 'priority', 'enabled']}, UrlExport:'',  target: '/njs/db/table/emails', refreshOnTableChanged: ['emails'], Title:'EVENTOS - Equipos de red', table: 'emails', idProperty: 'idemail'"></div>     
+			<div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TEmails" data-dojo-props="Gui:{ fields: ['email', 'note', 'priority', 'enabled']}, UrlExport:'',  target: '/njs/db/table/emails', refreshOnTableChanged: ['public.emails'], Title:'EVENTOS - Equipos de red', table: 'public.emails', idProperty: 'idemail'"></div>     
 		</div>
 
 
 		<div data-dojo-type="dijit/layout/ContentPane" title="XMPP" data-dojo-props="closable:true">
-			<div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TXmpp" data-dojo-props="uDCColumns:{target: '/njs/db/dgrid_table_structure', fields: ['email', 'note', 'priority', 'enabled']}, UrlExport:'',  target: '/njs/db/table/emails', refreshOnTableChanged: ['emails'], Title:'EVENTOS - Equipos de red', table: 'emails', idProperty: 'idemail'"></div>
+			<div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TXmpp" data-dojo-props="Gui:{ fields: ['email', 'note', 'priority', 'enabled']}, UrlExport:'',  target: '/njs/db/table/emails', refreshOnTableChanged: ['public.emails'], Title:'EVENTOS - Equipos de red', table: 'public.emails', idProperty: 'idemail'"></div>
 		</div>
 
 

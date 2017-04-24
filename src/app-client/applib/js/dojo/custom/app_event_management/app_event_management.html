@@ -3,24 +3,24 @@
 	<div data-dojo-type="dijit/layout/BorderContainer" design="headline" data-dojo-attach-point="BorderContainer" persist="false" gutters="true" style="min-width: 10em; min-height: 1px; z-index: 0; width: 100%; min-height: 50%;">
 		<div data-dojo-type="dijit/layout/ContentPane" data-dojo-attach-point="CLeft" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="left" splitter="true" maxSize="Infinity" style="width: 66%;" doLayout="true">
 			
-			<div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="GridEvents"  data-dojo-props="Gui:{target: '/njs/db/gui/table_view_properties', fields: ['dateevent', 'label_status', 'label_eventtype', 'priority', 'description', 'account_name', 'admin_assigned', 'details']}, DialogAddContent: '${id}_fnne', UrlExport:'',  target: '/njs/db/events/view_datas_details_isopen', initialQuery: {}, refreshOnTableChanged: ['events.datas'], Title:'EVENTOS - Abiertos', table: 'events.view_datas_details_isopen', idProperty: 'idevent'"></div> 
+			<div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="GridEvents"  data-dojo-props="Gui:{ fields: ['dateevent', 'label_status', 'label_eventtype', 'priority', 'description', 'account_name', 'admin_assigned', 'details']}, DialogAddContent: '${id}_fnne', UrlExport:'',  target: '/njs/db/events/view_datas_details_isopen', initialQuery: {}, refreshOnTableChanged: ['events.datas'], Title:'EVENTOS - Abiertos', table: 'events.view_datas_details_isopen', idProperty: 'idevent'"></div> 
 
 			<span style="display: none;">
 
 				<div id="${id}_fnne" style="max-width: 460px;" >
 
-					<div data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCNewEvent" data-dojo-props="hiddenFields: [], target: '/njs/db/table/events', table: 'events', targetFieldtypes: '/njs/db/uDCFieldTypes'">
+					<div data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCNewEvent" data-dojo-props="hiddenFields: [], target: '/njs/db/table/events', table: 'events.datas'">
 
 						<fieldset>
 
 							<legend>Abonado</legend>
-							<select data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore"  data-dojo-attach-point="SelectAccounts" name="idaccount" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['accounts', 'admins'], requestQuery: {_uDCTable: 'view_accounts'}, identifier: 'idcontact', target: '/njs/db/Select_Generic_to_Store'}, autoComplete:false, searchAttr: 'account__name'"></select> 
+							<select data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore"  data-dojo-attach-point="SelectAccounts" name="idaccount" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['accounts', 'admins'], requestQuery: {_uDCTable: 'public.view_accounts'}, identifier: 'idcontact', target: '/njs/db/Select_Generic_to_Store'}, autoComplete:false, searchAttr: 'account__name'"></select> 
 						</fieldset>
 
 						<fieldset>
 							<legend>Usuario / Cliente</legend>
 
-							<div data-dojo-type="FilteringSelectLiveStore/FilteringSelectLiveStore"  required="false" name="idcontact_user" data-dojo-attach-point="SelectAccountUser" class="account_events_manual_new"  data-dojo-props="autoComplete:false, LiveStore: {refreshOnTableChanged:['contacts', 'account_users'], identifier: 'idcontact', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'contact_name'"></div>  
+							<div data-dojo-type="FilteringSelectLiveStore/FilteringSelectLiveStore"  required="false" name="idcontact_user" data-dojo-attach-point="SelectAccountUser" class="account_events_manual_new"  data-dojo-props="autoComplete:false, LiveStore: {refreshOnTableChanged:['public.contacts', 'public.account_users'], identifier: 'idcontact', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'contact_name'"></div>  
 
 						</fieldset>
 
@@ -28,14 +28,14 @@
 						<fieldset>
 							<legend>Equipo</legend>
 
-							<div data-dojo-type="FilteringSelectLiveStore/FilteringSelectLiveStore"   name="idequipment" class="account_events_manual_new" data-dojo-attach-point="SelectAccountEquipments" required="false" data-dojo-props="autoComplete:false, LiveStore: {refreshOnTableChanged:['equipments'], identifier: 'idequipment', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'equipment_name'"></div>  
+							<div data-dojo-type="FilteringSelectLiveStore/FilteringSelectLiveStore"   name="idequipment" class="account_events_manual_new" data-dojo-attach-point="SelectAccountEquipments" required="false" data-dojo-props="autoComplete:false, LiveStore: {refreshOnTableChanged:['public.equipments'], identifier: 'idequipment', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'equipment_name'"></div>  
 
 						</fieldset>		
 
 						<fieldset>
 							<legend>Novedad</legend>
 
-							<div data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" name="ideventtype" class="account_events_manual_new"  data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['eventtypes'], requestQuery: {_uDCTable: 'view_eventtypes_to_client'}, identifier: 'ideventtype', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'label'"></div>  
+							<div data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" name="ideventtype" class="account_events_manual_new"  data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['eventtypes'], requestQuery: {_uDCTable: 'public.view_eventtypes_to_client'}, identifier: 'ideventtype', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'label'"></div>  
 
 						</fieldset>
 
@@ -63,7 +63,7 @@
 			</div>
 
 			<div data-dojo-type="dijit/layout/ContentPane" title="DETALLE DEL ABONADO" doLayout="false" >
-				<div data-dojo-type="Widget/account_details/account_details" data-dojo-props="selected:true"   data-dojo-attach-point="AccountDetails"></div>
+			<!-- 	<div data-dojo-type="Widget/account_details/account_details" data-dojo-props="selected:true"   data-dojo-attach-point="AccountDetails"></div> -->
 			</div>
 			
 

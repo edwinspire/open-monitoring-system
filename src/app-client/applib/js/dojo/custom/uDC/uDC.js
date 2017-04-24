@@ -22,7 +22,7 @@
       selectorClass: '',
       hiddenFields: [],
       fieldTypes: [],
-      targetFieldtypes: "/njs/db/uDCFieldTypes",	
+      Gui: {target: '/njs/db/gui/properties'},
       _ConnectionsOnChange: [],
       _store: new Memory(),
     /**
@@ -35,99 +35,99 @@
  	 	 * @property {integer}  idProperty - Nombre del campo que se usa como referecia.
  	 	 * @property {string}  nodeContainer - Id del contenedor donde se buscaran los campos que tengan el selectorClass 	 	 
  	 	 * @property {string}  selectorClass - Selector CSS para buscar los campos que van a pertenecer a este uDC
- 	 	 * @property {string}  targetFieldtypes - Url de donde se obtendran los tipos de datos de cada campo
-     */
+ 	 	 * @property {string}  Gui.target - Url de donde se obtendran los tipos de datos de cada campo
+      */
 
-     postCreate: function () {
-      this.targetFieldtypes = "/njs/db/uDCFieldTypes";
-      var t = this;
-      t._store = new Memory({ data: null, idProperty: 'namefield'});
+      postCreate: function () {
+        this.Gui.target = "/njs/db/gui/properties";
+        var t = this;
+        t._store = new Memory({ data: null, idProperty: 'namefield'});
 
-      t._Build();
-    },
-    _HiddenFieldCreate: function (_name, _data_type) {
-      var t = this;
-      var r = { name: _name, value: '', type: 'HiddenField' }; 
+        t._Build();
+      },
+      _HiddenFieldCreate: function (_name, _data_type) {
+        var t = this;
+        var r = { name: _name, value: '', type: 'HiddenField' }; 
 
-      t._store.put({node: r, namefield: r.name, value: null, isvalid: false, send: false, changed: false, type: _data_type});
+        t._store.put({node: r, namefield: r.name, value: null, isvalid: false, send: false, changed: false, type: _data_type});
 
-      r.get = function (v) {
-       var g = null;
-       switch (v) {
+        r.get = function (v) {
+         var g = null;
+         switch (v) {
+          case 'name':
+          g = this.name;
+          break;
+          case 'value':
+          g = this.value;
+          break;
+        }
+        return g;
+      }
+
+      r.set = function (_p, _v, _noeventchanged) {
+
+       switch (_p) {
         case 'name':
-        g = this.name;
+        this.name = _v;
         break;
         case 'value':
-        g = this.value;
+        this.value = _v;
+
+        _noeventchanged = _noeventchanged || true;
+
+        var sf = t._store.get(this.name);
+
+        if (_noeventchanged) {
+
+          sf.changed = true;
+          sf.isvalid = true;
+          sf.send = true;
+          sf.value = _v;
+
+        }else{
+          sf.changed = false;
+        }
+
+        t._store.put(sf);
+
         break;
       }
-      return g;
+    };
+
+    r.isValid = function () { return true; }
+    r.reset = function(){console.debug('No esta implementado el reset en campos ocultos uDC');}
+
+    return r;
+  },
+  setField: function (_field, _value, _noeventchanged) {
+   var t = this;
+   var name;
+   var value;
+   var f = t._store.get(_field);
+   console.debug(_field, _value, f);
+
+   if(f){
+     _noeventchanged = _noeventchanged || true;
+
+     try{
+       value = t._value_pg_to_field(_field, _value);
+     }catch(e){
+       console.warn(e);
+     }
+
+     try { 
+
+       f.node.set('value', value, _noeventchanged);
+
+     } catch (e) {
+      console.error(t.table, _field, f, e);
     }
 
-    r.set = function (_p, _v, _noeventchanged) {
-
-     switch (_p) {
-      case 'name':
-      this.name = _v;
-      break;
-      case 'value':
-      this.value = _v;
-
-      _noeventchanged = _noeventchanged || true;
-
-      var sf = t._store.get(this.name);
-
-      if (_noeventchanged) {
-
-        sf.changed = true;
-        sf.isvalid = true;
-        sf.send = true;
-        sf.value = _v;
-
-      }else{
-        sf.changed = false;
-      }
-
-      t._store.put(sf);
-
-      break;
-    }
-  };
-
-  r.isValid = function () { return true; }
-  r.reset = function(){console.debug('No esta implementado el reset en campos ocultos uDC');}
-
-  return r;
-},
-setField: function (_field, _value, _noeventchanged) {
- var t = this;
- var name;
- var value;
- var f = t._store.get(_field);
- console.debug(_field, _value, f);
-
- if(f){
-   _noeventchanged = _noeventchanged || true;
-
-   try{
-     value = t._value_pg_to_field(_field, _value);
-   }catch(e){
-     console.warn(e);
-   }
-
-   try { 
-
-     f.node.set('value', value, _noeventchanged);
-
-   } catch (e) {
-    console.error(t.table, _field, f, e);
+  }else{
+    console.error('No se pudo obtener el campos '+_field+' usando la tabla '+t.table);
   }
 
-}else{
-  console.error('No se pudo obtener el campos '+_field+' usando la tabla '+t.table);
-}
-
-return this;
+  return this;
 },
 _setFieldAttr: function (_field, _value, _noeventchanged) {
   return this.setField(_field, _value, _noeventchanged);
@@ -153,9 +153,8 @@ getData: function(){
 _BindFields: function (_fieldTypes) {
 
   var t = this;  
-
+console.log(_fieldTypes, t.table);
   t.startup();
-
 
   var storeFielTypes = new Memory({ data: _fieldTypes, idProperty: 'field'});
 
@@ -220,7 +219,7 @@ _BindFields: function (_fieldTypes) {
 
 });
 
-  r = true;
+ r = true;
  
 
  return this;
@@ -236,10 +235,10 @@ _RemoveOnChangeHandler: function(){
 _Build: function(){
  var t = this;
 
- if (t.targetFieldtypes) {
+ if (t.Gui.target) {
 
    t._get_fieldtypes().then(function (results) {
-
+    console.log(t.Gui.target, results);
     t._BindFields(results);
 
   });
@@ -439,7 +438,7 @@ if (!_bind != 'undefined') {
    _ConnectDijitOnChanged: function (_w) {
      var t = this;
 
-console.log(_w);
+     console.log(_w);
 
      t._ConnectionsOnChange.push(
 
@@ -502,7 +501,7 @@ console.log(_w);
    if (count_fields > 0) {
     if (_data) {
      _data.UdcAction = _query_type;
-     _data.UdcTable = t.table;
+     _data.__table = t.table;
 
      _data.uDCidProperty = t.idProperty;
 
@@ -560,41 +559,41 @@ function (response) {
                         case 'select':
                         t._set_values_onload(response[0]);
 
-                            t.emit('onSelect', { data: response[0]});
-                            break;
-                            case 'insert':
-                            if (response.success) {
-                            	t._notifications({ Urgency: 10, Message: 'Ok', Title: 'Registro ingresado' });
-                            } else {
-                            	t._request_success_fail(response);
-                            }
-                            t.emit('onInsert', { data: response });
-                            break;
-                            case 'update':
-                            if (response.success) {
-                            	t._notifications({ Urgency: 10, Message: 'Update ' + response.rowCount + ' row(s)', Title: 'Registro actualizado' });
+                        t.emit('onSelect', { data: response[0]});
+                        break;
+                        case 'insert':
+                        if (response.success) {
+                         t._notifications({ Urgency: 10, Message: 'Ok', Title: 'Registro ingresado' });
+                       } else {
+                         t._request_success_fail(response);
+                       }
+                       t.emit('onInsert', { data: response });
+                       break;
+                       case 'update':
+                       if (response.success) {
+                         t._notifications({ Urgency: 10, Message: 'Update ' + response.rowCount + ' row(s)', Title: 'Registro actualizado' });
 
-                            	t.Select(data_send[t.idProperty]);
-                            } else {
-                            	t._request_success_fail(response);
-                            }
+                         t.Select(data_send[t.idProperty]);
+                       } else {
+                         t._request_success_fail(response);
+                       }
 
-                            t.emit('onUpdate', { data: response });
-                            break;
-                            case 'delete':
-                            if (response.success) {
-                            	t._notifications({ Urgency: 10, Message: 'Delete ' + response.rowCount + ' row(s)', Title: 'Registro eliminado' });
-                            } else {
-                            	t._request_success_fail(response);
-                            }
-                            t.emit('onDelete', { data: response });
-                            break;
+                       t.emit('onUpdate', { data: response });
+                       break;
+                       case 'delete':
+                       if (response.success) {
+                         t._notifications({ Urgency: 10, Message: 'Delete ' + response.rowCount + ' row(s)', Title: 'Registro eliminado' });
+                       } else {
+                         t._request_success_fail(response);
+                       }
+                       t.emit('onDelete', { data: response });
+                       break;
 
 
-                          }
+                     }
 
-                        },
-                        function (e) {
+                   },
+                   function (e) {
                     // Display the error returned
                     t._notifications({ Urgency: 1, Message: e, Title: 'Error!' });
                     t.emit('onError', { error: e });
@@ -689,18 +688,18 @@ _notifications: function (_args) {
         _get_fieldtypes: function () {
           var t = this;
 
-          if(t.table && t.table.length > 0 && t.targetFieldtypes && t.targetFieldtypes.length > 0){
+          if(t.table && t.table.length > 0 && t.Gui.target && t.Gui.target.length > 0){
 
-            return request.post(t.targetFieldtypes, {
-             data: { uDCTable: t.table },
+            return request.post(t.Gui.target, {
+             data: { __table: t.table },
              preventCache: true,
              handleAs: 'json'
            });
 
           }else{
 
-            console.warn('Faltan parametros, Table: '+t.table+' Target: '+t.targetFieldtypes);
-//console.trace('No ha definido parametros para buscar los tipos de datos', t.targetFieldtypes, t.table);
+            console.warn('Faltan parametros, Table: '+t.table+' Target: '+t.Gui.target);
+//console.trace('No ha definido parametros para buscar los tipos de datos', t.Gui.target, t.table);
 deferred = new Deferred();
 deferred.resolve([]);
 return  deferred.promise;

@@ -20,7 +20,8 @@ define(['dojo/_base/declare',
 	
 	domStyle.set(t.domNode, 'min-height', w.getBox().h-70+'px');
 	on(t.TTableView, 'ClickRow', function(e){
-		t.TTableColumns.Grid.Select({idtableview: e.idtableview});
+        console.log(e);
+		t.TTableColumns.Grid.Select({tschema_tname: e.tschema_tname});
 	});
 	
      

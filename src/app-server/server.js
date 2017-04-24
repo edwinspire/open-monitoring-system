@@ -84,12 +84,12 @@ var transporter = nodeMailer.createTransport(cnxSMTP);
 
 PostgreSQL.configuration_server.query({config_name: "mailOptions"}).forEach(function(config){
 
-transporter.sendMail(config.configuration, function(error, info){
-	if(error){
-		return console.log(error);
-	}
-	console.log('Message email sent: ' + info.response);
-});
+	transporter.sendMail(config.configuration, function(error, info){
+		if(error){
+			return console.log(error);
+		}
+		console.log('Message email sent: ' + info.response);
+	});
 });
 
 
@@ -248,7 +248,7 @@ app.post("/njs/db/events/*", cors(), function(req, res){
 	if(u){
 
 		var table = 'events.'+req.path.replace("/njs/db/events/", "");
-PostgreSQL.schema_events(table, req, res);
+		PostgreSQL.schema_events(table, req, res);
 
 	}else{
 		res.status(403).json({table: req.path});
@@ -325,11 +325,11 @@ app.post("/njs/db/Select_Generic_to_Store", function(req, res){
 
 	if(sessionUsers.isauthorized(req, res, true)){
 
-		if(req.body._uDCTable){
+		if(req.body.__table){
 
 			var qp;
 
-			switch(req.body._uDCTable){
+			switch(req.body.__table){
 				case "event_statustypes_to_client":
 				var qp = {query: "SELECT ideventstatustype, label_status FROM event_statustypes WHERE internal = false ORDER BY label_status", param: []};
 				break;  
@@ -370,7 +370,7 @@ app.post("/njs/db/Select_Generic_to_Store", function(req, res){
 				var qp = {query: "SELECT idequipment, (equipment||' ['||code_ref||']') as equipment_name FROM equipments WHERE idaccount = $1::BIGINT ORDER BY equipment;", param: [req.body.idaccount]};
 				break;          
 				default:
-				res.status(500).json({success: false, data: "Intentando obtener datos de la tabla "+req.body._uDCTable});
+				res.status(500).json({success: false, data: "Intentando obtener datos de la tabla "+req.body.__table});
 				return false;
 				break;
 			}
@@ -391,7 +391,7 @@ app.post("/njs/db/Select_Generic_to_Store", function(req, res){
 app.post("/njs/db/uDCFieldTypes", function(req, res){
 
 	var t = this;
-	var def = PostgreSQL.gui_structure_table(req.body.uDCTable).then(function(result){
+	var def = PostgreSQL._schema_gui_properties(req.body.__table).then(function(result){
 		res.json(result);
 	}, function(error){
 		res.json(error);
@@ -405,7 +405,7 @@ app.post("/njs/db/uDCFieldTypes", function(req, res){
 app.post("/njs/db/generic_select", function(req, res){
 
 
-	var qp = PostgreSQL.Select(req.body.UdcTable, []).build();
+	var qp = PostgreSQL.Select(req.body.__table, []).build();
 
 	PostgreSQL.response_query(res, qp.query, qp.param);
 
@@ -428,31 +428,31 @@ app.post("/njs/db/gui/*", cors(), function(req, res){
 	var u = sessionUsers.isauthorized(req, res, true);
 
 	if(u){
-var table = 'gui.'+req.path.replace("/njs/db/gui/", "");
-switch(table){
-	case 'gui.properties':
-   		PostgreSQL._schema_gui_properties(req.body.UdcTable, req.body.Fields).then(function(structure){
+		var table = 'gui.'+req.path.replace("/njs/db/gui/", "");
+		switch(table){
+			case 'gui.properties':
+			PostgreSQL._schema_gui_properties(req.body.__table, req.body.Fields).then(function(structure){
 
-   		res.send(JSON.stringify(structure, function(key, value){
+				res.send(JSON.stringify(structure, function(key, value){
 
-   			if(typeof value === "string"){
-   				return value.split("\n").join(' ');
-   			}else if(value === null) {
-   				return undefined;
-   			}
-   			return value;
-   		}).replace(/(\"<jsfunction>|<\/jsfunction>\")/ig,''));
+					if(typeof value === "string"){
+						return value.split("\n").join(' ');
+					}else if(value === null) {
+						return undefined;
+					}
+					return value;
+				}).replace(/(\"<jsfunction>|<\/jsfunction>\")/ig,''));
 
 
-   		}, function(err){
-	res.status(500).json({});
-   		});
+			}, function(err){
+				res.status(500).json({});
+			});
 
-	break;
-	default:
-PostgreSQL.schema_gui(table, req, res);
-	break;
-}
+			break;
+			default:
+			PostgreSQL.schema_gui(table, req, res);
+			break;
+		}
 
 
 	}else{

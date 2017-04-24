@@ -2,7 +2,7 @@
 
  <div data-dojo-type="dijit/layout/BorderContainer" design="headline" data-dojo-attach-point="BorderContainer" persist="false" gutters="true" style="min-width: 10em; min-height: 1px; z-index: 0; width: 100%; height: 800px;">
    <div data-dojo-type="dijit/layout/ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="left" splitter="true" maxSize="Infinity" style="width: 40%;" doLayout="false">
-  <div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TContacts" data-dojo-props="uDCColumns:{target: '/njs/db/dgrid_table_structure', fields: ['contact_name', 'identification', 'appointment', 'priority', 'birthday']}, UrlExport:'',  target: '/njs/db/table/account_contacts', initialQuery: false, refreshOnTableChanged: ['account_contacts', 'contacts'], Title:'EVENTOS - Equipos de red', table: 'view_account_contacts', idProperty: 'idaccountuser'"></div>  
+  <div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="TContacts" data-dojo-props="Gui:{fields: ['contact_name', 'identification', 'appointment', 'priority', 'birthday']}, UrlExport:'',  target: '/njs/db/table/account_contacts', initialQuery: false, refreshOnTableChanged: ['public.account_contacts', 'contacts'], Title:'EVENTOS - Equipos de red', table: 'public.view_account_contacts', idProperty: 'idaccountuser'"></div>  
    </div>
 
    <div data-dojo-type="dijit/layout/ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="center" splitter="false" maxSize="Infinity" doLayout="false">
