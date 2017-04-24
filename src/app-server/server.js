@@ -330,43 +330,43 @@ app.post("/njs/db/Select_Generic_to_Store", function(req, res){
 			var qp;
 
 			switch(req.body.__table){
-				case "event_statustypes_to_client":
-				var qp = {query: "SELECT ideventstatustype, label_status FROM event_statustypes WHERE internal = false ORDER BY label_status", param: []};
+				case "events.event_statustypes_to_client":
+				var qp = {query: "SELECT idstatustype, label_status FROM events.statustypes WHERE internal = false ORDER BY label_status", param: []};
 				break;  
-				case "event_statustypes":
-				var qp = {query: "SELECT ideventstatustype, label_status FROM event_statustypes ORDER BY label_status", param: []};
+				case "events.statustypes":
+				var qp = {query: "SELECT ideventstatustype, label_status FROM events.statustypes ORDER BY label_status", param: []};
 				break;      
-				case 'view_account_contacts':
+				case 'public.view_account_contacts':
 				var qp = {query: "SELECT idcontact, contact_name FROM view_account_contacts WHERE idaccount = $1::BIGINT ORDER BY contact_name", param: [req.body.idaccount]};
 				break;
-				case 'eventtypes':
-				var qp = {query: "SELECT ideventtype, label FROM eventtypes ORDER BY label", param: []};
+				case 'events.eventtypes':
+				var qp = {query: "SELECT ideventtype, label FROM  events.eventtypes ORDER BY label", param: []};
 				break;
-				case 'view_eventtypes_to_client':
+				case 'events.view_eventtypes_to_client':
 				var qp = {query: "SELECT ideventtype, label FROM view_eventtypes_to_client ORDER BY label", param: []};
 				break;
-				case 'contacts':
+				case 'contacts.contacts':
 				var qp = {query: "SELECT idcontact, (last_name||' '||first_name||' ['||identification||']') as contact_name FROM contacts ORDER BY last_name, first_name", param: []};
 				break;
-				case 'account_types':
+				case 'public.account_types':
 				var qp = {query: "SELECT idaccounttype, type FROM account_types ORDER BY idaccounttype", param: []};
 				break;          
-				case 'account_states':
+				case 'public.account_states':
 				var qp = {query: "SELECT idaccountstate, state FROM account_states ORDER BY state", param: []};
 				break;
-				case 'identification_types':
+				case 'public.identification_types':
 				var qp = {query: "SELECT ididtype, name FROM identification_types ORDER BY name", param: []};
 				break;
-				case 'divisions':
+				case 'public.divisions':
 				var qp = {query: "SELECT iddivision, name FROM divisions ORDER BY name", param: []};
 				break;
-				case 'phone_providers':
+				case 'public.phone_providers':
 				var qp = {query: "SELECT idprovider, provider FROM phone_providers ORDER BY provider", param: []};
 				break;
-				case 'view_accounts':
-				var qp = {query: "SELECT idcontact, (last_name||' '||first_name||' ['||identification||']') as account__name FROM accounts WHERE EXISTS(SELECT idadmin FROM admins WHERE accounts.iddivision = ANY(divisions) AND idadmin = $1::BIGINT) ORDER BY last_name, first_name", param: [2]};
+				case 'public.view_accounts':
+				var qp = {query: "SELECT idaccount, account_name as account__name FROM accounts WHERE EXISTS(SELECT idadmin FROM admins WHERE accounts.iddivision = ANY(divisions) AND idadmin = $1::BIGINT) ORDER BY account_name;", param: [2]};
 				break;
-				case 'equipments_by_account':
+				case 'public.equipments_by_account':
 				var qp = {query: "SELECT idequipment, (equipment||' ['||code_ref||']') as equipment_name FROM equipments WHERE idaccount = $1::BIGINT ORDER BY equipment;", param: [req.body.idaccount]};
 				break;          
 				default:
@@ -378,7 +378,7 @@ app.post("/njs/db/Select_Generic_to_Store", function(req, res){
 			PostgreSQL.response_query(res, qp.query, qp.param);
 
 		}else{
-			res.status(404).json({success: false, data: {}});
+			res.status(400).json({success: false, data: {}});
 		}
 
 	}

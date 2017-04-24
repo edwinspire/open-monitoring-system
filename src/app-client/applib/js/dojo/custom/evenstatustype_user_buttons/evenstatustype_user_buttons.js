@@ -43,7 +43,7 @@ define(['dojo/_base/declare',
 				}
 
 				  request.post(t.target, {
-					data: {_uDCTable: 'event_statustypes_to_client'},
+					data: {__table: 'events.event_statustypes_to_client'},
 					preventCache: true,
 					handleAs: 'json'
 				}).then(
