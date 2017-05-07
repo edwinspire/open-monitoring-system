@@ -325,11 +325,11 @@ app.post("/njs/db/Select_Generic_to_Store", function(req, res){
 
 	if(sessionUsers.isauthorized(req, res, true)){
 
-		if(req.body.__table){
+		if(req.body.__affected_table){
 
 			var qp;
 
-			switch(req.body.__table){
+			switch(req.body.__affected_table){
 				case "events.event_statustypes_to_client":
 				var qp = {query: "SELECT idstatustype, label_status FROM events.statustypes WHERE internal = false ORDER BY label_status", param: []};
 				break;  
@@ -370,7 +370,7 @@ app.post("/njs/db/Select_Generic_to_Store", function(req, res){
 				var qp = {query: "SELECT idequipment, (equipment||' ['||code_ref||']') as equipment_name FROM equipments WHERE idaccount = $1::BIGINT ORDER BY equipment;", param: [req.body.idaccount]};
 				break;          
 				default:
-				res.status(500).json({success: false, data: "Intentando obtener datos de la tabla "+req.body.__table});
+				res.status(500).json({success: false, data: "Intentando obtener datos de la tabla "+req.body.__affected_table});
 				return false;
 				break;
 			}

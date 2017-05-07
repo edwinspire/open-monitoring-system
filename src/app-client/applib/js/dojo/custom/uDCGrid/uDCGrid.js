@@ -468,16 +468,18 @@ function (response) {
 
     });
 
-
-  }else{
-
-    console.warn('No se pudo obtener datos del GUI para la tabla '+t.__affected_table);
-  }
-//console.log(columns);
-
-t.set('columns', columns);
+    t.set('columns', columns);
 //console.log('Deberia emitir el noteventos');
 on.emit(t.domNode, 'dgrid-set-properties', {properties: t.Gui.Properties});
+
+
+}else{
+
+  console.warn('No se pudo obtener datos del GUI para la tabla '+t.__affected_table);
+}
+//console.log(columns);
+
+
 },
 function (error) {
   console.error(error + ' ' + t.target);

@@ -12,7 +12,7 @@ schema_events: function(table, req, res){
 		var post = req.body;
 		var qp;
 
-		switch(post.UdcAction){
+		switch(post.__action){
 			case 'select_rows':
 
 			qp = t.Select(table, []).orderBy(' dateevent DESC').build();
@@ -20,7 +20,7 @@ schema_events: function(table, req, res){
 			break;
 
 			default:
-			res.status(500).json({success: false, data: "Intentando una accion invalida "+post.UdcAction, req: post});
+			res.status(500).json({success: false, data: "Intentando una accion invalida "+post.__action, req: post});
 			break;
 
 		}
