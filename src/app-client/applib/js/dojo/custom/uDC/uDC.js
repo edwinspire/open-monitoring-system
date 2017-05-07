@@ -17,7 +17,7 @@
      */
      return declare([ContentPane, Evented], {
       target: '',
-      table: '',
+      __affected_table: '',
       idProperty: '',
       selectorClass: '',
       hiddenFields: [],
@@ -36,98 +36,98 @@
  	 	 * @property {string}  nodeContainer - Id del contenedor donde se buscaran los campos que tengan el selectorClass 	 	 
  	 	 * @property {string}  selectorClass - Selector CSS para buscar los campos que van a pertenecer a este uDC
  	 	 * @property {string}  Gui.target - Url de donde se obtendran los tipos de datos de cada campo
-      */
+     */
 
-      postCreate: function () {
-        this.Gui.target = "/njs/db/gui/properties";
-        var t = this;
-        t._store = new Memory({ data: null, idProperty: 'namefield'});
+     postCreate: function () {
+      this.Gui.target = "/njs/db/gui/properties";
+      var t = this;
+      t._store = new Memory({ data: null, idProperty: 'namefield'});
 
-        t._Build();
-      },
-      _HiddenFieldCreate: function (_name, _data_type) {
-        var t = this;
-        var r = { name: _name, value: '', type: 'HiddenField' }; 
+      t._Build();
+    },
+    _HiddenFieldCreate: function (_name, _data_type) {
+      var t = this;
+      var r = { name: _name, value: '', type: 'HiddenField' }; 
 
-        t._store.put({node: r, namefield: r.name, value: null, isvalid: false, send: false, changed: false, type: _data_type});
+      t._store.put({node: r, namefield: r.name, value: null, isvalid: false, send: false, changed: false, type: _data_type});
 
-        r.get = function (v) {
-         var g = null;
-         switch (v) {
-          case 'name':
-          g = this.name;
-          break;
-          case 'value':
-          g = this.value;
-          break;
-        }
-        return g;
-      }
-
-      r.set = function (_p, _v, _noeventchanged) {
-
-       switch (_p) {
+      r.get = function (v) {
+       var g = null;
+       switch (v) {
         case 'name':
-        this.name = _v;
+        g = this.name;
         break;
         case 'value':
-        this.value = _v;
-
-        _noeventchanged = _noeventchanged || true;
-
-        var sf = t._store.get(this.name);
-
-        if (_noeventchanged) {
-
-          sf.changed = true;
-          sf.isvalid = true;
-          sf.send = true;
-          sf.value = _v;
-
-        }else{
-          sf.changed = false;
-        }
-
-        t._store.put(sf);
-
+        g = this.value;
         break;
       }
-    };
-
-    r.isValid = function () { return true; }
-    r.reset = function(){console.debug('No esta implementado el reset en campos ocultos uDC');}
-
-    return r;
-  },
-  setField: function (_field, _value, _noeventchanged) {
-   var t = this;
-   var name;
-   var value;
-   var f = t._store.get(_field);
-   console.debug(_field, _value, f);
-
-   if(f){
-     _noeventchanged = _noeventchanged || true;
-
-     try{
-       value = t._value_pg_to_field(_field, _value);
-     }catch(e){
-       console.warn(e);
-     }
-
-     try { 
-
-       f.node.set('value', value, _noeventchanged);
-
-     } catch (e) {
-      console.error(t.table, _field, f, e);
+      return g;
     }
 
-  }else{
-    console.error('No se pudo obtener el campos '+_field+' usando la tabla '+t.table);
+    r.set = function (_p, _v, _noeventchanged) {
+
+     switch (_p) {
+      case 'name':
+      this.name = _v;
+      break;
+      case 'value':
+      this.value = _v;
+
+      _noeventchanged = _noeventchanged || true;
+
+      var sf = t._store.get(this.name);
+
+      if (_noeventchanged) {
+
+        sf.changed = true;
+        sf.isvalid = true;
+        sf.send = true;
+        sf.value = _v;
+
+      }else{
+        sf.changed = false;
+      }
+
+      t._store.put(sf);
+
+      break;
+    }
+  };
+
+  r.isValid = function () { return true; }
+  r.reset = function(){console.debug('No esta implementado el reset en campos ocultos uDC');}
+
+  return r;
+},
+setField: function (_field, _value, _noeventchanged) {
+ var t = this;
+ var name;
+ var value;
+ var f = t._store.get(_field);
+ console.debug(_field, _value, f);
+
+ if(f){
+   _noeventchanged = _noeventchanged || true;
+
+   try{
+     value = t._value_pg_to_field(_field, _value);
+   }catch(e){
+     console.warn(e);
+   }
+
+   try { 
+
+     f.node.set('value', value, _noeventchanged);
+
+   } catch (e) {
+    console.error(t.__affected_table, _field, f, e);
   }
 
-  return this;
+}else{
+  console.error('No se pudo obtener el campos '+_field+' usando la tabla '+t.__affected_table);
+}
+
+return this;
 },
 _setFieldAttr: function (_field, _value, _noeventchanged) {
   return this.setField(_field, _value, _noeventchanged);
@@ -153,7 +153,7 @@ getData: function(){
 _BindFields: function (_fieldTypes) {
 
   var t = this;  
-console.log(_fieldTypes, t.table);
+  console.log(_fieldTypes, t.__affected_table);
   t.startup();
 
   var storeFielTypes = new Memory({ data: _fieldTypes, idProperty: 'field'});
@@ -164,7 +164,7 @@ console.log(_fieldTypes, t.table);
     try{
       t._HiddenFieldCreate(item.name, storeFielTypes.get(item.name).data_type);
     }catch(e){
-      console.warn(e, t.target, t.table);
+      console.warn(e, t.target, t.__affected_table);
     }
 
   });
@@ -501,7 +501,7 @@ if (!_bind != 'undefined') {
    if (count_fields > 0) {
     if (_data) {
      _data.UdcAction = _query_type;
-     _data.__table = t.table;
+     _data.__affected_table = t.__affected_table;
 
      _data.uDCidProperty = t.idProperty;
 
@@ -688,23 +688,23 @@ _notifications: function (_args) {
         _get_fieldtypes: function () {
           var t = this;
 
-          if(t.table && t.table.length > 0 && t.Gui.target && t.Gui.target.length > 0){
+          if(t.__affected_table && t.__affected_table.length > 0 && t.Gui.target && t.Gui.target.length > 0){
 
             return request.post(t.Gui.target, {
-             data: { __table: t.table },
+             data: { __affected_table: t.__affected_table },
              preventCache: true,
              handleAs: 'json'
            });
 
           }else{
 
-            console.warn('Faltan parametros, Table: '+t.table+' Target: '+t.Gui.target);
-//console.trace('No ha definido parametros para buscar los tipos de datos', t.Gui.target, t.table);
-deferred = new Deferred();
-deferred.resolve([]);
-return  deferred.promise;
+            console.warn('Faltan parametros, Table: '+t.__affected_table+' Target: '+t.Gui.target);
 
-}
+            deferred = new Deferred();
+            deferred.resolve([]);
+            return  deferred.promise;
+
+          }
  //                 return requestFieldTypes;
 }
 

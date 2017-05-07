@@ -67,7 +67,7 @@ define(['dojo/_base/declare',
 
            var myModel = new ObjectStoreModel({
             store: myStore,
-            query: {id: 'world'}
+            query: {id: 'oms'}
           });
 
 
@@ -83,13 +83,21 @@ if(item.clickitem){
   t.emit('clickitem', item.clickitem);
   console.log(item);
 }
+if(item.url){
+  window.location.href = item.url;
+}
+
 },
 getIconClass: function(item, opened) {
       // console.log(item);
-      if (item.type == "country") {
+      if (item.type == "item") {
         return "dijitLeaf";
       } else if (item.launched) {
         return (opened ? "dijitFolderOpened" : "dijitFolderClosed");
+      }else if(item.type == "application"){
+        return "dijitIconApplication";
+      }else if(item.type == "configure"){
+        return "dijitIconConfigure";        
       } else {
         return (opened ? "dijitFolderOpened" : "dijitFolderClosed");
       }
