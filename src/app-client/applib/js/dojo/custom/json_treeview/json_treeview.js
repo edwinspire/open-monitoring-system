@@ -3,8 +3,8 @@ define(['dojo/_base/declare',
     'dijit/_Templated',
     'dojo/text!Widget/json_treeview/json_treeview.html',
     "dojo/store/Memory",
-    "dijit/tree/ObjectStoreModel", "dijit/Tree", "dojo/store/Observable", "dijit/tree/ForestStoreModel", "dojo/data/ItemFileReadStore"
-    ], function (declare, _Widget, _Templated, templateString, Memory, ObjectStoreModel, Tree, Observable, ForestStoreModel, ItemFileReadStore) {
+    "dijit/tree/ObjectStoreModel", "dijit/Tree", "dojo/store/Observable"
+    ], function (declare, _Widget, _Templated, templateString, Memory, ObjectStoreModel, Tree, Observable) {
 
         return declare([_Widget, _Templated], {
             widgetsInTemplate: true,

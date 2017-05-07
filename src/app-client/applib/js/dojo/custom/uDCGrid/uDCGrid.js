@@ -74,7 +74,7 @@
              refreshOnTableChanged: [],
              _array_subscribe: [],
              _last_select: {},
-             table: '',
+             __affected_table: '',
              initialQuery: {},
              _GridFieldsToFilter: [],
              rowFingerPrint: '',
@@ -95,6 +95,7 @@
          */
          constructor: function(args){
           dojo.safeMixin(this, args);
+          //alert(this.__affected_table);
         },
         postCreate:function (args){
           this.inherited(arguments);
@@ -104,7 +105,7 @@
           t._last_select = t.initialQuery;
 
 //** Crea el store para los datos **//
-this._GridStore = new (declare([dMemory, Trackable]))({ data: null, idProperty: this.idProperty });
+this._GridStore = new (declare([dMemory, Trackable]))({ data: null, idProperty: this.__idProperty });
 
 //** Obtiene la estructura de las columnas **//
 t.getProperties();
@@ -113,14 +114,14 @@ t.getProperties();
  t.on('dgrid-datachange', function (event) {
 
   var data = {};
-  data[t.idProperty] = event.cell.row.id;
+  data[t.__idProperty] = event.cell.row.id;
 
   data[event.cell.column.field] = event.value;
 
   if (t.rowFingerPrint) {
     try {
-      data['UdcRowFingerPrint'] = t.rowFingerPrint;
-      data['UdcRowFingerPrintValue'] = event.cell.row.data[t.rowFingerPrint];
+      data['__rowFingerPrint'] = t.rowFingerPrint;
+      data['__rowFingerPrintValue'] = event.cell.row.data[t.rowFingerPrint];
     } catch (e) {
       console.error(e);
     }
@@ -194,7 +195,7 @@ Select: function (_data, _clear_grid_before) {
     t.Clear();
   }
 
-console.log(_data);
+  console.log(_data);
 
   if (_data) {
 
@@ -231,9 +232,9 @@ request: function (_param, _action) {
     _data = _param;
   }
 
-  _data.UdcAction = _action;
-  _data._subscribe_table_changed = t.table;
-  _data.UdcIdProperty = t.idProperty;
+  _data.__action = _action;
+  _data.__subscribe_table_changed = t.__affected_table;
+  _data.__IdProperty = t.__idProperty;
 
   if (t.target) {
 
@@ -345,7 +346,7 @@ _notifications: function (_n) {
 },
 Update: function (_data) {
   var t = this;
-  if (t.idProperty && t.idProperty.length > 0) {
+  if (t.__idProperty && t.__idProperty.length > 0) {
 
    return t.request(_data, "update");                
 
@@ -373,14 +374,12 @@ getProperties: function(){
 }
 
 if(!t.Gui.target || t.Gui.target.length < 3){
-
-  //t._enabledload = true;  
   t.Gui.target = '/njs/db/gui/properties';
   console.warn('Grid no tiene Gui.target para obtener la estructura, se usa la default');
 }
 
 var getCol = request.post(t.Gui.target, {
-  data: {__table: t.table, Fields: JSON.stringify(t.Gui.fields)},
+  data: {__affected_table: t.__affected_table, Fields: JSON.stringify(t.Gui.fields)},
   preventCache: true,
   handleAs: "javascript"
 }
@@ -399,81 +398,81 @@ function (response) {
    }
    */
 
-   console.log(t.table, response);
+   console.log(t.__affected_table, response);
 
- if(t.Gui && t.Gui.Properties){
+   if(t.Gui && t.Gui.Properties){
 
-  array.forEach(t.Gui.Properties.columns_properties, function(column, i){
+    array.forEach(t.Gui.Properties.columns_properties, function(column, i){
 
-    var c = column;
+      var c = column;
 
-    if(c.editOn && c.editOn == "dbclick" && has("touch")){
-      alert('Es touch');
-      c.editOn = "click";
-    }
-
-    if(c.editor){
-      switch(c.editor){
-        case 'HorizontalSlider':
-        c.editor = HorizontalSlider;
-        break;
-        case 'VerticalSlider':
-        c.editor = VerticalSlider;
-        break;
-        case 'NumberSpinner':
-        c.editor = NumberSpinner;
-        break;
-        case 'TimeSpinner':
-        c.editor = TimeSpinner;
-        break;
-        case 'CurrencyTextBox':
-        c.editor = CurrencyTextBox;
-        break;
-        case 'checkbox':
-        c.editor = CheckBox;
-        break;
-        case 'DateTextBox':
-        c.editor = DateTextBox;
-        break;
-        case 'NumberTextBox':
-        c.editor = NumberTextBox;
-        break;
-        case 'SimpleTextarea':
-        c.editor = SimpleTextarea;
-        break;
-        case 'Textarea':
-        c.editor = Textarea;
-        break;
-        case 'TimeTextBox':
-        c.editor = TimeTextBox;
-        break;
-        case 'FilteringSelectGlobalStore':
-        c.editor = FilteringSelectGlobalStore;
-        break;
-        case 'FilteringSelect':
-        c.editor = FilteringSelect;
-        break;
-        case 'json_treeview':
-        c.editor = json_treeview;
-        break;
-        default:
-        c.editor = 'text';
-        break;
+      if(c.editOn && c.editOn == "dbclick" && has("touch")){
+        alert('Es touch');
+        c.editOn = "click";
       }
-    }
 
-    if(array.indexOf(t.Gui.fields, c.field) >= 0){
-      columns.push(c);
-      console.log(c);
-    }
+      if(c.editor){
+        switch(c.editor){
+          case 'HorizontalSlider':
+          c.editor = HorizontalSlider;
+          break;
+          case 'VerticalSlider':
+          c.editor = VerticalSlider;
+          break;
+          case 'NumberSpinner':
+          c.editor = NumberSpinner;
+          break;
+          case 'TimeSpinner':
+          c.editor = TimeSpinner;
+          break;
+          case 'CurrencyTextBox':
+          c.editor = CurrencyTextBox;
+          break;
+          case 'checkbox':
+          c.editor = CheckBox;
+          break;
+          case 'DateTextBox':
+          c.editor = DateTextBox;
+          break;
+          case 'NumberTextBox':
+          c.editor = NumberTextBox;
+          break;
+          case 'SimpleTextarea':
+          c.editor = SimpleTextarea;
+          break;
+          case 'Textarea':
+          c.editor = Textarea;
+          break;
+          case 'TimeTextBox':
+          c.editor = TimeTextBox;
+          break;
+          case 'FilteringSelectGlobalStore':
+          c.editor = FilteringSelectGlobalStore;
+          break;
+          case 'FilteringSelect':
+          c.editor = FilteringSelect;
+          break;
+          case 'json_treeview':
+          c.editor = json_treeview;
+          break;
+          default:
+          c.editor = 'text';
+          break;
+        }
+      }
 
-  });
+      if(array.indexOf(t.Gui.fields, c.field) >= 0){
+        columns.push(c);
+        console.log(c);
+      }
+
+    });
 
 
- }else{
+  }else{
 
-console.warn('No se pudo obtener datos del GUI para la tabla '+t.table);
- }
+    console.warn('No se pudo obtener datos del GUI para la tabla '+t.__affected_table);
+  }
 //console.log(columns);
 
 t.set('columns', columns);

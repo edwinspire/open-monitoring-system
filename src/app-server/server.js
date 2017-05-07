@@ -356,7 +356,7 @@ app.post("/njs/db/Select_Generic_to_Store", function(req, res){
 				break;
 				case 'public.identification_types':
 				var qp = {query: "SELECT ididtype, name FROM identification_types ORDER BY name", param: []};
-				break;
+				break;	
 				case 'public.divisions':
 				var qp = {query: "SELECT iddivision, name FROM divisions ORDER BY name", param: []};
 				break;
@@ -429,9 +429,11 @@ app.post("/njs/db/gui/*", cors(), function(req, res){
 
 	if(u){
 		var table = 'gui.'+req.path.replace("/njs/db/gui/", "");
+
+
 		switch(table){
 			case 'gui.properties':
-			PostgreSQL._schema_gui_properties(req.body.__table, req.body.Fields).then(function(structure){
+			PostgreSQL._schema_gui_properties(req.body.__affected_table, req.body.Fields).then(function(structure){
 
 				res.send(JSON.stringify(structure, function(key, value){
 
@@ -449,8 +451,11 @@ app.post("/njs/db/gui/*", cors(), function(req, res){
 			});
 
 			break;
+			case 'gui.menus':
+				PostgreSQL.response_query(res, "SELECT * FROM gui.menus WHERE enabled = true order by idmenu LIMIT 1;", []);
+			break;			
 			default:
-			PostgreSQL.schema_gui(table, req, res);
+			PostgreSQL.schema_gui(req.body.__affected_table, req, res);
 			break;
 		}
 

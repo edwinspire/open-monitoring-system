@@ -9,7 +9,8 @@ require(["dojo/_base/lang", "api/postgres/oms",  "dojo/store/Memory", "dojo/Defe
 
       var deferred = new Deferred();
 
-      if(t._gui_structure_table && t._gui_structure_table.data.length > 0){
+//-- TODO: Moificar la siguiente linea ya que nunca entra ahi
+      if(t._gui_structure_table && t._gui_structure_table.data.length > 0 && false){
 
         deferred.resolve(t._gui_structure_table.query({tschema_tname: table}));
 

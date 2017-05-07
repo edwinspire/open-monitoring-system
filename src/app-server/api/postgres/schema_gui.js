@@ -39,15 +39,21 @@ schema_gui: function(table, req, res){
 		var post = req.body;
 		var qp;
 
-		switch(post.UdcAction){
+		switch(post.__action){
 			case 'select_rows':
 			//qp = t.Select(table, []).orderBy(' tschema_tname DESC').build();
 			//t.response_query(res, qp.query, qp.param);
 			t._schema_gui_get_rows(table, req, res);
 			break;
+			case 'update':
+			var w = {};
+			w[post.__idProperty] = post[post.__idProperty];
 
+			qp = t.Update(table, post, []).whereAnd([w], ["UdcAction", "UdcRowFingerPrint", "UdcRowFingerPrintValue", "UdcTable", "UdcIdProperty"]).build();
+			t.response_update(res, qp.query, qp.param);
+			break;	
 			default:
-			res.status(500).json({success: false, data: "Intentando una accion invalida "+post.UdcAction, req: post});
+			res.status(500).json({success: false, data: "Intentando una accion invalida "+post.__action, req: post});
 			break;
 
 		}
