@@ -55,9 +55,9 @@ t.AddAccount.on('Execute', function(){
 
 t.SelectAccounts.on('Change', function (e) {
   var idaccount = t.SelectAccounts.get('value');   
-console.debug(idaccount);
+  console.debug(idaccount);
   if(idaccount > 0){
- t.AccountDetails.set('idaccount', idaccount);
+   t.AccountDetails.set('idaccount', idaccount);
 
    // t.Basic.set("idaccount", idaccount);
 
@@ -93,4 +93,4 @@ _notifications: function (_args) {
 
 
 });
-});
+   });

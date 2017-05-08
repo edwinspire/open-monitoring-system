@@ -500,14 +500,14 @@ if (!_bind != 'undefined') {
 
    if (count_fields > 0) {
     if (_data) {
-     _data.UdcAction = _query_type;
+     _data.__action = _query_type;
      _data.__affected_table = t.__affected_table;
 
-     _data.uDCidProperty = t.idProperty;
+     _data.__idProperty = t.idProperty;
 
      if (_query_type == 'insert') {
       r =  t._internal_post(_data);
-    } else if (_query_type != 'insert' && _data.uDCidProperty) {
+    } else if (_query_type != 'insert' && _data.__idProperty) {
       r = t._internal_post(_data);
     } else {
       console.warn('La operacion ' + _query_type + ' requiere del parametro idProperty');
@@ -554,7 +554,7 @@ _internal_post: function (_data) {
 }).then(
 function (response) {
 
-  switch (data_send.UdcAction) {
+  switch (data_send.__action) {
                         /////// De aqui hacia abajo es la nueva version /////////////////
                         case 'select':
                         t._set_values_onload(response[0]);
@@ -687,6 +687,8 @@ _notifications: function (_args) {
         },
         _get_fieldtypes: function () {
           var t = this;
+
+
 
           if(t.__affected_table && t.__affected_table.length > 0 && t.Gui.target && t.Gui.target.length > 0){
 

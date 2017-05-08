@@ -7,17 +7,17 @@ udc_table_accounts: function(req, res){
 
 	var t = this;
 
-	if(req.body.UdcTable){
+	if(req.body.__affected_table){
 
 		var post = req.body;
 		var qp;
 
-		switch(post.UdcAction){
+		switch(post.__action){
 			case 'select':
 			var w = {};
-			w[post.uDCidProperty] = post[post.uDCidProperty];
-			if(w[post.uDCidProperty] > 0){
-				qp = t.Select(post.UdcTable, []).whereAnd([w]).build();
+			w[post.__idProperty] = post[post.__idProperty];
+			if(w[post.__idProperty] > 0){
+				qp = t.Select(post.__affected_table, []).whereAnd([w]).build();
 				t.response_query(res, qp.query, qp.param);
 			}else{
 				res.status(500).json({success: false, data: "ID no ha sido ingresado ", req: post});	
@@ -25,18 +25,18 @@ udc_table_accounts: function(req, res){
 			break;
 			case 'insert':
 			var w = {};
-			qp = t.Insert(post.UdcTable, post, []).build();
+			qp = t.Insert(post.__affected_table, post, []).build();
 			t.response_insert(res, qp.query, qp.param);
 			break;	
 			case 'update':
 			var w = {};
-			w[post.uDCidProperty] = post[post.uDCidProperty];
+			w[post.__idProperty] = post[post.__idProperty];
 
-			qp = t.Update(post.UdcTable, post, []).whereAnd([w], ["UdcAction", "UdcRowFingerPrint", "UdcRowFingerPrintValue", "UdcTable", "UdcIdProperty"]).build();
+			qp = t.Update(post.__affected_table, post, []).whereAnd([w], ["__action", "UdcRowFingerPrint", "UdcRowFingerPrintValue", "__affected_table", "__idProperty"]).build();
 			t.response_update(res, qp.query, qp.param);
 			break;	
 			default:
-			res.status(500).json({success: false, data: "Intentando una accion invalida "+req.body.UdcAction, req: post});
+			res.status(500).json({success: false, data: "Intentando una accion invalida "+req.body.__action, req: post});
 			break;
 
 		}
