@@ -53,7 +53,7 @@ define(['dojo/_base/declare',
             this.uDC.Select(this.IdAccount);                       
             //this.TPhones.Grid.Select({idcontact: this.IdAccount});                                    
             //this.TEmails.Grid.Select({idcontact: this.IdAccount}); 
-            this.CMC.set('idcontact', this.IdAccount); 
+            this.CMC.set('idaccount', this.IdAccount); 
 
         },
         _getIdaccountAttr: function () {

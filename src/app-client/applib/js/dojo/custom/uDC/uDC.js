@@ -158,12 +158,15 @@ _BindFields: function (_fieldTypes) {
 
   var storeFielTypes = new Memory({ data: _fieldTypes, idProperty: 'field'});
 
+  console.warn(storeFielTypes);
+
   if (Array.isArray(t.hiddenFields)) {
    array.forEach(t.hiddenFields, function (item, i) {
-
+    console.warn(item);
     try{
       t._HiddenFieldCreate(item.name, storeFielTypes.get(item.name).data_type);
     }catch(e){
+      t._HiddenFieldCreate(item.name, 'text');
       console.warn(e, t.target, t.__affected_table);
     }
 
@@ -238,16 +241,22 @@ _Build: function(){
  if (t.Gui.target) {
 
    t._get_fieldtypes().then(function (results) {
-    console.log(t.Gui.target, results);
-    t._BindFields(results);
+
+//console.debug(results);
+
+    if(results[0] && results[0].columns_properties){
+      t._BindFields(results[0].columns_properties);
+    }else{
+      console.warn('_get_fieldtypes no ha devuelto la propiedad columns_properties', results, t.__affected_table);
+    }
 
   });
 
- }  else{
-   t._BindFields();
- } 
+ } else{
+  console.warn('No se ha configurado Gui.target');
+}
 
- return this;
+return this;
 },
 _setConfigAttr: function (_config, _bind, _force) {
  var t = this;
@@ -505,6 +514,8 @@ if (!_bind != 'undefined') {
 
      _data.__idProperty = t.idProperty;
 
+     console.log(_data);
+
      if (_query_type == 'insert') {
       r =  t._internal_post(_data);
     } else if (_query_type != 'insert' && _data.__idProperty) {
@@ -657,6 +668,8 @@ _notifications: function (_args) {
 
           var t = this;
             // var v = this.values();
+            console.log(t._store);
+
             deferred = new Deferred();
             deferred.resolve({success: false});
 
@@ -687,7 +700,6 @@ _notifications: function (_args) {
         },
         _get_fieldtypes: function () {
           var t = this;
-
 
 
           if(t.__affected_table && t.__affected_table.length > 0 && t.Gui.target && t.Gui.target.length > 0){
