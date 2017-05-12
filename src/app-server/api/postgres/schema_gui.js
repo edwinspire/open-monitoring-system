@@ -15,77 +15,88 @@ _schema_gui_properties: function(_table){
 
 	}else{
 		var q = 'SELECT * FROM gui.view_table_view_columns_properties;';
-        //console.dir(table);
-        t.query(q, []).then(function(result){
+		t.query(q, []).then(function(result){
 
-          //console.trace(result);
-          t._schema_gui_properties_store = new Memory({data: result.rows, idProperty: 'tschema_tname'});
-          deferred.resolve(t._schema_gui_properties_store.query({tschema_tname: _table}));
+			t._schema_gui_properties_store = new Memory({data: result.rows, idProperty: 'tschema_tname'});
+			deferred.resolve(t._schema_gui_properties_store.query({tschema_tname: _table}));
 
-      });
+		});
 
-    }
-
-    return deferred.promise;
-},
-
-
-schema_gui: function(table, req, res){
-
-	var t = this;
-
-	if(table){
-
-		var post = req.body;
-		var qp;
-
-		switch(post.__action){
-			case 'select_rows':
-			//qp = t.Select(table, []).orderBy(' tschema_tname DESC').build();
-			//t.response_query(res, qp.query, qp.param);
-			t._schema_gui_get_rows(table, req, res);
-			break;
-			case 'update':
-			var w = {};
-			w[post.__idProperty] = post[post.__idProperty];
-
-			qp = t.Update(table, post, []).whereAnd([w], ["UdcAction", "UdcRowFingerPrint", "UdcRowFingerPrintValue", "UdcTable", "UdcIdProperty"]).build();
-			t.response_update(res, qp.query, qp.param);
-			break;	
-			default:
-			res.status(500).json({success: false, data: "Intentando una accion invalida "+post.__action, req: post});
-			break;
-
-		}
-
-	}else{
-		res.status(500).json({success: false, data: "No ha definido una tabla a buscar"});
 	}
 
+	return deferred.promise;
+},
 
-}  ,
-_schema_gui_get_rows: function(table, req, res){
+_schema_gui_properties_fromdb: function(){
+	var t = this;
+
+	var deferred = new Deferred();
+	var q = 'SELECT * FROM gui.view_table_view_columns_properties;';
+	t.query(q, []).then(function(result){
+
+		t._schema_gui_properties_store = new Memory({data: result.rows, idProperty: 'tschema_tname'});
+		deferred.resolve(true);
+
+	}, function(err){
+		deferred.reject(err);
+	});
+	return deferred.promise;
+},
+
+schema_gui_tvproperties: function(req, res, params){
+	var t = this;
+	if(params.action == 'r'){
+	//console.dir(t._schema_gui_properties_store.data);
+	res.status(200).json(t._schema_gui_properties_store.query({tschema_tname: req.body.tschema_tname}));
+}else{
+	res.status(500).json({success: false, data: 'No ha ingresado una accion valida', params: params});
+}
+},
+
+schema_gui_tables_view_properties: function(req, res, params){
 
 	var t = this;
 
-	var post = req.body;
-	var qp;
-
-	switch(table){
-		case 'gui.view_columns_properties_by_tschema_tname':
-		var w = {};
-		w["tschema_tname"] = post.tschema_tname;
-		qp = t.Select('gui.view_columns_properties', []).whereAnd([w]).orderBy(' column_position ').build();
+	switch(params.action){
+		case 'r':
+		qp = t.Select('gui.tables_view_properties', []).orderBy(' tschema_tname DESC').build();
 		t.response_query(res, qp.query, qp.param);
 		break;
 		default:
-		qp = t.Select(table, []).build();
-		t.response_query(res, qp.query, qp.param);
+		res.status(500).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
 		break;
 	}
 
+},
+schema_gui_view_columns_properties: function(req, res, params){
 
-}            
+	var t = this;
+	var post = req.body;
+	var qp;
+	var w = {};
+
+	switch(params.action){
+		case 'r':
+		var w = {tschema_tname: post.tschema_tname};
+		qp = t.Select('gui.view_columns_properties', []).whereAnd([w]).orderBy(' column_position ').build();
+		t.response_query(res, qp.query, qp.param);
+		break;
+		case 'u':
+		if(post.__idProperty){
+			w[post.__idProperty] = post[post.__idProperty];
+		// Falta un control para fingerprint
+		qp = t.Update('gui.column_properties', post, ["hash_num"]).whereAnd([w], []).build();
+		t.response_update(res, qp.query, qp.param);
+	}else{
+		res.status(400).json({success: false, data: "No ha enviado el parametro __idProperty.", params: params});
+	}
+	break;		
+	default:
+	res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+	break;
+}
+
+}             
 
 
 });

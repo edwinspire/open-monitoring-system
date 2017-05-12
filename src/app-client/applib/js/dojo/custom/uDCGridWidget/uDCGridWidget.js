@@ -120,6 +120,8 @@ define(['dojo/_base/declare',
       refreshOnTableChanged: t.refreshOnTableChanged,
       initialQuery: t.initialQuery,
       Gui: t.Gui,
+      dbschema: t.dbschema,
+      dbtableview: t.dbtableview,
       __affected_table: t.__affected_table,
       __rowFingerPrint: t.__rowFingerPrint,
       __idProperty: t.__idProperty

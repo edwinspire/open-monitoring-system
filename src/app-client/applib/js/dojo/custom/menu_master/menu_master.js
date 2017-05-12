@@ -56,8 +56,9 @@ define(['dojo/_base/declare',
           if(response.length > 0){
 
 
+
            var myStore = new Memory({
-            data: response[0].structure,
+            data: response,
             getChildren: function(object){
             // Supply a getChildren() method to store for the data model where
             // children objects point to their parent (aka relational model)
@@ -67,7 +68,7 @@ define(['dojo/_base/declare',
 
            var myModel = new ObjectStoreModel({
             store: myStore,
-            query: {id: 'oms'}
+            query: {id: 0}
           });
 
 
@@ -79,8 +80,8 @@ define(['dojo/_base/declare',
       onClick: function(item, node, event){
         console.log(item);
 this._onExpandoClick({node: node}); // This will expand the node
-if(item.clickitem){
-  t.emit('clickitem', item.clickitem);
+if(item.nameeventonclick){
+  t.emit('clickitem', item.nameeventonclick);
   console.log(item);
 }
 if(item.url){

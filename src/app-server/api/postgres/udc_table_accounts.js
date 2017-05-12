@@ -29,6 +29,7 @@ udc_table_accounts: function(req, res){
 			t.response_insert(res, qp.query, qp.param);
 			break;	
 			case 'update':
+			//TODO: Falta agregar un control aqui para el fingerprint
 			var w = {};
 			w[post.__idProperty] = post[post.__idProperty];
 

@@ -81,6 +81,9 @@
              _searchTerm: '',
              _enabledload: false,
              uDCProperties: {},
+             dbschema: 'public',
+             dbtableview: 'none',
+
     /**
      * @class uDCGrid
      * @param args {object}
@@ -205,7 +208,7 @@ Select: function (_data, _clear_grid_before) {
       t._waiting_select = false;
       t._last_select = _data;
       if (!(t.refreshMode == 2 || t.refreshMode == 3)) {
-        return t.request(_data, "select_rows");
+        return t.request(_data, "r");
       }else{
        console.warn('Select no esta habilitado ', t.refreshMode);
      }
@@ -223,7 +226,6 @@ deferred.resolve("success");
 return deferred.promise;
 
 },
-
 request: function (_param, _action) {
   var t = this;
   var _data = {};
@@ -232,13 +234,15 @@ request: function (_param, _action) {
     _data = _param;
   }
 
-  _data.__action = _action;
-  _data.__subscribe_table_changed = t.__affected_table;
-  _data.__IdProperty = t.__idProperty;
+  //_data.__action = _action;
+  //_data.__subscribe_table_changed = t.__affected_table;
+  _data.__idProperty = t.__idProperty;
 
   if (t.target) {
 
-    var r = request.post(t.target, {
+var url = t.target+'/'+t.dbschema+'/'+t.dbtableview+'/'+_action;
+
+    var r = request.post(url, {
       data: _data,
       preventCache: true,
       handleAs: "json"
@@ -246,7 +250,7 @@ request: function (_param, _action) {
     ).then(
     function (response) {
       switch (_action) {
-        case "update":
+        case "u":
 
         if (response.rowCount > 0) {
           t.save();
@@ -259,7 +263,7 @@ request: function (_param, _action) {
 
 
         break;
-        case "select_rows":
+        case "r":
         var myData = {
           identifier: "unique_id", items: []
         };
@@ -298,7 +302,7 @@ request: function (_param, _action) {
         case 500:
         if(error.response.data){
           switch(_action){
-            case 'update':
+            case 'u':
             t.revert();
             t._notifications({ Urgency: 1, Message: 'Error '+error.response.data.data.code, Title: 'No se pudo actualizar' });
             break;
@@ -321,7 +325,7 @@ request: function (_param, _action) {
 
       t._enabledload = true;
       switch(_action){
-        case 'update':
+        case 'u':
         t.Select(t._last_select);
         break;
         case 'select_rows':
@@ -348,7 +352,7 @@ Update: function (_data) {
   var t = this;
   if (t.__idProperty && t.__idProperty.length > 0) {
 
-   return t.request(_data, "update");                
+   return t.request(_data, "u");                
 
  } else {
   console.warn('El idProperty es necesario para actualizaciones de registros');
@@ -374,21 +378,25 @@ getProperties: function(){
 }
 
 if(!t.Gui.target || t.Gui.target.length < 3){
-  t.Gui.target = '/njs/db/gui/properties';
+  t.Gui.target = '/db/gui/tvproperties/r';
   console.warn('Grid no tiene Gui.target para obtener la estructura, se usa la default');
 }
 
 var getCol = request.post(t.Gui.target, {
-  data: {__affected_table: t.__affected_table, Fields: JSON.stringify(t.Gui.fields)},
+  data: {tschema_tname: t.dbschema+'.'+t.dbtableview, Fields: JSON.stringify(t.Gui.fields)},
   preventCache: true,
   handleAs: "javascript"
 }
 ).then(
 function (response) {
 
+console.log(response);
+
  var columns = [];
 
  t.Gui.Properties = response[0];
+
+
 
 /*
    if(t.uDCProperties.dgrid_selectionmode){
@@ -398,7 +406,7 @@ function (response) {
    }
    */
 
-   console.log(t.__affected_table, response);
+   //console.log(t.__affected_table, response);
 
    if(t.Gui && t.Gui.Properties){
 
@@ -406,7 +414,7 @@ function (response) {
 
       var c = column;
 
-      if(c.editOn && c.editOn == "dbclick" && has("touch")){
+      if(c.editOn && c.editOn == "dblclick" && has("touch")){
         alert('Es touch');
         c.editOn = "click";
       }

@@ -55,6 +55,7 @@ Select: function(_tableview, _fields, _required_list_fields){
 	}
 
 	r.whereAnd = function(_param, _omitfields){
+		
 		this._whereAnd = t._query_builder_where_check(this.fieldtypes, _param, _omitfields)
 		return this;
 	}
@@ -129,7 +130,7 @@ if(!this.select_field_required && this.select_fields.length < 1){
 
 //------------------------------
 var wb = t._query_builder_build_where(this._where, this._whereAnd, this._whereOr);
-console.log(wb);
+
 q = q+" "+wb.where;
 param = wb.param;
 
@@ -239,7 +240,7 @@ if(array_where.length > 0 && and){
 
 }
 
-return {where: q, param: param}
+return {where: q, param: param};
 },
 /////////////////////////////////////////
 _select_check_fields: function(_fieldstv, _fields){
@@ -268,19 +269,22 @@ get_tv_fieldtypes: function(_tableview){
 	});
 
 //console.trace(r);
-	return r;
+return r;
 },
 ////////////////////////////////////////////////////////////
 Update: function(_table, _values_array, _omitfields){
 	var t = this;
 	var r = {table: _table, values: _values_array, omitfields: _omitfields, _whereOr: false, _whereAnd: false, _where: false, fieldtypes: t.get_tv_fieldtypes(_table)};
 	r.whereOr = function(_param, _omitfields){
-		this._whereOr = this._query_builder_where_check(this.fieldtypes, _param, _omitfields)
+		this._whereOr = this._query_builder_where_check(this.fieldtypes, _param, _omitfields);
+
 		return this;
 	}
 
 	r.whereAnd = function(_param, _omitfields){
-		this._whereAnd = t._query_builder_where_check(this.fieldtypes, _param, _omitfields)
+		
+		this._whereAnd = t._query_builder_where_check(this.fieldtypes, _param, _omitfields);
+		//console.dir(this._whereAnd);
 		return this;
 	}
 
@@ -303,7 +307,7 @@ Update: function(_table, _values_array, _omitfields){
 // Revisamos que los campos a setear sean correctos
 if(typeof this.values == "string"){
 
-	t.emit("tschange", {values: this.values});
+	//t.emit("tschange", {values: this.values});
 	q = q+" "+this.values;
 
 
@@ -312,7 +316,7 @@ if(typeof this.values == "string"){
 //var v = t._select_check_fields(this.fieldtypes, t.values);
 var valuesAndTypes = [];
 
-t.emit("tschange", {fieldtypes: this.fieldtypes});
+//t.emit("tschange", {fieldtypes: this.fieldtypes});
 var i = 1;
 
 for(var v in this.values){
@@ -327,19 +331,28 @@ for(var v in this.values){
 
 
 q = q+valuesAndTypes.join(", ");
-t.emit("tschange", {q: valuesAndTypes});
+//t.emit("tschange", {q: valuesAndTypes});
 
 }
 
+//t.emit("tschange", {values: this});
+//console.dir(this);
+
 //------------------------------
 var wb = t._query_builder_build_where(this._where, this._whereAnd, this._whereOr, param.length);
-console.log(wb);
+
 q = q+" "+wb.where;
 //param = wb.param;
+//console.dir('*****', q);
+if(wb.where.length < 1){
+console.warn('No ha proporcionado un WHERE en este UPDATE.', q);
+}
 
 array.forEach(wb.param, function(p){
 	param.push(p);	
 });
+
+//console.dir('----', param);
 
 if(this._returning && this._returning.length > 0){
 	q = q+" RETURNING "+this._returning;

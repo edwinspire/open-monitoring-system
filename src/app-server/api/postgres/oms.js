@@ -333,12 +333,12 @@ response_update: function(res, _query, _param){
 		if(err) {
 			done();
 			console.log(err);
-			res.status(500).json({success: false, data: err});
+			res.status(500).json({success: false, data: err, query: _query});
 		}
 
 		var query = client.query(_query, _param, (error)=>{
 			if(error){
-				res.status(500).json({success: false, data: error});
+				res.status(500).json({success: false, data: error, query: _query});
 			}
 		});
 

@@ -49,6 +49,11 @@ require(["dojo/request",
 // Obtenemos configuraciones desde el servidor
 PostgreSQL.get_config_from_db().then(function(){
 
+
+		PostgreSQL._schema_gui_properties_fromdb().then(function(r){
+			console.log(r);
+		});
+
 	setInterval(function(){
 		console.log('Tareas periodicas');
 		PostgreSQL.query("SELECT * FROM events.fun_set_expired_events();", []).then(function(response){
@@ -59,6 +64,11 @@ PostgreSQL.get_config_from_db().then(function(){
 		});
 		PostgreSQL.query("SELECT * FROM fun_last_modified_table_remove_olds();", []).then(function(response){
 			//console.log(response);
+		});
+
+// Esto debe dispararse solo al inicio de la aplicacion y cuando haya cambios en las tablas involucradas
+		PostgreSQL._schema_gui_properties_fromdb().then(function(r){
+			console.log(r);
 		});
 	}, 60*1000);
 
@@ -420,7 +430,33 @@ app.post("/njs/admin_status_login", function(req, res){
 
 });
 
+////////////////////////////////////////////////////////////////////////////////////////
+app.post("/db/*", cors(), function(req, res){
 
+	var u = sessionUsers.isauthorized(req, res, true);
+
+	if(u){
+		var parts = req.path.split("/");
+		if(parts.length > 4){
+
+			var params = {schema: parts[2], objectdb: parts[3], action: parts[4]};
+			var obj = 'schema_'+params.schema+'_'+params.objectdb;
+
+			if(PostgreSQL[obj]){
+				PostgreSQL[obj](req, res, params);
+			}else{
+				res.status(404).json({path: req.path});
+			}
+
+		}else{
+			res.status(500).json({path: req.path, error: 'No tiene los argumentos completos'});
+		}
+
+	}else{
+		res.status(403).json({table: req.path});
+	}
+
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////
 app.post("/njs/db/gui/*", cors(), function(req, res){
@@ -452,10 +488,11 @@ app.post("/njs/db/gui/*", cors(), function(req, res){
 
 			break;
 			case 'gui.menus':
-				PostgreSQL.response_query(res, "SELECT * FROM gui.menus WHERE enabled = true order by idmenu LIMIT 1;", []);
-			break;			
+			PostgreSQL.response_query(res, "SELECT idmenu as id, name, url, parent, type, nameeventonclick FROM gui.menus WHERE enabled = true AND show = true order by name;", []);
+			break;	
+
 			default:
-			PostgreSQL.schema_gui(req.body.__affected_table, req, res);
+			PostgreSQL._schema_gui_actions(table, req, res);
 			break;
 		}
 
