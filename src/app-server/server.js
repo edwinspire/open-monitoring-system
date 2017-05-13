@@ -49,10 +49,18 @@ require(["dojo/request",
 // Obtenemos configuraciones desde el servidor
 PostgreSQL.get_config_from_db().then(function(){
 
-
 		PostgreSQL._schema_gui_properties_fromdb().then(function(r){
-			console.log(r);
+			//console.log(r);
 		});
+
+setInterval(function(){
+
+PostgreSQL.get_change_in_tables().then(function(){
+	console.log('Se busca cambios en las tablas');
+});
+
+}, 3*1000);
+
 
 	setInterval(function(){
 		console.log('Tareas periodicas');
@@ -527,13 +535,16 @@ var server = http.createServer(app)
 , sio = socketIO.listen(server);
 
 
-PostgreSQL.on('get_dgrid_structure', function(tv){
-	console.log('Emite evento de postgres', tv);
-
-});
-
-
 var pgEventTs = PostgreSQL.on('tschange', function(r){
+	
+console.log(r);
+
+if(r.table_name == 'gui.column_properties' || r.table_name == 'gui.tables_view_properties'){
+			PostgreSQL._schema_gui_properties_fromdb().then(function(rx){
+			console.log('GUI ha cambiado');
+		});	
+}
+
 	sio.emit('pgtschange', JSON.stringify(r));
 });
 

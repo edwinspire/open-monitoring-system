@@ -31,7 +31,6 @@ constructor: function(args) {
 
 	t.get_schema().then(function(){
 
-
 	});
 
 /*
@@ -118,25 +117,27 @@ get_table_schema: function(_tschema_tname){
 },
 get_change_in_tables: function(){
 	var deferred = new Deferred();
+	var t = this;
 	this.query("SELECT tschema_tname, table_name, datetime_modif as ts FROM view_last_modif_tables;").then(function(result){
 
 		array.forEach(result.rows, function(row){
 			var newts = Date.parse(row.ts);
 
-			if(typeof t._last_ts[row.table_name] === 'undefined'){
+			if(typeof t._last_ts[row.tschema_tname] === 'undefined'){
 
-				t._last_ts[row.table_name] = newts;
-				t.get_tv_structure(row.table_name);
-				t.send_notification_area(row.table_name);
-				t.emit("tschange", {table_name: row.table_name,  ts: newts});
+				t._last_ts[row.tschema_tname] = newts;
+				//t.get_tv_structure(row.table_name);
+				t.send_notification_area(row.tschema_tname);
+				t.emit("tschange", {table_name: row.tschema_tname,  ts: newts});
 
 			}else{
 
-				if(t._last_ts[row.table_name]  !=  newts){
-					t._last_ts[row.table_name] = newts;
-					t.get_tv_structure(row.table_name);
-					t.send_notification_area(row.table_name);
-					t.emit("tschange", {table_name: row.table_name,  ts: newts});
+				if(t._last_ts[row.tschema_tname]  !=  newts){
+					t._last_ts[row.tschema_tname] = newts;
+				//	t.get_tv_structure(row.table_name);
+				//console.log('Ha cambiado la tabla ', row.table_name);
+					t.send_notification_area(row.tschema_tname);
+					t.emit("tschange", {table_name: row.tschema_tname,  ts: newts});
 				}
 
 			}
