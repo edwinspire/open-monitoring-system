@@ -267,9 +267,7 @@ get_tv_fieldtypes: function(_tableview){
 	array.forEach(tableColumns, function(field){
 		r[field.column_name] = field.data_type; 
 	});
-
-//console.trace(r);
-return r;
+	return r;
 },
 ////////////////////////////////////////////////////////////
 Update: function(_table, _values_array, _omitfields){
@@ -284,7 +282,6 @@ Update: function(_table, _values_array, _omitfields){
 	r.whereAnd = function(_param, _omitfields){
 		
 		this._whereAnd = t._query_builder_where_check(this.fieldtypes, _param, _omitfields);
-		//console.dir(this._whereAnd);
 		return this;
 	}
 
@@ -302,37 +299,26 @@ Update: function(_table, _values_array, _omitfields){
 
 		var q = "UPDATE "+this.table+" SET ";
 		var param = [];
-
 //---------------------------
 // Revisamos que los campos a setear sean correctos
 if(typeof this.values == "string"){
 
-	//t.emit("tschange", {values: this.values});
 	q = q+" "+this.values;
-
 
 }else if(this.values){
 
-//var v = t._select_check_fields(this.fieldtypes, t.values);
-var valuesAndTypes = [];
+	var valuesAndTypes = [];
+	var i = 1;
+	for(var v in this.values){
+		if(this.fieldtypes[v] && array.indexOf(this.omitfields, v) < 0){
+			valuesAndTypes.push(v+" = $"+(i)+"::"+this.fieldtypes[v]);
+			param.push(this.values[v]);
+			i++;
+		}
 
-//t.emit("tschange", {fieldtypes: this.fieldtypes});
-var i = 1;
-
-for(var v in this.values){
-
-	if(this.fieldtypes[v] && array.indexOf(this.omitfields, v) < 0){
-		valuesAndTypes.push(v+" = $"+(i)+"::"+this.fieldtypes[v]);
-		param.push(this.values[v]);
-		i++;
 	}
 
-}
-
-
-q = q+valuesAndTypes.join(", ");
-//t.emit("tschange", {q: valuesAndTypes});
-
+	q = q+valuesAndTypes.join(", ");
 }
 
 //t.emit("tschange", {values: this});
@@ -345,7 +331,7 @@ q = q+" "+wb.where;
 //param = wb.param;
 //console.dir('*****', q);
 if(wb.where.length < 1){
-console.warn('No ha proporcionado un WHERE en este UPDATE.', q);
+	console.warn('No ha proporcionado un WHERE en este UPDATE.', q);
 }
 
 array.forEach(wb.param, function(p){

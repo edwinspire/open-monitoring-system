@@ -49,17 +49,17 @@ require(["dojo/request",
 // Obtenemos configuraciones desde el servidor
 PostgreSQL.get_config_from_db().then(function(){
 
-		PostgreSQL._schema_gui_properties_fromdb().then(function(r){
+	PostgreSQL._schema_gui_properties_fromdb().then(function(r){
 			//console.log(r);
 		});
 
-setInterval(function(){
+	setInterval(function(){
 
-PostgreSQL.get_change_in_tables().then(function(){
-	console.log('Se busca cambios en las tablas');
+		PostgreSQL.get_change_in_tables().then(function(){
+	//console.log('Se busca cambios en las tablas');
 });
 
-}, 3*1000);
+	}, 3*1000);
 
 
 	setInterval(function(){
@@ -75,10 +75,10 @@ PostgreSQL.get_change_in_tables().then(function(){
 		});
 
 // Esto debe dispararse solo al inicio de la aplicacion y cuando haya cambios en las tablas involucradas
-		PostgreSQL._schema_gui_properties_fromdb().then(function(r){
-			console.log(r);
-		});
-	}, 60*1000);
+PostgreSQL._schema_gui_properties_fromdb().then(function(r){
+	console.log(r);
+});
+}, 60*1000);
 
 
 	sessionUsers.on('dead_session', function(datauser){
@@ -445,9 +445,19 @@ app.post("/db/*", cors(), function(req, res){
 
 	if(u){
 		var parts = req.path.split("/");
-		if(parts.length > 4){
+		if(parts.length > 8){
 
 			var params = {schema: parts[2], objectdb: parts[3], action: parts[4]};
+
+			params.onupdate = {};
+
+			try{
+				params.onupdate[parts[5]] = parts[6];
+				params.onupdate[parts[7]] = parts[8];
+			}catch(e){
+				console.warn(e);
+			}
+
 			var obj = 'schema_'+params.schema+'_'+params.objectdb;
 
 			if(PostgreSQL[obj]){
@@ -537,13 +547,13 @@ var server = http.createServer(app)
 
 var pgEventTs = PostgreSQL.on('tschange', function(r){
 	
-console.log(r);
+	console.log(r);
 
-if(r.table_name == 'gui.column_properties' || r.table_name == 'gui.tables_view_properties'){
-			PostgreSQL._schema_gui_properties_fromdb().then(function(rx){
+	if(r.table_name == 'gui.column_properties' || r.table_name == 'gui.tables_view_properties'){
+		PostgreSQL._schema_gui_properties_fromdb().then(function(rx){
 			console.log('GUI ha cambiado');
 		});	
-}
+	}
 
 	sio.emit('pgtschange', JSON.stringify(r));
 });

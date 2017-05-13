@@ -46,22 +46,28 @@ _schema_gui_properties_fromdb: function(){
 schema_gui_tvproperties: function(req, res, params){
 	var t = this;
 	if(params.action == 'r'){
-	//console.dir(t._schema_gui_properties_store.data);
-	res.status(200).json(t._schema_gui_properties_store.query({tschema_tname: req.body.tschema_tname}));
-}else{
-	res.status(500).json({success: false, data: 'No ha ingresado una accion valida', params: params});
-}
+		res.status(200).json(t._schema_gui_properties_store.query({tschema_tname: req.body.tschema_tname}));
+	}else{
+		res.status(500).json({success: false, data: 'No ha ingresado una accion valida', params: params});
+	}
 },
 
 schema_gui_tables_view_properties: function(req, res, params){
 
 	var t = this;
+	var post = req.body;
+	var qp;
+	var w = {};
 
 	switch(params.action){
 		case 'r':
 		qp = t.Select('gui.tables_view_properties', []).orderBy(' tschema_tname DESC').build();
 		t.response_query(res, qp.query, qp.param);
 		break;
+		case 'u':
+		qp = t.Update('gui.tables_view_properties', post, []).whereAnd([params.onupdate], []).build();
+		t.response_update(res, qp.query, qp.param);
+		break;	
 		default:
 		res.status(500).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
 		break;
@@ -82,14 +88,8 @@ schema_gui_view_columns_properties: function(req, res, params){
 		t.response_query(res, qp.query, qp.param);
 		break;
 		case 'u':
-		if(post.__idProperty){
-			w[post.__idProperty] = post[post.__idProperty];
-		// Falta un control para fingerprint
-		qp = t.Update('gui.column_properties', post, ["hash_num"]).whereAnd([w], []).build();
+		qp = t.Update('gui.column_properties', post, ["hash_num"]).whereAnd([params.onupdate], []).build();
 		t.response_update(res, qp.query, qp.param);
-	}else{
-		res.status(400).json({success: false, data: "No ha enviado el parametro __idProperty.", params: params});
-	}
 	break;		
 	default:
 	res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});

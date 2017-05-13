@@ -77,7 +77,7 @@
              __affected_table: '',
              initialQuery: {},
              _GridFieldsToFilter: [],
-             rowFingerPrint: '',
+             __rowFingerPrint: '',
              _searchTerm: '',
              _enabledload: false,
              uDCProperties: {},
@@ -121,10 +121,10 @@ t.getProperties();
 
   data[event.cell.column.field] = event.value;
 
-  if (t.rowFingerPrint) {
+  if (t.__rowFingerPrint) {
     try {
-      data['__rowFingerPrint'] = t.rowFingerPrint;
-      data['__rowFingerPrintValue'] = event.cell.row.data[t.rowFingerPrint];
+      data['__rowFingerPrint'] = t.__rowFingerPrint;
+      data['__rowFingerPrintValue'] = event.cell.row.data[t.__rowFingerPrint];
     } catch (e) {
       console.error(e);
     }
@@ -198,8 +198,6 @@ Select: function (_data, _clear_grid_before) {
     t.Clear();
   }
 
-  console.log(_data);
-
   if (_data) {
 
     if(t._enabledload){
@@ -234,13 +232,32 @@ request: function (_param, _action) {
     _data = _param;
   }
 
-  //_data.__action = _action;
-  //_data.__subscribe_table_changed = t.__affected_table;
-  _data.__idProperty = t.__idProperty;
+ //console.log(_param);
 
   if (t.target) {
 
-var url = t.target+'/'+t.dbschema+'/'+t.dbtableview+'/'+_action;
+
+
+var idProperty = t.__idProperty || new Date().getTime();
+var idPropertyValue = _data[idProperty];
+var rowFingerPrint = t.__rowFingerPrint || new Date().getTime();
+var rowFingerPrintValue = _data.__rowFingerPrintValue;
+
+if(idPropertyValue == undefined){
+idPropertyValue =  new Date().getTime();
+}
+
+if(rowFingerPrintValue == undefined){
+rowFingerPrintValue = new Date().getTime();
+}
+
+
+
+var url = t.target+'/'+t.dbschema+'/'+t.dbtableview+'/'+_action+'/'+idProperty+'/'+idPropertyValue+'/'+rowFingerPrint+'/'+rowFingerPrintValue;
+
+_data.__rowFingerPrint = null;
+_data.__rowFingerPrintValue = null;
+_data.__idProperty = null;
 
     var r = request.post(url, {
       data: _data,
@@ -378,7 +395,7 @@ getProperties: function(){
 }
 
 if(!t.Gui.target || t.Gui.target.length < 3){
-  t.Gui.target = '/db/gui/tvproperties/r';
+  t.Gui.target = '/db/gui/tvproperties/r/'+new Date().getTime()+'/'+new Date().getTime()+'/'+new Date().getTime()+'/'+new Date().getTime();
   console.warn('Grid no tiene Gui.target para obtener la estructura, se usa la default');
 }
 
@@ -396,17 +413,6 @@ console.log(response);
 
  t.Gui.Properties = response[0];
 
-
-
-/*
-   if(t.uDCProperties.dgrid_selectionmode){
-     t.selectionMode = t.uDCProperties.dgrid_selectionmode;
-   }else{
-     t.SelectionMode = "none";
-   }
-   */
-
-   //console.log(t.__affected_table, response);
 
    if(t.Gui && t.Gui.Properties){
 
