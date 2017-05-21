@@ -187,7 +187,7 @@ Filter: function (searchTerm) {
     });
     setToMemory = t._GridStore.filter(mainFilter);
   }
-
+//console.log();
   t.set("collection", setToMemory);
 },
 

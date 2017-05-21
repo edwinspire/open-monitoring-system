@@ -17,7 +17,8 @@ require(["dojo/ready",
   "Widget/Geolocations/Geolocations", 
   "Widget/app_account/app_account",
   "Widget/app_tables_views_config/app_tables_views_config",
-  "Widget/app_event_management/app_event_management"
+  "Widget/app_event_management/app_event_management",
+  "Widget/app_event_resumen/app_event_resumen"
   ], function(ready, 
     cookie,
     win,
@@ -37,7 +38,8 @@ require(["dojo/ready",
     app_geolocations, 
     app_account,
     app_tables_views_config,
-    app_event_management
+    app_event_management,
+    app_event_resumen
     ){
     ready(function(){
 
@@ -91,6 +93,9 @@ Mainmenu.on("clickitem", function(e){
    break;        
    case 'MenuEventsAll':
    OpenApp(app_event_management);
+   break;  
+      case 'app_event_resumen':
+   OpenApp(app_event_resumen);
    break;  
    case 'GeneralEmpresaGeolocalizacion':
    OpenApp(app_geolocations);

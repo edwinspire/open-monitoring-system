@@ -255,7 +255,7 @@ send_notification_area: function(_table_notifications){
 
 	var t = this;
 
-	if(_table_notifications === "public.notification_area"){
+	if(_table_notifications === "gui.notification_area"){
 
 		pg.connect(t.connString(), (err, client, done) => {
 
@@ -265,7 +265,7 @@ send_notification_area: function(_table_notifications){
 				return false;
 			}
 
-			var query = client.query("SELECT * FROM public.notification_area WHERE idnotify > $1::integer ORDER BY idnotify;", [t._last_idnotify_notification_area]);
+			var query = client.query("SELECT * FROM gui.notification_area WHERE idnotify > $1::integer ORDER BY idnotify;", [t._last_idnotify_notification_area]);
 
 			query.on('row', (row) => {
 				t._last_idnotify_notification_area = row.idnotify;    

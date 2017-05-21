@@ -67,7 +67,7 @@ PostgreSQL.get_config_from_db().then(function(){
 		PostgreSQL.query("SELECT * FROM events.fun_set_expired_events();", []).then(function(response){
 			//console.log(response);
 		});
-		PostgreSQL.query("SELECT * FROM fun_remove_notifications_old();", []).then(function(response){
+		PostgreSQL.query("SELECT * FROM gui.fun_remove_notifications_old();", []).then(function(response){
 			//console.log(response);
 		});
 		PostgreSQL.query("SELECT * FROM fun_last_modified_table_remove_olds();", []).then(function(response){
@@ -459,6 +459,8 @@ app.post("/db/*", cors(), function(req, res){
 			}
 
 			var obj = 'schema_'+params.schema+'_'+params.objectdb;
+			
+			console.log(obj);
 
 			if(PostgreSQL[obj]){
 				PostgreSQL[obj](req, res, params);
