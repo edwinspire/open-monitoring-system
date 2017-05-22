@@ -155,18 +155,18 @@ app.get('/map.html',  function(req, res){
 
 				if(req.query.maptype){
 
-					var q = 'SELECT * FROM contacts WHERE idcontact = $1::BIGINT;';
+					var q = 'SELECT * FROM contacts.contacts WHERE idcontact = $1::BIGINT;';
 					var p = [-999];
 
 					switch(req.query.maptype){
 						case 'contact_only':
 						if(req.query.idcontact){
-							q = 'SELECT * FROM contacts WHERE idcontact = $1::BIGINT;';
+							q = 'SELECT * FROM contacts.contacts WHERE idcontact = $1::BIGINT;';
 							p = [req.query.idcontact]    
 						}
 						break;
 						case 'all_contacts':
-						q = 'SELECT * FROM contacts WHERE enabled = true;';
+						q = 'SELECT * FROM contacts.contacts WHERE enabled = true;';
 						p = [] 
 						break;
 					}
