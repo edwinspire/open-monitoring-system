@@ -10,31 +10,55 @@ run_check_movinv: function(task){
     var name_event = 'run_check_movinv'+(new Date()).getTime()+ Math.random().toString().replace('.', '_');
     var movProcesados = 0;
     var idsMovimientos = [];
+var orden = "DESC"
+var limit = task.task_parameters.registros || 1000;
+    
+if(task.task_parameters.orden_asc){
+orden = "ASC"
+}
 
-    console.log(task);
+console.log(task, limit, orden);
 
     t.query(`
-      SELECT * FROM secondary.interfaces_eta_rm_matriz WHERE enmatriz = false AND empresa = $1::TEXT ORDER BY datetimefile DESC LIMIT 5;
+        SELECT idreginterfacesmatriz, cpudt, cputm, menge, mblnr, matnr, werks FROM secondary.view_movinv_sap WHERE enmatriz = false AND bukrs = $1::TEXT ORDER BY datetimefile ${orden} LIMIT ${limit};
       `, [task.task_parameters.empresa]).then(function(result){
 
-console.log(result);
+        //console.log(result.rows);
 
-        var totalMov = devices.rows.length;
+        var totalMov = result.rows.length;
 
         var signal = t.on(name_event, function(movimiento_revisado){
 
             movProcesados ++;
 
+            //console.log(movimiento_revisado);
+            if(movimiento_revisado.Serie_Factura){
+                idsMovimientos.push(movimiento_revisado.idmov);
+               // console.log(movProcesados +' de '+ totalMov+' > '+movimiento_revisado.idmov);
+            }
+
+            
+
             if(movProcesados == totalMov){
                 signal.remove();
+                
+                console.log('Hace el update a '+ idsMovimientos.length);
 
+                t.query(`
+                  UPDATE secondary.interfaces_eta_rm_matriz SET enmatriz = true, enmatriz_revisado = now() WHERE enmatriz = false AND idreginterfacesmatriz = ANY($1::BIGINT[]);
+                  `, [idsMovimientos]).then(function(result){
+                    console.log(result);
 // Una vez terminado debemos hacer el update a la tabla con el id para ponerlo como ENMATRIZ.
+deferred.resolve(true);
 
-                deferred.resolve(true);
-            }else{
+}, function(fail){
+    console.log(fail);
+    deferred.reject(fail);
+});
 
-            }
-        });
+              }
+
+          });
 
 
         mssql.connect({
@@ -72,23 +96,28 @@ console.log(result);
       return deferred.promise;
   },
   _run_check_movinv_connect_matriz: function(cnxmatriz, movsap, name_event){
-
-   var srtquery = "SELECT  top(1) tbl_maestromovinvent.Serie_Factura FROM tbl_maestromovinvent  INNER JOIN tbl_movinvent  ON tbl_maestromovinvent.Serie_Factura = tbl_movinvent.Serie_Factura WHERE tbl_maestromovinvent.FechaRegistro = '"+movsap.cpudt+" "+movsap.cputm+"' AND  tbl_movinvent.cantidad = "+movsap.menge+" AND  tbl_maestromovinvent.UserId = '"+movsap.usnam+"' AND   tbl_maestromovinvent.numero_doc_inv = '"+movsap.mblnr+"' and tbl_maestromovinvent.Oficina = (SELECT top (1) o.oficina FROM dbo.Oficina o WHERE o.ofi_codigo_interno_empresa = '"+movsap.werks+"' AND o.Compania = tbl_maestromovinvent.Compania) AND  codigo_producto = '"+movsap.matnr+"';";
+    var t = this;
+    var srtquery = "USE EasyGestionEmpresarial; SELECT  top(1) tbl_maestromovinvent.Serie_Factura FROM tbl_maestromovinvent  INNER JOIN tbl_movinvent  ON tbl_maestromovinvent.Serie_Factura = tbl_movinvent.Serie_Factura WHERE tbl_maestromovinvent.FechaRegistro = '"+movsap.cpudt+" "+movsap.cputm+"' AND  tbl_movinvent.cantidad = "+movsap.menge+" AND  tbl_maestromovinvent.numero_doc_inv = '"+movsap.mblnr+"' and tbl_maestromovinvent.Oficina = (SELECT top (1) o.oficina FROM dbo.Oficina o WHERE o.ofi_codigo_interno_empresa = '"+movsap.werks+"' AND o.Compania = tbl_maestromovinvent.Compania) AND  codigo_producto = '"+Number(movsap.matnr)+"';";
+   //console.log(srtquery);
 
    new mssql.Request(cnxmatriz)
    .query(srtquery).then(function(recordset) {
 
-        console.log(recordset);
-        var Filas = recordset.length;
-        if(Filas > 0){
+    //console.log(recordset);
 
-        }
-        t.emit(name_event, recordset);
+    if(recordset.length > 0){
+        var serie = recordset[0];
+        serie.idmov = movsap.idreginterfacesmatriz;
 
-    }).catch(function(err) {
-        console.log(err);
-        t.emit(name_event, err);
-    });
+        t.emit(name_event, serie);
+    }else{
+        t.emit(name_event, {Serie_Factura: false, idmov: movsap.idreginterfacesmatriz});
+    }
+
+}).catch(function(err) {
+    console.log(err);
+    t.emit(name_event, err);
+});
 
 }
 

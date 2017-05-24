@@ -18,6 +18,7 @@ require(["dojo/request",
 	"api/scheduled_tasks/run_ping",
 	"api/scheduled_tasks/run_check_movinv_sin_materiales",
 	"api/scheduled_tasks/run_check_articulos_sin_marca",
+	"api/scheduled_tasks/run_mssql_uptime",
 	"api/scheduled_tasks/run_check_movinv"
 	], function(request, on, locale, array, crypto, path, fs, pathToRegexp, pG, compression, mssql, nodeMailer, Config, ScheduledTasks, all, stamp, Dojodate){
 
@@ -56,7 +57,6 @@ require(["dojo/request",
 
 							}else if(!task.next_run && Dojodate.difference(new Date(), task.task_start, 'second') < 0){
 
-
 								STasks.startTask(task).then(function(x){
 
 										//console.log(x);
@@ -72,10 +72,6 @@ require(["dojo/request",
 							}else{
 								console.log("No hizo nada");
 							}
-
-
-
-
 
 						}else{
 
