@@ -4,7 +4,6 @@ require(["dojo/_base/lang", "api/scheduled_tasks/scheduled_tasks",   "dojo/Defer
 	lang.extend(Octopus, {
 /////////////////////////////////////////
 run_mssql_uptime: function(task){
-	
 
 	var deferred = new Deferred();
 	var t = this;
@@ -12,32 +11,47 @@ run_mssql_uptime: function(task){
 	var devicesProcceced = 0;
 
 	t.getNetworkDevices().then(function(devices){
-		
+
 		var totalDevices = devices.rows.length;
 
-		var signal = t.on(name_event, function(){
-			
+		console.log('TOTAL DE EQUIPOS:  '+totalDevices);
+
+		var signal = t.on(name_event, function(r){
+
 			devicesProcceced ++;
 
-			console.log(devicesProcceced +' de ' +totalDevices);
+			//console.log(devicesProcceced +' de ' +totalDevices, r);
+
+			if(r.valid){
+				t.send_event_pg(r.result, []).then(function(result){
+				//deferred.resolve(param.ip);
+			}, function(err){
+				console.log(err);
+				//deferred.resolve(err);    			
+			});
+			}
 
 			if(devicesProcceced == totalDevices){
+				console.log('run_mssql_uptime Completado');
 				signal.remove();
 				deferred.resolve(true);
 			}
 		});
 
 		array.forEach(devices.rows, function(device, i){
-			
-			var param = device;
-			param.parameters = task.task_parameters;
-			t._run_mssql_uptime_check(param).then(function(result){
-				console.log(result);
-				t.emit(name_event, {});
-			}, function(error){
-				console.log(error);
-				t.emit(name_event, {});
-			});
+
+			if(device.ip && device.ip.length > 0){
+				var param = device;
+				param.parameters = task.task_parameters;
+				t._run_mssql_uptime_check(param, i).then(function(result){
+					t.emit(name_event, {result: result, valid: true});
+				}, function(error){
+					t.emit(name_event, {result: error, valid: false});
+				});
+			}else{
+				t.emit(name_event, "IP empty");
+			}
+
 		});
 
 
@@ -49,57 +63,48 @@ _run_mssql_uptime_check: function(param){
 	
 	var deferred = new Deferred();
 	var t = this;
+	var srtquery = "SELECT DATEDIFF(MINUTE, login_time, CURRENT_TIMESTAMP) AS 'uptime' FROM sys.sysprocesses WHERE spid = 1;";
 
-	mssql.connect({
+	var config = {
 		user: param.username,
 		password: param.pwd,
-    server: param.ip, // You can use 'localhost\\instance' to connect to named instance 
-    database: 'msdb',
+		server: param.ip, 
+		database: 'msdb',
     //requestTimeout: 3000,
     options: {
-        encrypt: true // Use this if you're on Windows Azure 
-    }
-}).then(function(cnxmatriz) {
-    // Query   
+      // encrypt: true
+  }
+}
 
-    var srtquery = `
-    SELECT DATEDIFF(MINUTE, login_time, CURRENT_TIMESTAMP) AS 'Uptime_in_minutes' FROM sys.sysprocesses WHERE spid = 1;
-    `;
+mssql.connect(config).then((cnx) => {
 
-    new mssql.Request(cnxmatriz)
-    .query(srtquery).then(function(recordset) {
+	return new mssql.Request(cnx).query(srtquery)
+}).then((result, error)  => {
+	//console.dir(result, error);
+	if(error){
+		deferred.reject(error);
+	}else{
+		var ideventtype = param.parameters.ideventtype_under_threshold;
+		if(result.length > 0){
 
-    	//console.log(recordset);
-    	var Filas = recordset.length;
-    	var ideventtype = param.parameters.ideventtype_under_threshold;
-    	if(Filas > 0){
+			if(result[0].uptime > param.parameters.max_threshold_uptime){
+				ideventtype = param.parameters.ideventtype_on_threshold;
+			}
 
-    		if(recordset[0].Uptime_in_minutes > param.parameters.max_threshold_uptime){
-    			ideventtype = param.parameters.ideventtype_on_threshold;
-    		}
+			var r = {idequipment: param.idequipment, ideventtype: ideventtype, description: '', details: result[0]};
+			deferred.resolve(r);
 
-    		t.send_event_pg({idaccount: param.idaccount, ideventtype: ideventtype, description: '', details: recordset[0]}, []).then(function(result){
-    			deferred.resolve(true);
-    		}, function(err){
-    			console.log(err);
-    			deferred.resolve(false);    			
-    		});
+		}else{
+			deferred.reject(0);
+		} 
+	}  	
+}).catch(err => {
+	deferred.resolve({idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: err});  
+})
 
-    	}else{
-    		deferred.resolve(true);
-    	}   	
-
-    }).catch(function(err) {
-
-    	console.log(err);
-    	deferred.resolve(false);
-    });
-
-
-}).catch(function(err) {
-
-	//console.trace(err);
-	deferred.resolve(err, true);
+mssql.on('error', err => {
+	console.log(err);
+	deferred.reject(err);  
 });
 
 return deferred.promise;

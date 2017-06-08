@@ -8,8 +8,6 @@ require(["dojo/request",
 	"dojo/node!path-to-regexp", 
 	"dojo/node!pg", 
 	"dojo/node!compression", 
-	"dojo/node!mssql", 
-	"dojo/node!nodemailer",
 	"api/config", 
 	"api/scheduled_tasks/scheduled_tasks", 
 	"dojo/promise/all",
@@ -19,8 +17,11 @@ require(["dojo/request",
 	"api/scheduled_tasks/run_check_movinv_sin_materiales",
 	"api/scheduled_tasks/run_check_articulos_sin_marca",
 	"api/scheduled_tasks/run_mssql_uptime",
-	"api/scheduled_tasks/run_check_movinv"
-	], function(request, on, locale, array, crypto, path, fs, pathToRegexp, pG, compression, mssql, nodeMailer, Config, ScheduledTasks, all, stamp, Dojodate){
+	"api/scheduled_tasks/run_check_movinv", 
+	"api/scheduled_tasks/run_mssql_CURRENT_TIMESTAMP",
+	"api/scheduled_tasks/run_mssql_fixeddrives",
+	"api/scheduled_tasks/run_mssql_sp_help_job"
+	], function(request, on, locale, array, crypto, path, fs, pathToRegexp, pG, compression, Config, ScheduledTasks, all, stamp, Dojodate){
 
 		console.log("Inicia scheduled_tasks");
 
@@ -29,6 +30,8 @@ require(["dojo/request",
 			console.dir(error);
 		});
 
+
+console.log('Obtiene la lista de tareas');
 		var STasks = new ScheduledTasks({user: process.env.PG_USER, pwd: process.env.PG_PWD, host: process.env.PG_HOST, db: process.env.PG_DB});
 
 		STasks.get_config_from_db().then(function(){
@@ -37,7 +40,7 @@ require(["dojo/request",
 				STasks.getTaskList().then(function(result){
 
 					array.forEach(result.rows, function(task){
-						//console.log(task);
+						console.log(task);
 
 						if(STasks[task.function_name]){
 
@@ -87,11 +90,6 @@ require(["dojo/request",
 			}, 5000);
 
 		});
-
-
-
-
-
 
 //process.exit();
 

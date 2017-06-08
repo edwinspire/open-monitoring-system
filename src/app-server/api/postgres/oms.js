@@ -3,8 +3,8 @@
      *
      * @module postgres.oms
      */
-     define(['dojo/_base/declare',  "dojo/node!pg", "dojo/Evented", "dojo/Deferred", "dojo/_base/array", "dojo/store/Memory"
-     	], function (declare, pg, Evented, Deferred, array, Memory) {
+     define(['dojo/_base/declare',  "dojo/node!pg", "dojo/Evented", "dojo/Deferred", "dojo/_base/array", "dojo/store/Memory", "dojox/encoding/digests/MD5"
+     	], function (declare, pg, Evented, Deferred, array, Memory, MD5) {
 
      		return declare('postgres.oms', Evented, {
 
@@ -136,12 +136,12 @@ get_change_in_tables: function(){
 					t._last_ts[row.tschema_tname] = newts;
 				//	t.get_tv_structure(row.table_name);
 				//console.log('Ha cambiado la tabla ', row.table_name);
-					t.send_notification_area(row.tschema_tname);
-					t.emit("tschange", {table_name: row.tschema_tname,  ts: newts});
-				}
-
+				t.send_notification_area(row.tschema_tname);
+				t.emit("tschange", {table_name: row.tschema_tname,  ts: newts});
 			}
-		});
+
+		}
+	});
 		deferred.resolve(true);
 
 	});
@@ -210,21 +210,22 @@ query: function(_query, _param){
 			console.log(err);
 			deferred.reject(err);
 			done(err);
+		}else{
+			var q = client.query(_query, _param, (error)=>{
+				
+				if(error){
+					t.emit("tschange", error);
+					deferred.reject(error);
+				}
+				done(error);
+			});
+
+			q.on('end', (result) => {
+				deferred.resolve(result);
+				done();
+			});
 		}
 
-		var q = client.query(_query, _param, (error)=>{
-			
-			if(error){
-				t.emit("tschange", error);
-				deferred.reject(error);
-			}
-			done(error);
-		});
-
-		q.on('end', (result) => {
-			deferred.resolve(result);
-			done();
-		});
 
 	});
 
@@ -349,6 +350,9 @@ response_update: function(res, _query, _param){
 		});
 
 	});
+},
+textToMD5: function(text){
+	return MD5(text, dojox.encoding.digests.outputTypes.Hex);
 }
 
 

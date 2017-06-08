@@ -16,22 +16,47 @@ define(['dojo/_base/declare',
 },
 
 _setValueAttr: function (_v, _t) {
-  console.log(_v);
+//  console.log(_v);
 
      var t = this;
 var datajson = [];
-var i = 1;
+var i = 0;
 
- datajson.push({ id: 0, name:'root'});
+ datajson.push({ id: 0, name:'Event'});
 
+/*
+var out = Object.keys(_v).map(function(data){
+
+datajson.push({ id: i, name: data, parent: i-1});    
+i++;
+datajson.push({ id: i, name: _v[data], parent: i-1});
+i++;    
+        return [data,_v[data]];
+    });
+   // console.log(out);
+*/
+
+var ok = Object.keys({uno: 1, dos: 2, tres: [3, 4, 5, {cuatro: 4, cinco: 5}]});
+
+while(i < 5){
+
+var key = ok[i];
+value = _v[key];
+console.log(i, key, value);
+i++;
+}
+
+/*
 for(var index in _v) { 
     var attr = _v[index]; 
-      console.log(attr, index);
+    //  console.log(attr, index);
      datajson.push( { id: i, name: index, parent: 0});
      datajson.push({ id: i+1, name: attr, parent: i});
      i++;
 }
+*/
 
+console.log(datajson);
 
     myStore = new Memory({
         data: [],
@@ -53,9 +78,11 @@ myStore.setData(datajson);
     // Create the Tree.
     var tree = new Tree({
         model: myModel,
-         showRoot: false,
+        autoExpand: false,
+        openOnClick: true,
+         showRoot: true,
         getIconClass: function(item, opened) {
-            console.log(item);
+          //  console.log(item);
             if (item.type == "country") {
                 return "dijitLeaf";
             } else if (item.launched) {
@@ -65,6 +92,7 @@ myStore.setData(datajson);
             }
         }
     });
+    tree.collapseAll();
     tree.placeAt(t.domNode);
     tree.startup();
 

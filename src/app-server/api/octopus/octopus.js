@@ -23,7 +23,7 @@
           send_event_pg: function(fieldsValues, omitfields){
 
             var qp = this.Insert('events.datas', fieldsValues, omitfields).build();
-            console.dir(qp);
+            //console.dir(qp);
 
             return this.query(qp.query, qp.param);
           }/*,
