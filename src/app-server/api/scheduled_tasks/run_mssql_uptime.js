@@ -103,8 +103,7 @@ mssql.connect(config).then((cnx) => {
 })
 
 mssql.on('error', err => {
-	console.log(err);
-	deferred.reject(err);  
+deferred.resolve({idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: err});  
 });
 
 return deferred.promise;

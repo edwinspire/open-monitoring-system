@@ -22,7 +22,7 @@ run_mssql_fixeddrives: function(task){
 
 			array.forEach(r.result, function(event, i){
 
-				if(event.valid){
+				if(r.valid){
 					console.log(event);
 					t.send_event_pg(event, []).then(function(result){
 				//deferred.resolve(param.ip);
@@ -86,7 +86,7 @@ mssql.connect(config).then((cnx) => {
 }).then((result, error)  => {
 
 	if(error){
-		deferred.reject(error);
+		deferred.reject([error]);
 	}else{
 
 
@@ -123,12 +123,12 @@ mssql.connect(config).then((cnx) => {
 		}
 	}  	
 }).catch(err => {
-	deferred.resolve({idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: err});  
+	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: err}]);  
 })
 
 mssql.on('error', err => {
 	//console.log(err);
-	deferred.reject(err);  
+	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: err}]);  
 });
 
 return deferred.promise;

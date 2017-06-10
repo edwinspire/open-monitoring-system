@@ -34,9 +34,9 @@
               `, [2, task.idtask, next_run]).then(function(result){
 
                 t[task.function_name](task).then(function(taskresult){
-                  console.log('Ha terminado '+task.function_name);
-                  deferred.resolve(result);
-                });
+                //  console.log('Ha terminado '+task.function_name);
+                deferred.resolve(result);
+              });
 
               }, function(fail){
                 deferred.reject(fail);
@@ -45,14 +45,19 @@
               return  deferred.promise;
             },
             endTask: function(task){
-console.log('>>>>>>>>>>>>> endTask');
+              var deferred = new Deferred();
+              console.log('>>>>>>>>>>>>> endTask', task);
               return   this.query(`
                 UPDATE scheduled_tasks.task_list SET duration = EXTRACT(EPOCH FROM (now() - last_run)), status = $1::INTEGER  WHERE idtask = $2::BIGINT;
-                `, [0, task.idtask]);
+                `, [0, task.idtask]).then(function(result){
+                  deferred.resolve(result);
+                }, function(err){
+                 deferred.reject(err); 
+               });
+                return  deferred.promise;
+              }    
 
-            }    
 
 
-
-          });
+            });
       });

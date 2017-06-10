@@ -31,14 +31,14 @@ require(["dojo/request",
 		});
 
 
-console.log('Obtiene la lista de tareas');
+
 		var STasks = new ScheduledTasks({user: process.env.PG_USER, pwd: process.env.PG_PWD, host: process.env.PG_HOST, db: process.env.PG_DB});
 
 		STasks.get_config_from_db().then(function(){
 
 			setInterval(function(){
 				STasks.getTaskList().then(function(result){
-
+					console.log('Obtiene la lista de tareas');
 					array.forEach(result.rows, function(task){
 						console.log(task);
 
@@ -51,7 +51,7 @@ console.log('Obtiene la lista de tareas');
 
 									//console.log(x);
 									STasks.endTask(task).then(function(){
-										console.log('Ha terminado la tarea');
+										console.log('* Ha terminado la tarea '+task.function_name);
 									}, function(error){
 										console.log(error);
 									});
@@ -64,7 +64,7 @@ console.log('Obtiene la lista de tareas');
 
 										//console.log(x);
 										STasks.endTask(task).then(function(){
-											console.log('Ha terminado la tarea');
+											console.log('** Ha terminado la tarea '+task.function_name);
 										}, function(error){
 											console.log(error);
 										});
