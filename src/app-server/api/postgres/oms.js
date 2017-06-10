@@ -3,8 +3,8 @@
      *
      * @module postgres.oms
      */
-     define(['dojo/_base/declare',  "dojo/node!pg", "dojo/Evented", "dojo/Deferred", "dojo/_base/array", "dojo/store/Memory", "dojox/encoding/digests/MD5"
-     	], function (declare, pg, Evented, Deferred, array, Memory, MD5) {
+     define(['dojo/_base/declare',  "dojo/node!pg", "dojo/node!pg-pool", "dojo/Evented", "dojo/Deferred", "dojo/_base/array", "dojo/store/Memory", "dojox/encoding/digests/MD5"
+     	], function (declare, pg, pgpool, Evented, Deferred, array, Memory, MD5) {
 
      		return declare('postgres.oms', Evented, {
 
@@ -18,6 +18,8 @@
      			_last_notification_area: 0,
      			configuration_server: {},
      			_schema: new Memory(),
+     			pgPool: {},
+
 
 //////////////////////////////////
 // The constructor
@@ -28,67 +30,26 @@ constructor: function(args) {
 	t._last_ts = {};
 	t._last_idnotify_notification_area = 0;
 	t.tv_structure= {};
+	//return "pg://"+this.user+":"+this.pwd+"@"+this.host+":"+this.port+"/"+this.db;
+	t.pgPool = new pgpool({
+		host: this.host,
+		database: this.db,
+		user: this.user,
+		password: this.pwd,
+  port: this.port//,
+  //ssl: true,
+  //max: 20, //set pool max size to 20
+  //min: 4, //set min pool size to 4
+  //idleTimeoutMillis: 1000 //close idle clients after 1 second
+});
+
+	t.pgPool.query('SELECT version();', [], function (err, res) {
+  console.log(res.rows[0]) // brianc
+})
 
 	t.get_schema().then(function(){
 
 	});
-
-/*
-	setTimeout(function(){
-
-		t.get_dgrid_fullstructure();
-		//t.get_config_from_db();
-
-		setInterval(function(){
-
-			var q = "SELECT table_name, datetime_modif as ts FROM view_last_modif_tables;";
-			pg.connect(t.connString(), (err, client, done) => {
-				if(err) {
-					done();
-					console.log(err);
-					return false;
-				}
-
-				var query = client.query(q);
-
-				query.on('row', (row) => {
-
-					var newts = Date.parse(row.ts);
-
-					if(typeof t._last_ts[row.table_name] === 'undefined'){
-
-						t._last_ts[row.table_name] = newts;
-						t.get_tv_structure(row.table_name);
-						t.send_notification_area(row.table_name);
-						t.emit("tschange", {table_name: row.table_name,  ts: newts});
-
-					}else{
-
-						if(t._last_ts[row.table_name]  !=  newts){
-							t._last_ts[row.table_name] = newts;
-							t.get_tv_structure(row.table_name);
-							t.send_notification_area(row.table_name);
-							t.emit("tschange", {table_name: row.table_name,  ts: newts});
-						}
-
-					}
-
-
-				});
-
-				query.on('end', (result1) => {
-					done();
-				});
-
-
-			});
-
-
-		}, 1000);
-
-
-	}, 2000);
-	*/
 
 },
 startup: function(){
@@ -203,7 +164,17 @@ query: function(_query, _param){
 	var deferred = new Deferred();
 	var t = this;	
 
-	pg.connect(t.connString(), (err, client, done) => {
+	t.pgPool.query(_query, _param, function (err, res) {
+  if(err){
+  	//console.log(err);
+  	deferred.reject(err);
+  }else{
+  	deferred.resolve(res);
+  }
+
+})
+
+	/*pg.connect(t.connString(), (err, client, done) => {
 
 		if(err) {
 			
@@ -227,7 +198,7 @@ query: function(_query, _param){
 		}
 
 
-	});
+	});*/
 
 	return deferred.promise;
 },

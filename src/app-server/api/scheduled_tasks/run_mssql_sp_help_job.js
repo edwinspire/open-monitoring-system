@@ -18,7 +18,7 @@ run_mssql_sp_help_job: function(task){
 		console.log('TOTAL DE EQUIPOS:  '+totalDevices);
 
 		var signal = t.on(name_event, function(r){
-			devicesProcceced++;
+			
 			var a = [];
 			array.forEach(r.result, function(event, i){
 				if(r.valid){
@@ -26,17 +26,22 @@ run_mssql_sp_help_job: function(task){
 				}
 			});
 
-//console.log(a.length);
-console.log(devicesProcceced+' de '+totalDevices+' > '+a.length);
-			p.run(a).then(function(result){
-				console.log('-- '+devicesProcceced+' de '+totalDevices+' > '+a.length);
-				if(devicesProcceced == totalDevices){
-					console.log(a.length+' .... run_mssql_sp_help_job Completado ', signal, deferred);
-					signal.remove();
-					console.log('Elimina la señal');
-					deferred.resolve({});
-				}
-			});
+			if(a.length > 0){
+				p.run(a).then(function(result){
+					devicesProcceced++;
+					console.log('-- '+devicesProcceced+' de '+totalDevices+' > '+a.length);
+					if(devicesProcceced == totalDevices){
+						console.log(a.length+' .... run_mssql_sp_help_job Completado ', signal, deferred);
+						signal.remove();
+						console.log('Elimina la señal '+name_event);
+						deferred.resolve({});
+					}
+				});
+				
+			}else{
+				devicesProcceced++;
+			}
+
 		});
 
 		array.forEach(devices.rows, function(device, i){

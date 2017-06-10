@@ -18,13 +18,11 @@ run: function(promises){
 
   var t = this;
   var totalPromises = promises.length;
-  var name_event = 'PromiseAllRun'+(new Date()).getTime()+ Math.random().toString().replace('.', '_')+MD5(JSON.stringify(promises), dojox.encoding.digests.outputTypes.Hex);
+  var name_event = 'pA'+MD5(JSON.stringify(promises)+(new Date()).getTime()+ Math.random().toString(), dojox.encoding.digests.outputTypes.Hex);
   var promisesProcceced = 0;
   var Resolved = [];
   var Rejected = [];
   var deferred = new Deferred();
-
-  console.log(name_event);
 
   var signal = t.on(name_event, function(r){
 
