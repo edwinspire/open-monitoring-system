@@ -14,25 +14,19 @@ run_mssql_CURRENT_TIMESTAMP: function(task){
 
 		var totalDevices = devices.rows.length;
 
-		console.log('TOTAL DE EQUIPOS:  '+totalDevices);
-
 		var signal = t.on(name_event, function(r){
 
 			devicesProcceced ++;
-
-		//	console.log(devicesProcceced +' de ' +totalDevices, r);
 
 			if(r.valid){
 				t.send_event_pg(r.result, []).then(function(result){
 				//deferred.resolve(param.ip);
 			}, function(err){
-				console.log(err);
-				//deferred.resolve(err);    			
+//				console.log(err);
 			});
 			}
 
 			if(devicesProcceced == totalDevices){
-				console.log('run_mssql_CURRENT_TIMESTAMP Completado');
 				signal.remove();
 				deferred.resolve(true);
 			}
@@ -87,8 +81,6 @@ mssql.connect(config).then((cnx) => {
 		var ideventtype = param.parameters.ideventtype_under_threshold;
 		if(result.length > 0){
 
-//console.log(Math.abs(dojoDate.difference(new Date(), result[0].dt, 'seconds')), param.parameters.max_threshold_seconds);
-
 			if(Math.abs(dojoDate.difference(new Date(), result[0].dt, 'seconds')) > param.parameters.max_threshold_seconds){
 				ideventtype = param.parameters.ideventtype_on_threshold;
 			}
@@ -105,7 +97,6 @@ mssql.connect(config).then((cnx) => {
 })
 
 mssql.on('error', err => {
-	console.log(err);
 	deferred.reject(err);  
 });
 

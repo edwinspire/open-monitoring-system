@@ -31,8 +31,7 @@ run_ping: function(task){
 			t.ping(param).then(function(pingresp){
 				t.emit(name_event, {});
 			}, function(error){
-				console.log(error);
-				t.emit(name_event, {});
+				t.emit(name_event, error);
 			});
 		});
 

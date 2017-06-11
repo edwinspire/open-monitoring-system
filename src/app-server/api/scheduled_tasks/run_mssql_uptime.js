@@ -14,25 +14,18 @@ run_mssql_uptime: function(task){
 
 		var totalDevices = devices.rows.length;
 
-		console.log('TOTAL DE EQUIPOS:  '+totalDevices);
-
 		var signal = t.on(name_event, function(r){
 
 			devicesProcceced ++;
 
-			//console.log(devicesProcceced +' de ' +totalDevices, r);
-
 			if(r.valid){
 				t.send_event_pg(r.result, []).then(function(result){
-				//deferred.resolve(param.ip);
-			}, function(err){
-				console.log(err);
-				//deferred.resolve(err);    			
+				}, function(err){
+				//console.log(err);
 			});
 			}
 
 			if(devicesProcceced == totalDevices){
-				console.log('run_mssql_uptime Completado');
 				signal.remove();
 				deferred.resolve(true);
 			}
@@ -103,7 +96,7 @@ mssql.connect(config).then((cnx) => {
 })
 
 mssql.on('error', err => {
-deferred.resolve({idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: err});  
+	deferred.resolve({idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: err});  
 });
 
 return deferred.promise;

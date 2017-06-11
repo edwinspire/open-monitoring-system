@@ -9,6 +9,7 @@ require(["dojo/request",
 	"dojo/node!pg", 
 	"dojo/node!compression", 
 	"api/config", 
+	"dojo/node!log",
 	"api/scheduled_tasks/scheduled_tasks", 
 	"dojo/promise/all",
 	"dojo/date/stamp",
@@ -21,16 +22,14 @@ require(["dojo/request",
 	"api/scheduled_tasks/run_mssql_CURRENT_TIMESTAMP",
 	"api/scheduled_tasks/run_mssql_fixeddrives",
 	"api/scheduled_tasks/run_mssql_sp_help_job"
-	], function(request, on, locale, array, crypto, path, fs, pathToRegexp, pG, compression, Config, ScheduledTasks, all, stamp, Dojodate){
+	], function(request, on, locale, array, crypto, path, fs, pathToRegexp, pG, compression, Config, LogSystem, ScheduledTasks, all, stamp, Dojodate){
 
-		console.log("Inicia scheduled_tasks");
+		var Log = new LogSystem('debug', fs.createWriteStream('scheduled_tasks_'+(new Date()).toLocaleDateString()+'.log'));
+		Log.debug("Inicia scheduled_tasks");
 
 		process.on('uncaughtException', function (error) {
-			console.log(error.stack);
-			console.dir(error);
+			Log.error(error.stack);
 		});
-
-
 
 		var STasks = new ScheduledTasks({user: process.env.PG_USER, pwd: process.env.PG_PWD, host: process.env.PG_HOST, db: process.env.PG_DB});
 
@@ -38,9 +37,9 @@ require(["dojo/request",
 
 			setInterval(function(){
 				STasks.getTaskList().then(function(result){
-					console.log('Obtiene la lista de tareas');
+					Log.debug('Obtiene la lista de tareas');
 					array.forEach(result.rows, function(task){
-						console.log(task);
+						Log.debug(task);
 
 						if(STasks[task.function_name]){
 
@@ -49,11 +48,11 @@ require(["dojo/request",
 
 								STasks.startTask(task).then(function(x){
 
-									//console.log(x);
+									//Log.debug(x);
 									STasks.endTask(task).then(function(){
-										console.log('* Ha terminado la tarea '+task.function_name);
+										Log.debug('* Ha terminado la tarea '+task.function_name);
 									}, function(error){
-										console.log(error);
+										Log.error(error);
 									});
 
 								});							
@@ -62,24 +61,23 @@ require(["dojo/request",
 
 								STasks.startTask(task).then(function(x){
 
-										//console.log(x);
-										STasks.endTask(task).then(function(){
-											console.log('** Ha terminado la tarea '+task.function_name);
+									STasks.endTask(task).then(function(){
+											Log.debug('** Ha terminado la tarea '+task.function_name);
 										}, function(error){
-											console.log(error);
+											Log.error(error);
 										});
 
 									});
 
 
 							}else{
-								console.log("No hizo nada");
+								Log.notice("No hizo nada");
 							}
 
 						}else{
 
 							STasks.taskNoFound(task.idtask).then(function(){
-								console.dir('No existe la funcion '+task.function_name); 
+								Log.notice('No existe la funcion '+task.function_name); 
 							});
 
 						}

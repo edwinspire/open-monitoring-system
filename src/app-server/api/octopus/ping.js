@@ -16,7 +16,6 @@ _ping: function(host){
 			deferred.reject(error);
 		}
 
-
 	}else{
 		deferred.reject('Invalid Host '+host);
 	}	
@@ -31,14 +30,12 @@ ping: function(task){
 	t._ping(host).then(function(isAlive){
 
 		var event = {idequipment: task.idequipment, ideventtype: 134, description: task.ip, details: {roundtriptime: parseInt(isAlive.avg)}};
-		//var table = 'events_networkdevice_ping';
 
 		if(task.parameters && task.parameters.max && event.roundtriptime >= task.parameters.max){
 			event.ideventtype = 81;
 		}
 
 		if(!isAlive.alive){
-			//table = 'events';
 			event.ideventtype = 135;
 		}
 

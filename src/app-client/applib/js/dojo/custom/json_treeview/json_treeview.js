@@ -12,39 +12,55 @@ define(['dojo/_base/declare',
             _store: new Memory(),
             postCreate: function () {
                var t = this;
-          
-},
 
-_setValueAttr: function (_v, _t) {
+           },
+
+           _setValueAttr: function (_v, _t) {
 //  console.log(_v);
 
-     var t = this;
+var t = this;
 var datajson = [];
-var i = 0;
 
- datajson.push({ id: 0, name:'Event'});
+datajson.push({ id: "0", name:'Event'});
 
-/*
-var out = Object.keys(_v).map(function(data){
 
-datajson.push({ id: i, name: data, parent: i-1});    
-i++;
-datajson.push({ id: i, name: _v[data], parent: i-1});
-i++;    
-        return [data,_v[data]];
-    });
-   // console.log(out);
-*/
+   function LoopObject (obj, parent){
+    var objects = [];
+    var i = 0;
 
-var ok = Object.keys({uno: 1, dos: 2, tres: [3, 4, 5, {cuatro: 4, cinco: 5}]});
+    for(var property in obj) { 
+        var id = parent+'_'+i;
+        var v = obj[property]; 
 
-while(i < 5){
+        if(Array.isArray(obj)){
 
-var key = ok[i];
-value = _v[key];
-console.log(i, key, value);
-i++;
+            if(typeof v !== 'object'){
+                objects.push({ id: id+'_', name: v, parent: parent});                
+            }else{
+                objects = objects.concat(LoopObject (v, parent));
+            }
+
+        }else{
+            objects.push({ id: id, name: property, parent: parent});
+
+            if(typeof v == 'object'){
+              objects = objects.concat(LoopObject (v, id));
+          }else if(typeof v == 'string' || typeof v == 'number' || typeof v == 'boolean'){
+            objects.push({ id: id+'_', name: v, parent: id, type: 'value'});
+
+        }
+
+    }
+
+    i++;
 }
+return objects;
+}
+
+
+datajson = datajson.concat(LoopObject (_v, "0"));
+console.log(datajson);
+
 
 /*
 for(var index in _v) { 
@@ -56,11 +72,11 @@ for(var index in _v) {
 }
 */
 
-console.log(datajson);
+//console.log(datajson);
 
-    myStore = new Memory({
-        data: [],
-        getChildren: function(object){
+myStore = new Memory({
+    data: [],
+    getChildren: function(object){
             // Supply a getChildren() method to store for the data model where
             // children objects point to their parent (aka relational model)
             return this.query({parent: object.id});
@@ -72,7 +88,7 @@ myStore.setData(datajson);
     // Create the model
     var myModel = new ObjectStoreModel({
         store: myStore,
-        query: {id: 0}
+        query: {id: "0"}
     });
 
     // Create the Tree.
@@ -80,18 +96,18 @@ myStore.setData(datajson);
         model: myModel,
         autoExpand: false,
         openOnClick: true,
-         showRoot: true,
+        showRoot: true,
         getIconClass: function(item, opened) {
           //  console.log(item);
-            if (item.type == "country") {
-                return "dijitLeaf";
-            } else if (item.launched) {
-                return (opened ? "dijitFolderOpened" : "dijitFolderClosed");
-            } else {
-                return (opened ? "dijitFolderOpened" : "dijitFolderClosed");
-            }
+          if (item.type == "value") {
+            return "dijitLeaf";
+        } else if (item.launched) {
+            return (opened ? "dijitFolderOpened" : "dijitFolderClosed");
+        } else {
+            return (opened ? "dijitFolderOpened" : "dijitFolderClosed");
         }
-    });
+    }
+});
     tree.collapseAll();
     tree.placeAt(t.domNode);
     tree.startup();
@@ -104,7 +120,7 @@ _getValueAttr: function () {
   return '';
 } ,
 reset: function () {
-    
+
 } ,
 isValid: function(){
 	return true;

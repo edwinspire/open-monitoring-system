@@ -15,10 +15,8 @@ run_mssql_sp_help_job: function(task){
 
 		var totalDevices = devices.rows.length;
 
-		console.log('TOTAL DE EQUIPOS:  '+totalDevices);
-
 		var signal = t.on(name_event, function(r){
-			
+
 			var a = [];
 			array.forEach(r.result, function(event, i){
 				if(r.valid){
@@ -29,15 +27,12 @@ run_mssql_sp_help_job: function(task){
 			if(a.length > 0){
 				p.run(a).then(function(result){
 					devicesProcceced++;
-					console.log('-- '+devicesProcceced+' de '+totalDevices+' > '+a.length);
 					if(devicesProcceced == totalDevices){
-						console.log(a.length+' .... run_mssql_sp_help_job Completado ', signal, deferred);
 						signal.remove();
-						console.log('Elimina la señal '+name_event);
 						deferred.resolve({});
 					}
 				});
-				
+
 			}else{
 				devicesProcceced++;
 			}
@@ -228,12 +223,10 @@ deferred.resolve(ResultEvents);
 }
 }  	
 }).catch(err => {
-	//console.log(err);
 	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: err}]);  
 })
 
 mssql.on('error', err => {
-	//console.log(err);
 	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: err}]);  
 });
 

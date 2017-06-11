@@ -1,6 +1,6 @@
 // Dojo 1.7+ (AMD)
 "dojo/promise/all"
-require(["dojo/_base/lang", "api/scheduled_tasks/scheduled_tasks",   "dojo/Deferred", "dojo/_base/array", "dojo/promise/all", "dojo/on",  "dojo/node!mssql", "dojo/date"], function(lang, Octopus, Deferred, array, all, on, mssql, dojoDate){
+require(["dojo/_base/lang", "api/scheduled_tasks/scheduled_tasks", "api/PromiseAll",  "dojo/Deferred", "dojo/_base/array", "dojo/promise/all", "dojo/on",  "dojo/node!mssql", "dojo/date"], function(lang, Octopus, PromiseAll, Deferred, array, all, on, mssql, dojoDate){
 	lang.extend(Octopus, {
 /////////////////////////////////////////
 run_mssql_fixeddrives: function(task){
@@ -8,22 +8,39 @@ run_mssql_fixeddrives: function(task){
 	var deferred = new Deferred();
 	var t = this;
 	var name_event = 'run_mssql_fixeddrives'+(new Date()).getTime()+ Math.random().toString().replace('.', '_');
+		var p = PromiseAll();
 	var devicesProcceced = 0;
 
 	t.getNetworkDevices().then(function(devices){
 
 		var totalDevices = devices.rows.length;
 
-		console.log('TOTAL DE EQUIPOS:  '+totalDevices);
-
 		var signal = t.on(name_event, function(r){
 
-			devicesProcceced ++;
+			var a = [];
+			array.forEach(r.result, function(event, i){
+				if(r.valid){
+					a.push(t.send_event_pg(event, []));
+				}
+			});
 
+			if(a.length > 0){
+				p.run(a).then(function(result){
+					devicesProcceced++;
+					if(devicesProcceced == totalDevices){
+						signal.remove();
+						deferred.resolve({});
+					}
+				});
+
+			}else{
+				devicesProcceced++;
+			}
+/*
+			devicesProcceced ++;
 			array.forEach(r.result, function(event, i){
 
 				if(r.valid){
-					console.log(event);
 					t.send_event_pg(event, []).then(function(result){
 				//deferred.resolve(param.ip);
 			}, function(err){
@@ -36,10 +53,11 @@ run_mssql_fixeddrives: function(task){
 
 
 			if(devicesProcceced == totalDevices){
-				console.log('run_mssql_fixeddrives Completado');
+//				console.log('run_mssql_fixeddrives Completado');
 				signal.remove();
 				deferred.resolve(true);
 			}
+			*/
 		});
 
 		array.forEach(devices.rows, function(device, i){
@@ -53,7 +71,7 @@ run_mssql_fixeddrives: function(task){
 					t.emit(name_event, {result: error, valid: false});
 				});
 			}else{
-				t.emit(name_event, "IP empty");
+				t.emit(name_event, {result: 'IP Invalid', valid: false});
 			}
 
 		});
@@ -96,8 +114,6 @@ mssql.connect(config).then((cnx) => {
 
 			array.forEach(result, function(item, i){
 
-
-
 				if(item.drive && param.parameters[item.drive]){
 
 					var driveMin = param.parameters[item.drive];
@@ -112,14 +128,12 @@ mssql.connect(config).then((cnx) => {
 					ResultEvents.push(r);
 				}
 
-
-
 			});
 
 			deferred.resolve(ResultEvents); 
 
 		}else{
-			deferred.reject(0);
+			deferred.reject([]);
 		}
 	}  	
 }).catch(err => {
@@ -127,7 +141,6 @@ mssql.connect(config).then((cnx) => {
 })
 
 mssql.on('error', err => {
-	//console.log(err);
 	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: err}]);  
 });
 
