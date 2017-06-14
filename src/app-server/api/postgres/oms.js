@@ -87,7 +87,6 @@ get_change_in_tables: function(){
 			if(typeof t._last_ts[row.tschema_tname] === 'undefined'){
 
 				t._last_ts[row.tschema_tname] = newts;
-				//t.get_tv_structure(row.table_name);
 				t.send_notification_area(row.tschema_tname);
 				t.emit("tschange", {table_name: row.tschema_tname,  ts: newts});
 
@@ -95,14 +94,12 @@ get_change_in_tables: function(){
 
 				if(t._last_ts[row.tschema_tname]  !=  newts){
 					t._last_ts[row.tschema_tname] = newts;
-				//	t.get_tv_structure(row.table_name);
-				//console.log('Ha cambiado la tabla ', row.table_name);
-				t.send_notification_area(row.tschema_tname);
-				t.emit("tschange", {table_name: row.tschema_tname,  ts: newts});
-			}
+					t.send_notification_area(row.tschema_tname);
+					t.emit("tschange", {table_name: row.tschema_tname,  ts: newts});
+				}
 
-		}
-	});
+			}
+		});
 		deferred.resolve(true);
 
 	});
@@ -165,40 +162,13 @@ query: function(_query, _param){
 	var t = this;	
 
 	t.pgPool.query(_query, _param, function (err, res) {
-  if(err){
-  	//console.log(err);
-  	deferred.reject(err);
-  }else{
-  	deferred.resolve(res);
-  }
-
-})
-
-	/*pg.connect(t.connString(), (err, client, done) => {
-
-		if(err) {
-			
-			console.log(err);
+		if(err){
 			deferred.reject(err);
-			done(err);
 		}else{
-			var q = client.query(_query, _param, (error)=>{
-				
-				if(error){
-					t.emit("tschange", error);
-					deferred.reject(error);
-				}
-				done(error);
-			});
-
-			q.on('end', (result) => {
-				deferred.resolve(result);
-				done();
-			});
+			deferred.resolve(res);
 		}
 
-
-	});*/
+	})
 
 	return deferred.promise;
 },
@@ -228,12 +198,20 @@ send_notification_area: function(_table_notifications){
 	var t = this;
 
 	if(_table_notifications === "gui.notification_area"){
+		t.query("SELECT * FROM gui.notification_area WHERE idnotify > $1::integer ORDER BY idnotify;", [t._last_idnotify_notification_area]).then(function(result){
+			array.forEach(result.rows, function(n, i){
+				t._last_idnotify_notification_area = n.idnotify;    
+				t.emit("notifying_the_user", n);
+			});
+		}, function(error){
+			t.emit("pgError", error);
+		});
 
+/*
 		pg.connect(t.connString(), (err, client, done) => {
 
 			if(err) {
 				done();
-				console.log(err);
 				return false;
 			}
 
@@ -252,7 +230,8 @@ send_notification_area: function(_table_notifications){
   
 
 });
-	}
+*/
+}
 
 },
 response_insert: function(res, _query, _param){
@@ -260,21 +239,21 @@ response_insert: function(res, _query, _param){
 	pg.connect(t.connString(), (err, client, done) => {
 		if(err) {
 			done();
-			console.log(err);
-			res.status(500).json({success: false, data: err});
+		//	console.log(err);
+		res.status(500).json({success: false, data: err});
+	}
+
+	var query = client.query(_query, _param, (error)=>{
+		if(error){
+			res.status(500).json({success: false, data: error, query: _query});
 		}
-
-		var query = client.query(_query, _param, (error)=>{
-			if(error){
-				res.status(500).json({success: false, data: error, query: _query});
-			}
-		});
-		query.on('end', (result) => {
-			res.json({success: true, data: result});
-			done();
-		});
-
 	});
+	query.on('end', (result) => {
+		res.json({success: true, data: result});
+		done();
+	});
+
+});
 
 },
 response_query: function(res, _query, _param){
@@ -282,22 +261,22 @@ response_query: function(res, _query, _param){
 	pg.connect(t.connString(), (err, client, done) => {
 		if(err) {
 			done();
-			console.log(err);
-			res.status(500).json({success: false, data: err});
-		}
+	//		console.log(err);
+	res.status(500).json({success: false, data: err});
+}
 
-		var query = client.query(_query, _param, (error)=>{
-			if(error){
-				res.status(500).json({success: false, data: error});
-			}
-		});
+var query = client.query(_query, _param, (error)=>{
+	if(error){
+		res.status(500).json({success: false, data: error});
+	}
+});
 
-		query.on('end', (result) => {
-			res.json(result.rows);
-			done();
-		});
+query.on('end', (result) => {
+	res.json(result.rows);
+	done();
+});
 
-	});
+});
 
 },
 response_update: function(res, _query, _param){
@@ -305,22 +284,22 @@ response_update: function(res, _query, _param){
 	pg.connect(t.connString(), (err, client, done) => {
 		if(err) {
 			done();
-			console.log(err);
-			res.status(500).json({success: false, data: err, query: _query});
+		//	console.log(err);
+		res.status(500).json({success: false, data: err, query: _query});
+	}
+
+	var query = client.query(_query, _param, (error)=>{
+		if(error){
+			res.status(500).json({success: false, data: error, query: _query});
 		}
-
-		var query = client.query(_query, _param, (error)=>{
-			if(error){
-				res.status(500).json({success: false, data: error, query: _query});
-			}
-		});
-
-		query.on('end', (result) => {
-			res.json({success: true, rowCount: result.rowCount});
-			done();
-		});
-
 	});
+
+	query.on('end', (result) => {
+		res.json({success: true, rowCount: result.rowCount});
+		done();
+	});
+
+});
 },
 textToMD5: function(text){
 	return MD5(text, dojox.encoding.digests.outputTypes.Hex);

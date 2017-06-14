@@ -83,13 +83,12 @@ mssql.connect(config).then((cnx) => {
 }).then((result, error)  => {
 
 	if(error){
-		deferred.reject([error]);
+		deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_sp_help_job'}}]);  
 	}else{
 
+			var ResultEvents = [];
 
 		if(result.length > 0){
-
-			var ResultEvents = [];
 
 			array.forEach(result, function(item, i){
 
@@ -210,7 +209,7 @@ mssql.connect(config).then((cnx) => {
 					current_retry_attempt: item.current_retry_attempt,
 				};
 
-				var r2 = {idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_over_min, description: item.name, source: t.textToMD5(item.name), details: details2};
+				var r2 = {idequipment: param.idequipment, ideventtype: ideventtype, description: item.name, source: t.textToMD5(item.name), details: details2};
 
 				ResultEvents.push(r2);
 
@@ -223,11 +222,11 @@ deferred.resolve(ResultEvents);
 }
 }  	
 }).catch(err => {
-	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: err}]);  
+	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_sp_help_job'}}]);  
 })
 
 mssql.on('error', err => {
-	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: err}]);  
+	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_sp_help_job'}}]);  
 });
 
 return deferred.promise;

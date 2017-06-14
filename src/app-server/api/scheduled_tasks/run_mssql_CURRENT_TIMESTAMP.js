@@ -23,7 +23,7 @@ run_mssql_CURRENT_TIMESTAMP: function(task){
 				//deferred.resolve(param.ip);
 			}, function(err){
 //				console.log(err);
-			});
+});
 			}
 
 			if(devicesProcceced == totalDevices){
@@ -40,6 +40,7 @@ run_mssql_CURRENT_TIMESTAMP: function(task){
 				t._run_mssql_CURRENT_TIMESTAMP_check(param, i).then(function(result){
 					t.emit(name_event, {result: result, valid: true});
 				}, function(error){
+					//console.log(error);
 					t.emit(name_event, {result: error, valid: false});
 				});
 			}else{
@@ -63,11 +64,11 @@ _run_mssql_CURRENT_TIMESTAMP_check: function(param){
 		user: param.username,
 		password: param.pwd,
 		server: param.ip, 
-		database: 'msdb',
+		database: 'msdb'//,
     //requestTimeout: 3000,
-    options: {
+    //options: {
       // encrypt: true
-  }
+  //}
 }
 
 mssql.connect(config).then((cnx) => {
@@ -76,7 +77,7 @@ mssql.connect(config).then((cnx) => {
 }).then((result, error)  => {
 	
 	if(error){
-		deferred.reject(error);
+		deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: error, Task: 'run_mssql_CURRENT_TIMESTAMP'}}]);  
 	}else{
 		var ideventtype = param.parameters.ideventtype_under_threshold;
 		if(result.length > 0){
@@ -93,12 +94,14 @@ mssql.connect(config).then((cnx) => {
 		} 
 	}  	
 }).catch(err => {
-	deferred.resolve({idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: err});  
+	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_CURRENT_TIMESTAMP'}}]);  
 })
 
 mssql.on('error', err => {
-	deferred.reject(err);  
+	console.log(err);
+	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_CURRENT_TIMESTAMP'}}]);  
 });
+
 
 return deferred.promise;
 }

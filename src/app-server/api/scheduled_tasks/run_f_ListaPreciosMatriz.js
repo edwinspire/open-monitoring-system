@@ -3,11 +3,11 @@
 require(["dojo/_base/lang", "api/scheduled_tasks/scheduled_tasks", "api/PromiseAll",  "dojo/Deferred", "dojo/_base/array", "dojo/promise/all", "dojo/on",  "dojo/node!mssql", "dojo/date"], function(lang, Octopus, PromiseAll, Deferred, array, all, on, mssql, dojoDate){
 	lang.extend(Octopus, {
 /////////////////////////////////////////
-run_mssql_fixeddrives: function(task){
+run_f_ListaPreciosMatriz: function(task){
 
 	var deferred = new Deferred();
 	var t = this;
-	var name_event = 'run_mssql_fixeddrives'+(new Date()).getTime()+ Math.random().toString().replace('.', '_');
+	var name_event = 'run_f_ListaPreciosMatriz'+(new Date()).getTime()+ Math.random().toString().replace('.', '_');
 		var p = PromiseAll();
 	var devicesProcceced = 0;
 
@@ -44,7 +44,7 @@ run_mssql_fixeddrives: function(task){
 			if(device.ip && device.ip.length > 0){
 				var param = device;
 				param.parameters = task.task_parameters;
-				t._run_mssql_fixeddrives_check(param, i).then(function(result){
+				t._run_f_ListaPreciosMatriz_check(param, i).then(function(result){
 					t.emit(name_event, {result: result, valid: true});
 				}, function(error){
 					t.emit(name_event, {result: error, valid: false});
@@ -60,11 +60,11 @@ run_mssql_fixeddrives: function(task){
 
 	return deferred.promise;
 },
-_run_mssql_fixeddrives_check: function(param){
+_run_f_ListaPreciosMatriz_check: function(param){
 	
 	var deferred = new Deferred();
 	var t = this;
-	var srtquery = "EXEC master..xp_fixeddrives;";
+	var srtquery = `SELECT Compania, Sucursal, Oficina, Nombre, provincia, estado, Lista_Principal, (SELECT top(1) lista_precio from [EasyGestionEmpresarial].[dbo].[pv_lista_precio_oficina] WHERE oficina = o.oficina AND estado = 'activo') as Lista_Activa, (SELECT COUNT(*) AS Productos FROM [EasyGestionEmpresarial].[dbo].[TBL_PRECIOS_SUCURSALES] WHERE SUCURSAL = o.Lista_Principal GROUP BY SUCURSAL ) as productos FROM [EasyGestionEmpresarial].[dbo].[Oficina] o WHERE (estado = 'A')`;
 
 	var config = {
 		user: param.username,
@@ -84,13 +84,15 @@ mssql.connect(config).then((cnx) => {
 }).then((result, error)  => {
 
 	if(error){
-		deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: error, Task: 'run_mssql_fixeddrives'}}]);  
+		deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: error, Task: 'run_f_ListaPreciosMatriz'}}]);  
 	}else{
 
-			var ResultEvents = [];
-			
+	var ResultEvents = [];
+
 		if(result.length > 0){
 
+/*
+TODO Implementar
 			array.forEach(result, function(item, i){
 
 				if(item.drive && param.parameters[item.drive]){
@@ -109,6 +111,7 @@ mssql.connect(config).then((cnx) => {
 				}
 
 			});
+			*/
 
 			deferred.resolve(ResultEvents); 
 
@@ -117,12 +120,12 @@ mssql.connect(config).then((cnx) => {
 		}
 	}  	
 }).catch(err => {
-	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_fixeddrives'}}]);  
+	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_f_ListaPreciosMatriz'}}]);  
 })
 
 
 mssql.on('error', err => {
-	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_fixeddrives'}}]);  
+	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_f_ListaPreciosMatriz'}}]);  
 });
 
 return deferred.promise;

@@ -48,7 +48,6 @@ require(["dojo/request",
 
 								STasks.startTask(task).then(function(x){
 
-									//Log.debug(x);
 									STasks.endTask(task).then(function(){
 										Log.debug('* Ha terminado la tarea '+task.function_name);
 									}, function(error){
@@ -62,12 +61,12 @@ require(["dojo/request",
 								STasks.startTask(task).then(function(x){
 
 									STasks.endTask(task).then(function(){
-											Log.debug('** Ha terminado la tarea '+task.function_name);
-										}, function(error){
-											Log.error(error);
-										});
-
+										Log.debug('** Ha terminado la tarea '+task.function_name);
+									}, function(error){
+										Log.error(error);
 									});
+
+								});
 
 
 							}else{
@@ -89,10 +88,9 @@ require(["dojo/request",
 
 		});
 
-//process.exit();
 
 
-});
+	});
 
 
 

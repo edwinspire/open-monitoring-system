@@ -1,6 +1,6 @@
 // Dojo 1.7+ (AMD)
 "dojo/promise/all"
-require(["dojo/_base/lang", "api/scheduled_tasks/scheduled_tasks",   "dojo/Deferred", "dojo/_base/array", "dojo/promise/all", "dojo/on",  "dojo/node!mssql"], function(lang, Octopus, Deferred, array, all, on, mssql){
+require(["dojo/_base/lang", "api/scheduled_tasks/scheduled_tasks",   "dojo/Deferred", "dojo/_base/array", "dojo/promise/all", "dojo/on",  "dojo/node!mssql", "dojo/date"], function(lang, Octopus, Deferred, array, all, on, mssql, DojoDate){
 	lang.extend(Octopus, {
 /////////////////////////////////////////
 run_mssql_uptime: function(task){
@@ -62,20 +62,20 @@ _run_mssql_uptime_check: function(param){
 		user: param.username,
 		password: param.pwd,
 		server: param.ip, 
-		database: 'msdb',
+		database: 'msdb'//,
     //requestTimeout: 3000,
-    options: {
+    //options: {
       // encrypt: true
-  }
+  //}
 }
 
 mssql.connect(config).then((cnx) => {
 
 	return new mssql.Request(cnx).query(srtquery)
 }).then((result, error)  => {
-	//console.dir(result, error);
+
 	if(error){
-		deferred.reject(error);
+		deferred.resolve({idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: error, Task: 'run_mssql_uptime'}});  
 	}else{
 		var ideventtype = param.parameters.ideventtype_under_threshold;
 		if(result.length > 0){
@@ -84,19 +84,23 @@ mssql.connect(config).then((cnx) => {
 				ideventtype = param.parameters.ideventtype_on_threshold;
 			}
 
-			var r = {idequipment: param.idequipment, ideventtype: ideventtype, description: '', details: result[0]};
+			var dateStart = DojoDate.add(new Date(), "hour", result[0].uptime*-1);
+
+			var r = {idequipment: param.idequipment, ideventtype: ideventtype, description: +DojoDate.difference(dateStart, new Date(), "day")+' horas.', details: result[0]};
 			deferred.resolve(r);
 
 		}else{
-			deferred.reject(0);
+			deferred.reject({});
 		} 
 	}  	
 }).catch(err => {
-	deferred.resolve({idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: err});  
+	//console.log(err, param);
+	deferred.resolve({idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_uptime'}});  
 })
 
 mssql.on('error', err => {
-	deferred.resolve({idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: err});  
+	//console.log(err, param);
+	deferred.resolve({idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_uptime'}});  
 });
 
 return deferred.promise;

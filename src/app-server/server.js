@@ -6,6 +6,7 @@ require(["dojo/request",
 	"dojo/node!socket.io", 
 	"dojo/node!path", 
 	"dojo/node!fs", 
+	"dojo/node!log",
 	"dojo/node!url", 
 	"dojo/node!cors", 
 	"dojo/node!cookie-parser", 
@@ -39,44 +40,45 @@ require(["dojo/request",
 	//"api/postgres/gui_view_table_view_columns_properties",
 	"api/postgres/schema_events",
 	"api/postgres/schema_gui"
-	], function(request, on, array, crypto, http, socketIO, path, fs, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, Config, sessionusers){
+	], function(request, on, array, crypto, http, socketIO, path, fs, LogSystem, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, Config, sessionusers){
 
+		var Log = new LogSystem('debug', fs.createWriteStream('OpenMonitoringSystem'+(new Date()).toLocaleDateString()+'.log'));
+		Log.debug("Inicia Open Monitoring System WebApp");
 
 		var sessionUsers = new sessionusers();
 		var PostgreSQL = new pgOMS({user: process.env.PG_USER, pwd: process.env.PG_PWD, host: process.env.PG_HOST, db: process.env.PG_DB});
-
 
 // Obtenemos configuraciones desde el servidor
 PostgreSQL.get_config_from_db().then(function(){
 
 	PostgreSQL._schema_gui_properties_fromdb().then(function(r){
-			//console.log(r);
+			//Log.debug(r);
 		});
 
 	setInterval(function(){
 
 		PostgreSQL.get_change_in_tables().then(function(){
-	//console.log('Se busca cambios en las tablas');
+	//Log.debug('Se busca cambios en las tablas');
 });
 
 	}, 3*1000);
 
 
 	setInterval(function(){
-		console.log('Tareas periodicas');
+		Log.debug('Tareas periodicas');
 		PostgreSQL.query("SELECT * FROM events.fun_set_expired_events();", []).then(function(response){
-			//console.log(response);
+			//Log.debug(response);
 		});
 		PostgreSQL.query("SELECT * FROM gui.fun_remove_notifications_old();", []).then(function(response){
-			//console.log(response);
+			//Log.debug(response);
 		});
 		PostgreSQL.query("SELECT * FROM fun_last_modified_table_remove_olds();", []).then(function(response){
-			//console.log(response);
+			//Log.debug(response);
 		});
 
 // Esto debe dispararse solo al inicio de la aplicacion y cuando haya cambios en las tablas involucradas
 PostgreSQL._schema_gui_properties_fromdb().then(function(r){
-	console.log(r);
+	Log.debug(r);
 });
 }, 60*1000);
 
@@ -96,7 +98,7 @@ PostgreSQL._schema_gui_properties_fromdb().then(function(r){
 
 
 	var cnxSMTP = {host: process.env.SMPT_HOST, port: process.env.SMPT_PORT, ignoreTLS: process.env.SMPT_IGNORETLS, secure: process.env.SMPT_SECURE, auth: {user: process.env.SMPT_AUTH_USER, pass: process.env.SMPT_AUTH_PWD}};
-	console.log(cnxSMTP);
+	Log.debug(cnxSMTP);
 // create reusable transporter object using the default SMTP transport 
 var transporter = nodeMailer.createTransport(cnxSMTP);
 
@@ -104,9 +106,9 @@ PostgreSQL.configuration_server.query({config_name: "mailOptions"}).forEach(func
 
 	transporter.sendMail(config.configuration, function(error, info){
 		if(error){
-			return console.log(error);
+			return Log.debug(error);
 		}
-		console.log('Message email sent: ' + info.response);
+		Log.debug('Message email sent: ' + info.response);
 	});
 });
 
@@ -460,7 +462,7 @@ app.post("/db/*", cors(), function(req, res){
 
 			var obj = 'schema_'+params.schema+'_'+params.objectdb;
 			
-			console.log(obj);
+			Log.debug(obj);
 
 			if(PostgreSQL[obj]){
 				PostgreSQL[obj](req, res, params);
@@ -536,7 +538,7 @@ app.use(function(req, res, next) {
 //** Arranca el servidor **//
 
 app.use(function(err, req, res, next) {
-	console.error(err.stack);
+	Log.error(err.stack);
 	res.status(500).send('Something broke!');
 }); 
 
@@ -549,11 +551,11 @@ var server = http.createServer(app)
 
 var pgEventTs = PostgreSQL.on('tschange', function(r){
 	
-	console.log(r);
+	Log.debug(r);
 
 	if(r.table_name == 'gui.column_properties' || r.table_name == 'gui.tables_view_properties'){
 		PostgreSQL._schema_gui_properties_fromdb().then(function(rx){
-			console.log('GUI ha cambiado');
+			Log.debug('GUI ha cambiado');
 		});	
 	}
 
@@ -564,9 +566,13 @@ var pgEventNotif = PostgreSQL.on('notifying_the_user', function(r){
 	sio.emit('notifying_the_user', JSON.stringify(r));
 });
 
+var pgEventError = PostgreSQL.on('pgError', function(error){
+	Log.debug(error);
+});
+
 
 sessionUsers.on('newsession', function(e){
-	console.log(e);
+	Log.debug(e);
 	sio.emit('command', {command: 'heartbeat'});    
 });
 
@@ -578,7 +584,7 @@ sio.on('connection', function(client){
 
     // Success!  Now listen to messages to be received
     client.on('heartbeat',function(event){ 
-       // console.log('Received message from client!', event.sessionidclient, sessionUsers.session);
+       // Log.debug('Received message from client!', event.sessionidclient, sessionUsers.session);
 //sid = event.sessionidclient;
 var datauser = sessionUsers.datauser(event.sessionidclient);
 
@@ -595,24 +601,24 @@ if(datauser){
 });
 
     client.on('disconnect',function(){
-    	console.log('Server has disconnected');
+    	Log.debug('Server has disconnected');
 
     });
 
     client.on('reconnect', function() {
-    	console.log('reconnect fired!');
+    	Log.debug('reconnect fired!');
     });
 
 });
 
 
 process.on('uncaughtException', function(error){
-	console.log(error);
+	Log.debug(error);
 });
 
 
 server.listen(process.env.PORT, function(){
-	console.log("Listening on " + process.env.PORT);
+	Log.debug("Listening on " + process.env.PORT);
 });
 
 
