@@ -8,7 +8,7 @@ run_mssql_fixeddrives: function(task){
 	var deferred = new Deferred();
 	var t = this;
 	var name_event = 'run_mssql_fixeddrives'+(new Date()).getTime()+ Math.random().toString().replace('.', '_');
-		var p = PromiseAll();
+	var p = PromiseAll();
 	var devicesProcceced = 0;
 
 	t.getNetworkDevices().then(function(devices){
@@ -70,7 +70,7 @@ _run_mssql_fixeddrives_check: function(param){
 		user: param.username,
 		password: param.pwd,
 		server: param.ip, 
-		database: 'msdb',
+		database: 'msdb'
     //requestTimeout: 30000,
     //connectionTimeout: 30000//,
     //options: {
@@ -78,8 +78,7 @@ _run_mssql_fixeddrives_check: function(param){
   //}
 }
 
-mssql.connect(config).then((cnx) => {
-
+mssql.connect(config).then((cnx) => {	
 	return new mssql.Request(cnx).query(srtquery)
 }).then((result, error)  => {
 
@@ -87,8 +86,8 @@ mssql.connect(config).then((cnx) => {
 		deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: error, Task: 'run_mssql_fixeddrives'}}]);  
 	}else{
 
-			var ResultEvents = [];
-			
+		var ResultEvents = [];
+
 		if(result.length > 0){
 
 			array.forEach(result, function(item, i){
@@ -117,11 +116,12 @@ mssql.connect(config).then((cnx) => {
 		}
 	}  	
 }).catch(err => {
+	//console.trace(err);
 	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_fixeddrives'}}]);  
 })
 
-
 mssql.on('error', err => {
+	//console.trace(err);
 	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_fixeddrives'}}]);  
 });
 
