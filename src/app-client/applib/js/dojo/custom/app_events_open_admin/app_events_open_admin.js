@@ -17,10 +17,7 @@ define(['dojo/_base/declare',
         templateString: templateString,
         postCreate: function () {
 	var t = this;
-	
-
-	
-     
+	     
         },
          resize: function() {
        	//	this.TAB.resize();

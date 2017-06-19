@@ -131,6 +131,7 @@ mssql.connect(config).then((cnx) => {
 				}			
 
 				var details = {
+					ip: param.ip,
 					originating_server: item.originating_server,
 					name: item.name,
 					enabled: item.enabled,
@@ -192,6 +193,7 @@ mssql.connect(config).then((cnx) => {
 				}	
 
 				var details2 = {
+					ip: param.ip,
 					originating_server: item.originating_server,
 					name: item.name,
 					enabled: item.enabled,

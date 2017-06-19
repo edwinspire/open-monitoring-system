@@ -85,8 +85,9 @@ mssql.connect(config).then((cnx) => {
 			if(Math.abs(dojoDate.difference(new Date(), result[0].dt, 'seconds')) > param.parameters.max_threshold_seconds){
 				ideventtype = param.parameters.ideventtype_on_threshold;
 			}
-
-			var r = {idequipment: param.idequipment, ideventtype: ideventtype, description: '', details: result[0]};
+			var details = result[0];
+			details['ip'] = param.ip;
+			var r = {idequipment: param.idequipment, ideventtype: ideventtype, description: '', details: details};
 			deferred.resolve(r);
 
 		}else{

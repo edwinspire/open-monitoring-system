@@ -104,6 +104,7 @@ mssql.connect(config).then((cnx) => {
 					}
 					r.details = {};
 					r.details[item.drive] = Megas;
+					r.details['ip'] = param.ip;
 					ResultEvents.push(r);
 				}
 

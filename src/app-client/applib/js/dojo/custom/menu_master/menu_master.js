@@ -55,16 +55,12 @@ define(['dojo/_base/declare',
 
           if(response.length > 0){
 
-
-
            var myStore = new Memory({
             data: response,
             getChildren: function(object){
-            // Supply a getChildren() method to store for the data model where
-            // children objects point to their parent (aka relational model)
-            return this.query({parent: object.id});
-          }
-        });
+              return this.query({parent: object.id});
+            }
+          });
 
            var myModel = new ObjectStoreModel({
             store: myStore,

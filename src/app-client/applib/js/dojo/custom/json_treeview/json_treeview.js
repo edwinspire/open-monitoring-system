@@ -59,8 +59,6 @@ return objects;
 
 
 datajson = datajson.concat(LoopObject (_v, "0"));
-console.log(datajson);
-
 
 /*
 for(var index in _v) { 

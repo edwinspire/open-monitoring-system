@@ -29,7 +29,7 @@ ping: function(task){
 
 	t._ping(host).then(function(isAlive){
 
-		var event = {idequipment: task.idequipment, ideventtype: 134, description: task.ip, details: {roundtriptime: parseInt(isAlive.avg)}};
+		var event = {idequipment: task.idequipment, ideventtype: 134, description: task.ip, details: {ip: task.ip, roundtriptime: parseInt(isAlive.avg)}};
 
 		if(task.parameters && task.parameters.max && event.roundtriptime >= task.parameters.max){
 			event.ideventtype = 81;

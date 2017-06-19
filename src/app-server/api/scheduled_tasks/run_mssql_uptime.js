@@ -85,8 +85,10 @@ mssql.connect(config).then((cnx) => {
 			}
 
 			var dateStart = DojoDate.add(new Date(), "hour", result[0].uptime*-1);
+			var details = result[0];
+			details['ip'] = param.ip;
 
-			var r = {idequipment: param.idequipment, ideventtype: ideventtype, description: +DojoDate.difference(dateStart, new Date(), "day")+' horas.', details: result[0]};
+			var r = {idequipment: param.idequipment, ideventtype: ideventtype, description: +DojoDate.difference(dateStart, new Date(), "day")+' horas.', details: details};
 			deferred.resolve(r);
 
 		}else{

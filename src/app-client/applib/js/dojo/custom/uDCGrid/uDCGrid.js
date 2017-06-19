@@ -10,6 +10,7 @@
   "dojo/window",
   "dojo/dom-class",
   'dojo/has',
+  "dojo/date/locale",
   'dgrid/Grid',
   'dgrid/Keyboard',
   'dstore/Memory',
@@ -45,7 +46,7 @@
   "Widget/json_treeview/json_treeview",
   "dojo/parser",
   "dojo/has!touch?dojo/touch:dojo/mouse"
-  ], function(declare, on, win, domClass, has, Grid, Keyboard, dMemory, Memory, Trackable, Selection, Selector, Pagination, DijitRegistry, Editor, ColumnReorder, ColumnResizer, ColumnHider, request, array, topic, Deferred, Filter, TextBox, CheckBox,  HorizontalSlider, VerticalSlider, NumberSpinner, TimeSpinner, CurrencyTextBox, DateTextBox, NumberTextBox, SimpleTextarea, Textarea, TimeTextBox, FilteringSelect, FilteringSelectGlobalStore, json_treeview) {
+  ], function(declare, on, win, domClass, has, locale, Grid, Keyboard, dMemory, Memory, Trackable, Selection, Selector, Pagination, DijitRegistry, Editor, ColumnReorder, ColumnResizer, ColumnHider, request, array, topic, Deferred, Filter, TextBox, CheckBox,  HorizontalSlider, VerticalSlider, NumberSpinner, TimeSpinner, CurrencyTextBox, DateTextBox, NumberTextBox, SimpleTextarea, Textarea, TimeTextBox, FilteringSelect, FilteringSelectGlobalStore, json_treeview) {
     /**
      * Micro Data Connector dGrid
      *
@@ -232,11 +233,7 @@ request: function (_param, _action) {
     _data = _param;
   }
 
- //console.log(_param);
-
   if (t.target) {
-
-
 
 var idProperty = t.__idProperty || new Date().getTime();
 var idPropertyValue = _data[idProperty];

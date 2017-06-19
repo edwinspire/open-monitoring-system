@@ -42,11 +42,21 @@ _schema_gui_properties_fromdb: function(){
 	});
 	return deferred.promise;
 },
+_schema_gui_stringify_jsfunction: function(structure){
+	return JSON.stringify(structure, function(key, value){
 
+		if(typeof value === "string"){
+			return value.split("\n").join(' ');
+		}else if(value === null) {
+			return undefined;
+		}
+		return value;
+	}).replace(/(\"<jsfunction>|<\/jsfunction>\")/ig,'');
+},
 schema_gui_tvproperties: function(req, res, params){
 	var t = this;
 	if(params.action == 'r'){
-		res.status(200).json(t._schema_gui_properties_store.query({tschema_tname: req.body.tschema_tname}));
+		res.status(200).send(t._schema_gui_stringify_jsfunction(t._schema_gui_properties_store.query({tschema_tname: req.body.tschema_tname})));
 	}else{
 		res.status(500).json({success: false, data: 'No ha ingresado una accion valida', params: params});
 	}
@@ -90,14 +100,14 @@ schema_gui_view_columns_properties: function(req, res, params){
 		case 'u':
 		qp = t.Update('gui.column_properties', post, ["hash_num"]).whereAnd([params.onupdate], []).build();
 		t.response_update(res, qp.query, qp.param);
-	break;		
-	default:
-	res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
-	break;
-}
+		break;		
+		default:
+		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+		break;
+	}
 
 }             
 
 
 });
-});
+	});

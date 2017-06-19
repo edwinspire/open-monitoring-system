@@ -196,7 +196,7 @@ app.get('/map.html',  function(req, res){
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-app.post("/njs/db/table/*", cors(), function(req, res){
+app.post("/njs/db/table/*",  function(req, res){
 
 	var u = sessionUsers.isauthorized(req, res, true);
 
@@ -261,7 +261,7 @@ app.post("/njs/db/table/*", cors(), function(req, res){
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-app.post("/njs/db/events/*", cors(), function(req, res){
+app.post("/njs/db/events/*",  function(req, res){
 
 	var u = sessionUsers.isauthorized(req, res, true);
 
@@ -280,7 +280,7 @@ app.post("/njs/db/events/*", cors(), function(req, res){
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-app.post("/njs/receiver", cors(), function(req, res){
+app.post("/njs/receiver",  function(req, res){
 // TODO Implementar un mecaniso de seguridad para impedir ingreso de eventos por algun hacker
 PostgreSQL.receiver_event(req, res);
 
@@ -441,7 +441,7 @@ app.post("/njs/admin_status_login", function(req, res){
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////
-app.post("/db/*", cors(), function(req, res){
+app.post("/db/*",  function(req, res){
 
 	var u = sessionUsers.isauthorized(req, res, true);
 
@@ -461,8 +461,6 @@ app.post("/db/*", cors(), function(req, res){
 			}
 
 			var obj = 'schema_'+params.schema+'_'+params.objectdb;
-			
-			Log.debug(obj);
 
 			if(PostgreSQL[obj]){
 				PostgreSQL[obj](req, res, params);
@@ -481,7 +479,7 @@ app.post("/db/*", cors(), function(req, res){
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////
-app.post("/njs/db/gui/*", cors(), function(req, res){
+app.post("/njs/db/gui/*",  function(req, res){
 
 	var u = sessionUsers.isauthorized(req, res, true);
 
@@ -491,10 +489,12 @@ app.post("/njs/db/gui/*", cors(), function(req, res){
 
 		switch(table){
 			case 'gui.properties':
+			//console.log(req.body);
 			PostgreSQL._schema_gui_properties(req.body.__affected_table, req.body.Fields).then(function(structure){
 
 				res.send(JSON.stringify(structure, function(key, value){
 
+//console.log(key, value);
 					if(typeof value === "string"){
 						return value.split("\n").join(' ');
 					}else if(value === null) {
@@ -612,15 +612,14 @@ if(datauser){
 });
 
 
-process.on('uncaughtException', function(error){
-	Log.debug(error);
-});
-
-
 server.listen(process.env.PORT, function(){
 	Log.debug("Listening on " + process.env.PORT);
 });
 
+
+process.on('uncaughtException', function(error){
+	Log.debug(error);
+});
 
 
 });
