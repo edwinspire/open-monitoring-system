@@ -10,18 +10,18 @@ run_check_movinv: function(task){
     var name_event = 'run_check_movinv'+(new Date()).getTime()+ Math.random().toString().replace('.', '_');
     var movProcesados = 0;
     var idsMovimientos = [];
-var orden = "DESC"
-var limit = task.task_parameters.registros || 1000;
+    var orden = "DESC"
+    var limit = task.task_parameters.registros || 1000;
     
-if(task.task_parameters.orden_asc){
-orden = "ASC"
-}
+    if(task.task_parameters.orden_asc){
+        orden = "ASC"
+    }
 
-console.log(task, limit, orden);
+    console.log(task, limit, orden);
 
     t.query(`
         SELECT idreginterfacesmatriz, cpudt, cputm, menge, mblnr, matnr, werks FROM secondary.view_movinv_sap WHERE enmatriz = false AND bukrs = $1::TEXT ORDER BY datetimefile ${orden} LIMIT ${limit};
-      `, [task.task_parameters.empresa]).then(function(result){
+        `, [task.task_parameters.empresa]).then(function(result){
 
         //console.log(result.rows);
 
@@ -35,19 +35,19 @@ console.log(task, limit, orden);
             if(movimiento_revisado.Serie_Factura){
                 idsMovimientos.push(movimiento_revisado.idmov);
                // console.log(movProcesados +' de '+ totalMov+' > '+movimiento_revisado.idmov);
-            }
+           }
 
+           
+
+           if(movProcesados == totalMov){
+            signal.remove();
             
+            console.log('Hace el update a '+ idsMovimientos.length);
 
-            if(movProcesados == totalMov){
-                signal.remove();
-                
-                console.log('Hace el update a '+ idsMovimientos.length);
-
-                t.query(`
-                  UPDATE secondary.interfaces_eta_rm_matriz SET enmatriz = true, enmatriz_revisado = now() WHERE enmatriz = false AND idreginterfacesmatriz = ANY($1::BIGINT[]);
-                  `, [idsMovimientos]).then(function(result){
-                    console.log(result);
+            t.query(`
+              UPDATE secondary.interfaces_eta_rm_matriz SET enmatriz = true, enmatriz_revisado = now() WHERE enmatriz = false AND idreginterfacesmatriz = ANY($1::BIGINT[]);
+              `, [idsMovimientos]).then(function(result){
+                console.log(result);
 // Una vez terminado debemos hacer el update a la tabla con el id para ponerlo como ENMATRIZ.
 deferred.resolve(true);
 
@@ -56,9 +56,9 @@ deferred.resolve(true);
     deferred.reject(fail);
 });
 
-              }
+          }
 
-          });
+      });
 
 
         mssql.connect({
@@ -93,11 +93,11 @@ deferred.resolve(true);
 
 
 
-      return deferred.promise;
-  },
-  _run_check_movinv_connect_matriz: function(cnxmatriz, movsap, name_event){
-    var t = this;
-    var srtquery = "USE EasyGestionEmpresarial; SELECT  top(1) tbl_maestromovinvent.Serie_Factura FROM tbl_maestromovinvent  INNER JOIN tbl_movinvent  ON tbl_maestromovinvent.Serie_Factura = tbl_movinvent.Serie_Factura WHERE tbl_maestromovinvent.FechaRegistro = '"+movsap.cpudt+" "+movsap.cputm+"' AND  tbl_movinvent.cantidad = "+movsap.menge+" AND  tbl_maestromovinvent.numero_doc_inv = '"+movsap.mblnr+"' and tbl_maestromovinvent.Oficina = (SELECT top (1) o.oficina FROM dbo.Oficina o WHERE o.ofi_codigo_interno_empresa = '"+movsap.werks+"' AND o.Compania = tbl_maestromovinvent.Compania) AND  codigo_producto = '"+Number(movsap.matnr)+"';";
+        return deferred.promise;
+    },
+    _run_check_movinv_connect_matriz: function(cnxmatriz, movsap, name_event){
+        var t = this;
+        var srtquery = "USE EasyGestionEmpresarial; SELECT  top(1) tbl_maestromovinvent.Serie_Factura FROM tbl_maestromovinvent  INNER JOIN tbl_movinvent  ON tbl_maestromovinvent.Serie_Factura = tbl_movinvent.Serie_Factura WHERE tbl_maestromovinvent.FechaRegistro = '"+movsap.cpudt+" "+movsap.cputm+"' AND  tbl_movinvent.cantidad = "+movsap.menge+" AND  tbl_maestromovinvent.numero_doc_inv = '"+movsap.mblnr+"' and tbl_maestromovinvent.Oficina = (SELECT top (1) o.oficina FROM dbo.Oficina o WHERE o.ofi_codigo_interno_empresa = '"+movsap.werks+"' AND o.Compania = tbl_maestromovinvent.Compania) AND  codigo_producto = '"+Number(movsap.matnr)+"';";
    //console.log(srtquery);
 
    new mssql.Request(cnxmatriz)
