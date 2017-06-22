@@ -29,7 +29,7 @@ run_check_movinv_sin_materiales: function(task){
     new mssql.Request(cnxmatriz)
     .query(srtquery).then(function(recordset) {
 
-//    	console.log(recordset);
+    	console.log(recordset);
 var ideventtype = task.task_parameters.ideventtype_on_alarm;
 var materiales = [];
 
