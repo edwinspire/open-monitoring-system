@@ -3,19 +3,19 @@ define(['dojo/_base/declare',
     'dijit/_Templated',
     'dojo/text!Widget/json_treeview/json_treeview.html',
     "dojo/store/Memory",
-    "dijit/tree/ObjectStoreModel", "dijit/Tree"
-    ], function (declare, _Widget, _Templated, templateString, Memory, ObjectStoreModel, Tree) {
+    "dijit/tree/ObjectStoreModel", "dijit/Tree", "dojo/_base/array"
+    ], function (declare, _Widget, _Templated, templateString, Memory, ObjectStoreModel, Tree, array) {
 
         return declare([_Widget, _Templated], {
             widgetsInTemplate: true,
             templateString: templateString,
             _store: new Memory(),
             postCreate: function () {
-               var t = this;
+             var t = this;
 
-           },
+         },
 
-           _setValueAttr: function (_v, _t) {
+         _setValueAttr: function (_v, _t) {
 //  console.log(_v);
 
 var t = this;
@@ -24,23 +24,24 @@ var datajson = [];
 datajson.push({ id: "0", name:'Event'});
 
 
-   function LoopObject (obj, parent){
+function LoopObject (obj, parent){
     var objects = [];
-    var i = 0;
 
-    for(var property in obj) { 
-        var id = parent+'_'+i;
-        var v = obj[property]; 
 
-        if(Array.isArray(obj)){
+    if(Array.isArray(obj)){
 
-            if(typeof v !== 'object'){
-                objects.push({ id: id+'_', name: v, parent: parent});                
-            }else{
-                objects = objects.concat(LoopObject (v, parent));
-            }
 
-        }else{
+        array.forEach(obj, function(item, index){
+            objects = objects.concat(LoopObject (item, parent));
+        });
+
+    }else{
+
+        var i = Math.floor(Math.random() * 1000);
+        for(var property in obj) { 
+            var id = parent+'__'+i;
+            var v = obj[property]; 
+
             objects.push({ id: id, name: property, parent: parent});
 
             if(typeof v == 'object'){
@@ -50,10 +51,13 @@ datajson.push({ id: "0", name:'Event'});
 
         }
 
+
+        i++;
     }
 
-    i++;
 }
+
+
 return objects;
 }
 
