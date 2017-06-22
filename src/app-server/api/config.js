@@ -1,9 +1,9 @@
-process.env.PORT = 8081;
+process.env.PORT = 80;
 
 process.env.PG_USER = 'postgres';
 process.env.PG_PWD = 'pg4321';
-process.env.PG_HOST = 'localhost';
-process.env.PG_DB = 'openmonitoringsystem';
+process.env.PG_HOST = '192.168.251.174';
+process.env.PG_DB = 'oms';
 
 process.env.SMPT_HOST = 'mail.localhost.com';
 process.env.SMPT_PORT = 465;

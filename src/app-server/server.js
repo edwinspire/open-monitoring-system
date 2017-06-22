@@ -1,6 +1,7 @@
 require(["dojo/request",
 	"dojo/on", 
 	"dojo/_base/array", 
+	"dojo/node!os",
 	"dojo/node!crypto",
 	"dojo/node!http", 
 	"dojo/node!socket.io", 
@@ -40,7 +41,7 @@ require(["dojo/request",
 	//"api/postgres/gui_view_table_view_columns_properties",
 	"api/postgres/schema_events",
 	"api/postgres/schema_gui"
-	], function(request, on, array, crypto, http, socketIO, path, fs, LogSystem, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, Config, sessionusers){
+	], function(request, on, array, os, crypto, http, socketIO, path, fs, LogSystem, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, Config, sessionusers){
 
 		var Log = new LogSystem('debug', fs.createWriteStream('OpenMonitoringSystem'+(new Date()).toLocaleDateString()+'.log'));
 		Log.debug("Inicia Open Monitoring System WebApp");
@@ -103,6 +104,8 @@ PostgreSQL._schema_gui_properties_fromdb().then(function(r){
 var transporter = nodeMailer.createTransport(cnxSMTP);
 
 PostgreSQL.configuration_server.query({config_name: "mailOptions"}).forEach(function(config){
+
+config.configuration.html = '<b>Open Monitoring System</b><p>'+os.hostname()+'</p><p>'+os.platform()+'</p><p>Webserver Port: '+process.env.PORT+'</p><p>Total Mem: '+os.totalmem()+'</p>';
 
 	transporter.sendMail(config.configuration, function(error, info){
 		if(error){
