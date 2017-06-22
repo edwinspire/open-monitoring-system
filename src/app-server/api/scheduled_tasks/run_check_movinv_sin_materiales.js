@@ -71,7 +71,18 @@ if(recordset.length > 0){
     		</table>
     		`;
             */
-            t.send_event_pg({idaccount: task.task_parameters.idaccount, description: 'Sin materiales' ideventtype: 136, details: recordset}, []).then(function(result){
+            var materiales = [];
+
+            array.forEach(recordset, function(mov){
+
+                if(array.indexOf(materiales, mov.codigo_producto) < 0){
+                    materiales.push(mov.codigo_producto);
+                }
+
+
+            });
+
+            t.send_event_pg({idaccount: task.task_parameters.idaccount, description: 'Materiales: '+materiales.toString(), ideventtype: 136, details: recordset}, []).then(function(result){
 
     		//t.send_event_pg({idaccount: task.task_parameters.idaccount, ideventtype: 136, description: Message}, []).then(function(result){
     			deferred.resolve(true);
@@ -83,9 +94,9 @@ if(recordset.length > 0){
 
   }).catch(function(err) {
 
-   console.log(err);
-   deferred.resolve(false);
-});
+     console.log(err);
+     deferred.resolve(false);
+ });
 
 
 }).catch(function(err) {
