@@ -91,7 +91,7 @@ if(recordset.length > 0){
      }
 
 
-     t.send_event_pg({idaccount: task.task_parameters.idaccount, ideventtype: ideventtype, description: 'Materiales: '+materiales.toString()}, []).then(function(result){
+     t.send_event_pg({idaccount: task.task_parameters.idaccount, ideventtype: ideventtype, description: '<b>Listado: </b>'+materiales.toString(), details: JSON.stringify(recordset)}, []).then(function(result){
 
             //t.send_event_pg({idaccount: task.task_parameters.idaccount, ideventtype: 136, description: Message}, []).then(function(result){
                 deferred.resolve(true);
