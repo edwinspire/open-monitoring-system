@@ -90,7 +90,7 @@ if(recordset.length > 0){
          ideventtype = task.task_parameters.ideventtype_on_restore;
      }
 
-     t.send_event_pg({idaccount: task.task_parameters.idaccount, description: 'Materiales: '+materiales.toString(), ideventtype: ideventtype, details: recordset}, []).then(function(result){
+     t.send_event_pg({idaccount: task.task_parameters.idaccount, ideventtype: ideventtype}, []).then(function(result){
 
             //t.send_event_pg({idaccount: task.task_parameters.idaccount, ideventtype: 136, description: Message}, []).then(function(result){
                 deferred.resolve(true);
