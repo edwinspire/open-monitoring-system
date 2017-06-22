@@ -418,7 +418,7 @@ console.log(response);
       var c = column;
 
       if(c.editOn && c.editOn == "dblclick" && has("touch")){
-        alert('Es touch');
+      //  alert('Es touch');
         c.editOn = "click";
       }
 

@@ -31,8 +31,9 @@ run_check_movinv_sin_materiales: function(task){
 
 //    	console.log(recordset);
 
-    	if(recordset.length > 0){
+if(recordset.length > 0){
 
+/*
     		var Message = `
     		<table style="border: 1px solid black; border-collapse: collapse;">
     		<tr>
@@ -69,20 +70,22 @@ run_check_movinv_sin_materiales: function(task){
     		Message = Message+`
     		</table>
     		`;
+            */
+            t.send_event_pg({idaccount: task.task_parameters.idaccount, description: 'Sin materiales' ideventtype: 136, details: recordset}, []).then(function(result){
 
-    		t.send_event_pg({idaccount: task.task_parameters.idaccount, ideventtype: 136, description: Message}, []).then(function(result){
+    		//t.send_event_pg({idaccount: task.task_parameters.idaccount, ideventtype: 136, description: Message}, []).then(function(result){
     			deferred.resolve(true);
     		});
 
-    	}else{
-    		deferred.resolve(true);
-    	}
+        }else{
+          deferred.resolve(true);
+      }
 
-    }).catch(function(err) {
+  }).catch(function(err) {
 
-    	console.log(err);
-    	deferred.resolve(false);
-    });
+   console.log(err);
+   deferred.resolve(false);
+});
 
 
 }).catch(function(err) {
