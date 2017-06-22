@@ -32,6 +32,7 @@ run_check_movinv_sin_materiales: function(task){
     	console.log(recordset);
 var ideventtype = task.task_parameters.ideventtype_on_alarm;
 var materiales = [];
+var det = {};
 
 if(recordset.length > 0){
 
@@ -80,6 +81,7 @@ if(recordset.length > 0){
                     materiales.push(mov.codigo_producto);
                 }
 
+det[] = {}
 
             });
 

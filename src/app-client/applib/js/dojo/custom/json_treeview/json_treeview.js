@@ -70,7 +70,7 @@ for(var index in _v) {
 }
 */
 
-//console.log(datajson);
+console.log(datajson);
 
 myStore = new Memory({
     data: [],
