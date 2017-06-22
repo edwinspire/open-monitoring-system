@@ -77,7 +77,8 @@ define(['dojo/_base/declare',
         console.log(item);
 this._onExpandoClick({node: node}); // This will expand the node
 if(item.nameeventonclick){
-  t.emit('clickitem', item.nameeventonclick);
+  //t.emit('clickitem', item.nameeventonclick);
+  t.emit('appname', item.appname);
   console.log(item);
 }
 if(item.url){

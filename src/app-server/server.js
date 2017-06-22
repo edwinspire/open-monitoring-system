@@ -510,7 +510,7 @@ app.post("/njs/db/gui/*",  function(req, res){
 
 			break;
 			case 'gui.menus':
-			PostgreSQL.response_query(res, "SELECT idmenu as id, name, url, parent, type, nameeventonclick FROM gui.menus WHERE enabled = true AND show = true order by name;", []);
+			PostgreSQL.response_query(res, "SELECT idmenu as id, name, url, parent, type, nameeventonclick, appname FROM gui.menus WHERE enabled = true AND show = true order by name;", []);
 			break;	
 
 			default:

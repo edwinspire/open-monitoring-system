@@ -45,24 +45,33 @@ require(["dojo/ready",
 
 
      // var vs = win.getBox();
+     var apps = [];
+     apps['app_monitor_general'] = app_monitor_general;
+     apps['app_lista_precios_promo_eco'] = app_lista_precios_promo_eco;
+     apps['app_lista_precios_promo_medi'] = app_lista_precios_promo_medi;
+     apps['app_lista_precios_pnatural'] = app_lista_precios_pnatural;
+     apps['app_lista_precios_eco'] = app_lista_precios_eco;
+     apps['app_lista_precios_medi'] = app_lista_precios_medi;
+     apps['app_monitor_network_devices'] = app_monitor_network_devices;
+     apps['app_account'] = app_account;
+     apps['app_tables_views_config'] = app_tables_views_config;
+     apps['app_event_management'] = app_event_management;
+     apps['app_event_resumen'] = app_event_resumen;
+
+
+
 
       var PageContent = dijit.byId('PageContent');
       var Mainmenu = dijit.byId("MainMenu");
 
-// console.debug(vs.h);
-//  domStyle.set(PageContent.domNode, "height", (vs.h-40)+'px');
-
-// console.debug(vs);
-// domStyle.set(this.BorderContainer.domNode, "height", (vs.h-30-16)+'px');
-// this.BorderContainer.resize();
-
-
-
-
-
-
-Mainmenu.on("clickitem", function(e){
+Mainmenu.on("appname", function(e){
   console.debug(e);
+  console.log(apps[e]);
+
+  if(e && apps[e]){
+    OpenApp(apps[e]);
+  }
+  /*
   switch(e){
    case 'monitoreo_general':
    OpenApp(app_monitor_general);
@@ -101,7 +110,9 @@ Mainmenu.on("clickitem", function(e){
    OpenApp(app_geolocations);
    break;           
  }
+ */
 }); 
+
 
 on(dojo.byId("ToogleMenu"), "click", function(e){
   Mainmenu.toggle();
