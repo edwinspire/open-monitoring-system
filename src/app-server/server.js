@@ -512,7 +512,7 @@ app.post("/njs/db/gui/*",  function(req, res){
 			});
 
 			break;
-			case 'gui.menus':
+			case 'gui.menusxxxxxxxxxx':
 			PostgreSQL.response_query(res, "SELECT idmenu as id, name, url, parent, type, nameeventonclick, appname FROM gui.menus WHERE enabled = true AND show = true order by name;", []);
 			break;	
 

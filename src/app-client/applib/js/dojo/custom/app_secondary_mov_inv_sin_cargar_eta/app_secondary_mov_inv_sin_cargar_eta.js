@@ -1,7 +1,7 @@
 define(['dojo/_base/declare',
   'dijit/_Widget',
   'dijit/_Templated',
-  'dojo/text!Widget/app_f_mov_inv_sin_cargar/app_f_mov_inv_sin_cargar.html',
+  'dojo/text!Widget/app_secondary_mov_inv_sin_cargar_eta/app_secondary_mov_inv_sin_cargar_eta.html',
   "dojo/dom-class",
   "dojo/on",
   "dojo/window",

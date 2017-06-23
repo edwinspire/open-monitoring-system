@@ -47,7 +47,9 @@ define(['dojo/_base/declare',
 
         var t = this;
 
-        request.post("/njs/db/gui/menus", {
+        var target = '/db/gui/menus/r/'+new Date().getTime()+'/'+new Date().getTime()+'/'+new Date().getTime()+'/'+new Date().getTime();
+
+        request.post(target, {
           preventCache: true,
           handleAs: 'json'
         }).then(
@@ -107,7 +109,7 @@ getIconClass: function(item, opened) {
 
 },
 function (e) {
-  console.error(e, t.target);
+  console.error(e);
 }
 );
 

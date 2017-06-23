@@ -13,7 +13,8 @@ require(["dojo/ready",
   "Widget/app_lista_precios_pnatural/app_lista_precios_pnatural", 
   "Widget/app_lista_precios_eco/app_lista_precios_eco", 
   "Widget/app_lista_precios_medi/app_lista_precios_medi", 
-  //"Widget/app_monitor_network_devices/app_monitor_network_devices", 
+  "Widget/app_secondary_mov_inv_sin_cargar_rm/app_secondary_mov_inv_sin_cargar_eta",
+  "Widget/app_secondary_mov_inv_sin_cargar_rm/app_secondary_mov_inv_sin_cargar_rm", 
   "Widget/Geolocations/Geolocations", 
   "Widget/app_account/app_account",
   "Widget/app_tables_views_config/app_tables_views_config",
@@ -34,7 +35,8 @@ require(["dojo/ready",
     app_lista_precios_pnatural, 
     app_lista_precios_eco, 
     app_lista_precios_medi, 
-    //app_monitor_network_devices, 
+    app_secondary_mov_inv_sin_cargar_eta,
+    app_secondary_mov_inv_sin_cargar_rm, 
     app_geolocations, 
     app_account,
     app_tables_views_config,
@@ -55,7 +57,8 @@ require(["dojo/ready",
      apps['app_geolocations'] = app_geolocations;
      apps['app_account'] = app_account;
      apps['app_tables_views_config'] = app_tables_views_config;
-     //apps['app_event_management'] = app_event_management;
+     apps['app_secondary_mov_inv_sin_cargar_eta'] = app_secondary_mov_inv_sin_cargar_eta;
+     apps['app_secondary_mov_inv_sin_cargar_rm'] = app_secondary_mov_inv_sin_cargar_rm;
      apps['app_event_resumen'] = app_event_resumen;
 
 

@@ -106,7 +106,38 @@ schema_gui_view_columns_properties: function(req, res, params){
 		break;
 	}
 
-}             
+},
+schema_gui_menus: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var w = {};
+
+	switch(params.action){
+		case 'r':
+		//var w = {tschema_tname: post.tschema_tname};
+		qp = t.Select('SELECT idmenu as id, name, url, parent, type, nameeventonclick, appname FROM gui.menus WHERE enabled = true AND show = true order by name;', []).build();
+		t.response_query(res, qp.query, qp.param);
+		break;
+		case 'uxxxxxxxx':
+//		qp = t.Update('gui.column_properties', post, ["hash_num"]).whereAnd([params.onupdate], []).build();
+//		t.response_update(res, qp.query, qp.param);
+		break;		
+		default:
+		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+		break;
+	}
+
+}      
+
+
+
+/*
+			case 'gui.menus':
+			PostgreSQL.response_query(res, "SELECT idmenu as id, name, url, parent, type, nameeventonclick, appname FROM gui.menus WHERE enabled = true AND show = true order by name;", []);
+			break;	
+*/          
 
 
 });
