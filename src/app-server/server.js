@@ -38,7 +38,7 @@ require(["dojo/request",
 	"api/postgres/udc_table_events_details",
 	"api/postgres/udc_table_events",
 	"api/postgres/udc_account_events_comments" ,
-	//"api/postgres/gui_view_table_view_columns_properties",
+	"api/postgres/schema_secondary",
 	"api/postgres/schema_events",
 	"api/postgres/schema_gui"
 	], function(request, on, array, os, crypto, http, socketIO, path, fs, LogSystem, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, Config, sessionusers){

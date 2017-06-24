@@ -21,7 +21,7 @@ define(['dojo/_base/declare',
 var t = this;
 var datajson = [];
 
-datajson.push({ id: "0", name:'Event'});
+datajson.push({ id: "0", name:'Detalle'});
 
 
 function LoopObject (obj, parent){
