@@ -460,7 +460,7 @@ app.post("/db/*",  function(req, res){
 				params.onupdate[parts[5]] = parts[6];
 				params.onupdate[parts[7]] = parts[8];
 			}catch(e){
-				console.warn(e);
+				res.status(500).json({path: req.path, error: e});
 			}
 
 			var obj = 'schema_'+params.schema+'_'+params.objectdb;

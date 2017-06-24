@@ -14,16 +14,8 @@ define(['dojo/_base/declare',
       postCreate: function () {
 
         var t = this;
-/*
-        query("[data-itemclick]", t.domNode).on("click", function(ev){
-          console.debug(domAttr.get(this, "data-itemclick"));
-          t.emit('clickitem', domAttr.get(this, "data-itemclick"));
-        });
-        */
 
         t._request();
-
-        t.isVisible(true);
 
       },
       isVisible: function(visible){
@@ -56,18 +48,29 @@ define(['dojo/_base/declare',
         function (response) {
 
           if(response.length > 0){
+            t._create_tree(response);
+          }
 
-           var myStore = new Memory({
-            data: response,
-            getChildren: function(object){
-              return this.query({parent: object.id});
-            }
-          });
+        },
+        function (e) {
+          console.error(e);
+        }
+        );
 
-           var myModel = new ObjectStoreModel({
-            store: myStore,
-            query: {id: 0}
-          });
+      },
+      _create_tree: function(response){
+        var t = this;
+        var myStore = new Memory({
+          data: response,
+          getChildren: function(object){
+            return this.query({parent: object.id});
+          }
+        });
+
+        var myModel = new ObjectStoreModel({
+          store: myStore,
+          query: {id: 0}
+        });
 
 
     // Create the Tree.
@@ -105,19 +108,12 @@ getIconClass: function(item, opened) {
   });
     tree.placeAt(t.Test);
     tree.startup();
+    t.isVisible(true);
   }
 
-},
-function (e) {
-  console.error(e);
-}
-);
-
-      }
 
 
 
 
-
-    });
+});
   });
