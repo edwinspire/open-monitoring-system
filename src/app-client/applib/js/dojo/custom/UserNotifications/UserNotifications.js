@@ -48,7 +48,7 @@ _args: function(a) {
     }
 
 
-    a.Snd = 'applib/media/snd/notify.ogg';
+    a.Snd = 'applib/media/snd/bong-chime-2.ogg';
 
 
     if (a.Timeout === undefined || a.Timeout < 2) {
