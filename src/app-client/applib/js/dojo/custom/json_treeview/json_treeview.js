@@ -16,81 +16,89 @@ define(['dojo/_base/declare',
          },
 
          _setValueAttr: function (_v, _t) {
-//  console.log(_v);
 
-var t = this;
-var datajson = [];
+            var t = this;
+            var datajson = [];
 
-datajson.push({ id: "0", name:'Detalle'});
+            datajson.push({ id: "0", name:'Detalle'});
 
-
-function LoopObject (obj, parent){
-    var objects = [];
+            function LoopObject (obj, parent){
+                var objects = [];
 
 
-    if(Array.isArray(obj)){
+                if(Array.isArray(obj)){
+
+                    array.forEach(obj, function(item, index){
+                        objects = objects.concat(LoopObject (item, parent));
+                    });
+
+                }else{
+
+                    var i = Math.floor(Math.random() * 1000);
+                    for(var property in obj) { 
+                        var id = parent+'__'+i;
+                        var v = obj[property]; 
+
+                        if(typeof v == 'object'){
+                            objects.push({ id: id, name: '<b>'+property+'</b>', parent: parent});
+                            objects = objects.concat(LoopObject (v, id));
+                        }else if(typeof v == 'string' || typeof v == 'number' || typeof v == 'boolean'){
+
+                            objects.push({ id: id, name: '<b>'+property+':</b> '+v, parent: parent, type: 'value'});
+                        //objects.push({ id: id+'_', name: v, parent: id, type: 'value'});
+
+                    }
 
 
-        array.forEach(obj, function(item, index){
-            objects = objects.concat(LoopObject (item, parent));
-        });
+                    i++;
+                }
 
-    }else{
+            }
 
-        var i = Math.floor(Math.random() * 1000);
-        for(var property in obj) { 
-            var id = parent+'__'+i;
-            var v = obj[property]; 
 
-            objects.push({ id: id, name: property, parent: parent});
-
-            if(typeof v == 'object'){
-              objects = objects.concat(LoopObject (v, id));
-          }else if(typeof v == 'string' || typeof v == 'number' || typeof v == 'boolean'){
-            objects.push({ id: id+'_', name: v, parent: id, type: 'value'});
-
+            return objects;
         }
 
 
-        i++;
-    }
+        datajson = datajson.concat(LoopObject (_v, "0"));
 
-}
+// sort by name
+datajson.sort(function(a, b) {
+  var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+  var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+
+  // names must be equal
+  return 0;
+});
 
 
-return objects;
-}
-
-
-datajson = datajson.concat(LoopObject (_v, "0"));
-
-/*
-for(var index in _v) { 
-    var attr = _v[index]; 
-    //  console.log(attr, index);
-     datajson.push( { id: i, name: index, parent: 0});
-     datajson.push({ id: i+1, name: attr, parent: i});
-     i++;
-}
-*/
-
-console.log(datajson);
-
-myStore = new Memory({
-    data: [],
-    getChildren: function(object){
+        myStore = new Memory({
+            data: [],
+            getChildren: function(object){
             // Supply a getChildren() method to store for the data model where
             // children objects point to their parent (aka relational model)
             return this.query({parent: object.id});
         }
     });
 
-myStore.setData(datajson);
+        myStore.setData(datajson);
 
     // Create the model
     var myModel = new ObjectStoreModel({
         store: myStore,
         query: {id: "0"}
+    });
+
+
+    // Custom TreeNode class (based on dijit.TreeNode) that allows rich text labels
+    var MyTreeNode = declare(Tree._TreeNode, {
+        _setLabelAttr: {node: "labelNode", type: "innerHTML"}
     });
 
     // Create the Tree.
@@ -99,7 +107,10 @@ myStore.setData(datajson);
         autoExpand: false,
         openOnClick: true,
         showRoot: true,
-        getIconClass: function(item, opened) {
+        _createTreeNode: function(args){
+           return new MyTreeNode(args);
+       },
+       getIconClass: function(item, opened) {
           //  console.log(item);
           if (item.type == "value") {
             return "dijitLeaf";
