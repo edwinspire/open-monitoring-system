@@ -21,7 +21,7 @@ if(!dojo.byId(this.idWidgetGlobal)){
 
   domConstruct.create("div", {id: this.idWidgetGlobal, style: {border: 'none', 'background-color': 'transparent', height: 'auto', position: 'fixed', bottom: 0, right: 0,  'z-index':999998}}, win.body());
 
-  var nodeAudio = domConstruct.create("audio", {autoplay: true});
+  var nodeAudio = domConstruct.create("audio", {autoplay: true, volumen: '0.5'});
   nodeAudio.innerHTML = '<source src="applib/media/snd/bong-chime-2.ogg" type="audio/ogg">';
   domConstruct.place(nodeAudio, this.idWidgetGlobal, 'first');
 
@@ -55,7 +55,7 @@ _args: function(a) {
   }
 
 
-  a.Snd = 'applib/media/snd/bong-chime-2.ogg';
+  //a.Snd = 'applib/media/snd/bong-chime-2.ogg';
 
 
   if (a.Timeout === undefined || a.Timeout < 2) {
@@ -142,6 +142,7 @@ if (args.Closable) {
 }
 
 if(args.Snd && args.Snd.length > 0){
+  //alert('Con sonido '+args.Snd);
   node.innerHTML = ' <div class="'+ bsc +'"> <i class="dijitIcon flat-error-o" style="font-size: 2em;"></i><span class="glyphicon '+args.IconClass+'" aria-hidden="true"></span><span class="notificacion_area_title">' + args.Title + '</span>  <div class="notificacion_area_message">' + args.Message + '</div> <audio autoplay volumen="0.5"><source src="' + args.Snd + '" type="audio/ogg"> <source src="media/snd/notify.mp3" type="audio/mpeg"> </audio> </div>';
 }else{
   node.innerHTML = ' <div class="'+ bsc +'"> <i class="dijitIcon flat-error-o" style="font-size: 2em;"></i><span class="glyphicon '+args.IconClass+'" aria-hidden="true"></span><span class="notificacion_area_title">' + args.Title + '</span>  <div class="notificacion_area_message">' + args.Message + '</div> </audio> </div>';
