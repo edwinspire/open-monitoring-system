@@ -26,7 +26,7 @@ if(!dojo.byId(this.idWidgetGlobal)){
   domConstruct.place(nodeAudio, this.idWidgetGlobal, 'first');
 
   topic.subscribe("/event/user/notify", function(data){
-    if(nodeAudio.ended && (!args.Snd || args.Snd.length <= 0)){
+    if(nodeAudio.ended && (!data.Snd || data.Snd.length <= 0)){
       nodeAudio.play(); 
     }
     t._Notify(data);
