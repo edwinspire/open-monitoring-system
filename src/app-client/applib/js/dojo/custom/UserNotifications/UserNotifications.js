@@ -26,7 +26,11 @@ if(!dojo.byId(this.idWidgetGlobal)){
   domConstruct.place(nodeAudio, this.idWidgetGlobal, 'first');
 
   topic.subscribe("/event/user/notify", function(data){
+    if(nodeAudio.ended && (!args.Snd || args.Snd.length <= 0)){
+      nodeAudio.play(); 
+    }
     t._Notify(data);
+    
   }); 
 
 }   else{
@@ -136,7 +140,12 @@ if (args.Closable) {
     domConstruct.destroy(this);
   });
 }
-node.innerHTML = ' <div class="'+ bsc +'"> <i class="dijitIcon flat-error-o" style="font-size: 2em;"></i><span class="glyphicon '+args.IconClass+'" aria-hidden="true"></span><span class="notificacion_area_title">' + args.Title + '</span>  <div class="notificacion_area_message">' + args.Message + '</div> <audio autoplay volumen="0.5"><source src="' + args.Snd + '" type="audio/ogg"> <source src="media/snd/notify.mp3" type="audio/mpeg"> </audio> </div>';
+
+if(args.Snd && args.Snd.length > 0){
+  node.innerHTML = ' <div class="'+ bsc +'"> <i class="dijitIcon flat-error-o" style="font-size: 2em;"></i><span class="glyphicon '+args.IconClass+'" aria-hidden="true"></span><span class="notificacion_area_title">' + args.Title + '</span>  <div class="notificacion_area_message">' + args.Message + '</div> <audio autoplay volumen="0.5"><source src="' + args.Snd + '" type="audio/ogg"> <source src="media/snd/notify.mp3" type="audio/mpeg"> </audio> </div>';
+}else{
+  node.innerHTML = ' <div class="'+ bsc +'"> <i class="dijitIcon flat-error-o" style="font-size: 2em;"></i><span class="glyphicon '+args.IconClass+'" aria-hidden="true"></span><span class="notificacion_area_title">' + args.Title + '</span>  <div class="notificacion_area_message">' + args.Message + '</div> </audio> </div>';
+}
 
 domConstruct.place(node, this.idWidgetGlobal, 'first');
 
