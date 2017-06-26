@@ -30,11 +30,11 @@ run_check_movinv_sin_materiales: function(task){
     .query(srtquery).then(function(recordset) {
 
     	console.log(recordset);
-var ideventtype = task.task_parameters.ideventtype_on_alarm;
-var materiales = [];
-var detail = [];
+        var ideventtype = task.task_parameters.ideventtype_on_alarm;
+        var materiales = [];
+        var detail = [];
 
-if(recordset.length > 0){
+        if(recordset.length > 0){
 
     		/*
              Message = `
@@ -77,7 +77,7 @@ if(recordset.length > 0){
             
             array.forEach(recordset, function(mov, index){
 
-detail.push(mov);
+                detail.push(mov);
 
                 if(array.indexOf(materiales, mov.codigo_producto) < 0){
                     materiales.push(mov.codigo_producto);
@@ -99,9 +99,9 @@ detail.push(mov);
 
  }).catch(function(err) {
 
-   console.log(err);
-   deferred.resolve(false);
-});
+     console.log(err);
+     deferred.resolve(false);
+ });
 
 
 }).catch(function(err) {
