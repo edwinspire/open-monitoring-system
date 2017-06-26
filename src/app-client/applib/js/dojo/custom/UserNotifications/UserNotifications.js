@@ -21,7 +21,7 @@ if(!dojo.byId(this.idWidgetGlobal)){
 
   domConstruct.create("div", {id: this.idWidgetGlobal, style: {border: 'none', 'background-color': 'transparent', height: 'auto', position: 'fixed', bottom: 0, right: 0,  'z-index':999998}}, win.body());
 
-  var nodeAudio = domConstruct.create("audio", {autoplay: true, volumen: '0.5'});
+  var nodeAudio = domConstruct.create("audio", {autoplay: false, volumen: '0.75'});
   nodeAudio.innerHTML = '<source src="applib/media/snd/NuevosIncidentes.ogg" type="audio/ogg">';
   domConstruct.place(nodeAudio, this.idWidgetGlobal, 'first');
 
