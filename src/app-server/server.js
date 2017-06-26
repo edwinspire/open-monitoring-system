@@ -263,6 +263,7 @@ app.post("/njs/db/table/*",  function(req, res){
 
 
 
+/*
 ////////////////////////////////////////////////////////////////////////////////////////
 app.post("/njs/db/events/*",  function(req, res){
 
@@ -278,6 +279,7 @@ app.post("/njs/db/events/*",  function(req, res){
 	}
 
 });
+*/
 
 
 
@@ -341,6 +343,7 @@ res.redirect('/');
 
 });
 
+/*
 ////////////////////////////////////////////////////////////////////////////////////////
 app.post("/njs/db/Select_Generic_to_Store", function(req, res){
 
@@ -407,9 +410,10 @@ app.post("/njs/db/Select_Generic_to_Store", function(req, res){
 	}
 
 });
+*/
 
 
-
+/*
 ////////////////////////////////////////////////////////////////////////////////////////
 app.post("/njs/db/uDCFieldTypes", function(req, res){
 
@@ -421,9 +425,10 @@ app.post("/njs/db/uDCFieldTypes", function(req, res){
 	});
 
 });
+*/
 
 
-
+/*
 ////////////////////////////////////////////////////////////////////////////////////////
 app.post("/njs/db/generic_select", function(req, res){
 
@@ -433,15 +438,17 @@ app.post("/njs/db/generic_select", function(req, res){
 	PostgreSQL.response_query(res, qp.query, qp.param);
 
 });
+*/
 
 
-
+/*
 ////////////////////////////////////////////////////////////////////////////////////////
 app.post("/njs/admin_status_login", function(req, res){
 
 	res.status(200).json(sessionUsers.users_status());
 
 });
+*/
 
 ////////////////////////////////////////////////////////////////////////////////////////
 app.post("/db/*",  function(req, res){

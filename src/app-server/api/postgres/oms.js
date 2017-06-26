@@ -43,16 +43,16 @@ constructor: function(args) {
   //idleTimeoutMillis: 1000 //close idle clients after 1 second
 });
 
-t.pgPool.connect().then(client => {
-  client.query('SELECT version();', []).then(res => {
-    client.release()
-   console.log(res.rows[0]) 
-  })
-  .catch(e => {
-    client.release()
-    console.error('query error', e.message, e.stack)
-  })
-});
+	t.pgPool.connect().then(client => {
+		client.query('SELECT version();', []).then(res => {
+			client.release()
+			console.log(res.rows[0]) 
+		})
+		.catch(e => {
+			client.release()
+			console.error('query error', e.message, e.stack)
+		})
+	});
 
 	t.get_schema().then(function(){
 
@@ -168,17 +168,16 @@ query: function(_query, _param){
 	var deferred = new Deferred();
 	var t = this;	
 
-
-t.pgPool.connect().then(client => {
-  client.query(_query, _param).then(res => {
-    client.release()
-   deferred.resolve(res);
-  })
-  .catch(e => {
-    client.release()
-    deferred.reject(e);
-  })
-})
+	t.pgPool.connect().then(client => {
+		client.query(_query, _param).then(res => {
+			//client.release()
+			deferred.resolve(res);
+		})
+		.catch(e => {
+			//client.release()
+			deferred.reject(e);
+		})
+	})
 /*
 	t.pgPool.query(_query, _param, function (err, res) {
 		if(err){
