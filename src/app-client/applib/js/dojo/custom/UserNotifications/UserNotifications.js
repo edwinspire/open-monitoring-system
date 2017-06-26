@@ -27,10 +27,7 @@ if(!dojo.byId(this.idWidgetGlobal)){
 
   topic.subscribe("/event/user/notify", function(data){
 
-
-  console.log(nodeAudio, nodeAudio.ended, data.Snd);
-
-    if(nodeAudio.ended && (!data.Snd || data.Snd.length <= 1 || data.Snd == '')){
+    if(nodeAudio.readyState && nodeAudio.ended && (!data.Snd || data.Snd.length <= 1 || data.Snd == '')){
       console.log('Debe sonar');
       nodeAudio.play(); 
     }
