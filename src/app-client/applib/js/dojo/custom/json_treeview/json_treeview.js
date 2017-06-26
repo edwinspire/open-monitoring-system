@@ -29,7 +29,7 @@ define(['dojo/_base/declare',
                 if(Array.isArray(obj)){
 
                     array.forEach(obj, function(item, index){
-                          objects.push({ id: parent+'_item'+index, name: '<b>'+index+':</b> '+v, parent: parent, type: 'node'});
+                          objects.push({ id: parent+'_item'+index, name: '<b>'+index+'</b>', parent: parent, type: 'node'});
                         objects = objects.concat(LoopObject (item, parent+'_item'+index));
                     });
 
