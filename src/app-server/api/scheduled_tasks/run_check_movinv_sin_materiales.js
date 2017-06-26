@@ -32,7 +32,6 @@ run_check_movinv_sin_materiales: function(task){
     	console.log(recordset);
         var ideventtype = task.task_parameters.ideventtype_on_alarm;
         var materiales = [];
-        var detail = [];
 
         if(recordset.length > 0){
 
@@ -77,8 +76,6 @@ run_check_movinv_sin_materiales: function(task){
             
             array.forEach(recordset, function(mov, index){
 
-                detail.push(mov);
-
                 if(array.indexOf(materiales, mov.codigo_producto) < 0){
                     materiales.push(mov.codigo_producto);
                 }
@@ -91,7 +88,7 @@ run_check_movinv_sin_materiales: function(task){
      }
 
 
-     t.send_event_pg({idaccount: task.task_parameters.idaccount, ideventtype: ideventtype, description: '<b>Listado: </b>'+materiales.toString(), details: JSON.stringify(detail)}, []).then(function(result){
+     t.send_event_pg({idaccount: task.task_parameters.idaccount, ideventtype: ideventtype, description: '<b>Listado: </b>'+materiales.join(' '), details: JSON.stringify(recordset)}, []).then(function(result){
 
             //t.send_event_pg({idaccount: task.task_parameters.idaccount, ideventtype: 136, description: Message}, []).then(function(result){
                 deferred.resolve(true);
