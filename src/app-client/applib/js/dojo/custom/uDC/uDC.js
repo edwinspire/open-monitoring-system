@@ -17,12 +17,13 @@
      */
      return declare([ContentPane, Evented], {
       target: '',
-      __affected_table: '',
       idProperty: '',
       selectorClass: '',
       hiddenFields: [],
       fieldTypes: [],
-      Gui: {target: '/njs/db/gui/properties'},
+      Gui: {target: '/uDCUnknowTarget'},
+      dbschema: 'uDCUnknowSchema', 
+      dbtableview: 'uDCUnknowTableView',
       _ConnectionsOnChange: [],
       _store: new Memory(),
     /**
@@ -36,98 +37,98 @@
  	 	 * @property {string}  nodeContainer - Id del contenedor donde se buscaran los campos que tengan el selectorClass 	 	 
  	 	 * @property {string}  selectorClass - Selector CSS para buscar los campos que van a pertenecer a este uDC
  	 	 * @property {string}  Gui.target - Url de donde se obtendran los tipos de datos de cada campo
-      */
+     */
 
-      postCreate: function () {
-        this.Gui.target = "/njs/db/gui/properties";
-        var t = this;
-        t._store = new Memory({ data: null, idProperty: 'namefield'});
+     postCreate: function () {
+      var t = this;
+      t.Gui.target = '/db/gui/tvproperties/r/'+new Date().getTime()+'/'+new Date().getTime()+'/'+new Date().getTime()+'/'+new Date().getTime();
+      t._store = new Memory({ data: null, idProperty: 'namefield'});
 
-        t._Build();
-      },
-      _HiddenFieldCreate: function (_name, _data_type) {
-        var t = this;
-        var r = { name: _name, value: '', type: 'HiddenField' }; 
+      t._Build();
+    },
+    _HiddenFieldCreate: function (_name, _data_type) {
+      var t = this;
+      var r = { name: _name, value: '', type: 'HiddenField' }; 
 
-        t._store.put({node: r, namefield: r.name, value: null, isvalid: false, send: false, changed: false, type: _data_type});
+      t._store.put({node: r, namefield: r.name, value: null, isvalid: false, send: false, changed: false, type: _data_type});
 
-        r.get = function (v) {
-         var g = null;
-         switch (v) {
-          case 'name':
-          g = this.name;
-          break;
-          case 'value':
-          g = this.value;
-          break;
-        }
-        return g;
-      }
-
-      r.set = function (_p, _v, _noeventchanged) {
-
-       switch (_p) {
+      r.get = function (v) {
+       var g = null;
+       switch (v) {
         case 'name':
-        this.name = _v;
+        g = this.name;
         break;
         case 'value':
-        this.value = _v;
-
-        _noeventchanged = _noeventchanged || true;
-
-        var sf = t._store.get(this.name);
-
-        if (_noeventchanged) {
-
-          sf.changed = true;
-          sf.isvalid = true;
-          sf.send = true;
-          sf.value = _v;
-
-        }else{
-          sf.changed = false;
-        }
-
-        t._store.put(sf);
-
+        g = this.value;
         break;
       }
-    };
-
-    r.isValid = function () { return true; }
-    r.reset = function(){console.debug('No esta implementado el reset en campos ocultos uDC');}
-
-    return r;
-  },
-  setField: function (_field, _value, _noeventchanged) {
-   var t = this;
-   var name;
-   var value;
-   var f = t._store.get(_field);
-   console.debug(_field, _value, f);
-
-   if(f){
-     _noeventchanged = _noeventchanged || true;
-
-     try{
-       value = t._value_pg_to_field(_field, _value);
-     }catch(e){
-       console.warn(e);
-     }
-
-     try { 
-
-       f.node.set('value', value, _noeventchanged);
-
-     } catch (e) {
-      console.error(t.__affected_table, _field, f, e);
+      return g;
     }
 
-  }else{
-    console.error('No se pudo obtener el campos '+_field+' usando la tabla '+t.__affected_table);
+    r.set = function (_p, _v, _noeventchanged) {
+
+     switch (_p) {
+      case 'name':
+      this.name = _v;
+      break;
+      case 'value':
+      this.value = _v;
+
+      _noeventchanged = _noeventchanged || true;
+
+      var sf = t._store.get(this.name);
+
+      if (_noeventchanged) {
+
+        sf.changed = true;
+        sf.isvalid = true;
+        sf.send = true;
+        sf.value = _v;
+
+      }else{
+        sf.changed = false;
+      }
+
+      t._store.put(sf);
+
+      break;
+    }
+  };
+
+  r.isValid = function () { return true; }
+  r.reset = function(){console.debug('No esta implementado el reset en campos ocultos uDC');}
+
+  return r;
+},
+setField: function (_field, _value, _noeventchanged) {
+ var t = this;
+ var name;
+ var value;
+ var f = t._store.get(_field);
+ console.debug(_field, _value, f);
+
+ if(f){
+   _noeventchanged = _noeventchanged || true;
+
+   try{
+     value = t._value_pg_to_field(_field, _value);
+   }catch(e){
+     console.warn(e);
+   }
+
+   try { 
+
+     f.node.set('value', value, _noeventchanged);
+
+   } catch (e) {
+    console.error(t.dbtableview, _field, f, e);
   }
 
-  return this;
+}else{
+  console.error('No se pudo obtener el campos '+_field+' usando la tabla '+t.dbtableview);
+}
+
+return this;
 },
 _setFieldAttr: function (_field, _value, _noeventchanged) {
   return this.setField(_field, _value, _noeventchanged);
@@ -136,8 +137,7 @@ getField: function(_field){
 
  var t = this;
 
-// Obtiene
-try{
+ try{
   return t._store.get(_field).value;
 }catch(e){
   console.warn(e, 'No existe valor para el campo '+_field);
@@ -153,7 +153,7 @@ getData: function(){
 _BindFields: function (_fieldTypes) {
 
   var t = this;  
-  console.log(_fieldTypes, t.__affected_table);
+  console.log(_fieldTypes, t.dbtableview);
   t.startup();
 
   var storeFielTypes = new Memory({ data: _fieldTypes, idProperty: 'field'});
@@ -167,7 +167,7 @@ _BindFields: function (_fieldTypes) {
       t._HiddenFieldCreate(item.name, storeFielTypes.get(item.name).data_type);
     }catch(e){
       t._HiddenFieldCreate(item.name, 'text');
-      console.warn(e, t.target, t.__affected_table);
+      console.warn(e, t.target, t.dbtableview);
     }
 
   });
@@ -245,12 +245,12 @@ _Build: function(){
     if(results[0] && results[0].columns_properties){
       t._BindFields(results[0].columns_properties);
     }else{
-      console.warn('_get_fieldtypes no ha devuelto la propiedad columns_properties', results, t.__affected_table);
+      console.warn('_get_fieldtypes no ha devuelto la propiedad columns_properties', results, t.dbtableview);
     }
 
   });
 
- } else{
+} else{
   console.warn('No se ha configurado Gui.target');
 }
 
@@ -275,14 +275,12 @@ if (!_bind != 'undefined') {
   t._Build();
 }
 
-       // console.debug(t);
-
-       return this;
-     },         
-     uninitialize: function(){
-      var t = this;
-      t._RemoveOnChangeHandler();
-    },
+return this;
+},         
+uninitialize: function(){
+  var t = this;
+  t._RemoveOnChangeHandler();
+},
         /**
          * A method in first level, just for test
          * @memberof uDC
@@ -508,11 +506,9 @@ if (!_bind != 'undefined') {
    if (count_fields > 0) {
     if (_data) {
      _data.__action = _query_type;
-     _data.__affected_table = t.__affected_table;
+     //_data.dbtableview = t.dbtableview;
 
      _data.__idProperty = t.idProperty;
-
-     console.log(_data);
 
      if (_query_type == 'insert') {
       r =  t._internal_post(_data);
@@ -556,7 +552,9 @@ _internal_post: function (_data) {
 
  }
 
- return  request.post(t.target, {
+var url = t.target+'/'+t.dbschema+'/'+t.dbtableview+'/'+_action+'/'+idProperty+'/'+idPropertyValue+'/'+rowFingerPrint+'/'+rowFingerPrintValue;
+
+ return  request.post(url, {
   data: data_send,
   preventCache: true,
   handleAs: 'json'
@@ -641,7 +639,6 @@ _notifications: function (_args) {
           Select: function (idrow) {
            var t = this;
            t.changed = false;
-         //   console.log('select_tuple ' + idrow);
          var _d = {};
          _d[this.idProperty] = idrow;
          return this._post(_d, 'select');    
@@ -699,18 +696,26 @@ _notifications: function (_args) {
         _get_fieldtypes: function () {
           var t = this;
 
+          if(!t.Gui){
+            t.Gui = {};
+          }
 
-          if(t.__affected_table && t.__affected_table.length > 0 && t.Gui.target && t.Gui.target.length > 0){
+          if(!t.Gui.target || t.Gui.target.length < 3){
+            t.Gui.target = '/db/gui/tvproperties/r/'+new Date().getTime()+'/'+new Date().getTime()+'/'+new Date().getTime()+'/'+new Date().getTime();
+            console.warn('Grid no tiene Gui.target para obtener la estructura, se usa la default');
+          }
+
+          if(t.dbschema && t.dbtableview){
 
             return request.post(t.Gui.target, {
-             data: { __affected_table: t.__affected_table },
+             data: {tschema_tname: t.dbschema+'.'+t.dbtableview, Fields: JSON.stringify("")},
              preventCache: true,
              handleAs: 'json'
            });
 
           }else{
 
-            console.warn('Faltan parametros, Table: '+t.__affected_table+' Target: '+t.Gui.target);
+            console.warn('Faltan parametros, Table: '+t.dbschema+' Target: '+t.dbtableview);
 
             deferred = new Deferred();
             deferred.resolve([]);
