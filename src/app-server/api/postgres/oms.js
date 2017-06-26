@@ -170,11 +170,11 @@ query: function(_query, _param){
 
 	t.pgPool.connect().then(client => {
 		client.query(_query, _param).then(res => {
-			//client.release()
+			client.release()
 			deferred.resolve(res);
 		})
 		.catch(e => {
-			//client.release()
+			client.release()
 			deferred.reject(e);
 		})
 	})
