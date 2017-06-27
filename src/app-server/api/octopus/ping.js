@@ -29,14 +29,14 @@ ping: function(task){
 
 	t._ping(host).then(function(isAlive){
 
-		var event = {idequipment: task.idequipment, ideventtype: 134, description: task.ip, details: {ip: task.ip, roundtriptime: parseInt(isAlive.avg)}};
+		var event = {idequipment: task.idequipment, ideventtype: task.parameters.ideventtype_online, description: task.ip, details: {ip: task.ip, roundtriptime: parseInt(isAlive.avg)}};
 
-		if(task.parameters && task.parameters.max && event.roundtriptime >= task.parameters.max){
-			event.ideventtype = 81;
+		if(task.parameters && task.parameters.max_threshold_roundtriptime && event.roundtriptime >= task.parameters.max_threshold_roundtriptime){
+			event.ideventtype = task.parameters.ideventtype_over_threshold;
 		}
 
 		if(!isAlive.alive){
-			event.ideventtype = 135;
+			event.ideventtype = task.parameters.ideventtype_offline;
 		}
 
 		t.send_event_pg(event, []).then(function(result){
