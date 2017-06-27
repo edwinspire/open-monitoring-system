@@ -62,8 +62,9 @@ _run_mssql_uptime_check: function(param){
 		user: param.username,
 		password: param.pwd,
 		server: param.ip, 
-		database: 'msdb'//,
-    //requestTimeout: 3000,
+		database: 'msdb',
+		connectionTimeout: 30000,
+		requestTimeout: 30000
     //options: {
       // encrypt: true
   //}
