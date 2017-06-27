@@ -21,14 +21,14 @@ if(!dojo.byId(this.idWidgetGlobal)){
 
   domConstruct.create("div", {id: this.idWidgetGlobal, style: {border: 'none', 'background-color': 'transparent', height: 'auto', position: 'fixed', bottom: 0, right: 0,  'z-index':999998}}, win.body());
 
-  var nodeAudio = domConstruct.create("audio", {autoplay: true});
+  var nodeAudio = domConstruct.create("audio", {autoplay: true, muted: true});
   nodeAudio.innerHTML = '<source src="applib/media/snd/NuevosIncidentes.ogg" type="audio/ogg">';
   domConstruct.place(nodeAudio, this.idWidgetGlobal, 'first');
 
   topic.subscribe("/event/user/notify", function(data){
 
     if(nodeAudio.readyState && nodeAudio.ended && (!data.Snd || data.Snd.length <= 1 || data.Snd == '')){
-      console.log('Debe sonar');
+      nodeAudio.muted = false;
       nodeAudio.play(); 
     }
 
