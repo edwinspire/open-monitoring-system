@@ -65,7 +65,7 @@ _run_mssql_CURRENT_TIMESTAMP_check: function(param){
 		password: param.pwd,
 		server: param.ip, 
 		database: 'msdb',
-		connectionTimeout: 30000,
+		connectionTimeout: 90000,
 		requestTimeout: 30000
     //options: {
       // encrypt: true

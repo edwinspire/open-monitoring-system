@@ -71,7 +71,7 @@ _run_mssql_fixeddrives_check: function(param){
 		password: param.pwd,
 		server: param.ip, 
 		database: 'msdb',
-		connectionTimeout: 0,
+		connectionTimeout: 90000,
 		requestTimeout: 60000
     //connectionTimeout: 30000//,
     //options: {
