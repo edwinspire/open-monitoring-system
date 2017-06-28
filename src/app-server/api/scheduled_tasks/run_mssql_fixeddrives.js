@@ -71,7 +71,7 @@ _run_mssql_fixeddrives_check: function(param){
 		password: param.pwd,
 		server: param.ip, 
 		database: 'msdb',
-		connectionTimeout: 60000,
+		connectionTimeout: 0,
 		requestTimeout: 60000
     //connectionTimeout: 30000//,
     //options: {
@@ -84,7 +84,7 @@ mssql.connect(config).then((cnx) => {
 }).then((result, error)  => {
 
 	if(error){
-		deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: error, Task: 'run_mssql_fixeddrives'}}]);  
+		deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {ip: param.ip, Error: error, Task: 'run_mssql_fixeddrives'}}]);  
 	}else{
 
 		var ResultEvents = [];
@@ -119,12 +119,12 @@ mssql.connect(config).then((cnx) => {
 	}  	
 }).catch(err => {
 	//console.trace(err);
-	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_fixeddrives'}}]);  
+	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {ip: param.ip, Error: err, Task: 'run_mssql_fixeddrives'}}]);  
 })
 
 mssql.on('error', err => {
 	//console.trace(err);
-	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_fixeddrives'}}]);  
+	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {ip: param.ip, Error: err, Task: 'run_mssql_fixeddrives'}}]);  
 });
 
 return deferred.promise;

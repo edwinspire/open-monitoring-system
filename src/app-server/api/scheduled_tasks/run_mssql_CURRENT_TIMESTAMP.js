@@ -78,7 +78,7 @@ mssql.connect(config).then((cnx) => {
 }).then((result, error)  => {
 	
 	if(error){
-		deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: error, Task: 'run_mssql_CURRENT_TIMESTAMP'}}]);  
+		deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {ip: param.ip, Error: error, Task: 'run_mssql_CURRENT_TIMESTAMP'}}]);  
 	}else{
 		var ideventtype = param.parameters.ideventtype_under_threshold;
 		if(result.length > 0){

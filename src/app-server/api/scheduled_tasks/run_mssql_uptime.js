@@ -76,7 +76,7 @@ mssql.connect(config).then((cnx) => {
 }).then((result, error)  => {
 
 	if(error){
-		deferred.resolve({idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: error, Task: 'run_mssql_uptime'}});  
+		deferred.resolve({idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {ip: param.ip, Error: error, Task: 'run_mssql_uptime'}});  
 	}else{
 		var ideventtype = param.parameters.ideventtype_under_threshold;
 		if(result.length > 0){
@@ -98,12 +98,12 @@ mssql.connect(config).then((cnx) => {
 	}  	
 }).catch(err => {
 	//console.log(err, param);
-	deferred.resolve({idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_uptime'}});  
+	deferred.resolve({idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {ip: param.ip, Error: err, Task: 'run_mssql_uptime'}});  
 })
 
 mssql.on('error', err => {
 	//console.log(err, param);
-	deferred.resolve({idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_uptime'}});  
+	deferred.resolve({idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {ip: param.ip, Error: err, Task: 'run_mssql_uptime'}});  
 });
 
 return deferred.promise;

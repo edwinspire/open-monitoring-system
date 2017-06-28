@@ -84,7 +84,7 @@ mssql.connect(config).then((cnx) => {
 }).then((result, error)  => {
 
 	if(error){
-		deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_sp_help_job'}}]);  
+		deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {ip: param.ip, Error: err, Task: 'run_mssql_sp_help_job'}}]);  
 	}else{
 
 			var ResultEvents = [];
@@ -225,11 +225,11 @@ deferred.resolve(ResultEvents);
 }
 }  	
 }).catch(err => {
-	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_sp_help_job'}}]);  
+	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {ip: param.ip, Error: err, Task: 'run_mssql_sp_help_job'}}]);  
 })
 
 mssql.on('error', err => {
-	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_sp_help_job'}}]);  
+	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {ip: param.ip, Error: err, Task: 'run_mssql_sp_help_job'}}]);  
 });
 
 return deferred.promise;
