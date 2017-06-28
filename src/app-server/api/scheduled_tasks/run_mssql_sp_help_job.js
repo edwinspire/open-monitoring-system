@@ -71,8 +71,8 @@ _run_mssql_sp_help_job_check: function(param){
 		password: param.pwd,
 		server: param.ip, 
 		database: 'msdb',
-		connectionTimeout: 30000,
-		requestTimeout: 30000,
+		connectionTimeout: 60000,
+		requestTimeout: 60000,
     options: {
       // encrypt: true
   }
