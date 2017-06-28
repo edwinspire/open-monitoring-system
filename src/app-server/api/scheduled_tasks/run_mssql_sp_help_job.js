@@ -1,6 +1,6 @@
 // Dojo 1.7+ (AMD)
 "dojo/promise/all"
-require(["dojo/_base/lang", "api/scheduled_tasks/scheduled_tasks",   "dojo/Deferred", "dojo/_base/array", "api/PromiseAll", "dojo/on",  "dojo/node!mssql", "dojo/date"], function(lang, Octopus, Deferred, array, PromiseAll, on, mssql, dojoDate){
+require(["dojo/_base/lang", "api/scheduled_tasks/scheduled_tasks",   "dojo/Deferred", "dojo/_base/array", "api/PromiseAll", "dojo/on",  "dojo/node!mssql", "dojo/date", "dojo/string"], function(lang, Octopus, Deferred, array, PromiseAll, on, mssql, dojoDate, dojoString){
 	lang.extend(Octopus, {
 /////////////////////////////////////////
 run_mssql_sp_help_job: function(task){
@@ -96,7 +96,7 @@ mssql.connect(config).then((cnx) => {
 				var ideventtype = 0;
 				var last_run_outcome_label = "";	
 				
-				var last_run_datetime_string = item.last_run_date+" "+item.last_run_time;
+				var last_run_datetime_string = item.last_run_date+" "+dojoString.pad(item.last_run_time, 6);
 				if(last_run_datetime_string.length != 15){
 					last_run_datetime_string = "19900101 000000";
 				}
@@ -104,7 +104,7 @@ mssql.connect(config).then((cnx) => {
 				last_run_datetime = last_run_datetime_array[1]+"-"+last_run_datetime_array[2]+"-"+last_run_datetime_array[3]+"T"+last_run_datetime_array[4]+":"+last_run_datetime_array[5]+":"+last_run_datetime_array[6];
 
 
-				var	next_run_datetime_string = item.next_run_date+" "+item.next_run_time;
+				var	next_run_datetime_string = item.next_run_date+" "+dojoString.pad(item.next_run_time, 6);
 				if(next_run_datetime_string.length != 15){
 					next_run_datetime_string = "19900101 000000";
 				}

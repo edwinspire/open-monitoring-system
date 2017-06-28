@@ -96,12 +96,12 @@ mssql.connect(config).then((cnx) => {
 		} 
 	}  	
 }).catch(err => {
-	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_CURRENT_TIMESTAMP'}}]);  
+	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_CURRENT_TIMESTAMP', ip: param.ip}}]);  
 })
 
 mssql.on('error', err => {
 	console.log(err);
-	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_CURRENT_TIMESTAMP'}}]);  
+	deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {Error: err, Task: 'run_mssql_CURRENT_TIMESTAMP', ip: param.ip}}]);  
 });
 
 
