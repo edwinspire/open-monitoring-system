@@ -22,6 +22,14 @@ define(['dojo/_base/declare',
 
             datajson.push({ id: "0", name:'Detalle'});
 
+            function _ObjIsPrimitive(v){
+                var r = false;
+                if(typeof v == 'string' || typeof v == 'number' || typeof v == 'boolean'){
+                    r = true;
+                }
+                return r;
+            }
+
             function LoopObject (obj, parent){
                 var objects = [];
 
@@ -29,39 +37,66 @@ define(['dojo/_base/declare',
                 if(Array.isArray(obj)){
 
                     array.forEach(obj, function(item, index){
-                          objects.push({ id: parent+'_item'+index, name: '<b>'+index+'</b>', parent: parent, type: 'node'});
-                        objects = objects.concat(LoopObject (item, parent+'_item'+index));
-                    });
+
+                        if(_ObjIsPrimitive(item)){
+                          objects.push({ id: parent+'_item'+index, name: item, parent: parent, type: 'value'});
+                      }else{
+                       objects.push({ id: parent+'_item'+index, name: '<b>'+index+'</b>', parent: parent, type: 'node'});
+                       objects = objects.concat(LoopObject (item, parent+'_item'+index)); 
+                   }
+
+
+
+               });
 
                 }else{
 
-                    var i = Math.floor(Math.random() * 1000);
-                    for(var property in obj) { 
-                        var id = parent+'__'+i;
-                        var v = obj[property]; 
 
-                        if(typeof v == 'object'){
-                            objects.push({ id: id, name: '<b>'+property+'</b>', parent: parent});
-                            objects = objects.concat(LoopObject (v, id));
-                        }else if(typeof v == 'string' || typeof v == 'number' || typeof v == 'boolean'){
+                    if(_ObjIsPrimitive(obj)){
 
-                            objects.push({ id: id, name: '<b>'+property+':</b> '+v, parent: parent, type: 'value'});
-                        //objects.push({ id: id+'_', name: v, parent: id, type: 'value'});
+                        objects.push({ id: id+'_child_'+parent, name: obj, parent: parent, type: 'value'});
+
+                    }else  if(typeof obj == 'object'){
+
+                        var i = 0;
+                        for(var property in obj) { 
+                            var id = parent+'__'+i;
+                            var v = obj[property]; 
+
+                            if(_ObjIsPrimitive(v)){
+
+                                objects.push({ id: id, name: '<b>'+property+':</b> '+v, parent: parent, type: 'value'});
+
+                            }else  if(typeof v == 'object'){
+
+                                objects.push({ id: id, name: '<b>'+property+'</b>', parent: parent, type: 'node'});
+                                objects = objects.concat(LoopObject (v, id));
+
+                            }
+
+
+
+
+
+                            i++;
+                        }
 
                     }
 
 
-                    i++;
+
+
+
+
+
                 }
 
+
+                return objects;
             }
 
 
-            return objects;
-        }
-
-
-        datajson = datajson.concat(LoopObject (_v, "0"));
+            datajson = datajson.concat(LoopObject (_v, "0"));
 
 // sort by name
 datajson.sort(function(a, b) {
@@ -69,26 +104,26 @@ datajson.sort(function(a, b) {
   var nameB = b.name.toUpperCase(); // ignore upper and lowercase
   if (nameA < nameB) {
     return -1;
-  }
-  if (nameA > nameB) {
+}
+if (nameA > nameB) {
     return 1;
-  }
+}
 
   // names must be equal
   return 0;
 });
 
 
-        myStore = new Memory({
-            data: [],
-            getChildren: function(object){
+myStore = new Memory({
+    data: [],
+    getChildren: function(object){
             // Supply a getChildren() method to store for the data model where
             // children objects point to their parent (aka relational model)
             return this.query({parent: object.id});
         }
     });
 
-        myStore.setData(datajson);
+myStore.setData(datajson);
 
     // Create the model
     var myModel = new ObjectStoreModel({
@@ -141,4 +176,4 @@ isValid: function(){
 }
 
 });
-    });
+});
