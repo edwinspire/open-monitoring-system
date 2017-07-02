@@ -3,7 +3,7 @@ require(["dojo/_base/lang", "api/postgres/oms",  "dojo/node!pg"], function(lang,
 	lang.extend(OMS, {
 /////////////////////////////////////////
 
-receiver_event: function(req, res){
+event_receiver: function(req, res){
 
 	var t = this;
 	var post = req.body;

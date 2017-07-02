@@ -3,7 +3,7 @@ require(["dojo/_base/lang", "api/postgres/oms", "dojo/_base/array"], function(la
 	lang.extend(OMS, {
 /////////////////////////////////////////
 
-schema_events: function(table, req, res){
+schema_public: function(table, req, res){
 
 	var t = this;
 
@@ -31,7 +31,7 @@ schema_events: function(table, req, res){
 
 
 },
-schema_events_view_datas_details_isopen: function(req, res, params){
+schema_public_view_equipment_config: function(req, res, params){
 
 	var t = this;
 	var post = req.body;
@@ -40,9 +40,7 @@ schema_events_view_datas_details_isopen: function(req, res, params){
 
 	switch(params.action){
 		case 'r':
-		//var w = {tschema_tname: post.tschema_tname};
-		qp = t.Select('events.view_datas_details_isopen', []).orderBy(' dateevent DESC ').build();
-		t.response_query(res, qp.query, qp.param);
+		t.response_query(res, 'SELECT * FROM public.view_equipment_config WHERE ', qp.param);
 		break;
 		case 'u':
 		qp = t.Update('gui.column_propertiesxxxxx', post, ["hash_num"]).whereAnd([params.onupdate], []).build();
@@ -53,7 +51,7 @@ schema_events_view_datas_details_isopen: function(req, res, params){
 		break;
 	}
 },
-schema_events_receiver: function(req, res, params){
+schema_public_receiver: function(req, res, params){
 
 	var t = this;
 	var post = req.body;

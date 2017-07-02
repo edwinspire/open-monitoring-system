@@ -39,7 +39,7 @@ run_check_movinv: function(task){
                     t.query(`
                       UPDATE secondary.interfaces_eta_rm_matriz SET enmatriz = true, enmatriz_revisado = now(), isvalid = true WHERE idreginterfacesmatriz = ANY($1::BIGINT[]);
                       `, [idsMovimientos]).then(function(result){
-
+                        console.log(result);
                         deferred.resolve(true);
 
                     }, function(fail){

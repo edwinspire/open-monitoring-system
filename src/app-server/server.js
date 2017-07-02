@@ -38,9 +38,11 @@ require(["dojo/request",
 	"api/postgres/udc_table_events_details",
 	"api/postgres/udc_table_events",
 	"api/postgres/udc_account_events_comments" ,
+	"api/postgres/schema_public",
 	"api/postgres/schema_secondary",
 	"api/postgres/schema_events",
-	"api/postgres/schema_gui"
+	"api/postgres/schema_gui",
+	"api/postgres/services_objects"
 	], function(request, on, array, os, crypto, http, socketIO, path, fs, LogSystem, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, Config, sessionusers){
 
 		var Log = new LogSystem('debug', fs.createWriteStream('OpenMonitoringSystem'+(new Date()).toLocaleDateString()+'.log'));
@@ -105,7 +107,7 @@ var transporter = nodeMailer.createTransport(cnxSMTP);
 
 PostgreSQL.configuration_server.query({config_name: "mailOptions"}).forEach(function(config){
 
-config.configuration.html = '<b>Open Monitoring System</b><p>'+os.hostname()+'</p><p>'+os.platform()+'</p><p>Webserver Port: '+process.env.PORT+'</p><p>Total Mem: '+os.totalmem()+'</p>';
+	config.configuration.html = '<b>Open Monitoring System</b><p>'+os.hostname()+'</p><p>'+os.platform()+'</p><p>Webserver Port: '+process.env.PORT+'</p><p>Total Mem: '+os.totalmem()+'</p>';
 
 	transporter.sendMail(config.configuration, function(error, info){
 		if(error){
@@ -285,10 +287,9 @@ app.post("/njs/db/events/*",  function(req, res){
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-app.post("/njs/receiver",  function(req, res){
+app.post("/receiver",  function(req, res){
 // TODO Implementar un mecaniso de seguridad para impedir ingreso de eventos por algun hacker
 PostgreSQL.receiver_event(req, res);
-
 });
 
 
@@ -489,6 +490,43 @@ app.post("/db/*",  function(req, res){
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////
+app.post("/service/*",  function(req, res){
+
+
+	var parts = req.path.split("/");
+	//console.log(parts);
+
+	if(parts.length >= 8){
+
+		var params = {service: parts[2], objectdb: parts[3], action: parts[4]};
+
+		switch(params.service){
+			case "objects":
+			switch(params.objectdb){
+				case "view_equipment_config":
+				//params.file_name = parts[8];
+				console.log(params);
+				PostgreSQL.service_objects_view_equipment_config(req, res, params);
+				break;
+				default:
+				res.status(404).json({path: req.path});
+				break;
+			}
+			break;
+			default:
+			res.status(404).json({path: req.path});
+			break;
+		}
+
+	}else{
+		res.status(500).json({path: req.path, error: 'No tiene los argumentos completos'});
+	}
+
+
+});
+
+
+////////////////////////////////////////////////////////////////////////////////////////
 app.post("/njs/db/gui/*",  function(req, res){
 
 	var u = sessionUsers.isauthorized(req, res, true);
@@ -505,13 +543,13 @@ app.post("/njs/db/gui/*",  function(req, res){
 				res.send(JSON.stringify(structure, function(key, value){
 
 //console.log(key, value);
-					if(typeof value === "string"){
-						return value.split("\n").join(' ');
-					}else if(value === null) {
-						return undefined;
-					}
-					return value;
-				}).replace(/(\"<jsfunction>|<\/jsfunction>\")/ig,''));
+if(typeof value === "string"){
+	return value.split("\n").join(' ');
+}else if(value === null) {
+	return undefined;
+}
+return value;
+}).replace(/(\"<jsfunction>|<\/jsfunction>\")/ig,''));
 
 
 			}, function(err){

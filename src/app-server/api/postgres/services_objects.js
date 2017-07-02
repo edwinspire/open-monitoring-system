@@ -3,48 +3,24 @@ require(["dojo/_base/lang", "api/postgres/oms", "dojo/_base/array"], function(la
 	lang.extend(OMS, {
 /////////////////////////////////////////
 
-schema_events: function(table, req, res){
-
-	var t = this;
-
-	if(table){
-
-		var post = req.body;
-		var qp;
-
-		switch(post.__action){
-			case 'select_rows':
-
-			qp = t.Select(table, []).orderBy(' dateevent DESC').build();
-			t.response_query(res, qp.query, qp.param);
-			break;
-
-			default:
-			res.status(500).json({success: false, data: "Intentando una accion invalida "+post.__action, req: post});
-			break;
-
-		}
-
-	}else{
-		res.status(500).json({success: false, data: "No ha definido una tabla a buscar"});
-	}
-
-
-},
-schema_events_view_datas_details_isopen: function(req, res, params){
+service_objects_view_equipment_config: function(req, res, params){
 
 	var t = this;
 	var post = req.body;
 	var qp;
-	var w = {};
+	var v = {};
+	console.log(post);
 
 	switch(params.action){
 		case 'r':
-		//var w = {tschema_tname: post.tschema_tname};
-		qp = t.Select('events.view_datas_details_isopen', []).orderBy(' dateevent DESC ').build();
-		t.response_query(res, qp.query, qp.param);
+
+		if(post.idequipment && post.validator && post.file_name){
+			t.response_query(res, "SELECT COALESCE((SELECT config FROM public.view_equipment_config WHERE (report_validator = $1::TEXT AND idequipment = $2::BIGINT) AND file_name = $3::TEXT LIMIT 1), (SELECT config FROM public.view_equipment_config WHERE EXISTS(SELECT * FROM equipments WHERE report_validator = $1::TEXT AND idequipment = $2::BIGINT) AND idequipment = 0 AND file_name = $3::TEXT), '{}') as object;", [post.validator, post.idequipment, post.file_name]);
+		}else{
+			res.status(500).json({success: false, data: "Los datos enviados no estan completos o no son validos", params: params});
+		}		
 		break;
-		case 'u':
+		case 'uvvvvvvvvvvvv':
 		qp = t.Update('gui.column_propertiesxxxxx', post, ["hash_num"]).whereAnd([params.onupdate], []).build();
 		t.response_update(res, qp.query, qp.param);
 		break;		
@@ -53,7 +29,7 @@ schema_events_view_datas_details_isopen: function(req, res, params){
 		break;
 	}
 },
-schema_events_receiver: function(req, res, params){
+service_objects_receiverxxxxxxxxxxxxxxxxxxxxxxxxxxxxx: function(req, res, params){
 
 	var t = this;
 	var post = req.body;
