@@ -48,6 +48,7 @@ namespace OpenMonitoringSystem
 			public string description;
 			public string source;
 			public object detailsJSON;
+			public int idadmin;
 		}
 
 		public abstract class Comunicator{
@@ -133,6 +134,7 @@ namespace OpenMonitoringSystem
 							{ "list_events", JsonConvert.SerializeObject(ev)}
 						});
 				}
+				Console.WriteLine (R);
 				return R;
 			}
 

@@ -36,9 +36,9 @@ service_events_receiver: function(req, res, params){
 
 	switch(params.action){
 		case 'w':
-console.log(post);
+		console.log(post);
 		if(post.idequipment && post.validator && post.list_events){
-			t.response_query(res, "SELECT COALESCE((SELECT config FROM public.view_equipment_config WHERE (report_validator = $1::TEXT AND idequipment = $2::BIGINT) AND file_name = $3::TEXT LIMIT 1), (SELECT config FROM public.view_equipment_config WHERE EXISTS(SELECT * FROM equipments WHERE report_validator = $1::TEXT AND idequipment = $2::BIGINT) AND idequipment = 0 AND file_name = $3::TEXT), '{}') as object;", [post.validator, post.idequipment, post.file_name]);
+			t.response_query(res, "SELECT events.fun_receiver_json($1::BIGINT, $2::TEXT, $3::JSON);", [post.idequipment, post.validator, post.list_events]);
 		}else{
 			res.status(500).json({success: false, data: "Los datos enviados no estan completos o no son validos", params: params});
 		}	
