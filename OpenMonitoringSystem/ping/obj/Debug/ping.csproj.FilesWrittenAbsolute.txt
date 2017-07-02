@@ -1,8 +1,0 @@
-/home/edwinspire/Documentos/Desarrollo/open-monitoring-system/OpenMonitoringSystem/ping/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/home/edwinspire/Documentos/Desarrollo/open-monitoring-system/OpenMonitoringSystem/ping/bin/Debug/ping.pdb
-/home/edwinspire/Documentos/Desarrollo/open-monitoring-system/OpenMonitoringSystem/ping/bin/Debug/ping.exe
-/home/edwinspire/Documentos/Desarrollo/open-monitoring-system/OpenMonitoringSystem/ping/obj/Debug/ping.exe
-/home/edwinspire/Documentos/Desarrollo/open-monitoring-system/OpenMonitoringSystem/ping/obj/Debug/ping.pdb
-/home/edwinspire/Documentos/Desarrollo/open-monitoring-system/OpenMonitoringSystem/ping/bin/Debug/liboms.dll
-/home/edwinspire/Documentos/Desarrollo/open-monitoring-system/OpenMonitoringSystem/ping/bin/Debug/liboms.pdb
-/home/edwinspire/Documentos/Desarrollo/open-monitoring-system/OpenMonitoringSystem/ping/bin/Debug/Newtonsoft.Json.dll
