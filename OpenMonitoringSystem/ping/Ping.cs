@@ -101,22 +101,22 @@ namespace OpenMonitoringSystem
 					R.ideventtype = Param.roundtriptime_ideventtype;
 				}
 
-				R.detailsJSON = D;
+				R.details_json = D;
 				R.dateevent = DateTime.Now;
 
 			}catch(System.ArgumentException E){
-				R.detailsJSON = E;
+				R.details_json = E;
 				Console.WriteLine (E.ToString());
 			}catch(System.Net.NetworkInformation.PingException E){
-				R.detailsJSON = E;
+				R.details_json = E;
 				Console.WriteLine (E.ToString());
 			}
 			catch(System.NullReferenceException E){
-				R.detailsJSON = E;
+				R.details_json = E;
 				Console.WriteLine (E.ToString());
 			}
 
-			R.ID = this.genIDEvent (R);
+			R.id = this.genIDEvent (R);
 			return R;
 		}
 

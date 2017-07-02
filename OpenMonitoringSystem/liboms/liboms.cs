@@ -42,12 +42,12 @@ namespace OpenMonitoringSystem
 		}
 
 		public struct EventData {
-			public string ID;
+			public string id;
 			public DateTime dateevent;
 			public int ideventtype;
 			public string description;
 			public string source;
-			public object detailsJSON;
+			public object details_json;
 			public int idadmin;
 		}
 
@@ -71,7 +71,7 @@ namespace OpenMonitoringSystem
 			}
 
 			public string genIDEvent(EventData ev){
-				ev.ID = "";
+				ev.id = "";
 
 				return FormsAuthentication.HashPasswordForStoringInConfigFile(SerializeObject<EventData> (ev), "MD5");
 			}
@@ -119,20 +119,32 @@ namespace OpenMonitoringSystem
 
 				return response;
 			}
-
-			public string SendEvent(System.Collections.Generic.List<EventData> ev)
+				
+			public List<string> SendEvent(System.Collections.Generic.List<EventData> ev)
 			{
-				var R = "";
+				var R = new List<string>();
 				var server = this.Client.Server + "/service/events/receiver/w/" + ((int)DateTime.Now.Ticks).ToString () + "/" + ((int)DateTime.Now.Ticks).ToString () + "/"+ ((int)DateTime.Now.Ticks).ToString () + "/"+ev.Count.ToString();
 				//var server = this.Client.Server + "/events/datas/w/" + ((int)DateTime.Now.Ticks).ToString () + "/" + ((int)DateTime.Now.Ticks).ToString () + "/" + ((int)DateTime.Now.Ticks).ToString ();
 				Console.WriteLine (server);
 				if(ev.Count > 0){
-					R = Post(server, new NameValueCollection()
+				var	txt = Post(server, new NameValueCollection()
 						{
 							{ "idequipment", this.Client.idequipment.ToString() },
 							{ "validator", this.Client.validator},
 							{ "list_events", JsonConvert.SerializeObject(ev)}
 						});
+
+					string pattern = @"\[\{\""fun_receiver_json\"":(.*?)\}\]";
+
+					Regex rex = new Regex(pattern);
+					MatchCollection matches = rex.Matches(txt);
+
+					if (matches.Count > 0) {
+						foreach (Match match in matches) {
+							R = DeserializeObject<List<string>> (match.Groups [1].Value);
+						}
+					}
+
 				}
 				Console.WriteLine (R);
 				return R;
@@ -161,7 +173,6 @@ namespace OpenMonitoringSystem
 
 					Regex rex = new Regex(pattern);
 					MatchCollection matches = rex.Matches(r);
-
 
 					if (matches.Count > 0) {
 						foreach (Match match in matches) {

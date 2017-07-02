@@ -36,7 +36,7 @@ service_events_receiver: function(req, res, params){
 
 	switch(params.action){
 		case 'w':
-		console.log(post);
+		//console.log(post);
 		if(post.idequipment && post.validator && post.list_events){
 			t.response_query(res, "SELECT events.fun_receiver_json($1::BIGINT, $2::TEXT, $3::JSON);", [post.idequipment, post.validator, post.list_events]);
 		}else{
