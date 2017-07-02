@@ -502,18 +502,34 @@ app.post("/service/*",  function(req, res){
 
 		switch(params.service){
 			case "objects":
+
 			switch(params.objectdb){
 				case "view_equipment_config":
-				//params.file_name = parts[8];
-				console.log(params);
 				PostgreSQL.service_objects_view_equipment_config(req, res, params);
 				break;
 				default:
+				console.log('No existe 1', req.path);
 				res.status(404).json({path: req.path});
 				break;
 			}
 			break;
+
+			case "events":
+
+			switch(params.objectdb){
+				case "receiver":
+				//params.file_name = parts[8];
+				PostgreSQL.service_events_receiver(req, res, params);
+				break;
+				default:
+				console.log('No existe 2', req.path, params);
+				res.status(404).json({path: req.path});
+				break;
+			}
+
+			break;
 			default:
+			console.log('No existe 3', req.path);
 			res.status(404).json({path: req.path});
 			break;
 		}
@@ -576,6 +592,7 @@ return value;
 
 
 app.use(function(req, res, next) {
+	console.log(req.originalUrl);
 	res.status(404).send('Sorry cant find that!'+' '+process.env.EXPRESS_STATIC_DIR+' '+req.originalUrl);
 });
 

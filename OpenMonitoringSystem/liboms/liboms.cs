@@ -26,7 +26,9 @@ using System.Net;
 using Newtonsoft.Json;
 using System.IO;
 using System.Text;
-
+using System.Text.RegularExpressions;
+using System.Web.Security;
+using System.Net.Sockets;
 
 namespace OpenMonitoringSystem
 {
@@ -40,6 +42,7 @@ namespace OpenMonitoringSystem
 		}
 
 		public struct EventData {
+			public string ID;
 			public DateTime dateevent;
 			public int ideventtype;
 			public string description;
@@ -66,6 +69,12 @@ namespace OpenMonitoringSystem
 				this.Client = this.getLocalObject <ClientParam>("OMSClient.json");
 			}
 
+			public string genIDEvent(EventData ev){
+				ev.ID = "";
+
+				return FormsAuthentication.HashPasswordForStoringInConfigFile(SerializeObject<EventData> (ev), "MD5");
+			}
+
 			public Comunicator(string server, int idequipment, string validator, string config_dir){
 
 				this.Client.Server = server;
@@ -80,9 +89,22 @@ namespace OpenMonitoringSystem
 				return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
 			}
 
+			public static string GetLocalIPAddress()
+			{
+				var host = Dns.GetHostEntry(Dns.GetHostName());
+				foreach (var ip in host.AddressList)
+				{
+					if (ip.AddressFamily == AddressFamily.InterNetwork)
+					{
+						return ip.ToString();
+					}
+				}
+				throw new Exception("Local IP Address Not Found!");
+			}
+
 			public static string Post(string uri, NameValueCollection pairs)
 			{
-				string response = null;
+				string response = "";
 				try{
 					using (WebClient client = new WebClient())
 					{
@@ -100,7 +122,8 @@ namespace OpenMonitoringSystem
 			public string SendEvent(System.Collections.Generic.List<EventData> ev)
 			{
 				var R = "";
-				var server = this.Client.Server + "/events/datas/w/" + ((int)DateTime.Now.Ticks).ToString () + "/" + ((int)DateTime.Now.Ticks).ToString () + "/" + ((int)DateTime.Now.Ticks).ToString ();
+				var server = this.Client.Server + "/service/events/receiver/w/" + ((int)DateTime.Now.Ticks).ToString () + "/" + ((int)DateTime.Now.Ticks).ToString () + "/"+ ((int)DateTime.Now.Ticks).ToString () + "/"+ev.Count.ToString();
+				//var server = this.Client.Server + "/events/datas/w/" + ((int)DateTime.Now.Ticks).ToString () + "/" + ((int)DateTime.Now.Ticks).ToString () + "/" + ((int)DateTime.Now.Ticks).ToString ();
 				Console.WriteLine (server);
 				if(ev.Count > 0){
 					R = Post(server, new NameValueCollection()
@@ -113,16 +136,17 @@ namespace OpenMonitoringSystem
 				return R;
 			}
 
-			public struct ResponseObj {public string result;}
+
 
 			public T getRemoteObject<T>(string filename, string server = "") where T : new(){
-				
+
+				var R = new T();
 				if (String.IsNullOrEmpty (server) || String.IsNullOrEmpty (filename)) {
 					server = this.Client.Server + "/service/objects/view_equipment_config/r/" + ((int)DateTime.Now.Ticks).ToString () + "/" + ((int)DateTime.Now.Ticks).ToString () + "/"+ ((int)DateTime.Now.Ticks).ToString () + "/" + filename;
 				}
 
 				if(String.IsNullOrEmpty(filename)){
-					return (T)(new object());
+					Console.WriteLine ("No ha ingresado un nombre de archivo");
 				}else{
 					string r = Post(server, new NameValueCollection()
 						{
@@ -131,12 +155,20 @@ namespace OpenMonitoringSystem
 							{ "file_name", filename}
 						});
 
-					var x = DeserializeObject<ResponseObj>(r.Substring(1, r.Length-2));
-					Console.WriteLine ("bbbbb");
+					string pattern = @"\[\{\""object\"":(.*?)\}\]";
 
-					return DeserializeObject<T>(r);
+					Regex rex = new Regex(pattern);
+					MatchCollection matches = rex.Matches(r);
+
+
+					if (matches.Count > 0) {
+						foreach (Match match in matches) {
+							R = DeserializeObject<T> (match.Groups [1].Value);
+						}
+					}
+						
 				}
-
+				return R;
 			}
 
 			public T getObjectRecursive<T>(string filename, bool force_remote = false, string server = "") where T : new(){

@@ -53,6 +53,7 @@ namespace OpenMonitoringSystem
 			R.description = Param.TargetIP;
 			R.source = "00000000000000000000000000000000";
 			D.to = Param.TargetIP;
+			D.from = GetLocalIPAddress ();
 
 			PingOptions options = new PingOptions ();
 
@@ -115,6 +116,7 @@ namespace OpenMonitoringSystem
 				Console.WriteLine (E.ToString());
 			}
 
+			R.ID = this.genIDEvent (R);
 			return R;
 		}
 
@@ -133,8 +135,6 @@ namespace OpenMonitoringSystem
 
 			var oMS = new Ping ();
 			//oMS
-
-
 			var lev = new List<Client.EventData> ();
 
 			lev.Add (oMS.getEvent ());
