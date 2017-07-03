@@ -44,7 +44,7 @@ service_events_receiver: function(req, res, params){
 		}	
 
 		break;
-		case 'u':
+		case 'uxxxzzzzz':
 		qp = t.Update('gui.column_propertiesxxxxx', post, ["hash_num"]).whereAnd([params.onupdate], []).build();
 		t.response_update(res, qp.query, qp.param);
 		break;		
