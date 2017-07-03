@@ -2,55 +2,8 @@
 
 <div data-dojo-type="dijit/layout/ContentPane" data-dojo-attach-point="BorderContainer" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" maxSize="Infinity" style="width: 100%; height: 100%; padding: 2px;" doLayout="true">
 			
-			<div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="GridEvents"  data-dojo-props="Gui:{ fields: ['bwart','shkzg','matnr','mblnr','menge','werks','datetimeload','datetimefile','datas','enmatriz','enmatriz_revisado','account_name', 'observations', 'isvalid']}, DialogAddContent: '${id}_fnne', UrlExport:'',  target: '/db', dbschema: 'secondary', dbtableview: 'view_mov_inv_eta_pendientes', initialQuery: {}, refreshOnTableChanged: ['secondary.interfaces_eta_rm_matriz'], Title:'MOV. INV. - Sin cargar en matriz', idProperty: 'idreginterfacesmatriz'"></div> 
+			<div data-dojo-type="Widget/uDCGridWidget/uDCGridWidget" data-dojo-attach-point="GridEvents"  data-dojo-props="Gui:{ fields: ['bwart','shkzg','matnr','mblnr','menge','werks','datetimeload','datetimefile','datas','enmatriz','enmatriz_revisado','account_name', 'observations', 'isvalid']}, UrlExport:'',  target: '/db', dbschema: 'secondary', dbtableview: 'view_mov_inv_duplicados_rm', initialQuery: {}, refreshOnTableChanged: ['secondary.interfaces_eta_rm_matriz'], Title:'MOV. INV. - Sin cargar en matriz', idProperty: 'idreginterfacesmatriz'"></div> 
 
-			<span style="display: none;">
-
-				<div id="${id}_fnne" style="max-width: 460px;" >
-
-					<div data-dojo-type="Widget/uDC/uDC" data-dojo-attach-point="uDCNewEvent" data-dojo-props="hiddenFields: [], target: '/njs/db/table/events', __affected_table: 'events.datas'">
-
-						<fieldset>
-
-							<legend>Abonado</legend>
-							<select data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore"  data-dojo-attach-point="SelectAccounts" name="idaccount" data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['accounts', 'admins'], requestQuery: {__affected_table: 'public.view_accounts'}, identifier: 'idaccount', target: '/njs/db/Select_Generic_to_Store'}, autoComplete:false, searchAttr: 'account__name'"></select> 
-						</fieldset>
-
-						<fieldset>
-							<legend>Usuario / Cliente</legend>
-
-							<div data-dojo-type="FilteringSelectLiveStore/FilteringSelectLiveStore"  required="false" name="idcontact_user" data-dojo-attach-point="SelectAccountUser" class="account_events_manual_new"  data-dojo-props="autoComplete:false, LiveStore: {refreshOnTableChanged:['public.contacts', 'public.account_users'], identifier: 'idcontact', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'contact_name'"></div>  
-
-						</fieldset>
-
-
-						<fieldset>
-							<legend>Equipo</legend>
-
-							<div data-dojo-type="FilteringSelectLiveStore/FilteringSelectLiveStore"   name="idequipment" class="account_events_manual_new" data-dojo-attach-point="SelectAccountEquipments" required="false" data-dojo-props="autoComplete:false, LiveStore: {refreshOnTableChanged:['public.equipments'], identifier: 'idequipment', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'equipment_name'"></div>  
-
-						</fieldset>		
-
-						<fieldset>
-							<legend>Novedad</legend>
-
-							<div data-dojo-type="FilteringSelectGlobalStore/FilteringSelectGlobalStore" name="ideventtype" class="account_events_manual_new"  data-dojo-props="GlobalLiveStore: {refreshOnTableChanged:['eventtypes'], requestQuery: {__affected_table: 'events.view_eventtypes_to_client'}, identifier: 'ideventtype', target: '/njs/db/Select_Generic_to_Store'}, searchAttr: 'label'"></div>  
-
-						</fieldset>
-
-
-						<fieldset style="height: auto; width: 90%;">
-							<legend>Detalle</legend>
-							<textarea data-dojo-type="dijit/form/Textarea" style="height: auto; width: 100%;" class="account_events_manual_new"  placeholder='Detalle' name="description" ></textarea>
-						</fieldset>  
-
-					</div>
-
-
-
-				</div>
-
-			</span>
 
 		</div>
 

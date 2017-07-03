@@ -31,7 +31,7 @@ schema_secondary_view_mov_inv_eta_pendientesxxxxxx: function(table, req, res){
 
 
 }  ,
-schema_secondary_view_mov_inv_eta_pendientes: function(req, res, params){
+schema_secondary_view_mov_inv_sin_cargar_eta: function(req, res, params){
 
 	var t = this;
 	var post = req.body;
@@ -40,21 +40,16 @@ schema_secondary_view_mov_inv_eta_pendientes: function(req, res, params){
 
 	switch(params.action){
 		case 'r':
-		//var w = {tschema_tname: post.tschema_tname};
-		qp = t.Select('secondary.view_mov_inv_eta_pendientes', []).build();
+		qp = t.Select('secondary.view_mov_inv_sin_cargar_eta', []).build();
 		t.response_query(res, qp.query, qp.param);
-		break;
-		case 'u':
-		qp = t.Update('gui.column_propertiesxxxxx', post, ["hash_num"]).whereAnd([params.onupdate], []).build();
-		t.response_update(res, qp.query, qp.param);
-	break;		
+		break;	
 	default:
 	res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
 	break;
 }
 
 }  ,
-schema_secondary_view_mov_inv_rm_pendientes: function(req, res, params){
+schema_secondary_view_mov_inv_sin_cargar_rm: function(req, res, params){
 
 	var t = this;
 	var post = req.body;
@@ -63,20 +58,57 @@ schema_secondary_view_mov_inv_rm_pendientes: function(req, res, params){
 
 	switch(params.action){
 		case 'r':
-		//var w = {tschema_tname: post.tschema_tname};
-		qp = t.Select('secondary.view_mov_inv_rm_pendientes', []).build();
+		qp = t.Select('secondary.view_mov_inv_sin_cargar_rm', []).build();
 		t.response_query(res, qp.query, qp.param);
 		break;
-		case 'u':
-		qp = t.Update('gui.column_propertiesxxxxx', post, ["hash_num"]).whereAnd([params.onupdate], []).build();
-		t.response_update(res, qp.query, qp.param);
-	break;		
 	default:
 	res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
 	break;
 }
 
-}                 
+},
+schema_secondary_view_mov_inv_duplicados_eta: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var w = {};
+
+	switch(params.action){
+		case 'r':
+		qp = t.Select('secondary.view_mov_inv_duplicados_eta', []).build();
+		t.response_query(res, qp.query, qp.param);
+		break;
+	default:
+	res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+	break;
+}
+
+},
+schema_secondary_view_mov_inv_duplicados_rm: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var w = {};
+
+	switch(params.action){
+		case 'r':
+		qp = t.Select('secondary.view_mov_inv_duplicados_rm', []).build();
+		t.response_query(res, qp.query, qp.param);
+		break;
+	default:
+	res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+	break;
+}
+
+}
+
+
+
+
+
+
 
 
 });
