@@ -16,11 +16,7 @@ service_objects_view_equipment_config: function(req, res, params){
 		}else{
 			res.status(500).json({success: false, data: "Los datos enviados no estan completos o no son validos", params: params});
 		}		
-		break;
-		case 'uvvvvvvvvvvvv':
-		qp = t.Update('gui.column_propertiesxxxxx', post, ["hash_num"]).whereAnd([params.onupdate], []).build();
-		t.response_update(res, qp.query, qp.param);
-		break;		
+		break;	
 		default:
 		console.log('No esta bien', params);
 		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
@@ -43,10 +39,6 @@ service_events_receiver: function(req, res, params){
 			res.status(500).json({success: false, data: "Los datos enviados no estan completos o no son validos", params: params});
 		}	
 
-		break;
-		case 'uxxxzzzzz':
-		qp = t.Update('gui.column_propertiesxxxxx', post, ["hash_num"]).whereAnd([params.onupdate], []).build();
-		t.response_update(res, qp.query, qp.param);
 		break;		
 		default:
 		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
