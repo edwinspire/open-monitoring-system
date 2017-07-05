@@ -20,7 +20,7 @@ run_check_movinv: function(task){
     console.log(task.task_parameters.empresa, limit, orden);
 
     t.query(`
-        SELECT idreginterfacesmatriz, cpudt, cputm, menge, mblnr, matnr, werks FROM secondary.view_movinv_sap WHERE enmatriz = false AND bukrs = $1::TEXT ORDER BY datetimefile ${orden} LIMIT ${limit};
+        SELECT idreginterfacesmatriz, cpudt, cputm, menge, mblnr, matnr, werks, bwart FROM secondary.view_movinv_sap WHERE enmatriz = false AND bukrs = $1::TEXT ORDER BY datetimefile ${orden} LIMIT ${limit};
         `, [task.task_parameters.empresa]).then(function(result){
 
             var totalMov = result.rows.length;
