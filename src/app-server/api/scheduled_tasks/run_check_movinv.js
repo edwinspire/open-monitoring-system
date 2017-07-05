@@ -88,7 +88,23 @@ run_check_movinv: function(task){
     },
     _run_check_movinv_connect_matriz: function(cnxmatriz, movsap, name_event){
         var t = this;
-        var srtquery = "USE EasyGestionEmpresarial; SELECT tbl_maestromovinvent.Serie_Factura FROM tbl_maestromovinvent  INNER JOIN tbl_movinvent  ON tbl_maestromovinvent.Serie_Factura = tbl_movinvent.Serie_Factura WHERE tbl_maestromovinvent.FechaRegistro = '"+movsap.cpudt+" "+movsap.cputm+"' AND  tbl_movinvent.cantidad = "+movsap.menge+" AND  tbl_maestromovinvent.numero_doc_inv = '"+movsap.mblnr+"' and tbl_maestromovinvent.Oficina = (SELECT top (1) o.oficina FROM dbo.Oficina o WHERE o.ofi_codigo_interno_empresa = '"+movsap.werks+"' AND o.Compania = tbl_maestromovinvent.Compania) AND  codigo_producto = '"+Number(movsap.matnr)+"';";
+        //var srtquery = "USE EasyGestionEmpresarial; SELECT tbl_maestromovinvent.Serie_Factura FROM tbl_maestromovinvent  INNER JOIN tbl_movinvent  ON tbl_maestromovinvent.Serie_Factura = tbl_movinvent.Serie_Factura WHERE tbl_maestromovinvent.FechaRegistro = '"+movsap.cpudt+" "+movsap.cputm+"' AND  tbl_movinvent.cantidad = "+movsap.menge+" AND  tbl_maestromovinvent.numero_doc_inv = '"+movsap.mblnr+"' and tbl_maestromovinvent.Oficina = (SELECT top (1) o.oficina FROM dbo.Oficina o WHERE o.ofi_codigo_interno_empresa = '"+movsap.werks+"' AND o.Compania = tbl_maestromovinvent.Compania) AND (SELECT TOP(1) tme_tipo_movimiento FROM par.tbl_par_TipoMovimientoExterno WHERE tme_codigo_externo = 'bbbbbb') AND  codigo_producto = '"+Number(movsap.matnr)+"';";
+var FechaRegistro = movsap.cpudt+" "+movsap.cputm;
+var cantidad = movsap.menge;
+var numero_doc_inv = movsap.mblnr;
+var ofi_codigo_interno_empresa = movsap.werks;
+var tme_codigo_externo = movsap.bwart;
+var codigo_producto = Number(movsap.matnr);
+
+        var srtquery = `
+use EasyGestionEmpresarial;
+SELECT tbl_maestromovinvent.Serie_Factura FROM tbl_maestromovinvent  
+INNER JOIN tbl_movinvent  ON tbl_maestromovinvent.Serie_Factura = tbl_movinvent.Serie_Factura 
+WHERE  tbl_movinvent.tipo_mov = (SELECT TOP(1) tme_tipo_movimiento FROM par.tbl_par_TipoMovimientoExterno WHERE tme_codigo_externo = '${tme_codigo_externo}') 
+AND tbl_maestromovinvent.FechaRegistro = '${FechaRegistro}' AND  tbl_movinvent.cantidad = '${cantidad}' AND  tbl_maestromovinvent.numero_doc_inv = '${numero_doc_inv}' 
+AND tbl_maestromovinvent.Oficina = (SELECT top (1) o.oficina FROM dbo.Oficina o WHERE o.ofi_codigo_interno_empresa = '${ofi_codigo_interno_empresa}' 
+AND o.Compania = tbl_maestromovinvent.Compania) AND  codigo_producto = '${codigo_producto}';
+        `;
 
         new mssql.Request(cnxmatriz)
         .query(srtquery).then(function(recordset) {
