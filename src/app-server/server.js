@@ -643,12 +643,12 @@ sessionUsers.on('newsession', function(e){
 
 
 // Add a connect listener
-sio.on('connection', function(client){ 
+sio.on('connection', function(clientio){ 
 
-	client.emit('connection', 'Open Monitoring System');
+	clientio.emit('connection', 'Open Monitoring System');
 
     // Success!  Now listen to messages to be received
-    client.on('heartbeat',function(event){ 
+    clientio.on('heartbeat',function(event){ 
        // Log.debug('Received message from client!', event.sessionidclient, sessionUsers.session);
 //sid = event.sessionidclient;
 var datauser = sessionUsers.datauser(event.sessionidclient);
@@ -660,17 +660,31 @@ if(datauser){
 
 }else{
 
-	client.emit('command', {command: 'logout'});
+	clientio.emit('command', {command: 'logout'});
+	clientio.disconnect('unauthorized');
 }
 
 });
 
-    client.on('disconnect',function(){
+
+
+    clientio.on('hi',function(event){ 
+       // Log.debug('Received message from client!', event.sessionidclient, sessionUsers.session);
+//sid = event.sessionidclient;
+	clientio.emit('hi', {command: 'logout'});
+
+});
+
+
+
+
+
+    clientio.on('disconnect',function(){
     	Log.debug('Server has disconnected');
 
     });
 
-    client.on('reconnect', function() {
+    clientio.on('reconnect', function() {
     	Log.debug('reconnect fired!');
     });
 
