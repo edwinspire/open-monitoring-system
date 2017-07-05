@@ -109,6 +109,8 @@ AND o.Compania = tbl_maestromovinvent.Compania) AND  codigo_producto = '${codigo
         new mssql.Request(cnxmatriz)
         .query(srtquery).then(function(recordset) {
 
+console.log(srtquery);
+
           if(recordset.length == 1){
 
             var serie = recordset[0];

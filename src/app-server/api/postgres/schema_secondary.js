@@ -134,8 +134,8 @@ schema_secondary_view_lista_precios_oficinas: function(req, res, params){
 			t.response_query(res, q, []);
 			break;			
 			case 'promo_medi':
-			//q = "SELECT * FROM secondary.view_lista_precios_oficinas  WHERE iddivision = 1 AND  account = ANY($1::text[]) AND account_name ILIKE  'MEDI%' ORDER BY account";
-			q = "SELECT * FROM secondary.view_lista_precios_oficinas  WHERE iddivision = 1 AND account_name ILIKE  'MEDI%' ORDER BY account";
+			q = "SELECT * FROM secondary.view_lista_precios_oficinas  WHERE iddivision = 1 AND  account = ANY($1::text[]) AND account_name ILIKE  'MEDI%' ORDER BY account";
+			//q = "SELECT * FROM secondary.view_lista_precios_oficinas  WHERE iddivision = 1 AND account_name ILIKE  'MEDI%' ORDER BY account";
 			t.response_query(res, q, [list_promo]);
 			break;
 			case 'promo_eco':
