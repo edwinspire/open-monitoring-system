@@ -21,18 +21,18 @@ run_f_ListaPreciosOficina: function(task){
 			if(r.valid){
 				//console.log(r);
 				t.query("SELECT secondary.fun_update_lista_precios_oficinas($1::integer, $2::text, $3::text, $4::integer, $5::text, $6::INET);",
-				 [r.return.idaccount, r.return.lp_p, r.return.lp_a, r.return.prod, 'PROV', r.return.ip]).then(function(result){
+					[r.return.idaccount, r.return.lp_p, r.return.lp_a, r.return.prod, 'PROV', r.return.ip]).then(function(result){
 					//console.log(result);
 				}, function(err){
 					console.log(err);
 				});
-			}
+				}
 
-			if(devicesProcceced == totalDevices){
-				signal.remove();
-				deferred.resolve(true);
-			}
-		});
+				if(devicesProcceced == totalDevices){
+					signal.remove();
+					deferred.resolve(true);
+				}
+			});
 
 		array.forEach(devices.rows, function(device, i){
 
@@ -82,44 +82,46 @@ _run_f_ListaPreciosOficina_check: function(param){
 		server: param.ip, 
 		database: 'msdb',
 		connectionTimeout: 90000,
-		requestTimeout: 60000
-    //options: {
-      // encrypt: true
-  //}
-}
+		requestTimeout: 60000,
+		pool: {
+			max: 500,
+			min: 0,
+			idleTimeoutMillis: 30000
+		}
+	}
 
-mssql.connect(config).then((cnx) => {
+	mssql.connect(config).then((cnx) => {
 
-	return new mssql.Request(cnx).query(srtquery)
-}).then((result, error)  => {
-	
-	if(error){
-		deferred.resolve(error);  
-	}else{
+		return new mssql.Request(cnx).query(srtquery)
+	}).then((result, error)  => {
 		
-		if(result.length > 0){
-
-			var r = result[0];
-			r.ip = param.ip;
-			r.idaccount = param.idaccount;
-
-			deferred.resolve(r);
-
+		if(error){
+			deferred.resolve(error);  
 		}else{
-			deferred.reject({});
-		} 
-	}  	
-}).catch(err => {
-	console.log(err, param);
-	deferred.reject(err);  
-})
+			
+			if(result.length > 0){
 
-mssql.on('error', err => {
+				var r = result[0];
+				r.ip = param.ip;
+				r.idaccount = param.idaccount;
+
+				deferred.resolve(r);
+
+			}else{
+				deferred.reject({});
+			} 
+		}  	
+	}).catch(err => {
+		console.log(err, param);
+		deferred.reject(err);  
+	})
+
+	mssql.on('error', err => {
 	//console.log(err, param);
 	deferred.reject(err);  
 });
 
-return deferred.promise;
+	return deferred.promise;
 }
 
 
