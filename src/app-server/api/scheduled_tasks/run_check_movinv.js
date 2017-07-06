@@ -10,51 +10,53 @@ run_check_movinv: function(task){
     var name_event = 'run_check_movinv'+(new Date()).getTime()+ Math.random().toString().replace('.', '_');
     var movProcesados = 0;
     var idsMovimientos = [];
-    var orden = "DESC"
+    var orden = "DESC";
     var limit = task.task_parameters.registros || 1000;
     
     if(task.task_parameters.orden_asc){
-        orden = "ASC"
+        orden = "ASC";
     }
 
-    console.log(task.task_parameters.empresa, limit, orden);
+    var strq = `SELECT idreginterfacesmatriz, cpudt, cputm, menge, mblnr, matnr, werks, bwart, shkzg FROM secondary.view_mov_inv_sin_cargar_eta ORDER BY datetimefile ${orden} LIMIT ${limit};`;
 
-    t.query(`
-        SELECT idreginterfacesmatriz, cpudt, cputm, menge, mblnr, matnr, werks, bwart FROM secondary.view_movinv_sap WHERE enmatriz = false AND bukrs = $1::TEXT ORDER BY datetimefile ${orden} LIMIT ${limit};
-        `, [task.task_parameters.empresa]).then(function(result){
+    if(task.task_parameters.empresa == 'E002'){
+        strq = `SELECT idreginterfacesmatriz, cpudt, cputm, menge, mblnr, matnr, werks, bwart, shkzg FROM secondary.view_mov_inv_sin_cargar_rm ORDER BY datetimefile ${orden} LIMIT ${limit};`;
+    }
 
-            var totalMov = result.rows.length;
+    t.query(strq, []).then(function(result){
 
-            var signal = t.on(name_event, function(movimiento_revisado){
+        var totalMov = result.rows.length;
 
-                movProcesados ++;
+        var signal = t.on(name_event, function(movimiento_revisado){
 
-                if(movimiento_revisado.Serie_Factura){
-                    idsMovimientos.push(movimiento_revisado.idmov);
-                }
+            movProcesados ++;
 
-                if(movProcesados == totalMov){
-                    signal.remove();
+            if(movimiento_revisado.Serie_Factura){
+                idsMovimientos.push(movimiento_revisado.idmov);
+            }
 
-                    t.query(`
-                      UPDATE secondary.interfaces_eta_rm_matriz SET enmatriz = true, enmatriz_revisado = now(), isvalid = true WHERE idreginterfacesmatriz = ANY($1::BIGINT[]);
-                      `, [idsMovimientos]).then(function(result){
-                        console.log(result);
-                        deferred.resolve(true);
+            if(movProcesados == totalMov){
+                signal.remove();
 
-                    }, function(fail){
-                        console.log(fail);
-                        deferred.reject(fail);
-                    });
+                t.query(`
+                  UPDATE secondary.interfaces_eta_rm_matriz SET enmatriz = true, enmatriz_revisado = now(), isvalid = true WHERE idreginterfacesmatriz = ANY($1::BIGINT[]);
+                  `, [idsMovimientos]).then(function(result){
+                //console.log(result);
+                deferred.resolve(true);
 
-                  }
+            }, function(fail){
+                console.log(fail);
+                deferred.reject(fail);
+            });
 
-              });
+              }
+
+          });
 
 
-            mssql.connect({
-                user: task.task_parameters.mssql.user,
-                password: task.task_parameters.mssql.pwd,
+        mssql.connect({
+            user: task.task_parameters.mssql.user,
+            password: task.task_parameters.mssql.pwd,
     server: task.task_parameters.mssql.ip, // You can use 'localhost\\instance' to connect to named instance 
     database: 'msdb',
     requestTimeout: 300000,
@@ -84,26 +86,27 @@ run_check_movinv: function(task){
 
 
 
-        return deferred.promise;
-    },
-    _run_check_movinv_connect_matriz: function(cnxmatriz, movsap, name_event){
-        var t = this;
+    return deferred.promise;
+},
+_run_check_movinv_connect_matriz: function(cnxmatriz, movsap, name_event){
+    var t = this;
         //var srtquery = "USE EasyGestionEmpresarial; SELECT tbl_maestromovinvent.Serie_Factura FROM tbl_maestromovinvent  INNER JOIN tbl_movinvent  ON tbl_maestromovinvent.Serie_Factura = tbl_movinvent.Serie_Factura WHERE tbl_maestromovinvent.FechaRegistro = '"+movsap.cpudt+" "+movsap.cputm+"' AND  tbl_movinvent.cantidad = "+movsap.menge+" AND  tbl_maestromovinvent.numero_doc_inv = '"+movsap.mblnr+"' and tbl_maestromovinvent.Oficina = (SELECT top (1) o.oficina FROM dbo.Oficina o WHERE o.ofi_codigo_interno_empresa = '"+movsap.werks+"' AND o.Compania = tbl_maestromovinvent.Compania) AND (SELECT TOP(1) tme_tipo_movimiento FROM par.tbl_par_TipoMovimientoExterno WHERE tme_codigo_externo = 'bbbbbb') AND  codigo_producto = '"+Number(movsap.matnr)+"';";
-var FechaRegistro = movsap.cpudt+" "+movsap.cputm;
-var cantidad = movsap.menge;
-var numero_doc_inv = movsap.mblnr;
-var ofi_codigo_interno_empresa = movsap.werks;
-var tme_codigo_externo = movsap.bwart;
-var codigo_producto = Number(movsap.matnr);
+        var FechaRegistro = movsap.cpudt+" "+movsap.cputm;
+        var cantidad = movsap.menge;
+        var numero_doc_inv = movsap.mblnr;
+        var ofi_codigo_interno_empresa = movsap.werks;
+        var tme_codigo_externo = movsap.bwart;
+        var codigo_producto = Number(movsap.matnr);
+        var tme_naturaleza_externo = movsap.shkzg;
 
         var srtquery = `
-use EasyGestionEmpresarial;
-SELECT tbl_maestromovinvent.Serie_Factura FROM tbl_maestromovinvent  
-INNER JOIN tbl_movinvent  ON tbl_maestromovinvent.Serie_Factura = tbl_movinvent.Serie_Factura 
-WHERE  tbl_movinvent.tipo_mov = (SELECT TOP(1) tme_tipo_movimiento FROM par.tbl_par_TipoMovimientoExterno WHERE tme_codigo_externo = '${tme_codigo_externo}') 
-AND tbl_maestromovinvent.FechaRegistro = convert(nvarchar,'${FechaRegistro}') AND  tbl_movinvent.cantidad = '${cantidad}' AND  tbl_maestromovinvent.numero_doc_inv = '${numero_doc_inv}' 
-AND tbl_maestromovinvent.Oficina = (SELECT top (1) o.oficina FROM dbo.Oficina o WHERE o.ofi_codigo_interno_empresa = '${ofi_codigo_interno_empresa}' 
-AND o.Compania = tbl_maestromovinvent.Compania) AND  codigo_producto = '${codigo_producto}';
+        use EasyGestionEmpresarial;
+        SELECT tbl_maestromovinvent.Serie_Factura FROM tbl_maestromovinvent  
+        INNER JOIN tbl_movinvent  ON tbl_maestromovinvent.Serie_Factura = tbl_movinvent.Serie_Factura 
+        WHERE  tbl_movinvent.tipo_mov = (SELECT TOP(1) tme_tipo_movimiento FROM par.tbl_par_TipoMovimientoExterno WHERE tme_naturaleza_externo = '${tme_naturaleza_externo}' AND tme_codigo_externo = '${tme_codigo_externo}') 
+        AND tbl_maestromovinvent.FechaRegistro = CONVERT(VARCHAR, '${FechaRegistro}') AND  tbl_movinvent.cantidad = '${cantidad}' AND  tbl_maestromovinvent.numero_doc_inv = '${numero_doc_inv}' 
+        AND tbl_maestromovinvent.Oficina = (SELECT top (1) o.oficina FROM dbo.Oficina o WHERE o.ofi_codigo_interno_empresa = '${ofi_codigo_interno_empresa}' 
+        AND o.Compania = tbl_maestromovinvent.Compania) AND  codigo_producto = '${codigo_producto}';
         `;
 
         new mssql.Request(cnxmatriz)
@@ -143,7 +146,6 @@ AND o.Compania = tbl_maestromovinvent.Compania) AND  codigo_producto = '${codigo
         });
 
     }
-
 
 
 
