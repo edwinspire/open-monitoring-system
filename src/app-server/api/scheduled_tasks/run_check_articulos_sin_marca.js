@@ -7,7 +7,7 @@ run_check_articulos_sin_marca: function(task){
 	
 	var deferred = new Deferred();
 	var t = this;
-	console.log(task);
+	//console.log(task);
 
 	mssql.connect({
 		user: task.task_parameters.mssql.user,
