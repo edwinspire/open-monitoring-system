@@ -1,5 +1,5 @@
 [Unit]
-Description=Octopus (OMS) Task
+Description=Open Monitoring System (Scheduled Task)
 
 [Service]
 ExecStart=/home/edwinspire/Documentos/Desarrollo/open-monitoring-system/run_sheduled_task.sh
