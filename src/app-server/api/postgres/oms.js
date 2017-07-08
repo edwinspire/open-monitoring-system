@@ -178,19 +178,6 @@ query: function(_query, _param){
 			deferred.reject(e);
 		})
 	})
-/*
-	t.pgPool.query(_query, _param, function (err, res) {
-		if(err){
-			
-			deferred.reject(err);
-
-		}else{
-
-			deferred.resolve(res);
-		}
-
-	});
-	*/
 
 	return deferred.promise;
 },

@@ -642,53 +642,105 @@ sessionUsers.on('newsession', function(e){
 });
 
 
+//////////////////////////////////////////////////////////////////////////////////////////
 // Add a connect listener
 sio.on('connection', function(clientio){ 
 
-	clientio.emit('connection', 'Open Monitoring System');
+	clientio.emit('connection', 'Welcome Open Monitoring System!');
 
-    // Success!  Now listen to messages to be received
-    clientio.on('heartbeat',function(event){ 
-       // Log.debug('Received message from client!', event.sessionidclient, sessionUsers.session);
-//sid = event.sessionidclient;
-var datauser = sessionUsers.datauser(event.sessionidclient);
+	clientio.on('heartbeat',function(event){ 
+		var datauser = sessionUsers.datauser(event.sessionidclient);
 
-if(datauser){
-    //client.emit('notifying_the_user', sessionUsers.sessionUsers);
-    datauser.heartbeat = Date.now();
-    sessionUsers.put(datauser);
+		if(datauser){
+			datauser.heartbeat = Date.now();
+			sessionUsers.put(datauser);
+		}else{
 
-}else{
+			clientio.emit('command', {command: 'logout'});
+			clientio.disconnect('unauthorized');
+		}
 
-	clientio.emit('command', {command: 'logout'});
-	clientio.disconnect('unauthorized');
-}
+	});
+
+
+
+	clientio.on('clogin',function(event){ 
+		
+		var ComunicatorParam = JSON.parse(event);
+
+		PostgreSQL.query("SELECT idequipment FROM equipments WHERE idequipment = $1::BIGINT AND report_validator = $2::TEXT;", [ComunicatorParam.idequipment, ComunicatorParam.validator]).then(function(results){
+			if(results.rowCount == 1){
+				clientio.emit('ctoken', PostgreSQL.textToMD5(clientio.id));
+			}else{
+				clientio.disconnect('unauthorized');
+			}
+
+		}, function(error){
+			clientio.emit('ctoken', error);
+			clientio.disconnect('unauthorized');
+		});
+
+
+	});
+
+
+	clientio.on('cevents',function(event){ 
+		
+		var wsevents = JSON.parse(event);
+
+		if(PostgreSQL.textToMD5(clientio.id) == wsevents.token){
+
+			PostgreSQL.query("SELECT events.fun_receiver_json($1::BIGINT, $2::TEXT, $3::JSON);", [wsevents.idequipment, wsevents.validator, JSON.stringify(wsevents.events)]).then(function(results){
+				//console.log(results);
+				clientio.emit('ceventsreceived', results.rows);
+
+			}, function(error){
+				console.log(error);
+				clientio.emit('ceventsreceived', []);
+			});
+
+		}else{
+			clientio.disconnect('unauthorized');
+		}
+
+
+
+
+		
+
+/*
+		PostgreSQL.query("SELECT idequipment FROM equipments WHERE idequipment = $1::BIGINT AND report_validator = $2::TEXT;", [ComunicatorParam.idequipment, ComunicatorParam.validator]).then(function(results){
+			if(results.rowCount == 1){
+				clientio.emit('ctoken', PostgreSQL.textToMD5(clientio.id));
+			}else{
+				clientio.disconnect('unauthorized');
+			}
+
+		}, function(error){
+			clientio.emit('ctoken', error);
+			clientio.disconnect('unauthorized');
+		});
+
+		*/
+	});	
+
+
+
+
+
+	clientio.on('disconnect',function(){
+		Log.debug('Server has disconnected');
+
+	});
+
+	clientio.on('reconnect', function() {
+		Log.debug('reconnect fired!');
+	});
 
 });
 
 
 
-    clientio.on('hi',function(event){ 
-       // Log.debug('Received message from client!', event.sessionidclient, sessionUsers.session);
-//sid = event.sessionidclient;
-	clientio.emit('hi', {command: 'logout'});
-
-});
-
-
-
-
-
-    clientio.on('disconnect',function(){
-    	Log.debug('Server has disconnected');
-
-    });
-
-    clientio.on('reconnect', function() {
-    	Log.debug('reconnect fired!');
-    });
-
-});
 
 
 server.listen(process.env.PORT, function(){
