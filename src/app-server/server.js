@@ -648,6 +648,7 @@ sio.on('connection', function(clientio){
 
 	clientio.emit('connection', 'Welcome Open Monitoring System!');
 
+//------------------------------------------
 	clientio.on('heartbeat',function(event){ 
 		var datauser = sessionUsers.datauser(event.sessionidclient);
 
@@ -663,7 +664,7 @@ sio.on('connection', function(clientio){
 	});
 
 
-
+//------------------------------------------
 	clientio.on('clogin',function(event){ 
 		
 		var ComunicatorParam = JSON.parse(event);
@@ -683,7 +684,7 @@ sio.on('connection', function(clientio){
 
 	});
 
-
+//------------------------------------------
 	clientio.on('cevents',function(event){ 
 		
 		var wsevents = JSON.parse(event);
@@ -691,12 +692,10 @@ sio.on('connection', function(clientio){
 		if(PostgreSQL.textToMD5(clientio.id) == wsevents.token){
 
 			PostgreSQL.query("SELECT events.fun_receiver_json($1::BIGINT, $2::TEXT, $3::JSON);", [wsevents.idequipment, wsevents.validator, JSON.stringify(wsevents.events)]).then(function(results){
-				//console.log(results);
-				clientio.emit('ceventsreceived', results.rows);
-
+				clientio.emit('creceived', ['hola', 'lolA']);
 			}, function(error){
 				console.log(error);
-				clientio.emit('ceventsreceived', []);
+				clientio.emit('creceived', []);
 			});
 
 		}else{
