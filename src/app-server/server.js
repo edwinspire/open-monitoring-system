@@ -494,7 +494,6 @@ app.post("/service/*",  function(req, res){
 
 
 	var parts = req.path.split("/");
-	//console.log(parts);
 
 	if(parts.length >= 8){
 
@@ -643,6 +642,7 @@ sessionUsers.on('newsession', function(e){
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
 // Add a connect listener
 sio.on('connection', function(clientio){ 
 
@@ -665,34 +665,15 @@ sio.on('connection', function(clientio){
 
 
 //------------------------------------------
-	clientio.on('clogin',function(event){ 
-		
-		var ComunicatorParam = JSON.parse(event);
-
-		PostgreSQL.query("SELECT idequipment FROM equipments WHERE idequipment = $1::BIGINT AND report_validator = $2::TEXT;", [ComunicatorParam.idequipment, ComunicatorParam.validator]).then(function(results){
-			if(results.rowCount == 1){
-				clientio.emit('ctoken', PostgreSQL.textToMD5(clientio.id));
-			}else{
-				clientio.disconnect('unauthorized');
-			}
-
-		}, function(error){
-			clientio.emit('ctoken', error);
-			clientio.disconnect('unauthorized');
-		});
-
-
-	});
-
-//------------------------------------------
 	clientio.on('cevents',function(event){ 
-		
+
 		var wsevents = JSON.parse(event);
 
 		if(PostgreSQL.textToMD5(clientio.id) == wsevents.token){
 
 			PostgreSQL.query("SELECT events.fun_receiver_json($1::BIGINT, $2::TEXT, $3::JSON);", [wsevents.idequipment, wsevents.validator, JSON.stringify(wsevents.events)]).then(function(results){
-				clientio.emit('creceived', ['hola', 'lolA']);
+			console.log(results.rows);
+				clientio.emit('creceived', results.rows);
 			}, function(error){
 				console.log(error);
 				clientio.emit('creceived', []);
@@ -702,28 +683,28 @@ sio.on('connection', function(clientio){
 			clientio.disconnect('unauthorized');
 		}
 
+	});	
+	
 
-
-
+//------------------------------------------
+	clientio.on('clogin',function(event){ 
 		
+		var ComunicatorParam = JSON.parse(event);
 
-/*
 		PostgreSQL.query("SELECT idequipment FROM equipments WHERE idequipment = $1::BIGINT AND report_validator = $2::TEXT;", [ComunicatorParam.idequipment, ComunicatorParam.validator]).then(function(results){
 			if(results.rowCount == 1){
-				clientio.emit('ctoken', PostgreSQL.textToMD5(clientio.id));
+				clientio.emit('clogged', PostgreSQL.textToMD5(clientio.id));
 			}else{
 				clientio.disconnect('unauthorized');
 			}
 
 		}, function(error){
-			clientio.emit('ctoken', error);
+			clientio.emit('clogged', error);
 			clientio.disconnect('unauthorized');
 		});
 
-		*/
-	});	
 
-
+	});
 
 
 
