@@ -680,7 +680,8 @@ sio.on('connection', function(clientio){
 			});
 
 		}else{
-			clientio.disconnect('unauthorized');
+
+			clientio.emit('unauthorized');
 		}
 
 	});	
