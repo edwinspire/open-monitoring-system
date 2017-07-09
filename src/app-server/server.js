@@ -649,74 +649,74 @@ sio.on('connection', function(clientio){
 	clientio.emit('connection', 'Welcome Open Monitoring System!');
 
 //------------------------------------------
-	clientio.on('heartbeat',function(event){ 
-		var datauser = sessionUsers.datauser(event.sessionidclient);
+clientio.on('heartbeat',function(event){ 
+	var datauser = sessionUsers.datauser(event.sessionidclient);
 
-		if(datauser){
-			datauser.heartbeat = Date.now();
-			sessionUsers.put(datauser);
-		}else{
+	if(datauser){
+		datauser.heartbeat = Date.now();
+		sessionUsers.put(datauser);
+	}else{
 
-			clientio.emit('command', {command: 'logout'});
-			clientio.disconnect('unauthorized');
-		}
+		clientio.emit('command', {command: 'logout'});
+		clientio.disconnect('unauthorized');
+	}
 
-	});
+});
 
 
 //------------------------------------------
-	clientio.on('cevents',function(event){ 
+clientio.on('cevents',function(event){ 
 
-		var wsevents = JSON.parse(event);
+	var wsevents = JSON.parse(event);
 
-		if(PostgreSQL.textToMD5(clientio.id) == wsevents.token){
+	if(PostgreSQL.textToMD5(clientio.id) == wsevents.token){
 
-			PostgreSQL.query("SELECT events.fun_receiver_json($1::BIGINT, $2::TEXT, $3::JSON);", [wsevents.idequipment, wsevents.validator, JSON.stringify(wsevents.events)]).then(function(results){
+		PostgreSQL.query("SELECT events.fun_receiver_json($1::BIGINT, $2::TEXT, $3::JSON);", [wsevents.idequipment, wsevents.validator, JSON.stringify(wsevents.events)]).then(function(results){
 			console.log(results.rows);
-				clientio.emit('creceived', results.rows);
-			}, function(error){
-				console.log(error);
-				clientio.emit('creceived', []);
-			});
-
-		}else{
-
-			clientio.emit('unauthorized');
-		}
-
-	});	
-	
-
-//------------------------------------------
-	clientio.on('clogin',function(event){ 
-		
-		var ComunicatorParam = JSON.parse(event);
-
-		PostgreSQL.query("SELECT idequipment FROM equipments WHERE idequipment = $1::BIGINT AND report_validator = $2::TEXT;", [ComunicatorParam.idequipment, ComunicatorParam.validator]).then(function(results){
-			if(results.rowCount == 1){
-				clientio.emit('clogged', PostgreSQL.textToMD5(clientio.id));
-			}else{
-				clientio.disconnect('unauthorized');
-			}
-
+			clientio.emit('creceived', results.rows);
 		}, function(error){
-			clientio.emit('clogged', error);
-			clientio.disconnect('unauthorized');
+			console.log(error);
+			clientio.emit('creceived', []);
 		});
 
+	}else{
 
+		clientio.emit('token_expired');
+	}
+
+});	
+
+
+//------------------------------------------
+clientio.on('clogin',function(event){ 
+
+	var ComunicatorParam = JSON.parse(event);
+
+	PostgreSQL.query("SELECT idequipment FROM equipments WHERE idequipment = $1::BIGINT AND report_validator = $2::TEXT;", [ComunicatorParam.idequipment, ComunicatorParam.validator]).then(function(results){
+		if(results.rowCount == 1){
+			clientio.emit('clogged', PostgreSQL.textToMD5(clientio.id));
+		}else{
+			clientio.disconnect('unauthorized');
+		}
+
+	}, function(error){
+		clientio.emit('clogged', error);
+		clientio.disconnect('unauthorized');
 	});
 
 
+});
 
-	clientio.on('disconnect',function(){
-		Log.debug('Server has disconnected');
 
-	});
 
-	clientio.on('reconnect', function() {
-		Log.debug('reconnect fired!');
-	});
+clientio.on('disconnect',function(){
+	Log.debug('Server has disconnected');
+
+});
+
+clientio.on('reconnect', function() {
+	Log.debug('reconnect fired!');
+});
 
 });
 
