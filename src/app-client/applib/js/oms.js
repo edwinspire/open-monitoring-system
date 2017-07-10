@@ -20,7 +20,8 @@ require(["dojo/ready",
   "Widget/Geolocations/Geolocations", 
   "Widget/app_account/app_account",
   "Widget/app_tables_views_config/app_tables_views_config",
-  //"Widget/app_event_management/app_event_management",
+  "Widget/app_secondary_doc_ventasxmp_ultimos_eta/app_secondary_doc_ventasxmp_ultimos_eta",
+  "Widget/app_secondary_doc_ventasxmp_ultimos_rm/app_secondary_doc_ventasxmp_ultimos_rm",
   "Widget/app_event_resumen/app_event_resumen"
   ], function(ready, 
     cookie,
@@ -44,6 +45,8 @@ require(["dojo/ready",
     app_geolocations, 
     app_account,
     app_tables_views_config,
+    app_secondary_doc_ventasxmp_ultimos_eta,
+    app_secondary_doc_ventasxmp_ultimos_rm,
     app_event_resumen
     ){
     ready(function(){
@@ -64,6 +67,8 @@ require(["dojo/ready",
      apps['app_secondary_mov_inv_sin_cargar_rm'] = app_secondary_mov_inv_sin_cargar_rm;
      apps['app_secondary_mov_inv_duplicados_eta'] = app_secondary_mov_inv_duplicados_eta;
      apps['app_secondary_mov_inv_duplicados_rm'] = app_secondary_mov_inv_duplicados_rm;
+     apps['app_secondary_doc_ventasxmp_ultimos_eta'] = app_secondary_doc_ventasxmp_ultimos_eta;
+     apps['app_secondary_doc_ventasxmp_ultimos_rm'] = app_secondary_doc_ventasxmp_ultimos_rm;
      apps['app_event_resumen'] = app_event_resumen;
 
 
