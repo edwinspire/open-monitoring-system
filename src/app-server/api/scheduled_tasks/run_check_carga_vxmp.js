@@ -58,11 +58,11 @@ _run_check_carga_vxmp_check: function(param){
 	
 	var deferred = new Deferred();
 	var t = this;
-	var dias_atras = DojoDate.add(new Date(), "day", -30).toLocaleString();
+	var dias_atras = DojoDate.add(new Date(), "day", -31).toLocaleString();
 
 
 	var srtquery = `
-	SELECT  * FROM [ITE_Log].[log].[tbl_CargaVentasMediosPagos] WHERE cvmp_fecha_registro >= '${dias_atras}' ORDER BY cvmp_fecha_registro;
+	SELECT  * FROM [ITE_Log].[log].[tbl_CargaVentasMediosPagos] WHERE cvmp_fecha >= '${dias_atras}' ORDER BY cvmp_fecha_registro;
 	`;
 
 	var config = {
