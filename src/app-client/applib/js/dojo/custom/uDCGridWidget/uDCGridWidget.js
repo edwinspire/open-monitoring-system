@@ -133,7 +133,14 @@ define(['dojo/_base/declare',
 
      on(t.Grid, 'dgrid-set-properties', function (event) {
       console.log(event);
+
+if(t.Gui.Title){
+    t.set('titlegrid', t.Gui.Title);
+}else{
       t.set('titlegrid', event.properties.title_dgrid || event.properties.tschema_tname);
+}
+
+  
     });
 
 
