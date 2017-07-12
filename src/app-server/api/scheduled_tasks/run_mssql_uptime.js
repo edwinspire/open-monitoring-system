@@ -85,11 +85,11 @@ mssql.connect(config).then((cnx) => {
 				ideventtype = param.parameters.ideventtype_on_threshold;
 			}
 
-			var dateStart = DojoDate.add(new Date(), "hour", result[0].uptime*-1);
+			var dateStart = DojoDate.add(new Date(), "minute", result[0].uptime*-1);
 			var details = result[0];
 			details['ip'] = param.ip;
 
-			var r = {idequipment: param.idequipment, ideventtype: ideventtype, description: +(DojoDate.difference(dateStart, new Date(), "day")/24)+' dias.', details: details};
+			var r = {idequipment: param.idequipment, ideventtype: ideventtype, description: +DojoDate.difference(dateStart, new Date(), "day")+' dias.', details: details};
 			deferred.resolve(r);
 
 		}else{
