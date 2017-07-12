@@ -89,7 +89,7 @@ mssql.connect(config).then((cnx) => {
 			var details = result[0];
 			details['ip'] = param.ip;
 
-			var r = {idequipment: param.idequipment, ideventtype: ideventtype, description: +DojoDate.difference(dateStart, new Date(), "day")+' horas.', details: details};
+			var r = {idequipment: param.idequipment, ideventtype: ideventtype, description: +(DojoDate.difference(dateStart, new Date(), "day")/24)+' dias.', details: details};
 			deferred.resolve(r);
 
 		}else{
