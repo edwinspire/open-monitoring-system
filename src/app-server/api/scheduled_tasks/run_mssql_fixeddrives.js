@@ -98,7 +98,7 @@ mssql.connect(config).then((cnx) => {
 					var driveMin = param.parameters[item.drive];
 					var Megas = item["MB libres"] || item["MB free"];
 
-					var r = {idequipment: param.idequipment, source: t.textToMD5(item.drive), ideventtype: param.parameters.ideventtype_over_min, description: '', valid: true};
+					var r = {idequipment: param.idequipment, source: t.textToMD5(item.drive), ideventtype: param.parameters.ideventtype_over_min, description: '<b>'item.drive+': </b> '+Megas+' Megas.', valid: true};
 
 					if(Megas  && Megas<=driveMin){
 						r.ideventtype = param.parameters.ideventtype_under_min;
