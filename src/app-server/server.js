@@ -672,7 +672,7 @@ clientio.on('cevents',function(event){
 	if(PostgreSQL.textToMD5(clientio.id) == wsevents.token){
 
 		PostgreSQL.query("SELECT events.fun_receiver_json($1::BIGINT, $2::TEXT, $3::JSON);", [wsevents.idequipment, wsevents.validator, JSON.stringify(wsevents.events)]).then(function(results){
-			console.log(results.rows);
+			//console.log(results.rows);
 			clientio.emit('creceived', results.rows);
 		}, function(error){
 			console.log(error);
