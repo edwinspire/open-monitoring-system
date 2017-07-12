@@ -1,4 +1,4 @@
-process.env.PORT = 80;
+process.env.PORT = 8088;
 
 process.env.PG_USER = 'postgres';
 process.env.PG_PWD = 'pg4321';

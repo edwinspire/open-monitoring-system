@@ -5,13 +5,14 @@ define(['dojo/_base/declare',
     ], function (declare, topic, io, cookie) {
 
         return declare(null, {
-           
+
             constructor: function(){
 
-                var socket = io.connect('//'+document.location.host);
+                var hostws = '//'+document.location.host;
+                var socket = io.connect(hostws);
                 
                 socket.on('connection', function(client) {  
-                    console.log('Client connected. web component..');
+                    console.log('Client connected to '+hostws);
                     socket.emit('heartbeat', {sessionidclient: cookie('oms_sessionidclient'), token: cookie('oms_sessiontoken')});
                 });
 

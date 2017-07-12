@@ -8,6 +8,7 @@ require(["dojo/request",
 	"dojo/node!path", 
 	"dojo/node!fs", 
 	"dojo/node!log",
+	"dojo/node!https",
 	"dojo/node!url", 
 	"dojo/node!cors", 
 	"dojo/node!cookie-parser", 
@@ -43,9 +44,9 @@ require(["dojo/request",
 	"api/postgres/schema_events",
 	"api/postgres/schema_gui",
 	"api/postgres/services_objects"
-	], function(request, on, array, os, crypto, http, socketIO, path, fs, LogSystem, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, Config, sessionusers){
+	], function(request, on, array, os, crypto, http, socketIO, path, fs, LogSystem, https, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, Config, sessionusers){
 
-		var Log = new LogSystem('debug', fs.createWriteStream('OpenMonitoringSystem'+(new Date()).toLocaleDateString()+'.log'));
+		var Log = new LogSystem('debug', fs.createWriteStream('Log_oms'+(new Date()).toLocaleDateString()+'.log'));
 		Log.debug("Inicia Open Monitoring System WebApp");
 
 		var sessionUsers = new sessionusers();
@@ -609,8 +610,16 @@ app.use(function(err, req, res, next) {
 
 
 
-var server = http.createServer(app)
-, sio = socketIO.listen(server);
+
+ var webServer = https.createServer({
+      key: fs.readFileSync('key.pem'),
+      cert: fs.readFileSync('cert.pem'),
+      requestCert: true
+    }, app);
+
+//var webServer = http.createServer(app)
+
+var sio = socketIO.listen(webServer);
 
 
 var pgEventTs = PostgreSQL.on('tschange', function(r){
@@ -724,7 +733,7 @@ clientio.on('reconnect', function() {
 
 
 
-server.listen(process.env.PORT, function(){
+webServer.listen(process.env.PORT, function(){
 	Log.debug("Listening on " + process.env.PORT);
 });
 
