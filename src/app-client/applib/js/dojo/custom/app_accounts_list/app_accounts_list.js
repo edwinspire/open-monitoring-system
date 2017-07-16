@@ -7,16 +7,7 @@ define(['dojo/_base/declare',
   "dojo/window",
   "dojo/dom-style",
   "dojo/aspect",
-  "dijit/registry",
-  "dijit/layout/TabContainer",
-  "Widget/EventDetails/EventDetails",
-  "dijit/layout/ContentPane",
-  "dijit/layout/BorderContainer",
-  "dijit/form/Textarea",
-  "Widget/uDCGridWidget/uDCGridWidget",
-  "Widget/uDC/uDC",
-  "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
-  "FilteringSelectLiveStore/FilteringSelectLiveStore"
+  "Widget/FSGS_Divisions",
   ], function (declare, 
     _Widget, 
     _Templated, 
@@ -26,10 +17,7 @@ define(['dojo/_base/declare',
     win, 
     domStyle, 
     aspect, 
-    ContentPane, 
-    TabContainer,
-    EventDetails,
-    account_details) {
+    FSGS_Divisions) {
 /**
      * Account Events is Open
      *
@@ -42,6 +30,8 @@ define(['dojo/_base/declare',
        var t = this;
 
 t.DGrid.ToolBarAppendSeparator();
+t.DGrid.ToolbarAddWidget(new FSGS_Divisions());
+
        var vs = win.getBox();
        domStyle.set(this.domNode, "height", (vs.h-30-16)+'px');
        

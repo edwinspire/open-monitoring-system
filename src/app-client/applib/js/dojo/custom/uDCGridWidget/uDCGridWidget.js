@@ -50,7 +50,6 @@ define(['dojo/_base/declare',
         t._RemainDisabledRefresh--;
         t.RefreshTempo.set('label', 'Desactivado por '+t._RemainDisabledRefresh+' seg.');
 
-
       }else if(t._RemainDisabledRefresh < 1){
         t.RefreshTempo.set('label', 'Desactivar');
         t.Grid.refreshMode = 1;
@@ -59,7 +58,6 @@ define(['dojo/_base/declare',
         t.RefreshTempo.set('label', 'Desactivar');
       }
     }, 1000);
-
 
       on(t.RefreshAuto, 'click', function (e) {
        t.Grid.refreshMode = 1;
@@ -72,7 +70,6 @@ define(['dojo/_base/declare',
        t._RemainDisabledRefresh = 120;
      });
 
-
       t.CTTDialogNew.on('Execute', function(e){
         t.emit('addok', e);
       });
@@ -81,27 +78,20 @@ define(['dojo/_base/declare',
         t.emit('addcancel', e);
       });
 
-
       on.once(t.Add, "Click", function(){
-
        if(t.DialogAddContent){
         dojo.place(dojo.byId(t.DialogAddContent), t.ContainerDialogNew, 'only');
       }   
-
     });
 
       t._create_grid();
-
-
     },
     uninitialize: function(){
      var t = this;
      console.log('Llama para matar el widget');
      clearInterval(t._IntervalRefresh);
 
-
      t.Grid.uninitialize();
-
      t.Grid.destroy();
      delete t.Grid;
      t.Grid = null;
@@ -110,7 +100,6 @@ define(['dojo/_base/declare',
    _create_grid: function () {
 
      var t = this;
-
      domConstruct.empty(t.Contenedor);
 
      t.Grid = new uDCGrid({
@@ -138,9 +127,7 @@ define(['dojo/_base/declare',
         t.set('titlegrid', event.properties.title_dgrid || event.properties.tschema_tname);
       }
 
-
     });
-
 
      t.Grid.on('dgrid-error', function (event) {
       console.error(event);
@@ -150,12 +137,9 @@ define(['dojo/_base/declare',
       t.autoHeight();
     });
 
-
-
      t.Grid.on('dgrid-select', function (event) {
 
      });
-
 
      t.Grid.on('.dgrid-row:click', function (e) {
       var row = t.Grid.row(e);
@@ -195,7 +179,6 @@ _setSizecontainerAttr: function(size){
     domStyle.set(t.Grid.domNode, 'width', w+'px');
   }
 
-
 },
 Clear: function(){
  this.Grid.Clear();
@@ -204,12 +187,13 @@ Clear: function(){
 disabledGrid: function(_disabled){
  this.Grid.disabled(_disabled);
 },
-ToolBarAppendSeparator: function(){
-var separator = new ToolbarSeparator();
- this.TBar.addChild(separator);
+ToolbarAppendSeparator: function(){
+ this.ToolBarAddWidget(new ToolbarSeparator());
+},
+ToolbarAddWidget: function(widget){
+ this.TBar.addChild(widget);
 },
 _disabled: function(_disable){
-
  if(_disable){
   domClass.add(this.domNode, "element-disabled");
 }else{
