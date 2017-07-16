@@ -608,9 +608,6 @@ app.use(function(err, req, res, next) {
 }); 
 
 
-
-
-
  var webServer = https.createServer({
       key: fs.readFileSync('key.pem'),
       cert: fs.readFileSync('cert.pem'),

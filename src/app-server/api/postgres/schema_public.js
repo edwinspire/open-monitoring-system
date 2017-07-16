@@ -30,7 +30,60 @@ schema_public: function(table, req, res){
 	}
 
 
+},
+schema_public_view_accounts: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var iddivision = -1;
+
+	if(post.iddivision && post.iddivision >= 0){
+		iddivision = post.iddivision;
+	}
+
+	switch(params.action){
+		case 'r':
+		t.response_query(res, "SELECT * FROM public.view_accounts WHERE iddivision = $1::BIGINT", [iddivision]);
+		break;	
+		default:
+		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+		break;
+	}
+
+},
+schema_public_view_admins: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var iddivision = -1;
+
+	if(post.iddivision && post.iddivision >= 0){
+		iddivision = post.iddivision;
+	}
+
+	var fecha_atras = DojoDate.add(new Date(), "day", dias_atras*(-1)).toLocaleString();
+
+	switch(params.action){
+		case 'r':
+		t.response_query(res, "SELECT * FROM public.view_accounts WHERE iddivision = $1::BIGINT", [iddivision]);
+		break;	
+		default:
+		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+		break;
+	}
+
 }
+
+
+
+
+
+
+
+
+
 
 });
 });

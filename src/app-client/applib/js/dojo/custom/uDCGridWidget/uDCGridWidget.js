@@ -9,18 +9,18 @@ define(['dojo/_base/declare',
   "dojo/on",
   "dojo/dom-style",
   "dojo/window",
+  "dijit/ToolbarSeparator",
   "dojo/topic",
   'dstore/Memory',
   'dstore/Trackable',
   "dijit/form/TextBox",
-  "dijit/ToolbarSeparator",
   "dijit/form/NumberSpinner",
   "dijit/ConfirmTooltipDialog",
   "dijit/RadioMenuItem",
   "dijit/MenuItem",
   "dijit/PopupMenuItem",
   "dijit/Menu"
-  ],function(declare,_Widget,_Templated,templateString, Evented, uDCGrid, ContentPane, domConstruct, on, domStyle,  w){
+  ],function(declare,_Widget,_Templated,templateString, Evented, uDCGrid, ContentPane, domConstruct, on, domStyle,  w, ToolbarSeparator){
 
     return declare([ _Widget, _Templated, Evented], {
      widgetsInTemplate:true,
@@ -44,7 +44,6 @@ define(['dojo/_base/declare',
       t.Search.on('Change', function (e) {
         t.Grid.Filter(e);
       });
-
 
       t._IntervalRefresh = setInterval(function () {
        if (t.Grid.refreshMode == 3 && t._RemainDisabledRefresh > 0) {
@@ -132,15 +131,14 @@ define(['dojo/_base/declare',
 
 
      on(t.Grid, 'dgrid-set-properties', function (event) {
-      console.log(event);
 
-if(t.Gui.Title){
-    t.set('titlegrid', t.Gui.Title);
-}else{
-      t.set('titlegrid', event.properties.title_dgrid || event.properties.tschema_tname);
-}
+      if(t.Gui.Title){
+        t.set('titlegrid', t.Gui.Title);
+      }else{
+        t.set('titlegrid', event.properties.title_dgrid || event.properties.tschema_tname);
+      }
 
-  
+
     });
 
 
@@ -164,7 +162,7 @@ if(t.Gui.Title){
       t.emit('ClickRow', row.data);
     });
 
-t.autoHeight();
+     t.autoHeight();
 
      return t;
    },
@@ -172,7 +170,6 @@ t.autoHeight();
     var t = this;
     var h = domStyle.get(t.domNode.parentElement, 'height') - (domStyle.get(t.TBar.domNode, 'height')+15);
     domStyle.set(t.Grid.domNode, 'height', h+'px');
-//    console.debug(domStyle.get(t.domNode.parentElement, 'height'), domStyle.get(t.domNode, 'height'), h);
   },
   _notifications: function (_n) {
    topic.publish("/event/user/notify", [_n]);
@@ -199,9 +196,6 @@ _setSizecontainerAttr: function(size){
   }
 
 
-
-
-  //   
 },
 Clear: function(){
  this.Grid.Clear();
@@ -209,6 +203,10 @@ Clear: function(){
 },
 disabledGrid: function(_disabled){
  this.Grid.disabled(_disabled);
+},
+ToolBarAppendSeparator: function(){
+var separator = new ToolbarSeparator();
+ this.TBar.addChild(separator);
 },
 _disabled: function(_disable){
 
