@@ -514,6 +514,10 @@ getCol.then(function (results) {
 
 
 },
+SelectWithInitialQuery: function(){
+var t = this;
+t.Select(t.initialQuery);
+},
 Clear: function () {
   this._grid_setData([]);
   return this;

@@ -6,6 +6,7 @@ define(['dojo/_base/declare',
   "dojo/on",
   "dojo/window",
   "dojo/dom-style",
+  "dojo/dom-construct",
   "dojo/aspect",
   "Widget/FilteringSelectGlobalStore/FilteringSelectGlobalStore"
   ], function (declare, 
@@ -16,6 +17,7 @@ define(['dojo/_base/declare',
     on, 
     win, 
     domStyle, 
+    domConstruct,
     aspect, 
     FilteringSelectGlobalStore) {
 /**
@@ -32,37 +34,29 @@ define(['dojo/_base/declare',
        var vs = win.getBox();
        domStyle.set(this.domNode, "height", (vs.h-30-16)+'px');
 
-console.debug(t.SelectDivisions);       
+       var SelectDivisions = new FilteringSelectGlobalStore({GlobalLiveStore: {refreshOnTableChanged:['divisions', 'admins'], requestQuery: {}, dbschema: 'public', dbtableview: 'divisions'}, autoComplete:'false', searchAttr: 'name'});
 
-        t.SelectDivisions.on('change', function(e){
-alert(e);
-        });
-                
-        t.SelectDivisions.on('onchange', function(e){
-alert(e);
-        });
+       t.DGrid.ToolbarAppendSeparator();
+
+//       t.DGrid.ToolbarplaceAt("<label>EMPRESA: </label>");
+       t.DGrid.ToolbarAddWidget(SelectDivisions);
 
 
-dojo.connect(t.SelectDivisions, 'Change', function(){
-  alert()
-});
-
-        t.SelectDivisions.on('change', function(e){
-alert(e);
+         SelectDivisions.on('Change', function(e){
+          t.DGrid.initialQuery.iddivision = e;
+          t.DGrid.SelectWithInitialQuery();
         });
 
+         aspect.after(t.BorderContainer, "resize", function(e) {
+          t.DGrid.autoHeight();
+        });
 
+         this.BorderContainer.resize();
+       },
+       _setIdaccountAttr: function (_v) {
 
-       aspect.after(t.BorderContainer, "resize", function(e) {
-        t.DGrid.autoHeight();
-      });
-
-       this.BorderContainer.resize();
-     },
-     _setIdaccountAttr: function (_v) {
-
-     },
-     _getValueAttr: function () {
+       },
+       _getValueAttr: function () {
          // return this.account_events_assignment.get('value');
        } ,
        resize: function(){
@@ -77,4 +71,4 @@ alert(e);
         }      
 
       });
-   });
+     });

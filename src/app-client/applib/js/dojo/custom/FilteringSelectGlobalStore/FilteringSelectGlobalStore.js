@@ -12,7 +12,6 @@ define(["dojo/_base/declare",
 
 				var t = this; 
 
-			
 				if(t.GlobalLiveStore){
 					t.autoComplete = false;
 					t.queryExpr = '*${0}*';
@@ -24,6 +23,9 @@ define(["dojo/_base/declare",
 					}
 				}
 
+			},
+			onChange: function(value){
+				
 			}
 
 

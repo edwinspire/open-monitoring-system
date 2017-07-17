@@ -88,7 +88,7 @@ schema_public_divisions: function(req, res, params){
 
 	switch(params.action){
 		case 'rs': // read select
-		t.response_query(res, "SELECT iddivision, name FROM public.divisions;", []);
+		t.response_query(res, "SELECT iddivision as id, name FROM public.divisions;", []);
 		break;	
 		default:
 		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});

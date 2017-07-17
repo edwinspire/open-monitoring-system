@@ -184,6 +184,9 @@ Clear: function(){
  this.Grid.Clear();
  return this;
 },
+SelectWithInitialQuery: function(){
+this.Grid.SelectWithInitialQuery();
+},
 disabledGrid: function(_disabled){
  this.Grid.disabled(_disabled);
 },
@@ -192,6 +195,9 @@ ToolbarAppendSeparator: function(){
 },
 ToolbarAddWidget: function(widget){
  this.TBar.addChild(widget);
+},
+ToolbarplaceAt: function(node){
+ this.TBar.placeAt(node);
 },
 _disabled: function(_disable){
  if(_disable){
