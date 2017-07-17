@@ -7,7 +7,7 @@ define(['dojo/_base/declare',
   "dojo/window",
   "dojo/dom-style",
   "dojo/aspect",
-  "Widget/FSGS_Divisions",
+  "Widget/FilteringSelectGlobalStore/FilteringSelectGlobalStore"
   ], function (declare, 
     _Widget, 
     _Templated, 
@@ -17,7 +17,7 @@ define(['dojo/_base/declare',
     win, 
     domStyle, 
     aspect, 
-    FSGS_Divisions) {
+    FilteringSelectGlobalStore) {
 /**
      * Account Events is Open
      *
@@ -29,30 +29,33 @@ define(['dojo/_base/declare',
       postCreate: function () {
        var t = this;
 
-t.DGrid.ToolBarAppendSeparator();
-t.DGrid.ToolbarAddWidget(new FSGS_Divisions());
-
        var vs = win.getBox();
        domStyle.set(this.domNode, "height", (vs.h-30-16)+'px');
-       
-       aspect.after(t.BorderContainer, "resize", function(e) {
-        t.DGrid.autoHeight();
+
+console.debug(t.SelectDivisions);       
+
+        t.SelectDivisions.on('change', function(e){
+alert(e);
+        });
+                
+        t.SelectDivisions.on('onchange', function(e){
+alert(e);
+        });
+
+
+dojo.connect(t.SelectDivisions, 'Change', function(){
+  alert()
 });
 
-       //t.SelectAccounts.queryExpr = '*${0}*';
-       //t.SelectAccountEquipments.queryExpr = '*${0}*';
-       //t.SelectAccountUser.queryExpr = '*${0}*';
-/*
-       t.SelectAccounts.on('Change', function(e){
-        t.SelectAccountUser.request({_uDCTable: 'view_account_contacts', idaccount: e});
-        t.SelectAccountEquipments.request({_uDCTable: 'equipments_by_account', idaccount: e});
-      });
+        t.SelectDivisions.on('change', function(e){
+alert(e);
+        });
 
-       t.DGrid.on('addok', function(e){
-        t.uDCNewEvent.Insert();
-      });
-      */
 
+
+       aspect.after(t.BorderContainer, "resize", function(e) {
+        t.DGrid.autoHeight();
+      });
 
        this.BorderContainer.resize();
      },

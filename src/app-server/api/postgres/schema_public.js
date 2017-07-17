@@ -74,7 +74,29 @@ schema_public_view_admins: function(req, res, params){
 		break;
 	}
 
+},
+schema_public_divisions: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var iddivision = -1;
+
+	if(post.iddivision && post.iddivision >= 0){
+		iddivision = post.iddivision;
+	}
+
+	switch(params.action){
+		case 'rs': // read select
+		t.response_query(res, "SELECT iddivision, name FROM public.divisions;", []);
+		break;	
+		default:
+		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+		break;
+	}
+
 }
+
 
 
 

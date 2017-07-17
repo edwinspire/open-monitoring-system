@@ -1,23 +1,16 @@
-define(["FilteringSelectGlobalStore/FilteringSelectGlobalStore"
-  ], function (FilteringSelectGlobalStore) {
-/**
-     * Account Events is Open
-     *
-     * @module account_events_isopen/account_events_isopen
-     */
-     return declare([FilteringSelectGlobalStore], {
+define(["dojo/_base/declare", "Widget/FilteringSelectGlobalStore/FilteringSelectGlobalStore"
+	], function (declare, FilteringSelectGlobalStore) {
+		return declare([FilteringSelectGlobalStore], {
 
-    constructor: function(){
-      // The "constructor" method is special: the parent class (Person)
-      // constructor is called automatically before this one.
-      this.name = "iddivision";
-      this.GlobalLiveStore = {{refreshOnTableChanged:['divisions', 'admins'], requestQuery: {}, identifier: 'iddivision', target: '/njs/db/jajaja'} , searchAttr: 'name'};
-    },
+			constructor: function(args){
 
-      postCreate: function () {
-       var t = this;
+				declare.safeMixin(this,args);
+				this.GlobalLiveStore =  {refreshOnTableChanged:['accounts', 'admins'], requestQuery: {__affected_table: 'public.view_accounts'}, identifier: 'idaccount', target: '/njs/db/Select_Generic_to_Store'};
+			},
+			postCreate: function () {
+				var t = this;
+								this.GlobalLiveStore =  {refreshOnTableChanged:['accounts', 'admins'], requestQuery: {__affected_table: 'public.view_accounts'}, identifier: 'idaccount', target: '/njs/db/Select_Generic_to_Store'};
+			}   
 
-     }   
-
-});
-   });
+		});
+	});

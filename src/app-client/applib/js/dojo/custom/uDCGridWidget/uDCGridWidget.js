@@ -188,7 +188,7 @@ disabledGrid: function(_disabled){
  this.Grid.disabled(_disabled);
 },
 ToolbarAppendSeparator: function(){
- this.ToolBarAddWidget(new ToolbarSeparator());
+ this.ToolbarAddWidget(new ToolbarSeparator());
 },
 ToolbarAddWidget: function(widget){
  this.TBar.addChild(widget);

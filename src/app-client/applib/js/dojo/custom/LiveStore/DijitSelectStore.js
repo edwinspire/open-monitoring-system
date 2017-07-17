@@ -14,6 +14,8 @@ define(["dojo/_base/declare",
       handleAs: 'json',
       requestQuery: {},
       identifier: '',
+      dbschema: '',
+      dbtableview: '',
       _subscribe: [],
       refreshOnTableChanged: [],
       
@@ -26,6 +28,8 @@ define(["dojo/_base/declare",
        this.objectStore = Observable(new Memory());
        this.refreshOnTableChanged= [];
        this.identifier = '';
+       this.dbschema = '';
+       this.dbtableview = '';
 
        dojo.safeMixin(this, args);
 
@@ -42,8 +46,8 @@ if (Object.prototype.toString.call(t.refreshOnTableChanged) === '[object Array]'
   array.forEach(t.refreshOnTableChanged, function(item, i){
 
     t._subscribe.push(topic.subscribe("/event/table/changed/"+item, function(data){
-       t.request();
-     }));
+     t.request();
+   }));
   });
 
 }
@@ -68,15 +72,17 @@ request: function(_query){
 
   this.requestQuery = _query || this.requestQuery;
   var t = this;
+  console.log(t);
+  if(!t.target){
+    this.target = '/db/'+t.dbschema+'/'+t.dbtableview+'/rs/'+Math.random()+'/'+Math.random()+'/'+Math.random()+'/'+Math.random();
+  }
 
- //console.debug(this);
-
- return  request.post(this.target, {
-  data: this.requestQuery,
-  preventCache: true,
-  handleAs: 'json'
-}).then(
-function (response) {
+  return  request.post(this.target, {
+    data: this.requestQuery,
+    preventCache: true,
+    handleAs: 'json'
+  }).then(
+  function (response) {
 //console.log(response);
 t.objectStore = Observable(new Memory({ data: {identifier: t.identifier, items: response}}));
 

@@ -1,23 +1,18 @@
 define(["dojo/_base/declare", 
 	"dojo/window",
-	"dijit/form/FilteringSelect",
-	"dojo/parser"
+	"dijit/form/FilteringSelect"
 	], function(declare, win, FilteringSelect) {
 		return declare("Widget/FilteringSelectGlobalStore/FilteringSelectGlobalStore", [FilteringSelect], {
 
 			GlobalLiveStore: false,
 			refreshOnTableChanged: [],
 
-			constructor: function(args){
-
-				dojo.safeMixin(this, args);
-			},
 			postCreate:function (args){
 				this.inherited(arguments);
 
 				var t = this; 
-//				console.debug(win.GlobalLiveStore);
 
+			
 				if(t.GlobalLiveStore){
 					t.autoComplete = false;
 					t.queryExpr = '*${0}*';
@@ -30,7 +25,6 @@ define(["dojo/_base/declare",
 				}
 
 			}
-
 
 
 

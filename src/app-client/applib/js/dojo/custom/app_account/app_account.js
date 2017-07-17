@@ -15,7 +15,8 @@ define(['dojo/_base/declare',
   "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
   "dijit/layout/TabContainer",
   "dijit/ToolbarSeparator",
-  "Widget/account_details/account_details"
+  "Widget/account_details/account_details",
+  "dijit/form/FilteringSelect"
   ], function (declare, _Widget, _Templated, templateString, domClass, on, query, domStyle, domClass, w, TTD, popup, topic, domAttr) {
 /**
      * Application Account

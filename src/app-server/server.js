@@ -459,6 +459,7 @@ app.post("/db/*",  function(req, res){
 
 	if(u){
 		var parts = req.path.split("/");
+		console.log(parts);
 		if(parts.length > 8){
 
 			var params = {schema: parts[2], objectdb: parts[3], action: parts[4]};
@@ -473,6 +474,8 @@ app.post("/db/*",  function(req, res){
 			}
 
 			var obj = 'schema_'+params.schema+'_'+params.objectdb;
+
+			console.log(obj);
 
 			if(PostgreSQL[obj]){
 				PostgreSQL[obj](req, res, params);

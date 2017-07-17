@@ -1,10 +1,10 @@
 define(["dojo/_base/declare", 
 	"dojo/window",
 	"dijit/form/FilteringSelect",
-	"LiveStore/DijitSelectStore",
+	"Widget/LiveStore/DijitSelectStore",
 	"dojo/parser"
 	], function(declare, win, FilteringSelect, DijitSelectStore) {
-		return declare("FilteringSelectLiveStore/FilteringSelectLiveStore", [FilteringSelect], {
+		return declare("Widget/FilteringSelectLiveStore/FilteringSelectLiveStore", [FilteringSelect], {
 
 			//GlobalLiveStore: false,
 			refreshOnTableChanged: [],
