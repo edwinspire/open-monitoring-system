@@ -23,7 +23,8 @@ require(["dojo/request",
 	"api/scheduled_tasks/run_mssql_fixeddrives",
 	"api/scheduled_tasks/run_mssql_sp_help_job",
 	"api/scheduled_tasks/run_f_ListaPreciosOficina",
-	"api/scheduled_tasks/run_check_carga_vxmp"
+	"api/scheduled_tasks/run_check_carga_vxmp",
+	"api/scheduled_tasks/run_resumen_carga_mov_inv"
 	], function(request, on, locale, array, crypto, path, fs, pathToRegexp, pG, compression, Config, LogSystem, ScheduledTasks, all, stamp, Dojodate){
 
 		var Log = new LogSystem('debug', fs.createWriteStream('scheduled_tasks_'+(new Date()).toLocaleDateString()+'.log'));
@@ -86,7 +87,7 @@ require(["dojo/request",
 					});
 
 				});
-			}, 3000);
+			}, 2000);
 
 		});
 

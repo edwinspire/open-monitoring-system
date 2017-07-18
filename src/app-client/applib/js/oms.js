@@ -23,7 +23,8 @@ require(["dojo/ready",
   "Widget/app_secondary_doc_ventasxmp_ultimos_eta/app_secondary_doc_ventasxmp_ultimos_eta",
   "Widget/app_secondary_doc_ventasxmp_ultimos_rm/app_secondary_doc_ventasxmp_ultimos_rm",
   "Widget/app_event_resumen/app_event_resumen",
-    "Widget/app_accounts_list/app_accounts_list"
+    "Widget/app_accounts_list/app_accounts_list",
+    "Widget/app_dashboard/app_dashboard"
   ], function(ready, 
     cookie,
     win,
@@ -49,7 +50,8 @@ require(["dojo/ready",
     app_secondary_doc_ventasxmp_ultimos_eta,
     app_secondary_doc_ventasxmp_ultimos_rm,
     app_event_resumen,
-    app_accounts_list
+    app_accounts_list,
+    app_dashboard
     ){
     ready(function(){
 
@@ -73,6 +75,7 @@ require(["dojo/ready",
      apps['app_secondary_doc_ventasxmp_ultimos_rm'] = app_secondary_doc_ventasxmp_ultimos_rm;
      apps['app_event_resumen'] = app_event_resumen;
      apps['app_accounts_list'] = app_accounts_list;
+     apps['app_dashboard'] = app_dashboard;
 
 
 

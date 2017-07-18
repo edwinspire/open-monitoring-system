@@ -24,8 +24,14 @@
             var t = this;
 
             var next_run = new Date();
-            if(task.task_trigger.interval && task.task_trigger.interval.minutes){
-              next_run = date.add(next_run, "minute", task.task_trigger.interval.minutes);
+            if(task.task_trigger.interval){
+
+              if(task.task_trigger.interval.minutes){
+                next_run = date.add(next_run, "minute", task.task_trigger.interval.minutes);
+              }else if(task.task_trigger.interval.seconds){
+                next_run = date.add(next_run, "second", task.task_trigger.interval.seconds);
+              }
+
             }
 
             

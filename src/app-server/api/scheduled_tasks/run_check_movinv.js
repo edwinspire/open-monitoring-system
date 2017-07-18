@@ -23,8 +23,6 @@ run_check_movinv: function(task){
         strq = `SELECT idreginterfacesmatriz, cpudt, cputm, menge, mblnr, matnr, werks, bwart, shkzg FROM secondary.view_mov_inv_sin_cargar_rm ORDER BY datetimefile ${orden} LIMIT ${limit};`;
     }
 
-    console.log(task);
-
     t.query(strq, []).then(function(result){
 
         var totalMov = result.rows.length;

@@ -267,6 +267,12 @@ response_insert: function(res, _query, _param){
 },
 response_query: function(res, _query, _param){
 	var t = this;
+	t.query(_query, _param).then(function(result){
+		res.json(result.rows);
+	}, function(error){
+		res.status(500).json({success: false, data: error});
+	});
+/*
 	pg.connect(t.connString(), (err, client, done) => {
 		if(err) {
 			done();
@@ -285,7 +291,7 @@ response_query: function(res, _query, _param){
 		});
 
 	});
-
+	*/
 },
 response_update: function(res, _query, _param){
 	var t = this;
