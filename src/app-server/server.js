@@ -84,7 +84,7 @@ PostgreSQL.get_config_from_db().then(function(){
 PostgreSQL._schema_gui_properties_fromdb().then(function(r){
 	Log.debug(r);
 });
-}, 60*1000);
+}, 15*1000);
 
 
 	sessionUsers.on('dead_session', function(datauser){
@@ -611,11 +611,11 @@ app.use(function(err, req, res, next) {
 }); 
 
 
- var webServer = https.createServer({
-      key: fs.readFileSync('key.pem'),
-      cert: fs.readFileSync('cert.pem'),
-      requestCert: true
-    }, app);
+var webServer = https.createServer({
+	key: fs.readFileSync('key.pem'),
+	cert: fs.readFileSync('cert.pem'),
+	requestCert: true
+}, app);
 
 //var webServer = http.createServer(app)
 
@@ -674,22 +674,36 @@ clientio.on('heartbeat',function(event){
 
 
 //------------------------------------------
-clientio.on('cevents',function(event){ 
+clientio.on('wsservice',function(event){ 
 
-	var wsevents = JSON.parse(event);
+	var wsObj = JSON.parse(event);
+	var r = {service: wsObj.service, Return: [], message: ""};
 
-	if(PostgreSQL.textToMD5(clientio.id) == wsevents.token){
+	if(PostgreSQL.textToMD5(clientio.id) == wsObj.token){
 
-		PostgreSQL.query("SELECT events.fun_receiver_json($1::BIGINT, $2::TEXT, $3::JSON);", [wsevents.idequipment, wsevents.validator, JSON.stringify(wsevents.events)]).then(function(results){
-			//console.log(results.rows);
-			clientio.emit('creceived', results.rows);
-		}, function(error){
-			console.log(error);
-			clientio.emit('creceived', []);
-		});
+		switch(wsObj.service){
+			case 'events':
+			PostgreSQL.query("SELECT events.fun_receiver_json($1::BIGINT, $2::TEXT, $3::JSON);", [wsObj.idequipment, wsObj.validator, JSON.stringify(wsObj.datas)]).then(function(results){
+				
+				if(results.rows.length > 0){
+					r.Return = results.rows[0].fun_receiver_json;
+				}
+
+				clientio.emit('wssreturn', r);
+			}, function(error){
+				console.log(error);
+				r.message = error;			
+				clientio.emit('wssreturn', r);
+			});
+			break;
+			default:
+			r.message = wsObj.service+' service no found.';			
+			clientio.emit('wssreturn', r);
+			break;
+		}
 
 	}else{
-
+		console.log("Ha expirado");
 		clientio.emit('token_expired');
 	}
 
