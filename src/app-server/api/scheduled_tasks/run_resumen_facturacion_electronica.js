@@ -40,7 +40,7 @@ _run_resumen_facturacion_electronica: function(param){
     WHERE  glp_estado = 'QueryOn')                            AS queryon, 
     Todatetimeoffset((SELECT TOP(1) den_fecha_envio 
     FROM   ge_tmp_documentosenviados 
-    ORDER  BY den_fecha_envio DESC), -300)   AS 
+    ORDER  BY  CAST(den_fecha_envio as datetime2) DESC), -300)   AS 
     ultimo_enviado;`;
 
     var config = {
