@@ -78,9 +78,9 @@ mssql.connect(config).then((cnx) => {
                 if(res.ultimo_enviado){
                     var tiempo_sin_enviar = DojoDate.difference(res.ultimo_enviado, new Date(), "minute");
                     if(tiempo_sin_enviar >= res.tiempo_max_sin_enviar){
-                     priority = 1;
-                     eventtype = param.ideventtype_on_alarm;
-                 }else{
+                       priority = 1;
+                       eventtype = param.ideventtype_on_alarm;
+                   }else{
                     priority = 8;
                     eventtype = param.ideventtype_on_restore;
                 }    
@@ -111,8 +111,8 @@ mssql.connect(config).then((cnx) => {
             deferred.resolve(true);
         });
     }else{
-       deferred.resolve(true);
-   }
+     deferred.resolve(true);
+ }
 
 
 }).catch(function(err) {
@@ -121,8 +121,8 @@ mssql.connect(config).then((cnx) => {
 });
 
 }).catch(err => {
-   console.trace(err);
-   deferred.resolve(true);
+ console.trace(err);
+ deferred.resolve(true);
 })
 
 return deferred.promise;
