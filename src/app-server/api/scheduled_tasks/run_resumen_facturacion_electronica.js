@@ -64,7 +64,7 @@ mssql.connect(config).then((cnx) => {
         if(recordset.length > 0){
 
             var res = recordset[0];
-            var descr = "<b>Pendientes: </b>"+res.pendientes+"</br><b>Ultimo procesado: </b>"+res.ultimo_procesado.toLocaleString()+"</br><b>En Proceso: </b>"+res.en_proceso+"</br><b>Ultimo Enviado: </b>"+res.ultimo_enviado.toLocaleString()+"</br><b>QueryOn: </b>"+res.queryon;
+            var descr = "<b>Pendientes: </b>"+res.pendientes+"</br><b>Ultimo procesado: </b>"+res.ultimo_procesado.toISOString()+"</br><b>En Proceso: </b>"+res.en_proceso+"</br><b>Ultimo Enviado: </b>"+res.ultimo_enviado.toISOString()+"</br><b>QueryOn: </b>"+res.queryon;
             var event = {idaccount: 0, ideventtype: param.ideventtype_on_alarm, source: t.textToMD5(param.ip), description: descr, details: {iddivision: param.iddivision}, priority: 2};
 
             t.send_event_pg(event, []).then(function(result){
