@@ -21,9 +21,10 @@ _run_resumen_facturacion_electronica: function(param){
 
     var srtquery = `USE FacturacionElectronica;
     SELECT (select count(*) from PV_XmlFacturacionElectronica (nolock) where serie_factura not in
-    (select den_serie_factura from GE_TMP_DocumentosEnviados (nolock)  where  den_tipo_documento in ('01','04','06'))) as pendientes, 
+    (SELECT den_serie_factura from GE_TMP_DocumentosEnviados (nolock)  where  den_tipo_documento in ('01','04','06'))) as pendientes, 
     (SELECT TOP(1) dpr_fecha_proceso FROM GEN_TMP_DocumentosProcesados ORDER BY dpr_fecha_proceso DESC) as ultimo_procesado, 
     (SELECT COUNT(*) FROM GEN_TMP_DocumentosProcesados WHERE dpr_estado_proceso = 'En Proceso') as en_proceso, 
+    (SELECT TOP (1) glp_fecha_inicio FROM GEN_LOG_ControlProcesos WHERE glp_estado = 'QueryOn' ORDER BY glp_fecha_inicio DESC) as queryon,
     (SELECT TOP(1) den_fecha_envio FROM GE_TMP_DocumentosEnviados ORDER BY den_fecha_envio DESC) as ultimo_enviado;`;
 
     var config = {
@@ -46,7 +47,7 @@ mssql.connect(config).then((cnx) => {
         if(recordset.length > 0){
 
             var res = recordset[0];
-            var descr = "<b>Pendientes: </b>"+res.pendientes+"</br><b>Ultimo procesado: </b>"+res.ultimo_procesado+"</br><b>En Proceso: </b>"+res.en_proceso+"</br><b>Ultimo Enviado: </b>"+res.ultimo_enviado;
+            var descr = "<b>Pendientes: </b>"+res.pendientes+"</br><b>Ultimo procesado: </b>"+res.ultimo_procesado+"</br><b>En Proceso: </b>"+res.en_proceso+"</br><b>Ultimo Enviado: </b>"+res.ultimo_enviado+"</br><b>QueryOn: </b>"+res.queryon;
             var event = {idaccount: 0, ideventtype: param.ideventtype_on_alarm, source: t.textToMD5(param.ip), description: descr, details: {iddivision: param.iddivision}, priority: 2};
 
             t.send_event_pg(event, []).then(function(result){
