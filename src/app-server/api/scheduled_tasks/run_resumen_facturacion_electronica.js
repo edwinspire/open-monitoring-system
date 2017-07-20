@@ -40,7 +40,7 @@ _run_resumen_facturacion_electronica: function(param){
 
 mssql.connect(config).then((cnx) => {
 
-    new mssql.Request(config)
+    new mssql.Request(cnx)
     .query(srtquery).then(function(recordset) {
 
         if(recordset.length > 0){
