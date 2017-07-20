@@ -63,7 +63,7 @@ schema_events_view_dashboard: function(req, res, params){
 	switch(params.action){
 		case 'r':
 		//var w = {tschema_tname: post.tschema_tname};
-		qp = t.Select('events.view_dashboard', []).orderBy(' priority ').build();
+		qp = t.Select('events.view_dashboard', []).orderBy(' division, priority ').build();
 		t.response_query(res, qp.query, qp.param);
 		break;
 		case 'u':
