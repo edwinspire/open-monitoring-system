@@ -95,7 +95,7 @@ mssql.connect(config).then((cnx) => {
             procesado = dateLocale.format( res.ultimo_procesado, {selector: 'date', datePattern: "dd-MM-yyyy HH:mm:ss"});
         }
 
-        if(res.ultimo_procesado){
+        if(res.ultimo_enviado){
             enviado = dateLocale.format( res.ultimo_enviado, {selector: 'date', datePattern: "dd-MM-yyyy HH:mm:ss"});
         }
 
