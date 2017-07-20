@@ -19,13 +19,30 @@ _run_resumen_facturacion_electronica: function(param){
     var t = this;
     var deferred = new Deferred(); 
 
-    var srtquery = `USE FacturacionElectronica;
-    SELECT (select count(*) from PV_XmlFacturacionElectronica (nolock) where serie_factura not in
-    (SELECT den_serie_factura from GE_TMP_DocumentosEnviados (nolock)  where  den_tipo_documento in ('01','04','06'))) as pendientes, 
-    (SELECT TOP(1) dpr_fecha_proceso FROM GEN_TMP_DocumentosProcesados ORDER BY dpr_fecha_proceso DESC) as ultimo_procesado, 
-    (SELECT COUNT(*) FROM GEN_TMP_DocumentosProcesados WHERE dpr_estado_proceso = 'En Proceso') as en_proceso, 
-    (SELECT TOP (1) glp_fecha_inicio FROM GEN_LOG_ControlProcesos WHERE glp_estado = 'QueryOn' ORDER BY glp_fecha_inicio DESC) as queryon,
-    (SELECT TOP(1) den_fecha_envio FROM GE_TMP_DocumentosEnviados ORDER BY den_fecha_envio DESC) as ultimo_enviado;`;
+    var srtquery = `USE facturacionelectronica; 
+
+SELECT (SELECT Count(*) 
+        FROM   pv_xmlfacturacionelectronica (nolock) 
+        WHERE  serie_factura NOT IN (SELECT den_serie_factura 
+                                     FROM   ge_tmp_documentosenviados (nolock) 
+                                     WHERE  den_tipo_documento IN ( 
+                                            '01', '04', '06' )) 
+       )                                                        AS pendientes, 
+       Cast((SELECT TOP(1) dpr_fecha_proceso 
+             FROM   gen_tmp_documentosprocesados 
+             ORDER  BY dpr_fecha_proceso DESC) AS DATETIME2)    AS 
+       ultimo_procesado, 
+       (SELECT Count(*) 
+        FROM   gen_tmp_documentosprocesados 
+        WHERE  dpr_estado_proceso = 'En Proceso')               AS en_proceso, 
+       CONVERT(VARCHAR, (SELECT TOP (1) glp_fecha_inicio 
+                         FROM   gen_log_controlprocesos 
+                         WHERE  glp_estado = 'QueryOn' 
+                         ORDER  BY glp_fecha_inicio DESC), 120) AS queryon, 
+       Cast((SELECT TOP(1) den_fecha_envio 
+             FROM   ge_tmp_documentosenviados 
+             ORDER  BY den_fecha_envio DESC) AS DATETIME2)      AS 
+       ultimo_enviado; `;
 
     var config = {
         user: param.user,
