@@ -54,21 +54,22 @@ mssql.connect(config).then((cnx) => {
                 deferred.resolve(true);
 
             }, function(err){
+                console.log(err);
                 deferred.resolve(true);
             });
         }else{
-           deferred.resolve(true);
-       }
+         deferred.resolve(true);
+     }
 
 
-   }).catch(function(err) {
-    console.log(err);
+ }).catch(function(err) {
+    console.trace(err);
     deferred.resolve(true);
 });
 
 }).catch(err => {
-   console.log(err);
-   deferred.resolve(true);
+ console.trace(err);
+ deferred.resolve(true);
 })
 
 return deferred.promise;
