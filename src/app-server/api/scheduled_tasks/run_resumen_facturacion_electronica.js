@@ -49,7 +49,7 @@ _run_resumen_facturacion_electronica: function(param){
         server: param.ip, 
         database: 'msdb',
         connectionTimeout: 90000,
-        requestTimeout: 60000
+        requestTimeout: 90000
     //options: {
       // encrypt: true
   //}
@@ -101,7 +101,7 @@ mssql.connect(config).then((cnx) => {
             }
 
             var descr = "<b>Pendientes: </b>"+res.pendientes+"</br><b>Ultimo procesado: </b>"+procesado+"</br><b>En Proceso: </b>"+res.en_proceso+"</br><b>Ultimo Enviado: </b>"+enviado+"</br><b>QueryOn: </b>"+res.queryon;
-            var event = {idaccount: 0, ideventtype: eventtype, source: t.textToMD5(param.ip), description: descr, details: {iddivision: param.iddivision}, priority: priority};
+            var event = {dateevent: new Date(), idaccount: 0, ideventtype: eventtype, source: t.textToMD5(param.ip), description: descr, details: {iddivision: param.iddivision}, priority: priority};
 
             t.send_event_pg(event, []).then(function(result){
 
