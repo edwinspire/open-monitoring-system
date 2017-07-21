@@ -38,10 +38,13 @@ _run_resumen_facturacion_electronica: function(param){
     (SELECT Count(*) glp_fecha_inicio 
     FROM   gen_log_controlprocesos 
     WHERE  glp_estado = 'QueryOn')                            AS queryon, 
+    (SELECT Count(*) glp_fecha_inicio 
+    FROM   gen_log_controlprocesos )                            AS instancias, 
     Todatetimeoffset((SELECT TOP(1) den_fecha_envio 
     FROM   ge_tmp_documentosenviados 
     ORDER  BY  CAST(den_fecha_envio as datetime2) DESC), -300)   AS 
-    ultimo_enviado;`;
+    ultimo_enviado;
+    `;
 
     var config = {
         user: param.user,
@@ -100,7 +103,7 @@ mssql.connect(config).then((cnx) => {
                 enviado = dateLocale.format( res.ultimo_enviado, {selector: 'date', datePattern: "dd-MM-yyyy HH:mm:ss"});
             }
 
-            var descr = "<b>Pendientes: </b>"+res.pendientes+"</br><b>Ultimo procesado: </b>"+procesado+"</br><b>En Proceso: </b>"+res.en_proceso+"</br><b>Ultimo Enviado: </b>"+enviado+"</br><b>QueryOn: </b>"+res.queryon;
+            var descr = "<b>Pendientes: </b>"+res.pendientes+"</br><b>Ultimo procesado: </b>"+procesado+"</br><b>En Proceso: </b>"+res.en_proceso+"</br><b>Ultimo Enviado: </b>"+enviado+"</br><b>QueryOn: </b>"+res.queryon+"</br><b>Instancias: </b>"+res.instancias;
             var event = {dateevent: new Date(), idaccount: 0, ideventtype: eventtype, source: t.textToMD5(param.ip), description: descr, details: {iddivision: param.iddivision}, priority: priority};
 
             t.send_event_pg(event, []).then(function(result){
