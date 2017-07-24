@@ -677,7 +677,7 @@ clientio.on('heartbeat',function(event){
 clientio.on('wsservice',function(event){ 
 
 	var wsObj = JSON.parse(event);
-	var r = {service: "-", Return: [], message: "-", DeviceKey: "-"};
+	var r = {service: "-", Return: [], message: "--", DeviceKey: "--"};
 
 	if(PostgreSQL.textToMD5(clientio.id) == wsObj.token){
 
