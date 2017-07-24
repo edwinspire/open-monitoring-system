@@ -700,6 +700,26 @@ clientio.on('wsservice',function(event){
 				clientio.emit('wssreturn', r);
 			});
 
+		}else if(wsObj.resumen_carga_articulos){
+
+			console.log(wsObj.resumen_carga_articulos);
+			PostgreSQL.query("INSERT INTO events.datas (ideventtype, idaccount, description, datas) VALUES (63, 0, 'Carga de arctculos', $1::JSONB);", [JSON.stringify(wsObj.resumen_carga_articulos)]).then(function(results){
+				
+				//console.log(results.rows);
+
+				if(results.rows.length > 0){
+					r.service = "resumen_carga_articulos";
+					r.DeviceKey = wsObj.DeviceKey;
+					r.Return = results.rows[0].fun_receiver_json;
+				}
+
+				clientio.emit('wssreturn', r);
+			}, function(error){
+				console.log(error);
+				r.message = error;			
+				clientio.emit('wssreturn', r);
+			});			
+
 		}else{
 			r.message = wsObj+' service no found.';			
 			clientio.emit('wssreturn', r);
@@ -738,6 +758,8 @@ clientio.on('wsservice',function(event){
 clientio.on('clogin',function(event){ 
 
 	var ComunicatorParam = JSON.parse(event);
+
+	console.log(ComunicatorParam);
 
 	PostgreSQL.query("SELECT idequipment FROM equipments WHERE report_validator = $1::TEXT;", [ComunicatorParam.DeviceKey]).then(function(results){
 		if(results.rowCount == 1){
