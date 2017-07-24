@@ -677,11 +677,35 @@ clientio.on('heartbeat',function(event){
 clientio.on('wsservice',function(event){ 
 
 	var wsObj = JSON.parse(event);
-	var r = {service: wsObj.service, Return: [], message: ""};
+	var r = {service: "-", Return: [], message: "-", DeviceKey: "-"};
 
 	if(PostgreSQL.textToMD5(clientio.id) == wsObj.token){
 
-		switch(wsObj.service){
+		if(wsObj.events){
+
+			PostgreSQL.query("SELECT events.fun_receiver_json($1::TEXT, $2::JSON);", [wsObj.DeviceKey, JSON.stringify(wsObj.events)]).then(function(results){
+				
+				//console.log(results.rows);
+
+				if(results.rows.length > 0){
+					r.service = "events";
+					r.DeviceKey = wsObj.DeviceKey;
+					r.Return = results.rows[0].fun_receiver_json;
+				}
+
+				clientio.emit('wssreturn', r);
+			}, function(error){
+				console.log(error);
+				r.message = error;			
+				clientio.emit('wssreturn', r);
+			});
+
+		}else{
+			r.message = wsObj+' service no found.';			
+			clientio.emit('wssreturn', r);
+		}
+
+		/*switch(wsObj.service){
 			case 'events':
 			PostgreSQL.query("SELECT events.fun_receiver_json($1::BIGINT, $2::TEXT, $3::JSON);", [wsObj.idequipment, wsObj.validator, JSON.stringify(wsObj.datas)]).then(function(results){
 				
@@ -700,7 +724,7 @@ clientio.on('wsservice',function(event){
 			r.message = wsObj.service+' service no found.';			
 			clientio.emit('wssreturn', r);
 			break;
-		}
+		}*/
 
 	}else{
 		console.log("Ha expirado");
@@ -715,7 +739,7 @@ clientio.on('clogin',function(event){
 
 	var ComunicatorParam = JSON.parse(event);
 
-	PostgreSQL.query("SELECT idequipment FROM equipments WHERE idequipment = $1::BIGINT AND report_validator = $2::TEXT;", [ComunicatorParam.idequipment, ComunicatorParam.validator]).then(function(results){
+	PostgreSQL.query("SELECT idequipment FROM equipments WHERE report_validator = $1::TEXT;", [ComunicatorParam.DeviceKey]).then(function(results){
 		if(results.rowCount == 1){
 			clientio.emit('clogged', PostgreSQL.textToMD5(clientio.id));
 		}else{
