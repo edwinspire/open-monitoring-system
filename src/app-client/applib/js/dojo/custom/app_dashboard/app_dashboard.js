@@ -32,7 +32,7 @@ define(['dojo/_base/declare',
        var t = this;
 
        var vs = win.getBox();
-       console.debug(vs);
+       //console.debug(vs);
        domStyle.set(this.domNode, "height", (vs.h-30-16)+'px');
        
        aspect.after(t.BorderContainer, "resize", function(e) {

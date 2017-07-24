@@ -65,6 +65,7 @@ define(['dojo/_base/declare',
 
 
        this.BorderContainer.resize();
+        t.GridEvents.autoHeight();
      },
      _setIdaccountAttr: function (_v) {
 
