@@ -121,7 +121,7 @@ mssql.connect(config).then((cnx) => {
 					last_run_outcome_label = "Succeeded";	
 					ideventtype = param.parameters.ideventtype_on_succeeded;
 					break;
-					case 0:
+					case 3:
 					last_run_outcome_label = "Canceled";	
 					ideventtype = param.parameters.ideventtype_on_canceled;
 					break;

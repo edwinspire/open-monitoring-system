@@ -703,7 +703,7 @@ clientio.on('wsservice',function(event){
 		}else if(wsObj.resumen_carga_articulos){
 
 			console.log(wsObj.resumen_carga_articulos);
-			PostgreSQL.query("INSERT INTO events.datas (ideventtype, idaccount, description, datas) VALUES (63, 0, 'Carga de arctculos', $1::JSONB);", [JSON.stringify(wsObj.resumen_carga_articulos)]).then(function(results){
+			PostgreSQL.query("INSERT INTO events.datas (ideventtype, idaccount, description, details) VALUES (63, 0, 'Carga de arctculos', $1::JSONB);", [JSON.stringify(wsObj.resumen_carga_articulos)]).then(function(results){
 				
 				//console.log(results.rows);
 
