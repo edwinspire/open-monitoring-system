@@ -43,7 +43,7 @@ require(["dojo/request",
 	"api/postgres/schema_secondary",
 	"api/postgres/schema_events",
 	"api/postgres/schema_gui",
-	"api/postgres/services_objects"
+	"api/postgres/services"
 	], function(request, on, array, os, crypto, http, socketIO, path, fs, LogSystem, https, url, cors, cookieParser, pathToRegexp, express, pG, compression, mssql, bodyParser, nodeMailer, pgOMS, MD5, Config, sessionusers){
 
 		var Log = new LogSystem('debug', fs.createWriteStream('Log_oms'+(new Date()).toLocaleDateString()+'.log'));
@@ -674,77 +674,14 @@ clientio.on('heartbeat',function(event){
 
 
 //------------------------------------------
-clientio.on('wsservice',function(event){ 
+clientio.on('wsservice',function(message){ 
 
-	var wsObj = JSON.parse(event);
-	var r = {service: "-", Return: [], message: "--", DeviceKey: "--"};
+	var wsObj = JSON.parse(message);
+	var r = {Service: "-", Return: [], Message: "--", DeviceKey: "--"};
 
 	if(PostgreSQL.textToMD5(clientio.id) == wsObj.token){
 
-		if(wsObj.events){
-
-			PostgreSQL.query("SELECT events.fun_receiver_json($1::TEXT, $2::JSON);", [wsObj.DeviceKey, JSON.stringify(wsObj.events)]).then(function(results){
-				
-				//console.log(results.rows);
-
-				if(results.rows.length > 0){
-					r.service = "events";
-					r.DeviceKey = wsObj.DeviceKey;
-					r.Return = results.rows[0].fun_receiver_json;
-				}
-
-				clientio.emit('wssreturn', r);
-			}, function(error){
-				console.log(error);
-				r.message = error;			
-				clientio.emit('wssreturn', r);
-			});
-
-		}else if(wsObj.resumen_carga_articulos){
-
-			console.log(wsObj.resumen_carga_articulos);
-			PostgreSQL.query("INSERT INTO events.datas (ideventtype, idaccount, description, details) VALUES (63, 0, 'Carga de arctculos', $1::JSONB);", [JSON.stringify(wsObj.resumen_carga_articulos)]).then(function(results){
-				
-				//console.log(results.rows);
-
-				if(results.rows.length > 0){
-					r.service = "resumen_carga_articulos";
-					r.DeviceKey = wsObj.DeviceKey;
-					r.Return = results.rows[0].fun_receiver_json;
-				}
-
-				clientio.emit('wssreturn', r);
-			}, function(error){
-				console.log(error);
-				r.message = error;			
-				clientio.emit('wssreturn', r);
-			});			
-
-		}else{
-			r.message = wsObj+' service no found.';			
-			clientio.emit('wssreturn', r);
-		}
-
-		/*switch(wsObj.service){
-			case 'events':
-			PostgreSQL.query("SELECT events.fun_receiver_json($1::BIGINT, $2::TEXT, $3::JSON);", [wsObj.idequipment, wsObj.validator, JSON.stringify(wsObj.datas)]).then(function(results){
-				
-				if(results.rows.length > 0){
-					r.Return = results.rows[0].fun_receiver_json;
-				}
-
-				clientio.emit('wssreturn', r);
-			}, function(error){
-				console.log(error);
-				r.message = error;			
-				clientio.emit('wssreturn', r);
-			});
-			break;
-			default:
-			r.message = wsObj.service+' service no found.';			
-			clientio.emit('wssreturn', r);
-			break;
-		}*/
+		PostgreSQL.service_ws(clientio, wsObj);
 
 	}else{
 		console.log("Ha expirado");

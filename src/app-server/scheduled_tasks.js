@@ -43,9 +43,9 @@ require(["dojo/request",
 			setInterval(function(){
 				STasks.getTaskList().then(function(result){
 					Log.debug('Obtiene la lista de tareas');
+
 					array.forEach(result.rows, function(task){
 						Log.debug(task);
-
 						if(STasks[task.function_name]){
 
 

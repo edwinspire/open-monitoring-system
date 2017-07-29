@@ -59,7 +59,7 @@ schema_events_view_dashboard: function(req, res, params){
 	var post = req.body;
 	var qp;
 	var w = {};
-console.log(post);
+//console.log(post);
 
 	switch(params.action){
 		case 'r':

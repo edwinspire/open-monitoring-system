@@ -21,6 +21,8 @@ run_check_movinv: function(task){
 
     if(task.task_parameters.empresa == 'E002'){
         strq = `SELECT idreginterfacesmatriz, cpudt, cputm, menge, mblnr, matnr, werks, bwart, shkzg FROM secondary.view_mov_inv_sin_cargar_rm ORDER BY datetimefile ${orden} LIMIT ${limit};`;
+    }else if(task.task_parameters.empresa == 'E004'){
+        strq = `SELECT idreginterfacesmatriz, cpudt, cputm, menge, mblnr, matnr, werks, bwart, shkzg FROM secondary.view_mov_inv_sin_cargar_cr ORDER BY datetimefile ${orden} LIMIT ${limit};`;
     }
 
     t.query(strq, []).then(function(result){
@@ -41,13 +43,13 @@ run_check_movinv: function(task){
                 t.query(`
                   UPDATE secondary.interfaces_eta_rm_matriz SET enmatriz = true, enmatriz_revisado = now(), isvalid = true WHERE idreginterfacesmatriz = ANY($1::BIGINT[]);
                   `, [idsMovimientos]).then(function(result){
-            
-                deferred.resolve(true);
+                    console.log(result);
+                    deferred.resolve(true);
 
-            }, function(fail){
-                console.log(fail);
-                deferred.reject(fail);
-            });
+                }, function(fail){
+                    console.log(fail);
+                    deferred.reject(fail);
+                });
 
               }
 
@@ -73,7 +75,6 @@ run_check_movinv: function(task){
     }
 
 }).catch(function(err) {
-
     console.log(err);
     deferred.resolve(false);
 });

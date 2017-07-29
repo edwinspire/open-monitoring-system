@@ -3,7 +3,7 @@ require(["dojo/_base/lang", "api/postgres/oms", "dojo/_base/array"], function(la
 	lang.extend(OMS, {
 /////////////////////////////////////////
 
-service_objects_view_equipment_config: function(req, res, params){
+service_objects_view_equipment_configxxxxxxxx: function(req, res, params){
 
 	var t = this;
 	var post = req.body;
@@ -23,7 +23,7 @@ service_objects_view_equipment_config: function(req, res, params){
 		break;
 	}
 },
-service_events_receiver: function(req, res, params){
+service_events_receiverxxxxxxx: function(req, res, params){
 
 	var t = this;
 	var post = req.body;

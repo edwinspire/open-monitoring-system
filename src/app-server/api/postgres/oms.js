@@ -167,16 +167,24 @@ query: function(_query, _param){
 
 	var deferred = new Deferred();
 	var t = this;	
+	if(!_param){
+		_param = [];
+	}
 
 	t.pgPool.connect().then(client => {
 		client.query(_query, _param).then(res => {
-			client.release()
+			client.release();
 			deferred.resolve(res);
 		})
 		.catch(e => {
-			client.release()
+			console.trace(e);
+			client.release();
 			deferred.reject(e);
 		})
+	})
+	.catch(e => {
+		console.trace(e);
+		deferred.reject(e);
 	})
 
 	return deferred.promise;
