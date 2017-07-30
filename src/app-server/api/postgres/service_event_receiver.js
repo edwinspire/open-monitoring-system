@@ -7,12 +7,15 @@ service_event_receiver: function(DeviceKey, events){
 
 	this.query("SELECT events.fun_receiver_json($1::TEXT, $2::JSON);", [DeviceKey, JSON.stringify(events)]).then(function(results){
 
-console.log(results);
 		var r = {Return: [], Message: ''};
-		if(results.rows.length > 0){
-			r.Return = results.rows[0].fun_receiver_json;
+		try{
+			if(results.rows.length > 0 && results.rows[0].fun_receiver_json){
+				r.Return = results.rows[0].fun_receiver_json;
+			}
+		}catch(error){
+			console.trace(error);
 		}
-console.log(r);
+		
 		deferred.resolve(r);
 				///////////
 			}, function(error){
@@ -20,10 +23,10 @@ console.log(r);
 				deferred.reject(error);
 			});
 
-			return deferred.promise;
-		}  
+	return deferred.promise;
+}  
 
 
 
-	});
+});
 });

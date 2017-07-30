@@ -44,7 +44,7 @@ service_ws: function(clientio, message){
 					r.Service = service.Service;
 					r.Message = result.Message;
 					r.Return = result.Return;
-					console.log(r);
+					//console.log(r);
 					clientio.emit('wssreturn', r);
 
 				}, function(error){

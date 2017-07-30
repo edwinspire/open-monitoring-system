@@ -722,6 +722,7 @@ clientio.on('disconnect',function(){
 
 clientio.on('reconnect', function() {
 	Log.debug('reconnect fired!');
+	console.log('reconnect fired!');
 });
 
 });
