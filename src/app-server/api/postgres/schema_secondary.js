@@ -171,7 +171,7 @@ schema_secondary_view_lista_precios_oficinas: function(req, res, params){
 			break;
 			case 'promo_eco':
 			q = "SELECT * FROM secondary.view_lista_precios_oficinas  WHERE iddivision = 1 AND  account = ANY($1::text[]) AND account_name ILIKE  'ECO%' ORDER BY account";
-			t.response_query(res, q, [list_promo2]);
+			t.response_query(res, q, [list_promo2.concat(list_promo3)]);
 			break;
 			default:
 			res.status(500).json({success: false, data: "Intentando una accion invalida "+post.UdcAction, req: post});
