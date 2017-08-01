@@ -7,7 +7,7 @@ run_gen_resumen_vxmp: function(task){
 
 	var deferred = new Deferred();
 	var t = this;
-	return t.query('secondary.fun_gen_resumen_vxmp();', []);
+	return t.query('SELECT secondary.fun_gen_resumen_vxmp();', []);
 }
 
 
