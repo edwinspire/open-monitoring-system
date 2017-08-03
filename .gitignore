@@ -2,7 +2,7 @@
 *~
 #*.sh
 *.bat
-*.log
-*.exe
+**.log
+**.exe
 farm*
 
