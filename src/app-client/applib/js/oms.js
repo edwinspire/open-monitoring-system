@@ -17,6 +17,7 @@ require(["dojo/ready",
   "Widget/app_secondary_mov_inv_sin_cargar_rm/app_secondary_mov_inv_sin_cargar_rm",
   "Widget/app_secondary_mov_inv_duplicados_eta/app_secondary_mov_inv_duplicados_eta", 
   "Widget/app_secondary_mov_inv_duplicados_rm/app_secondary_mov_inv_duplicados_rm", 
+  "Widget/app_secondary_mov_inv_sin_cargar_cr/app_secondary_mov_inv_sin_cargar_cr", 
   "Widget/Geolocations/Geolocations", 
   "Widget/app_account/app_account",
   "Widget/app_tables_views_config/app_tables_views_config",
@@ -44,6 +45,7 @@ require(["dojo/ready",
     app_secondary_mov_inv_sin_cargar_rm, 
     app_secondary_mov_inv_duplicados_eta,
     app_secondary_mov_inv_duplicados_rm,
+    app_secondary_mov_inv_sin_cargar_cr, 
     app_geolocations, 
     app_account,
     app_tables_views_config,
@@ -71,6 +73,7 @@ require(["dojo/ready",
      apps['app_secondary_mov_inv_sin_cargar_rm'] = app_secondary_mov_inv_sin_cargar_rm;
      apps['app_secondary_mov_inv_duplicados_eta'] = app_secondary_mov_inv_duplicados_eta;
      apps['app_secondary_mov_inv_duplicados_rm'] = app_secondary_mov_inv_duplicados_rm;
+     apps['app_secondary_mov_inv_sin_cargar_cr'] = app_secondary_mov_inv_sin_cargar_cr;
      apps['app_secondary_doc_ventasxmp_ultimos_eta'] = app_secondary_doc_ventasxmp_ultimos_eta;
      apps['app_secondary_doc_ventasxmp_ultimos_rm'] = app_secondary_doc_ventasxmp_ultimos_rm;
      apps['app_event_resumen'] = app_event_resumen;
