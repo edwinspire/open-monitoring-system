@@ -692,22 +692,23 @@ clientio.on('wsservice',function(message){
 
 
 //------------------------------------------
-clientio.on('clogin',function(event){ 
+clientio.on('clogin',function(config){ 
 
-	var ComunicatorParam = JSON.parse(event);
+	var CommunicatorConfig = JSON.parse(config);
+	var WSClient = this;
 
-	console.log(ComunicatorParam);
+	console.log(CommunicatorConfig);
 
-	PostgreSQL.query("SELECT idequipment FROM equipments WHERE report_validator = $1::TEXT;", [ComunicatorParam.DeviceKey]).then(function(results){
+	PostgreSQL.query("SELECT services.fun_login($1::bigint, $2::text, $3::inet);", [CommunicatorConfig.Id, CommunicatorConfig.Pwd, WSClient.handshake.address.address]).then(function(results){
 		if(results.rowCount == 1){
-			clientio.emit('clogged', PostgreSQL.textToMD5(clientio.id));
+			WSClient.emit('clogged', PostgreSQL.textToMD5(WSClient.id));
 		}else{
-			clientio.disconnect('unauthorized');
+			WSClient.disconnect('unauthorized');
 		}
 
 	}, function(error){
-		clientio.emit('clogged', error);
-		clientio.disconnect('unauthorized');
+		WSClient.emit('clogged', error);
+		WSClient.disconnect('unauthorized');
 	});
 
 
