@@ -39,11 +39,10 @@
 				dijit.byId('ok').on('Click', function(e){
 
 					console.debug(e);
-					request.post("njs/login", {
+					request.post("/login", {
 						handleAs: "json",
 						data: {user: dijit.byId('user').get('value'), pwd: dijit.byId('pwd').get('value')}
 					}).then(function(res){
-						console.debug(res);
 						if(res.success){
 							window.location = '/oms.html'
 						}else{

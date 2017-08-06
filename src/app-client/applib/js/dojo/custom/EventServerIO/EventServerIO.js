@@ -11,9 +11,11 @@ define(['dojo/_base/declare',
                 var hostws = '//'+document.location.host;
                 var socket = io.connect(hostws);
                 
+console.log(hostws);
+
                 socket.on('connection', function(client) {  
                     console.log('Client connected to '+hostws);
-                    socket.emit('heartbeat', {sessionidclient: cookie('oms_sessionidclient'), token: cookie('oms_sessiontoken')});
+                    //socket.emit('heartbeat', {sessionidclient: cookie('oms_sessionidclient'), token: cookie('oms_sessiontoken')});
                 });
 
 
@@ -36,10 +38,10 @@ define(['dojo/_base/declare',
 
                 socket.on('command', function(data) {
                     var command = data;
-                //  console.log(command);
+                  console.log(command);
                 switch(command.command){
                     case 'logout':
-                    window.location="/njs/logout";
+                  //  window.location="/njs/logout";
                     break; 
                     case 'heartbeat':
                     socket.emit('heartbeat', {sessionidclient: cookie('oms_sessionidclient')});

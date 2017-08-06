@@ -189,16 +189,11 @@ query: function(_query, _param){
 
 	return deferred.promise;
 },
-login: function(req, res){
+login: function(user, password, remoteAddress, userAgent){
 
 	var t = this;
-
-	var user = req.body.user || false;
-	var pwd = req.body.pwd || false;
-
 	var q = "SELECT * from public.fun_login_system($1::TEXT, $2::TEXT, $3::INET, $4::TEXT);";
-
-	return t.query(q, [user, pwd, req.connection.remoteAddress, req.headers['user-agent']]);
+	return t.query(q, [user, password, remoteAddress, userAgent]);
 },
 logout: function(datauser){
 	var t = this;
