@@ -36,7 +36,7 @@ constructor: function(args) {
 		database: this.db,
 		user: this.user,
 		password: this.pwd,
-  port: this.port//,
+  port: this.port,
   //ssl: true,
   max: 50, //set pool max size to 20
   //min: 4, //set min pool size to 4
