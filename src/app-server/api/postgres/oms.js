@@ -38,7 +38,7 @@ constructor: function(args) {
 		password: this.pwd,
   port: this.port//,
   //ssl: true,
-  //max: 20, //set pool max size to 20
+  max: 50, //set pool max size to 20
   //min: 4, //set min pool size to 4
   //idleTimeoutMillis: 1000 //close idle clients after 1 second
 });
