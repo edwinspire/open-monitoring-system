@@ -57,7 +57,7 @@ run_check_articulos_sin_marca: function(task){
     		</table>
     		`;
 
-    		t.send_event_pg({idaccount: task.task_parameters.idaccount, ideventtype: 139, description: Message}, []).then(function(result){
+    		t.send_event_pg({idaccount: task.task_parameters.idaccount, ideventtype: 79, description: Message}, []).then(function(result){
     			deferred.resolve(true);
     		});
 
