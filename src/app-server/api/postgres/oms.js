@@ -36,9 +36,9 @@ constructor: function(args) {
 		database: this.db,
 		user: this.user,
 		password: this.pwd,
-  port: this.port,
+		port: this.port,
   //ssl: true,
-  max: 50, //set pool max size to 20
+  max: 90, //set pool max size to 20
   //min: 4, //set min pool size to 4
   //idleTimeoutMillis: 1000 //close idle clients after 1 second
 });
@@ -177,6 +177,7 @@ query: function(_query, _param){
 			deferred.resolve(res);
 		})
 		.catch(e => {
+			console.trace(_query, _param);
 			console.trace(e);
 			client.release();
 			deferred.reject(e);
