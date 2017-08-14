@@ -7,16 +7,20 @@ define([
   "dojo/node!passport",
   "dojo/node!passport-local",
   "dojo/node!express-session",
-  "dojo/node!morgan"
-  ], function(declare, expressjs, cookieParser, compression, bodyParser, passport, passportLocal, expressSession, morgan){
+  "dojo/node!morgan",
+  "dojo/store/Memory",
+  "dojo/Evented"
+  ], function(declare, expressjs, cookieParser, compression, bodyParser, passport, passportLocal, expressSession, morgan, Memory, Evented){
     return declare(null, {
 
       app: null,
       pG: null,
+      storeSessions: new Memory(),
 
       constructor: function(args){
         declare.safeMixin(this,args);
         var t = this;
+        t.storeSessions = new Memory();
 
         t.app = expressjs();
         
@@ -38,6 +42,24 @@ define([
         })); 
 
 
+        function _Login(req, res, next){
+
+          t.pG.login(req.body.user, req.body.pwd, req.connection.remoteAddress, req.headers['user-agent']).then(function(results){
+
+            var r =  results.rows;
+            if(r.length > 0 && r[0]['fun_login_system']){
+
+              var u = r[0]['fun_login_system'];
+              next();
+
+    }else{
+     res.redirect("/logout");
+    }
+
+  }, function(error){
+    res.redirect("/logout");
+  });
+        }
 
         var Strategy = passportLocal.Strategy;
 
@@ -72,14 +94,11 @@ define([
 
         passport.deserializeUser((id, done)=>{
           console.debug("deserialize ");
-          console.dir(id);
+          //console.dir(id);
           done(null, id);
         });
 
-
-
-
-
+/*
 ////////////////////////////////////////////////////////////////////////////////////////
 t.app.post("/login", passport.authenticate('local', {failureRedirect: '/'}), function(req, res){
 
@@ -88,14 +107,32 @@ t.app.post("/login", passport.authenticate('local', {failureRedirect: '/'}), fun
   })
 
 });
+*/
+
+////////////////////////////////////////////////////////////////////////////////////////
+t.app.post("/login", _Login, function(req, res){
+
+  res.json({success: true});
+
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////
 t.app.get('/logout', function(req, res){
   req.logout();
+  req.session.destroy();
+
+  cookie = req.cookies;
+  for (var prop in cookie) {
+    if (!cookie.hasOwnProperty(prop)) {
+      continue;
+    }    
+    res.cookie(prop, '', {expires: new Date(0)});
+  }
+
+  req.session = null; 
+
   res.redirect('/');
 });
-
-
 
 
 t.app.get('/map.html',  function(req, res){
@@ -113,7 +150,7 @@ t.app.get('/map.html',  function(req, res){
       send(500, err, []);
     }else{
 
-      if(req.isAuthenticated()){
+      if(true){
 
         if(req.query.maptype){
 
@@ -158,9 +195,7 @@ t.app.get('/map.html',  function(req, res){
 ////////////////////////////////////////////////////////////////////////////////////////
 t.app.post("/njs/db/table/*",  function(req, res){
 
-  //var u = sessionUsers.isauthorized(req, res, true);
-
-  if(req.isAuthenticated()){
+  if(true){
 
     var table = req.path.replace("/njs/db/table/", "");
     switch(table){
@@ -263,7 +298,7 @@ res.redirect('/');
 ////////////////////////////////////////////////////////////////////////////////////////
 t.app.post("/db/*", function(req, res){
 
-  if(req.isAuthenticated()){
+  if(true){
     var parts = req.path.split("/");
     console.log(parts);
     if(parts.length > 8){
@@ -366,7 +401,30 @@ t.app.use(function(err, req, res, next) {
 
 
 
-}
+},
+
+isAuthenticated_by_req: function(req,res,next){
+  if(true){
+        //if user is looged in, true will return true 
+        next();
+      } else{
+        res.redirect("/");
+      }
+    },
+    isAuthenticated_by_sid: function(sid){
+      if(true){
+        //if user is looged in, true will return true 
+        //next();
+      } else{
+    //    res.redirect("/");
+  }
+  return true;
+},
+
+
+
+
+
 
 });
 });

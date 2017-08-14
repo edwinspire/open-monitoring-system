@@ -41,10 +41,10 @@ console.log(hostws);
                   console.log(command);
                 switch(command.command){
                     case 'logout':
-                  //  window.location="/njs/logout";
+                    //window.location="/logout";
                     break; 
                     case 'heartbeat':
-                    socket.emit('heartbeat', {sessionidclient: cookie('oms_sessionidclient')});
+                    socket.emit('heartbeat', {sid: cookie('connect.sid')});
                     break;   
                     case 'clearCache':
                     window.location.reload(true);
@@ -56,8 +56,24 @@ console.log(hostws);
 
 
                 setInterval(function(){
+
+var theCookies = document.cookie.split(';');
+    var aString = '';
+    for (var i = 1 ; i <= theCookies.length; i++) {
+        aString += i + ' ' + theCookies[i-1] + "\n";
+    }
+
+    console.log(aString);
+
         //socket.send(cookie('oms_sessionidclient')+'dfdsfdsf');
-        socket.emit('heartbeat', {sessionidclient: cookie('oms_sessionidclient')});
+        cookie("favouriteDish", "Noodles", { expires: 5 });
+
+console.log(cookie("favouriteDish"), cookie);
+
+        console.log(cookie("connect.sid"), cookie("io"));
+     
+        //alert();  
+        socket.emit('heartbeat', {sid: cookie('connect.sid')});
     }, 30000);
 
 

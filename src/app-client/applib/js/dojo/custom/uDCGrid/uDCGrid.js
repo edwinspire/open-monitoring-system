@@ -474,7 +474,7 @@ console.log(response);
 
       if(array.indexOf(t.Gui.fields, c.field) >= 0){
         columns.push(c);
-        console.log(c);
+        //console.log(c);
       }
 
     });

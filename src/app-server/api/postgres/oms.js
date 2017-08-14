@@ -192,7 +192,6 @@ query: function(_query, _param){
 	return deferred.promise;
 },
 login: function(user, password, remoteAddress, userAgent){
-
 	var t = this;
 	var q = "SELECT * from public.fun_login_system($1::TEXT, $2::TEXT, $3::INET, $4::TEXT);";
 	return t.query(q, [user, password, remoteAddress, userAgent]);

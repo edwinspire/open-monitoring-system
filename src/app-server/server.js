@@ -83,6 +83,7 @@ PostgreSQL._schema_gui_properties_fromdb().then(function(r){
 }, 15*1000);
 
 
+/*
   sessionUsers.on('dead_session', function(datauser){
 
     sessionUsers.remove(datauser.id);
@@ -95,6 +96,8 @@ PostgreSQL._schema_gui_properties_fromdb().then(function(r){
 
 
   });
+  */
+  
 
 
   var cnxSMTP = {host: process.env.SMPT_HOST, port: process.env.SMPT_PORT, ignoreTLS: process.env.SMPT_IGNORETLS, secure: process.env.SMPT_SECURE, auth: {user: process.env.SMPT_AUTH_USER, pass: process.env.SMPT_AUTH_PWD}};
@@ -114,8 +117,8 @@ PostgreSQL.configuration_server.query({config_name: "mailOptions"}).forEach(func
   });
 });
 
-var exp = new express();
-exp.pG = PostgreSQL;
+var exp = new express({pG: PostgreSQL});
+//exp.pG = PostgreSQL;
 
 var webServer = https.createServer({
   key: fs.readFileSync('key.pem'),
@@ -153,9 +156,10 @@ sio.on('connection', function(clientio){
 
 //------------------------------------------
 clientio.on('heartbeat',function(event){ 
-  var datauser = sessionUsers.datauser(event.sessionidclient);
 
-  if(datauser){
+  console.log(event, event.sid, clientio.id);
+
+  if(event == clientio.id){
     datauser.heartbeat = Date.now();
     sessionUsers.put(datauser);
   }else{
@@ -223,11 +227,12 @@ clientio.on('reconnect', function() {
 });
 
 
-
+/*
 sessionUsers.on('newsession', function(e){
   //Log.debug(e);
   sio.emit('command', {command: 'heartbeat'});    
 });
+*/
 
 
 
