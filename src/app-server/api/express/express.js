@@ -19,11 +19,13 @@ define([
         var t = this;
 
         t.app = expressjs();
+        
         t.app.use(expressSession({
           secret: 'openmonitoringsystem@oms',
           resave: false,
           saveUninitialized: false
         }));
+
         t.app.use(expressjs.static(process.env.EXPRESS_STATIC_DIR));
         t.app.use(passport.initialize());
         t.app.use(passport.session());

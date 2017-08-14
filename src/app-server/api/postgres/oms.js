@@ -38,14 +38,14 @@ constructor: function(args) {
 		password: this.pwd,
 		port: this.port,
   //ssl: true,
-  max: 90, //set pool max size to 20
+  //max: 50, //set pool max size to 20
   //min: 4, //set min pool size to 4
   //idleTimeoutMillis: 1000 //close idle clients after 1 second
 });
 
 	t.pgPool.connect().then(client => {
 		client.query('SELECT version();', []).then(res => {
-			client.release()
+			client.release();
 			console.log(res.rows[0]) 
 		})
 		.catch(e => {
@@ -177,7 +177,7 @@ query: function(_query, _param){
 			deferred.resolve(res);
 		})
 		.catch(e => {
-			console.trace(_query, _param);
+			console.trace(_query, _param, client);
 			console.trace(e);
 			client.release();
 			deferred.reject(e);
@@ -185,7 +185,7 @@ query: function(_query, _param){
 	})
 	.catch(e => {
 		console.trace(e);
-		client.release();
+		//client.release();
 		deferred.reject(e);
 	})
 
