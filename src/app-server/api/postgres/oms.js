@@ -185,6 +185,7 @@ query: function(_query, _param){
 	})
 	.catch(e => {
 		console.trace(e);
+		client.release();
 		deferred.reject(e);
 	})
 
