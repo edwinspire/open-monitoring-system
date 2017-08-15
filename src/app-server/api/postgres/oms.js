@@ -177,8 +177,8 @@ query: function(_query, _param){
 			deferred.resolve(res);
 		})
 		.catch(e => {
-			console.trace(_query, _param, client);
-			console.trace(e);
+			console.trace(_query, e);
+			//console.trace(e);
 			client.release();
 			deferred.reject(e);
 		})
@@ -256,7 +256,7 @@ response_insert: function(res, _query, _param){
 		res.status(500).json({success: false, data: err});
 	}
 
-	var query = client.query(_query, _param, (error)=>{
+	var query = client.query(_query, (error)=>{
 		if(error){
 			res.status(500).json({success: false, data: error, query: _query});
 		}

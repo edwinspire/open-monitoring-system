@@ -19,11 +19,11 @@ run_check_carga_vxmp: function(task){
 			devicesProcceced ++;
 
 			if(r.valid){
-
 				t.query("SELECT secondary.fun_insert_ventasxmp($1::bigint, $2::json);", [r.result.idaccount, JSON.stringify(r.result.datas)]).then(function(result){
-					//console.log(result);
+					console.log('------------->> '+devicesProcceced+' de '+totalDevices,result.rows);
 				}, function(err){
-					console.log(err);
+					//console.log(err);
+					console.log('------------->> '+devicesProcceced+' de '+totalDevices);
 				});
 			}
 
@@ -65,6 +65,8 @@ _run_check_carga_vxmp_check: function(param){
 	SELECT  * FROM [ITE_Log].[log].[tbl_CargaVentasMediosPagos] WHERE [cvmp_fecha] >= '${dias_atras}' ORDER BY [cvmp_fecha], [cvmp_headertext], [cvmp_doctype], [cvmp_objkey];
 	`;
 
+//console.log(srtquery);
+
 	var config = {
 		user: param.username,
 		password: param.pwd,
@@ -85,7 +87,6 @@ mssql.connect(config).then((cnx) => {
 	if(error){
 		deferred.reject({idaccount: param.idaccount, datas: error});  
 	}else{
-
 		deferred.resolve({idaccount: param.idaccount, datas: result});  
 	} 
 
