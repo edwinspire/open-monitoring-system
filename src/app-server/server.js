@@ -56,12 +56,11 @@ PostgreSQL.get_config_from_db().then(function(){
     });
 
   setInterval(function(){
-
     PostgreSQL.get_change_in_tables().then(function(){
   ////Log.debug('Se busca cambios en las tablas');
 });
 
-  }, 3*1000);
+  }, 25*100);
 
 
   setInterval(function(){
@@ -82,22 +81,6 @@ PostgreSQL._schema_gui_properties_fromdb().then(function(r){
 });
 }, 15*1000);
 
-
-/*
-  sessionUsers.on('dead_session', function(datauser){
-
-    sessionUsers.remove(datauser.id);
-
-    PostgreSQL.logout(datauser).then(function(results){
-
-    }, function(error){
-//res.status(500).json(error);
-});
-
-
-  });
-  */
-  
 
 
   var cnxSMTP = {host: process.env.SMPT_HOST, port: process.env.SMPT_PORT, ignoreTLS: process.env.SMPT_IGNORETLS, secure: process.env.SMPT_SECURE, auth: {user: process.env.SMPT_AUTH_USER, pass: process.env.SMPT_AUTH_PWD}};
@@ -129,11 +112,8 @@ var sio = socketIO.listen(webServer);
 
 var pgEventTs = PostgreSQL.on('tschange', function(r){
 
-  //Log.debug(r);
-
   if(r.table_name == 'gui.column_properties' || r.table_name == 'gui.tables_view_properties'){
     PostgreSQL._schema_gui_properties_fromdb().then(function(rx){
-      //Log.debug('GUI ha cambiado');
     }); 
   }
 
@@ -155,8 +135,6 @@ sio.on('connection', function(clientio){
 
 //------------------------------------------
 clientio.on('heartbeat',function(event){ 
-
-  console.log(event.sid);
 
   if(!exp.userHeartbeat(event.sid)){
     clientio.emit('command', {command: 'logout'});
@@ -211,23 +189,19 @@ clientio.on('clogin',function(config){
 
 clientio.on('disconnect',function(){
   //Log.debug('Server has disconnected');
-
 });
 
 clientio.on('reconnect', function() {
-  //Log.debug('reconnect fired!');
   console.log('reconnect fired!');
 });
 
 });
 
 
-/*
-sessionUsers.on('newsession', function(e){
-  //Log.debug(e);
+sessionUsers.on('new_session', function(e){
   sio.emit('command', {command: 'heartbeat'});    
 });
-*/
+
 
 
 
