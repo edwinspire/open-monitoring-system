@@ -20,17 +20,27 @@ run_check_carga_vxmp: function(task){
 
 			if(r.valid){
 				t.query("SELECT secondary.fun_insert_ventasxmp($1::bigint, $2::json);", [r.result.idaccount, JSON.stringify(r.result.datas)]).then(function(result){
-					console.log('------------->> '+devicesProcceced+' de '+totalDevices,result.rows);
+					//console.log('------------->> '+devicesProcceced+' de '+totalDevices,result.rows);
+					if(devicesProcceced == totalDevices){
+						signal.remove();
+						deferred.resolve(true);
+					}
 				}, function(err){
 					//console.log(err);
-					console.log('------------->> '+devicesProcceced+' de '+totalDevices);
+					//console.log('------------->> '+devicesProcceced+' de '+totalDevices);
+					if(devicesProcceced == totalDevices){
+						signal.remove();
+						deferred.resolve(true);
+					}
 				});
+			}else{
+				if(devicesProcceced == totalDevices){
+					signal.remove();
+					deferred.resolve(true);
+				}
 			}
 
-			if(devicesProcceced == totalDevices){
-				signal.remove();
-				deferred.resolve(true);
-			}
+
 		});
 
 		array.forEach(devices.rows, function(device, i){
@@ -67,13 +77,13 @@ _run_check_carga_vxmp_check: function(param){
 
 //console.log(srtquery);
 
-	var config = {
-		user: param.username,
-		password: param.pwd,
-		server: param.ip, 
-		database: 'msdb',
-		connectionTimeout: 90000,
-		requestTimeout: 60000
+var config = {
+	user: param.username,
+	password: param.pwd,
+	server: param.ip, 
+	database: 'msdb',
+	connectionTimeout: 90000,
+	requestTimeout: 60000
     //options: {
       // encrypt: true
   //}
