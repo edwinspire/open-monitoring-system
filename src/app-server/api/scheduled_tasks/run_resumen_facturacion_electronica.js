@@ -19,7 +19,8 @@ _run_resumen_facturacion_electronica: function(param){
     var t = this;
     var deferred = new Deferred(); 
 
-    var srtquery = `SELECT (SELECT Count(*) 
+    var srtquery = `USE facturacionelectronica; 
+    SELECT (SELECT Count(*) 
     FROM   pv_xmlfacturacionelectronica with  (nolock) 
     WHERE  serie_factura NOT IN (SELECT den_serie_factura 
     FROM   ge_tmp_documentosenviados with (nolock) 
