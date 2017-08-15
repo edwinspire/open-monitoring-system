@@ -62,7 +62,7 @@ _run_check_carga_vxmp_check: function(param){
 
 
 	var srtquery = `
-	SELECT  * FROM [ITE_Log].[log].[tbl_CargaVentasMediosPagos] WHERE cvmp_fecha >= '${dias_atras}' ORDER BY cvmp_fecha, cvmp_fecha_registro;
+	SELECT  * FROM [ITE_Log].[log].[tbl_CargaVentasMediosPagos] WHERE [cvmp_fecha] >= '${dias_atras}' ORDER BY [cvmp_fecha], [cvmp_headertext], [cvmp_doctype], [cvmp_fecha_registro];
 	`;
 
 	var config = {
