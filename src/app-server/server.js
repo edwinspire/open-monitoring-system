@@ -117,8 +117,7 @@ PostgreSQL.configuration_server.query({config_name: "mailOptions"}).forEach(func
   });
 });
 
-var exp = new express({pG: PostgreSQL});
-//exp.pG = PostgreSQL;
+var exp = new express({_pG: PostgreSQL});
 
 var webServer = https.createServer({
   key: fs.readFileSync('key.pem'),
@@ -157,13 +156,9 @@ sio.on('connection', function(clientio){
 //------------------------------------------
 clientio.on('heartbeat',function(event){ 
 
-  console.log(event, event.sid, clientio.id);
+  console.log(event.sid);
 
-  if(event == clientio.id){
-    datauser.heartbeat = Date.now();
-    sessionUsers.put(datauser);
-  }else{
-
+  if(!exp.userHeartbeat(event.sid)){
     clientio.emit('command', {command: 'logout'});
     clientio.disconnect('unauthorized');
   }

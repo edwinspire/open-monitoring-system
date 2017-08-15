@@ -9,30 +9,26 @@ define([
   "dojo/node!express-session",
   "dojo/node!morgan",
   "dojo/store/Memory",
-  "dojo/Evented"
-  ], function(declare, expressjs, cookieParser, compression, bodyParser, passport, passportLocal, expressSession, morgan, Memory, Evented){
+  "dojo/Evented",
+  "dojo/node!crypto"
+  ], function(declare, expressjs, cookieParser, compression, bodyParser, passport, passportLocal, expressSession, morgan, Memory, Evented, crypto){
     return declare(null, {
 
       app: null,
-      pG: null,
-      storeSessions: new Memory(),
+      _pG: null,
+      _storeSessions: new Memory(),
 
       constructor: function(args){
         declare.safeMixin(this,args);
         var t = this;
-        t.storeSessions = new Memory();
+        t._storeSessions = new Memory({idProperty: 'sessionIDSystem'});
 
         t.app = expressjs();
         
-        t.app.use(expressSession({
-          secret: 'openmonitoringsystem@oms',
-          resave: false,
-          saveUninitialized: false
-        }));
 
         t.app.use(expressjs.static(process.env.EXPRESS_STATIC_DIR));
-        t.app.use(passport.initialize());
-        t.app.use(passport.session());
+        //t.app.use(passport.initialize());
+        //t.app.use(passport.session());
         t.app.use(cookieParser());
         t.app.use(compression());
         t.app.use(morgan('common'));
@@ -42,72 +38,42 @@ define([
         })); 
 
 
-        function _Login(req, res, next){
+function _Login(req, res, next){
+  t._pG.login(req.body.user, req.body.pwd, req.connection.remoteAddress, req.headers['user-agent']).then(function(results){
+    var r =  results.rows;
+    if(r.length > 0 && r[0]['fun_login_system']){
+      var u = r[0]['fun_login_system'];
 
-          t.pG.login(req.body.user, req.body.pwd, req.connection.remoteAddress, req.headers['user-agent']).then(function(results){
+      var datauser = u;
+      datauser['heartbeat'] = Date.now();
+      datauser['Syslogin'] = Date.now();
+      var sid = t._pG.textToMD5(JSON.stringify(u)+Date.now());
+      datauser['sessionIDSystem'] = sid;
+      datauser['ip'] = req.connection.remoteAddress;
+      t._storeSessions.put(datauser);
+      res.cookie('sessionIDSystem', sid, { maxAge: 3600000});
+      res.cookie('SessionFullname', datauser.fullname, { maxAge: 3600000});
+  //this._remove_same_user_sessions(datauser);
+  //this.emit('newsession', {});
 
-            var r =  results.rows;
-            if(r.length > 0 && r[0]['fun_login_system']){
-
-              var u = r[0]['fun_login_system'];
-              next();
-
-    }else{
-     res.redirect("/logout");
-    }
-
-  }, function(error){
-    res.redirect("/logout");
-  });
-        }
-
-        var Strategy = passportLocal.Strategy;
-
-        passport.use(new Strategy({usernameField: 'user',
-          passwordField: 'pwd', passReqToCallback: true},
-          function(req, username, password, done) {
-
-            t.pG.login(username, password, req.connection.remoteAddress, req.headers['user-agent']).then(function(results){
-
-              var r =  results.rows;
-              if(r.length > 0 && r[0]['fun_login_system']){
-
-                var u = r[0]['fun_login_system'];
-
-                return done(null, u, {message:'Login OK'});
-
-              }else{
-                return done(null, false, {message:'Unable to login'});   
-              }
-
-            }, function(error){
-              return done(null, false, {message:'Unable to login'});
-            });
-
-          }));
-
-
-        passport.serializeUser((user, done)=>{
-          //console.debug("serialize ", user);
-          done(null, user);
-        });
-
-        passport.deserializeUser((id, done)=>{
-          console.debug("deserialize ");
-          //console.dir(id);
-          done(null, id);
-        });
-
-/*
-////////////////////////////////////////////////////////////////////////////////////////
-t.app.post("/login", passport.authenticate('local', {failureRedirect: '/'}), function(req, res){
-
-  req.session.save(() => {
-    res.json({success: true});
-  })
-
+  next();
+}else{
+ res.redirect("/logout");
+}
+}, function(error){
+  res.redirect("/logout");
 });
-*/
+}
+
+function _isAuthenticated(req, res, next){
+
+  if(t.isAuthenticated(req.cookies['sessionIDSystem'])){
+    next();
+  }else{
+   res.redirect("/logout");
+ }
+
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////
 t.app.post("/login", _Login, function(req, res){
@@ -118,8 +84,8 @@ t.app.post("/login", _Login, function(req, res){
 
 ////////////////////////////////////////////////////////////////////////////////////////
 t.app.get('/logout', function(req, res){
-  req.logout();
-  req.session.destroy();
+
+  t._storeSessions.remove(req.cookies['sessionIDSystem']);
 
   cookie = req.cookies;
   for (var prop in cookie) {
@@ -128,8 +94,6 @@ t.app.get('/logout', function(req, res){
     }    
     res.cookie(prop, '', {expires: new Date(0)});
   }
-
-  req.session = null; 
 
   res.redirect('/');
 });
@@ -170,7 +134,7 @@ t.app.get('/map.html',  function(req, res){
             break;
           }
 
-          t.pG.query(q, p).then(function(response){
+          t._pG.query(q, p).then(function(response){
             geodata = response.rows;
             send(200, data, geodata);
           });
@@ -193,144 +157,106 @@ t.app.get('/map.html',  function(req, res){
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-t.app.post("/njs/db/table/*",  function(req, res){
+t.app.post("/njs/db/table/*", _isAuthenticated, function(req, res){
 
-  if(true){
 
-    var table = req.path.replace("/njs/db/table/", "");
-    switch(table){
-      case "account_events_comments":
-      t.pG.udc_account_events_comments(req, res);
-      break;        
-      case "events":
-      t.pG.udc_table_events(req, res, u);
-      break;
-      case "account_events_isopen":
-      t.pG.udc_table_account_events_isopen(req, res);
-      break;
-      case "view_events_isopen":
-      t.pG.udc_table_events_isopen(req, res);
-      break;        
-      case "view_events_details":
-      t.pG.udc_table_events_details(req, res);
-      break; 
-      case "groups":
-      t.pG.udc_table_groups(req, res);
-      break;
-      case "udc_columns":
-      t.pG.udc_tables_columns(req, res);
-      break;
-      case "udc_tables_views":
-      t.pG.udc_tables_views(req, res);
-      break;
-      case "farma_view_lista_precios":
-      t.pG.udc_farma_view_lista_precios(req, res);
-      break;
-      case "account_equipments":
-      t.pG.udc_table_account_equipments(req, res);
-      break;
-      case "account_users":
-      t.pG.udc_table_account_users(req, res);
-      break;
-      case "account_contacts":
-      t.pG.udc_table_account_contacts(req, res);
-      break;
-      case "emails":
-      t.pG.udc_table_emails(req, res);
-      break;
-      case "phones":
-      t.pG.udc_table_phones(req, res);
-      break;
-      case "accounts":
-      t.pG.udc_table_accounts(req, res);
-      break;
-      default:
-      res.status(404).json({table: table});
-      break;
-    }
-
+  var table = req.path.replace("/njs/db/table/", "");
+  switch(table){
+    case "account_events_comments":
+    t._pG.udc_account_events_comments(req, res);
+    break;        
+    case "events":
+    t._pG.udc_table_events(req, res, u);
+    break;
+    case "account_events_isopen":
+    t._pG.udc_table_account_events_isopen(req, res);
+    break;
+    case "view_events_isopen":
+    t._pG.udc_table_events_isopen(req, res);
+    break;        
+    case "view_events_details":
+    t._pG.udc_table_events_details(req, res);
+    break; 
+    case "groups":
+    t._pG.udc_table_groups(req, res);
+    break;
+    case "udc_columns":
+    t._pG.udc_tables_columns(req, res);
+    break;
+    case "udc_tables_views":
+    t._pG.udc_tables_views(req, res);
+    break;
+    case "farma_view_lista_precios":
+    t._pG.udc_farma_view_lista_precios(req, res);
+    break;
+    case "account_equipments":
+    t._pG.udc_table_account_equipments(req, res);
+    break;
+    case "account_users":
+    t._pG.udc_table_account_users(req, res);
+    break;
+    case "account_contacts":
+    t._pG.udc_table_account_contacts(req, res);
+    break;
+    case "emails":
+    t._pG.udc_table_emails(req, res);
+    break;
+    case "phones":
+    t._pG.udc_table_phones(req, res);
+    break;
+    case "accounts":
+    t._pG.udc_table_accounts(req, res);
+    break;
+    default:
+    res.status(404).json({table: table});
+    break;
   }
 
-});
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////
-t.app.post("/receiver",  function(req, res){
-// TODO Implementar un mecaniso de seguridad para impedir ingreso de eventos por algun hacker
-t.pG.receiver_event(req, res);
-});
-
-
-
-
-
-/*
-t.app.get("/njs/logout", function(req, res){
-
-  var sid = req.cookies['oms_sessionidclient'];
   
-  if(true){
-
-
-
-    t.pG.logout('').then(function(results){
-// Usuario a sido deslogueado
-
-res.cookie('oms_sessionidclient', 'anonymous', { maxAge: 1});
-res.cookie('oms_fullname', 'anonymous', { maxAge: 1});
-res.redirect('/');
-
-}, function(error){
-  res.status(500).json(error);
-});
-
-
-  }else{
-//res.status(500).json(sid);
-res.redirect('/');
-}
 
 });
-*/
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-t.app.post("/db/*", function(req, res){
+t.app.post("/receiver", _isAuthenticated, function(req, res){
+// TODO Implementar un mecaniso de seguridad para impedir ingreso de eventos por algun hacker
+t._pG.receiver_event(req, res);
+});
 
-  if(true){
-    var parts = req.path.split("/");
-    console.log(parts);
-    if(parts.length > 8){
 
-      var params = {schema: parts[2], objectdb: parts[3], action: parts[4]};
+////////////////////////////////////////////////////////////////////////////////////////
+t.app.post("/db/*", _isAuthenticated, function(req, res){
 
-      params.onupdate = {};
+  var parts = req.path.split("/");
+  console.log(parts);
+  if(parts.length > 8){
 
-      try{
-        params.onupdate[parts[5]] = parts[6];
-        params.onupdate[parts[7]] = parts[8];
-      }catch(e){
-        res.status(500).json({path: req.path, error: e});
-      }
+    var params = {schema: parts[2], objectdb: parts[3], action: parts[4]};
 
-      var obj = 'schema_'+params.schema+'_'+params.objectdb;
+    params.onupdate = {};
 
-      console.log(obj);
+    try{
+      params.onupdate[parts[5]] = parts[6];
+      params.onupdate[parts[7]] = parts[8];
+    }catch(e){
+      res.status(500).json({path: req.path, error: e});
+    }
 
-      if(t.pG[obj]){
-        t.pG[obj](req, res, params);
-      }else{
-        res.status(404).json({path: req.path});
-      }
+    var obj = 'schema_'+params.schema+'_'+params.objectdb;
 
+    console.log(obj);
+
+    if(t._pG[obj]){
+      t._pG[obj](req, res, params);
     }else{
-      res.status(500).json({path: req.path, error: 'No tiene los argumentos completos'});
+      res.status(404).json({path: req.path});
     }
 
   }else{
-    res.status(403).json({table: req.path});
+    res.status(500).json({path: req.path, error: 'No tiene los argumentos completos'});
   }
+
+
 
 });
 
@@ -349,7 +275,7 @@ t.app.post("/service/*",  function(req, res){
 
       switch(params.objectdb){
         case "view_equipment_config":
-        t.pG.service_objects_view_equipment_config(req, res, params);
+        t._pG.service_objects_view_equipment_config(req, res, params);
         break;
         default:
         console.log('No existe 1', req.path);
@@ -363,7 +289,7 @@ t.app.post("/service/*",  function(req, res){
       switch(params.objectdb){
         case "receiver":
         //params.file_name = parts[8];
-        t.pG.service_events_receiver(req, res, params);
+        t._pG.service_events_receiver(req, res, params);
         break;
         default:
         console.log('No existe 2', req.path, params);
@@ -381,10 +307,7 @@ t.app.post("/service/*",  function(req, res){
   }else{
     res.status(500).json({path: req.path, error: 'No tiene los argumentos completos'});
   }
-
-
 });
-
 
 
 t.app.use(function(req, res, next) {
@@ -398,28 +321,45 @@ t.app.use(function(err, req, res, next) {
   res.status(500).send('Something broke!');
 }); 
 
-
-
-
 },
-
-isAuthenticated_by_req: function(req,res,next){
-  if(true){
-        //if user is looged in, true will return true 
-        next();
-      } else{
-        res.redirect("/");
-      }
-    },
-    isAuthenticated_by_sid: function(sid){
-      if(true){
-        //if user is looged in, true will return true 
-        //next();
-      } else{
-    //    res.redirect("/");
+encrypt: function(myMessage, myPassword){
+  var cipher = crypto.createCipher('aes192', myPassword);
+  var crypted = cipher.update(myMessage,'utf8', 'hex');
+  crypted += cipher.final('hex');
+  return crypted;
+},
+decrypt: function(ciphertext, myPassword){
+  try{
+    var decipher = crypto.createDecipher('aes192',myPassword)
+    var dec = decipher.update(ciphertext,'hex','utf8')
+    return dec += decipher.final('utf8');
+  }catch(e){
+    console.warn(e);
+    return false;
   }
-  return true;
 },
+isAuthenticated: function(sessionIDSystem){
+  var t = this;
+  var user = t._storeSessions.get(sessionIDSystem);
+  if(sessionIDSystem && user && user.idcontact > 0){
+    return user;
+  }else{
+   return false;
+ }
+},
+userHeartbeat: function(sessionIDSystem){
+  var user = this.isAuthenticated(sessionIDSystem);
+  if(user){
+    user.heartbeat = Date.now();
+    this._storeSessions.put(user);
+    return true;
+  }else{
+    return false;
+  }
+}
+
+
+
 
 
 
