@@ -19,29 +19,27 @@ _run_resumen_facturacion_electronica: function(param){
     var t = this;
     var deferred = new Deferred(); 
 
-    var srtquery = `USE facturacionelectronica; 
-
-    SELECT (SELECT Count(*) 
-    FROM   pv_xmlfacturacionelectronica (nolock) 
+    var srtquery = `SELECT (SELECT Count(*) 
+    FROM   pv_xmlfacturacionelectronica with  (nolock) 
     WHERE  serie_factura NOT IN (SELECT den_serie_factura 
-    FROM   ge_tmp_documentosenviados (nolock) 
+    FROM   ge_tmp_documentosenviados with (nolock) 
     WHERE  den_tipo_documento IN ( 
     '01', '04', '06' )) 
     )                                                          AS pendientes, 
     Todatetimeoffset((SELECT TOP(1) dpr_fecha_proceso 
-    FROM   gen_tmp_documentosprocesados 
+    FROM   gen_tmp_documentosprocesados  with  (nolock)
     ORDER  BY dpr_fecha_proceso DESC), -300) AS 
     ultimo_procesado, 
     (SELECT Count(*) 
-    FROM   gen_tmp_documentosprocesados 
+    FROM   gen_tmp_documentosprocesados with  (nolock)
     WHERE  dpr_estado_proceso = 'En Proceso')                 AS en_proceso, 
-    (SELECT Count(*) glp_fecha_inicio 
-    FROM   gen_log_controlprocesos 
+    (SELECT Count(*) glp_fecha_inicio  
+    FROM   gen_log_controlprocesos with  (nolock)
     WHERE  glp_estado = 'QueryOn')                            AS queryon, 
     (SELECT Count(*) glp_fecha_inicio 
-    FROM   gen_log_controlprocesos )                            AS instancias, 
+    FROM   gen_log_controlprocesos with  (nolock))                            AS instancias, 
     Todatetimeoffset((SELECT TOP(1) den_fecha_envio 
-    FROM   ge_tmp_documentosenviados 
+    FROM   ge_tmp_documentosenviados with  (nolock)
     ORDER  BY  CAST(den_fecha_envio as datetime2) DESC), -300)   AS 
     ultimo_enviado;
     `;

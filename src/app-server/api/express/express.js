@@ -13,7 +13,7 @@ define([
 	"dojo/node!crypto",
 	"dojo/date"
 	], function(declare, expressjs, cookieParser, compression, bodyParser, passport, passportLocal, expressSession, morgan, Memory, Evented, crypto, DojoDate){
-		return declare(null, [Evented], {
+		return declare(Evented, {
 
 			app: null,
 			heartbeatInterval: 30,
@@ -21,6 +21,7 @@ define([
 			_storeSessions: new Memory(),
 
 			constructor: function(args){
+
 				declare.safeMixin(this,args);
 				var t = this;
 				t._storeSessions = new Memory({idProperty: 'sessionIDSystem'});
@@ -34,9 +35,9 @@ define([
 					});
 
 				}, t.heartbeatInterval*30);
+        
 
 				t.app = expressjs();
-
 
 				t.app.use(expressjs.static(process.env.EXPRESS_STATIC_DIR));
         //t.app.use(passport.initialize());
@@ -71,7 +72,7 @@ define([
         			t._storeSessions.put(datauser);
         			res.cookie('sessionIDSystem', sid, { maxAge: 3600000});
         			res.cookie('SessionFullname', datauser.fullname, { maxAge: 3600000});
-        			this.emit('new_session', datauser);
+        			t.emit('new_session', datauser);
 
         			next();
         		}else{

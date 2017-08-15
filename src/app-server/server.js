@@ -15,7 +15,6 @@ require(["api/express/express",
   "api/postgres/oms", 
   "dojox/encoding/digests/MD5", 
   "api/config", 
-  "api/session_users/session_users", 
   "api/postgres/oms_query_builder", 
   "api/postgres/udc_table_accounts", 
   "api/postgres/udc_table_phones", 
@@ -37,7 +36,7 @@ require(["api/express/express",
   "api/postgres/schema_events",
   "api/postgres/schema_gui",
   "api/postgres/services"
-  ], function(express, on, array, os, cluster, crypto, socketIO, path, fs, LogSystem, https, url, pG, nodeMailer, pgOMS, MD5, Config, sessionusers){
+  ], function(express, on, array, os, cluster, crypto, socketIO, path, fs, LogSystem, https, url, pG, nodeMailer, pgOMS, MD5, Config){
 
 
     //var Log = new LogSystem('debug', fs.createWriteStream('Log_oms'+(new Date()).toLocaleDateString()+'.log'));
@@ -45,14 +44,19 @@ require(["api/express/express",
 
     const numCPUs = os.cpus().length;
 
-    var sessionUsers = new sessionusers();
+    //var sessionUsers = new sessionusers();
     var PostgreSQL = new pgOMS({user: process.env.PG_USER, pwd: process.env.PG_PWD, host: process.env.PG_HOST, db: process.env.PG_DB});
+
+console.log('Server 1');
 
 // Obtenemos configuraciones desde el servidor
 PostgreSQL.get_config_from_db().then(function(){
 
+  console.log('Server 2');
+
   PostgreSQL._schema_gui_properties_fromdb().then(function(r){
       ////Log.debug(r);
+      console.log('Server 3');
     });
 
   setInterval(function(){
@@ -62,6 +66,7 @@ PostgreSQL.get_config_from_db().then(function(){
 
   }, 25*100);
 
+console.log('Server 4');
 
   setInterval(function(){
     //Log.debug('Tareas periodicas');
@@ -75,6 +80,7 @@ PostgreSQL.get_config_from_db().then(function(){
       ////Log.debug(response);
     });
 
+
 // Esto debe dispararse solo al inicio de la aplicacion y cuando haya cambios en las tablas involucradas
 PostgreSQL._schema_gui_properties_fromdb().then(function(r){
   //Log.debug(r);
@@ -82,6 +88,7 @@ PostgreSQL._schema_gui_properties_fromdb().then(function(r){
 }, 15*1000);
 
 
+console.log('Server 5'); 
 
   var cnxSMTP = {host: process.env.SMPT_HOST, port: process.env.SMPT_PORT, ignoreTLS: process.env.SMPT_IGNORETLS, secure: process.env.SMPT_SECURE, auth: {user: process.env.SMPT_AUTH_USER, pass: process.env.SMPT_AUTH_PWD}};
   //Log.debug(cnxSMTP);
@@ -100,7 +107,11 @@ PostgreSQL.configuration_server.query({config_name: "mailOptions"}).forEach(func
   });
 });
 
+console.log('Server 6');
+
 var exp = new express({_pG: PostgreSQL});
+
+console.log('Server 6a');
 
 var webServer = https.createServer({
   key: fs.readFileSync('key.pem'),
@@ -198,7 +209,7 @@ clientio.on('reconnect', function() {
 });
 
 
-sessionUsers.on('new_session', function(e){
+exp.on('new_session', function(e){
   sio.emit('command', {command: 'heartbeat'});    
 });
 
