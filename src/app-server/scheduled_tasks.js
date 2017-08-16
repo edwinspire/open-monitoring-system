@@ -37,7 +37,7 @@ G.on('mounted', function(m){
 console.trace('OK '+m);
 });
 
-G.mount(['smb://gr\;administrador@172.16.110.7']);
+G.mount(['smb://gr\;administrador@172.16.110.7'], '1234567');
 
 
 console.log(G);
