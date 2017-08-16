@@ -2,6 +2,7 @@ require(["dojo/request",
 	"dojo/on", 
 	"dojo/date/locale",
 	"dojo/_base/array", 
+	"dojo/node!nodejs-gvfs-wrapper",
 	"dojo/node!crypto",
 	"dojo/node!path", 
 	"dojo/node!fs", 
@@ -28,7 +29,20 @@ require(["dojo/request",
 	"api/scheduled_tasks/run_resumen_facturacion_electronica",
 	"api/scheduled_tasks/run_resumen_doc_por_autorizar",
 	"api/scheduled_tasks/run_gen_resumen_vxmp"
-	], function(request, on, locale, array, crypto, path, fs, pathToRegexp, pG, compression, Config, LogSystem, ScheduledTasks, all, stamp, Dojodate){
+	], function(request, on, locale, array, Gvfs, crypto, path, fs, pathToRegexp, pG, compression, Config, LogSystem, ScheduledTasks, all, stamp, Dojodate){
+
+
+var G = new Gvfs();
+G.on('mounted', function(m){
+console.trace('OK '+m);
+});
+
+G.mount(['smb://group\;edwinspire@localhost']);
+
+
+console.log(G);
+
+
 
 		var Log = new LogSystem('debug', fs.createWriteStream('scheduled_tasks_'+(new Date()).toLocaleDateString()+'.log'));
 		Log.debug("Inicia scheduled_tasks");
