@@ -37,7 +37,7 @@ G.on('mounted', function(m){
 console.trace('OK '+m);
 });
 
-G.mount(['smb://group\;edwinspire@localhost']);
+G.mount(['smb://gr\;administrador@172.16.110.7']);
 
 
 console.log(G);
