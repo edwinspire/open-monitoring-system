@@ -32,16 +32,26 @@ require(["dojo/request",
 	], function(request, on, locale, array, Gvfs, crypto, path, fs, pathToRegexp, pG, compression, Config, LogSystem, ScheduledTasks, all, stamp, Dojodate){
 
 
+
 var G = new Gvfs();
 G.on('mounted', function(m){
-console.trace('OK '+m);
+console.trace('OK ', m);
 });
 
-G.mount(['smb://gr\;administrador@172.16.110.7'], '1234567');
+/*
+G.on('fail_mount', function(m){
+console.trace('Error ', m);
+});
 
+G.mount({domain: 'group', user: 'administrador', password: '1234567', resource: '172.16.133.7', protocol: 'smb'});
+G.info();
+*/
 
-console.log(G);
-
+fs.readdir("/run/user/1000/gvfs/ftp:host=172.16.100.91,port=2222,user=idocs/LOGISTICA", (err, files) => {
+  files.forEach(file => {
+    console.log(file);
+  });
+})
 
 
 		var Log = new LogSystem('debug', fs.createWriteStream('scheduled_tasks_'+(new Date()).toLocaleDateString()+'.log'));
