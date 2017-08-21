@@ -121,6 +121,8 @@ var webServer = https.createServer({
 
 var sio = socketIO.listen(webServer);
 
+console.log('Server 7');
+
 var pgEventTs = PostgreSQL.on('tschange', function(r){
 
   if(r.table_name == 'gui.column_properties' || r.table_name == 'gui.tables_view_properties'){
@@ -135,7 +137,7 @@ var pgEventNotif = PostgreSQL.on('notifying_the_user', function(r){
   sio.emit('notifying_the_user', JSON.stringify(r));
 });
 
-
+console.log('Server 8');
 
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -159,7 +161,8 @@ clientio.on('heartbeat',function(event){
 clientio.on('wsservice',function(message){ 
 
   var wsObj = JSON.parse(message);
-  var r = {Service: "-", Return: [], Message: "--", DeviceKey: "--"};
+
+//console.log(wsObj);
 
   if(PostgreSQL.textToMD5(clientio.id) == wsObj.token){
 

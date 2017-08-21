@@ -1,5 +1,5 @@
 // Dojo 1.7+ (AMD)
-require(["dojo/_base/lang", "api/postgres/oms", "dojo/_base/array", "api/postgres/service_event_receiver"], function(lang, OMS, array){
+require(["dojo/_base/lang", "api/postgres/oms", "dojo/_base/array", "api/postgres/service_event_receiver", "api/postgres/service_eta_interfaces_txt"], function(lang, OMS, array){
 	lang.extend(OMS, {
 /////////////////////////////////////////
 
@@ -42,13 +42,13 @@ service_ws: function(clientio, message){
 				t[s](message.DeviceKey, service.Datas).then(function(result){
 
 					r.Service = service.Service;
-					r.Message = result.Message;
-					r.Return = result.Return;
-					//console.log(r);
+					r.Return = result;
+					
 					clientio.emit('wssreturn', r);
 
 				}, function(error){
 					r.Message = error;
+					r.Service = service.Service;
 					console.log(r);
 					clientio.emit('wssreturn', r);
 				}).catch(function () {

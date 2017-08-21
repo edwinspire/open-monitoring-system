@@ -5,7 +5,7 @@ require(["dojo/_base/lang", "api/postgres/oms", "dojo/_base/array", "dojo/Deferr
 service_event_receiver: function(DeviceKey, events){
 	var deferred = new Deferred();
 
-	this.query("SELECT events.fun_receiver_json($1::TEXT, $2::JSON);", [DeviceKey, JSON.stringify(events)]).then(function(results){
+	this.query("SELECT services.fun_event_receiver($1::TEXT, $2::JSON);", [DeviceKey, JSON.stringify(events)]).then(function(results){
 
 		var r = {Return: [], Message: ''};
 		try{

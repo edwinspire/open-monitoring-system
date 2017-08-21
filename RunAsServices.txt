@@ -1,6 +1,6 @@
 CORRER APLICACION COMO SERVICIO EN DEBIAN CON SYSTEMD
 
-Editar openmonitoringsystem.service modificando las rutas segun donde este ubicado el proyecto
+Editar openmonitoringsystem.service modificando las rutas segun donde este ubicado el proyecto y el usuario con el cual se va a arrancar. Normalmente arrancarlo como root puede ser suficiente, pero hay comandos como gvfs-mount no corren como root y es donde se debe ejecutar el servicio como un usuario que no sea root.
 
 Copiar openmonitoringsystem.service en: 
 	/etc/systemd/system
