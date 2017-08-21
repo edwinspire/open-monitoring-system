@@ -1,5 +1,5 @@
 // Dojo 1.7+ (AMD)
-require(["dojo/_base/lang", "api/postgres/oms", "dojo/_base/array", "api/postgres/service_event_receiver", "api/postgres/service_eta_interfaces_txt"], function(lang, OMS, array){
+require(["dojo/_base/lang", "api/postgres/oms", "dojo/_base/array", "api/postgres/service_event_receiver", "api/postgres/service_eta_interfaces_txt", "api/postgres/service_eta_resultado_validacion_txt_interfaces"], function(lang, OMS, array){
 	lang.extend(OMS, {
 /////////////////////////////////////////
 

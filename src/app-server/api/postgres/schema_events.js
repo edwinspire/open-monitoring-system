@@ -65,7 +65,7 @@ schema_events_view_dashboard: function(req, res, params){
 		case 'r':
 		//var w = {tschema_tname: post.tschema_tname};
 		//qp = t.Select('events.view_dashboard', [post]).orderBy(' division, priority ').build();
-		t.response_query(res, "SELECT * FROM events.view_dashboard WHERE iddivision = $1::BIGINT ORDER BY division, priority;", [post.iddivision]);
+		t.response_query(res, "SELECT * FROM events.view_dashboard WHERE iddivision = $1::BIGINT ORDER BY division, priority, label_eventtype;", [post.iddivision]);
 		break;
 		case 'u':
 		qp = t.Update('gui.column_propertiesxxxxx', post, ["hash_num"]).whereAnd([params.onupdate], []).build();
