@@ -104,7 +104,7 @@ mssql.connect(config).then((cnx) => {
 
             //var descr = "<b>Pendientes: </b>"+res.pendientes+"</br><b>Ultimo procesado: </b>"+procesado+"</br><b>En Proceso: </b>"+res.en_proceso+"</br><b>Ultimo Enviado: </b>"+enviado+"</br><b>QueryOn: </b>"+res.queryon+"</br><b>Instancias: </b>"+res.instancias;
             //var descr = "<b>Pendientes: </b>"+res.pendientes+"</br><b>Ultimo procesado: </b>"+procesado+"</br><b>En Proceso: </b>"+res.en_proceso+"</br><b>Ultimo Enviado: </b>"+enviado;
-            var descr = "<b>Pendientes por enviar: </b>"+res.pendientes+"<b>Ultimo Enviado: </b>"+enviado;
+            var descr = "<b>Pendientes por enviar: </b>"+res.pendientes+"</br><b>Ultimo Enviado: </b>"+enviado;
             var event = {dateevent: new Date(), idaccount: 0, ideventtype: eventtype, source: t.textToMD5(param.ip), description: descr, details: {iddivision: param.iddivision}, priority: priority};
 
             t.send_event_pg(event, []).then(function(result){

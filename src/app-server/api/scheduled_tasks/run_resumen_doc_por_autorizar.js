@@ -49,23 +49,27 @@ mssql.connect(config).then((cnx) => {
     .query(srtquery).then(function(recordset) {
 
         //console.log(recordset);
-
-        if(recordset.length > 0){
-
-          //  var res = recordset[0];
           var priority = 99;
           var eventtype = param.ideventtype_on_restore;
+          priority = 10;
+          var descr = "<b>PENDIENTES:</b></br>";
+
+        if(recordset.length >= 0){
+
           try{
 
-            priority = 10;
-            var descr = "<b>PENDIENTES:</b></br>";
+if(recordset.length){
+            
             array.forEach(recordset, function(item, i){
                 descr = descr+"<b>"+item.fecha+"</b>:  "+item.pendientes+"</br>";
                 if(i > 0){
                     priority = 1;
                     eventtype = param.ideventtype_on_alarm;
                 }
-            });
+            }); 
+}else{
+  descr = "Todos autorizados.";
+}
 
             var event = {dateevent: new Date(), idaccount: 0, ideventtype: eventtype, source: t.textToMD5(param.ip), description: descr, details: {iddivision: param.iddivision}, priority: priority};
 
