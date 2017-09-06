@@ -116,7 +116,7 @@ console.log('Server 6a');
 var webServer = https.createServer({
   key: fs.readFileSync('key.pem'),
   cert: fs.readFileSync('cert.pem'),
-  requestCert: true
+  requestCert: false
 }, exp.app);
 
 var sio = socketIO.listen(webServer);

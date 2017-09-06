@@ -199,11 +199,9 @@ login: function(user, password, remoteAddress, userAgent){
 logout: function(datauser){
 	var t = this;
 	var q = "SELECT * FROM fun_logout_system($1::BOOLEAN, $2::BIGINT, $3::TEXT, $4::INET);";
-	if(datauser.isadmin){
-		return t.query(q, [true, datauser.idadmin, datauser.fullname, datauser.ip]);	
-	}else{
+
 		return t.query(q, [false, datauser.idcontact, datauser.fullname, datauser.ip]);	
-	}
+	
 	
 },
 send_notification_area: function(_table_notifications){
