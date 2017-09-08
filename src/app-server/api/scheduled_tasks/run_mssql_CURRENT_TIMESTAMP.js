@@ -87,22 +87,22 @@ mssql.connect(config).then((cnx) => {
 			if(dif > param.parameters.max_threshold_seconds){
 				ideventtype = param.parameters.ideventtype_on_threshold;
 
-				if(dif > 360){
+				if(dif > 900){
 					priority = 1;
-				}else if(dif > 180){
-					priority = 3;
-				}else if(dif > 90){
+				}else if(dif > 800){
 					priority = 4;
-				}else if(dif > 45){
+				}else if(dif > 600){
 					priority = 5;
-				}else if(dif > 30){
+				}else if(dif > 500){
 					priority = 6;
-				}else if(dif > 15){
+				}else if(dif > 400){
 					priority = 7;
-				}else if(dif > 10){
+				}else if(dif > 300){
 					priority = 8;
+				}else if(dif > 200){
+					priority = 9;
 				}else{
-					priority = 99;
+					priority = 10;
 				}
 
 			}
