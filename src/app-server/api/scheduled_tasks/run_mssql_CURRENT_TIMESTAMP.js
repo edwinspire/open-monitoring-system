@@ -82,13 +82,13 @@ mssql.connect(config).then((cnx) => {
 	}else{
 		var ideventtype = param.parameters.ideventtype_under_threshold;
 		if(result.length > 0){
-
-			if(Math.abs(dojoDate.difference(new Date(), result[0].tsz, 'second')) > param.parameters.max_threshold_seconds){
+			var dif = Math.abs(dojoDate.difference(new Date(), result[0].tsz, 'second'));
+			if(dif > param.parameters.max_threshold_seconds){
 				ideventtype = param.parameters.ideventtype_on_threshold;
 			}
 			var details = result[0];
 			details['ip'] = param.ip;
-			var r = {idequipment: param.idequipment, ideventtype: ideventtype, description: '', details: details};
+			var r = {idequipment: param.idequipment, ideventtype: ideventtype, description: 'Diferencia: '+dif+' segundos.', details: details};
 			deferred.resolve(r);
 
 		}else{
