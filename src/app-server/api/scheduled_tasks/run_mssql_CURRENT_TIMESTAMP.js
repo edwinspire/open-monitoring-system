@@ -83,7 +83,7 @@ mssql.connect(config).then((cnx) => {
 		var ideventtype = param.parameters.ideventtype_under_threshold;
 		if(result.length > 0){
 
-			if(Math.abs(dojoDate.difference(new Date(), result[0].tsz, 'seconds')) > param.parameters.max_threshold_seconds){
+			if(Math.abs(dojoDate.difference(new Date(), result[0].tsz, 'second')) > param.parameters.max_threshold_seconds){
 				ideventtype = param.parameters.ideventtype_on_threshold;
 			}
 			var details = result[0];
