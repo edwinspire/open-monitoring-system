@@ -81,14 +81,34 @@ mssql.connect(config).then((cnx) => {
 		deferred.resolve([{idequipment: param.idequipment, ideventtype: param.parameters.ideventtype_on_no_connect, details: {ip: param.ip, Error: error, Task: 'run_mssql_CURRENT_TIMESTAMP'}}]);  
 	}else{
 		var ideventtype = param.parameters.ideventtype_under_threshold;
+		var priority = 10;
 		if(result.length > 0){
 			var dif = Math.abs(dojoDate.difference(new Date(), result[0].tsz, 'second'));
 			if(dif > param.parameters.max_threshold_seconds){
 				ideventtype = param.parameters.ideventtype_on_threshold;
+
+				if(dif > 360){
+					priority = 1;
+				}else if(dif > 180){
+					priority = 3;
+				}else if(dif > 90){
+					priority = 4;
+				}else if(dif > 45){
+					priority = 5;
+				}else if(dif > 30){
+					priority = 6;
+				}else if(dif > 15){
+					priority = 7;
+				}else if(dif > 10){
+					priority = 8;
+				}else{
+					priority = 99;
+				}
+
 			}
 			var details = result[0];
 			details['ip'] = param.ip;
-			var r = {idequipment: param.idequipment, ideventtype: ideventtype, description: 'Diferencia: '+dif+' segundos.', details: details};
+			var r = {idequipment: param.idequipment, priority: priority, ideventtype: ideventtype, description: 'Diferencia: '+dif+' segundos.', details: details};
 			deferred.resolve(r);
 
 		}else{
