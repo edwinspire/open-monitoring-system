@@ -201,8 +201,11 @@ logout: function(datauser){
 	var q = "SELECT * FROM fun_logout_system($1::BOOLEAN, $2::BIGINT, $3::TEXT, $4::INET);";
 
 		return t.query(q, [false, datauser.idcontact, datauser.fullname, datauser.ip]);	
-	
-	
+},
+service_point: function(service, ip, header, request){
+	var t = this;
+	var q = "SELECT services.fun_service_point($1::TEXT,  $2::INET, $3::json, $4::json)";
+		return t.query(q, [service, ip, header, request]);	
 },
 send_notification_area: function(_table_notifications){
 

@@ -35,63 +35,61 @@ define([
 					});
 
 				}, t.heartbeatInterval*30);
-        
+
 
 				t.app = expressjs();
 
 				t.app.use(expressjs.static(process.env.EXPRESS_STATIC_DIR));
-        //t.app.use(passport.initialize());
-        //t.app.use(passport.session());
-        t.app.use(cookieParser());
-        t.app.use(compression());
-        t.app.use(morgan('common'));
-        t.app.use( bodyParser.json() );      
-        t.app.use(bodyParser.urlencoded({    
-        	extended: true
-        })); 
+				t.app.use(cookieParser());
+				t.app.use(compression());
+				t.app.use(morgan('common'));
+				t.app.use( bodyParser.json() );      
+				t.app.use(bodyParser.urlencoded({    
+					extended: true
+				})); 
 
 
-        function _Login(req, res, next){
+				function _Login(req, res, next){
 
-        	t._pG.login(req.body.user, req.body.pwd, req.connection.remoteAddress, req.headers['user-agent']).then(function(results){
-        		var r =  results.rows;
-        		if(r.length > 0 && r[0]['fun_login_system']){
-        			var u = r[0]['fun_login_system'];
+					t._pG.login(req.body.user, req.body.pwd, req.connection.remoteAddress, req.headers['user-agent']).then(function(results){
+						var r =  results.rows;
+						if(r.length > 0 && r[0]['fun_login_system']){
+							var u = r[0]['fun_login_system'];
 
-        			var datauser = u;
+							var datauser = u;
 
-        			t._storeSessions.query({idcontact: datauser.idcontact}).forEach(function(item){
-        				t._storeSessions.remove(item.sessionIDSystem);
-        			});
+							t._storeSessions.query({idcontact: datauser.idcontact}).forEach(function(item){
+								t._storeSessions.remove(item.sessionIDSystem);
+							});
 
-        			datauser['heartbeat'] = new Date();
-        			datauser['Syslogin'] = new Date();
-        			var sid = t._pG.textToMD5(JSON.stringify(u)+Date.now());
-        			datauser['sessionIDSystem'] = sid;
-        			datauser['ip'] = req.connection.remoteAddress;
-        			t._storeSessions.put(datauser);
-        			res.cookie('sessionIDSystem', sid, { maxAge: 3600000});
-        			res.cookie('SessionFullname', datauser.fullname, { maxAge: 3600000});
-        			t.emit('new_session', datauser);
+							datauser['heartbeat'] = new Date();
+							datauser['Syslogin'] = new Date();
+							var sid = t._pG.textToMD5(JSON.stringify(u)+Date.now());
+							datauser['sessionIDSystem'] = sid;
+							datauser['ip'] = req.connection.remoteAddress;
+							t._storeSessions.put(datauser);
+							res.cookie('sessionIDSystem', sid, { maxAge: 3600000});
+							res.cookie('SessionFullname', datauser.fullname, { maxAge: 3600000});
+							t.emit('new_session', datauser);
 
-        			next();
-        		}else{
-        			res.redirect("/logout");
-        		}
-        	}, function(error){
-        		res.redirect("/logout");
-        	});
-        }
+							next();
+						}else{
+							res.redirect("/logout");
+						}
+					}, function(error){
+						res.redirect("/logout");
+					});
+				}
 
-        function _isAuthenticated(req, res, next){
+				function _isAuthenticated(req, res, next){
 
-        	if(t.isAuthenticated(req.cookies['sessionIDSystem'])){
-        		next();
-        	}else{
-        		res.redirect("/logout");
-        	}
+					if(t.isAuthenticated(req.cookies['sessionIDSystem'])){
+						next();
+					}else{
+						res.redirect("/logout");
+					}
 
-        }
+				}
 
 ////////////////////////////////////////////////////////////////////////////////////////
 t.app.post("/login", _Login, function(req, res){
@@ -292,9 +290,22 @@ t.app.post("/db/*", _isAuthenticated, function(req, res){
 
 });
 
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+t.app.post("/service/public",  function(req, res){
+
+	t._pG.service_point('test_service', '127.0.0.1', {}, {}).then(function(r){
+		res.status(404).json(r);
+	}, function(error){
+		console.log(error);
+	});
+
+});
+
+
 ////////////////////////////////////////////////////////////////////////////////////////
 t.app.post("/service/*",  function(req, res){
-
 
 	var parts = req.path.split("/");
 
@@ -316,31 +327,16 @@ t.app.post("/service/*",  function(req, res){
 			}
 			break;
 
-			case "events":
+			default:
+			console.log('No existe 3', req.path);
+			res.status(404).json({path: req.path});
+			break;
+		}
 
-			switch(params.objectdb){
-				case "receiver":
-        //params.file_name = parts[8];
-        t._pG.service_events_receiver(req, res, params);
-        break;
-        default:
-        console.log('No existe 2', req.path, params);
-        res.status(404).json({path: req.path});
-        break;
-    }
-
-    break;
-    default:
-    console.log('No existe 3', req.path);
-    res.status(404).json({path: req.path});
-    break;
-}
-
-}else{
-	res.status(500).json({path: req.path, error: 'No tiene los argumentos completos'});
-}
+	}else{
+		res.status(500).json({path: req.path, error: 'No tiene los argumentos completos'});
+	}
 });
-
 
 t.app.use(function(req, res, next) {
 	console.log(req.originalUrl);
@@ -348,9 +344,8 @@ t.app.use(function(req, res, next) {
 });
 
 t.app.use(function(err, req, res, next) {
-  //Log.error(err.stack);
-  console.log(err.stack);
-  res.status(500).send('Something broke!');
+	console.log(err.stack);
+	res.status(500).send('Something broke!');
 }); 
 
 },

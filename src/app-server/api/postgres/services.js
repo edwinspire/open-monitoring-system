@@ -4,27 +4,8 @@ require(["dojo/_base/lang", "api/postgres/oms", "dojo/_base/array", "api/postgre
 /////////////////////////////////////////
 
 service_htttp: function(req, res, params){
-/*
-	var t = this;
-	var post = req.body;
-	var qp;
-	var w = {};
 
-	switch(params.action){
-		case 'w':
-		//console.log(post);
-		if(post.idequipment && post.validator && post.list_events){
-			t.response_query(res, "SELECT events.fun_receiver_json($1::BIGINT, $2::TEXT, $3::JSON);", [post.idequipment, post.validator, post.list_events]);
-		}else{
-			res.status(500).json({success: false, data: "Los datos enviados no estan completos o no son validos", params: params});
-		}	
-
-		break;		
-		default:
-		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
-		break;
-	}
-	*/
+//t.response_query(res, "SELECT * FROM public.view_accounts WHERE iddivision = $1::BIGINT", [iddivision]);
 
 },
 service_ws: function(clientio, message){
