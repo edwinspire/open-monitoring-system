@@ -102,11 +102,11 @@ _run_check_movinv_connect_matriz: function(cnxmatriz, movsap, name_event){
 
         var srtquery = `
         use EasyGestionEmpresarial;
-        SELECT tbl_maestromovinvent.Serie_Factura FROM tbl_maestromovinvent  
+        SELECT tbl_maestromovinvent.Serie_Factura FROM tbl_maestromovinvent  with(nolock)
         INNER JOIN tbl_movinvent  ON tbl_maestromovinvent.Serie_Factura = tbl_movinvent.Serie_Factura 
-        WHERE  tbl_movinvent.tipo_mov = (SELECT TOP(1) tme_tipo_movimiento FROM par.tbl_par_TipoMovimientoExterno WHERE tme_naturaleza_externo = '${tme_naturaleza_externo}' AND tme_codigo_externo = '${tme_codigo_externo}') 
+        WHERE  tbl_movinvent.tipo_mov = (SELECT TOP(1) tme_tipo_movimiento FROM par.tbl_par_TipoMovimientoExterno with(nolock) WHERE tme_naturaleza_externo = '${tme_naturaleza_externo}' AND tme_codigo_externo = '${tme_codigo_externo}') 
         AND tbl_maestromovinvent.FechaRegistro = CONVERT(VARCHAR, '${FechaRegistro}') AND  tbl_movinvent.cantidad = '${cantidad}' AND  tbl_maestromovinvent.numero_doc_inv = '${numero_doc_inv}' 
-        AND tbl_maestromovinvent.Oficina = (SELECT top (1) o.oficina FROM dbo.Oficina o WHERE o.ofi_codigo_interno_empresa = '${ofi_codigo_interno_empresa}' 
+        AND tbl_maestromovinvent.Oficina = (SELECT top (1) o.oficina FROM dbo.Oficina o with(nolock) WHERE o.ofi_codigo_interno_empresa = '${ofi_codigo_interno_empresa}' 
         AND o.Compania = tbl_maestromovinvent.Compania) AND  codigo_producto = '${codigo_producto}';
         `;
 

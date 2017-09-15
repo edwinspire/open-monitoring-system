@@ -162,8 +162,6 @@ clientio.on('wsservice',function(message){
 
   var wsObj = JSON.parse(message);
 
-//console.log(wsObj);
-
   if(PostgreSQL.textToMD5(clientio.id) == wsObj.token){
 
     PostgreSQL.service_ws(clientio, wsObj);
