@@ -110,6 +110,8 @@ _run_check_movinv_connect_matriz: function(cnxmatriz, movsap, name_event){
         AND o.Compania = tbl_maestromovinvent.Compania) AND  codigo_producto = '${codigo_producto}';
         `;
 
+console.log(srtquery);
+
         new mssql.Request(cnxmatriz)
         .query(srtquery).then(function(recordset) {
 
