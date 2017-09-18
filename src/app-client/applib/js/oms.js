@@ -18,14 +18,32 @@ require(["dojo/ready",
   "Widget/app_secondary_mov_inv_duplicados_eta/app_secondary_mov_inv_duplicados_eta", 
   "Widget/app_secondary_mov_inv_duplicados_rm/app_secondary_mov_inv_duplicados_rm", 
   "Widget/app_secondary_mov_inv_sin_cargar_cr/app_secondary_mov_inv_sin_cargar_cr", 
+
+  "Widget/app_secondary_articulos_eta/app_secondary_articulos_eta", 
+  "Widget/app_secondary_articulos_rm/app_secondary_articulos_rm", 
+  "Widget/app_secondary_articulos_cr/app_secondary_articulos_cr", 
+
+  "Widget/app_secondary_articulosauxiliar_eta/app_secondary_articulosauxiliar_eta", 
+  "Widget/app_secondary_articulosauxiliar_rm/app_secondary_articulosauxiliar_rm", 
+  "Widget/app_secondary_articulosauxiliar_cr/app_secondary_articulosauxiliar_cr", 
+
+  "Widget/app_secondary_clientes_eta/app_secondary_clientes_eta", 
+  "Widget/app_secondary_clientes_rm/app_secondary_clientes_rm", 
+  "Widget/app_secondary_clientes_cr/app_secondary_clientes_cr", 
+
+  "Widget/app_secondary_empleados_eta/app_secondary_empleados_eta", 
+  "Widget/app_secondary_empleados_rm/app_secondary_empleados_rm", 
+  "Widget/app_secondary_empleados_cr/app_secondary_empleados_cr", 
+
+
   "Widget/Geolocations/Geolocations", 
   "Widget/app_account/app_account",
   "Widget/app_tables_views_config/app_tables_views_config",
   "Widget/app_secondary_doc_ventasxmp_ultimos_eta/app_secondary_doc_ventasxmp_ultimos_eta",
   "Widget/app_secondary_doc_ventasxmp_ultimos_rm/app_secondary_doc_ventasxmp_ultimos_rm",
   "Widget/app_event_resumen/app_event_resumen",
-    "Widget/app_accounts_list/app_accounts_list",
-    "Widget/app_dashboard/app_dashboard"
+  "Widget/app_accounts_list/app_accounts_list",
+  "Widget/app_dashboard/app_dashboard"
   ], function(ready, 
     cookie,
     win,
@@ -46,6 +64,23 @@ require(["dojo/ready",
     app_secondary_mov_inv_duplicados_eta,
     app_secondary_mov_inv_duplicados_rm,
     app_secondary_mov_inv_sin_cargar_cr, 
+
+    app_secondary_articulos_eta,
+    app_secondary_articulos_rm,
+    app_secondary_articulos_cr,
+
+    app_secondary_articulosauxiliar_eta,
+    app_secondary_articulosauxiliar_rm,
+    app_secondary_articulosauxiliar_cr,
+
+    app_secondary_clientes_eta,
+    app_secondary_clientes_rm,
+    app_secondary_clientes_cr,
+
+    app_secondary_empleados_eta,
+    app_secondary_empleados_rm,
+    app_secondary_empleados_cr,
+
     app_geolocations, 
     app_account,
     app_tables_views_config,
@@ -81,12 +116,31 @@ require(["dojo/ready",
      apps['app_dashboard'] = app_dashboard;
 
 
+     apps['app_secondary_articulos_eta'] = app_secondary_articulos_eta;
+     apps['app_secondary_articulos_rm'] = app_secondary_articulos_rm;
+     apps['app_secondary_articulos_cr'] = app_secondary_articulos_cr;
+
+     apps['app_secondary_articulosauxiliar_eta'] = app_secondary_articulosauxiliar_eta;
+     apps['app_secondary_articulosauxiliar_rm'] = app_secondary_articulosauxiliar_rm;
+     apps['app_secondary_articulosauxiliar_cr'] = app_secondary_articulosauxiliar_cr;
+
+     apps['app_secondary_clientes_eta'] = app_secondary_clientes_eta;
+     apps['app_secondary_clientes_rm'] = app_secondary_clientes_rm;
+     apps['app_secondary_clientes_cr'] = app_secondary_clientes_cr;
+
+     apps['app_secondary_empleados_eta'] = app_secondary_empleados_eta;
+     apps['app_secondary_empleados_rm'] = app_secondary_empleados_rm;
+     apps['app_secondary_empleados_cr'] = app_secondary_empleados_cr;
+
+
+
 
 
      var PageContent = dijit.byId('PageContent');
      var Mainmenu = dijit.byId("MainMenu");
 
      Mainmenu.on("appname", function(e){
+      console.log(e);
       if(e && apps[e]){
         OpenApp(apps[e]);
       }

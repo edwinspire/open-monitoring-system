@@ -149,6 +149,222 @@ schema_secondary_view_mov_inv_duplicados_rm: function(req, res, params){
 	}
 
 },
+
+schema_secondary_view_articulos_eta: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var w = {};
+
+	switch(params.action){
+		case 'r':
+		qp = t.Select('secondary.view_articulos_eta', []).build();
+		t.response_query(res, qp.query, qp.param);
+		break;
+		default:
+		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+		break;
+	}
+
+},
+schema_secondary_view_articulos_rm: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var w = {};
+
+	switch(params.action){
+		case 'r':
+		qp = t.Select('secondary.view_articulos_rm', []).build();
+		t.response_query(res, qp.query, qp.param);
+		break;
+		default:
+		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+		break;
+	}
+
+},
+schema_secondary_view_articulos_cr: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var w = {};
+
+	switch(params.action){
+		case 'r':
+		qp = t.Select('secondary.view_articulos_cr', []).build();
+		t.response_query(res, qp.query, qp.param);
+		break;
+		default:
+		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+		break;
+	}
+},
+schema_secondary_view_articulosauxiliar_eta: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var w = {};
+
+	switch(params.action){
+		case 'r':
+		qp = t.Select('secondary.view_articulosauxiliar_eta', []).build();
+		t.response_query(res, qp.query, qp.param);
+		break;
+		default:
+		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+		break;
+	}
+},
+schema_secondary_view_articulosauxiliar_rm: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var w = {};
+
+	switch(params.action){
+		case 'r':
+		qp = t.Select('secondary.view_articulosauxiliar_rm', []).build();
+		t.response_query(res, qp.query, qp.param);
+		break;
+		default:
+		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+		break;
+	}
+},
+schema_secondary_view_articulosauxiliar_cr: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var w = {};
+
+	switch(params.action){
+		case 'r':
+		qp = t.Select('secondary.view_articulosauxiliar_cr', []).build();
+		t.response_query(res, qp.query, qp.param);
+		break;
+		default:
+		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+		break;
+	}
+},
+schema_secondary_view_clientes_eta: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var w = {};
+
+	switch(params.action){
+		case 'r':
+		qp = t.Select('secondary.view_clientes_eta', []).build();
+		t.response_query(res, qp.query, qp.param);
+		break;
+		default:
+		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+		break;
+	}
+},
+schema_secondary_view_clientes_rm: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var w = {};
+
+	switch(params.action){
+		case 'r':
+		qp = t.Select('secondary.view_clientes_rm', []).build();
+		t.response_query(res, qp.query, qp.param);
+		break;
+		default:
+		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+		break;
+	}
+},
+schema_secondary_view_clientes_cr: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var w = {};
+
+	switch(params.action){
+		case 'r':
+		qp = t.Select('secondary.view_clientes_cr', []).build();
+		t.response_query(res, qp.query, qp.param);
+		break;
+		default:
+		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+		break;
+	}
+},
+schema_secondary_view_empleados_eta: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var w = {};
+
+	switch(params.action){
+		case 'r':
+		qp = t.Select('secondary.view_empleados_eta', []).build();
+		t.response_query(res, qp.query, qp.param);
+		break;
+		default:
+		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+		break;
+	}
+},
+schema_secondary_view_empleados_rm: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var w = {};
+
+	switch(params.action){
+		case 'r':
+		qp = t.Select('secondary.view_empleados_rm', []).build();
+		t.response_query(res, qp.query, qp.param);
+		break;
+		default:
+		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+		break;
+	}
+},
+schema_secondary_view_empleados_cr: function(req, res, params){
+
+	var t = this;
+	var post = req.body;
+	var qp;
+	var w = {};
+
+	switch(params.action){
+		case 'r':
+		qp = t.Select('secondary.view_empleados_cr', []).build();
+		t.response_query(res, qp.query, qp.param);
+		break;
+		default:
+		res.status(400).json({success: false, data: "No ha definido una accion a realizar correcta.", params: params});
+		break;
+	}
+},
+
+
+
+
+
+
+
+
+
 schema_secondary_view_lista_precios_oficinas: function(req, res, params){
 
 	var t = this;
