@@ -35,6 +35,22 @@
 
 		<label>Buscar:</label>
 		<input data-dojo-attach-point="Search" data-dojo-type="dijit/form/TextBox" type="search" value="" data-dojo-props="intermediateChanges:true"></input>
+		
+		<span data-dojo-type="dijit/ToolbarSeparator"></span>
+		<div data-dojo-type="dijit/form/DropDownButton" data-dojo-attach-point="Add" data-dojo-props="disabled:false">
+			<span>Filtro</span>
+			<div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-attach-point="CTTDialogFilter" data-dojo-props="title:'Filtro'">
+
+				<div data-dojo-attach-point="ContainerDialogFilter"></div>
+hola
+<label for="date1">Drop down Date box:</label>
+<input type="text" name="date1"  value="2005-12-30"
+    data-dojo-type="dijit/form/DateTextBox"
+    required="true" />
+
+			</div>
+		</div>  
+
 	</span>
 
 

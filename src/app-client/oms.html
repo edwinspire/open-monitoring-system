@@ -15,8 +15,9 @@
   <link href="applib/js/dojo/dojo/dgrid/css/dgrid.css" rel="stylesheet">
   <link href="applib/js/dojo/custom/uDCGridWidget/uDCGridWidget.css" rel="stylesheet">
   
-  <style>@import "applib/css/themes/flat/flat.css"; @import "applib/css/themes/flat/flat.css";@import "applib/css/app.css";</style>
-  <link href="applib/css/themes/flat/dgrid/flat.css" rel="stylesheet">
+  <style>@import "applib/js/dojo/dojo/dijit/themes/claro/claro.css";</style>
+  <style>@import "applib/css/app.css";</style>
+
 
   <script type="text/javascript" src="applib/js/dojo/dojo/dojo/dojo.js" 
   data-dojo-config="'parseOnLoad':true,'async':true,  useXDomain: true, 'packages':[
@@ -44,7 +45,6 @@
   ,{'name':'select_group','location':'../../custom/select_group'}
   ,{'name':'select_identification_types','location':'../../custom/select_identification_types'}
   ,{'name':'socketio','location':'../../custom/socketio'}
-  ,{'name':'Switch','location':'../../custom/Switch'}
   ,{'name':'map_points','location':'../../custom/map_points'}
   ,{'name':'utils','location':'../../custom/utils'}
   ]"></script>
@@ -100,7 +100,7 @@
 
 </head>
 
-<body  class="flat" id="myapp">
+<body  class="claro" id="myapp">
 
 
   <div class="container_preloader">
@@ -134,7 +134,7 @@
  
 
  <div id=MainContainer>
-  <div class="BarHeader PSheight25"> <i class="dijitIcon flat-menu" id="ToogleMenu" style="cursor: pointer; padding: 5px;
+  <div class="BarHeader PSheight25"> <i class="dijitIcon" id="ToogleMenu" style="cursor: pointer; padding: 5px;
     font-size: 2.5em;"></i> <div class="TitleHeader">Open Monitoring System</div>  </div>
 
     <div data-dojo-type="Widget/menu_master/menu_master" id="MainMenu" style="height: auto; width: 250px; left: 0px; position: absolute; z-index: 900; float: none; border-top-color: #d6d6d6;"></div>
