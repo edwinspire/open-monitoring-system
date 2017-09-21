@@ -47,16 +47,11 @@ require(["api/express/express",
     //var sessionUsers = new sessionusers();
     var PostgreSQL = new pgOMS({user: process.env.PG_USER, pwd: process.env.PG_PWD, host: process.env.PG_HOST, db: process.env.PG_DB});
 
-console.log('Server 1');
-
 // Obtenemos configuraciones desde el servidor
 PostgreSQL.get_config_from_db().then(function(){
 
-  console.log('Server 2');
-
   PostgreSQL._schema_gui_properties_fromdb().then(function(r){
       ////Log.debug(r);
-      console.log('Server 3');
     });
 
   setInterval(function(){
@@ -66,7 +61,6 @@ PostgreSQL.get_config_from_db().then(function(){
 
   }, 25*100);
 
-console.log('Server 4');
 
   setInterval(function(){
     //Log.debug('Tareas periodicas');
@@ -79,6 +73,10 @@ console.log('Server 4');
     PostgreSQL.query("SELECT * FROM fun_last_modified_table_remove_olds();", []).then(function(response){
       ////Log.debug(response);
     });
+    PostgreSQL.query("SELECT * FROM fun_remove_last_modified_cells();", []).then(function(response){
+      ////Log.debug(response);
+    });
+    
 
 
 // Esto debe dispararse solo al inicio de la aplicacion y cuando haya cambios en las tablas involucradas

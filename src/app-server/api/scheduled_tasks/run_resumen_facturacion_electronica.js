@@ -5,6 +5,8 @@ require(["dojo/_base/lang", "api/scheduled_tasks/scheduled_tasks",   "dojo/Defer
 /////////////////////////////////////////
 run_resumen_facturacion_electronica: function(task){
 
+//console.log("Que pasa");
+
     var deferred = new Deferred();
     var t = this;
     t._run_resumen_facturacion_electronica(task.task_parameters).then(function(){
@@ -107,8 +109,9 @@ mssql.connect(config).then((cnx) => {
             var descr = "<b>Pendientes por enviar: </b>"+res.pendientes+"</br><b>Ultimo Enviado: </b>"+enviado;
             var event = {dateevent: new Date(), idaccount: 0, ideventtype: eventtype, source: t.textToMD5(param.ip), description: descr, details: {iddivision: param.iddivision}, priority: priority};
 
+//console.log("Carga el evento");
             t.send_event_pg(event, []).then(function(result){
-
+//console.log("Termina de cargar", event, result);
                 deferred.resolve(true);
 
             }, function(err){

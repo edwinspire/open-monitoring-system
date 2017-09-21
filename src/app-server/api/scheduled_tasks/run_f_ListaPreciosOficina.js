@@ -69,9 +69,9 @@ _run_f_ListaPreciosOficina_check: function(param){
 
 	SET @oficina = '${oficina}';
 
-	SET @lp_principal = (SELECT TOP(1) lista_principal FROM oficina WHERE oficina = (@oficina));
+	SET @lp_principal = (SELECT TOP(1) lista_principal FROM oficina with(nolock) WHERE oficina = (@oficina));
 	SET @lp_activa = (SELECT TOP(1) lista_precio from pv_lista_precio_oficina WHERE oficina = (@oficina) AND estado = 'activo');
-	SET @productos = (SELECT COUNT(*) FROM tbl_precios_sucursales WHERE sucursal = @lp_activa);
+	SET @productos = (SELECT COUNT(*) FROM tbl_precios_sucursales with(nolock) WHERE sucursal = @lp_activa);
 
 	SELECT @lp_principal as lp_p, @lp_activa as lp_a, @productos as prod;
 	`;

@@ -43,7 +43,7 @@ run_check_movinv: function(task){
                 t.query(`
                   UPDATE secondary.interfaces_eta_rm_matriz SET enmatriz = true, enmatriz_revisado = now(), isvalid = true WHERE idreginterfacesmatriz = ANY($1::BIGINT[]);
                   `, [idsMovimientos]).then(function(result){
-                    console.log(result);
+                    //console.log(result);
                     deferred.resolve(true);
 
                 }, function(fail){
@@ -115,7 +115,7 @@ _run_check_movinv_connect_matriz: function(cnxmatriz, movsap, name_event){
         AND o.Compania = tbl_maestromovinvent.Compania) AND  codigo_producto = '${codigo_producto}';
         `;
 
-console.log(srtquery);
+//console.log(srtquery);
 
         new mssql.Request(cnxmatriz)
         .query(srtquery).then(function(recordset) {

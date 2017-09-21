@@ -72,9 +72,10 @@ if(recordset.length){
 }
 
             var event = {dateevent: new Date(), idaccount: 0, ideventtype: eventtype, source: t.textToMD5(param.ip), description: descr, details: {iddivision: param.iddivision}, priority: priority};
-
+//console.log("Empieza el envio", event);
             t.send_event_pg(event, []).then(function(result){
 
+//console.log("Enviado", result);
                 deferred.resolve(true);
 
             }, function(err){

@@ -23,7 +23,7 @@ run_check_articulos_sin_marca: function(task){
     var msSQLConnection = this;    
 
     var srtquery = `
-    SELECT codigo  FROM [EasyGestionEmpresarial].[dbo].[tbl_articulos] WHERE marca = '' OR marca is null;
+    SELECT codigo  FROM [EasyGestionEmpresarial].[dbo].[tbl_articulos] with(nolock) WHERE marca = '' OR marca is null;
     `;
 
     new mssql.Request(cnxmatriz)

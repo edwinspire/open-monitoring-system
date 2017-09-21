@@ -23,7 +23,7 @@ run_check_movinv_sin_materiales: function(task){
     var msSQLConnection = this;    
 
     var srtquery = `
-    SELECT Compania, Sucursal, Oficina, tipo_mov, num_mov, codigo_producto, fecha_mov, cantidad  FROM [EasyGestionEmpresarial].[dbo].[tbl_movinvent] WHERE codigo_producto NOT IN (SELECT [codigo] FROM [EasyGestionEmpresarial].[dbo].[tbl_articulos]);
+    SELECT Compania, Sucursal, Oficina, tipo_mov, num_mov, codigo_producto, fecha_mov, cantidad  FROM [EasyGestionEmpresarial].[dbo].[tbl_movinvent] with(nolock) WHERE codigo_producto NOT IN (SELECT [codigo] FROM [EasyGestionEmpresarial].[dbo].[tbl_articulos] with(nolock));
     `;
 
     new mssql.Request(cnxmatriz)
