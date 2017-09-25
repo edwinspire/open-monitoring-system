@@ -78,8 +78,22 @@ switch(params.action){
 		var query = "SELECT * FROM events.view_dashboard WHERE iddivision = $1::BIGINT ORDER BY division, priority, label_eventtype;";
 		var param = [post.iddivision];
 		
-		if(post.datestart && post.dateend){
-			query = "SELECT * FROM events.view_dashboard WHERE iddivision = $1::BIGINT AND dateevent >= $2::timestamptz AND dateevent <= $3::timestamptz ORDER BY division, priority, label_eventtype;";
+		if(post.datestart && post.dateend && post.status_event){
+
+
+switch(post.status_event){
+case "1":
+query = "SELECT * FROM events.view_dashboard WHERE priority > 4 AND iddivision = $1::BIGINT AND dateevent >= $2::timestamptz AND dateevent <= $3::timestamptz ORDER BY division, priority, label_eventtype;";
+break;
+case "2":
+query = "SELECT * FROM events.view_dashboard WHERE priority < 5 AND iddivision = $1::BIGINT AND dateevent >= $2::timestamptz AND dateevent <= $3::timestamptz ORDER BY division, priority, label_eventtype;";
+break;
+default:
+query = "SELECT * FROM events.view_dashboard WHERE iddivision = $1::BIGINT AND dateevent >= $2::timestamptz AND dateevent <= $3::timestamptz ORDER BY division, priority, label_eventtype;";
+break;
+}
+
+			
 			param = [post.iddivision, post.datestart, post.dateend];
 		}
 

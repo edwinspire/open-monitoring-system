@@ -20,7 +20,8 @@ define(['dojo/_base/declare',
   "dijit/RadioMenuItem",
   "dijit/MenuItem",
   "dijit/PopupMenuItem",
-  "dijit/Menu"
+  "dijit/Menu",
+  "dijit/form/ComboBox"
   ],function(declare,_Widget,_Templated,templateString, Evented, uDCGrid, ContentPane, domConstruct, on, domStyle,  w, ToolbarSeparator, array){
 
     return declare([ _Widget, _Templated, Evented], {
@@ -87,6 +88,7 @@ define(['dojo/_base/declare',
 
         t.Grid.initialQuery.datestart = t.D1.get('value').toUTCString();
         t.Grid.initialQuery.dateend = t.D2.get('value').toUTCString();
+        t.Grid.initialQuery.status_event = t.StatusEvent.get('value');
 
         console.log(t.Grid.initialQuery);
 
