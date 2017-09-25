@@ -295,12 +295,8 @@ t.app.post("/db/*", _isAuthenticated, function(req, res){
 ////////////////////////////////////////////////////////////////////////////////////////
 t.app.post("/service/public",  function(req, res){
 
-	t._pG.service_point('test_service', '127.0.0.1', {}, {}).then(function(r){
-		res.status(404).json(r);
-	}, function(error){
-		console.log(error);
-	});
-
+var request_service = JSON.parse(req.body.data);
+	t._pG.service_htttp(res, request_service);
 });
 
 

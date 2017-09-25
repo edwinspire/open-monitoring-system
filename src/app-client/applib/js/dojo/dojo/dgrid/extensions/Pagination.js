@@ -18,19 +18,18 @@ define([
 	when, miscUtil, i18n) {
 	function cleanupContent(grid) {
 		// Remove any currently-rendered rows, or noDataMessage
-		if (grid.noDataNode) {
-			domConstruct.destroy(grid.noDataNode);
-			delete grid.noDataNode;
-		}
-		else {
+		if (!grid._removeNoDataNode()) {
 			grid.cleanup();
 		}
 		grid.contentNode.innerHTML = '';
 	}
 	function cleanupLoading(grid) {
 		if (grid.loadingNode) {
-			domConstruct.destroy(grid.loadingNode);
-			delete grid.loadingNode;
+			grid._loadingCount--;
+			if (!grid._loadingCount) {
+				domConstruct.destroy(grid.loadingNode);
+				delete grid.loadingNode;
+			}
 		}
 		else if (grid._oldPageNodes) {
 			// If cleaning up after a load w/ showLoadingMessage: false,
@@ -83,6 +82,7 @@ define([
 
 		showFooter: true,
 		_currentPage: 1,
+		_loadingCount: 0,
 
 		buildRendering: function () {
 			this.inherited(arguments);
@@ -96,6 +96,12 @@ define([
 				i18n = this.i18nPagination,
 				navigationNode,
 				node;
+
+			if (typeof this._processScroll === 'function') {
+				// Warn the user of an invalid class + mixin combination when they mix OnDemandList and this extension.
+				this.bodyNode.innerHTML = i18n.notCompatibleWithOnDemand;
+				console.warn(i18n.notCompatibleWithOnDemand);
+			}
 
 			statusNode.tabIndex = 0;
 
@@ -556,6 +562,7 @@ define([
 					len;
 
 				if (grid.showLoadingMessage) {
+					grid._loadingCount++;
 					cleanupContent(grid);
 					loadingNode = grid.loadingNode = domConstruct.create('div', {
 						className: 'dgrid-loading',
@@ -592,10 +599,6 @@ define([
 
 					results.totalLength.then(function (total) {
 						if (!total) {
-							if (grid.noDataNode) {
-								domConstruct.destroy(grid.noDataNode);
-								delete grid.noDataNode;
-							}
 							grid._insertNoDataNode();
 						}
 

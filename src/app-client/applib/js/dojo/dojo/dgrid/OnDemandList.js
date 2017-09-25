@@ -393,7 +393,7 @@ define([
 			while (preload) {
 				if (!preload.rowHeight) {
 					preload.rowHeight = this.rowHeight ||
-						this._calcAverageRowHeight(preload.node.parentNode.getElementsByClassName('dgrid-row'));
+						this._calcAverageRowHeight(preload.node.parentNode.querySelectorAll('.dgrid-row'));
 					this._adjustPreloadHeight(preload);
 				}
 				preload = preload.next;
@@ -750,14 +750,8 @@ define([
 									// if the preload area above the nodes is approximated based on average
 									// row height, we may need to adjust the scroll once they are filled in
 									// so we don't "jump" in the scrolling position
-									var pos = grid.getScrollPosition();
 									grid.scrollTo({
-										// Since we already had to query the scroll position,
-										// include x to avoid TouchScroll querying it again on its end.
-										x: pos.x,
-										y: pos.y + beforeNode.offsetTop - keepScrollTo,
-										// Don't kill momentum mid-scroll (for TouchScroll only).
-										preserveMomentum: true
+										y: grid.bodyNode.scrollTop + beforeNode.offsetTop - keepScrollTo
 									});
 								}
 

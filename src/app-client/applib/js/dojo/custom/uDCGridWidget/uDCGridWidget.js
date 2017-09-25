@@ -10,6 +10,7 @@ define(['dojo/_base/declare',
   "dojo/dom-style",
   "dojo/window",
   "dijit/ToolbarSeparator",
+  "dojo/_base/array",
   "dojo/topic",
   'dstore/Memory',
   'dstore/Trackable',
@@ -20,7 +21,7 @@ define(['dojo/_base/declare',
   "dijit/MenuItem",
   "dijit/PopupMenuItem",
   "dijit/Menu"
-  ],function(declare,_Widget,_Templated,templateString, Evented, uDCGrid, ContentPane, domConstruct, on, domStyle,  w, ToolbarSeparator){
+  ],function(declare,_Widget,_Templated,templateString, Evented, uDCGrid, ContentPane, domConstruct, on, domStyle,  w, ToolbarSeparator, array){
 
     return declare([ _Widget, _Templated, Evented], {
      widgetsInTemplate:true,
@@ -78,6 +79,23 @@ define(['dojo/_base/declare',
         t.emit('addcancel', e);
       });
 
+
+      t.CTTDialogFilter.on('Execute', function(e){
+        var data = {datestart: t.D1.get('value'), dateend: t.D2.get('value')};
+        console.log(t.D1.get('value'));
+        console.log(t.D2.get('value'));
+
+        t.Grid.initialQuery.datestart = t.D1.get('value').toUTCString();
+        t.Grid.initialQuery.dateend = t.D2.get('value').toUTCString();
+
+        console.log(t.Grid.initialQuery);
+
+        t.Grid.Select(t.Grid.initialQuery);
+
+        t.emit('filter', e);
+      });
+
+
       on.once(t.Add, "Click", function(){
        if(t.DialogAddContent){
         dojo.place(dojo.byId(t.DialogAddContent), t.ContainerDialogNew, 'only');
@@ -127,7 +145,73 @@ define(['dojo/_base/declare',
         t.set('titlegrid', event.properties.title_dgrid || event.properties.tschema_tname);
       }
 
-    });
+      console.log(t.Grid.column(1));
+
+      for (var key in t.Grid.columns) {
+        if (t.Grid.columns.hasOwnProperty(key)) {
+
+          var f = t.Grid.columns[key];
+
+          console.log(key, t.Grid.columns[key]);
+
+          if(f.show){
+
+           switch(f.data_type){
+            case 'HorizontalSlider':
+          //c.editor = HorizontalSlider;
+          break;
+          case 'VerticalSlider':
+          //c.editor = VerticalSlider;
+          break;
+          case 'NumberSpinner':
+          //c.editor = NumberSpinner;
+          break;
+          case 'TimeSpinner':
+          //c.editor = TimeSpinner;
+          break;
+          case 'CurrencyTextBox':
+          //c.editor = CurrencyTextBox;
+          break;
+          case 'checkbox':
+          //c.editor = CheckBox;
+          break;
+          case 'DateTextBox':
+          //c.editor = DateTextBox;
+          break;
+          case 'NumberTextBox':
+          //c.editor = NumberTextBox;
+          break;
+          case 'SimpleTextarea':
+          //c.editor = SimpleTextarea;
+          break;
+          case 'Textarea':
+          //c.editor = Textarea;
+          break;
+          case 'TimeTextBox':
+          //c.editor = TimeTextBox;
+          break;
+          case 'FilteringSelectGlobalStore':
+          //c.editor = FilteringSelectGlobalStore;
+          break;
+          case 'FilteringSelect':
+          //c.editor = FilteringSelect;
+          break;
+          case 'json_treeview':
+          //c.editor = json_treeview;
+          break;
+          default:
+          //c.editor = 'text';
+          break;
+        }
+
+      }
+
+    }
+  }
+
+
+
+});
 
      t.Grid.on('dgrid-error', function (event) {
       console.error(event);
@@ -185,7 +269,7 @@ Clear: function(){
  return this;
 },
 SelectWithInitialQuery: function(){
-this.Grid.SelectWithInitialQuery();
+  this.Grid.SelectWithInitialQuery();
 },
 disabledGrid: function(_disabled){
  this.Grid.disabled(_disabled);

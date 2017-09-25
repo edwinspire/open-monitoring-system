@@ -1695,7 +1695,6 @@ div.dijitTabDisabled, .dj_ie div.dijitTabDisabled {
   padding: 4px;
   border: 1px solid #9e9e9e;
   border-collapse: separate;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   -webkit-box-shadow: 0 7px 3px -4px rgba(0,0,0,0.3), 0 8px 8px rgba(0,0,0,0.2);
   box-shadow: 0 7px 3px -4px rgba(0,0,0,0.3), 0 8px 8px rgba(0,0,0,0.2);
@@ -1737,7 +1736,6 @@ div.dijitTabDisabled, .dj_ie div.dijitTabDisabled {
   border-width: 1px;
   border-color: #9e9e9e;
   padding: 4px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   line-height: 20px;
   cursor: pointer;
@@ -1791,7 +1789,6 @@ div.dijitTabDisabled, .dj_ie div.dijitTabDisabled {
   display: block;
   padding: 2px 4px;
   border: 0 none;
-  -webkit-border-radius: 50%;
   border-radius: 50%;
 }
 .flat .dijitCalendarPreviousMonth .dijitCalendarDateLabel,
@@ -1864,7 +1861,6 @@ div.dijitTabDisabled, .dj_ie div.dijitTabDisabled {
 .flat .dijitColorPalette {
   border: 1px solid #9e9e9e;
   background-color: #fff;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 .flat .dijitColorPalette .dijitPaletteTable {
@@ -1873,7 +1869,6 @@ div.dijitTabDisabled, .dj_ie div.dijitTabDisabled {
 .flat .dijitColorPalette .dijitColorPaletteSwatch {
   height: 15px;
   width: 15px;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
 }
 .flat .dijitColorPalette .dijitPaletteImg {
@@ -1884,7 +1879,6 @@ div.dijitTabDisabled, .dj_ie div.dijitTabDisabled {
   border-color: #9e9e9e;
   -webkit-box-shadow: none;
   box-shadow: none;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
   -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
@@ -1897,7 +1891,6 @@ div.dijitTabDisabled, .dj_ie div.dijitTabDisabled {
   border: 1px solid #2196f3;
   -webkit-box-shadow: 0 1px 0.5px rgba(0,0,0,0.3), 0 2px 2px rgba(0,0,0,0.2);
   box-shadow: 0 1px 0.5px rgba(0,0,0,0.3), 0 2px 2px rgba(0,0,0,0.2);
-  -webkit-border-radius: 2px;
   border-radius: 2px;
   -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
@@ -1906,7 +1899,6 @@ div.dijitTabDisabled, .dj_ie div.dijitTabDisabled {
   transform: scale(1.2);
 }
 .dijitPopup {
-  -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 .dojoDndItem {
@@ -1925,13 +1917,11 @@ div.dijitTabDisabled, .dj_ie div.dijitTabDisabled {
 }
 .dojoDndItemOver {
   background-color: #f5f5f5;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 .dojoDndItemAnchor {
   background-color: transparent;
   border: 1px dashed #2196f3;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 .dojoDndItemBefore {
@@ -1980,7 +1970,6 @@ table.dojoDndAvatar {
   content: "\f008";
 }
 .dojoDndAvatarItem {
-  -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 .dojoDndAvatarItem td > * {
@@ -1993,14 +1982,12 @@ table.dojoDndAvatar {
 .flat .dijitDialog {
   background-color: #fff;
   border: 1px solid #9e9e9e;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   -webkit-box-shadow: 0 7px 3px -4px rgba(0,0,0,0.3), 0 8px 8px rgba(0,0,0,0.2);
   box-shadow: 0 7px 3px -4px rgba(0,0,0,0.3), 0 8px 8px rgba(0,0,0,0.2);
 }
 .flat .dijitDialogPaneContent {
   background-color: #fff;
-  -webkit-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
   padding: 8px;
   position: relative;
@@ -2014,7 +2001,6 @@ table.dojoDndAvatar {
   float: none;
 }
 .flat .dijitTooltipDialog .dijitDialogPaneActionBar {
-  -webkit-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
   margin: 8px 0 0;
 }
@@ -2022,7 +2008,6 @@ table.dojoDndAvatar {
   line-height: 20px;
   border-bottom: 1px solid #e0e0e0;
   padding: 8px 12px;
-  -webkit-border-radius: 3px 3px 0 0;
   border-radius: 3px 3px 0 0;
 }
 .flat .dijitDialogTitle {
@@ -2080,7 +2065,6 @@ table.dojoDndAvatar {
   -ms-filter: none;
   filter: none;
   padding: 4px 8px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 .flat .dijitTooltip .dijitTooltipContainer {
@@ -2143,7 +2127,6 @@ table.dojoDndAvatar {
 .flat .dijitTooltipDialog .dijitTooltipContainer {
   background: #fff;
   border: 1px solid #9e9e9e;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   -webkit-box-shadow: 0 7px 3px -4px rgba(0,0,0,0.3), 0 8px 8px rgba(0,0,0,0.2);
   box-shadow: 0 7px 3px -4px rgba(0,0,0,0.3), 0 8px 8px rgba(0,0,0,0.2);
@@ -2229,7 +2212,6 @@ table.dojoDndAvatar {
 .flat .dijitEditor {
   background-color: #fff;
   border: 1px solid #9e9e9e;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 .flat .dijitEditor .dijitEditorIFrameContainer {
@@ -2280,7 +2262,6 @@ table.dojoDndAvatar {
 .flat .dijitMenu {
   background: #fff;
   border: 1px solid #9e9e9e;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   margin: 0;
   -webkit-box-shadow: 0 7px 3px -4px rgba(0,0,0,0.3), 0 8px 8px rgba(0,0,0,0.2);
@@ -2406,7 +2387,6 @@ table.dojoDndAvatar {
 .flat .dijitProgressBar {
   background-color: #e0e0e0;
   border: 0 none;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 .flat .dijitProgressBarTile {
@@ -2497,7 +2477,6 @@ table.dojoDndAvatar {
   background-color: #fff;
   padding: 4px 0;
   border: 1px solid #9e9e9e;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 .dijitTimePickerItem {
@@ -2532,7 +2511,6 @@ table.dojoDndAvatar {
   border-width: 1px;
   border-color: #9e9e9e;
   padding: 4px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   line-height: 20px;
   cursor: pointer;
@@ -2542,7 +2520,6 @@ table.dojoDndAvatar {
   -ms-transition: all 0.05s linear;
   transition: all 0.05s linear;
   background: #fff;
-  -webkit-border-radius: 3px 3px 0 0;
   border-radius: 3px 3px 0 0;
 }
 .flat .dijitTitlePaneTitleHover {
@@ -2584,7 +2561,6 @@ table.dojoDndAvatar {
   content: "\f007";
 }
 .flat .dijitTitlePane .dijitClosed {
-  -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 .flat .dijitTitlePane .dijitClosed .dijitArrowNode:before {
@@ -2594,7 +2570,6 @@ table.dojoDndAvatar {
   background-color: #fff;
   border: 1px solid #9e9e9e;
   border-top: none;
-  -webkit-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
 }
 .flat .dijitTitlePaneContentInner {
@@ -2627,7 +2602,6 @@ table.dojoDndAvatar {
   border-color: transparent;
   padding: 4px;
   background-color: transparent;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   -webkit-transition-property: background-color;
   -moz-transition-property: background-color;
@@ -2641,11 +2615,9 @@ table.dojoDndAvatar {
   transition-duration: 0.3s;
 }
 .flat .dijitToolbar .dijitComboButton .dijitStretch {
-  -webkit-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
 }
 .flat .dijitToolbar .dijitComboButton .dijitArrowButton {
-  -webkit-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
 }
 .flat .dijitToolbar .dijitComboBox .dijitButtonNode {
@@ -2780,20 +2752,21 @@ table.dojoDndAvatar {
   vertical-align: middle;
 }
 .flat .dijitTreeExpandoOpened:before {
-  content: "\e60d";
+  content: "\f012";
   cursor: pointer;
 }
 .flat .dijitTreeExpandoClosed:before {
-  content: "\e60a";
-  cursor: pointer;
+  content: "\f011";
 }
-.flat .dijitTreeExpandoLoading:before {
-  content: "\e60e";
+.flat .dijitTreeExpandoLoading {
   -webkit-animation: spinning 2s linear infinite;
   -moz-animation: spinning 2s linear infinite;
   -o-animation: spinning 2s linear infinite;
   -ms-animation: spinning 2s linear infinite;
   animation: spinning 2s linear infinite;
+}
+.flat .dijitTreeExpandoLoading:before {
+  content: "\f01d";
 }
 .dj_ie8 .dijitTreeExpandoLoading,
 .dj_ie9 .dijitTreeExpandoLoading {
@@ -2812,11 +2785,11 @@ table.dojoDndAvatar {
     transform: rotate(0);
   }
   to {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    transform: rotate(360deg);
+    -webkit-transform: rotate(-360deg);
+    -moz-transform: rotate(-360deg);
+    -o-transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    transform: rotate(-360deg);
   }
 }
 @-webkit-keyframes spinning {
@@ -2828,11 +2801,11 @@ table.dojoDndAvatar {
     transform: rotate(0);
   }
   to {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    transform: rotate(360deg);
+    -webkit-transform: rotate(-360deg);
+    -moz-transform: rotate(-360deg);
+    -o-transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    transform: rotate(-360deg);
   }
 }
 @-o-keyframes spinning {
@@ -2844,11 +2817,11 @@ table.dojoDndAvatar {
     transform: rotate(0);
   }
   to {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    transform: rotate(360deg);
+    -webkit-transform: rotate(-360deg);
+    -moz-transform: rotate(-360deg);
+    -o-transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    transform: rotate(-360deg);
   }
 }
 @keyframes spinning {
@@ -2860,23 +2833,21 @@ table.dojoDndAvatar {
     transform: rotate(0);
   }
   to {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    transform: rotate(360deg);
+    -webkit-transform: rotate(-360deg);
+    -moz-transform: rotate(-360deg);
+    -o-transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    transform: rotate(-360deg);
   }
 }
  
 .flat .dijitAccordionContainer {
   border: 0 none;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 .flat .dijitAccordionInnerContainer {
   background-color: #fff;
   border: 1px solid #9e9e9e;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   -webkit-transition-property: background-color, border;
   -moz-transition-property: background-color, border;
@@ -2903,7 +2874,6 @@ table.dojoDndAvatar {
   border-width: 1px;
   border-color: #9e9e9e;
   padding: 4px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   line-height: 20px;
   cursor: pointer;
@@ -2914,7 +2884,6 @@ table.dojoDndAvatar {
   transition: all 0.05s linear;
   background: #fff;
   border: 0 none;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 .flat .dijitAccordionTitle .arrowTextUp,
@@ -2972,7 +2941,6 @@ table.dojoDndAvatar {
 .flat .dijitAccordionInnerContainerSelected .dijitAccordionTitle {
   color: #fff;
   background-color: #2196f3;
-  -webkit-border-radius: 3px 3px 0 0;
   border-radius: 3px 3px 0 0;
 }
 .flat .dijitAccordionInnerContainerSelected .dijitAccordionTitle .arrowTextUp {
@@ -2988,36 +2956,29 @@ table.dojoDndAvatar {
   position: relative;
   z-index: 1;
   clear: both;
-  -webkit-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
 }
 .flat .dijitAccordionInnerContainer {
-  -webkit-border-radius: 0;
   border-radius: 0;
 }
 .flat .dijitAccordionInnerContainer .dijitAccordionTitle {
-  -webkit-border-radius: 0;
   border-radius: 0;
 }
 .flat .dijitAccordionInnerContainer:not(:last-child) .dijitAccordionChildWrapper {
-  -webkit-border-radius: 0;
   border-radius: 0;
 }
 .flat .dijitAccordionInnerContainer +.dijitAccordionInnerContainer {
   border-top: 0 none;
 }
 .flat .dijitAccordionInnerContainer +.dijitAccordionInnerContainerSelected:last-child .dijitAccordionTitle {
-  -webkit-border-radius: 0;
   border-radius: 0;
 }
 .flat .dijitAccordionInnerContainer:first-child,
 .flat .dijitAccordionInnerContainer:first-child .dijitAccordionTitle {
-  -webkit-border-radius: 3px 3px 0 0;
   border-radius: 3px 3px 0 0;
 }
 .flat .dijitAccordionInnerContainer:last-child,
 .flat .dijitAccordionInnerContainer:last-child .dijitAccordionTitle {
-  -webkit-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
 }
 .flat .dijitBorderContainer {
@@ -3097,7 +3058,6 @@ table.dojoDndAvatar {
   top: 0 !important;
 }
 .flat .dijitTabContainer {
-  -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 .flat .dijitTabPaneWrapper {
@@ -3105,7 +3065,6 @@ table.dojoDndAvatar {
   border: 1px solid #9e9e9e;
   margin: 0;
   padding: 0;
-  -webkit-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
 }
 .flat .dijitTabContainerTop-tabs,
@@ -3227,7 +3186,6 @@ table.dojoDndAvatar {
   top: 0;
 }
 .flat .dijitTabPaneWrapper.dijitTabContainerBottom-container {
-  -webkit-border-radius: 3px 3px 0 0;
   border-radius: 3px 3px 0 0;
 }
 .flat .dijitTabContainerBottom-tabs .dijitTab {
@@ -3256,7 +3214,6 @@ table.dojoDndAvatar {
   top: 0;
 }
 .flat .dijitTabPaneWrapper.dijitTabContainerLeft-container {
-  -webkit-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
 }
 .flat .dijitTabContainerLeft-tabs .dijitTab {
@@ -3279,7 +3236,6 @@ table.dojoDndAvatar {
   top: -1px;
 }
 .flat .dijitTabPaneWrapper.dijitTabContainerRight-container {
-  -webkit-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
 }
 .flat .dijitTabContainerRight-tabs .dijitTab {
@@ -3365,7 +3321,6 @@ table.dojoDndAvatar {
   margin: 4px;
   padding: 4px 8px;
   border: 1px solid transparent;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   -webkit-transition-property: background-color, border-color;
   -moz-transition-property: background-color, border-color;
@@ -3425,7 +3380,6 @@ table.dojoDndAvatar {
   border-width: 1px;
   border-color: #9e9e9e;
   padding: 4px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   line-height: 20px;
   cursor: pointer;
@@ -3990,13 +3944,11 @@ table.dojoDndAvatar {
   border-collapse: separate; 
 }
 .flat table.dijitComboButton .dijitStretch {
-  -webkit-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
 }
 .flat table.dijitComboButton .dijitArrowButton {
   padding: 4px;
   width: 20px;
-  -webkit-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
   border-left-width: 0;
 }
@@ -4042,7 +3994,6 @@ table.dojoDndAvatar {
   height: 16px;
   line-height: 1;
   padding: 0;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
   text-align: center;
   position: relative;
@@ -4126,7 +4077,6 @@ table.dojoDndAvatar {
   height: 16px;
   line-height: 1;
   padding: 0;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
   text-align: center;
   position: relative;
@@ -4168,7 +4118,6 @@ table.dojoDndAvatar {
   border-width: 1px;
   border-color: #9e9e9e;
   padding: 4px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   line-height: 20px;
   cursor: pointer;
@@ -4178,7 +4127,6 @@ table.dojoDndAvatar {
   -ms-transition: all 0.05s linear;
   transition: all 0.05s linear;
   background: #fff;
-  -webkit-border-radius: 0;
   border-radius: 0;
   border: 0;
   width: auto;
@@ -4263,7 +4211,6 @@ table.dojoDndAvatar {
   height: 16px;
   background: #fff;
   border: 1px solid #2196f3;
-  -webkit-border-radius: 50%;
   border-radius: 50%;
   position: relative;
   overflow: visible;
@@ -4278,7 +4225,6 @@ table.dojoDndAvatar {
   width: 0;
   height: 0;
   background-color: #2196f3;
-  -webkit-border-radius: 50%;
   border-radius: 50%;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -4357,7 +4303,6 @@ table.dojoDndAvatar {
   height: 16px;
   background: #fff;
   border: 1px solid #9e9e9e;
-  -webkit-border-radius: 50%;
   border-radius: 50%;
   position: relative;
   overflow: visible;
@@ -4371,7 +4316,6 @@ table.dojoDndAvatar {
   width: 0;
   height: 0;
   background-color: #2196f3;
-  -webkit-border-radius: 50%;
   border-radius: 50%;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -4408,7 +4352,6 @@ table.dojoDndAvatar {
   border-width: 1px;
   border-color: #9e9e9e;
   padding: 4px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   line-height: 20px;
   cursor: pointer;
@@ -4425,7 +4368,6 @@ table.dojoDndAvatar {
   line-height: 20px;
   padding: 4px 12px;
   border: 0;
-  -webkit-border-radius: 0 2.000000000000001px 2.000000000000001px 0;
   border-radius: 0 2.000000000000001px 2.000000000000001px 0;
 }
 .flat .dijitSelect .dijitButtonContents {
@@ -4433,7 +4375,6 @@ table.dojoDndAvatar {
   overflow: hidden;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
-  -webkit-border-radius: 2.000000000000001px 0 0 2.000000000000001px;
   border-radius: 2.000000000000001px 0 0 2.000000000000001px;
 }
 .flat .dijitSelect .dijitInputField {
@@ -4478,7 +4419,6 @@ table.dojoDndAvatar {
   border-width: 1px;
   border-color: #9e9e9e;
   padding: 4px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   line-height: 20px;
   cursor: pointer;
@@ -4488,7 +4428,6 @@ table.dojoDndAvatar {
   -ms-transition: all 0.05s linear;
   transition: all 0.05s linear;
   background: #fff;
-  -webkit-border-radius: 0 2.000000000000001px 2.000000000000001px 0;
   border-radius: 0 2.000000000000001px 2.000000000000001px 0;
 }
 .flat .dijitComboBoxOpenHover .dijitButtonNode,
@@ -4556,13 +4495,11 @@ table.dojoDndAvatar {
   height: 3px;
 }
 .flat .dijitSlider .dijitSliderLeftBumper {
-  -webkit-border-radius: 1.5px 0 0 1.5px;
   border-radius: 1.5px 0 0 1.5px;
   border: 0 none;
   margin-left: 4px;
 }
 .flat .dijitSlider .dijitSliderRightBumper {
-  -webkit-border-radius: 0 1.5px 1.5px 0;
   border-radius: 0 1.5px 1.5px 0;
   border: 0 none;
   margin-left: -2px;
@@ -4602,14 +4539,12 @@ table.dojoDndAvatar {
   width: 3px;
 }
 .flat .dijitSlider .dijitSliderTopBumper {
-  -webkit-border-radius: 1.5px 1.5px 0 0;
   border-radius: 1.5px 1.5px 0 0;
   border: 0 none;
   margin-top: 4px;
   margin-bottom: -2px;
 }
 .flat .dijitSlider .dijitSliderBottomBumper {
-  -webkit-border-radius: 0 0 1.5px 1.5px;
   border-radius: 0 0 1.5px 1.5px;
   border: 0 none;
   margin-bottom: 4px;
@@ -4644,7 +4579,6 @@ table.dojoDndAvatar {
   background: #fff;
   -webkit-box-shadow: 0 1px 0.5px rgba(0,0,0,0.3), 0 2px 2px rgba(0,0,0,0.2);
   box-shadow: 0 1px 0.5px rgba(0,0,0,0.3), 0 2px 2px rgba(0,0,0,0.2);
-  -webkit-border-radius: 50%;
   border-radius: 50%;
   border: 1px solid #2196f3;
   width: 16px;
@@ -4659,7 +4593,6 @@ table.dojoDndAvatar {
   content: "";
   display: block;
   background: #2196f3;
-  -webkit-border-radius: 50%;
   border-radius: 50%;
   height: 10px;
   width: 10px;
@@ -4686,7 +4619,6 @@ table.dojoDndAvatar {
   border-width: 1px;
   border-color: #9e9e9e;
   padding: 4px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   line-height: 20px;
   cursor: pointer;
@@ -4798,7 +4730,6 @@ table.dojoDndAvatar {
 .flat .dijitTextBox {
   background: #fff;
   border: 1px solid #9e9e9e;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   -webkit-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
   -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
@@ -5876,11 +5807,9 @@ div.dijitNumberTextBoxRtl {
   margin-right: 4px;
 }
 .flat table.dijitComboButtonRtl .dijitStretch {
-  -webkit-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
 }
 .flat table.dijitComboButtonRtl .dijitArrowButton {
-  -webkit-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
   border-left-width: 1px;
   border-right-width: 0;
@@ -5905,7 +5834,6 @@ div.dijitNumberTextBoxRtl {
   text-align: right;
 }
 .flat .dijitComboBoxRtl .dijitButtonNode.dijitArrowButtonContainer {
-  -webkit-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
 }
 .flat .dijitComboBoxRtl .dijitArrowButtonContainer {
@@ -5922,7 +5850,6 @@ div.dijitNumberTextBoxRtl {
   border-right-width: 1px;
   margin-left: 0;
   margin-right: 4px;
-  -webkit-border-radius: 0 1.5px 1.5px 0;
   border-radius: 0 1.5px 1.5px 0;
 }
 .flat .dijitSliderRtl .dijitSliderRightBumper {
@@ -5930,7 +5857,6 @@ div.dijitNumberTextBoxRtl {
   border-right-width: 0;
   margin-left: 4px;
   margin-right: -2px;
-  -webkit-border-radius: 1.5px 0 0 1.5px;
   border-radius: 1.5px 0 0 1.5px;
 }
 .flat .dijitSliderRtl .dijitSliderMoveableH {

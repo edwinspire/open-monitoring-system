@@ -70,20 +70,21 @@
   vertical-align: middle;
 }
 .flat .dijitTreeExpandoOpened:before {
-  content: "\e60d";
+  content: "\f012";
   cursor: pointer;
 }
 .flat .dijitTreeExpandoClosed:before {
-  content: "\e60a";
-  cursor: pointer;
+  content: "\f011";
 }
-.flat .dijitTreeExpandoLoading:before {
-  content: "\e60e";
+.flat .dijitTreeExpandoLoading {
   -webkit-animation: spinning 2s linear infinite;
   -moz-animation: spinning 2s linear infinite;
   -o-animation: spinning 2s linear infinite;
   -ms-animation: spinning 2s linear infinite;
   animation: spinning 2s linear infinite;
+}
+.flat .dijitTreeExpandoLoading:before {
+  content: "\f01d";
 }
 .dj_ie8 .dijitTreeExpandoLoading,
 .dj_ie9 .dijitTreeExpandoLoading {
@@ -102,11 +103,11 @@
     transform: rotate(0);
   }
   to {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    transform: rotate(360deg);
+    -webkit-transform: rotate(-360deg);
+    -moz-transform: rotate(-360deg);
+    -o-transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    transform: rotate(-360deg);
   }
 }
 @-webkit-keyframes spinning {
@@ -118,11 +119,11 @@
     transform: rotate(0);
   }
   to {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    transform: rotate(360deg);
+    -webkit-transform: rotate(-360deg);
+    -moz-transform: rotate(-360deg);
+    -o-transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    transform: rotate(-360deg);
   }
 }
 @-o-keyframes spinning {
@@ -134,11 +135,11 @@
     transform: rotate(0);
   }
   to {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    transform: rotate(360deg);
+    -webkit-transform: rotate(-360deg);
+    -moz-transform: rotate(-360deg);
+    -o-transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    transform: rotate(-360deg);
   }
 }
 @keyframes spinning {
@@ -150,10 +151,10 @@
     transform: rotate(0);
   }
   to {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    transform: rotate(360deg);
+    -webkit-transform: rotate(-360deg);
+    -moz-transform: rotate(-360deg);
+    -o-transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    transform: rotate(-360deg);
   }
 }

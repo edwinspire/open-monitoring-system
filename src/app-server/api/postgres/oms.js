@@ -40,7 +40,7 @@ constructor: function(args) {
   //ssl: true,
   max: 50 //set pool max size to 20
   //min: 4, //set min pool size to 4
-  //idleTimeoutMillis: 1000 //close idle clients after 1 second
+  //idleTimeoutMillis: 2000 //close idle clients after 1 second
 });
 
 	t.pgPool.connect().then(client => {
@@ -200,12 +200,11 @@ logout: function(datauser){
 	var t = this;
 	var q = "SELECT * FROM fun_logout_system($1::BOOLEAN, $2::BIGINT, $3::TEXT, $4::INET);";
 
-		return t.query(q, [false, datauser.idcontact, datauser.fullname, datauser.ip]);	
+	return t.query(q, [false, datauser.idcontact, datauser.fullname, datauser.ip]);	
 },
-service_point: function(service, ip, header, request){
+service_point: function(request_service){
 	var t = this;
-	var q = "SELECT services.fun_service_point($1::TEXT,  $2::INET, $3::json, $4::json)";
-		return t.query(q, [service, ip, header, request]);	
+	return t.query("SELECT services.funjs_point($1::JSON) as return;", [request_service]);	
 },
 send_notification_area: function(_table_notifications){
 

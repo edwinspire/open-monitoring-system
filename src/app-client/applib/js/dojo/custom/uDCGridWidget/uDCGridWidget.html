@@ -41,12 +41,35 @@
 			<span>Filtro</span>
 			<div data-dojo-type="dijit/ConfirmTooltipDialog" data-dojo-attach-point="CTTDialogFilter" data-dojo-props="title:'Filtro'">
 
-				<div data-dojo-attach-point="ContainerDialogFilter"></div>
-hola
-<label for="date1">Drop down Date box:</label>
-<input type="text" name="date1"  value="2005-12-30"
+				<div data-dojo-attach-point="ContainerDialogFilter">
+					
+
+<table>
+
+  <tr>
+    <td>Fecha inicio:</td>
+    <td><input type="text" name="DStart"  value="2017-01-01" data-dojo-attach-point="D1"
     data-dojo-type="dijit/form/DateTextBox"
-    required="true" />
+    required="true" /></td>
+  </tr>
+  <tr>
+<td>Fecha fin:</td>
+    <td><input type="text" name="DEnd"  value="2018-01-01" data-dojo-attach-point="D2"
+    data-dojo-type="dijit/form/DateTextBox"
+    required="true" /></td>
+  </tr>
+  <tr style="display: none;">
+    <td>Estado:</td>
+    <td>CCCCCCC</td>
+  </tr>
+</table>
+
+
+				</div>
+
+
+
+</br>
 
 			</div>
 		</div>  

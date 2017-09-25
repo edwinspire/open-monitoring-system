@@ -41,8 +41,18 @@ schema_events_view_datas_details_isopen: function(req, res, params){
 	switch(params.action){
 		case 'r':
 		//var w = {tschema_tname: post.tschema_tname};
-		qp = t.Select('events.view_datas_details_isopen', []).orderBy(' dateevent DESC ').build();
-		t.response_query(res, qp.query, qp.param);
+		//qp = t.Select('events.view_datas_details_isopen', []).orderBy(' dateevent DESC ').build();
+		var query = "SELECT * FROM events.view_datas_details_isopen ORDER BY dateevent DESC;";
+		var param = [];
+		
+		if(post.datestart && post.dateend){
+			query = "SELECT * FROM events.view_datas_details_isopen WHERE dateevent >= $1::timestamptz AND dateevent <= $2::timestamptz ORDER BY dateevent DESC;";
+			param = [post.datestart, post.dateend];
+		}
+
+console.log(param);
+
+		t.response_query(res, query, param);
 		break;
 		case 'u':
 		qp = t.Update('gui.column_propertiesxxxxx', post, ["hash_num"]).whereAnd([params.onupdate], []).build();
@@ -61,11 +71,21 @@ schema_events_view_dashboard: function(req, res, params){
 	var w = {};
 //console.log(post);
 
-	switch(params.action){
-		case 'r':
+switch(params.action){
+	case 'r':
 		//var w = {tschema_tname: post.tschema_tname};
 		//qp = t.Select('events.view_dashboard', [post]).orderBy(' division, priority ').build();
-		t.response_query(res, "SELECT * FROM events.view_dashboard WHERE iddivision = $1::BIGINT ORDER BY division, priority, label_eventtype;", [post.iddivision]);
+		var query = "SELECT * FROM events.view_dashboard WHERE iddivision = $1::BIGINT ORDER BY division, priority, label_eventtype;";
+		var param = [post.iddivision];
+		
+		if(post.datestart && post.dateend){
+			query = "SELECT * FROM events.view_dashboard WHERE iddivision = $1::BIGINT AND dateevent >= $2::timestamptz AND dateevent <= $3::timestamptz ORDER BY division, priority, label_eventtype;";
+			param = [post.iddivision, post.datestart, post.dateend];
+		}
+
+console.log(param);
+
+		t.response_query(res, query, param);
 		break;
 		case 'u':
 		qp = t.Update('gui.column_propertiesxxxxx', post, ["hash_num"]).whereAnd([params.onupdate], []).build();

@@ -196,11 +196,9 @@ div.dijitNumberTextBoxRtl {
   margin-right: 4px;
 }
 .flat table.dijitComboButtonRtl .dijitStretch {
-  -webkit-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
 }
 .flat table.dijitComboButtonRtl .dijitArrowButton {
-  -webkit-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
   border-left-width: 1px;
   border-right-width: 0;
@@ -225,7 +223,6 @@ div.dijitNumberTextBoxRtl {
   text-align: right;
 }
 .flat .dijitComboBoxRtl .dijitButtonNode.dijitArrowButtonContainer {
-  -webkit-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
 }
 .flat .dijitComboBoxRtl .dijitArrowButtonContainer {
@@ -242,7 +239,6 @@ div.dijitNumberTextBoxRtl {
   border-right-width: 1px;
   margin-left: 0;
   margin-right: 4px;
-  -webkit-border-radius: 0 1.5px 1.5px 0;
   border-radius: 0 1.5px 1.5px 0;
 }
 .flat .dijitSliderRtl .dijitSliderRightBumper {
@@ -250,7 +246,6 @@ div.dijitNumberTextBoxRtl {
   border-right-width: 0;
   margin-left: 4px;
   margin-right: -2px;
-  -webkit-border-radius: 1.5px 0 0 1.5px;
   border-radius: 1.5px 0 0 1.5px;
 }
 .flat .dijitSliderRtl .dijitSliderMoveableH {
