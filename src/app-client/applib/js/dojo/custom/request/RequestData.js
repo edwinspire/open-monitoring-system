@@ -6,23 +6,23 @@ define(["dojo/_base/declare",
   'dojo/request',
   "dojo/topic",
   "dojo/_base/array",
-  "dijit/_WidgetBase"
-  ], function(declare, lang, ObjectStore, Memory, Observable, request, topic, array, _WidgetBase) {
-    return  declare("Widget/LiveStore/DijitSelectStore", [ObjectStore], {
+  "dojox/encoding/digests/MD5",
+  "dojo/Deferred"
+  ], function(declare, lang, ObjectStore, Memory, Observable, request, topic, array, MD5, Deferred) {
+    return  declare("Widget/request/RequestData", [ObjectStore], {
 
       target: '',
-      handleAs: 'json',
-      requestQuery: {},
-      identifier: '',
-      dbschema: '',
-      dbtableview: '',
-      _subscribe: [],
-      refreshOnTableChanged: [],
+      service: '',
+
+      _request_datas: [],
       
       constructor: function(args){
 
        var t = this;
+
        this.target = '';
+       this.service = '';
+       /*
        this.handleAs= 'json';
        this.requestQuery = false;
        this.objectStore = Observable(new Memory());
@@ -30,17 +30,20 @@ define(["dojo/_base/declare",
        this.identifier = '';
        this.dbschema = '';
        this.dbtableview = '';
+       */
 
        dojo.safeMixin(this, args);
 
-       t.postCreate();
+//       t.postCreate();
 
-     }, 
-     postCreate:function (args){
+}, 
+postCreate:function (args){
+
+      /*
       this.inherited(arguments);       
       var t = this; 
 
-//** Subscribe a los eventos de cambio de datos en X tablas **//
+
 if (Object.prototype.toString.call(t.refreshOnTableChanged) === '[object Array]') {
 
   array.forEach(t.refreshOnTableChanged, function(item, i){
@@ -58,7 +61,7 @@ if(t.requestQuery){
 
 }
 
-
+*/
 
 },
 uninitialize: function(){
@@ -66,32 +69,68 @@ uninitialize: function(){
 //	topic.unsubscribe(t._subscribe);        
 console.warn('TODO Implementar');
 },
+add: function(req){
+  var t = this;
+
+  var idkey = MD5(dojo.toJson(req), dojox.encoding.digests.outputTypes.Hex);
+  var r = {key: idkey, datas: req};      
+
+  t._request_datas.push(r);
+  return idkey;
+},
 
 
 request: function(_query){
 
-  this.requestQuery = _query || this.requestQuery;
   var t = this;
-  console.log(t);
-  if(!t.target){
-    this.target = '/db/'+t.dbschema+'/'+t.dbtableview+'/rs/'+Math.random()+'/'+Math.random()+'/'+Math.random()+'/'+Math.random();
+  var deferred = new Deferred();
+
+  var Datas = {
+    header: {
+      token: 'yyyyyyyy',
+      service: t.service
+    },
+    request: []
+  };
+
+
+/*
+{
+  header: {},
+  response: {
+    datas: []
   }
-
-  return  request.post(this.target, {
-    data: this.requestQuery,
-    preventCache: true,
-    handleAs: 'json'
-  }).then(
-  function (response) {
-//console.log(response);
-t.objectStore = Observable(new Memory({ data: {identifier: t.identifier, items: response}}));
-
-},
-function (e) {
-  console.error(e, t.target);
 }
-);
+*/
 
+Datas.request = t._request_datas;
+
+if(!t.target){
+  this.target = '/target_undefined';
+}
+
+request.post(this.target, {
+  data: {data: JSON.stringify(Datas)},
+  preventCache: true,
+  handleAs: 'json'
+}).then(function(result){
+
+// Buscar como vaciar el array
+t._request_datas = [];
+
+var R = {
+  header: {},
+  response: {
+    data: []
+  }
+};
+
+deferred.resolve(R);
+}, function(err){
+  deferred.reject(err);
+});
+
+return deferred.promise;
 }
 
 

@@ -44,9 +44,10 @@
   "dijit/form/FilteringSelect",
   "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
   "Widget/json_treeview/json_treeview",
+  "Widget/request/RequestData",
   "dojo/parser",
   "dojo/has!touch?dojo/touch:dojo/mouse"
-  ], function(declare, on, win, domClass, has, locale, Grid, Keyboard, dMemory, Memory, Trackable, Selection, Selector, Pagination, DijitRegistry, Editor, ColumnReorder, ColumnResizer, ColumnHider, request, array, topic, Deferred, Filter, TextBox, CheckBox,  HorizontalSlider, VerticalSlider, NumberSpinner, TimeSpinner, CurrencyTextBox, DateTextBox, NumberTextBox, SimpleTextarea, Textarea, TimeTextBox, FilteringSelect, FilteringSelectGlobalStore, json_treeview) {
+  ], function(declare, on, win, domClass, has, locale, Grid, Keyboard, dMemory, Memory, Trackable, Selection, Selector, Pagination, DijitRegistry, Editor, ColumnReorder, ColumnResizer, ColumnHider, request, array, topic, Deferred, Filter, TextBox, CheckBox,  HorizontalSlider, VerticalSlider, NumberSpinner, TimeSpinner, CurrencyTextBox, DateTextBox, NumberTextBox, SimpleTextarea, Textarea, TimeTextBox, FilteringSelect, FilteringSelectGlobalStore, json_treeview, RequestData) {
     /**
      * Micro Data Connector dGrid
      *
@@ -229,6 +230,19 @@ request: function (_param, _action) {
   var t = this;
   var _data = {};
 
+
+  var rd = new RequestData({service: 'dbstructure', target: '/service/public'});
+  rd.add({tschema_tname: 'public.accounts'});
+  rd.add({tschema_tname: 'public.admins'});
+  rd.add({tschema_tname: 'events.datas'});
+
+  rd.request().then(function(result){
+    console.log(result);
+  }, function(err){
+    console.log(err);
+  });
+
+
   if (_param) {
     _data = _param;
   }
@@ -250,33 +264,8 @@ request: function (_param, _action) {
 
 
 
-var url = t.target+'/'+t.dbschema+'/'+t.dbtableview+'/'+_action+'/'+idProperty+'/'+idPropertyValue+'/'+rowFingerPrint+'/'+rowFingerPrintValue;
+    var url = t.target+'/'+t.dbschema+'/'+t.dbtableview+'/'+_action+'/'+idProperty+'/'+idPropertyValue+'/'+rowFingerPrint+'/'+rowFingerPrintValue;
 //var url = "/service/public";
-
-/*
-var RRR = {
-  header: {
-    token: 'yyyyyyyy',
-    service: "dbstructure"
-  },
-  request: [
-  {key: "kkkkkkkkkkklkkkk", datas: {tschema_tname: 'public.accounts'}},
-  {key: "xxxxxxxxxxxxxxxxxxx", datas: {tschema_tname: 'public.admins'}}
-  ]
-};
-
-*/
-
-/*
-{
-  header: {},
-  response: {
-    data: []
-  }
-}
-
-*/
-
 
 _data.__rowFingerPrint = null;
 _data.__rowFingerPrintValue = null;
