@@ -2,47 +2,53 @@ digraph g {
 node [ fontsize = "10", shape = record ];
 edge [];
 
+"contacts.address" [shape = record, label = "{<col0> \N| idaddress:  bigserial\lts:  timestamp with time zone\lfootprint_row:  smallint\l}" ];
+
 "contacts.contacts" [shape = record, label = "{<col0> \N| idcontact:  bigserial\lts:  timestamp with time zone\lenabled:  boolean\lfirst_name:  text\llast_name:  text\lbirthday:  timestamp with time zone\lidentification:  text\lididtype:  integer\lpostal_code:  text\lgender:  integer\lgeox:  double precision\lgeoy:  double precision\lnote:  text\laddress:  text\laddress_ref:  text\lgroups:  integer[]\lfootprint_row:  smallint\l}" ];
 
-"events.comments" [shape = record, label = "{<col0> \N| ideventcomment:  bigint\lts:  timestamp with time zone\lidadmin:  integer\lstart:  timestamp with time zone\lseconds:  integer\lcomment_event:  text\lidstatustype:  bigint\lidevent:  bigint\lidcontact:  bigint\lfootprint_row:  smallint\l}" ];
+"contacts.emails" [shape = record, label = "{<col0> \N| idemail:  bigserial\lts:  timestamp with time zone\lidcontact:  bigint\lemail:  text\lnote:  text\lpriority:  integer\lnotify_if_administrator:  boolean\lenabled:  boolean\lfootprint_row:  smallint\l}" ];
 
-"events.datas" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lidreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldetails:  jsonb\lreport_validator:  text\l}" ];
+"contacts.identification_types" [shape = record, label = "{<col0> \N| ididtype:  bigserial\lts:  timestamp with time zone\lenabled:  boolean\lname:  text\lnote:  text\lfootprint_row:  smallint\l}" ];
 
-"events.datas_000112" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lidreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldetails:  jsonb\lreport_validator:  text\l}" ];
+"contacts.phone_providers" [shape = record, label = "{<col0> \N| idprovider:  bigserial\lts:  timestamp with time zone\lenable:  boolean\lprovider:  text\lfootprint_row:  smallint\l}" ];
 
-"events.datas_199001" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lidreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldetails:  jsonb\lreport_validator:  text\l}" ];
+"contacts.phone_types" [shape = record, label = "{<col0> \N| idphonetype:  bigserial\lts:  timestamp without time zone\ltype:  text\lfootprint_row:  smallint\l}" ];
 
-"events.datas_201504" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lidreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldetails:  jsonb\lreport_validator:  text\l}" ];
+"contacts.phones" [shape = record, label = "{<col0> \N| idphone:  bigserial\lts:  timestamp with time zone\lenabled:  boolean\lidcontact:  integer\lidprovider:  integer\lidphonetype:  integer\lnumber:  text\lext:  text\lnote:  text\lpriority:  integer\lfootprint_row:  smallint\l}" ];
 
-"events.datas_201506" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lidreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldetails:  jsonb\lreport_validator:  text\l}" ];
+"contacts.xmpps" [shape = record, label = "{<col0> \N| idxmpp:  bigserial\lts:  timestamp with time zone\lidcontact:  bigint\laccount:  text\lenabled:  boolean\lfootprint_row:  smallint\lnote:  text\l}" ];
 
-"events.datas_201508" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lidreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldetails:  jsonb\lreport_validator:  text\l}" ];
+"events.comments" [shape = record, label = "{<col0> \N| idcomment:  bigserial\lts:  timestamp with time zone\lidadmin:  integer\lstart:  timestamp with time zone\lseconds:  integer\lcomment_event:  text\lidstatustype:  bigint\lidevent:  bigint\lidcontact:  bigint\lfootprint_row:  smallint\loriginator_idevent:  bigint\liddata:  uuid\l}" ];
 
-"events.datas_201509" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lidreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldetails:  jsonb\lreport_validator:  text\l}" ];
+"events.comments_201709" [shape = record, label = "{<col0> \N| idcomment:  bigint\lts:  timestamp with time zone\lidadmin:  integer\lstart:  timestamp with time zone\lseconds:  integer\lcomment_event:  text\lidstatustype:  bigint\lidevent:  bigint\lidcontact:  bigint\lfootprint_row:  smallint\loriginator_idevent:  bigint\liddata:  uuid\l}" ];
 
-"events.datas_201510" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lidreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldetails:  jsonb\lreport_validator:  text\l}" ];
+"events.comments_201710" [shape = record, label = "{<col0> \N| idcomment:  bigint\lts:  timestamp with time zone\lidadmin:  integer\lstart:  timestamp with time zone\lseconds:  integer\lcomment_event:  text\lidstatustype:  bigint\lidevent:  bigint\lidcontact:  bigint\lfootprint_row:  smallint\loriginator_idevent:  bigint\liddata:  uuid\l}" ];
 
-"events.datas_201511" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lidreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldetails:  jsonb\lreport_validator:  text\l}" ];
+"events.comments_attachments" [shape = record, label = "{<col0> \N| ideventcommentattach:  bigserial\lts:  timestamp with time zone\lidevent:  bigint\lidattachment:  integer\lfootprint_row:  smallint\l}" ];
 
-"events.datas_201610" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lidreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldetails:  jsonb\lreport_validator:  text\l}" ];
+"events.datas_201710_2_1" [shape = record, label = "{<col0> \N| iddata:  uuid\l_lm_:  last_modification\l_foot_print_:  smallint\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidstatustype:  integer\lpriority:  integer\lideventtype:  bigint\lsource:  uuid\liddevice:  bigint\lidreceptionmode:  bigint\ldescription:  html_text\ldetails:  jsonb\lip:  inet\lidadmin_assigned:  bigint\lcreator:  bigint\lisopen:  boolean\l}" ];
 
-"events.datas_201701" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lidreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldetails:  jsonb\lreport_validator:  text\l}" ];
+"events.eventtype_groups" [shape = record, label = "{<col0> \N| idgroup:  bigserial\lts:  timestamp with time zone\lfootprint_row:  smallint\lgroup:  text\ldescription:  text\l}" ];
 
-"events.datas_201704" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lidreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldetails:  jsonb\lreport_validator:  text\l}" ];
+"events.eventtypes" [shape = record, label = "{<col0> \N| ideventtype:  bigint\lts:  timestamp with time zone\lname:  text\lpriority:  integer\ltreatment:  boolean\lmanual:  boolean\ldate_editable:  boolean\lnotify_timeout:  integer\lnotify_closable:  boolean\lnotify_img:  text\lnotify_snd:  text\lnote:  text\llabel:  text\lcode:  text\lnotify_all_users:  boolean\lexpiration:  integer\lauto_close_on_event_defined:  bigint[]\lenable_auto_close_on_event_defined:  boolean\lidgroup:  integer\lenabled:  boolean\lfootprint_row:  smallint\leventtype_attention_group:  bigint[]\lsource_required_to_restore:  boolean\las_services:  boolean\lstructure_name:  character(20)\lnotify:  boolean\las_summary:  boolean\lidrg:  bigint\l}" ];
 
-"events.datas_201705" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lidreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldetails:  jsonb\lreport_validator:  text\l}" ];
-
-"events.eventtypes" [shape = record, label = "{<col0> \N| ideventtype:  bigint\lts:  timestamp with time zone\lname:  text\lpriority:  integer\ltreatment:  boolean\lmanual:  boolean\ldate_editable:  boolean\lnotify_timeout:  integer\lnotify_closable:  boolean\lnotify_img:  text\lnotify_snd:  text\lnote:  text\llabel:  text\lcode:  text\lnotify_all_users:  boolean\lexpiration:  integer\lauto_close_on_event_defined:  integer[]\lenable_auto_close_on_event_defined:  boolean\lideventtype_group:  integer\lenabled:  boolean\lfootprint_row:  smallint\leventtype_attention_group:  bigint[]\l}" ];
+"events.last_idevent" [shape = record, label = "{<col0> \N| uuidevent:  uuid\lidevent:  bigint\l}" ];
 
 "events.reception_modes" [shape = record, label = "{<col0> \N| idreceptionmode:  bigint\lts:  timestamp with time zone\lmode:  text\llabel_mode:  text\lenabled:  boolean\lfootprint_row:  smallint\l}" ];
 
+"events.restoration_group" [shape = record, label = "{<col0> \N| idrg:  bigserial\lts:  timestamp with time zone\lfootprint_row:  smallint\lname:  text\lenabled:  boolean\ldescription:  text\l}" ];
+
 "events.statustypes" [shape = record, label = "{<col0> \N| idstatustype:  bigint\lts:  timestamp with time zone\lstatus:  text\llabel_status:  text\ldescription:  text\linternal:  boolean\lfootprint_row:  smallint\lisopen:  boolean\l}" ];
+
+"gui.column_interface_properties" [shape = record, label = "{<col0> \N| idfield:  uuid\lts:  timestamp with time zone\lfootprint_row:  smallint\llabel:  text\lpublic:  boolean\longrid_visible:  boolean\lonform_visible:  boolean\longrid_position:  integer\longrid_editable:  boolean\lonform_editable:  boolean\longrid_resizable:  boolean\longrid_formatter:  text\longrid_sortable:  boolean\longrid_editor:  text\lonform_editor:  text\longrid_editon:  text\longrid_editor_args:  text\lonform_editor_args:  text\longrid_render_cell:  text\l}" ];
 
 "gui.column_properties" [shape = record, label = "{<col0> \N| hash_num:  text\lcolumn_label:  text\lcolumn_width:  text\lts:  timestamp with time zone\lcolumn_decorator:  text\lcolumn_class:  text\ldgrid_rendercell:  text\ldgrid_formatter:  text\ldgrid_classname:  text\lshow:  boolean\lcolumn_position:  integer\ldgrid_editable:  boolean\ldgrid_sortable:  boolean\ldgrid_editon:  text\ldgrid_resizable:  boolean\lfield_iconclass:  text\lfield_placeholder:  text\ldgrid_editor:  text\ldgrid_autosave:  boolean\ldgrid_autoselect:  boolean\ldgrid_dismissonenter:  boolean\ldgrid_editor_args:  text\lfootprint_row:  smallint\l}" ];
 
-"gui.menus" [shape = record, label = "{<col0> \N| idmenu:  bigserial\lts:  timestamp with time zone\lfootprint_row:  smallint\lenabled:  boolean\lstructure:  jsonb\lshow:  boolean\lname:  text\lurl:  text\lparent:  bigint\ltype:  text\lgroups:  bigint[]\ladmins:  bigint[]\lnameeventonclick:  text\l}" ];
+"gui.menus" [shape = record, label = "{<col0> \N| idmenu:  bigserial\lts:  timestamp with time zone\lfootprint_row:  smallint\lenabled:  boolean\lstructure:  jsonb\lshow:  boolean\lname:  text\lurl:  text\lparent:  bigint\ltype:  text\lgroups:  bigint[]\ladmins:  bigint[]\lnameeventonclick:  text\lappname:  text\l}" ];
 
-"gui.tables_view_properties" [shape = record, label = "{<col0> \N| title_dgrid:  text\lrow_selector_dgrid:  boolean\ladd_button_enabled:  boolean\ldelete_button_enabled:  boolean\lexport_button_enabled:  boolean\ldgrid_selectionmode:  text\ldgrid_allowtextselection:  boolean\ldgrid_deselectonrefresh:  boolean\ldgrid_allowselectall:  boolean\lts:  timestamp with time zone\lfootprint_row:  smallint\ltschema_tname:  text\l}" ];
+"gui.notification_area" [shape = record, label = "{<col0> \N| idnotify:  bigserial\lts:  timestamp with time zone\lurgency:  integer\ltimeout:  integer\lclosable:  boolean\limg:  text\lsnd:  text\ltitle:  text\lbody:  text\lsessionid:  text\lidadmins:  bigint[]\lfootprint_row:  smallint\ldetail_json:  json\l}" ];
+
+"gui.tables_view_properties" [shape = record, label = "{<col0> \N| title_grid:  text\lrow_selector_dgrid:  boolean\ladd_button_enabled:  boolean\ldelete_button_enabled:  boolean\lexport_button_enabled:  boolean\ldgrid_selectionmode:  text\ldgrid_allowtextselection:  boolean\ldgrid_deselectonrefresh:  boolean\ldgrid_allowselectall:  boolean\lts:  timestamp with time zone\lfootprint_row:  smallint\ltschema_tname:  text\l}" ];
 
 "octopus.octopus_by_account" [shape = record, label = "{<col0> \N| idoctopus_byaccount:  bigint\lts:  timestamp with time zone\lenabled:  boolean\lidoctopusfunction:  bigint\ldatetime_start:  timestamp with time zone\ldatetime_end:  timestamp with time zone\llast_run:  timestamp with time zone\lnext_run:  timestamp with time zone\lparameters:  json\ltrigger_time:  json\lstatus:  smallint\lidaccount:  bigint\l}" ];
 
@@ -80,8 +86,6 @@ edge [];
 
 "public.accounts" [shape = record, label = "{<col0> \N| idaccount:  bigint\lts:  timestamp with time zone\lenabled:  boolean\laccount_name:  text\lidentification:  text\lididtype:  integer\lpostal_code:  text\lgeox:  double precision\lgeoy:  double precision\lnote:  text\laddress:  text\laddress_ref:  text\lgroups:  integer[]\lidaccountstate:  integer\lidaccounttype:  integer\lstart_date:  timestamp without time zone\lend_date:  timestamp without time zone\laccount:  text\liddivision:  bigint\lcost_center:  character varying(5)\lfootprint_row:  smallint\l}" ];
 
-"public.accounts__" [shape = record, label = "{<col0> \N| idcontact:  bigint\lts:  timestamp with time zone\lenabled:  boolean\lfirst_name:  text\llast_name:  text\lbirthday:  timestamp with time zone\lidentification:  text\lididtype:  integer\lpostal_code:  text\lgender:  integer\lgeox:  double precision\lgeoy:  double precision\lnote:  text\laddress:  text\laddress_ref:  text\lgroups:  integer[]\lfootprint_row:  smallint\lidaccountstate:  integer\lidaccounttype:  integer\lstart_date:  timestamp without time zone\lend_date:  timestamp without time zone\laccount:  text\liddivision:  bigint\ladmins:  bigint[]\lcost_center:  character varying(5)\l}" ];
-
 "public.admins" [shape = record, label = "{<col0> \N| idadmin:  bigserial\lts:  timestamp with time zone\lidcontact:  bigserial\lenabled:  boolean\ladmin_start:  timestamp with time zone\ladmin_end:  timestamp with time zone\ladmin_username:  text\ladmin_pwd:  text\ladmin_sessionid:  text\ladmin_ip:  text\ladmin_level:  integer\ladmin_role:  integer[]\ladmin_locked_date:  timestamp with time zone\ladmin_failed_access_attempts:  smallint\lappointment:  text\llast_access:  timestamp with time zone\llast_heartbeat:  timestamp with time zone\ldivisions:  bigint[]\lidaccounts:  bigint[]\lfootprint_row:  smallint\lemail_notification:  bigint[]\lxmpp_notification:  bigint[]\ladmin_attention_group:  integer[]\l}" ];
 
 "public.attachments" [shape = record, label = "{<col0> \N| idattachment:  bigserial\lts:  timestamp with time zone\lfile:  text\lmd5:  text\lfootprint_row:  smallint\l}" ];
@@ -90,159 +94,117 @@ edge [];
 
 "public.configuration_server" [shape = record, label = "{<col0> \N| idconfigserver:  bigserial\lenabled:  boolean\lconfig_name:  text\ldescription:  text\lconfiguration:  json\l}" ];
 
+"public.devices" [shape = record, label = "{<col0> \N| idequipment:  bigserial\lts:  timestamp with time zone\lequipment:  text\lmark:  text\lmodel:  text\lserial_number:  text\ldescription:  text\linstallation_date:  timestamp without time zone\luninstall_date:  timestamp without time zone\lnote:  text\lcode_ref:  text\lidaccount:  integer\loperability:  smallint\lidprovider:  integer\lagreement_code_provider:  text\lreport_validator:  text\lenabled:  boolean\leventtypes:  integer[]\lfootprint_row:  smallint\lidcustodian:  bigint\ladditional_properties:  jsonb\lkey:  uuid\l}" ];
+
 "public.divisions" [shape = record, label = "{<col0> \N| iddivision:  bigserial\lname:  text\ldescription:  text\lenabled:  boolean\lnotes:  text\lts:  timestamp with time zone\lfootprint_row:  smallint\l}" ];
 
-"public.emails" [shape = record, label = "{<col0> \N| idemail:  bigserial\lts:  timestamp with time zone\lidcontact:  bigint\lemail:  text\lnote:  text\lpriority:  integer\lnotify_if_administrator:  boolean\lenabled:  boolean\lfootprint_row:  smallint\l}" ];
-
-"public.equipments" [shape = record, label = "{<col0> \N| idequipment:  bigserial\lts:  timestamp with time zone\lequipment:  text\lmark:  text\lmodel:  text\lserial_number:  text\ldescription:  text\linstallation_date:  timestamp without time zone\luninstall_date:  timestamp without time zone\lnote:  text\lcode_ref:  text\lidaccount:  integer\loperability:  smallint\lidprovider:  integer\lagreement_code_provider:  text\lreport_validator:  text\lenabled:  boolean\leventtypes:  integer[]\lfootprint_row:  smallint\lidcustodian:  bigint\ladditional_properties:  jsonb\l}" ];
-
-"public.event_comments" [shape = record, label = "{<col0> \N| ideventcomment:  bigserial\lts:  timestamp with time zone\lidadmin:  integer\lstart:  timestamp with time zone\lseconds:  integer\lcomment_event:  text\lideventstatustype:  bigint\lidevent:  bigint\lidcontact:  bigint\lfootprint_row:  smallint\l}" ];
-
-"public.event_comments_2016" [shape = record, label = "{<col0> \N| ideventcomment:  bigint\lts:  timestamp with time zone\lidadmin:  integer\lstart:  timestamp with time zone\lseconds:  integer\lcomment_event:  text\lideventstatustype:  bigint\lidevent:  bigint\lidcontact:  bigint\lfootprint_row:  smallint\l}" ];
-
-"public.event_comments_2017" [shape = record, label = "{<col0> \N| ideventcomment:  bigint\lts:  timestamp with time zone\lidadmin:  integer\lstart:  timestamp with time zone\lseconds:  integer\lcomment_event:  text\lideventstatustype:  bigint\lidevent:  bigint\lidcontact:  bigint\lfootprint_row:  smallint\l}" ];
-
-"public.event_comments_attachments" [shape = record, label = "{<col0> \N| ideventcommentattach:  bigserial\lts:  timestamp with time zone\lidevent:  bigint\lidattachment:  integer\lfootprint_row:  smallint\l}" ];
-
-"public.event_reception_modes" [shape = record, label = "{<col0> \N| ideventreceptionmode:  bigserial\lts:  timestamp with time zone\lmode:  text\llabel_mode:  text\lenabled:  boolean\lfootprint_row:  smallint\l}" ];
-
-"public.event_statustypes" [shape = record, label = "{<col0> \N| ideventstatustype:  bigserial\lts:  timestamp with time zone\lstatus:  text\llabel_status:  text\ldescription:  text\linternal:  boolean\lfootprint_row:  smallint\lisopen:  boolean\l}" ];
-
-"public.events" [shape = record, label = "{<col0> \N| idevent:  bigserial\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\l}" ];
-
-"public.events_2015" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\l}" ];
-
-"public.events_2016" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\l}" ];
-
-"public.events_2017" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\l}" ];
-
-"public.events_dbsizes" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldb_name:  text\ldb_size:  real\ldb_type:  smallint\l}" ];
-
-"public.events_dbsizes_2015" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldb_name:  text\ldb_size:  real\ldb_type:  smallint\l}" ];
-
-"public.events_dbsizes_2016" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldb_name:  text\ldb_size:  real\ldb_type:  smallint\l}" ];
-
-"public.events_device_uptime" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\luptime:  real\l}" ];
-
-"public.events_device_uptime_2015" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\luptime:  real\l}" ];
-
-"public.events_device_uptime_2016" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\luptime:  real\l}" ];
-
-"public.events_device_uptime_2017" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\luptime:  real\l}" ];
-
-"public.events_diskspace" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldrive:  character(3)\ldrive_size:  real\ldrive_free:  real\l}" ];
-
-"public.events_diskspace_2015" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldrive:  character(3)\ldrive_size:  real\ldrive_free:  real\l}" ];
-
-"public.events_diskspace_2016" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldrive:  character(3)\ldrive_size:  real\ldrive_free:  real\l}" ];
-
-"public.events_diskspace_2017" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ldrive:  character(3)\ldrive_size:  real\ldrive_free:  real\l}" ];
-
-"public.events_jobs" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ljob_name:  text\ljob_enabled:  boolean\ljob_description:  text\ljob_date_create:  timestamp without time zone\ljob_run_duration:  integer\ljob_run_status:  smallint\ljob_next_run:  timestamp without time zone\l}" ];
-
-"public.events_jobs_1990" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ljob_name:  text\ljob_enabled:  boolean\ljob_description:  text\ljob_date_create:  timestamp without time zone\ljob_run_duration:  integer\ljob_run_status:  smallint\ljob_next_run:  timestamp without time zone\l}" ];
-
-"public.events_jobs_2014" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ljob_name:  text\ljob_enabled:  boolean\ljob_description:  text\ljob_date_create:  timestamp without time zone\ljob_run_duration:  integer\ljob_run_status:  smallint\ljob_next_run:  timestamp without time zone\l}" ];
-
-"public.events_jobs_2015" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ljob_name:  text\ljob_enabled:  boolean\ljob_description:  text\ljob_date_create:  timestamp without time zone\ljob_run_duration:  integer\ljob_run_status:  smallint\ljob_next_run:  timestamp without time zone\l}" ];
-
-"public.events_jobs_2016" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ljob_name:  text\ljob_enabled:  boolean\ljob_description:  text\ljob_date_create:  timestamp without time zone\ljob_run_duration:  integer\ljob_run_status:  smallint\ljob_next_run:  timestamp without time zone\l}" ];
-
-"public.events_jobs_2017" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\ljob_name:  text\ljob_enabled:  boolean\ljob_description:  text\ljob_date_create:  timestamp without time zone\ljob_run_duration:  integer\ljob_run_status:  smallint\ljob_next_run:  timestamp without time zone\l}" ];
-
-"public.events_last_idevent" [shape = record, label = "{<col0> \N| uuidevent:  uuid\lidevent:  bigint\l}" ];
-
-"public.events_login" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\lip:  inet\luseragent:  text\l}" ];
-
-"public.events_login_2017" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\lip:  inet\luseragent:  text\l}" ];
-
-"public.events_networkdevice_ping" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\lroundtriptime:  integer\l}" ];
-
-"public.events_networkdevice_ping_2016" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\lroundtriptime:  integer\l}" ];
-
-"public.events_networkdevice_ping_2017" [shape = record, label = "{<col0> \N| idevent:  bigint\lts:  timestamp with time zone\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lideventstatustype:  integer\lidaccount:  integer\lpriority:  integer\lideventtype:  integer\ldescription:  text\lidadmin:  integer\llast_comment:  timestamp with time zone\lzu:  bigint\lidequipment:  bigint\lidcontact_user:  bigint\lideventreceptionmode:  bigint\lfootprint_row:  smallint\lisopen:  boolean\lidadmin_assigned:  bigint\lroundtriptime:  integer\l}" ];
-
-"public.eventtypes" [shape = record, label = "{<col0> \N| ideventtype:  bigserial\lts:  timestamp with time zone\lname:  text\lpriority:  integer\ltreatment:  boolean\lmanual:  boolean\ldate_editable:  boolean\lnotify_timeout:  integer\lnotify_closable:  boolean\lnotify_img:  text\lnotify_snd:  text\lnote:  text\llabel:  text\lcode:  text\lnotify_all_users:  boolean\lexpiration:  integer\lauto_close_on_event_defined:  integer[]\lenable_auto_close_on_event_defined:  boolean\lideventtype_group:  integer\lenabled:  boolean\lfootprint_row:  smallint\leventtype_attention_group:  bigint[]\l}" ];
+"public.equipments_config_services" [shape = record, label = "{<col0> \N| idequipmentconfig:  bigserial\lts:  timestamp with time zone\lfootprint_row:  smallint\lservices:  text\lconfig:  jsonb\ldescription:  text\lidequipment:  bigint\l}" ];
 
 "public.eventtypes_groups" [shape = record, label = "{<col0> \N| ideventtype_group:  bigserial\lgroup:  text\lenabled:  boolean\lis_status:  boolean\ldescription:  text\lfootprint_row:  smallint\l}" ];
-
-"public.farma_lista_precios_farmacias" [shape = record, label = "{<col0> \N| idlista_precios:  bigserial\lidaccount:  integer\lprincipal:  text\lactiva:  text\lproductos:  integer\lstatus:  text\lts:  timestamp with time zone\lts_lista_farmacia:  timestamp with time zone\lsrv159_activa:  text\lsrv159_productos:  integer\lsrv159_principal:  text\lts_lista_srv159:  timestamp with time zone\lsincronizado:  text\lprovincia:  text\lip:  text\lfootprint_row:  smallint\l}" ];
 
 "public.file_links" [shape = record, label = "{<col0> \N| idfilelinks:  bigserial\lts:  timestamp with time zone\ldateloadfile:  timestamp with time zone\lpath_file:  text\lname_file:  text\lsize_file:  integer\l}" ];
 
 "public.groups" [shape = record, label = "{<col0> \N| idgroup:  bigserial\lts:  timestamp with time zone\lenabled:  boolean\lname:  text\ldescription:  text\lnote:  text\liddivision:  bigint\lfootprint_row:  smallint\l}" ];
 
-"public.identification_types" [shape = record, label = "{<col0> \N| ididtype:  bigserial\lts:  timestamp with time zone\lenabled:  boolean\lname:  text\lnote:  text\lfootprint_row:  smallint\l}" ];
+"public.last_modified_cells" [shape = record, label = "{<col0> \N| idlastmodcell:  bigserial\ldatas:  jsonb\l_lm_:  timestamp with time zone\l}" ];
 
-"public.network_devices" [shape = record, label = "{<col0> \N| idequipment:  bigint\lts:  timestamp with time zone\lequipment:  text\lmark:  text\lmodel:  text\lserial_number:  text\ldescription:  text\linstallation_date:  timestamp without time zone\luninstall_date:  timestamp without time zone\lnote:  text\lcode_ref:  text\lidaccount:  integer\loperability:  smallint\lidprovider:  integer\lagreement_code_provider:  text\lreport_validator:  text\lenabled:  boolean\leventtypes:  integer[]\lfootprint_row:  smallint\lidcustodian:  bigint\lip:  inet\lmac:  macaddr\lnetwork_access_method:  text\lconnection_speed:  real\lusername:  text\lpwd:  text\lport:  smallint\lmonitored:  boolean\ladditional_properties:  jsonb\l}" ];
-
-"public.notification_area" [shape = record, label = "{<col0> \N| idnotify:  bigserial\lts:  timestamp with time zone\lurgency:  integer\ltimeout:  integer\lclosable:  boolean\limg:  text\lsnd:  text\ltitle:  text\lbody:  text\lsessionid:  text\lidadmins:  bigint[]\lfootprint_row:  smallint\ldetail_json:  json\l}" ];
-
-"public.phone_providers" [shape = record, label = "{<col0> \N| idprovider:  bigserial\lts:  timestamp with time zone\lenable:  boolean\lprovider:  text\lfootprint_row:  smallint\l}" ];
-
-"public.phone_types" [shape = record, label = "{<col0> \N| idphonetype:  bigserial\lts:  timestamp without time zone\ltype:  text\lfootprint_row:  smallint\l}" ];
-
-"public.phones" [shape = record, label = "{<col0> \N| idphone:  bigserial\lts:  timestamp with time zone\lenabled:  boolean\lidcontact:  integer\lidprovider:  integer\lidphonetype:  integer\lnumber:  text\lext:  text\lnote:  text\lpriority:  integer\lfootprint_row:  smallint\l}" ];
+"public.network_devices" [shape = record, label = "{<col0> \N| idequipment:  bigint\lts:  timestamp with time zone\lequipment:  text\lmark:  text\lmodel:  text\lserial_number:  text\ldescription:  text\linstallation_date:  timestamp without time zone\luninstall_date:  timestamp without time zone\lnote:  text\lcode_ref:  text\lidaccount:  integer\loperability:  smallint\lidprovider:  integer\lagreement_code_provider:  text\lreport_validator:  text\lenabled:  boolean\leventtypes:  integer[]\lfootprint_row:  smallint\lidcustodian:  bigint\ladditional_properties:  jsonb\lkey:  uuid\lip:  inet\lmac:  macaddr\lnetwork_access_method:  text\lconnection_speed:  real\lusername:  text\lpwd:  text\lport:  smallint\lmonitored:  boolean\l}" ];
 
 "public.providers" [shape = record, label = "{<col0> \N| idcontact:  bigint\lts:  timestamp with time zone\lenabled:  boolean\lfirst_name:  text\llast_name:  text\lbirthday:  timestamp with time zone\lidentification:  text\lididtype:  integer\lpostal_code:  text\lgender:  integer\lgeox:  double precision\lgeoy:  double precision\lnote:  text\laddress:  text\laddress_ref:  text\lgroups:  integer[]\lfootprint_row:  smallint\lis_admin:  boolean\ladmin_start:  timestamp without time zone\ladmin_end:  timestamp without time zone\ladmin_username:  text\ladmin_pwd:  text\ladmin_sessionid:  text\ladmin_ip:  text\ladmin_level:  integer\lproduct_or_service:  text\l}" ];
 
 "public.table_modification_log" [shape = record, label = "{<col0> \N| idtablemodif:  bigserial\ldatetime_modif:  timestamp with time zone\ltable_name:  text\lschema_name:  text\l}" ];
 
-"public.udc_columns" [shape = record, label = "{<col0> \N| idtableview:  bigint\lcolumn_name:  text\ldata_type:  text\lcolumn_default:  text\lcolumn_label:  text\lcolumn_width:  text\lts:  timestamp with time zone\lcolumn_decorator:  text\lcolumn_class:  text\ldgrid_rendercell:  text\ldgrid_formatter:  text\ldgrid_classname:  text\lshow:  boolean\lcolumn_position:  integer\ldgrid_editable:  boolean\ldgrid_sortable:  boolean\ldgrid_editon:  text\ldgrid_resizable:  boolean\lfield_iconclass:  text\lfield_placeholder:  text\ldgrid_editor:  text\ldgrid_autosave:  boolean\ldgrid_autoselect:  boolean\ldgrid_dismissonenter:  boolean\lidcolumn:  bigserial\ldgrid_editor_args:  text\lfootprint_row:  smallint\l}" ];
+"scheduled_tasks.scheduled_task_agents" [shape = record, label = "{<col0> \N| idscheduled_task_agent:  bigserial\lts:  timestamp with time zone\lfootprint_row:  smallint\lenabled:  boolean\lagent_key:  text\lagent_name:  text\ldescription:  text\l}" ];
 
-"public.udc_tables_columns" [shape = record, label = "{<col0> \N| table_name:  text\lcolumn_name:  text\ldata_type:  text\lcolumn_default:  text\lcolumn_label:  text\lcolumn_width:  text\lts:  timestamp with time zone\lcolumn_decorator:  text\lcolumn_class:  text\ldgrid_rendercell:  text\ldgrid_formatter:  text\ldgrid_classname:  text\lshow:  boolean\lcolumn_position:  integer\ldgrid_editable:  boolean\lfootprint_row:  smallint\l}" ];
+"scheduled_tasks.task_list" [shape = record, label = "{<col0> \N| idtask:  bigserial\lts:  timestamp with time zone\lenabled:  boolean\lfunction_name:  text\ltask_start:  timestamp with time zone\ltask_end:  timestamp with time zone\ltask_trigger:  jsonb\llast_run:  timestamp with time zone\lnext_run:  timestamp with time zone\lstatus:  smallint\ldescription:  text\ltask_parameters:  jsonb\lduration:  integer\lfootprint_row:  smallint\lscheduled_task_agent:  bigint[]\l}" ];
 
-"public.udc_tables_views" [shape = record, label = "{<col0> \N| title_dgrid:  text\lrow_selector_dgrid:  boolean\lidtableview:  bigint\ltv_name:  text\ladd_button_enabled:  boolean\ldelete_button_enabled:  boolean\lexport_button_enabled:  boolean\ldgrid_selectionmode:  text\ldgrid_allowtextselection:  boolean\ldgrid_deselectonrefresh:  boolean\ldgrid_allowselectall:  boolean\lts:  timestamp with time zone\lfootprint_row:  smallint\l}" ];
+"secondary.i_eta_rm_matriz_articulos_201708" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
 
-"public.xmpps" [shape = record, label = "{<col0> \N| idxmpp:  bigserial\lts:  timestamp with time zone\lidcontact:  bigint\laccount:  text\lenabled:  boolean\lfootprint_row:  smallint\lnote:  text\l}" ];
+"secondary.i_eta_rm_matriz_articulos_201709" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
 
-"scheduled_tasks.task_list" [shape = record, label = "{<col0> \N| idtask:  bigserial\lts:  timestamp with time zone\lenabled:  boolean\lfunction_name:  text\ltask_start:  timestamp with time zone\ltask_end:  timestamp with time zone\ltask_trigger:  jsonb\llast_run:  timestamp with time zone\lnext_run:  timestamp with time zone\lstatus:  smallint\ldescription:  text\ltask_parameters:  jsonb\lduration:  integer\l}" ];
+"secondary.i_eta_rm_matriz_articulosauxiliar_201708" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
 
-"secondary.eta_movinventarios" [shape = record, label = "{<col0> \N| idetamovinv:  bigserial\ldateload:  timestamp with time zone\l}" ];
+"secondary.i_eta_rm_matriz_articulosauxiliar_201709" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_clientes_190001" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_clientes_201709" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_direcciones_190001" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_direcciones_198912" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_direcciones_201709" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_docvxmp_201708" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_docvxmp_201709" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_empleados_201709" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_fechapago_190001" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_fechapago_201709" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_fmapago_190001" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_fmapago_201709" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_movinv_201708" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_movinv_201709" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_proveedores_201709" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_saldocli_190001" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_saldocli_198912" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_saldocli_201709" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_tipotxs_190001" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.i_eta_rm_matriz_tipotxs_201709" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.interfaces_eta_rm_matriz" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigserial\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigserial\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.interfaces_eta_rm_matriz_201707" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.interfaces_eta_rm_matriz_201708" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.interfaces_eta_rm_matriz_articulos_201708" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.interfaces_eta_rm_matriz_articulosauxiliar_201708" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.interfaces_eta_rm_matriz_docvxmp_201707" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.interfaces_eta_rm_matriz_docvxmp_201708" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.interfaces_eta_rm_matriz_movinv_201708" [shape = record, label = "{<col0> \N| idreginterfacesmatriz:  bigint\ldatetimeload:  timestamp with time zone\lnamefile:  text\ldatetimefile:  timestamp with time zone\lfileline:  integer\lnameinterface:  text\ldatas:  jsonb\lenmatriz:  boolean\lentienda:  boolean\lenmatriz_revisado:  timestamp with time zone\lentienda_revisado:  timestamp with time zone\lidaccount:  bigint\lts:  timestamp with time zone\lfootprint_row:  smallint\lisvalid:  boolean\lobservations:  jsonb\lignore:  boolean\liddata:  uuid\lfile_fingerprint:  uuid\l}" ];
+
+"secondary.lista_precios_oficinas" [shape = record, label = "{<col0> \N| idlista_precios:  bigserial\lidaccount:  integer\lprincipal:  text\lactiva:  text\lproductos:  integer\lstatus:  text\lts:  timestamp with time zone\lts_lista_farmacia:  timestamp with time zone\lsrv159_activa:  text\lsrv159_productos:  integer\lsrv159_principal:  text\lts_lista_srv159:  timestamp with time zone\lsincronizado:  text\lprovincia:  text\lip:  text\lfootprint_row:  smallint\l}" ];
+
+"services._input_buffer" [shape = record, label = "{<col0> \N| idreg:  uuid\lts:  timestamp with time zone\lfootprint_row:  smallint\lloaded:  timestamp with time zone\ldata:  jsonb\lip:  inet\lidstatusraw:  bigint\lidcommunicator:  bigint\lidservice:  bigint\liddevice:  bigint\lidcontact:  bigint\l}" ];
+
+"services._statusraw" [shape = record, label = "{<col0> \N| idstatusraw:  bigserial\lts:  timestamp with time zone\lfootprint_row:  smallint\lstatus_label:  text\l}" ];
+
+"services.communicators" [shape = record, label = "{<col0> \N| idcommunicator:  bigserial\lts:  timestamp with time zone\lfootprint_row:  smallint\lpwd:  text\lenabled:  boolean\ldatetime_start:  timestamp with time zone\ldatetime_end:  timestamp with time zone\ldescription:  text\l}" ];
+
+"services.datas" [shape = record, label = "{<col0> \N| idevent:  uuid\lts:  timestamp with time zone\lfootprint_row:  smallint\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidcontact:  bigint\ldata:  jsonb\lkey:  uuid\lip:  inet\lidstatusraw:  bigint\lidcommunicator:  bigint\l}" ];
+
+"services.services" [shape = record, label = "{<col0> \N| idservice:  bigserial\lts:  timestamp with time zone\lfootprint_row:  smallint\lservice_name:  text\lenabled:  boolean\lis_public:  boolean\ldescription:  text\l}" ];
+
+"users.tokens" [shape = record, label = "{<col0> \N| token:  uuid\lts:  timestamp with time zone\lfootprint_row:  smallint\lisuser:  boolean\lid:  bigint\lfirst_heartbeat:  timestamp with time zone\llast_heartbeat:  timestamp with time zone\lip:  inet\l}" ];
+
+"users.users" [shape = record, label = "{<col0> \N| iduser:  bigserial\lusername:  text\lts:  timestamp with time zone\lfootprint_row:  smallint\lidcontact:  bigint\lenabled:  boolean\luser_start:  timestamp with time zone\luser_end:  timestamp with time zone\lpwd:  text\luser_role:  bigint[]\ldivisions:  bigint[]\laccounts:  bigint[]\llocked_date:  timestamp with time zone\lfailed_access_attempts:  smallint\lemail_notification:  bigint[]\lxmpp_notification:  bigint[]\ladmin_attention_group:  integer[]\l}" ];
 
 
-"contacts.contacts" -> "public.identification_types" [label="fk_contacts_ididtype"];
-"events.datas" -> "events.statustypes" [label="fk_evetn_statustype_id"];
-"events.datas" -> "public.accounts" [label="fk_idaccount_id"];
-"events.datas" -> "events.eventtypes" [label="sfsdf"];
-"events.datas_000112" -> "public.eventtypes" [label="fk_datas_000112_ideventtype"];
-"events.datas_000112" -> "public.admins" [label="fk_datas_000112_idadmin"];
-"events.datas_000112" -> "events.reception_modes" [label="fk_datas_000112_receptionmode"];
-"events.datas_199001" -> "public.eventtypes" [label="fk_datas_199001_ideventtype"];
-"events.datas_199001" -> "public.admins" [label="fk_datas_199001_idadmin"];
-"events.datas_199001" -> "events.reception_modes" [label="fk_datas_199001_receptionmode"];
-"events.datas_201504" -> "public.eventtypes" [label="fk_datas_201504_ideventtype"];
-"events.datas_201504" -> "public.admins" [label="fk_datas_201504_idadmin"];
-"events.datas_201504" -> "events.reception_modes" [label="fk_datas_201504_receptionmode"];
-"events.datas_201506" -> "public.eventtypes" [label="fk_datas_201506_ideventtype"];
-"events.datas_201506" -> "public.admins" [label="fk_datas_201506_idadmin"];
-"events.datas_201506" -> "events.reception_modes" [label="fk_datas_201506_receptionmode"];
-"events.datas_201508" -> "public.eventtypes" [label="fk_datas_201508_ideventtype"];
-"events.datas_201508" -> "public.admins" [label="fk_datas_201508_idadmin"];
-"events.datas_201508" -> "events.reception_modes" [label="fk_datas_201508_receptionmode"];
-"events.datas_201509" -> "public.eventtypes" [label="fk_datas_201509_ideventtype"];
-"events.datas_201509" -> "public.admins" [label="fk_datas_201509_idadmin"];
-"events.datas_201509" -> "events.reception_modes" [label="fk_datas_201509_receptionmode"];
-"events.datas_201510" -> "public.eventtypes" [label="fk_datas_201510_ideventtype"];
-"events.datas_201510" -> "public.admins" [label="fk_datas_201510_idadmin"];
-"events.datas_201510" -> "events.reception_modes" [label="fk_datas_201510_receptionmode"];
-"events.datas_201511" -> "public.eventtypes" [label="fk_datas_201511_ideventtype"];
-"events.datas_201511" -> "public.admins" [label="fk_datas_201511_idadmin"];
-"events.datas_201511" -> "events.reception_modes" [label="fk_datas_201511_receptionmode"];
-"events.datas_201610" -> "public.eventtypes" [label="fk_datas_201610_ideventtype"];
-"events.datas_201610" -> "public.admins" [label="fk_datas_201610_idadmin"];
-"events.datas_201610" -> "events.reception_modes" [label="fk_datas_201610_receptionmode"];
-"events.datas_201701" -> "public.eventtypes" [label="fk_datas_201701_ideventtype"];
-"events.datas_201701" -> "public.admins" [label="fk_datas_201701_idadmin"];
-"events.datas_201701" -> "events.reception_modes" [label="fk_datas_201701_receptionmode"];
-"events.datas_201704" -> "public.eventtypes" [label="fk_datas_201704_ideventtype"];
-"events.datas_201704" -> "public.admins" [label="fk_datas_201704_idadmin"];
-"events.datas_201704" -> "events.reception_modes" [label="fk_datas_201704_receptionmode"];
-"events.datas_201705" -> "public.eventtypes" [label="fk_datas_201705_ideventtype"];
-"events.datas_201705" -> "public.admins" [label="fk_datas_201705_idadmin"];
-"events.datas_201705" -> "events.reception_modes" [label="fk_datas_201705_receptionmode"];
-"octopus.octopus_by_account" -> "public.accounts__" [label="fk_octbyaccount"];
-"octopus.octopus_by_equipment" -> "public.equipments" [label="fk_octobyeq_idequipment"];
+"contacts.contacts" -> "contacts.identification_types" [label="fk_contacts_ididtype"];
+"contacts.phones" -> "contacts.phone_providers" [label="fk_phones_idprovider"];
+"contacts.phones" -> "contacts.phone_types" [label="fk_phones_idphonetype"];
+"events.comments_attachments" -> "public.attachments" [label="fk_event_comments_attach_idattach"];
+"events.eventtypes" -> "events.eventtype_groups" [label="eventtypes_idgroup_fkey"];
+"octopus.octopus_by_equipment" -> "public.devices" [label="fk_octobyeq_idequipment"];
 "octopus.octopus_functions_base" -> "octopus.octopus_function" [label="fk_idoctopusfunction_obyaccount"];
 "pgagent.pga_exception" -> "pgagent.pga_schedule" [label="pga_exception_jexscid_fkey"];
 "pgagent.pga_job" -> "pgagent.pga_jobclass" [label="pga_job_jobjclid_fkey"];
@@ -252,85 +214,19 @@ edge [];
 "pgagent.pga_jobsteplog" -> "pgagent.pga_joblog" [label="pga_jobsteplog_jsljlgid_fkey"];
 "pgagent.pga_jobsteplog" -> "pgagent.pga_jobstep" [label="pga_jobsteplog_jsljstid_fkey"];
 "pgagent.pga_schedule" -> "pgagent.pga_job" [label="pga_schedule_jscjobid_fkey"];
-"public.account_contacts" -> "public.accounts__" [label="fk_account_contacts_idaccount"];
-"public.account_users" -> "public.accounts__" [label="fk_account_user_idaccount"];
 "public.accounts" -> "public.account_states" [label="fk_account_states_id"];
-"public.accounts__" -> "public.divisions" [label="fk_accounts_iddivision"];
+"public.accounts" -> "public.divisions" [label="accounts_iddivision_fkey"];
 "public.admins" -> "contacts.contacts" [label="fk_admins_idcontact_idcontact"];
-"public.equipments" -> "public.accounts" [label="fk_equi_accoun_id"];
-"public.event_comments_attachments" -> "public.attachments" [label="fk_event_comments_attach_idattach"];
-"public.events" -> "public.event_statustypes" [label="fk_events_ideventstatustype"];
-"public.events" -> "public.accounts__" [label="fk_events_idaccount"];
-"public.events" -> "public.eventtypes" [label="fk_events_ideventtype"];
-"public.events_2015" -> "public.accounts__" [label="fk_events_2015_idaccount"];
-"public.events_2015" -> "public.eventtypes" [label="fk_events_2015_ideventtype"];
-"public.events_2016" -> "public.event_statustypes" [label="fk_events_2016_ideventstatustype"];
-"public.events_2016" -> "public.accounts__" [label="fk_events_2016_idaccount"];
-"public.events_2016" -> "public.eventtypes" [label="fk_events_2016_ideventtype"];
-"public.events_2016" -> "public.admins" [label="fk_events_2016_idadmin"];
-"public.events_2016" -> "public.event_reception_modes" [label="fk_events_2016_ideventreceptionmode"];
-"public.events_2017" -> "public.eventtypes" [label="fk_events_2017_ideventtype"];
-"public.events_2017" -> "public.admins" [label="fk_events_2017_idadmin"];
-"public.events_2017" -> "public.event_reception_modes" [label="fk_events_2017_ideventreceptionmode"];
-"public.events_dbsizes" -> "public.accounts__" [label="fk_events_dbsizes_idaccount"];
-"public.events_dbsizes" -> "public.eventtypes" [label="fk_events_dbsizes_ideventtype"];
-"public.events_dbsizes_2016" -> "public.accounts__" [label="fk_events_dbsizes_2016_idaccount"];
-"public.events_dbsizes_2016" -> "public.eventtypes" [label="fk_events_dbsizes_2016_ideventtype"];
-"public.events_device_uptime" -> "public.accounts__" [label="fk_events_device_uptime_idaccount"];
-"public.events_device_uptime" -> "public.eventtypes" [label="fk_events_device_uptime_ideventtype"];
-"public.events_device_uptime_2016" -> "public.event_statustypes" [label="fk_events_device_uptime_2016_ideventstatustype"];
-"public.events_device_uptime_2016" -> "public.accounts__" [label="fk_events_device_uptime_2016_idaccount"];
-"public.events_device_uptime_2016" -> "public.eventtypes" [label="fk_events_device_uptime_2016_ideventtype"];
-"public.events_device_uptime_2016" -> "public.admins" [label="fk_events_device_uptime_2016_idadmin"];
-"public.events_device_uptime_2016" -> "public.event_reception_modes" [label="fk_events_device_uptime_2016_ideventreceptionmode"];
-"public.events_device_uptime_2017" -> "public.eventtypes" [label="fk_events_device_uptime_2017_ideventtype"];
-"public.events_device_uptime_2017" -> "public.admins" [label="fk_events_device_uptime_2017_idadmin"];
-"public.events_device_uptime_2017" -> "public.event_reception_modes" [label="fk_events_device_uptime_2017_ideventreceptionmode"];
-"public.events_diskspace" -> "public.accounts__" [label="fk_events_events_diskspace_idaccount"];
-"public.events_diskspace" -> "public.eventtypes" [label="fk_events_diskspace_ideventtype"];
-"public.events_diskspace_2016" -> "public.event_statustypes" [label="fk_events_diskspace_2016_ideventstatustype"];
-"public.events_diskspace_2016" -> "public.accounts__" [label="fk_events_diskspace_2016_idaccount"];
-"public.events_diskspace_2016" -> "public.eventtypes" [label="fk_events_diskspace_2016_ideventtype"];
-"public.events_diskspace_2016" -> "public.admins" [label="fk_events_diskspace_2016_idadmin"];
-"public.events_diskspace_2016" -> "public.event_reception_modes" [label="fk_events_diskspace_2016_ideventreceptionmode"];
-"public.events_diskspace_2017" -> "public.eventtypes" [label="fk_events_diskspace_2017_ideventtype"];
-"public.events_diskspace_2017" -> "public.admins" [label="fk_events_diskspace_2017_idadmin"];
-"public.events_diskspace_2017" -> "public.event_reception_modes" [label="fk_events_diskspace_2017_ideventreceptionmode"];
-"public.events_jobs" -> "public.accounts__" [label="fk_events_jobs_idaccount"];
-"public.events_jobs" -> "public.eventtypes" [label="fk_events_jobs_ideventtype"];
-"public.events_jobs_1990" -> "public.accounts__" [label="fk_events_jobs_1990_idaccount"];
-"public.events_jobs_1990" -> "public.eventtypes" [label="fk_events_jobs_1990_ideventtype"];
-"public.events_jobs_1990" -> "public.admins" [label="fk_events_jobs_1990_idadmin"];
-"public.events_jobs_1990" -> "public.event_reception_modes" [label="fk_events_jobs_1990_ideventreceptionmode"];
-"public.events_jobs_2014" -> "public.eventtypes" [label="fk_events_jobs_2014_ideventtype"];
-"public.events_jobs_2014" -> "public.admins" [label="fk_events_jobs_2014_idadmin"];
-"public.events_jobs_2014" -> "public.event_reception_modes" [label="fk_events_jobs_2014_ideventreceptionmode"];
-"public.events_jobs_2015" -> "public.accounts__" [label="fk_events_jobs_2015_idaccount"];
-"public.events_jobs_2015" -> "public.eventtypes" [label="fk_events_jobs_2015_ideventtype"];
-"public.events_jobs_2015" -> "public.admins" [label="fk_events_jobs_2015_idadmin"];
-"public.events_jobs_2015" -> "public.event_reception_modes" [label="fk_events_jobs_2015_ideventreceptionmode"];
-"public.events_jobs_2016" -> "public.accounts__" [label="fk_events_jobs_2016_idaccount"];
-"public.events_jobs_2016" -> "public.eventtypes" [label="fk_events_jobs_2016_ideventtype"];
-"public.events_jobs_2016" -> "public.admins" [label="fk_events_jobs_2016_idadmin"];
-"public.events_jobs_2016" -> "public.event_reception_modes" [label="fk_events_jobs_2016_ideventreceptionmode"];
-"public.events_jobs_2017" -> "public.eventtypes" [label="fk_events_jobs_2017_ideventtype"];
-"public.events_jobs_2017" -> "public.admins" [label="fk_events_jobs_2017_idadmin"];
-"public.events_jobs_2017" -> "public.event_reception_modes" [label="fk_events_jobs_2017_ideventreceptionmode"];
-"public.events_login_2017" -> "public.eventtypes" [label="fk_events_login_2017_ideventtype"];
-"public.events_login_2017" -> "public.admins" [label="fk_events_login_2017_idadmin"];
-"public.events_login_2017" -> "public.event_reception_modes" [label="fk_events_login_2017_ideventreceptionmode"];
-"public.events_networkdevice_ping_2016" -> "public.accounts__" [label="fk_events_networkdevice_ping_2016_idaccount"];
-"public.events_networkdevice_ping_2016" -> "public.eventtypes" [label="fk_events_networkdevice_ping_2016_ideventtype"];
-"public.events_networkdevice_ping_2016" -> "public.admins" [label="fk_events_networkdevice_ping_2016_idadmin"];
-"public.events_networkdevice_ping_2016" -> "public.event_reception_modes" [label="fk_events_networkdevice_ping_2016_ideventreceptionmode"];
-"public.events_networkdevice_ping_2017" -> "public.eventtypes" [label="fk_events_networkdevice_ping_2017_ideventtype"];
-"public.events_networkdevice_ping_2017" -> "public.admins" [label="fk_events_networkdevice_ping_2017_idadmin"];
-"public.events_networkdevice_ping_2017" -> "public.event_reception_modes" [label="fk_events_networkdevice_ping_2017_ideventreceptionmode"];
-"public.eventtypes" -> "public.eventtypes_groups" [label="fk_eventtypes_ideventtype_group"];
+"public.devices" -> "public.accounts" [label="fk_equi_accoun_id"];
+"public.equipments_config_services" -> "public.devices" [label="equipments_config_idequipment_fkey"];
 "public.groups" -> "public.divisions" [label="fk_groups_iddivision"];
-"public.phones" -> "public.phone_providers" [label="fk_phones_idprovider"];
-"public.phones" -> "public.phone_types" [label="fk_phones_idphonetype"];
-"public.udc_columns" -> "public.udc_tables_views" [label="fk_idtableview_udc"];
+"services._input_buffer" -> "services._statusraw" [label="fk_raw_idstatusraw"];
+"services._input_buffer" -> "services.communicators" [label="fk_raw_idcommunicator"];
+"services.datas" -> "contacts.contacts" [label="fk_raw_idcontact"];
+"services.datas" -> "public.devices" [label="fk_raw_key"];
+"services.datas" -> "services._statusraw" [label="fk_raw_idstatusraw"];
+"services.datas" -> "services.communicators" [label="fk_raw_idcommunicator"];
+"users.users" -> "contacts.contacts" [label="fk_users_idcontact_idcontact"];
 }
 
 

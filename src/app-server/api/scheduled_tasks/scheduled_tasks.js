@@ -44,6 +44,7 @@
                 });
 
               }, function(fail){
+                console.log(fail);
                 deferred.reject(fail);
               });
 

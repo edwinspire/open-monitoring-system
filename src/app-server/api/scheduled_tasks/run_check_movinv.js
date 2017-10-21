@@ -25,6 +25,8 @@ run_check_movinv: function(task){
         strq = `SELECT idreginterfacesmatriz, cpudt, cputm, menge, mblnr, matnr, werks, bwart, shkzg FROM secondary.view_mov_inv_sin_cargar_cr ORDER BY datetimefile ${orden} LIMIT ${limit};`;
     }
 
+    console.log(strq);
+
     t.query(strq, []).then(function(result){
 
         var totalMov = result.rows.length;
@@ -36,14 +38,18 @@ run_check_movinv: function(task){
             if(movimiento_revisado.Serie_Factura){
                 idsMovimientos.push(movimiento_revisado.idmov);
             }
+console.log(movProcesados+' de '+totalMov);
 
             if(movProcesados == totalMov){
+
+console.log(movProcesados+' >>>> '+totalMov);
+
                 signal.remove();
 
                 t.query(`
                   UPDATE secondary.interfaces_eta_rm_matriz SET enmatriz = true, enmatriz_revisado = now(), isvalid = true WHERE idreginterfacesmatriz = ANY($1::BIGINT[]);
                   `, [idsMovimientos]).then(function(result){
-                    //console.log(result);
+                    console.log(result);
                     deferred.resolve(true);
 
                 }, function(fail){
@@ -62,6 +68,7 @@ run_check_movinv: function(task){
     server: task.task_parameters.mssql.ip, // You can use 'localhost\\instance' to connect to named instance 
     database: 'msdb',
     requestTimeout: 300000,
+    connectionTimeout: 90000,
     options: {
         encrypt: true // Use this if you're on Windows Azure 
     }
@@ -149,7 +156,7 @@ _run_check_movinv_connect_matriz: function(cnxmatriz, movsap, name_event){
 
 
         }).catch(function(err) {
-            console.log(err);
+              console.log(err, srtquery);
             t.emit(name_event, err);
         });
 

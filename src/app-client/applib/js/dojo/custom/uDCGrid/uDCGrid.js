@@ -44,10 +44,10 @@
   "dijit/form/FilteringSelect",
   "FilteringSelectGlobalStore/FilteringSelectGlobalStore",
   "Widget/json_treeview/json_treeview",
-  "Widget/request/RequestData",
+  "Widget/request/DataRequest",
   "dojo/parser",
   "dojo/has!touch?dojo/touch:dojo/mouse"
-  ], function(declare, on, win, domClass, has, locale, Grid, Keyboard, dMemory, Memory, Trackable, Selection, Selector, Pagination, DijitRegistry, Editor, ColumnReorder, ColumnResizer, ColumnHider, request, array, topic, Deferred, Filter, TextBox, CheckBox,  HorizontalSlider, VerticalSlider, NumberSpinner, TimeSpinner, CurrencyTextBox, DateTextBox, NumberTextBox, SimpleTextarea, Textarea, TimeTextBox, FilteringSelect, FilteringSelectGlobalStore, json_treeview, RequestData) {
+  ], function(declare, on, win, domClass, has, locale, Grid, Keyboard, dMemory, Memory, Trackable, Selection, Selector, Pagination, DijitRegistry, Editor, ColumnReorder, ColumnResizer, ColumnHider, request, array, topic, Deferred, Filter, TextBox, CheckBox,  HorizontalSlider, VerticalSlider, NumberSpinner, TimeSpinner, CurrencyTextBox, DateTextBox, NumberTextBox, SimpleTextarea, Textarea, TimeTextBox, FilteringSelect, FilteringSelectGlobalStore, json_treeview, DataRequest) {
     /**
      * Micro Data Connector dGrid
      *
@@ -85,6 +85,8 @@
              uDCProperties: {},
              dbschema: 'public',
              dbtableview: 'none',
+             _request: {},
+             schema_table: 'none.none',
 
     /**
      * @class uDCGrid
@@ -107,7 +109,8 @@
 
           var t = this; 
 
-          t._last_select = t.initialQuery;
+          t._request = new DataRequest({service: 'dbstructure', target: '/service/public'});
+          //t._last_select = t.initialQuery;
 
 //** Crea el store para los datos **//
 this._GridStore = new (declare([dMemory, Trackable]))({ data: null, idProperty: this.__idProperty });
@@ -189,8 +192,8 @@ Filter: function (searchTerm) {
     });
     setToMemory = t._GridStore.filter(mainFilter);
   }
-//console.log();
-t.set("collection", setToMemory);
+
+  t.set("collection", setToMemory);
 },
 
 Select: function (_data, _clear_grid_before) {
@@ -230,19 +233,6 @@ request: function (_param, _action) {
   var t = this;
   var _data = {};
 
-
-  var rd = new RequestData({service: 'dbstructure', target: '/service/public'});
-  rd.add({tschema_tname: 'public.accounts'});
-  rd.add({tschema_tname: 'public.admins'});
-  rd.add({tschema_tname: 'events.datas'});
-
-  rd.request().then(function(result){
-    console.log(result);
-  }, function(err){
-    console.log(err);
-  });
-
-
   if (_param) {
     _data = _param;
   }
@@ -262,120 +252,115 @@ request: function (_param, _action) {
       rowFingerPrintValue = new Date().getTime();
     }
 
-
-
     var url = t.target+'/'+t.dbschema+'/'+t.dbtableview+'/'+_action+'/'+idProperty+'/'+idPropertyValue+'/'+rowFingerPrint+'/'+rowFingerPrintValue;
-//var url = "/service/public";
 
-_data.__rowFingerPrint = null;
-_data.__rowFingerPrintValue = null;
-_data.__idProperty = null;
+    _data.__rowFingerPrint = null;
+    _data.__rowFingerPrintValue = null;
+    _data.__idProperty = null;
 
-var r = request.post(url, {
-  data: _data,
-  preventCache: true,
-  handleAs: "json"
-}
-).then(
-function (response) {
-
-  console.log(response);
-
-  switch (_action) {
-    case "u":
-
-    if (response.rowCount > 0) {
-      t.save();
-      t._notifications({ Urgency: 10, Message: 'Update ' + response.rowCount + ' row(s)', Title: 'Registro actualizado' });
-    } else {
-      t.revert();
-      t.Select(t._last_select);
-      t._notifications({ Urgency: 2, Message: response.Error, Title: 'Registro no actualizado' });
+    var r = request.post(url, {
+      data: _data,
+      preventCache: true,
+      handleAs: "json"
     }
+    ).then(
+    function (response) {
+
+      switch (_action) {
+        case "u":
+
+        if (response.rowCount > 0) {
+          t.save();
+          t._notifications({ Urgency: 10, Message: 'Update ' + response.rowCount + ' row(s)', Title: 'Registro actualizado' });
+        } else {
+          t.revert();
+          t.Select(t._last_select);
+          t._notifications({ Urgency: 2, Message: response.Error, Title: 'Registro no actualizado' });
+        }
 
 
-    break;
-    case "r":
-    var myData = {
-      identifier: "unique_id", items: []
-    };
+        break;
+        case "r":
+        var myData = {
+          identifier: "unique_id", items: []
+        };
 
-    array.forEach(response, function (item, i) {
-      var item_temp = item;
-      item_temp.unique_id = i + 1;
-      myData.items.push(item_temp);
-    });
+        array.forEach(response, function (item, i) {
+          var item_temp = item;
+          item_temp.unique_id = i + 1;
+          myData.items.push(item_temp);
+        });
 
-    t._grid_setData(myData.items);
+        t._grid_setData(myData.items);
 
-    break;
-    case "delete_rows":
+        break;
+        case "delete_rows":
 
-    if (response.Delete > 0) {
-      t._notifications({ Urgency: 10, Message: 'Delete ' + response.Delete + ' row(s)', Title: 'Registro eliminado' });
-    } else {
-      t._notifications({ Urgency: 2, Message: response.error, Title: 'Registro no eliminado' });
-    }
+        if (response.Delete > 0) {
+          t._notifications({ Urgency: 10, Message: 'Delete ' + response.Delete + ' row(s)', Title: 'Registro eliminado' });
+        } else {
+          t._notifications({ Urgency: 2, Message: response.error, Title: 'Registro no eliminado' });
+        }
 
-    break;
-    default:
-
-    break;
-  }
-
-
-},
-function (error) {
-  console.warn(error);
-  switch(error.response.status){
-    case 404:
-    t._notifications({ Urgency: 2, Message: error.response.url+' no encontrada', Title: 'Error 404' });
-    break;
-    case 500:
-    if(error.response.data){
-      switch(_action){
-        case 'u':
-        t.revert();
-        t._notifications({ Urgency: 1, Message: 'Error '+error.response.data.data.code, Title: 'No se pudo actualizar' });
         break;
         default:
-        t._notifications({ Urgency: 1, Message: 'Error '+error.response.data.data.code, Title: 'Error en el servidor' });
+
         break;
       }
 
+
+    },
+    function (error) {
+      console.warn(error);
+      switch(error.response.status){
+        case 404:
+        t._notifications({ Urgency: 2, Message: error.response.url+' no encontrada', Title: 'Error 404' });
+        break;
+        case 500:
+        if(error.response.data){
+          switch(_action){
+            case 'u':
+            t.revert();
+            t._notifications({ Urgency: 1, Message: 'Error '+error.response.data.data.code, Title: 'No se pudo actualizar' });
+            break;
+            default:
+            t._notifications({ Urgency: 1, Message: 'Error '+error.response.data.data.code, Title: 'Error en el servidor' });
+            break;
+          }
+
+        }
+        break;
+
+      }
     }
-    break;
-
-  }
-}
 
 
 
-);
+    );
 
-r.then(function(){
+    r.then(function(){
 
-  t._enabledload = true;
-  switch(_action){
-    case 'u':
-    t.Select(t._last_select);
-    break;
-    case 'select_rows':
+      t._enabledload = true;
+      switch(_action){
+        case 'u':
+        t.Select(t._last_select);
+        break;
+        case 'select_rows':
+        t._enabledload = true;
+        if(t._waiting_select){
+         t.Select(t._waiting_select);
+       }
+       break;
+     }
+
+   });
+
+
+  } else {
     t._enabledload = true;
-    if(t._waiting_select){
-     t.Select(t._waiting_select);
-   }
-   break;
- }
-
-});
-
-
-} else {
-  t._enabledload = true;
-  console.warn('No ha definido un Target = ', t.target);
-}
-return r;
+    console.warn('No ha definido un Target = ', t.target);
+  }
+  return r;
 },
 _notifications: function (_n) {
  topic.publish("/event/user/notify", _n);
@@ -410,100 +395,95 @@ getProperties: function(){
 }
 
 if(!t.Gui.target || t.Gui.target.length < 3){
-  t.Gui.target = '/db/gui/tvproperties/r/'+new Date().getTime()+'/'+new Date().getTime()+'/'+new Date().getTime()+'/'+new Date().getTime();
+  t.Gui.target = '/service/model';
   console.warn('Grid no tiene Gui.target para obtener la estructura, se usa la default');
 }
 
 var getCol = request.post(t.Gui.target, {
-  data: {tschema_tname: t.dbschema+'.'+t.dbtableview, Fields: JSON.stringify(t.Gui.fields)},
+  data: {schema_table: t.dbschema+'.'+t.dbtableview, Fields: JSON.stringify(t.Gui.fields)},
   preventCache: true,
   handleAs: "javascript"
 }
 ).then(
 function (response) {
 
-  console.log(response);
-
   var columns = [];
 
-  t.Gui.Properties = response[0];
+  if(response[0][t.dbschema][t.dbtableview]){
+    t.Gui.model = response[0][t.dbschema][t.dbtableview];
+  }
 
+  if(t.Gui.model && t.Gui.model.columns){
 
-  if(t.Gui && t.Gui.Properties){
+    array.forEach(t.Gui.model.columns, function(column, i){
 
-    array.forEach(t.Gui.Properties.columns_properties, function(column, i){
-
-      var c = column;
+      var c = {field: column.field, editOn: column.ongrid_editon, id: column.id, label: column.label, editor: column.ongrid_editor, formatter: column.ongrid_formatter, sortable: column.ongrid_sortable, renderCell: column.ongrid_render_cell};
 
       if(c.editOn && c.editOn == "dblclick" && has("touch")){
-      //  alert('Es touch');
-      c.editOn = "click";
-    }
-
-    if(c.editor){
-      switch(c.editor){
-        case 'HorizontalSlider':
-        c.editor = HorizontalSlider;
-        break;
-        case 'VerticalSlider':
-        c.editor = VerticalSlider;
-        break;
-        case 'NumberSpinner':
-        c.editor = NumberSpinner;
-        break;
-        case 'TimeSpinner':
-        c.editor = TimeSpinner;
-        break;
-        case 'CurrencyTextBox':
-        c.editor = CurrencyTextBox;
-        break;
-        case 'checkbox':
-        c.editor = CheckBox;
-        break;
-        case 'DateTextBox':
-        c.editor = DateTextBox;
-        break;
-        case 'NumberTextBox':
-        c.editor = NumberTextBox;
-        break;
-        case 'SimpleTextarea':
-        c.editor = SimpleTextarea;
-        break;
-        case 'Textarea':
-        c.editor = Textarea;
-        break;
-        case 'TimeTextBox':
-        c.editor = TimeTextBox;
-        break;
-        case 'FilteringSelectGlobalStore':
-        c.editor = FilteringSelectGlobalStore;
-        break;
-        case 'FilteringSelect':
-        c.editor = FilteringSelect;
-        break;
-        case 'json_treeview':
-        c.editor = json_treeview;
-        break;
-        default:
-        c.editor = 'text';
-        break;
+        c.editOn = "click";
       }
-    }
 
-    if(array.indexOf(t.Gui.fields, c.field) >= 0){
-      columns.push(c);
-        //console.log(c);
+      if(c.editor){
+        switch(c.editor){
+          case 'HorizontalSlider':
+          c.editor = HorizontalSlider;
+          break;
+          case 'VerticalSlider':
+          c.editor = VerticalSlider;
+          break;
+          case 'NumberSpinner':
+          c.editor = NumberSpinner;
+          break;
+          case 'TimeSpinner':
+          c.editor = TimeSpinner;
+          break;
+          case 'CurrencyTextBox':
+          c.editor = CurrencyTextBox;
+          break;
+          case 'checkbox':
+          c.editor = CheckBox;
+          break;
+          case 'DateTextBox':
+          c.editor = DateTextBox;
+          break;
+          case 'NumberTextBox':
+          c.editor = NumberTextBox;
+          break;
+          case 'SimpleTextarea':
+          c.editor = SimpleTextarea;
+          break;
+          case 'Textarea':
+          c.editor = Textarea;
+          break;
+          case 'TimeTextBox':
+          c.editor = TimeTextBox;
+          break;
+          case 'FilteringSelectGlobalStore':
+          c.editor = FilteringSelectGlobalStore;
+          break;
+          case 'FilteringSelect':
+          c.editor = FilteringSelect;
+          break;
+          case 'json_treeview':
+          c.editor = json_treeview;
+          break;
+          default:
+          c.editor = 'text';
+          break;
+        }
+      }
+
+      if(array.indexOf(t.Gui.fields, c.field) >= 0){
+        console.log(c);
+        columns.push(c);
       }
 
     });
 
     t.set('columns', columns);
-    console.warn('-->> Columnas', columns);
-    on.emit(t.domNode, 'dgrid-set-properties', {properties: t.Gui.Properties});
-
+    on.emit(t.domNode, 'dgrid-set-properties', {properties: t.Gui.model.properties});
 
   }else{
-
     console.warn('No se pudo obtener datos del GUI para la tabla '+t.__affected_table);
   }
 //console.log(columns);

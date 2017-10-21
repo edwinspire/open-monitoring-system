@@ -291,17 +291,44 @@ t.app.post("/db/*", _isAuthenticated, function(req, res){
 });
 
 
+////////////////////////////////////////////////////////////////////////////////////////
+t.app.post("/service/model",  function(req, res){
+	var model = t._pG.schema_gui_funjs_db_model(req.body.schema_table);
+
+	model.then(function(result){
+
+		if(result.rows.length > 0){
+			var r = result.rows[0].return;
+			res.status(200).send(r);
+		}else{
+			res.status(200).send("");
+		}
+
+	}, function(err){
+		console.log(err);
+	});
+});
+
 
 ////////////////////////////////////////////////////////////////////////////////////////
 t.app.post("/service/public",  function(req, res){
 
-var request_service = JSON.parse(req.body.data);
+	var request_service = JSON.parse(req.body.data);
 	t._pG.service_htttp(res, request_service);
 });
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-t.app.post("/service/*",  function(req, res){
+t.app.post("/service/private", _isAuthenticated, function(req, res){
+
+	var request_service = JSON.parse(req.body.data);
+	t._pG.service_htttp(res, request_service);
+});
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+t.app.post("/servicexxx/*",  function(req, res){
 
 	var parts = req.path.split("/");
 

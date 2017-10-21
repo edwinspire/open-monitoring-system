@@ -144,11 +144,12 @@ define(['dojo/_base/declare',
       if(t.Gui.Title){
         t.set('titlegrid', t.Gui.Title);
       }else{
-        t.set('titlegrid', event.properties.title_dgrid || event.properties.tschema_tname);
+        t.set('titlegrid', event.properties.title || event.properties.tschema_tname);
       }
 
-      console.log(t.Grid.column(1));
+      //console.log(t.Grid.column(1));
 
+/*
       for (var key in t.Grid.columns) {
         if (t.Grid.columns.hasOwnProperty(key)) {
 
@@ -210,6 +211,7 @@ define(['dojo/_base/declare',
 
     }
   }
+  */
 
 
 

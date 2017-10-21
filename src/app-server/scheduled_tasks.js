@@ -32,7 +32,7 @@ require(["dojo/request",
 	], function(request, on, locale, array, Gvfs, crypto, path, fs, pathToRegexp, pG, compression, Config, LogSystem, ScheduledTasks, all, stamp, Dojodate){
 
 
-
+/*
 var G = new Gvfs();
 G.on('mounted', function(m){
 console.trace('OK ', m);
@@ -44,6 +44,7 @@ console.trace('Error ', m);
 
 G.mount({domain: 'group', user: 'administrador', password: '1234567', resource: '172.16.133.7', protocol: 'smb'});
 G.info();
+*/
 
 /*
 fs.readdir("/run/user/1000/gvfs/ftp:host=172.16.100.91,port=2222,user=idocs/LOGISTICA", (err, files) => {
@@ -55,18 +56,29 @@ fs.readdir("/run/user/1000/gvfs/ftp:host=172.16.100.91,port=2222,user=idocs/LOGI
 
 
 		var Log = new LogSystem('debug', fs.createWriteStream('scheduled_tasks_'+(new Date()).toLocaleDateString()+'.log'));
+		
 		Log.debug("Inicia scheduled_tasks");
 
 		process.on('uncaughtException', function (error) {
 			Log.error(error.stack);
 		});
 
+console.log(process.env.PG_HOST);
+
 		var STasks = new ScheduledTasks({user: process.env.PG_USER, pwd: process.env.PG_PWD, host: process.env.PG_HOST, db: process.env.PG_DB});
+
+console.log("1");
 
 		STasks.get_config_from_db().then(function(){
 
+console.log("2");
+
 			setInterval(function(){
+
+console.log("3");
+
 				STasks.getTaskList().then(function(result){
+					
 					Log.debug('Obtiene la lista de tareas');
 
 					array.forEach(result.rows, function(task){

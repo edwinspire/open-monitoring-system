@@ -61,7 +61,10 @@ schema_gui_tvproperties: function(req, res, params){
 		res.status(500).json({success: false, data: 'No ha ingresado una accion valida', params: params});
 	}
 },
-
+schema_gui_funjs_db_model: function(schema_table, fields){
+	var t = this;
+	return t.query("SELECT gui.funjs_db_model($1::TEXT) as return;", [schema_table]);	
+},
 schema_gui_tables_view_properties: function(req, res, params){
 
 	var t = this;

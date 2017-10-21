@@ -18,6 +18,9 @@ run_check_carga_vxmp: function(task){
 
 			devicesProcceced ++;
 
+			
+			console.log(r);
+
 			if(r.valid){
 				t.query("SELECT secondary.fun_insert_ventasxmp($1::bigint, $2::json);", [r.result.idaccount, JSON.stringify(r.result.datas)]).then(function(result){
 					//console.log('------------->> '+devicesProcceced+' de '+totalDevices,result.rows);

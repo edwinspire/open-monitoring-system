@@ -9,10 +9,11 @@ define(["dojo/_base/declare",
   "dojox/encoding/digests/MD5",
   "dojo/Deferred"
   ], function(declare, lang, ObjectStore, Memory, Observable, request, topic, array, MD5, Deferred) {
-    return  declare("Widget/request/RequestData", [ObjectStore], {
+    return  declare("Widget/request/DataRequest", [ObjectStore], {
 
       target: '',
       service: '',
+      handleAs: 'json',
 
       _request_datas: [],
       
@@ -22,6 +23,7 @@ define(["dojo/_base/declare",
 
        this.target = '';
        this.service = '';
+       this.handleAs = 'json';
        /*
        this.handleAs= 'json';
        this.requestQuery = false;
@@ -39,30 +41,6 @@ define(["dojo/_base/declare",
 }, 
 postCreate:function (args){
 
-      /*
-      this.inherited(arguments);       
-      var t = this; 
-
-
-if (Object.prototype.toString.call(t.refreshOnTableChanged) === '[object Array]') {
-
-  array.forEach(t.refreshOnTableChanged, function(item, i){
-
-    t._subscribe.push(topic.subscribe("/event/table/changed/"+item, function(data){
-     t.request();
-   }));
-  });
-
-}
-
-if(t.requestQuery){
-
-  this.request(t.requestQuery);
-
-}
-
-*/
-
 },
 uninitialize: function(){
   var t = this;
@@ -78,7 +56,6 @@ add: function(req){
   t._request_datas.push(r);
   return idkey;
 },
-
 
 request: function(_query){
 
@@ -112,20 +89,38 @@ if(!t.target){
 request.post(this.target, {
   data: {data: JSON.stringify(Datas)},
   preventCache: true,
-  handleAs: 'json'
+  handleAs: t.handleAs
 }).then(function(result){
+
+  console.log(result);
+
+  var data_return = {};
+
+  if(result.length > 0){
+    if(result[0].return){
+      data_return = result[0].return;
+    }
+
+  }
 
 // Buscar como vaciar el array
 t._request_datas = [];
 
+var store = new Memory({idProperty: 'key', data: data_return});
+
 var R = {
-  header: {},
+  header: Datas.header,
   response: {
-    data: []
+    data: store
+  },
+  getDatas: function(key){
+    return this.response.data.get(key).datas;
   }
 };
 
+
 deferred.resolve(R);
+
 }, function(err){
   deferred.reject(err);
 });
