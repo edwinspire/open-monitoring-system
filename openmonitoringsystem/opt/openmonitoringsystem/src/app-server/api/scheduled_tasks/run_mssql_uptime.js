@@ -17,9 +17,11 @@ run_mssql_uptime: function(task){
 		var signal = t.on(name_event, function(r){
 
 			devicesProcceced ++;
+			
 
 			if(r.valid){
-				t.send_event_pg(r.result, []).then(function(result){
+				t.query("SELECT events.funjs_insert_data($1)", [r.result]).then(function(result){
+				//t.send_event_pg(r.result, []).then(function(result){
 				}, function(err){
 				//console.log(err);
 			});

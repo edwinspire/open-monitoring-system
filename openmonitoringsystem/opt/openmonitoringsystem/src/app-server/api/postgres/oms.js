@@ -3,8 +3,8 @@
      *
      * @module postgres.oms
      */
-     define(['dojo/_base/declare',  "dojo/node!pg", "dojo/node!pg-pool", "dojo/Evented", "dojo/Deferred", "dojo/_base/array", "dojo/store/Memory", "dojox/encoding/digests/MD5"
-     	], function (declare, pg, pgpool, Evented, Deferred, array, Memory, MD5) {
+     define(['dojo/_base/declare', "dojo/node!pg-pool", "dojo/Evented", "dojo/Deferred", "dojo/_base/array", "dojo/store/Memory", "dojox/encoding/digests/MD5"
+     	], function (declare, pgpool, Evented, Deferred, array, Memory, MD5) {
 
      		return declare('postgres.oms', Evented, {
 
@@ -40,19 +40,19 @@ constructor: function(args) {
   //ssl: true,
   max: 50, //set pool max size to 20
   //min: 4, //set min pool size to 4
-  idleTimeoutMillis: 2000 //close idle clients after 1 second
+  idleTimeoutMillis: 1000, // close idle clients after 1 second
+  connectionTimeoutMillis: 5000
 });
 
-	t.pgPool.connect().then(client => {
-		return client.query('SELECT version();', []).then(res => {
-			client.release();
-			console.log(res.rows[0]) 
-		})
-		.catch(e => {
-			client.release(e);
-			console.error('query error', e.message, e.stack)
-		})
+
+	t.ConnectNotify(['test', 'event_datas_i']);
+
+	t.query('SELECT version();', []).then((result)=>{
+		console.log(result.rows[0]) 
+	}, (e)=>{
+		console.error('query error', e.message, e.stack)
 	});
+
 
 	t.get_schema().then(function(){
 
@@ -171,36 +171,36 @@ query: function(_query, _param){
 		_param = [];
 	}
 
-	pool.query(_query, _param)
+	t.pgPool.query(_query, _param)
 	.then((res) => {
 		deferred.resolve(res);
 	})
 	.catch(err => {
-		console.error('Error executing query', err.stack);
+		console.error('* Error executing query', _query, err.stack);
 		deferred.reject(err);
 	});
 
-/*
-	t.pgPool.connect().then(client => {
-		return client.query(_query, _param).then(res => {
-			client.release();
-			deferred.resolve(res);
-		})
-		.catch(e => {
-			console.trace(_query, e);
-			//console.trace(e);
-			client.release(e);
-			deferred.reject(e);
-		})
-	})
-	.catch(e => {
-		console.trace(e);
-		//client.release();
-		deferred.reject(e);
-	})
-	*/
 
 	return deferred.promise;
+},
+ConnectNotify: function(channels){
+
+	this.pgPool.connect().then(client => {
+
+		client.on('notification', function(n){
+			console.log(n);
+		})
+
+		client.query('SELECT public.funjs_listen($1);', [JSON.stringify(channels)]).then(res => {
+			//client.release()
+			console.log('Connect Notify', res)
+		})
+		.catch(e => {
+			client.release()
+			console.error('query error', e)
+		})
+	})
+
 },
 login: function(user, password, remoteAddress, userAgent){
 	var t = this;
@@ -231,30 +231,7 @@ send_notification_area: function(_table_notifications){
 			t.emit("pgError", error);
 		});
 
-/*
-		pg.connect(t.connString(), (err, client, done) => {
 
-			if(err) {
-				done();
-				return false;
-			}
-
-			var query = client.query("SELECT * FROM gui.notification_area WHERE idnotify > $1::integer ORDER BY idnotify;", [t._last_idnotify_notification_area]);
-
-			query.on('row', (row) => {
-				t._last_idnotify_notification_area = row.idnotify;    
-				t.emit("notifying_the_user", row);
-			});
-
-// TODO: OJO si hay que cerrar esta conexion
-  // After all data is returned, close connection and return results
-  query.on('end', (result1) => {
-  	done();
-  });
-  
-
-});
-*/
 }
 
 },
@@ -287,26 +264,7 @@ response_query: function(res, _query, _param){
 	}, function(error){
 		res.status(500).json({success: false, data: error});
 	});
-/*
-	pg.connect(t.connString(), (err, client, done) => {
-		if(err) {
-			done();
-			res.status(500).json({success: false, data: err});
-		}
 
-		var query = client.query(_query, _param, (error)=>{
-			if(error){
-				res.status(500).json({success: false, data: error});
-			}
-		});
-
-		query.on('end', (result) => {
-			res.json(result.rows);
-			done();
-		});
-
-	});
-	*/
 },
 response_update: function(res, _query, _param){
 	var t = this;

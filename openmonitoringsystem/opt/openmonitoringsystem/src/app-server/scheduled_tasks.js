@@ -54,14 +54,18 @@ fs.readdir("/run/user/1000/gvfs/ftp:host=172.16.100.91,port=2222,user=idocs/LOGI
 })
 */
 
+console.log("0");
+
+		process.on('uncaughtException', function (error) {
+			console.dir(error);
+			
+		});
 
 		var Log = new LogSystem('debug', fs.createWriteStream('scheduled_tasks_'+(new Date()).toLocaleDateString()+'.log'));
 		
 		Log.debug("Inicia scheduled_tasks");
 
-		process.on('uncaughtException', function (error) {
-			Log.error(error.stack);
-		});
+
 
 console.log(process.env.PG_HOST);
 
