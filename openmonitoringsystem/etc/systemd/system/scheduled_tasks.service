@@ -1,0 +1,14 @@
+[Unit]
+Description=Open Monitoring System (Scheduled Task)
+
+[Service]
+ExecStart=/opt/openmonitoringsystem/sh/sheduled_task.sh
+Restart=always
+User=root
+Group=root
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/opt/openmonitoringsystem
+
+[Install]
+WantedBy=multi-user.target
