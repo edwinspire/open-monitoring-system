@@ -4,7 +4,7 @@ process.env.EXPRESS_STATIC_DIR = __dirname+'/src/app-client';
 
 // Configuration Object for Dojo Loader:
 dojoConfig = {
-	baseUrl: "src/", // Where we will put our packages
+	baseUrl: __dirname+"/src/", // Where we will put our packages
 	async: 1, // We want to make sure we are using the "modern" loader
 	hasCache: {
 		"host-node": 1, // Ensure we "force" the loader into NodeJS mode
