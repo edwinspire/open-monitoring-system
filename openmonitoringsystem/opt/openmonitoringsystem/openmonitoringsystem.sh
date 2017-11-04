@@ -1,2 +1,2 @@
 #!/bin/sh
-node openmonitoringsystem.js
+node /opt/openmonitoringsystem/openmonitoringsystem.js

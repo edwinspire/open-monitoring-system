@@ -1,2 +1,2 @@
 #!/bin/sh
-node scheduled_tasks.js
+node /opt/openmonitoringsystem/scheduled_tasks.js
