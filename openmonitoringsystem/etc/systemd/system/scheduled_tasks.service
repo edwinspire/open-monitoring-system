@@ -2,7 +2,7 @@
 Description=Open Monitoring System (Scheduled Task)
 
 [Service]
-ExecStart=/opt/openmonitoringsystem/sh/sheduled_task.sh
+ExecStart=/opt/openmonitoringsystem/sheduled_task.sh
 Restart=always
 User=root
 Group=root
