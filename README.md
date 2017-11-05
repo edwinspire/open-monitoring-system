@@ -99,7 +99,8 @@ It is necessary to assign a key, we do it with the following command inside psql
 > `/etc/postgres/10/main/pg_hba.conf`
 > 
 > Search the line
-> **host    all             all             127.0.0.1/32            md5**
+>  **host    all             all             127.0.0.1/32            md5**
+> 
 > and change it
 > **host    all             all             0.0.0.0/0            md5**
 
