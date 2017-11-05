@@ -109,8 +109,11 @@ Now restart the server with the following command:
 
 You can try to connect from another machine that is on the same network and should have access to the database.
 
+
+
 ----------
 > **Notes:**
 > - You must have all package dependencies installed before you begin.
 > - In case of problems with dependencies you can execute **apt-get install -f**
+> If you need **pgAdmin4** in this [link](https://github.com/edwinspire/pgadmin4-deb-package) you can find an installer for Debian.
 
