@@ -90,18 +90,18 @@ It is necessary to assign a key, we do it with the following command inside psql
 > `/etc/postgres/10/main/postgres.conf`
 > 
 > Search the line
-**#listen_address = 'localhost'**
-and change it
-**listen_address = '*'**
+> **#listen_address = 'localhost'**
+> and change it
+> **listen_address = '*'**
 
 **pg_hba.conf**
 > In Debian Buster it is located at the following path:
 > `/etc/postgres/10/main/pg_hba.conf`
 > 
 > Search the line
-**host    all             all             127.0.0.1/32            md5**
-and change it
-**host    all             all             0.0.0.0/0            md5**
+> **host    all             all             127.0.0.1/32            md5**
+> and change it
+> **host    all             all             0.0.0.0/0            md5**
 
 Now restart the server with the following command:
 
@@ -115,5 +115,5 @@ You can try to connect from another machine that is on the same network and shou
 > **Notes:**
 > - You must have all package dependencies installed before you begin.
 > - In case of problems with dependencies you can execute **apt-get install -f**
-> If you need **pgAdmin4** in this [link](https://github.com/edwinspire/pgadmin4-deb-package) you can find an installer for Debian.
+> - If you need **pgAdmin4** in this [link](https://github.com/edwinspire/pgadmin4-deb-package) you can find an installer for Debian.
 
