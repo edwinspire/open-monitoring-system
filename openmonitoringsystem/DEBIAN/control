@@ -1,10 +1,10 @@
 Package: OpenMonitoringSystem
-Version: 0.0.3
+Version: 0.0.4
 Architecture: all
 Maintainer: edwinspire <edwinspire@gmail.com>
 Section: WWW
 Priority: optional
-Depends: 
+Depends: nodejs
 Description: Open Monitoring System
 	Application of general purpose to receive and manage incidents or system events in general.
 	Your interace web in real time makes it easy to use.
