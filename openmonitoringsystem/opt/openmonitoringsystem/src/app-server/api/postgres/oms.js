@@ -19,6 +19,7 @@
      			configuration_server: {},
      			_schema: new Memory(),
      			pgPool: {},
+     			gui_db_structure: {},
 
 
 //////////////////////////////////
@@ -45,12 +46,25 @@ constructor: function(args) {
 });
 
 
+
 	t.ConnectNotify(['test', 'event_datas_i']);
 
 	t.query('SELECT version();', []).then((result)=>{
 		console.log(result.rows[0]) 
 	}, (e)=>{
 		console.error('query error', e.message, e.stack)
+	});
+
+
+	t.get_gui_db_structure().then(function(result){
+		//console.log(t.get_gui_table_structure('events.datas'));
+		try{
+			let x = t.QueryBuilder('events.datas', 'SELECT * FROM @:0 where @:1 AND @:2', [{column: 'dateevent', operator: '<', value: 'now()'}, {column: 'prioritys', operator: '=', value: 1}]);
+		}catch(e){
+			console.log(e);
+		}
+	}, function(e){
+		console.log(e);
 	});
 
 
@@ -62,7 +76,32 @@ constructor: function(args) {
 startup: function(){
 	console.log('Startup');
 }, 
+get_gui_db_structure: function(){
+	let t = this;
+	let q = "SELECT gui.funjs_db_structure('');";
+	let deferred = new Deferred();
+
+	t.query(q, []).then(function(result){
+		if(result.rows.length > 0){
+			t.gui_db_structure = result.rows[0].funjs_db_structure[0];
+		}else{
+			t.gui_db_structure = {};
+		}
+		deferred.resolve(t.gui_db_structure);
+	});
+	return deferred.promise;
+},
+get_gui_table_structure: function(schema_table){
+	let param = schema_table.split(".");
+	let t = this;
+	if(param.length > 1 && t.gui_db_structure[param[0]] && t.gui_db_structure[param[0]][param[1]]){
+		return t.gui_db_structure[param[0]][param[1]];
+	}else{
+		return false;
+	}
+},
 get_schema: function(){
+	// TODO: Esto podria borrarse
 	var t = this;
 	var q = 'SELECT * FROM view_table_schema;';
 	var deferred = new Deferred();
@@ -74,6 +113,7 @@ get_schema: function(){
 	return deferred.promise;
 },
 get_table_schema: function(_tschema_tname){
+	// TODO: Esto podria borrarse
 	var t = this;
 	var resultado = [];
 
@@ -232,7 +272,7 @@ send_notification_area: function(_table_notifications){
 		});
 
 
-}
+	}
 
 },
 response_insert: function(res, _query, _param){

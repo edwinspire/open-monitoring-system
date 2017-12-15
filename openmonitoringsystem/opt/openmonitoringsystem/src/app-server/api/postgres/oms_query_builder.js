@@ -349,6 +349,54 @@ return {query: q, param: param};
 }
 
 return r;
+},
+QueryBuilder: function(schema_table, query, parameters){
+
+	/*
+	SELECT * FROM @1 AND @2
+parameters = {column: 'ojo', value: 98, operator : '='}
+*/
+let t = this;
+let R = {query: '', values: []};
+let structure = t.get_gui_table_structure(schema_table);
+
+query = query.replace('@:0', schema_table);
+
+parameters.forEach(function(param, index){
+	let pindex = index+1;
+	let variable = "@:"+pindex;
+
+	if(query.includes(variable)){
+
+		if(structure[param.column]){
+			let operator = param.operator.toUpperCase();
+			let type = structure[param.column].udt_name;
+
+			switch(operator){
+				case 'IN':
+				query = query.replace(variable, param.column+' '+operator+' ($'+pindex+'::'+type+')');
+				break;
+				case 'NOT IN':
+				query = query.replace(variable, param.column+' '+operator+' ($'+pindex+'::'+type+')');
+				break;
+				default:
+				query = query.replace(variable, param.column+' '+operator+' $'+pindex+'::'+type);
+				break;
+			}
+			R.values.push(param.value);
+		}else{
+			throw param.column+' not exists.';
+		}	
+
+	}else{
+		throw '@:'+pindex+' not exists.';
+	}
+
+});
+
+R.query = query;
+console.log(R);
+return R;
 }
 
 
