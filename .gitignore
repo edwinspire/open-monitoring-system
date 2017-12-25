@@ -5,4 +5,5 @@
 **.log
 **.exe
 farm*
+/opt/openmonitoringsystem/node_modules/*
 

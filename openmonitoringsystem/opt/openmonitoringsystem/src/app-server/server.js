@@ -2,6 +2,7 @@ require(["api/express/express",
   "dojo/on", 
   "dojo/_base/array", 
   "dojo/node!os",
+  "dojo/node!@xmpp/client",
   "dojo/node!cluster",
   "dojo/node!crypto",
   "dojo/node!socket.io", 
@@ -36,11 +37,107 @@ require(["api/express/express",
   "api/postgres/schema_events",
   "api/postgres/schema_gui",
   "api/postgres/services"
-  ], function(express, on, array, os, cluster, crypto, socketIO, path, fs, LogSystem, https, url, pG, nodeMailer, pgOMS, MD5, Config){
+  ], function(express, on, array, os, xmppC, cluster, crypto, socketIO, path, fs, LogSystem, https, url, pG, nodeMailer, pgOMS, MD5, Config){
 
 
     //var Log = new LogSystem('debug', fs.createWriteStream('Log_oms'+(new Date()).toLocaleDateString()+'.log'));
     //Log.debug("Inicia Open Monitoring System WebApp");
+
+    console.log(xmppC);
+
+const client = new xmppC.Client();
+//const client = new xmppC.Client();
+
+ 
+// Log errors
+client.on('error', err => {
+  console.error('❌', err.toString())
+})
+
+// Log status changes
+client.on('status', (status, value) => {
+  console.log('🛈', status, value ? value.toString() : '')
+})
+
+// Useful for logging raw traffic
+// Emitted for every incoming fragment
+// -- client.on('input', data => console.log('⮈', data))
+// Emitted for every outgoing fragment
+// -- client.on('output', data => console.log('⮊', data))
+
+// Useful for logging XML traffic
+// Emitted for every incoming XML element
+// client.on('element', data => console.log('⮈', data))
+// Emitted for every outgoing XML element
+// client.on('send', data => console.log('⮊', data))
+
+client.on('stanza', el => {
+  if (el.is('presence') && el.attrs.from === client.jid.toString()) {
+    console.log('🗸', 'available, ready to receive <message/>s')
+  }
+})
+
+client.on('online', jid => {
+  console.log('jid', jid.toString())
+  client.send(xmppC.xml('presence'))
+
+
+
+client.on('stanza', el => {
+
+    if (el.is('presence') && el.attrs.from === client.jid.toString()) {
+      console.log('👌', 'available, ready to receive <message/>s');
+  console.log(JSON.stringify(el));    
+    }
+
+    if (el.is('message')) {
+      //console.log('👌', 'available, ready to receive <message/>s');
+  console.log(JSON.stringify(el));    
+    }
+
+  })
+
+
+     // prettier-ignore
+    client.send(
+     xmppC.xml('message', {to: 'edwinspire@suchat.org', type: 'chat'},
+       xmppC.xml('body', {}, 'hello  word...')
+      )
+    )
+
+
+})
+
+// "start" opens the socket and the XML stream
+client
+  .start('suchat.org') // Auto
+  // .start('xmpp://localhost:5222') // TCP
+  // .start('xmpps://localhost:5223') // TLS
+  // .start('ws://localhost:5280/xmpp-websocket') // Websocket
+  // .start('wss://localhost:5281/xmpp-websocket') // Secure WebSocket
+  .catch(err => {
+    console.error('start failed', err)
+  })
+
+// Handle authentication to provide credentials
+client.handle('authenticate', authenticate => {
+  return authenticate('sasasasasasasasasasasasas@suchat.org', 'shaguarmasha')
+})
+
+// Handle binding to choose resource - optional
+client.handle('bind', bind => {
+  return bind('example')
+})
+
+  
+  
+
+
+console.log('Server 1'); 
+
+
+
+
 
     const numCPUs = os.cpus().length;
 
@@ -86,7 +183,7 @@ PostgreSQL._schema_gui_properties_fromdb().then(function(r){
 }, 15*1000);
 
 
-console.log('Server 5'); 
+console.log('Server >> 5'); 
 
   var cnxSMTP = {host: process.env.SMPT_HOST, port: process.env.SMPT_PORT, ignoreTLS: process.env.SMPT_IGNORETLS, secure: process.env.SMPT_SECURE, auth: {user: process.env.SMPT_AUTH_USER, pass: process.env.SMPT_AUTH_PWD}};
   //Log.debug(cnxSMTP);

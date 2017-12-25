@@ -74,7 +74,7 @@ console.log(process.env.PG_HOST);
 
 console.log("1");
 
-		STasks.get_config_from_db().then(function(){
+		STasks.start().then(function(){
 
 console.log("2");
 

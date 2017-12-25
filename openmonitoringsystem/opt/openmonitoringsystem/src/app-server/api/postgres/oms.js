@@ -49,6 +49,7 @@ constructor: function(args) {
 
 	t.ConnectNotify(['test', 'event_datas_i']);
 
+/*
 	t.query('SELECT version();', []).then((result)=>{
 		console.log(result.rows[0]) 
 	}, (e)=>{
@@ -71,11 +72,59 @@ constructor: function(args) {
 	t.get_schema().then(function(){
 
 	});
+	*/
 
 },
 startup: function(){
 	console.log('Startup');
 }, 
+start: function(){
+	let t = this;
+	let deferred = new Deferred();
+
+	t.query('SELECT version();', []).then((result)=>{
+		console.log(result.rows[0]) 
+
+		t.fun_mapper().then((result)=>{
+			console.log('Se obtuvo la lista de schemas y tablas');
+
+			t.get_gui_db_structure().then((result)=>{
+				console.log('Se obtuvo la estructura de la base de datos');
+
+				t.get_config_from_db().then((result)=>{
+					console.log('Se obtuvo configuraciones desde la base de datos');
+
+					deferred.resolve(result);
+				}, (error)=>{
+					deferred.reject(error);
+				});
+
+			}, (error)=>{
+				deferred.reject(error);
+			});
+
+		}, (error)=>{
+			deferred.reject(error);
+		});
+
+	}, (e)=>{
+		console.error('Query error', e.message, e.stack);
+		deferred.reject(error);
+	});
+
+
+	return deferred.promise;
+},
+fun_mapper: function(){
+	let t = this;
+	let q = 'SELECT gui.fun_mapper();';
+	let deferred = new Deferred();
+
+	t.query(q, []).then(function(result){
+		deferred.resolve(result);
+	});
+	return deferred.promise;
+},
 get_gui_db_structure: function(){
 	let t = this;
 	let q = "SELECT gui.funjs_db_structure('');";
