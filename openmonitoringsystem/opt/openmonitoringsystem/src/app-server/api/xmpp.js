@@ -50,13 +50,15 @@ define(['dojo/_base/declare',  "dojo/Evented", "dojo/node!crypto", "dojo/node!@x
 			},
 			send: function(_to, _message){
 
-console.log(this.client);
+				if(this.client.status == 'online'){
+					this.client.send(
+						xmppC.xml('message', {to: _to, type: 'chat'},
+							xmppC.xml('body', {}, _message)
+							)
+						);
+				}
 
-				this.client.send(
-					xmppC.xml('message', {to: _to, type: 'chat'},
-						xmppC.xml('body', {}, _message)
-						)
-					);
+
 			}
 		}
 

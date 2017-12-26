@@ -59,8 +59,7 @@ PostgreSQL.get_config_from_db().then(function(){
 
 
   var xmppOMS = new xmpp(process.env.XMPP_SERVER, process.env.XMPP_USERNAME, process.env.XMPP_PASSWORD);
-  xmppOMS.send('edwinspire@suchat.org', 'Este es el mensaje de prueba');
-
+  
 
   PostgreSQL._schema_gui_properties_fromdb().then(function(r){
       ////Log.debug(r);
@@ -68,7 +67,7 @@ PostgreSQL.get_config_from_db().then(function(){
 
   setInterval(function(){
     PostgreSQL.get_change_in_tables().then(function(){
-      xmppOMS.send('edwinspire@suchat.org', 'Busvando cambios en la base');
+      
     });
 
   }, 25*100);
@@ -94,6 +93,11 @@ PostgreSQL.get_config_from_db().then(function(){
 // Esto debe dispararse solo al inicio de la aplicacion y cuando haya cambios en las tablas involucradas
 PostgreSQL._schema_gui_properties_fromdb().then(function(r){
   //Log.debug(r);
+    xmppOMS.send('edwinspire@suchat.org', os.hostname());
+  xmppOMS.send('edwinspire@suchat.org', os.platform());
+  xmppOMS.send('edwinspire@suchat.org', os.totalmem());
+  xmppOMS.send('edwinspire@suchat.org', process.env.PORT);
+  
 });
 }, 15*1000);
 
@@ -116,6 +120,8 @@ PostgreSQL._schema_gui_properties_fromdb().then(function(r){
   });
 
   console.log('Server 6');
+
+
 
   var exp = new express({_pG: PostgreSQL});
 
@@ -153,7 +159,7 @@ PostgreSQL._schema_gui_properties_fromdb().then(function(r){
 sio.on('connection', function(clientio){ 
 
   clientio.emit('connection', 'Welcome Open Monitoring System!');
-
+  
 //------------------------------------------
 clientio.on('heartbeat',function(event){ 
 
