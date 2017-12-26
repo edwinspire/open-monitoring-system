@@ -1,9 +1,10 @@
 # Ignores
+/opt/openmonitoringsystem/node_modules/
 *~
 #*.sh
 *.bat
 **.log
 **.exe
 farm*
-/opt/openmonitoringsystem/node_modules/*
+
 

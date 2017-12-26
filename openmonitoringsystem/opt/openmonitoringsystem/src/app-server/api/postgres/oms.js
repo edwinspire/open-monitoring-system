@@ -239,6 +239,17 @@ get_config_from_db: function(){
 				}
 
 				break;
+				case 'XMPP':
+				if(config.configuration.server){
+					process.env.XMPP_SERVER = config.configuration.server;
+				}
+				if(config.configuration.username){
+					process.env.XMPP_USERNAME = config.configuration.username;
+				}
+				if(config.configuration.pwd){
+					process.env.XMPP_PASSWORD = config.configuration.pwd;
+				}
+				break;
 			}
 		});
 
