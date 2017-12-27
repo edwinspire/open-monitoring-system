@@ -48,110 +48,57 @@ require(["api/express/express",
 
 
     console.log('Server 1'); 
+    
 
     const numCPUs = os.cpus().length;
 
-    //var sessionUsers = new sessionusers();
     var PostgreSQL = new pgOMS({user: process.env.PG_USER, pwd: process.env.PG_PWD, host: process.env.PG_HOST, db: process.env.PG_DB});
+    PostgreSQL.start().then((result)=>{
 
-// Obtenemos configuraciones desde el servidor
-PostgreSQL.get_config_from_db().then(function(){
+      console.log(result);
 
-
-  var xmppOMS = new xmpp(process.env.XMPP_SERVER, process.env.XMPP_USERNAME, process.env.XMPP_PASSWORD);
-  
-
-  PostgreSQL._schema_gui_properties_fromdb().then(function(r){
-      ////Log.debug(r);
-    });
-
-  setInterval(function(){
-    PostgreSQL.get_change_in_tables().then(function(){
-      
-    });
-
-  }, 25*100);
+      var xmppOMS = new xmpp(process.env.XMPP_SERVER, process.env.XMPP_USERNAME, process.env.XMPP_PASSWORD);
+      xmppOMS.send('edwinspire@suchat.org', os.hostname());
+      xmppOMS.send('edwinspire@suchat.org', os.platform());
+      xmppOMS.send('edwinspire@suchat.org', os.totalmem());
+      xmppOMS.send('edwinspire@suchat.org', process.env.PORT);
 
 
-  setInterval(function(){
-    //Log.debug('Tareas periodicas');
-    PostgreSQL.query("SELECT * FROM events.fun_set_expired_events();", []).then(function(response){
-      ////Log.debug(response);
-    });
-    PostgreSQL.query("SELECT * FROM gui.fun_remove_notifications_old();", []).then(function(response){
-      ////Log.debug(response);
-    });
-    PostgreSQL.query("SELECT * FROM fun_last_modified_table_remove_olds();", []).then(function(response){
-      ////Log.debug(response);
-    });
-    PostgreSQL.query("SELECT * FROM fun_remove_last_modified_cells();", []).then(function(response){
-      ////Log.debug(response);
-    });
-    
+      var cnxSMTP = {host: process.env.SMPT_HOST, port: process.env.SMPT_PORT, ignoreTLS: process.env.SMPT_IGNORETLS, secure: process.env.SMPT_SECURE, auth: {user: process.env.SMPT_AUTH_USER, pass: process.env.SMPT_AUTH_PWD}};
+      var transporter = nodeMailer.createTransport(cnxSMTP);
 
+      PostgreSQL.configuration_server.query({config_name: "mailOptions"}).forEach(function(config){
 
-// Esto debe dispararse solo al inicio de la aplicacion y cuando haya cambios en las tablas involucradas
-PostgreSQL._schema_gui_properties_fromdb().then(function(r){
-  //Log.debug(r);
-    xmppOMS.send('edwinspire@suchat.org', os.hostname());
-  xmppOMS.send('edwinspire@suchat.org', os.platform());
-  xmppOMS.send('edwinspire@suchat.org', os.totalmem());
-  xmppOMS.send('edwinspire@suchat.org', process.env.PORT);
-  
-});
-}, 15*1000);
+        config.configuration.html = '<b>Open Monitoring System</b><p>'+os.hostname()+'</p><p>'+os.platform()+'</p><p>Webserver Port: '+process.env.PORT+'</p><p>Total Mem: '+os.totalmem()+'</p>';
 
-
-  console.log('Server >> 5'); 
-
-  var cnxSMTP = {host: process.env.SMPT_HOST, port: process.env.SMPT_PORT, ignoreTLS: process.env.SMPT_IGNORETLS, secure: process.env.SMPT_SECURE, auth: {user: process.env.SMPT_AUTH_USER, pass: process.env.SMPT_AUTH_PWD}};
-  var transporter = nodeMailer.createTransport(cnxSMTP);
-
-  PostgreSQL.configuration_server.query({config_name: "mailOptions"}).forEach(function(config){
-
-    config.configuration.html = '<b>Open Monitoring System</b><p>'+os.hostname()+'</p><p>'+os.platform()+'</p><p>Webserver Port: '+process.env.PORT+'</p><p>Total Mem: '+os.totalmem()+'</p>';
-
-    transporter.sendMail(config.configuration, function(error, info){
-      if(error){
+        transporter.sendMail(config.configuration, function(error, info){
+          if(error){
+            console.log(error);
       return //Log.debug(error);
     }
-    //Log.debug('Message email sent: ' + info.response);
+    
   });
-  });
-
-  console.log('Server 6');
+      });
 
 
 
-  var exp = new express({_pG: PostgreSQL});
 
-  console.log('Server 6a');
+      var exp = new express({_pG: PostgreSQL});
 
-  var webServer = https.createServer({
-    key: fs.readFileSync('key.pem'),
-    cert: fs.readFileSync('cert.pem'),
-    requestCert: false
-  }, exp.app);
+      console.log('Server 6a');
 
-  var sio = socketIO.listen(webServer);
+      var webServer = https.createServer({
+        key: fs.readFileSync('key.pem'),
+        cert: fs.readFileSync('cert.pem'),
+        requestCert: false
+      }, exp.app);
 
-  console.log('Server 7');
+      var sio = socketIO.listen(webServer);
 
-  var pgEventTs = PostgreSQL.on('tschange', function(r){
+      webServer.listen(process.env.PORT, function(){
+        console.log('HTTP Server on PORT '+process.env.PORT);
+      });
 
-    if(r.table_name == 'gui.column_properties' || r.table_name == 'gui.tables_view_properties'){
-      PostgreSQL._schema_gui_properties_fromdb().then(function(rx){
-      }); 
-    }
-
-    sio.emit('pgtschange', JSON.stringify(r));
-  });
-
-  var pgEventNotif = PostgreSQL.on('notifying_the_user', function(r){
-    sio.emit('notifying_the_user', JSON.stringify(r));
-  });
-
-  console.log('Server 8');
 
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -231,27 +178,44 @@ exp.on('new_session', function(e){
 
 
 
-webServer.listen(process.env.PORT, function(){
-  //Log.debug("Listening on " + process.env.PORT);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}, (error)=>{
+  console.log(error);
 });
 
 
 
 
-var pgEventError = PostgreSQL.on('pgError', function(error){
+
+
+
+
+
+
+
+
+    process.on('uncaughtException', function(error){
   //Log.debug(error);
 });
 
-
-
-
-
-process.on('uncaughtException', function(error){
-  //Log.debug(error);
-});
-
-
-});
 
 
 

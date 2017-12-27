@@ -311,6 +311,13 @@ t.app.post("/service/model",  function(req, res){
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
+t.app.post("/service/public/login",  function(req, res){
+
+	var request_service = JSON.parse(req.body.data);
+	t._pG.service_htttp(res, request_service);
+});
+
+////////////////////////////////////////////////////////////////////////////////////////
 t.app.post("/service/public",  function(req, res){
 
 	var request_service = JSON.parse(req.body.data);

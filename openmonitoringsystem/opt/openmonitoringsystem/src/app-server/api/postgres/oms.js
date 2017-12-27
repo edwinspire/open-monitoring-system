@@ -17,6 +17,7 @@
      			tv_structure: {},
      			_last_notification_area: 0,
      			configuration_server: {},
+     			services: {},
      			_schema: new Memory(),
      			pgPool: {},
      			gui_db_structure: {},
@@ -94,7 +95,13 @@ start: function(){
 				t.get_config_from_db().then((result)=>{
 					console.log('Se obtuvo configuraciones desde la base de datos');
 
-					deferred.resolve(result);
+					t.get_services().then((result)=>{
+						console.log('Se la lista de servicios desde la base de datos');
+						deferred.resolve(true);
+					}, (error)=>{
+						deferred.reject(error);
+					});
+
 				}, (error)=>{
 					deferred.reject(error);
 				});
@@ -173,6 +180,7 @@ get_table_schema: function(_tschema_tname){
 	return resultado;
 },
 get_change_in_tables: function(){
+	// TODO - Esto podria borrarse auna vez se lo reemplace con un evento directo de la base
 	var deferred = new Deferred();
 	var t = this;
 	this.query("SELECT tschema_tname, table_name, datetime_modif as ts FROM view_last_modif_tables;").then(function(result){
@@ -254,6 +262,19 @@ get_config_from_db: function(){
 		});
 
 		deferred.resolve(result);
+	});
+
+	return deferred.promise;
+},
+get_services: function(){
+	// Esto deberia ejecutarse al inicio y volverse a ejecutar unicamente cuando se haya recibido modificaciones en la tabla
+	let t = this;
+	let q = 'SELECT * FROM services.services;';
+	let deferred = new Deferred();
+
+	t.query(q, []).then(function(result){
+		t.services = new Memory({data: result.rows, idProperty: 'service_name'});
+		deferred.resolve(t.services);
 	});
 
 	return deferred.promise;
