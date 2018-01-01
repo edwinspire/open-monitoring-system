@@ -292,7 +292,7 @@ t.app.post("/db/*", _isAuthenticated, function(req, res){
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-t.app.post("/service/model",  function(req, res){
+t.app.post("/servicex/model",  function(req, res){
 	var model = t._pG.schema_gui_funjs_db_model(req.body.schema_table);
 
 	model.then(function(result){
@@ -311,14 +311,7 @@ t.app.post("/service/model",  function(req, res){
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-t.app.post("/service/public/login",  function(req, res){
-
-	var request_service = JSON.parse(req.body.data);
-	t._pG.service_htttp(res, request_service);
-});
-
-////////////////////////////////////////////////////////////////////////////////////////
-t.app.post("/service/public",  function(req, res){
+t.app.post("/servicex/public",  function(req, res){
 
 	var request_service = JSON.parse(req.body.data);
 	t._pG.service_htttp(res, request_service);
@@ -326,12 +319,65 @@ t.app.post("/service/public",  function(req, res){
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-t.app.post("/service/private", _isAuthenticated, function(req, res){
+t.app.post("/servicex/private", _isAuthenticated, function(req, res){
 
 	var request_service = JSON.parse(req.body.data);
 	t._pG.service_htttp(res, request_service);
 });
 
+////////////////////////////////////////////////////////////////////////////////////////
+// Este debe ser el unico punto de entrada para consultas a la base de datos
+t.app.post("/service/*",  function(req, res){
+
+	console.log(req);
+	let b = req.body;
+
+	let service = req.originalUrl.split('/')[2];
+	let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+	let token_agent = t._pG.textToMD5(ip+req.headers['user-agent']);
+	let rs = {service: service, body: req.body, cookies: req.cookies, route: req.route, headers: req.headers, remoteAddress: ip, token_agent: token_agent};
+	console.log(rs);
+	let request_service = JSON.stringify(rs);
+	
+	t._pG.service_point(request_service).then(function(result){
+
+		let r = {};
+		if(result.rows.length > 0 && result.rows[0].return){
+			r = result.rows[0].return;
+		}
+
+		console.log("--->>>>>>>>>>> ", r);
+
+		switch(service){
+			case 'login_user':
+			
+			if(r.length > 0 && r[0].error == 0){
+
+				res.cookie('sessionIDSystem', r[0].return.token, { maxAge: 3600000});
+				res.cookie('SessionFullname', 'No definido', { maxAge: 3600000}); //			t.emit('new_session', datauser);
+				res.redirect('/oms.html');
+				
+			}else{
+				let cookie = req.cookies;
+				for (var prop in cookie) {
+					if (!cookie.hasOwnProperty(prop)) {
+						continue;
+					}    
+					res.cookie(prop, '', {expires: new Date(0)});
+				}
+				res.redirect('/');
+			}
+			break;
+			default:
+			res.json(r);
+			break;
+		}
+
+	}, function(error){
+		res.status(500).json({success: false, data: error});
+	});
+
+});
 
 
 ////////////////////////////////////////////////////////////////////////////////////////

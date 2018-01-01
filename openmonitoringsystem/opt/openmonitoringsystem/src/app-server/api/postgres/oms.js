@@ -336,6 +336,9 @@ logout: function(datauser){
 },
 service_point: function(request_service){
 	var t = this;
+
+console.log(request_service);
+
 	return t.query("SELECT services.funjs_point($1::JSON) as return;", [request_service]);	
 },
 send_notification_area: function(_table_notifications){
