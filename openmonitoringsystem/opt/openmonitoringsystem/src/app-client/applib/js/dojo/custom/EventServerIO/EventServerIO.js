@@ -11,7 +11,7 @@ define(['dojo/_base/declare',
                 var hostws = '//'+document.location.host;
                 var socket = io.connect(hostws);
                 
-console.log(hostws);
+                console.log(hostws);
 
                 socket.on('connection', function(client) {  
                     console.log('Client connected to '+hostws);
@@ -38,26 +38,26 @@ console.log(hostws);
 
                 socket.on('command', function(data) {
                     var command = data;
-                  console.log(command);
-                switch(command.command){
-                    case 'logout':
-                    window.location="/logout";
-                    break; 
-                    case 'heartbeat':
-                    socket.emit('heartbeat', {sid: cookie('sessionIDSystem')});
-                    break;   
-                    case 'clearCache':
-                    window.location.reload(true);
-                    break;          
+                    console.log(command);
+                    switch(command.command){
+                        case 'logout':
+                        //window.location="/logout";
+                        break; 
+                        case 'heartbeat':
+                        socket.emit('heartbeat', {sid: cookie('sessionIDSystem')});
+                        break;   
+                        case 'clearCache':
+                        window.location.reload(true);
+                        break;          
 
-                }
+                    }
 
-            });
+                });
 
 
                 setInterval(function(){    
-        socket.emit('heartbeat', {sid: cookie('sessionIDSystem')});
-    }, 30000);
+                    socket.emit('heartbeat', {sid: cookie('sessionIDSystem')});
+                }, 30000);
 
 
 

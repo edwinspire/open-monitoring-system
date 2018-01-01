@@ -133,9 +133,6 @@ require(["dojo/ready",
      apps['app_secondary_empleados_cr'] = app_secondary_empleados_cr;
 
 
-
-
-
      var PageContent = dijit.byId('PageContent');
      var Mainmenu = dijit.byId("MainMenu");
 
@@ -150,8 +147,6 @@ require(["dojo/ready",
      on(dojo.byId("ToogleMenu"), "click", function(e){
       Mainmenu.toggle();
     });
-
-
 
 
 

@@ -39,7 +39,8 @@ define(['dojo/_base/declare',
 
         var t = this;
 
-        var target = '/db/gui/menus/r/'+new Date().getTime()+'/'+new Date().getTime()+'/'+new Date().getTime()+'/'+new Date().getTime();
+        //var target = '/db/gui/menus/r/'+new Date().getTime()+'/'+new Date().getTime()+'/'+new Date().getTime()+'/'+new Date().getTime();
+        var target = '/service/menu_master';
 
         request.post(target, {
           preventCache: true,
@@ -47,8 +48,8 @@ define(['dojo/_base/declare',
         }).then(
         function (response) {
 
-          if(response.length > 0){
-            t._create_tree(response);
+          if(response.length > 0 && response[0].error == 0 && response[0].return){
+            t._create_tree(response[0].return);
           }
 
         },
@@ -60,6 +61,7 @@ define(['dojo/_base/declare',
       },
       _create_tree: function(response){
         var t = this;
+        console.log(response);
         var myStore = new Memory({
           data: response,
           getChildren: function(object){
@@ -73,18 +75,15 @@ define(['dojo/_base/declare',
         });
 
 
-    // Create the Tree.
-    var tree = new Tree({
-      model: myModel,
-      showRoot: false,
-      //openOnClick: true,
+        var tree = new Tree({
+          model: myModel,
+      showRoot: false,      //openOnClick: true,
       onClick: function(item, node, event){
         console.log(item);
 this._onExpandoClick({node: node}); // This will expand the node
-if(item.nameeventonclick){
-  //t.emit('clickitem', item.nameeventonclick);
-  t.emit('appname', item.appname);
-  console.log(item);
+if(item.nameeventonclick){  //t.emit('clickitem', item.nameeventonclick);
+t.emit('appname', item.appname);
+console.log(item);
 }
 if(item.url){
   window.location.href = item.url;
@@ -92,28 +91,28 @@ if(item.url){
 
 },
 getIconClass: function(item, opened) {
-      // console.log(item);
-      if (item.type == "item") {
-        return "dijitLeaf";
-      } else if (item.launched) {
-        return (opened ? "dijitFolderOpened" : "dijitFolderClosed");
-      }else if(item.type == "application"){
-        return "dijitIconApplication";
-      }else if(item.type == "configure"){
-        return "dijitIconConfigure";        
-      } else {
-        return (opened ? "dijitFolderOpened" : "dijitFolderClosed");
-      }
-    }
-  });
-    tree.placeAt(t.Test);
-    tree.startup();
-    t.isVisible(true);
+
+  if (item.type == "item") {
+    return "dijitLeaf";
+  } else if (item.launched) {
+    return (opened ? "dijitFolderOpened" : "dijitFolderClosed");
+  }else if(item.type == "application"){
+    return "dijitIconApplication";
+  }else if(item.type == "configure"){
+    return "dijitIconConfigure";        
+  } else {
+    return (opened ? "dijitFolderOpened" : "dijitFolderClosed");
   }
-
-
-
-
-
+}
 });
+        tree.placeAt(t.Test);
+        tree.startup();
+        t.isVisible(true);
+      }
+
+
+
+
+
+    });
   });

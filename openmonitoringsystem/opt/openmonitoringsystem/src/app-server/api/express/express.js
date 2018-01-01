@@ -91,160 +91,67 @@ define([
 
 				}
 
-////////////////////////////////////////////////////////////////////////////////////////
-t.app.post("/login", _Login, function(req, res){
-
-	res.json({success: true});
-
-});
-
-////////////////////////////////////////////////////////////////////////////////////////
-t.app.get('/logout', function(req, res){
-
-	var datauser = t.isAuthenticated(req.cookies['sessionIDSystem']);
-
-	if(datauser){
-
-		PostgreSQL.logout(datauser).then(function(results){
-
-			t._storeSessions.remove(req.cookies['sessionIDSystem']);
-
-			cookie = req.cookies;
-			for (var prop in cookie) {
-				if (!cookie.hasOwnProperty(prop)) {
-					continue;
-				}    
-				res.cookie(prop, '', {expires: new Date(0)});
-			}
-
-			res.redirect('/');
-		}, function(error){
-			res.status(500).json(error);
-		});
-
-	}else{
-		res.redirect('/');
-	}
-
-});
 
 
-t.app.get('/map.html',  function(req, res){
 
-	var geodata = [];
+	t.app.get('/map.html',  function(req, res){
 
-	var send = function(status, content, arraygeo){
-		res.writeHead(status, { 'Content-Type': 'text/html' });
-		res.write(content.replace('@@points@@', JSON.stringify(arraygeo)));
-		res.end();  
-	}
+		var geodata = [];
 
-	fs.readFile(process.env.EXPRESS_STATIC_DIR+'/map_template.html', 'utf8', function (err, data) {
-		if (err) {
-			send(500, err, []);
-		}else{
+		var send = function(status, content, arraygeo){
+			res.writeHead(status, { 'Content-Type': 'text/html' });
+			res.write(content.replace('@@points@@', JSON.stringify(arraygeo)));
+			res.end();  
+		}
 
-			if(true){
+		fs.readFile(process.env.EXPRESS_STATIC_DIR+'/map_template.html', 'utf8', function (err, data) {
+			if (err) {
+				send(500, err, []);
+			}else{
 
-				if(req.query.maptype){
+				if(true){
 
-					var q = 'SELECT * FROM contacts.contacts WHERE idcontact = $1::BIGINT;';
-					var p = [-999];
+					if(req.query.maptype){
 
-					switch(req.query.maptype){
-						case 'contact_only':
-						if(req.query.idcontact){
-							q = 'SELECT * FROM contacts.contacts WHERE idcontact = $1::BIGINT;';
-							p = [req.query.idcontact]    
+						var q = 'SELECT * FROM contacts.contacts WHERE idcontact = $1::BIGINT;';
+						var p = [-999];
+
+						switch(req.query.maptype){
+							case 'contact_only':
+							if(req.query.idcontact){
+								q = 'SELECT * FROM contacts.contacts WHERE idcontact = $1::BIGINT;';
+								p = [req.query.idcontact]    
+							}
+							break;
+							case 'all_contacts':
+							q = 'SELECT * FROM contacts.contacts WHERE enabled = true;';
+							p = [] 
+							break;
 						}
-						break;
-						case 'all_contacts':
-						q = 'SELECT * FROM contacts.contacts WHERE enabled = true;';
-						p = [] 
-						break;
+
+						t._pG.query(q, p).then(function(response){
+							geodata = response.rows;
+							send(200, data, geodata);
+						});
+
+					}else{
+						send(500, 'maptype no defined', []);
 					}
 
-					t._pG.query(q, p).then(function(response){
-						geodata = response.rows;
-						send(200, data, geodata);
-					});
-
 				}else{
-					send(500, 'maptype no defined', []);
+					send(401, content, geodata);
 				}
 
-			}else{
-				send(401, content, geodata);
 			}
 
-		}
+
+		});
 
 
 	});
 
 
-});
 
-
-////////////////////////////////////////////////////////////////////////////////////////
-t.app.post("/njs/db/table/*", _isAuthenticated, function(req, res){
-
-
-	var table = req.path.replace("/njs/db/table/", "");
-	switch(table){
-		case "account_events_comments":
-		t._pG.udc_account_events_comments(req, res);
-		break;        
-		case "events":
-		t._pG.udc_table_events(req, res, u);
-		break;
-		case "account_events_isopen":
-		t._pG.udc_table_account_events_isopen(req, res);
-		break;
-		case "view_events_isopen":
-		t._pG.udc_table_events_isopen(req, res);
-		break;        
-		case "view_events_details":
-		t._pG.udc_table_events_details(req, res);
-		break; 
-		case "groups":
-		t._pG.udc_table_groups(req, res);
-		break;
-		case "udc_columns":
-		t._pG.udc_tables_columns(req, res);
-		break;
-		case "udc_tables_views":
-		t._pG.udc_tables_views(req, res);
-		break;
-		case "farma_view_lista_precios":
-		t._pG.udc_farma_view_lista_precios(req, res);
-		break;
-		case "account_equipments":
-		t._pG.udc_table_account_equipments(req, res);
-		break;
-		case "account_users":
-		t._pG.udc_table_account_users(req, res);
-		break;
-		case "account_contacts":
-		t._pG.udc_table_account_contacts(req, res);
-		break;
-		case "emails":
-		t._pG.udc_table_emails(req, res);
-		break;
-		case "phones":
-		t._pG.udc_table_phones(req, res);
-		break;
-		case "accounts":
-		t._pG.udc_table_accounts(req, res);
-		break;
-		default:
-		res.status(404).json({table: table});
-		break;
-	}
-
-
-
-});
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -332,7 +239,7 @@ t.app.post("/service/*",  function(req, res){
 	console.log(req);
 	let b = req.body;
 
-	let service = req.originalUrl.split('/')[2];
+	let service = req.originalUrl.split('?')[0].split('/')[2];
 	let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 	let token_agent = t._pG.textToMD5(ip+req.headers['user-agent']);
 	let rs = {service: service, body: req.body, cookies: req.cookies, route: req.route, headers: req.headers, remoteAddress: ip, token_agent: token_agent};
@@ -368,6 +275,16 @@ t.app.post("/service/*",  function(req, res){
 				res.redirect('/');
 			}
 			break;
+			case 'logout_user':
+			let cookie = req.cookies;
+			for (var prop in cookie) {
+				if (!cookie.hasOwnProperty(prop)) {
+					continue;
+				}    
+				res.cookie(prop, '', {expires: new Date(0)});
+			}
+			res.redirect('/');
+			break;
 			default:
 			res.json(r);
 			break;
@@ -376,6 +293,41 @@ t.app.post("/service/*",  function(req, res){
 	}, function(error){
 		res.status(500).json({success: false, data: error});
 	});
+
+});
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+t.app.get('/service/logout_user', function(req, res){
+
+	let service = 'logout_user';
+	let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+	let token_agent = t._pG.textToMD5(ip+req.headers['user-agent']);
+	let rs = {service: service, body: req.body, cookies: req.cookies, route: req.route, headers: req.headers, remoteAddress: ip, token_agent: token_agent};
+	console.log(rs);
+	let request_service = JSON.stringify(rs);
+	
+	t._pG.service_point(request_service).then(function(result){
+
+		let r = {};
+		if(result.rows.length > 0 && result.rows[0].return){
+			r = result.rows[0].return;
+		}
+
+		console.log("--->>>>>>>>>>> ", r);
+
+		let cookie = req.cookies;
+		for (var prop in cookie) {
+			if (!cookie.hasOwnProperty(prop)) {
+				continue;
+			}    
+			res.cookie(prop, '', {expires: new Date(0)});
+		}
+		res.redirect('/');
+
+
+	})
 
 });
 
