@@ -6,7 +6,9 @@
   "dependencies": {
     "@dojo/core": "^0.3.1",
     "@dojo/has": "^0.1.2",
-    "@dojo/shim": "^0.2.5",
+    "@dojo/shim": "^0.2.6",
+    "@dojo/stores": "^0.4.1",
+    "@dojo/widget-core": "^0.9.6",
     "@xmpp/client": "^0.3.0",
     "@xmpp/xml": "^0.3.0",
     "body-parser": "^1.17.2",
