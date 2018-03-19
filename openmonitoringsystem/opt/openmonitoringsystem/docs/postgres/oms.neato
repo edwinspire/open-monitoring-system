@@ -2,6 +2,24 @@ digraph g {
 node [ fontsize = "10", shape = record ];
 edge [];
 
+"accounts.contacts" [shape = record, label = "{<col0> \N| idaccountuser:  bigserial\l_lm_:  last_modification\lidaccount:  integer\lidcontact:  integer\lappointment:  text\lpriority:  integer\lnote:  text\l_foot_print_:  foot_print\l}" ];
+
+"accounts.datas" [shape = record, label = "{<col0> \N| idaccount:  bigserial\l_lm_:  last_modification\l_foot_print_:  foot_print\lenabled:  boolean\laccount_name:  text\lgroups:  bigint[]\lidaccountstate:  bigint\lidaccounttype:  bigint\lstart_date:  timestamp with time zone\lend_date:  timestamp with time zone\liddivision:  bigint\lcost_center:  character varying(6)\lnote:  text\lidaddress:  bigint\l}" ];
+
+"accounts.devices" [shape = record, label = "{<col0> \N| iddevice:  bigserial\l_lm_:  last_modification\l_foot_print_:  foot_print\lkeydev:  uuid\lenabled:  boolean\lidaccount:  bigint\ldevice:  text\lmark:  text\lmodel:  text\lserial_number:  text\lidprovider:  bigint\lprovider_serial:  text\ldescription:  text\linstallation_date:  timestamp without time zone\luninstall_date:  timestamp without time zone\loperability:  smallint\leventtypes:  bigint[]\lidcustodian:  bigint\ladditional_properties:  jsonb\lnote:  text\l}" ];
+
+"accounts.divisions" [shape = record, label = "{<col0> \N| iddivision:  bigserial\lname:  text\ldescription:  text\lenabled:  boolean\lnotes:  text\l_lm_:  last_modification\l_foot_print_:  foot_print\l}" ];
+
+"accounts.number_types" [shape = record, label = "{<col0> \N| idaccountnumbertype:  bigserial\l_lm_:  last_modification\l_foot_print_:  foot_print\ltype:  text\lnote:  text\l}" ];
+
+"accounts.numbers" [shape = record, label = "{<col0> \N| idaccountnumber:  bigserial\l_lm_:  last_modification\l_foot_print_:  foot_print\lidaccount:  bigint\laccount:  text\lidaccountnumbertype:  bigint\l}" ];
+
+"accounts.states" [shape = record, label = "{<col0> \N| idaccountstate:  bigserial\l_lm_:  last_modification\lstate:  text\lnote:  text\l_foot_print_:  foot_print\l}" ];
+
+"accounts.types" [shape = record, label = "{<col0> \N| idaccounttype:  bigserial\l_lm_:  last_modification\ltype:  text\lnote:  text\l_foot_print_:  foot_print\l}" ];
+
+"accounts.users" [shape = record, label = "{<col0> \N| idaccountuser:  bigint\l_lm_:  last_modification\lidaccount:  integer\lidcontact:  integer\lappointment:  text\lpriority:  integer\lnote:  text\l_foot_print_:  foot_print\laccount_user:  text\laccount_pwd:  text\ldate_start:  timestamp without time zone\ldate_end:  timestamp without time zone\lenabled:  boolean\luser:  integer\l}" ];
+
 "contacts.address" [shape = record, label = "{<col0> \N| idaddress:  bigserial\lts:  timestamp with time zone\lfootprint_row:  smallint\l}" ];
 
 "contacts.contacts" [shape = record, label = "{<col0> \N| idcontact:  bigserial\lts:  timestamp with time zone\lenabled:  boolean\lfirst_name:  text\llast_name:  text\lbirthday:  timestamp with time zone\lidentification:  text\lididtype:  integer\lpostal_code:  text\lgender:  integer\lgeox:  double precision\lgeoy:  double precision\lnote:  text\laddress:  text\laddress_ref:  text\lgroups:  integer[]\lfootprint_row:  smallint\l}" ];
@@ -27,6 +45,8 @@ edge [];
 "events.comments_attachments" [shape = record, label = "{<col0> \N| ideventcommentattach:  bigserial\lts:  timestamp with time zone\lidevent:  bigint\lidattachment:  integer\lfootprint_row:  smallint\l}" ];
 
 "events.datas_201710_2_1" [shape = record, label = "{<col0> \N| iddata:  uuid\l_lm_:  last_modification\l_foot_print_:  smallint\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidstatustype:  integer\lpriority:  integer\lideventtype:  bigint\lsource:  uuid\liddevice:  bigint\lidreceptionmode:  bigint\ldescription:  html_text\ldetails:  jsonb\lip:  inet\lidadmin_assigned:  bigint\lcreator:  bigint\lisopen:  boolean\l}" ];
+
+"events.datas_201710_2_40" [shape = record, label = "{<col0> \N| iddata:  uuid\l_lm_:  last_modification\l_foot_print_:  smallint\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidstatustype:  integer\lpriority:  integer\lideventtype:  bigint\lsource:  uuid\liddevice:  bigint\lidreceptionmode:  bigint\ldescription:  html_text\ldetails:  jsonb\lip:  inet\lidadmin_assigned:  bigint\lcreator:  bigint\lisopen:  boolean\l}" ];
 
 "events.eventtype_groups" [shape = record, label = "{<col0> \N| idgroup:  bigserial\lts:  timestamp with time zone\lfootprint_row:  smallint\lgroup:  text\ldescription:  text\l}" ];
 
@@ -76,15 +96,9 @@ edge [];
 
 "pgagent.pga_schedule" [shape = record, label = "{<col0> \N| jscid:  serial\ljscjobid:  integer\ljscname:  text\ljscdesc:  text\ljscenabled:  boolean\ljscstart:  timestamp with time zone\ljscend:  timestamp with time zone\ljscminutes:  boolean[]\ljschours:  boolean[]\ljscweekdays:  boolean[]\ljscmonthdays:  boolean[]\ljscmonths:  boolean[]\l}" ];
 
-"public.account_contacts" [shape = record, label = "{<col0> \N| idaccountuser:  bigserial\lts:  timestamp with time zone\lidaccount:  integer\lidcontact:  integer\lappointment:  text\lpriority:  integer\lnote:  text\lfootprint_row:  smallint\l}" ];
+"public._devices" [shape = record, label = "{<col0> \N| idequipment:  bigserial\lts:  timestamp with time zone\lequipment:  text\lmark:  text\lmodel:  text\lserial_number:  text\ldescription:  text\linstallation_date:  timestamp without time zone\luninstall_date:  timestamp without time zone\lnote:  text\lcode_ref:  text\lidaccount:  integer\loperability:  smallint\lidprovider:  integer\lagreement_code_provider:  text\lreport_validator:  text\lenabled:  boolean\leventtypes:  integer[]\lfootprint_row:  smallint\lidcustodian:  bigint\ladditional_properties:  jsonb\lkey:  uuid\l}" ];
 
-"public.account_states" [shape = record, label = "{<col0> \N| idaccountstate:  bigserial\lts:  timestamp with time zone\lstate:  text\lnote:  text\lfootprint_row:  smallint\l}" ];
-
-"public.account_types" [shape = record, label = "{<col0> \N| idaccounttype:  bigserial\lts:  timestamp with time zone\ltype:  text\lnote:  text\lfootprint_row:  smallint\l}" ];
-
-"public.account_users" [shape = record, label = "{<col0> \N| idaccountuser:  bigint\lts:  timestamp with time zone\lidaccount:  integer\lidcontact:  integer\lappointment:  text\lpriority:  integer\lnote:  text\lfootprint_row:  smallint\laccount_user:  text\laccount_pwd:  text\ldate_start:  timestamp without time zone\ldate_end:  timestamp without time zone\lenabled:  boolean\luser:  integer\l}" ];
-
-"public.accounts" [shape = record, label = "{<col0> \N| idaccount:  bigint\lts:  timestamp with time zone\lenabled:  boolean\laccount_name:  text\lidentification:  text\lididtype:  integer\lpostal_code:  text\lgeox:  double precision\lgeoy:  double precision\lnote:  text\laddress:  text\laddress_ref:  text\lgroups:  integer[]\lidaccountstate:  integer\lidaccounttype:  integer\lstart_date:  timestamp without time zone\lend_date:  timestamp without time zone\laccount:  text\liddivision:  bigint\lcost_center:  character varying(5)\lfootprint_row:  smallint\l}" ];
+"public.address" [shape = record, label = "{<col0> \N| idaddress:  bigserial\l_lm_:  timestamp with time zone\l_foot_print_:  smallint\lidtypeaddress:  bigint\lpostal_code:  character varying(10)\lgeox:  double precision\lgeoy:  double precision\lhigh_street:  text\lside_street:  text\lreference:  text\lnote:  text\l}" ];
 
 "public.admins" [shape = record, label = "{<col0> \N| idadmin:  bigserial\lts:  timestamp with time zone\lidcontact:  bigserial\lenabled:  boolean\ladmin_start:  timestamp with time zone\ladmin_end:  timestamp with time zone\ladmin_username:  text\ladmin_pwd:  text\ladmin_sessionid:  text\ladmin_ip:  text\ladmin_level:  integer\ladmin_role:  integer[]\ladmin_locked_date:  timestamp with time zone\ladmin_failed_access_attempts:  smallint\lappointment:  text\llast_access:  timestamp with time zone\llast_heartbeat:  timestamp with time zone\ldivisions:  bigint[]\lidaccounts:  bigint[]\lfootprint_row:  smallint\lemail_notification:  bigint[]\lxmpp_notification:  bigint[]\ladmin_attention_group:  integer[]\l}" ];
 
@@ -93,10 +107,6 @@ edge [];
 "public.attention_group" [shape = record, label = "{<col0> \N| idattention_group:  bigserial\lenabled:  boolean\lts:  timestamp with time zone\lfootprint_row:  smallint\lgroup:  text\l}" ];
 
 "public.configuration_server" [shape = record, label = "{<col0> \N| idconfigserver:  bigserial\lenabled:  boolean\lconfig_name:  text\ldescription:  text\lconfiguration:  json\l}" ];
-
-"public.devices" [shape = record, label = "{<col0> \N| idequipment:  bigserial\lts:  timestamp with time zone\lequipment:  text\lmark:  text\lmodel:  text\lserial_number:  text\ldescription:  text\linstallation_date:  timestamp without time zone\luninstall_date:  timestamp without time zone\lnote:  text\lcode_ref:  text\lidaccount:  integer\loperability:  smallint\lidprovider:  integer\lagreement_code_provider:  text\lreport_validator:  text\lenabled:  boolean\leventtypes:  integer[]\lfootprint_row:  smallint\lidcustodian:  bigint\ladditional_properties:  jsonb\lkey:  uuid\l}" ];
-
-"public.divisions" [shape = record, label = "{<col0> \N| iddivision:  bigserial\lname:  text\ldescription:  text\lenabled:  boolean\lnotes:  text\lts:  timestamp with time zone\lfootprint_row:  smallint\l}" ];
 
 "public.equipments_config_services" [shape = record, label = "{<col0> \N| idequipmentconfig:  bigserial\lts:  timestamp with time zone\lfootprint_row:  smallint\lservices:  text\lconfig:  jsonb\ldescription:  text\lidequipment:  bigint\l}" ];
 
@@ -192,19 +202,32 @@ edge [];
 
 "services.datas" [shape = record, label = "{<col0> \N| idevent:  uuid\lts:  timestamp with time zone\lfootprint_row:  smallint\lloaded:  timestamp with time zone\ldateevent:  timestamp with time zone\lidcontact:  bigint\ldata:  jsonb\lkey:  uuid\lip:  inet\lidstatusraw:  bigint\lidcommunicator:  bigint\l}" ];
 
-"services.services" [shape = record, label = "{<col0> \N| idservice:  bigserial\lts:  timestamp with time zone\lfootprint_row:  smallint\lservice_name:  text\lenabled:  boolean\lis_public:  boolean\ldescription:  text\l}" ];
+"services.services" [shape = record, label = "{<col0> \N| idservice:  bigserial\lts:  timestamp with time zone\lfootprint_row:  smallint\lservice_name:  text\lenabled:  boolean\ldescription:  text\lis_public:  boolean\l}" ];
 
-"users.tokens" [shape = record, label = "{<col0> \N| token:  uuid\lts:  timestamp with time zone\lfootprint_row:  smallint\lisuser:  boolean\lid:  bigint\lfirst_heartbeat:  timestamp with time zone\llast_heartbeat:  timestamp with time zone\lip:  inet\l}" ];
+"users.devices" [shape = record, label = "{<col0> \N| iduser:  bigint\lusername:  text\l_lm_:  last_modification\l_foot_print_:  foot_print\lidcontact:  bigint\lenabled:  boolean\luser_start:  timestamp with time zone\luser_end:  timestamp with time zone\lpwd:  text\luser_role:  bigint[]\ldivisions:  bigint[]\laccounts:  bigint[]\llocked_date:  timestamp with time zone\lfailed_access_attempts:  smallint\lemail_notification:  bigint[]\lxmpp_notification:  bigint[]\ladmin_attention_group:  integer[]\l}" ];
+
+"users.login" [shape = record, label = "{<col0> \N| idlogin:  bigserial\l_lm_:  last_modification\l_foot_print_:  foot_print\lid:  serial\ldatetime:  timestamp with time zone\lnotes:  text\lmotive:  smallint\l}" ];
+
+"users.tokens" [shape = record, label = "{<col0> \N| token:  uuid\llast_heartbeat:  timestamp with time zone\lidlogin:  bigint\ltoken_agent:  uuid\l}" ];
+
+"users.user_login" [shape = record, label = "{<col0> \N| idlogin:  bigint\l_lm_:  last_modification\l_foot_print_:  foot_print\lid:  integer\ldatetime:  timestamp with time zone\lnotes:  text\lmotive:  smallint\lip:  inet\luser_agent:  text\l}" ];
 
 "users.users" [shape = record, label = "{<col0> \N| iduser:  bigserial\lusername:  text\lts:  timestamp with time zone\lfootprint_row:  smallint\lidcontact:  bigint\lenabled:  boolean\luser_start:  timestamp with time zone\luser_end:  timestamp with time zone\lpwd:  text\luser_role:  bigint[]\ldivisions:  bigint[]\laccounts:  bigint[]\llocked_date:  timestamp with time zone\lfailed_access_attempts:  smallint\lemail_notification:  bigint[]\lxmpp_notification:  bigint[]\ladmin_attention_group:  integer[]\l}" ];
 
 
+"accounts.datas" -> "accounts.states" [label="fk_accounts_states"];
+"accounts.datas" -> "accounts.types" [label="fk_accounts_type"];
+"accounts.datas" -> "accounts.divisions" [label="fk_accounts_division"];
+"accounts.datas" -> "public.address" [label="fk_accounts_address"];
+"accounts.devices" -> "accounts.datas" [label="fk_devices_idaccount"];
+"accounts.numbers" -> "accounts.datas" [label="fk_account_number_id"];
+"accounts.numbers" -> "accounts.number_types" [label="fk_account_number_numtype"];
 "contacts.contacts" -> "contacts.identification_types" [label="fk_contacts_ididtype"];
 "contacts.phones" -> "contacts.phone_providers" [label="fk_phones_idprovider"];
 "contacts.phones" -> "contacts.phone_types" [label="fk_phones_idphonetype"];
 "events.comments_attachments" -> "public.attachments" [label="fk_event_comments_attach_idattach"];
 "events.eventtypes" -> "events.eventtype_groups" [label="eventtypes_idgroup_fkey"];
-"octopus.octopus_by_equipment" -> "public.devices" [label="fk_octobyeq_idequipment"];
+"octopus.octopus_by_equipment" -> "public._devices" [label="fk_octobyeq_idequipment"];
 "octopus.octopus_functions_base" -> "octopus.octopus_function" [label="fk_idoctopusfunction_obyaccount"];
 "pgagent.pga_exception" -> "pgagent.pga_schedule" [label="pga_exception_jexscid_fkey"];
 "pgagent.pga_job" -> "pgagent.pga_jobclass" [label="pga_job_jobjclid_fkey"];
@@ -214,18 +237,16 @@ edge [];
 "pgagent.pga_jobsteplog" -> "pgagent.pga_joblog" [label="pga_jobsteplog_jsljlgid_fkey"];
 "pgagent.pga_jobsteplog" -> "pgagent.pga_jobstep" [label="pga_jobsteplog_jsljstid_fkey"];
 "pgagent.pga_schedule" -> "pgagent.pga_job" [label="pga_schedule_jscjobid_fkey"];
-"public.accounts" -> "public.account_states" [label="fk_account_states_id"];
-"public.accounts" -> "public.divisions" [label="accounts_iddivision_fkey"];
 "public.admins" -> "contacts.contacts" [label="fk_admins_idcontact_idcontact"];
-"public.devices" -> "public.accounts" [label="fk_equi_accoun_id"];
-"public.equipments_config_services" -> "public.devices" [label="equipments_config_idequipment_fkey"];
-"public.groups" -> "public.divisions" [label="fk_groups_iddivision"];
+"public.equipments_config_services" -> "public._devices" [label="equipments_config_idequipment_fkey"];
+"public.groups" -> "accounts.divisions" [label="fk_groups_iddivision"];
 "services._input_buffer" -> "services._statusraw" [label="fk_raw_idstatusraw"];
 "services._input_buffer" -> "services.communicators" [label="fk_raw_idcommunicator"];
 "services.datas" -> "contacts.contacts" [label="fk_raw_idcontact"];
-"services.datas" -> "public.devices" [label="fk_raw_key"];
+"services.datas" -> "public._devices" [label="fk_raw_key"];
 "services.datas" -> "services._statusraw" [label="fk_raw_idstatusraw"];
 "services.datas" -> "services.communicators" [label="fk_raw_idcommunicator"];
+"users.devices" -> "contacts.contacts" [label="fk_devices_idcontact_idcontact"];
 "users.users" -> "contacts.contacts" [label="fk_users_idcontact_idcontact"];
 }
 

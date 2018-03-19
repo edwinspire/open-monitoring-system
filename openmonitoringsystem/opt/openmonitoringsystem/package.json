@@ -4,6 +4,9 @@
   "description": "Open Monitoring System",
   "main": "server.js",
   "dependencies": {
+    "@dojo/core": "^0.3.1",
+    "@dojo/has": "^0.1.2",
+    "@dojo/shim": "^0.2.5",
     "@xmpp/client": "^0.3.0",
     "@xmpp/xml": "^0.3.0",
     "body-parser": "^1.17.2",
@@ -29,7 +32,8 @@
     "pg-pool": "^1.7.1",
     "ping": "^0.2.2",
     "promise": "^7.1.1",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "sqlite3": "^3.1.13"
   },
   "keywords": [
     "OMS"

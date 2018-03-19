@@ -2,7 +2,11 @@
 	"name": "app",
 	"version": "1.0.0",
 	"dependencies": {
-		"dojo": "~1.11"
+		"@dojo/core": "~0.4.0",
+		"@dojo/has": "~0.1.2",
+		"@dojo/i18n": "~0.5.1",
+		"@dojo/shim": "~0.2.6",
+		"express": "^4.16.3"
 	},
 	"main": "server",
 	"licenses": [
@@ -11,5 +15,6 @@
 			"url": "https://github.com/kitsonk/dote-node-boilerplate/blob/master/LICENSE"
 		}
 	],
-	"homepage": "https://github.com/kitsonk/dote-node-boilerplate/"
+	"homepage": "https://github.com/kitsonk/dote-node-boilerplate/",
+	"devDependencies": {}
 }
