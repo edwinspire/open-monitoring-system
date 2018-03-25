@@ -1,0 +1,10 @@
+"use strict";
+exports.__esModule = true;
+var server_1 = require("./class/server");
+process.env.PGDATABASE = 'oms';
+process.env.PGUSER = 'postgres';
+process.env.PGHOST = 'localhost';
+process.env.PGPASSWORD = 'pg4321';
+process.env.PGAPPNAME = 'OMSServer';
+var OMS = new server_1["default"]();
+OMS.run();
