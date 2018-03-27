@@ -17,8 +17,8 @@ var OpenMonitoringSystem = /** @class */ (function () {
         var sIO = new io_1["default"](this.webServer);
     }
     OpenMonitoringSystem.prototype.run = function () {
-        this.webServer.listen(47443, function () {
-            console.log('Example app listening on port 49443!');
+        this.webServer.listen(process.env.EXPRESS_PORT, function () {
+            console.log('Example app listening on port: ' + process.env.EXPRESS_PORT);
         });
     };
     return OpenMonitoringSystem;

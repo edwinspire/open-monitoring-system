@@ -27,13 +27,13 @@ var PostgreSQL = /** @class */ (function (_super) {
             console.log('=>', ev);
             _this.get_config_from_db().then(function (config) {
                 console.log('Configuration UPDATE: ', config);
-                _this.removeAllListeners('public.configuration_server.op');
-                _this.ConnectNotify(_this.APPConfig.get('PGNOTIFY'));
+                //this.removeAllListeners('public.configuration_server.op');
+                //this.connect_notify(this.APPConfig.get('PGNOTIFY'));
             });
         });
         _this.get_config_from_db().then(function (config) {
             console.log('Configuration: ', config);
-            _this.ConnectNotify(_this.APPConfig.get('PGNOTIFY'));
+            _this.connect_notify(_this.APPConfig.get('PGNOTIFY'));
         });
         return _this;
     }
@@ -49,9 +49,10 @@ var PostgreSQL = /** @class */ (function (_super) {
             }); });
         });
     };
-    PostgreSQL.prototype.ConnectNotify = function (channels) {
+    PostgreSQL.prototype.connect_notify = function (channels) {
         //this.removeAllListeners('notification');
-        // Recordar que hay que desconectar todos los conectados a este evento
+        // TODO:
+        // Recordar que hay que desconectar todos los conectados a este evento cuando haya una modificacion en la tabla de configuraciones
         var _this = this;
         this.poolPG.connect().then(function (client) {
             client.on('notification', function (n) {
@@ -75,7 +76,7 @@ var PostgreSQL = /** @class */ (function (_super) {
                     console.log('Algo sucedió incorrectamente');
                 }
             })["catch"](function (e) {
-                client.release();
+                client.reject();
                 console.error('query error', e);
             });
         });
@@ -132,6 +133,8 @@ var PostgreSQL = /** @class */ (function (_super) {
                 reject(e);
             }); });
         });
+    };
+    PostgreSQL.prototype.eventdata_insert = function (data) {
     };
     return PostgreSQL;
 }(events_1.EventEmitter));

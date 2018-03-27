@@ -1,0 +1,1 @@
+{"version":3,"file":"main.js","sourceRoot":"","sources":["main.ts"],"names":[],"mappings":";;;;;;;;;;;IAAA,2BAA6B;IAGpB,kBAAG;IAFZ,iCAAmC;IAErB,wBAAM","sourcesContent":["import * as cli from './cli';\nimport * as loader from './loader';\n\nexport { cli, loader };\n"]}

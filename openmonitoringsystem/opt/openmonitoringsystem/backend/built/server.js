@@ -6,5 +6,6 @@ process.env.PGUSER = 'postgres';
 process.env.PGHOST = 'localhost';
 process.env.PGPASSWORD = 'pg4321';
 process.env.PGAPPNAME = 'OMSServer';
+process.env.EXPRESS_PORT = '49443';
 var OMS = new server_1["default"]();
 OMS.run();

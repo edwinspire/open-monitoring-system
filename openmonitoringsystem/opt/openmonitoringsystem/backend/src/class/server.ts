@@ -5,6 +5,8 @@ import * as fs from 'fs';
 import PgSQL from './postgres/pgsql';
 
 
+
+
 export default class OpenMonitoringSystem {
   private webServer: any;
   private pg: any;
@@ -24,8 +26,8 @@ export default class OpenMonitoringSystem {
   }
   run(){
 
-    this.webServer.listen(47443, function () {
-      console.log('Example app listening on port 49443!');
+    this.webServer.listen(process.env.EXPRESS_PORT, function () {
+      console.log('Example app listening on port: '+process.env.EXPRESS_PORT);
     });
 
   }

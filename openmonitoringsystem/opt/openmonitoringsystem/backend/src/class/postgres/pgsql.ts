@@ -5,7 +5,24 @@ import Promise from "@dojo/shim/Promise";
 import {EventEmitter} from "events";
 import * as crypto from "crypto";
 
-
+export interface EventData {
+	iddata: string;
+	idaccount: number; // Campo para particionar
+	_foot_print_: number;
+	dateevent: Date; // Campo para particionar en años, meses
+	idstatustype: number;
+	priority: number;
+	ideventtype: number; // 
+	source: string;
+	iddevice: number;
+	idreceptionmode: number;
+	description: string;
+	details: object;
+	ip: string;
+	idadmin_assigned: number;
+	creator: number;
+	isopen: boolean;
+}
 
 export default class PostgreSQL extends  EventEmitter{
 	private poolPG: any;
@@ -21,14 +38,14 @@ export default class PostgreSQL extends  EventEmitter{
 			console.log('=>', ev);
 			this.get_config_from_db().then((config)=>{
 				console.log('Configuration UPDATE: ', config);
-				this.removeAllListeners('public.configuration_server.op');
-				this.ConnectNotify(this.APPConfig.get('PGNOTIFY'));
+				//this.removeAllListeners('public.configuration_server.op');
+				//this.connect_notify(this.APPConfig.get('PGNOTIFY'));
 			});
 		});
 
 		this.get_config_from_db().then((config)=>{
 			console.log('Configuration: ', config);
-			this.ConnectNotify(this.APPConfig.get('PGNOTIFY'));
+			this.connect_notify(this.APPConfig.get('PGNOTIFY'));
 		});
 
 	}
@@ -45,10 +62,11 @@ export default class PostgreSQL extends  EventEmitter{
 		})	
 	}
 
-	private ConnectNotify(channels: Array<string>){
+	private connect_notify(channels: Array<string>){
 
 		//this.removeAllListeners('notification');
-				// Recordar que hay que desconectar todos los conectados a este evento
+		// TODO:
+		// Recordar que hay que desconectar todos los conectados a este evento cuando haya una modificacion en la tabla de configuraciones
 
 		this.poolPG.connect().then(client => {
 			client.on('notification', (n)=>{
@@ -75,12 +93,13 @@ export default class PostgreSQL extends  EventEmitter{
 				}
 
 			}).catch(e => {
-				client.release()
+				client.reject()
 				console.error('query error', e)
 			})
 		})
 
 	}
+
 
 	private get_config_from_db(){	
 
@@ -147,5 +166,12 @@ export default class PostgreSQL extends  EventEmitter{
 		})	
 
 	}
+
+	eventdata_insert(data: EventData){
+//return this.query();
+}
+
+
+
 
 }
