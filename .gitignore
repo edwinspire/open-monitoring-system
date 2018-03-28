@@ -1,6 +1,6 @@
 # Ignores
-openmonitoringsystem/opt/openmonitoringsystem/node_modules/*
-openmonitoringsystem/opt/openmonitoringsystem/src/app-client-dojo2/node_modules
+openmonitoringsystem/opt/openmonitoringsystem/backend/node_modules/*
+openmonitoringsystem/opt/openmonitoringsystem/frontend/node_modules/*
 *~
 #*.sh
 *.bat
