@@ -135,6 +135,7 @@ var PostgreSQL = /** @class */ (function (_super) {
         });
     };
     PostgreSQL.prototype.eventdata_insert = function (data) {
+        //return this.query();
     };
     return PostgreSQL;
 }(events_1.EventEmitter));

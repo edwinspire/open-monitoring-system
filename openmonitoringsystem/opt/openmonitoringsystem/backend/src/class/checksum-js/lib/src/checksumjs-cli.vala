@@ -87,7 +87,7 @@ public static string paramsjson(ChecksumType cs, string from, string target){
 	var param = new StringBuilder("{");
 	param.append_printf(""""ChecksumType": "%s",""", cs.to_string());
 	param.append_printf(""""From": "%s",""", from);
-	param.append_printf(""""Target": %s}""", target);
+	param.append_printf(""""Target": "%s"}""", target);
 	return param.str;
 }
 

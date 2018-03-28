@@ -1,5 +1,4 @@
 import  {Pool} from 'pg';
-import * as mssql from 'mssql';
 import * as dojo from "@dojo/core";
 import Promise from "@dojo/shim/Promise";
 import {EventEmitter} from "events";

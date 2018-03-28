@@ -2,47 +2,47 @@
 const execFile = require('child_process').execFile;
 const spawn = require('child_process').spawn;
 const fs = require('fs');
-var EventEmitter   = require('events').EventEmitter;
+const Promise = require('promise');
 
-var MountJS = EventEmitter;
-MountJS.prototype.parameters = {domain: '', username: '', password: '', location: '', protocol: 'smb', timeout: 60, anonymous: true};
+export default class CheckSum{
+  constructor(){
 
-MountJS.prototype.mount = function (_param) {
+  }
+  FromFile(ChecksumType, file){
+
+return new Promise((resolve, reject) => {
+
   var t = this;
   var args = [];
 
-  if(_param){
-    this.parameters = _param;
-  }
-
-  args.push(this.parameters.protocol);
-  args.push(this.parameters.domain);
-  args.push(this.parameters.location);
-  args.push(this.parameters.anonymous);
-  args.push(this.parameters.username);
-  args.push(this.parameters.password);
-  args.push(this.parameters.timeout);
+  args.push(ChecksumType);
+  args.push('file');
+  args.push(file);
 
   const child = spawn(__dirname+'/bin/checksumjs-cli', args);
   child.on('close', (code, signal) => {
-    //console.log( `child process terminated due to receipt of signal ${signal}`);
+    console.log( `child process terminated due to receipt of signal ${signal}`);
   });
 
   child.on('exit', (code, signal) => {
-
+console.log(code, signal)
+/*
     switch(code){
       case 0:
       //t.emit('mounted', signal);
       break;
       default:
-      t.emit('fail', {message: 'Ya se encuentra montado', location: args[0], code: code});
+    //  t.emit('fail', {message: 'Ya se encuentra montado', location: args[0], code: code});
+    console.log({message: 'Ya se encuentra montado', location: args[0], code: code})
       break;
     }
+    */
 
   });
 
   child.on('error', (error) => {
-    t.emit('fail', {message: data+'', error: -2});
+    //t.emit('fail', {message: data+'', error: -2});
+    console.log(error)
   });
 
   child.on('message', (message) => {
@@ -51,20 +51,17 @@ MountJS.prototype.mount = function (_param) {
 
   child.stdout.on('data', (message) => {
    var m = JSON.parse(message.toString());
-
-   if(m.error){
-    t.emit('fail', m);
-  }else{
-    t.emit('mounted', m);
-  }
+console.log(m);
   
 });
 
   child.stderr.on('data', function (data) {
-    t.emit('fail', {message: data+'', error: -2});
+    console.log(data)
   });
 
 
-}
+}  
+});
 
-module.exports = MountJS;
+
+}
