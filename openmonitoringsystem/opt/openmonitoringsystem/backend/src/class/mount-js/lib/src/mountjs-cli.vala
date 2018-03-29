@@ -94,7 +94,6 @@ public async void mount(){
     var cancellable = new Cancellable ();
     uint mount_timeout_id = 100;
 
-
     mount_timeout_id = Timeout.add_seconds (MOUNT_TIMEOUT_SEC, () => {
         cancellable.cancel ();
         return true;
@@ -106,6 +105,7 @@ public async void mount(){
         mount_op = new MountOperation ();
 
         mount_op.ask_password.connect ((message, default_user, default_domain, flags) => {
+//            stdout.printf  (message);
            mount_op.reply(MountOperationResult.HANDLED );
            });
 
@@ -157,7 +157,7 @@ public async void mount(){
 this.MLoop.quit ();
 
 } finally {
-    stdout.printf  ("\n");
+    //stdout.printf  ("---\n");
     this.MLoop.quit ();
 }
 
@@ -180,7 +180,10 @@ public string get_param(){
 
 public  void json (Mount mount) {
 
-if(mount.get_root ().get_path () == this.location.get_path ()){
+//stdout.printf  (mount.get_default_location ().get_path ()+"++\n");
+//stdout.printf  (this.location.get_path ());
+
+if(this.location.get_path ().has_prefix(mount.get_root ().get_path ())){
     var r = new StringBuilder("{");
     r.append_printf (""""can_eject": %s,""", mount.can_eject ().to_string ());
     r.append_printf (""""can_unmount": %s,""", mount.can_unmount ().to_string ());
@@ -189,6 +192,7 @@ if(mount.get_root ().get_path () == this.location.get_path ()){
     r.append_printf (""""root": "%s",""", mount.get_root ().get_path ());
     r.append_printf (""""sort_key": "%s",""", mount.get_sort_key ());
     r.append_printf (""""uuid": "%s",""", mount.get_uuid ());
+    r.append_printf (""""location": "%s",""", this.location.get_path ());
     r.append_printf (""""is_shadowed": %s,""", mount.is_shadowed ().to_string ());
     r.append_printf (""""default_location": "%s"}""", mount.get_default_location ().get_path ());
 
