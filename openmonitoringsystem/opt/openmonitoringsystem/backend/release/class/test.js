@@ -1,6 +1,6 @@
 "use strict";
-exports.__esModule = true;
-var ZipCodeValidator = /** @class */ (function () {
+Object.defineProperty(exports, "__esModule", { value: true });
+var ZipCodeValidator = (function () {
     function ZipCodeValidator() {
     }
     ZipCodeValidator.prototype.isAcceptable = function (s) {
@@ -9,4 +9,4 @@ var ZipCodeValidator = /** @class */ (function () {
     ZipCodeValidator.numberRegexp = /^[0-9]+$/;
     return ZipCodeValidator;
 }());
-exports["default"] = ZipCodeValidator;
+exports.default = ZipCodeValidator;

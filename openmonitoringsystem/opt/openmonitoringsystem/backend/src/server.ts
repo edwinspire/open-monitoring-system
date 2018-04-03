@@ -14,17 +14,34 @@ process.env.EXPRESS_PORT = '49443';
 
 const OMS = new OpenMonitoringSystem();
 
-
+/*
 let m = new MFS.default();
 m.mount({protocol: "ftp",  domain: "", location: "ftp.gnome.org/pub/GNOME/sources/", anonymous: true, username: "", password: "", timeout: 90}).then((result)=>{
-	console.log(result);
-	
-fs.readdirSync((result as MFS.Mounted).mount.location).forEach(file => {
-  console.log(file);
-})
+	try{
+		fs.readdirSync((result as MFS.Mounted).mount.location).forEach(file => {
+			console.log(file);
+		})
+	}catch(err){
+	console.log("readdirSync 1=>", err);
+	}
 
 }, (e)=>{
-	console.log(e);
+	console.log("mount 1=>", e);
+});
+*/
+
+let m2 = new MFS.default();
+m2.mount({protocol: "smb",  domain: "", location: "172.16.124.2/c$", anonymous: false, username: "Administrador", password: "1234567", timeout: 90}).then((result)=>{
+	try{
+		fs.readdirSync((result as MFS.Mounted).mount.location).forEach(file => {
+			console.log(file);
+		})
+	}catch(err){
+	console.log("readdirSync 2=>", err);
+	}
+
+}, (e)=>{
+	console.log("mount2 =>", e);
 });
 
 /*

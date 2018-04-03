@@ -26,8 +26,16 @@ export default class OpenMonitoringSystem {
   }
   run(){
 
-    this.webServer.listen(process.env.EXPRESS_PORT, function () {
+
+    this.webServer.listen(process.env.EXPRESS_PORT,  ()=> {
       console.log('Example app listening on port: '+process.env.EXPRESS_PORT);
+
+   this.pg.eventdata_insert({ideventtype: 10, idaccount: 1, description: 'OMS Iniciado en el puerto '+process.env.EXPRESS_PORT, dateevent: new Date()}).then((r)=>{
+      console.dir(r.rows);
+    }, (e)=>{
+      console.dir(e);
+    });
+
     });
 
   }

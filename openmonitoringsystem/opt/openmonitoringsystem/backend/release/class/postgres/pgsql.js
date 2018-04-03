@@ -9,12 +9,12 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var pg_1 = require("pg");
 var Promise_1 = require("@dojo/shim/Promise");
 var events_1 = require("events");
 var crypto = require("crypto");
-var PostgreSQL = /** @class */ (function (_super) {
+var PostgreSQL = (function (_super) {
     __extends(PostgreSQL, _super);
     function PostgreSQL() {
         var _this = _super.call(this) || this;
@@ -27,8 +27,6 @@ var PostgreSQL = /** @class */ (function (_super) {
             console.log('=>', ev);
             _this.get_config_from_db().then(function (config) {
                 console.log('Configuration UPDATE: ', config);
-                //this.removeAllListeners('public.configuration_server.op');
-                //this.connect_notify(this.APPConfig.get('PGNOTIFY'));
             });
         });
         _this.get_config_from_db().then(function (config) {
@@ -39,24 +37,20 @@ var PostgreSQL = /** @class */ (function (_super) {
     }
     PostgreSQL.prototype.query = function (q, p) {
         var _this = this;
-        return new Promise_1["default"](function (resolve, reject) {
+        return new Promise_1.default(function (resolve, reject) {
             _this.poolPG.query(q, p)
                 .then(function (res) {
                 resolve(res);
-            })["catch"](function (e) { return setImmediate(function () {
+            }).catch(function (e) { return setImmediate(function () {
                 console.trace(e);
                 reject(e);
             }); });
         });
     };
     PostgreSQL.prototype.connect_notify = function (channels) {
-        //this.removeAllListeners('notification');
-        // TODO:
-        // Recordar que hay que desconectar todos los conectados a este evento cuando haya una modificacion en la tabla de configuraciones
         var _this = this;
         this.poolPG.connect().then(function (client) {
             client.on('notification', function (n) {
-                //console.log(n);
                 if (_this.EventsMd5.has(n.channel)) {
                     _this.emit(_this.EventsMd5.get(n.channel), n.payload);
                 }
@@ -75,7 +69,7 @@ var PostgreSQL = /** @class */ (function (_super) {
                 else {
                     console.log('Algo sucedió incorrectamente');
                 }
-            })["catch"](function (e) {
+            }).catch(function (e) {
                 client.reject();
                 console.error('query error', e);
             });
@@ -84,7 +78,7 @@ var PostgreSQL = /** @class */ (function (_super) {
     PostgreSQL.prototype.get_config_from_db = function () {
         var _this = this;
         var q = 'SELECT * FROM configuration_server WHERE enabled = true;';
-        return new Promise_1["default"](function (resolve, reject) {
+        return new Promise_1.default(function (resolve, reject) {
             _this.poolPG.query(q, [])
                 .then(function (res) {
                 res.rows.forEach(function (config) {
@@ -128,15 +122,15 @@ var PostgreSQL = /** @class */ (function (_super) {
                     }
                 });
                 resolve(_this.APPConfig);
-            })["catch"](function (e) { return setImmediate(function () {
+            }).catch(function (e) { return setImmediate(function () {
                 console.log(e);
                 reject(e);
             }); });
         });
     };
     PostgreSQL.prototype.eventdata_insert = function (data) {
-        //return this.query();
+        return this.query("SELECT events.funjs_insert_data($1::json) as result", [data]);
     };
     return PostgreSQL;
 }(events_1.EventEmitter));
-exports["default"] = PostgreSQL;
+exports.default = PostgreSQL;

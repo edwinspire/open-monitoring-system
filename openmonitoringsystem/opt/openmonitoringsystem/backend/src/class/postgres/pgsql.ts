@@ -20,7 +20,7 @@ export interface EventData {
 	ip: string;
 	idadmin_assigned: number;
 	creator: number;
-	isopen: boolean;
+	isopen: boolean; // Indexado condicional
 }
 
 export default class PostgreSQL extends  EventEmitter{
@@ -167,8 +167,8 @@ export default class PostgreSQL extends  EventEmitter{
 	}
 
 	eventdata_insert(data: EventData){
-//return this.query();
-}
+		return this.query("SELECT events.funjs_insert_data($1::json) as result", [data]);
+	}
 
 
 

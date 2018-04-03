@@ -28,9 +28,9 @@ export default class WebServer {
 
 
   }
-
-  app(){
+  public app(){
     return this.appexp;
   }
+
 
 }
