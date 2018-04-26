@@ -14,24 +14,45 @@ var pg_1 = require("pg");
 var Promise_1 = require("@dojo/shim/Promise");
 var events_1 = require("events");
 var crypto = require("crypto");
+var os = require("os");
 var PostgreSQL = (function (_super) {
     __extends(PostgreSQL, _super);
     function PostgreSQL() {
         var _this = _super.call(this) || this;
         _this.APPConfig = new Map();
         _this.EventsMd5 = new Map();
+        _this.OMSources = new Map();
+        _this.networkInterfaces = new Map();
         _this.poolPG = new pg_1.Pool({
-            max: 30
+            max: 50
+        });
+        var ifaces = os.networkInterfaces();
+        Object.keys(ifaces).forEach(function (ifname) {
+            var alias = 0;
+            ifaces[ifname].forEach(function (iface) {
+                if ('IPv4' !== iface.family || iface.internal !== false) {
+                    return;
+                }
+                if (alias >= 1) {
+                    _this.networkInterfaces.set(ifname, iface.address);
+                }
+                else {
+                    _this.networkInterfaces.set(ifname, iface.address);
+                }
+                ++alias;
+            });
         });
         _this.on('public.configuration_server.op', function (ev) {
             console.log('=>', ev);
             _this.get_config_from_db().then(function (config) {
-                console.log('Configuration UPDATE: ', config);
             });
         });
-        _this.get_config_from_db().then(function (config) {
-            console.log('Configuration: ', config);
-            _this.connect_notify(_this.APPConfig.get('PGNOTIFY'));
+        _this.getOMSSources().then(function () {
+            _this.get_config_from_db().then(function (config) {
+                _this.connect_notify(_this.APPConfig.get('PGNOTIFY'));
+            });
+        }, function (err) {
+            console.trace(err);
         });
         return _this;
     }
@@ -129,7 +150,69 @@ var PostgreSQL = (function (_super) {
         });
     };
     PostgreSQL.prototype.eventdata_insert = function (data) {
-        return this.query("SELECT events.funjs_insert_data($1::json) as result", [data]);
+        return this.query("SELECT events.funjs_insert_data($1::json) as result;", [data]);
+    };
+    PostgreSQL.prototype.services = function (parameters) {
+        var _this = this;
+        return new Promise_1.default(function (resolve, reject) {
+            try {
+                _this.query("SELECT services.point($1::json) as service;", [parameters]).then(function (result) {
+                    if (result.rows.length > 0 && result.rows[0]) {
+                        var ser = result.rows[0].service;
+                        if (ser.error) {
+                            reject(ser);
+                        }
+                        else {
+                            resolve(ser);
+                        }
+                    }
+                    else {
+                        reject(result);
+                    }
+                }, function (error) {
+                    reject(error);
+                });
+            }
+            catch (err) {
+                reject(err);
+            }
+        });
+    };
+    PostgreSQL.prototype.getOMSSources = function () {
+        var _this = this;
+        return new Promise_1.default(function (resolve, reject) {
+            try {
+                _this.query("SELECT idsource, uuid FROM sources.datas WHERE idaccount = 1 AND monitored = true;", []).then(function (result) {
+                    if (result.rows.length > 0) {
+                        _this.OMSources.clear();
+                        result.rows.forEach(function (source) {
+                            _this.OMSources.set(source.idsource, source.uuid);
+                        });
+                        resolve(result.rows);
+                    }
+                    else {
+                        reject(result);
+                    }
+                }, function (error) {
+                    reject(error);
+                });
+            }
+            catch (err) {
+                reject(err);
+            }
+        });
+    };
+    PostgreSQL.prototype.internal_services = function (parameters) {
+        this.networkInterfaces.forEach(function (v, k) {
+            parameters.ip = v;
+            return;
+        });
+        this.OMSources.forEach(function (v, k) {
+            return;
+        });
+        parameters.token = this.OMSources.get(parameters.id + '');
+        parameters.useragent = "NodeJS";
+        return this.services(parameters);
     };
     return PostgreSQL;
 }(events_1.EventEmitter));

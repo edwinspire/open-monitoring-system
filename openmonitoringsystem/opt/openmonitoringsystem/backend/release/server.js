@@ -11,7 +11,7 @@ process.env.PGAPPNAME = 'OMSServer';
 process.env.EXPRESS_PORT = '49443';
 var OMS = new server_1.default();
 var m2 = new MFS.default();
-m2.mount({ protocol: "smb", domain: "", location: "172.16.124.2/c$", anonymous: false, username: "Administrador", password: "1234567", timeout: 90 }).then(function (result) {
+m2.mount({ protocol: "file", domain: "", location: "home/edwinspire/Descargas", anonymous: true, username: "", password: "", timeout: 90 }).then(function (result) {
     try {
         fs.readdirSync(result.mount.location).forEach(function (file) {
             console.log(file);
@@ -20,6 +20,15 @@ m2.mount({ protocol: "smb", domain: "", location: "172.16.124.2/c$", anonymous: 
     catch (err) {
         console.log("readdirSync 2=>", err);
     }
+    fs.watch(result.mount.location, { persistent: true }, function (eventType, filename) {
+        console.log("event type is: " + eventType);
+        if (filename) {
+            console.log("filename provided: " + filename);
+        }
+        else {
+            console.log('filename not provided');
+        }
+    });
 }, function (e) {
     console.log("mount2 =>", e);
 });
