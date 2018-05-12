@@ -4,11 +4,11 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./OpenMonitoringSystem"], factory);
+        define(["require", "exports", "./Banner"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    require("./OpenMonitoringSystem");
+    require("./Banner");
 });
 //# sourceMappingURL=all.js.map

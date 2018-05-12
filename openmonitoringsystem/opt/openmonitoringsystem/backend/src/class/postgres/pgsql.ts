@@ -45,12 +45,12 @@ export default class PostgreSQL extends  EventEmitter{
 	private poolPG: any;
 	private APPConfig: Map<string, any> = new Map();
 	private EventsMd5: Map<string, any> = new Map();
-	private OMSources: Map<string, string> = new Map();
+	public OMSources: Map<string, string> = new Map();
 	public networkInterfaces: Map<string, any> = new Map();
 	constructor() {
 		super();
 		this.poolPG = new Pool({
-			max: 50
+			max: 80
 		});
 
 		let ifaces = os.networkInterfaces();
@@ -219,9 +219,6 @@ export default class PostgreSQL extends  EventEmitter{
 
 	}
 
-	private eventdata_insert(data: EventData){
-		return this.query("SELECT events.funjs_insert_data($1::json) as result;", [data]);
-	}
 
 	services(parameters: Service){
 
@@ -302,7 +299,8 @@ export default class PostgreSQL extends  EventEmitter{
 		});
 
 		parameters.token = this.OMSources.get(parameters.id+'');
-		parameters.useragent = "NodeJS";
+		parameters.useragent = "NodeJS-OMS";
+		parameters.timestamp = parameters.timestamp || new Date();
 
 		return this.services(parameters);
 	}

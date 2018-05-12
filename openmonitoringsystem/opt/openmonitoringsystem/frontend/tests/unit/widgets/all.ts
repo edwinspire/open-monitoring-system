@@ -1,1 +1,1 @@
-import './OpenMonitoringSystem';
+import './Banner';

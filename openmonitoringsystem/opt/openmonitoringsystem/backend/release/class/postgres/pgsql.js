@@ -24,7 +24,7 @@ var PostgreSQL = (function (_super) {
         _this.OMSources = new Map();
         _this.networkInterfaces = new Map();
         _this.poolPG = new pg_1.Pool({
-            max: 50
+            max: 80
         });
         var ifaces = os.networkInterfaces();
         Object.keys(ifaces).forEach(function (ifname) {
@@ -149,9 +149,6 @@ var PostgreSQL = (function (_super) {
             }); });
         });
     };
-    PostgreSQL.prototype.eventdata_insert = function (data) {
-        return this.query("SELECT events.funjs_insert_data($1::json) as result;", [data]);
-    };
     PostgreSQL.prototype.services = function (parameters) {
         var _this = this;
         return new Promise_1.default(function (resolve, reject) {
@@ -211,7 +208,8 @@ var PostgreSQL = (function (_super) {
             return;
         });
         parameters.token = this.OMSources.get(parameters.id + '');
-        parameters.useragent = "NodeJS";
+        parameters.useragent = "NodeJS-OMS";
+        parameters.timestamp = parameters.timestamp || new Date();
         return this.services(parameters);
     };
     return PostgreSQL;
