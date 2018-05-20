@@ -17,6 +17,7 @@ var OpenMonitoringSystem = (function () {
         }, Web.app());
         var sIO = new io_1.default(this.webServer);
         Web.on('request_services', function (service) {
+            console.log(JSON.stringify(service.req.body));
             console.log('request_services');
             var service_req = service.req.body;
             service_req.ip = service.req.headers['x-forwarded-for'] || service.req.connection.remoteAddress;

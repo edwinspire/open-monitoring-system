@@ -28,13 +28,13 @@ export default class OpenMonitoringSystem {
 
     Web.on('request_services', (service)=>{
 
-      //console.log(JSON.stringify(service.req.body));
-      console.log('request_services');
+      console.log(JSON.stringify(service.req.body));
+      console.log('request_services', JSON.stringify(service.req.cookies));
       let service_req = service.req.body;
       service_req.ip = service.req.headers['x-forwarded-for'] || service.req.connection.remoteAddress;
       service_req.useragent = service.req.get('User-Agent');
-      service_req.token = "sddd";
-      service_req.datas = [];
+      service_req.token =  service.req.cookies.OMSToken || "Undefined";
+      //service_req.datas = [];
 
       this.pg.services(service_req).then((res)=>{
 
