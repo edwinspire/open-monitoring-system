@@ -17,14 +17,14 @@ const routingConfig = [
 			}
 		]
 	},
-		{
-		path: 'Login',
-		outlet: 'Login'
-	},
 	{
 		path: 'new-worker',
 		outlet: 'new-worker'
 	},
+	{
+		path: 'Contacts',
+		outlet: 'Contacts'
+	},	
 	{
 		path: '/',
 		outlet: 'Login',

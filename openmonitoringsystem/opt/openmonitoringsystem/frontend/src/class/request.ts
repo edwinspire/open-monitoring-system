@@ -2,7 +2,7 @@ import  request  from '@dojo/core/request';
 
 export interface Payload {
 name: string,
-datas: any[]
+datas: any
 }
 
 

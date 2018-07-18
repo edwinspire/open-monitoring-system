@@ -156,7 +156,7 @@ var PostgreSQL = (function (_super) {
                 _this.query("SELECT services.point($1::json) as service;", [parameters]).then(function (result) {
                     if (result.rows.length > 0 && result.rows[0]) {
                         var ser = result.rows[0].service;
-                        if (ser.error) {
+                        if (ser && ser.error) {
                             reject(ser);
                         }
                         else {

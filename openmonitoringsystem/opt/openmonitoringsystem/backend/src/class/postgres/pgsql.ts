@@ -28,7 +28,7 @@ export interface EventData {
 
 export interface Service {
 	name: string;
-	id: any; 
+	id: any; // idsource
 	timestamp: Date; 
 	ip: string;
 	//username: string;
@@ -230,9 +230,11 @@ export default class PostgreSQL extends  EventEmitter{
 
 				this.query("SELECT services.point($1::json) as service;", [parameters]).then((result)=>{
 
+					//console.dir(JSON.stringify(result));
+
 					if(result.rows.length > 0 && result.rows[0]){
 						let ser = result.rows[0].service;
-						if(ser.error){
+						if(ser && ser.error){
 							reject(ser);
 						}else{
 							resolve(ser);

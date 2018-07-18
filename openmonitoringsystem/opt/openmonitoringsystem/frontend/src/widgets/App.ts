@@ -8,6 +8,7 @@ import WorkerFormOutlet from './../outlets/WorkerFormOutlet';
 import WorkerContainerOutlet from './../outlets/WorkerContainerOutlet';
 import BannerOutlet from './../outlets/BannerOutlet';
 import LoginOutlet from './../outlets/LoginOutlet';
+import ContactsOutlet from './../outlets/ContactsOutlet';
 import FilteredWorkerContainerOutlet from './../outlets/FilteredWorkerContainerOutlet';
 import workerData from './../support/workerData';
 import * as css from './../styles/app.m.css';
@@ -61,6 +62,7 @@ export default class App extends ThemedMixin(WidgetBase) {
 			v('div', {},  [
 				w(BannerOutlet, {}),
 				w(LoginOutlet, {}),
+				w(ContactsOutlet, {}),
 				w(WorkerFormOutlet, {
 					formData: this._newWorker,
 					onFormInput: this._onFormInput,
