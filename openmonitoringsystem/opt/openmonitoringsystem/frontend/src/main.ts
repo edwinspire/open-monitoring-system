@@ -35,7 +35,7 @@ const routingConfig = [
 const registry = new Registry();
 registerRouterInjector(routingConfig, registry);
 
-const Projector = ProjectorMixin(App);
-const projector = new Projector();
+const ProjectorM = ProjectorMixin(App);
+const projector = new ProjectorM();
 projector.setProperties({ registry });
 projector.append(root);

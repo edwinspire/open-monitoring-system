@@ -9,8 +9,9 @@ Requirements
 -------------
 
  1. PostgreSQL v10 
- 2. NodeJS (You can obtain a version for debian from: https://github.com/edwinspire/nodejs-debian) 
- 3. Browser  
+ 2. NodeJS V9.11 (You can obtain a version for debian from: https://github.com/edwinspire/nodejs-debian) 
+ 3. Typescript V2.8
+ 4. Browser  
 
 Create Debian Package
 -------------

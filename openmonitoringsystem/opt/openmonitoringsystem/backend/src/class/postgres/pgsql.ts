@@ -231,9 +231,10 @@ export default class PostgreSQL extends  EventEmitter{
 				this.query("SELECT services.point($1::json) as service;", [parameters]).then((result)=>{
 
 					//console.dir(JSON.stringify(result));
+					let res = result as any;
 
-					if(result.rows.length > 0 && result.rows[0]){
-						let ser = result.rows[0].service;
+					if(res.rows.length > 0 && res.rows[0]){
+						let ser = res.rows[0].service;
 						if(ser && ser.error){
 							reject(ser);
 						}else{
@@ -262,18 +263,20 @@ export default class PostgreSQL extends  EventEmitter{
 
 				this.query("SELECT idsource, uuid FROM sources.datas WHERE idaccount = 1 AND monitored = true;", []).then((result)=>{
 					
-					if(result.rows.length > 0){
+					let res = result as any;
+
+					if(res.rows.length > 0){
 
 						this.OMSources.clear();
 
-						result.rows.forEach((source)=>{
+						res.rows.forEach((source)=>{
 							this.OMSources.set(source.idsource, source.uuid);
 						});
 
-						resolve(result.rows);
+						resolve(res.rows);
 
 					}else{
-						reject(result);
+						reject(res);
 					}
 
 

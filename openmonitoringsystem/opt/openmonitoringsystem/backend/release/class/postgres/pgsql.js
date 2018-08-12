@@ -154,8 +154,9 @@ var PostgreSQL = (function (_super) {
         return new Promise_1.default(function (resolve, reject) {
             try {
                 _this.query("SELECT services.point($1::json) as service;", [parameters]).then(function (result) {
-                    if (result.rows.length > 0 && result.rows[0]) {
-                        var ser = result.rows[0].service;
+                    var res = result;
+                    if (res.rows.length > 0 && res.rows[0]) {
+                        var ser = res.rows[0].service;
                         if (ser && ser.error) {
                             reject(ser);
                         }
@@ -180,15 +181,16 @@ var PostgreSQL = (function (_super) {
         return new Promise_1.default(function (resolve, reject) {
             try {
                 _this.query("SELECT idsource, uuid FROM sources.datas WHERE idaccount = 1 AND monitored = true;", []).then(function (result) {
-                    if (result.rows.length > 0) {
+                    var res = result;
+                    if (res.rows.length > 0) {
                         _this.OMSources.clear();
-                        result.rows.forEach(function (source) {
+                        res.rows.forEach(function (source) {
                             _this.OMSources.set(source.idsource, source.uuid);
                         });
-                        resolve(result.rows);
+                        resolve(res.rows);
                     }
                     else {
-                        reject(result);
+                        reject(res);
                     }
                 }, function (error) {
                     reject(error);
