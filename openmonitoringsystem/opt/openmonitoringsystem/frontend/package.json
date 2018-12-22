@@ -7,16 +7,18 @@
   },
   "dependencies": {
     "@dojo/core": "~0.4.0",
+    "@dojo/framework": "^3.0.1",
     "@dojo/has": "~0.1.2",
     "@dojo/i18n": "~0.5.1",
     "@dojo/routing": "~0.5.0",
     "@dojo/shim": "~0.2.6",
     "@dojo/themes": "^2.0.0",
-    "@dojo/widget-core": "~0.9.6",
+    "@dojo/widget-core": "^0.9.6",
     "@dojo/widgets": "^0.6.1",
     "@types/socket.io": "^1.4.32",
     "@types/socket.io-client": "^1.4.32",
-    "socket.io-client": "^2.0.4"
+    "socket.io-client": "^2.0.4",
+    "webpack": "^4.20.2"
   },
   "devDependencies": {
     "@dojo/cli-build-app": "^0.3.5",
