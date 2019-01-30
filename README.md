@@ -8,7 +8,7 @@ Open Monitoring System!
 Requirements
 -------------
 
- 1. PostgreSQL v10 
+ 1. PostgreSQL v10 or v11
  2. NodeJS V9.11 (You can obtain a version for debian from: https://github.com/edwinspire/nodejs-debian) 
  3. Typescript V2.8
  4. Browser  
@@ -111,6 +111,19 @@ Now restart the server with the following command:
 
 You can try to connect from another machine that is on the same network and should have access to the database.
 
+
+**Installing PLV8**
+-------------
+There is not yet a version of plv8 for postgres11, so I suggest going to the next page to install it:
+ `https://plv8.github.io/#building`
+
+Asegurese que tiene instaladas todas las librerias solicitadas, es mejor tener tambien disponibles las versiones para x86_x64, si tiene problemas con alguna libreria use el siguiente comando para encontrar la ruta, por ejemplo:
+
+    ld -lc++ --verbose
+
+I had problems in Debian Buster with the c ++ library since it had a different name than the compiler is looking for, it was solved with the following command:
+
+    ln -s /usr/lib/x86_64-linux-gnu/libc++.so.1 /usr/lib/x86_64-linux-gnu/libc++.so
 
 
 ----------
