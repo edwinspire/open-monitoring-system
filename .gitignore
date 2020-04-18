@@ -1,11 +1,13 @@
 # Ignores
-openmonitoringsystem/**/node_modules/**
-openmonitoringsystem/opt/openmonitoringsystem/frontend/node_modules/*
+openmonitoringsystem/**/node_modules/
+openmonitoringsystem/opt/openmonitoringsystem/backend/node_modules/**
 #*.sh
 *.bat
 **.log
 **.env
+*.env
 **.exe
 farm*
+*node_modules
 
 
