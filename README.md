@@ -8,7 +8,7 @@ Open Monitoring System!
 Requirements
 -------------
 
- 1. PostgreSQL v10 or v11
+ 1. PostgreSQL v11 or v12
  2. NodeJS V9.11 (You can obtain a version for debian from: https://github.com/edwinspire/nodejs-debian) 
  3. Typescript V2.8
  4. Browser  
