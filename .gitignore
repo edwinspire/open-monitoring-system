@@ -1,5 +1,5 @@
 # Ignores
-open-monitoring-system/openmonitoringsystem/opt/openmonitoringsystem/frontend/*
+/openmonitoringsystem/opt/openmonitoringsystem/backend/**
 openmonitoringsystem/opt/openmonitoringsystem/frontend/node_modules/*
 #*.sh
 *.bat
