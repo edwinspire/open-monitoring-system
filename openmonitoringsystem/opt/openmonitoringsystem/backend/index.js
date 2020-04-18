@@ -9,10 +9,9 @@ const fs = require('fs');
 const cookieParser = require('cookie-parser')
 const socketIO = require('./src/socketio/sio.js');
 
-const root_web = 'dist';
+const root_web = __dirname+'/dist';
 const pG = new pSQL();
 
-//process.env.DATABASE_URL = 'postgres://izmtgwzkgjlxju:a06760017acf6a21117a33d5d2148e126fbdcc67bec2cade5b40f718874aee14@ec2-174-129-27-3.compute-1.amazonaws.com:5432/d8gshtdo0j0s5s';
 //const PORT = process.env.PORT || 5000 // Esto lo define Heroku
 const app = express()//instancia de express
 app.use(morgan('dev'));
@@ -21,9 +20,6 @@ app.use(express.json());
 app.use(cookieParser());
 // Define las rutas
 app.use(require('./src/express/routes'));
-//app.use(require('./src/express/contacts'));
-//app.use(require('./src/express/vehicles'));
-//app.use(require('./src/express/fueling'));
 
 (
 	async ()=>{
