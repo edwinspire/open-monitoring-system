@@ -1,0 +1,68 @@
+.root {
+	padding: var(--padding);
+}
+.grid{
+	height: 100%;
+	width: 100%;
+	background: red;
+}
+.container{
+
+}
+
+.field_one_line{
+	padding: 0.5em;
+}
+
+.container_field {
+	text-align: initial;
+	padding: 0.5em;
+	min-width: 150px;
+	width: 48%;
+	display: inline-grid;
+}
+
+.container_field_reset {
+	text-align: initial;
+	padding: 0.5em;
+	min-width: 150px;
+}
+
+.general_padding{
+	padding: 5px;
+}
+
+/* Create three equal columns that floats next to each other */
+.column2 {
+	float: left;
+	width: 48%;
+	padding-left: 1%;
+	padding-right: 1%;
+	min-width: 150px;
+}
+
+.column2_center_checkbox {
+	float: left;
+	width: 48%;
+	padding-left: 1%;
+	padding-right: 1%;
+	min-width: 150px;
+	padding-top: 1.5em;
+}
+
+.column3 {
+	float: left;
+	width: 31.33%;
+	padding-left: 1%;
+	padding-right: 1%;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+	padding-top: 1em;
+}
+

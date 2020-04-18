@@ -21,7 +21,7 @@ This is useful for third-party modules that rely on global variables like `$` or
 npm install imports-loader
 ```
 
-<h2 align="center">Usage</h2>
+<h2 align="center"><a href="https://webpack.js.org/concepts/loaders">Usage</a></h2>
 
 Given you have this file `example.js`
 
@@ -65,17 +65,15 @@ As always, you should rather configure this in your `webpack.config.js`:
 module.exports = {
     ...
     module: {
-        loaders: [
+        rules: [
             {
                 test: require.resolve("some-module"),
-                loader: "imports-loader?this=>window"
+                use: "imports-loader?this=>window"
             }
         ]
     }
 };
 ```
-
-[Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)
 
 <h2 align="center">Typical Use Cases</h2>
 

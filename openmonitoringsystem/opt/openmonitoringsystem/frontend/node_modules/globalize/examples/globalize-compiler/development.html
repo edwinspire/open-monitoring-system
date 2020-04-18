@@ -20,6 +20,7 @@
         <p>Now: <span id="dateToParts"></span> (note the highlighted month, the markup was added using formatDateToParts)</p>
         <p>Now (in America/Sao_Paulo): <span id="zonedDate"></span></p>
         <p>A number: <span id="number"></span></p>
+        <p>A number (compact form): <span id="number-compact"></span></p>
         <p>A currency: <span id="currency"></span></p>
         <p>Plural form of <span id="plural-number"></span> is <span id="plural-form"></span></p>
         <p>Messages:</p>
@@ -109,6 +110,7 @@
       Globalize.load( weekData[ 0 ] );
       Globalize.loadMessages( messages[ 0 ] );
       Globalize.loadTimeZone( ianaTzData[ 0 ] );
+      Globalize.locale("en");
 
       // Load and execute our App.
       $.getScript( "app.js" );

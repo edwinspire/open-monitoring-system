@@ -1,27 +1,39 @@
 {
-  "name": "omsserver",
-  "version": "1.0.0",
-  "description": "",
-  "main": "./production/main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./production/server"
+  "name": "Open Monitoring System",
+  "version": "2.0.0",
+  "description": "Software libre para monitoreo de procesos de proposito general",
+  "engines": {
+    "node": "10.x"
   },
-  "author": "",
-  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js"
+  },
   "dependencies": {
-    "@dojo/core": "^0.4.0",
-    "@dojo/has": "^0.1.2",
-    "@dojo/shim": "^0.2.7",
-    "@types/express": "^4.16.0",
-    "@types/node": "^9.6.27",
-    "compression": "^1.7.3",
-    "cookie-parser": "^1.4.3",
-    "express": "^4.16.3",
-    "morgan": "^1.9.0",
-    "mount-js": "0.0.9",
-    "pg": "^7.4.3",
-    "socket.io": "^2.1.1",
-    "xlsx": "^0.12.13"
-  }
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.15.2",
+    "morgan": "^1.9.1",
+    "pg": "^7.12.1",
+    "socket.io": "^2.3.0",
+    "telegraf": "^3.32.0",
+    "web-push": "^3.4.3"
+  },
+  "devDependencies": {
+    "request": "^2.81.0",
+    "tape": "^4.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edwinspire/open-monitoring-system.git"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express",
+    "open",
+    "monitoring"
+  ],
+  "license": "LGPL"
 }

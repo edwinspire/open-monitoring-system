@@ -1,15 +1,15 @@
 /**
- * CLDR JavaScript Library v0.4.8
+ * CLDR JavaScript Library v0.5.0
  * http://jquery.com/
  *
  * Copyright 2013 Rafael Xavier de Souza
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2016-11-26T15:03Z
+ * Date: 2017-08-11T11:52Z
  */
 /*!
- * CLDR JavaScript Library v0.4.8 2016-11-26T15:03Z MIT license © Rafael Xavier
+ * CLDR JavaScript Library v0.5.0 2017-08-11T11:52Z MIT license © Rafael Xavier
  * http://git.io/h4lmVg
  */
 (function( factory ) {
@@ -54,8 +54,8 @@ EventEmitter = (function () {
 
 	// Shortcuts to improve speed and size
 	var proto = EventEmitter.prototype;
-	var exports = this;
-	var originalGlobalValue = exports.EventEmitter;
+	var exports = {};
+	
 
 	/**
 	 * Finds the index of the listener for the event in it's storage array.

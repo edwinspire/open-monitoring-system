@@ -1,5 +1,5 @@
 /**
- * Globalize v1.3.0
+ * Globalize v1.4.0
  *
  * http://github.com/jquery/globalize
  *
@@ -7,10 +7,10 @@
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2017-07-03T21:37Z
+ * Date: 2018-07-17T20:38Z
  */
 /*!
- * Globalize v1.3.0 2017-07-03T21:37Z Released under the MIT license
+ * Globalize v1.4.0 2018-07-17T20:38Z Released under the MIT license
  * http://git.io/TrdQbw
  */
 (function( root, factory ) {
@@ -190,30 +190,53 @@ var stringRepeat = function( str, count ) {
 
 
 
-var dateExpandPatternAugmentFormat = function( requestedSkeleton, bestMatchFormat ) {
-	var i, j, matchedType, matchedLength, requestedType, requestedLength,
+function expandBestMatchFormat( skeletonWithoutFractionalSeconds, bestMatchFormat ) {
+	var i, j, bestMatchFormatParts, matchedType, matchedLength, requestedType,
+		requestedLength, requestedSkeletonParts,
 
 		// Using an easier to read variable.
 		normalizePatternType = dateExpandPatternNormalizePatternType;
 
-	requestedSkeleton = requestedSkeleton.match( datePatternRe );
-	bestMatchFormat = bestMatchFormat.match( datePatternRe );
+	requestedSkeletonParts = skeletonWithoutFractionalSeconds.match( datePatternRe );
+	bestMatchFormatParts = bestMatchFormat.match( datePatternRe );
 
-	for ( i = 0; i < bestMatchFormat.length; i++ ) {
-		matchedType = bestMatchFormat[i].charAt( 0 );
-		matchedLength = bestMatchFormat[i].length;
-		for ( j = 0; j < requestedSkeleton.length; j++ ) {
-			requestedType = requestedSkeleton[j].charAt( 0 );
-			requestedLength = requestedSkeleton[j].length;
+	for ( i = 0; i < bestMatchFormatParts.length; i++ ) {
+		matchedType = bestMatchFormatParts[i].charAt( 0 );
+		matchedLength = bestMatchFormatParts[i].length;
+		for ( j = 0; j < requestedSkeletonParts.length; j++ ) {
+			requestedType = requestedSkeletonParts[j].charAt( 0 );
+			requestedLength = requestedSkeletonParts[j].length;
 			if ( normalizePatternType( matchedType ) === normalizePatternType( requestedType ) &&
 				matchedLength < requestedLength
 			) {
-				bestMatchFormat[i] = stringRepeat( matchedType, requestedLength );
+				bestMatchFormatParts[i] = stringRepeat( matchedType, requestedLength );
 			}
 		}
 	}
 
-	return bestMatchFormat.join( "" );
+	return bestMatchFormatParts.join( "" );
+}
+
+// See: http://www.unicode.org/reports/tr35/tr35-dates.html#Matching_Skeletons
+var dateExpandPatternAugmentFormat = function( requestedSkeleton, bestMatchFormat, decimalSeparator ) {
+	var countOfFractionalSeconds, fractionalSecondMatch, lastSecondIdx,
+		skeletonWithoutFractionalSeconds;
+
+	fractionalSecondMatch = requestedSkeleton.match( /S/g );
+	countOfFractionalSeconds = fractionalSecondMatch ? fractionalSecondMatch.length : 0;
+	skeletonWithoutFractionalSeconds = requestedSkeleton.replace( /S/g, "" );
+
+	bestMatchFormat = expandBestMatchFormat( skeletonWithoutFractionalSeconds, bestMatchFormat );
+
+	lastSecondIdx = bestMatchFormat.lastIndexOf( "s" );
+	if ( lastSecondIdx !== -1 && countOfFractionalSeconds !== 0 ) {
+		bestMatchFormat =
+			bestMatchFormat.slice( 0, lastSecondIdx + 1 ) +
+			decimalSeparator +
+			stringRepeat( "S", countOfFractionalSeconds ) +
+			bestMatchFormat.slice( lastSecondIdx + 1 );
+	}
+	return bestMatchFormat;
 };
 
 
@@ -275,7 +298,7 @@ var dateExpandPatternCompareFormats = function( formatA, formatB ) {
 
 
 var dateExpandPatternGetBestMatchPattern = function( cldr, askedSkeleton ) {
-	var availableFormats, pattern, ratedFormats, skeleton,
+	var availableFormats, decimalSeparator, pattern, ratedFormats, skeleton,
 		path = "dates/calendars/gregorian/dateTimeFormats/availableFormats",
 
 		// Using easier to read variables.
@@ -305,7 +328,8 @@ var dateExpandPatternGetBestMatchPattern = function( cldr, askedSkeleton ) {
 			});
 
 		if ( ratedFormats.length ) {
-			pattern = augmentFormat( askedSkeleton, ratedFormats[0].pattern );
+			decimalSeparator = numberSymbol( "decimal", cldr );
+			pattern = augmentFormat( askedSkeleton, ratedFormats[0].pattern, decimalSeparator );
 		}
 	}
 
@@ -2957,7 +2981,7 @@ Globalize.prototype.dateFormatter = function( options ) {
 Globalize.dateToPartsFormatter =
 Globalize.prototype.dateToPartsFormatter = function( options ) {
 	var args, cldr, numberFormatters, pad, pattern, properties, returnFn,
-		timeZone;
+		timeZone, ianaListener;
 
 	validateParameterTypePlainObject( options, "options" );
 
@@ -2977,14 +3001,15 @@ Globalize.prototype.dateToPartsFormatter = function( options ) {
 
 	cldr.on( "get", validateRequiredCldr );
 	if ( timeZone ) {
-		cldr.on( "get", validateRequiredIana( timeZone ) );
+		ianaListener = validateRequiredIana( timeZone );
+		cldr.on( "get", ianaListener );
 	}
 	pattern = dateExpandPattern( options, cldr );
 	validateOptionsSkeleton( pattern, options.skeleton );
 	properties = dateFormatProperties( pattern, cldr, timeZone );
 	cldr.off( "get", validateRequiredCldr );
-	if ( timeZone ) {
-		cldr.off( "get", validateRequiredIana( timeZone ) );
+	if ( ianaListener ) {
+		cldr.off( "get", ianaListener );
 	}
 
 	// Create needed number formatters.

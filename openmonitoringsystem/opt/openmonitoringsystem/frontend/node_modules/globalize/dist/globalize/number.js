@@ -1,5 +1,5 @@
 /**
- * Globalize v1.3.0
+ * Globalize v1.4.0
  *
  * http://github.com/jquery/globalize
  *
@@ -7,10 +7,10 @@
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2017-07-03T21:37Z
+ * Date: 2018-07-17T20:38Z
  */
 /*!
- * Globalize v1.3.0 2017-07-03T21:37Z Released under the MIT license
+ * Globalize v1.4.0 2018-07-17T20:38Z Released under the MIT license
  * http://git.io/TrdQbw
  */
 (function( root, factory ) {
@@ -77,6 +77,27 @@ var validateParameterTypeString = function( value, name ) {
 		"a string"
 	);
 };
+
+
+
+
+/**
+ * EBNF representation:
+ *
+ * compact_pattern_re =       prefix?
+ *                            number_pattern_re
+ *                            suffix?
+ *
+ * number_pattern_re =        0+
+ *
+ * Regexp groups:
+ *
+ *  0: compact_pattern_re
+ *  1: prefix
+ *  2: number_pattern_re (the number pattern to use in compact mode)
+ *  3: suffix
+ */
+var numberCompactPatternRe = ( /^([^0]*)(0+)([^0]*)$/ );
 
 
 
@@ -207,10 +228,6 @@ var numberFormatIntegerFractionDigits = function( number, minimumIntegerDigits, 
 var numberToPrecision = function( number, precision, round ) {
 	var roundOrder;
 
-	// Get number at two extra significant figure precision.
-	number = number.toPrecision( precision + 2 );
-
-	// Then, round it to the required significant figure precision.
 	roundOrder = Math.ceil( Math.log( Math.abs( number ) ) / Math.log( 10 ) );
 	roundOrder -= precision;
 
@@ -270,217 +287,6 @@ var numberFormatSignificantDigits = function( number, minimumSignificantDigits, 
 
 
 /**
- * removeLiteralQuotes( string )
- *
- * Return:
- * - `` if input string is `''`.
- * - `o'clock` if input string is `'o''clock'`.
- * - `foo` if input string is `foo`, i.e., return the same value in case it isn't a single-quoted
- *   string.
- */
-var removeLiteralQuotes = function( string ) {
-	if ( string[ 0 ] + string[ string.length - 1 ] !== "''" ) {
-		return string;
-	}
-	if ( string === "''" ) {
-		return "";
-	}
-	return string.replace( /''/g, "'" ).slice( 1, -1 );
-};
-
-
-
-
-/**
- * format( number, properties )
- *
- * @number [Number].
- *
- * @properties [Object] Output of number/format-properties.
- *
- * Return the formatted number.
- * ref: http://www.unicode.org/reports/tr35/tr35-numbers.html
- */
-var numberFormat = function( number, properties ) {
-	var infinitySymbol, maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits,
-	minimumIntegerDigits, minimumSignificantDigits, nanSymbol, nuDigitsMap, padding, prefix,
-	primaryGroupingSize, pattern, ret, round, roundIncrement, secondaryGroupingSize, suffix,
-	symbolMap;
-
-	padding = properties[ 1 ];
-	minimumIntegerDigits = properties[ 2 ];
-	minimumFractionDigits = properties[ 3 ];
-	maximumFractionDigits = properties[ 4 ];
-	minimumSignificantDigits = properties[ 5 ];
-	maximumSignificantDigits = properties[ 6 ];
-	roundIncrement = properties[ 7 ];
-	primaryGroupingSize = properties[ 8 ];
-	secondaryGroupingSize = properties[ 9 ];
-	round = properties[ 15 ];
-	infinitySymbol = properties[ 16 ];
-	nanSymbol = properties[ 17 ];
-	symbolMap = properties[ 18 ];
-	nuDigitsMap = properties[ 19 ];
-
-	// NaN
-	if ( isNaN( number ) ) {
-		return nanSymbol;
-	}
-
-	if ( number < 0 ) {
-		pattern = properties[ 12 ];
-		prefix = properties[ 13 ];
-		suffix = properties[ 14 ];
-	} else {
-		pattern = properties[ 11 ];
-		prefix = properties[ 0 ];
-		suffix = properties[ 10 ];
-	}
-
-	// Infinity
-	if ( !isFinite( number ) ) {
-		return prefix + infinitySymbol + suffix;
-	}
-
-	ret = prefix;
-
-	// Percent
-	if ( pattern.indexOf( "%" ) !== -1 ) {
-		number *= 100;
-
-	// Per mille
-	} else if ( pattern.indexOf( "\u2030" ) !== -1 ) {
-		number *= 1000;
-	}
-
-	// Significant digit format
-	if ( !isNaN( minimumSignificantDigits * maximumSignificantDigits ) ) {
-		number = numberFormatSignificantDigits( number, minimumSignificantDigits,
-			maximumSignificantDigits, round );
-
-	// Integer and fractional format
-	} else {
-		number = numberFormatIntegerFractionDigits( number, minimumIntegerDigits,
-			minimumFractionDigits, maximumFractionDigits, round, roundIncrement );
-	}
-
-	// Remove the possible number minus sign
-	number = number.replace( /^-/, "" );
-
-	// Grouping separators
-	if ( primaryGroupingSize ) {
-		number = numberFormatGroupingSeparator( number, primaryGroupingSize,
-			secondaryGroupingSize );
-	}
-
-	ret += number;
-
-	// Scientific notation
-	// TODO implement here
-
-	// Padding/'([^']|'')+'|''|[.,\-+E%\u2030]/g
-	// TODO implement here
-
-	ret += suffix;
-
-	return ret.replace( /('([^']|'')+'|'')|./g, function( character, literal ) {
-
-		// Literals
-		if ( literal ) {
-			return removeLiteralQuotes( literal );
-		}
-
-		// Symbols
-		character = character.replace( /[.,\-+E%\u2030]/, function( symbol ) {
-			return symbolMap[ symbol ];
-		});
-
-		// Numbering system
-		if ( nuDigitsMap ) {
-			character = character.replace( /[0-9]/, function( digit ) {
-				return nuDigitsMap[ +digit ];
-			});
-		}
-
-		return character;
-	});
-};
-
-
-
-
-var numberFormatterFn = function( properties ) {
-	return function numberFormatter( value ) {
-		validateParameterPresence( value, "value" );
-		validateParameterTypeNumber( value, "value" );
-
-		return numberFormat( value, properties );
-	};
-};
-
-
-
-
-/**
- * NumberingSystem( cldr )
- *
- * - http://www.unicode.org/reports/tr35/tr35-numbers.html#otherNumberingSystems
- * - http://cldr.unicode.org/index/bcp47-extension
- * - http://www.unicode.org/reports/tr35/#u_Extension
- */
-var numberNumberingSystem = function( cldr ) {
-	var nu = cldr.attributes[ "u-nu" ];
-
-	if ( nu ) {
-		if ( nu === "traditio" ) {
-			nu = "traditional";
-		}
-		if ( [ "native", "traditional", "finance" ].indexOf( nu ) !== -1 ) {
-
-			// Unicode locale extension `u-nu` is set using either (native, traditional or
-			// finance). So, lookup the respective locale's numberingSystem and return it.
-			return cldr.main([ "numbers/otherNumberingSystems", nu ]);
-		}
-
-		// Unicode locale extension `u-nu` is set with an explicit numberingSystem. Return it.
-		return nu;
-	}
-
-	// Return the default numberingSystem.
-	return cldr.main( "numbers/defaultNumberingSystem" );
-};
-
-
-
-
-/**
- * nuMap( cldr )
- *
- * @cldr [Cldr instance].
- *
- * Return digits map if numbering system is different than `latn`.
- */
-var numberNumberingSystemDigitsMap = function( cldr ) {
-	var aux,
-		nu = numberNumberingSystem( cldr );
-
-	if ( nu === "latn" ) {
-		return;
-	}
-
-	aux = cldr.supplemental([ "numberingSystems", nu ]);
-
-	if ( aux._type !== "numeric" ) {
-		throw createErrorUnsupportedFeature( "`" + aux._type + "` numbering system" );
-	}
-
-	return aux._digits;
-};
-
-
-
-
-/**
  * EBNF representation:
  *
  * number_pattern_re =        prefix?
@@ -526,6 +332,288 @@ var numberNumberingSystemDigitsMap = function( cldr ) {
  * 12: -
  */
 var numberPatternRe = ( /^(('([^']|'')*'|[^*#@0,.E])*)(\*.)?((([#,]*[0,]*0+)(\.0*[0-9]*#*)?)|([#,]*@+#*))(E\+?0+)?(('[^']+'|''|[^*#@0,.E])*)$/ );
+
+
+
+
+/**
+ * removeLiteralQuotes( string )
+ *
+ * Return:
+ * - `` if input string is `''`.
+ * - `o'clock` if input string is `'o''clock'`.
+ * - `foo` if input string is `foo`, i.e., return the same value in case it isn't a single-quoted
+ *   string.
+ */
+var removeLiteralQuotes = function( string ) {
+	if ( string[ 0 ] + string[ string.length - 1 ] !== "''" ) {
+		return string;
+	}
+	if ( string === "''" ) {
+		return "";
+	}
+	return string.replace( /''/g, "'" ).slice( 1, -1 );
+};
+
+
+
+
+/**
+ * format( number, properties )
+ *
+ * @number [Number].
+ *
+ * @properties [Object] Output of number/format-properties.
+ *
+ * Return the formatted number.
+ * ref: http://www.unicode.org/reports/tr35/tr35-numbers.html
+ */
+var numberFormat = function( number, properties, pluralGenerator ) {
+	var compactMap, infinitySymbol, maximumFractionDigits, maximumSignificantDigits,
+	minimumFractionDigits, minimumIntegerDigits, minimumSignificantDigits, nanSymbol, nuDigitsMap,
+	padding, prefix, primaryGroupingSize, pattern, ret, round, roundIncrement,
+	secondaryGroupingSize, suffix, symbolMap;
+
+	padding = properties[ 1 ];
+	minimumIntegerDigits = properties[ 2 ];
+	minimumFractionDigits = properties[ 3 ];
+	maximumFractionDigits = properties[ 4 ];
+	minimumSignificantDigits = properties[ 5 ];
+	maximumSignificantDigits = properties[ 6 ];
+	roundIncrement = properties[ 7 ];
+	primaryGroupingSize = properties[ 8 ];
+	secondaryGroupingSize = properties[ 9 ];
+	round = properties[ 15 ];
+	infinitySymbol = properties[ 16 ];
+	nanSymbol = properties[ 17 ];
+	symbolMap = properties[ 18 ];
+	nuDigitsMap = properties[ 19 ];
+	compactMap = properties[ 20 ];
+
+	// NaN
+	if ( isNaN( number ) ) {
+		return nanSymbol;
+	}
+
+	if ( number < 0 ) {
+		pattern = properties[ 12 ];
+		prefix = properties[ 13 ];
+		suffix = properties[ 14 ];
+	} else {
+		pattern = properties[ 11 ];
+		prefix = properties[ 0 ];
+		suffix = properties[ 10 ];
+	}
+
+	// Infinity
+	if ( !isFinite( number ) ) {
+		return prefix + infinitySymbol + suffix;
+	}
+
+	// Percent
+	if ( pattern.indexOf( "%" ) !== -1 ) {
+		number *= 100;
+
+	// Per mille
+	} else if ( pattern.indexOf( "\u2030" ) !== -1 ) {
+		number *= 1000;
+	}
+
+	var compactPattern, compactDigits, compactProperties, divisor, numberExponent, pluralForm;
+
+	// Compact mode: initial number digit processing
+	if ( compactMap ) {
+		numberExponent = Math.abs( Math.floor( number ) ).toString().length - 1;
+		numberExponent = Math.min( numberExponent, compactMap.maxExponent );
+
+		// Use default plural form to perform initial decimal shift
+		if ( numberExponent >= 3 ) {
+			compactPattern = compactMap[ numberExponent ] && compactMap[ numberExponent ].other;
+		}
+
+		if ( compactPattern === "0" ) {
+			compactPattern = null;
+		} else if ( compactPattern ) {
+			compactDigits = compactPattern.split( "0" ).length - 1;
+			divisor = numberExponent - ( compactDigits - 1 );
+			number = number / Math.pow( 10, divisor );
+		}
+	}
+
+	// Significant digit format
+	if ( !isNaN( minimumSignificantDigits * maximumSignificantDigits ) ) {
+		number = numberFormatSignificantDigits( number, minimumSignificantDigits,
+			maximumSignificantDigits, round );
+
+	// Integer and fractional format
+	} else {
+		number = numberFormatIntegerFractionDigits( number, minimumIntegerDigits,
+			minimumFractionDigits, maximumFractionDigits, round, roundIncrement );
+	}
+
+	// Compact mode: apply formatting
+	if ( compactMap && compactPattern ) {
+
+		// Get plural form after possible roundings
+		pluralForm = pluralGenerator ? pluralGenerator( +number ) : "other";
+
+		compactPattern = compactMap[ numberExponent ][ pluralForm ] || compactPattern;
+		compactProperties = compactPattern.match( numberCompactPatternRe );
+
+		// update prefix/suffix with compact prefix/suffix
+		prefix += compactProperties[ 1 ];
+		suffix = compactProperties[ 3 ] + suffix;
+	}
+
+	// Remove the possible number minus sign
+	number = number.replace( /^-/, "" );
+
+	// Grouping separators
+	if ( primaryGroupingSize ) {
+		number = numberFormatGroupingSeparator( number, primaryGroupingSize,
+			secondaryGroupingSize );
+	}
+
+	ret = prefix;
+
+	ret += number;
+
+	// Scientific notation
+	// TODO implement here
+
+	// Padding/'([^']|'')+'|''|[.,\-+E%\u2030]/g
+	// TODO implement here
+
+	ret += suffix;
+
+	return ret.replace( /('([^']|'')+'|'')|./g, function( character, literal ) {
+
+		// Literals
+		if ( literal ) {
+			return removeLiteralQuotes( literal );
+		}
+
+		// Symbols
+		character = character.replace( /[.,\-+E%\u2030]/, function( symbol ) {
+			return symbolMap[ symbol ];
+		});
+
+		// Numbering system
+		if ( nuDigitsMap ) {
+			character = character.replace( /[0-9]/, function( digit ) {
+				return nuDigitsMap[ +digit ];
+			});
+		}
+
+		return character;
+	});
+};
+
+
+
+
+var numberFormatterFn = function( properties, pluralGenerator ) {
+	return function numberFormatter( value ) {
+		validateParameterPresence( value, "value" );
+		validateParameterTypeNumber( value, "value" );
+
+		return numberFormat( value, properties, pluralGenerator );
+	};
+};
+
+
+
+
+/**
+ * NumberingSystem( cldr )
+ *
+ * - http://www.unicode.org/reports/tr35/tr35-numbers.html#otherNumberingSystems
+ * - http://cldr.unicode.org/index/bcp47-extension
+ * - http://www.unicode.org/reports/tr35/#u_Extension
+ */
+var numberNumberingSystem = function( cldr ) {
+	var nu = cldr.attributes[ "u-nu" ];
+
+	if ( nu ) {
+		if ( nu === "traditio" ) {
+			nu = "traditional";
+		}
+		if ( [ "native", "traditional", "finance" ].indexOf( nu ) !== -1 ) {
+
+			// Unicode locale extension `u-nu` is set using either (native, traditional or
+			// finance). So, lookup the respective locale's numberingSystem and return it.
+			return cldr.main([ "numbers/otherNumberingSystems", nu ]);
+		}
+
+		// Unicode locale extension `u-nu` is set with an explicit numberingSystem. Return it.
+		return nu;
+	}
+
+	// Return the default numberingSystem.
+	return cldr.main( "numbers/defaultNumberingSystem" );
+};
+
+
+
+
+/**
+ * Compact( name, cldr )
+ *
+ * @compactType [String] Compact mode, `short` or `long`.
+ *
+ * @cldr [Cldr instance].
+ *
+ * Return the localized compact map for the given compact mode.
+ */
+var numberCompact = function( compactType, cldr ) {
+	var maxExponent = 0;
+
+	var object = cldr.main([
+		"numbers/decimalFormats-numberSystem-" + numberNumberingSystem( cldr ),
+		compactType,
+		"decimalFormat"
+	]);
+
+	object = Object.keys( object ).reduce(function( newObject, compactKey ) {
+		var numberExponent = compactKey.split( "0" ).length - 1;
+		var pluralForm = compactKey.split( "-" )[ 2 ];
+		newObject[ numberExponent ] = newObject[ numberExponent ] || {};
+		newObject[ numberExponent ][ pluralForm ] = object[ compactKey ];
+		maxExponent = Math.max( numberExponent, maxExponent );
+		return newObject;
+	}, {});
+
+	object.maxExponent = maxExponent;
+
+	return object;
+};
+
+
+
+
+/**
+ * nuMap( cldr )
+ *
+ * @cldr [Cldr instance].
+ *
+ * Return digits map if numbering system is different than `latn`.
+ */
+var numberNumberingSystemDigitsMap = function( cldr ) {
+	var aux,
+		nu = numberNumberingSystem( cldr );
+
+	if ( nu === "latn" ) {
+		return;
+	}
+
+	aux = cldr.supplemental([ "numberingSystems", nu ]);
+
+	if ( aux._type !== "numeric" ) {
+		throw createErrorUnsupportedFeature( "`" + aux._type + "` numbering system" );
+	}
+
+	return aux._digits;
+};
 
 
 
@@ -587,6 +675,9 @@ var numberPatternProperties = function( pattern ) {
 			// Maximum fraction digits
 			// 1: ignore decimal character
 			maximumFractionDigits = fractionPattern.length - 1 /* 1 */;
+		} else {
+			minimumFractionDigits = 0;
+			maximumFractionDigits = 0;
 		}
 
 		// Minimum integer digits
@@ -869,6 +960,22 @@ var numberFormatProperties = function( pattern, cldr, options ) {
 		numberNumberingSystemDigitsMap( cldr )
 	]);
 
+	if ( options.compact ) {
+
+		// The compact digits number pattern is always `0+`, so override the following properties.
+		// Note: minimumIntegerDigits would actually range from `0` to `000` based on the scale of
+		// the value to be formatted, though we're always using 1 as a simplification, because the
+		// number won't be zero-padded since we chose the right format based on the scale, i.e.,
+		// we'd never see something like `003M` anyway.
+		properties[ 2 ] = negativeSuffix[ 2 ] = 1; // minimumIntegerDigits
+		properties[ 3 ] = negativeSuffix[ 3 ] = 0; // minimumFractionDigits
+		properties[ 4 ] = negativeSuffix[ 4 ] = 0; // maximumFractionDigits
+		properties[ 5 ] = negativeSuffix[ 5 ] = // minimumSignificantDigits &
+			properties[ 6 ] = negativeSuffix[ 6 ] = undefined ; // maximumSignificantDigits
+
+		properties[20] = numberCompact( options.compact, cldr );
+	}
+
 	getOptions( "minimumIntegerDigits", 2 );
 	getOptions( "minimumFractionDigits", 3 );
 	getOptions( "maximumFractionDigits", 4 );
@@ -904,6 +1011,7 @@ var numberFormatProperties = function( pattern, cldr, options ) {
 	// 17: @nanSymbol [String] NaN symbol.
 	// 18: @symbolMap [Object] A bunch of other symbols.
 	// 19: @nuDigitsMap [Array] Digits map if numbering system is different than `latn`.
+	// 20: @compactMap [Object] Map of per-digit-count format patterns for specified compact mode.
 	return properties;
 };
 
@@ -1368,7 +1476,7 @@ function validateDigits( properties ) {
  */
 Globalize.numberFormatter =
 Globalize.prototype.numberFormatter = function( options ) {
-	var args, cldr, pattern, properties, returnFn;
+	var args, cldr, fnArgs, pattern, properties, returnFn;
 
 	validateParameterTypePlainObject( options, "options" );
 
@@ -1388,14 +1496,17 @@ Globalize.prototype.numberFormatter = function( options ) {
 	}
 
 	properties = numberFormatProperties( pattern, cldr, options );
+	fnArgs = [ properties ];
 
 	cldr.off( "get", validateCldr );
 
 	validateDigits( properties );
 
-	returnFn = numberFormatterFn( properties );
-
-	runtimeBind( args, cldr, returnFn, [ properties ] );
+	if ( options.compact ) {
+		fnArgs.push( this.pluralGenerator() );
+	}
+	returnFn = numberFormatterFn.apply( null, fnArgs );
+	runtimeBind( args, cldr, returnFn, fnArgs );
 
 	return returnFn;
 };
@@ -1420,6 +1531,11 @@ Globalize.prototype.numberParser = function( options ) {
 	args = [ options ];
 
 	validateDefaultLocale( cldr );
+	if ( options.compact ) {
+		throw createErrorUnsupportedFeature({
+			feature: "compact number parsing (not implemented)"
+		});
+	}
 
 	cldr.on( "get", validateCldr );
 
