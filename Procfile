@@ -1,1 +1,1 @@
-web: node index.js
+web: node ./openmonitoringsystem/opt/openmonitoringsystem/backend/index.js
