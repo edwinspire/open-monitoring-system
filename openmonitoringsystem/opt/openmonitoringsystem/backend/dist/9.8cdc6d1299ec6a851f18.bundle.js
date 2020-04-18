@@ -1,0 +1,10 @@
+/*!
+ * 
+ * [Dojo](https://dojo.io/)
+ * Copyright [JS Foundation](https://js.foundation/) & contributors
+ * [New BSD license](https://github.com/dojo/meta/blob/master/LICENSE)
+ * All rights reserved
+ * 
+ */
+(window.dojoWebpackJsonputomotive_og=window.dojoWebpackJsonputomotive_og||[]).push([[9],{22:function(t,e,o){"use strict";o.d(e,"a",function(){return a});var i=o(0);o(1);function a(t,e=!1,o=!1){return o?i.default[t].bind(i.default):i.default[t]}},264:function(t,e,o){"use strict";o.r(e);var i=o(18),a=o(38),c=o(19),n=o(83),l=o(56),r=o(37),s=o(33);class d extends c.b{constructor(){super(...arguments),this.columnConfig=[{id:"lfname",title:"Nombre",filterable:!0,sortable:!0,resizable:!0},{id:"identificationtype_label",title:"Tipo ID",filterable:!0,sortable:!0,resizable:!0},{id:"identification",title:"Identificación",filterable:!0,sortable:!0,resizable:!0},{id:"gender_label",title:"Género",filterable:!0,sortable:!0,resizable:!0},{id:"contactype_label",title:"Tipo Contacto",filterable:!0,sortable:!0,resizable:!0},{id:"note",title:"Notas",sortable:!0,resizable:!0}]}async onAttach(){const t=await fetch("/contacts_r",{method:"POST",body:JSON.stringify({idaccount:localStorage.getItem("idaccount")}),headers:{"Content-Type":"application/json"}});let e=await t.json();console.log(e),this._fetcher=Object(l.a)(e),this.invalidate()}render(){return Object(i.j)("div",{},[Object(i.k)(r.a,{heading:"CONTACTOS",collapseWidth:150},[Object(i.k)(s.a,{label:"NUEVO",classes:["fas","fa-user-plus"],ShowLabel:!0,onClick:t=>{window.location.href="/#contact?idcontact=0&rowkey=0&idaccount="+localStorage.getItem("idaccount")}})]),Object(i.j)("div",{},[this._fetcher?Object(i.k)(n.a,{columnConfig:this.columnConfig,fetcher:this._fetcher,height:400,onRowSelect:t=>{console.log(t,this._fetcher),window.location.href="/#contact?idcontact="+t[0].idcontact+"&rowkey="+t[0].rowkey+"&idaccount="+localStorage.getItem("idaccount")}}):null])])}}var b=o(28);const u=Object(i.a)();e.default=u(function({properties:t}){return Object(i.j)("div",{classes:[b.root]},[Object(i.k)(a.a,{}),Object(i.k)(d,{url:"/contacts"})])})}}]);
+//# sourceMappingURL=9.8cdc6d1299ec6a851f18.bundle.js.map
