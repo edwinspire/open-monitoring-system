@@ -82,10 +82,6 @@ export default class Vehicle extends WidgetBase<VehicleProperties>  {
 	async onAttach(){
 		console.log(this.properties.idvehicle);
 
-		var store = new Store();
-		const page = store.get(store.path('grid', 'meta', 'page'));
-		console.log('Main Nuevo Global1X: '+page);
-
 		if(this.properties.idvehicle){
 
 			var paramsString = window.location.hash.split('?')[1];

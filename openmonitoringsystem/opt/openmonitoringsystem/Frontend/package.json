@@ -1,6 +1,6 @@
 {
-  "name": "AutomotiveLog",
-  "version": "1.0.0",
+  "name": "OpenMonitoringSystem",
+  "version": "2.0.0",
   "scripts": {
     "dev": "dojo build --mode dev --watch --serve",
     "build": "dojo build --mode dist",
