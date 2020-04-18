@@ -5,9 +5,9 @@
   "engines": {
     "node": "10.x"
   },
-  "main": "openmonitoringsystem/opt/openmonitoringsystem/backend/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node index2.js",
+    "start": "node index.js",
     "test": "node test.js"
   },
   "dependencies": {
