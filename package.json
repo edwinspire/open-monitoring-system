@@ -7,7 +7,7 @@
   },
   "main": "openmonitoringsystem/opt/openmonitoringsystem/backend/index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node openmonitoringsystem/opt/openmonitoringsystem/backend/index.js",
     "test": "node test.js"
   },
   "dependencies": {
