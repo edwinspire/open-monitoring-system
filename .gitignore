@@ -4,6 +4,7 @@ openmonitoringsystem/opt/openmonitoringsystem/frontend/node_modules/*
 #*.sh
 *.bat
 **.log
+**.env
 **.exe
 farm*
 
