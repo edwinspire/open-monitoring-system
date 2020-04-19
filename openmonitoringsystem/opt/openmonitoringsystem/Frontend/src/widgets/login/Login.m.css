@@ -78,7 +78,7 @@
 }
 .form {
   padding: 20px 0;
-  z-index: 2;
+  z-index: 99;
 }
 
 .links_block {
