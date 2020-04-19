@@ -80,20 +80,20 @@ export default class Login extends WidgetBase  {
 							])
 						]),
 						]),
-					v('ul', {classes: css.bg_bubbles}, [
-						v('li'),
-						v('li'),
-						v('li'),
-						v('li'),
-						v('li'),
-						v('li'),
-						v('li'),
-						v('li'),
-						v('li'),
-						v('li')
-						]),
 					w(SBar, {open: this._openSnack, leading: false, type: 'error', messageRenderer: () => this._MsgSnackBar})
 					])
+				]),
+			v('ul', {classes: css.bg_bubbles}, [
+				v('li'),
+				v('li'),
+				v('li'),
+				v('li'),
+				v('li'),
+				v('li'),
+				v('li'),
+				v('li'),
+				v('li'),
+				v('li')
 				])
 			])
 	}
