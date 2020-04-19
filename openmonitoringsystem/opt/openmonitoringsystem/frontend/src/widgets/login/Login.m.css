@@ -79,6 +79,7 @@
 .form {
   padding: 20px 0;
   z-index: 99;
+  position: relative;
 }
 
 .links_block {
