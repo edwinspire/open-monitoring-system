@@ -88,6 +88,10 @@ module.exports = class PostgreSQL extends EventEmitter {
 				// Esta línea es para enviar email en caso de registro correcto
 				if(r.data && r.data.Register && r.data.idaccount > 0 && r.data.iduser > 0 && r.data.username){
 					await this.sendEmail(r.data.username, r.data.email_subject, r.data.email_text, r.data.email_html);					
+					r.data.username = null;
+					r.data.email_subject = null;
+					r.data.email_text = null;
+					r.data.email_html = null;
 				}
 
 				res.status(r.status).json(r.data);
