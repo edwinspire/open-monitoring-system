@@ -46,5 +46,9 @@ export default [
 {
 	path: 'register',
 	outlet: 'register'
+},
+{
+	path: 'account_actived',
+	outlet: 'account_actived'
 }
 ];

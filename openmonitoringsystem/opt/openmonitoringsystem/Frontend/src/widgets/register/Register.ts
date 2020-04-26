@@ -69,7 +69,7 @@ export default class Register extends WidgetBase  {
 														console.log(data);
 														if(data.Register){
 
-															this.SnackBar('success', 'Cuenta creada... no olvide sus datos. Redireccionando a Login');
+															this.SnackBar('success', data.Message);
 															setTimeout(()=>{
 																window.location.href = "/#login";
 															}, 5000);

@@ -13,6 +13,7 @@ import Contact from './widgets/Contact';
 import Contacts from './widgets/Contacts';
 import Login from './widgets/login/Login';
 import Register from './widgets/register/Register';
+import AccountActived from './widgets/account_actived/account_actived';
 //import Menu from './widgets/Menu';
 import * as css from './App.m.css';
 
@@ -36,6 +37,7 @@ export default factory(function App({ middleware: { theme } }) {
                   w(Outlet, { key: 'login', id: 'login', renderer: () => w(Login, {}) }),
                   w(Outlet, { key: 'register', id: 'register', renderer: () => w(Register, {}) }),
                   w(Outlet, { key: 'fueling', id: 'fueling', renderer: () => w(Fueling, {}) }),
+                  w(Outlet, { key: 'account_actived', id: 'account_actived', renderer: () => w(AccountActived, {}) }),
                   w(Outlet, { key: 'fuelinglog', id: 'fuelinglog', renderer: () => w(FuelingLog, {}) })
                   ])
             ]);

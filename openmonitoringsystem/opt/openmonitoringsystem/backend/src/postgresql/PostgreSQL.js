@@ -40,7 +40,7 @@ module.exports = class PostgreSQL extends EventEmitter {
 	async sendEmail (to, subject, text, html){
 
 		var q = await this.Query("SELECT * FROM config WHERE key = 'email_transport' AND enabled = true ORDER BY idconfig LIMIT 1;");
-		console.log(q);
+
 		if(q.rows.length > 0){
 			let transport = q.rows[0].value;
 			var transporter = nodemailer.createTransport(transport);
@@ -51,8 +51,6 @@ module.exports = class PostgreSQL extends EventEmitter {
 				text: text,
 				html: html
 			};
-
-			console.log(transport, mailOptions);
 
 			transporter.sendMail(mailOptions, (error, info)=>{
 				if (error) {
@@ -89,7 +87,7 @@ module.exports = class PostgreSQL extends EventEmitter {
 
 				// Esta línea es para enviar email en caso de registro correcto
 				if(r.data && r.data.Register && r.data.idaccount > 0 && r.data.iduser > 0 && r.data.username){
-					await this.sendEmail(r.data.username, 'Registro', 'Registro OK', '<h1>REGISTRO</h1><div>Registro</div>');					
+					await this.sendEmail(r.data.username, r.data.email_subject, r.data.email_text, r.data.email_html);					
 				}
 
 				res.status(r.status).json(r.data);
