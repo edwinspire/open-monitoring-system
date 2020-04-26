@@ -37,7 +37,7 @@ export default factory(function App({ middleware: { theme } }) {
                   w(Outlet, { key: 'login', id: 'login', renderer: () => w(Login, {}) }),
                   w(Outlet, { key: 'register', id: 'register', renderer: () => w(Register, {}) }),
                   w(Outlet, { key: 'fueling', id: 'fueling', renderer: () => w(Fueling, {}) }),
-                  w(Outlet, { key: 'account_actived', id: 'account_actived', renderer: () => w(AccountActivation, {}) }),
+                  w(Outlet, { key: 'account_activation', id: 'account_activation', renderer: () => w(AccountActivation, {}) }),
                   w(Outlet, { key: 'fuelinglog', id: 'fuelinglog', renderer: () => w(FuelingLog, {}) })
                   ])
             ]);

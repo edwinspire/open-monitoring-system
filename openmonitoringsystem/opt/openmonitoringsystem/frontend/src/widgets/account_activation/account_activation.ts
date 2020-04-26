@@ -3,7 +3,7 @@ import WidgetBase from '@dojo/framework/core/WidgetBase';
 import * as css from './account_activation.m.css';
 import SBar from '@dojo/widgets/snackbar';
 
-export default class Register extends WidgetBase  {
+export default class AccountActivation extends WidgetBase  {
 
 	onAttach(){
 		document.cookie = "TOKEN_USER= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
@@ -40,7 +40,6 @@ export default class Register extends WidgetBase  {
 
 							(
 								async ()=>{
-
 
 									var paramsString = window.location.hash.split('?')[1];
 									var searchParams = new URLSearchParams(paramsString);
