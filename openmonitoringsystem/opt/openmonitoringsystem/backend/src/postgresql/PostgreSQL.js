@@ -42,7 +42,7 @@ module.exports = class PostgreSQL extends EventEmitter {
 		var q = await this.Query("SELECT * FROM config WHERE key = 'email_transport' AND enabled = true ORDER BY idconfig LIMIT 1;");
 		console.log(q);
 		if(q.rows.length > 0){
-			let transport = q.rows[0];
+			let transport = q.rows[0].value;
 			var transporter = nodemailer.createTransport(transport);
 			var mailOptions = {
 				from: transport.auth.user,
