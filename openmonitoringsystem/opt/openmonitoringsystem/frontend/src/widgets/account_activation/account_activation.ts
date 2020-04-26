@@ -55,13 +55,13 @@ export default class AccountActivation extends WidgetBase  {
 
 										if(data.idaccount && data.idaccount > 0){
 
-											this.SnackBar('success', data.note);
+											this.SnackBar('success', data.notes);
 											setTimeout(()=>{
 												window.location.href = "/#login";
 											}, 5000);
 
 										}else{
-											this.SnackBar('error', data.note);
+											this.SnackBar('error', data.notes);
 										}
 
 									}else{
