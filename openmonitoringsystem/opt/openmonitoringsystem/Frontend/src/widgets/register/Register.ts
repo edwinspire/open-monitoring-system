@@ -99,7 +99,6 @@ export default class Register extends WidgetBase  {
 							}}, [
 							v('input', {name: 'firstname',  type: 'text', placeholder: 'Nombre', required: 'required'}),
 							v('input', {name: 'lastname',  type: 'text', placeholder: 'Apellido', required: 'required'}),
-							//v('input', {name: 'email', type: 'email', placeholder: 'Email', required: 'required'}),
 							v('input', {name: 'username', type: 'email', placeholder: 'Email', required: 'required'}),
 							v('input', {name: 'pwd', type: 'password', placeholder: 'Contraseña', required: 'required'}),
 							v('input', {name: 'pwd2', type: 'password', placeholder: 'Confirme Contraseña', required: 'required'}),
