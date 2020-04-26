@@ -1,6 +1,7 @@
 const EventEmitter = require('events');
 const { Pool } = require('pg');
 const crypto = require('crypto')
+const nodemailer = require('nodemailer');
 //const Queue = require('./../queue/Queue.js');
 
 module.exports = class PostgreSQL extends EventEmitter {
@@ -36,6 +37,33 @@ module.exports = class PostgreSQL extends EventEmitter {
 		});
 	}
 
+	async sendEmail (to, subject, text, html){
+
+		var q = await this.Query("SELECT * FROM config WHERE key = 'email_transport' AND enabled = true ORDER BY idconfig LIMIT 1;");
+		console.log(q);
+		if(q.rows.length > 0){
+			let transport = q.rows[0];
+			var transporter = nodemailer.createTransport(transport);
+			var mailOptions = {
+				from: transport.auth.user,
+				to: to,
+				subject: subject,
+				text: text,
+				html: html
+			};
+
+			console.log(transport, mailOptions);
+
+			transporter.sendMail(mailOptions, (error, info)=>{
+				if (error) {
+					console.log(error);
+				} else {
+					console.log('Email sent: ' + info.response);
+				}
+			});
+		}
+	}	
+
 	async AccessPoint(path, req, res){
 
 		var r;
@@ -58,6 +86,12 @@ module.exports = class PostgreSQL extends EventEmitter {
 				if(r.data && r.data.token){
 					res.cookie('TOKEN_USER', r.data.token, { maxAge: 900000, httpOnly: true });
 				}
+
+				// Esta línea es para enviar email en caso de registro correcto
+				if(r.data && r.data.Register && r.data.idaccount > 0 && r.data.iduser > 0 && r.data.username){
+					await this.sendEmail(r.data.username, 'Registro', 'Registro OK', '<h1>REGISTRO</h1><div>Registro</div>');					
+				}
+
 				res.status(r.status).json(r.data);
 			}else{
 				res.status(204).json([]);

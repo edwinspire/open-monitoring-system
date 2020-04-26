@@ -15,6 +15,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.15.2",
     "morgan": "^1.9.1",
+    "nodemailer": "^6.4.6",
     "pg": "^7.12.1",
     "socket.io": "^2.3.0",
     "telegraf": "^3.32.0",
