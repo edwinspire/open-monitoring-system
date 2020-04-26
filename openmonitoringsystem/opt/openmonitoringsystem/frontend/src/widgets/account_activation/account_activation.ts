@@ -44,8 +44,6 @@ export default class AccountActivation extends WidgetBase  {
 									var paramsString = window.location.hash.split('?')[1];
 									var searchParams = new URLSearchParams(paramsString);
 
-									console.log(searchParams);
-
 									var datacode = {
 										code: searchParams.get("activation_code")
 									}
@@ -53,19 +51,17 @@ export default class AccountActivation extends WidgetBase  {
 									let resp = await fetch("/account_activation",{method: 'POST', body: JSON.stringify(datacode), headers: {'Content-Type': 'application/json'}});
 									let data = await resp.json();
 
-									console.log(data);
-
 									if(resp.status == 200){
 
-										if(data.Register){
+										if(data.idaccount && data.idaccount > 0){
 
-											this.SnackBar('success', data.Message);
+											this.SnackBar('success', data.note);
 											setTimeout(()=>{
 												window.location.href = "/#login";
 											}, 5000);
 
 										}else{
-											this.SnackBar('error', data.Message);
+											this.SnackBar('error', data.note);
 										}
 
 									}else{
