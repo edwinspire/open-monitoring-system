@@ -1,4 +1,4 @@
-require('dotenv').config(); // Esto setea las variables de entorno para que esten disponibles
+//require('dotenv').config(); // Esto setea las variables de entorno para que esten disponibles
 const express = require('express')
 const morgan = require('morgan')
 const socketio = require('socket.io')
@@ -67,11 +67,8 @@ app.use(require('./src/express/routes'));
 				}
 			})
 		}
-
 	}
 	)()
-
-
 
 // Carpeta pública
 app.use(express.static(root_web));

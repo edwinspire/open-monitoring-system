@@ -24,13 +24,13 @@
                 ]
             },
             "serviceWorker": {
-                "cachePrefix": "carlog-app",
+                "cachePrefix": "mycarlog-app",
                 "excludeBundles": ["admin"],
                 "routes": [
                     {
                         "urlPattern": ".*\\.(png|jpg|gif|svg)",
                         "strategy": "cacheFirst",
-                        "cacheName": "my-al-images",
+                        "cacheName": "mcl-images",
                         "expiration": { "maxEntries": 10, "maxAgeSeconds": 604800 }
                     }
                 ], 

@@ -11,7 +11,7 @@ export default class Register extends WidgetBase  {
 	private _SnackType: 'success'|'error'|undefined;
 	
 	private SnackBar(type: 'success'|'error'|undefined, msg: string){
-		console.log('SnackBar '+msg)
+		console.log('SnackBar '+msg)	
 		this._openSnack = true;
 		this._MsgSnackBar = msg;
 		this._SnackType = type;
@@ -69,7 +69,7 @@ export default class Register extends WidgetBase  {
 														console.log(data);
 														if(data.Register){
 
-															this.SnackBar('success', 'Cuenta creada... no olvide sus datos. Redireccionando a Login', 'success');
+															this.SnackBar('success', 'Cuenta creada... no olvide sus datos. Redireccionando a Login');
 															setTimeout(()=>{
 																window.location.href = "/#login";
 															}, 5000);
