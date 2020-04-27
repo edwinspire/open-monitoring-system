@@ -24,6 +24,7 @@
   "devDependencies": {
     "@dojo/cli": "*",
     "@dojo/cli-build-app": "*",
+    "@dojo/cli-create-theme": "^6.0.0",
     "@dojo/cli-test-intern": "*",
     "@types/node": "~13.9.0",
     "typescript": "~3.8.3"
