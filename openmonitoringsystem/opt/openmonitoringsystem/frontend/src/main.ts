@@ -4,12 +4,12 @@ import { registerRouterInjector } from '@dojo/framework/routing/RouterInjector';
 import '@dojo/themes/dojo/index.css';
 import routes from './routes';
 import App from './App';
-import push from './push-notifications';
+//import push from './push-notifications';
 import GlobalComunicator from './widgets/GlobalComunicator';
 const NoSleep = require('nosleep.js')
 require('@fortawesome/fontawesome-free/css/all.css');
 
-new push(); // Registra para recibir notificaciones push	
+//new push(); // Registra para recibir notificaciones push	
 
 let gcom = new GlobalComunicator();
 gcom.connect();
