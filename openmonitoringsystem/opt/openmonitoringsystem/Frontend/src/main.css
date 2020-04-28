@@ -3,11 +3,42 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background: linear-gradient(121deg, #151720, #08447f);
+	background-size: 400% 400%;
+
+	-webkit-animation: AnimationName 6s ease infinite;
+	-moz-animation: AnimationName 6s ease infinite;
+	-o-animation: AnimationName 6s ease infinite;
+	animation: AnimationName 6s ease infinite;
 }
+
+@-webkit-keyframes BackGroundAnim {
+	0%{background-position:0% 58%}
+	50%{background-position:100% 43%}
+	100%{background-position:0% 58%}
+}
+@-moz-keyframes BackGroundAnim {
+	0%{background-position:0% 58%}
+	50%{background-position:100% 43%}
+	100%{background-position:0% 58%}
+}
+@-o-keyframes BackGroundAnim {
+	0%{background-position:0% 58%}
+	50%{background-position:100% 43%}
+	100%{background-position:0% 58%}
+}
+@keyframes BackGroundAnim {
+	0%{background-position:0% 58%}
+	50%{background-position:100% 43%}
+	100%{background-position:0% 58%}
+}
+
 * {
 	font-size: 0.98em!important;
 }
+
 i.fas,
 i.fab {
 	font-size: 1.5em;
 }
+

@@ -1,13 +1,22 @@
-.actions {}
+.actions {
 
-.collapsed {}
+}
+
+.collapsed {
+
+}
 
 .menuButton {
-	background: red;
+	background: #0b0c19;
+	background-color: #0b0c10;
 }
 
 .root {
 		background: black;
+		background-color: #0b0c10;
+		color: white;
 }
 
-.title {}
+.title {
+
+}
