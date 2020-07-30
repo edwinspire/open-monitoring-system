@@ -1,0 +1,37 @@
+{
+  "bundler": "webpack",
+  "shimport": null,
+  "assets": {
+    "about": "332bb9ae79c1d6cb829e/about.about.js",
+    "blog": "332bb9ae79c1d6cb829e/blog.blog.js",
+    "blog_$slug": "332bb9ae79c1d6cb829e/blog_$slug.blog_$slug.js",
+    "contact": "332bb9ae79c1d6cb829e/contact.contact.js",
+    "contacts": "332bb9ae79c1d6cb829e/contacts.contacts.js",
+    "contact~contacts~home~monitor~vehicle~vehicles": "332bb9ae79c1d6cb829e/contact~contacts~home~monitor~vehicle~vehicles.contact~contacts~home~monitor~vehicle~vehicles.js",
+    "contact~contacts~vehicle": "332bb9ae79c1d6cb829e/contact~contacts~vehicle.contact~contacts~vehicle.js",
+    "contact~vehicle": "332bb9ae79c1d6cb829e/contact~vehicle.contact~vehicle.js",
+    "home": "332bb9ae79c1d6cb829e/home.home.js",
+    "index": "332bb9ae79c1d6cb829e/index.index.js",
+    "main": "332bb9ae79c1d6cb829e/main.js",
+    "monitor": "332bb9ae79c1d6cb829e/monitor.monitor.js",
+    "register": "332bb9ae79c1d6cb829e/register.register.js",
+    "vehicle": "332bb9ae79c1d6cb829e/vehicle.vehicle.js",
+    "vehicles": "332bb9ae79c1d6cb829e/vehicles.vehicles.js",
+    "vendors~monitor": "332bb9ae79c1d6cb829e/vendors~monitor.vendors~monitor.js"
+  },
+  "css": {
+    "chunks": {
+      "index.svelte": [],
+      "contacts/index.svelte": [],
+      "register/index.svelte": [],
+      "vehicles/index.svelte": [],
+      "contact/index.svelte": [],
+      "monitor/index.svelte": [],
+      "vehicle/index.svelte": [],
+      "about.svelte": [],
+      "blog/index.svelte": [],
+      "blog/[slug].svelte": [],
+      "home/index.svelte": []
+    }
+  }
+}

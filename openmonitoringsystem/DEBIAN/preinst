@@ -1,6 +1,0 @@
-#!/bin/sh
-#apt-get install virtualenv python-pip libpq-dev python-dev
-npm install -g typescript@2.8
-npm install -g @dojo/cli
-npm install -g @dojo/cli-create-app
-npm install -g @dojo/cli-build-app

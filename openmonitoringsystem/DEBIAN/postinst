@@ -1,8 +1,0 @@
-#!/bin/sh
-# postinst script 
-#
-systemctl daemon-reload
-systemctl start openmonitoringsystem
-systemctl start scheduled_tasks
-systemctl enable openmonitoringsystem
-systemctl enable scheduled_tasks

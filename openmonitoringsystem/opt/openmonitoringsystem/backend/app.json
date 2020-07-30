@@ -1,8 +1,0 @@
-{
-  "name": "Open Monitoring System Bakend",
-  "description": "A barebones Node.js app using Express 4",
-  "repository": "https://github.com/edwinspire/open-monitoring-system.git",
-  "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
-  "keywords": ["node", "express", "heroku", "open", "monitoring"],
-  "image": "heroku/nodejs"
-}

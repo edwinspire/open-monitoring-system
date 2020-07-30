@@ -1,0 +1,42 @@
+{
+	"icons": [
+	  {
+		"src": "client/icon_192x192.801dea800a99080ba5a620ca9bdaf47f.png",
+		"sizes": "192x192",
+		"type": "image/png"
+	  },
+	  {
+		"src": "client/icon_144x144.13f216165df2f58fa919bf4077c15b04.png",
+		"sizes": "144x144",
+		"type": "image/png"
+	  },
+	  {
+		"src": "client/icon_96x96.3638662037b1397439b974c121e82dd3.png",
+		"sizes": "96x96",
+		"type": "image/png"
+	  },
+	  {
+		"src": "client/icon_72x72.08656ccc73f1766e11baf8fe27cd10ca.png",
+		"sizes": "72x72",
+		"type": "image/png"
+	  },
+	  {
+		"src": "client/icon_48x48.2fb01863ddda9d70288fd46bdf682896.png",
+		"sizes": "48x48",
+		"type": "image/png"
+	  },
+	  {
+		"src": "client/icon_36x36.ad0fdfc7e6d49ca792127a34d66c4833.png",
+		"sizes": "36x36",
+		"type": "image/png"
+	  }
+	],
+	"name": "My Car Log",
+	"short_name": "MyCarLog",
+	"orientation": "any",
+	"display": "standalone",
+	"start_url": ".",
+	"description": "PWA para llevar el control de su vehículo",
+	"background_color": "#ffffff",
+	"theme_color": "#2196F3"
+  }
