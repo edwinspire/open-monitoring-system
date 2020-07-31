@@ -7,7 +7,7 @@ openmonitoringsystem/opt/openmonitoringsystem/frontend/node_modules/**
 **.env
 *.env
 **.exe
-farm*
+#farm*
 #*node_modules
 
 

@@ -24,8 +24,7 @@
     "polka": "next",
     "sirv": "^0.4.0",
     "soap": "^0.32.0",
-    "socket.io-server": "^1.0.0-b",
-    "webpack-pwa-manifest": "^4.2.0"
+    "socket.io-server": "^1.0.0-b"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5",
