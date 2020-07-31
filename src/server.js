@@ -36,7 +36,7 @@ if (cluster.isMaster) {
   const app = express(); //instancia de express
   app.use(morgan("dev"));
   app.use(express.urlencoded({ extended: true }));
-  app.use(express.json());
+  app.use(express.json({strict: false, limit: 50000000})); //-- Limit 50M
   app.use(cookieParser());
   app.use(compression());
   app.use(virtual_route);
