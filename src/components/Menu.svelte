@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import { FetchData } from "./FetchData.js";
 
   export let ShowSearch = false;
   export let ShowR0 = false;
@@ -15,8 +16,22 @@
   export let ShowL4 = false;
   export let ShowL5 = false;
   let class_menu = "close";
-  let text_search = '';
+  let text_search = "";
+  let FData = new FetchData();
+  let promise = GetDivisions();
 
+  async function GetDivisions(search) {
+    let query = {};
+    const res = await FData.get("/pgapi/divisions", query, {
+      "Content-Type": "application/json",
+    });
+
+    if (res.ok) {
+      return res.json();
+    } else {
+      throw new Error("No se pudo cargar la información");
+    }
+  }
 
   const dispatch = createEventDispatcher();
 
@@ -46,7 +61,7 @@
 
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
+    padding-top: 1px;
   }
 
   .sidenav a {
@@ -93,29 +108,39 @@
     color: rgb(255, 102, 0);
   }
 
-  .size_search{
-width: 10em;    
+  .size_search {
+    width: 10em;
   }
-
+  .close_icon {
+    position: relative;
+    left: 9.5em;
+  }
 </style>
 
 <div class="sidenav has-background-dark {class_menu}">
   <!-- svelte-ignore a11y-missing-attribute -->
-  <a class="" on:click={closeNav}>
-    <i class="far fa-window-close" />
+  <a class="close_icon" on:click={closeNav}>
+    <i class="fa fa-times" />
   </a>
   <a href="home">
     <i class="fas fa-home" />
     HOME
   </a>
-  <a href="contacts">
-    <i class="fas fa-users" />
-    CONTACTOS
-  </a>
-  <a href="vehicles">
-    <i class="fas fa-car-side" />
-    VEHICULOS
-  </a>
+
+  {#await promise}
+    <p>...waiting</p>
+  {:then datas}
+    {#each datas as { iddivision, name }, i}
+      <a
+        href="javascript:window.location.replace('/monitor?iddivision={iddivision}');">
+        <i class="fa fa-building" aria-hidden="true" />
+        {name}
+      </a>
+    {/each}
+  {:catch error}
+    <p style="color: red">{error.message}</p>
+  {/await}
+
   <a href="/">
     <i class="fas fa-power-off" />
     SALIR
@@ -133,37 +158,37 @@ width: 10em;
     </div>
 
     {#if ShowL0}
-    <p class="level-item">
-      <slot  name="L0"></slot>
-    </p>    
+      <p class="level-item">
+        <slot name="L0" />
+      </p>
     {/if}
     {#if ShowL1}
-    <p class="level-item">
-      <slot  name="L1"></slot>
-    </p>
+      <p class="level-item">
+        <slot name="L1" />
+      </p>
     {/if}
 
     {#if ShowL2}
-    <p class="level-item">
-      <slot  name="L2"></slot>
-    </p>
+      <p class="level-item">
+        <slot name="L2" />
+      </p>
     {/if}
 
     {#if ShowL3}
-    <p class="level-item">
-      <slot  name="L3"></slot>
-    </p>
+      <p class="level-item">
+        <slot name="L3" />
+      </p>
     {/if}
 
     {#if ShowL4}
-    <p class="level-item">
-      <slot  name="L4"></slot>
-    </p>
+      <p class="level-item">
+        <slot name="L4" />
+      </p>
     {/if}
     {#if ShowL5}
-    <p class="level-item">
-      <slot  name="L5"></slot>
-    </p>
+      <p class="level-item">
+        <slot name="L5" />
+      </p>
     {/if}
 
   </div>
@@ -171,50 +196,50 @@ width: 10em;
   <!-- Right side -->
   <div class="level-right">
 
-   
     {#if ShowR0}
-    <p class="level-item">
-      <slot  name="R0"></slot>
-    </p>    
+      <p class="level-item">
+        <slot name="R0" />
+      </p>
     {/if}
 
     {#if ShowR1}
-    <p class="level-item">
-      <slot  name="R1"></slot>
-    </p>
+      <p class="level-item">
+        <slot name="R1" />
+      </p>
     {/if}
 
     {#if ShowR2}
-    <p class="level-item">
-      <slot  name="R2"></slot>
-    </p>
+      <p class="level-item">
+        <slot name="R2" />
+      </p>
     {/if}
 
     {#if ShowR3}
-    <p class="level-item">
-      <slot  name="R3"></slot>
-    </p>
+      <p class="level-item">
+        <slot name="R3" />
+      </p>
     {/if}
 
     {#if ShowR4}
-    <p class="level-item">
-      <slot  name="R4"></slot>
-    </p>
+      <p class="level-item">
+        <slot name="R4" />
+      </p>
     {/if}
     {#if ShowR5}
-    <p class="level-item">
-      <slot  name="R5"></slot>
-    </p>
+      <p class="level-item">
+        <slot name="R5" />
+      </p>
     {/if}
-
-
-
 
     {#if ShowSearch}
       <div class="level-item">
         <div class="field has-addons">
           <p class="control">
-            <input class="input size_search is-small" type="text" placeholder="Buscar" bind:value={text_search} />
+            <input
+              class="input size_search is-small"
+              type="text"
+              placeholder="Buscar"
+              bind:value={text_search} />
           </p>
           <p class="control">
             <button class="button is-small" on:click={handleClickSearch}>

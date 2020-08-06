@@ -1,0 +1,14 @@
+[Unit]
+Description=Open Monitoring System (Scheduled Tasks)
+
+[Service]
+ExecStart=/home/admcliente/Documentos/open-monitoring-system/run_sheduled_tasks.sh
+Restart=always
+Group=nobody
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/home/ExecStart=/home/admcliente/Documentos/Desarrollo/open-monitoring-system/run_sheduled_tasks.sh
+/Documentos/open-monitoring-system
+
+[Install]
+WantedBy=multi-user.target

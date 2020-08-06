@@ -12,21 +12,7 @@
   let promise = GetData();
   let idaccount = 0;
 
-  function ClickVehicleSelected(id) {
-    console.log(id);
-    /*
-    let user = AppLS.getUser();
-    user.preferences.idvehicle = id;
-    AppLS.setUser(user);
-    */
-    window.location.href = "/home";
-  }
-
-  /*
-  function handleClickSearch(e) {
-    promise = GetData(e.detail.text);
-  }
-  */
+  
 
   async function GetData(search) {
     let query = {};

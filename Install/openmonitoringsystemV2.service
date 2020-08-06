@@ -1,0 +1,13 @@
+[Unit]
+Description=Open Monitoring System V2
+
+[Service]
+ExecStart=/home/admcliente/Documentos/open-monitoring-system/runapp.sh
+Restart=always
+Group=nobody
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/home/admcliente/Documentos/open-monitoring-system
+
+[Install]
+WantedBy=multi-user.target

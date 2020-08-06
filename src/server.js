@@ -1,4 +1,5 @@
-// Include the cluster module
+require('dotenv').config({ override: true });
+
 var cluster = require("cluster");
 import * as sapper from "@sapper/server";
 import sirv from "sirv";
@@ -49,20 +50,20 @@ if (cluster.isMaster) {
   console.log(process.env.LOCAL_SERVER, process.env.DATABASE_URL);
   if (!process.env.LOCAL_SERVER) {
     var httpServer = http.createServer(app);
-    httpServer.listen(process.env.PORT, () => {
+    httpServer.listen(PORT, () => {
       console.log(
         "Example app listening on port " +
-          process.env.PORT +
+          PORT +
           " " +
           cluster.worker.id
       );
     });
   } else {
     var httpsServer = https.createServer(credentials, app);
-    httpsServer.listen(process.env.PORT, () => {
+    httpsServer.listen(PORT, () => {
       console.log(
         "Example app HTTPS listening on port " +
-          process.env.PORT +
+          PORT +
           " " +
           cluster.worker.id
       );

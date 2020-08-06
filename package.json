@@ -4,6 +4,8 @@
   "version": "0.0.5",
   "scripts": {
     "dev": "sapper dev",
+    "dev2": "sapper dev port 443",
+    "start2": "node -r dotenv/config __sapper__/build",    
     "build": "sapper build",
     "export": "sapper export",
     "start": "node __sapper__/build",
