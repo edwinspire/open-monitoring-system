@@ -16,7 +16,7 @@
 
   async function GetData(search) {
     let query = {};
-    const res = await FData.get("/pgapi/divisions", query, {
+    const res = await FData.get("/pgapi/v2/divisions", query, {
       "Content-Type": "application/json",
     });
 

@@ -1,11 +1,18 @@
 <script>
+  import { FetchData } from "./FetchData.js";
+  import { createEventDispatcher } from "svelte";
   export let url;
   export let query;
   export let selected;
-  import { FetchData } from "./FetchData.js";
 
   let FData = new FetchData();
   let promise = fetchData(url);
+  const dispatch = createEventDispatcher();
+
+  function HandleOnChange(e) {
+    console.log(e, selected);
+    dispatch("value", { value: selected });
+  }
 
   async function fetchData() {
     console.log(url, selected, query);
@@ -16,7 +23,6 @@
       },
     });
 
-
     if (res.ok) {
       return res.json();
     } else {
@@ -26,7 +32,7 @@
 </script>
 
 <style>
-  .full{
+  .full {
     width: 100%;
   }
 </style>
@@ -34,7 +40,7 @@
 <div class="field">
   <div class="control">
     <div class="select is-small full">
-      <select class="full" bind:value={selected}>
+      <select class="full" bind:value={selected} on:blur={HandleOnChange}>
 
         {#await promise}
           <option disabled>Cargando...</option>

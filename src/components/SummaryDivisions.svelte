@@ -36,8 +36,11 @@
 
 <div class="card">
   <header class="card-header">
-    <p class="card-header-title"><a href="/monitor?iddivision={iddivision}">{name}</a></p>
-
+    {#if iddivision == 0}
+    <span class="card-header-title gbackground-blue"><a href="/system">{name}</a></span>
+    {:else}
+    <span class="card-header-title gbackground-blue"><a href="/monitor?iddivision={iddivision}">{name}</a></span>
+    {/if}
   </header>
   <div class="card-content">
     <div class="content">

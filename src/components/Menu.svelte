@@ -100,14 +100,6 @@
     margin-bottom: 0.5rem;
   }
 
-  .has-background-dark a {
-    color: white;
-  }
-
-  .has-background-dark a:hover {
-    color: rgb(255, 102, 0);
-  }
-
   .size_search {
     width: 10em;
   }
@@ -148,7 +140,7 @@
 </div>
 
 <!-- Main container -->
-<nav class=" level has-background-dark is-mobile root">
+<nav class=" level gbackground-blue is-mobile root">
   <!-- Left side -->
   <div class="level-left">
     <div class="has-text-light level-item">

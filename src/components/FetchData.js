@@ -6,6 +6,26 @@ import {
 } from "./sha1.js";
 
 export class FetchData {
+    async put(url, data, headers) {
+
+        let response;
+
+        try {
+            let response = await fetch(url, {
+                method: "PUT",
+                body: JSON.stringify(data),
+                headers: headers,
+            });
+            //cache.put(event.request, response.clone());
+            return response;
+        } catch (err) {
+            console.log(err);
+            //const response = await cache.match(event.request);
+            if (response) return response;
+            throw err;
+        }
+
+    }
     async post(url, data, headers) {
 
         let response;
@@ -26,7 +46,7 @@ export class FetchData {
         }
 
     }
-    get(url, query, headers) {
+    async get(url, query, headers) {
         let searchURL = new URLSearchParams(query);
         let urlq = url + "?" + searchURL.toString();
         return fetch(urlq, {

@@ -282,7 +282,7 @@
         <h1>Login</h1>
         <form
           class="form"
-          action="/api/login"
+          action="/pgapi/login"
           method="post"
           on:submit|preventDefault={Login}>
           <input

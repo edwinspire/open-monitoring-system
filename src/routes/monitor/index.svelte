@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import Menu from "../../components/Menu.svelte";
   import Monitor from "../../components/Monitor.svelte";
-  import Table from "../../components/Table.svelte";
+  import Table from "../../components/Table/Table.svelte";
   import { FetchData } from "../../components/FetchData.js";
   import { UrlSearch } from "../../components/UrlSearch.js";
 
