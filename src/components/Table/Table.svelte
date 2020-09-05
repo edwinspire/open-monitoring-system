@@ -12,7 +12,8 @@
   let text_search;
   let loading = true;
   let showEdit = false;
-
+  let showSelection = false;
+  let SelectAll = false;
   export let columns = {};
   export let url = "/notseturl";
   export let ShowItem0 = false;
@@ -88,19 +89,79 @@
   GetDataTable();
 
   async function handleChangeSelectAll(e) {
+    console.log(e);
     SelectAll = e.target.checked;
 
-    DataProcesada = DataProcesada.map((item) => {
+    DataTable = DataTable.map((item) => {
       let it = item;
-      it.S = SelectAll;
+      it["OMS-Table-RowSelected"] = SelectAll;
       return it;
     });
   }
 
+  async function handleExportSelection(e) {
+    var fName = "Data.csv";
+    let DataExport = DataTable.filter((item) => {
+      return item["OMS-Table-RowSelected"];
+    });
+
+    let LinesCSV = "";
+
+    console.log(DataExport);
+    let header = Object.keys(DataExport[0]).map((item) => {
+      if (columns[item] && columns[item].label) {
+        return '"' + columns[item].label + '"';
+      } else if (item == "OMS-Table-RowSelected") {
+        return '"Selected"';
+      }
+      return '"' + item + '"';
+    });
+
+    LinesCSV = header.join(",") + "\r\n";
+
+    DataExport.forEach((item) => {
+      let row = Object.values(item).map((it) => {
+        return '"' + it + '"';
+      });
+      LinesCSV = LinesCSV + row.join(",") + "\r\n";
+    });
+    //console.log(LinesCSV);
+
+    // for UTF-16
+    var cCode,
+      bArr = [];
+    bArr.push(255, 254);
+    for (var i = 0; i < LinesCSV.length; ++i) {
+      cCode = LinesCSV.charCodeAt(i);
+      bArr.push(cCode & 0xff);
+      bArr.push((cCode / 256) >>> 0);
+    }
+
+    var blob = new Blob([new Uint8Array(bArr)], {
+      type: "text/csv;charset=UTF-16LE;",
+    });
+    if (navigator.msSaveBlob) {
+      navigator.msSaveBlob(blob, fName);
+    } else {
+      var link = document.createElement("a");
+      if (link.download !== undefined) {
+        var url = window.URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", fName);
+        link.style.visibility = "hidden";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      }
+    }
+  }
+
+  /*
   async function handleChangeSelectItem(e, data) {
     let sel = e.checked;
 
-    DataProcesada = DataProcesada.map((item) => {
+    DataTable = DataTable.map((item) => {
       let it = item;
       if (item.IP_Server == data.data.IP_Server) {
         it.S = sel;
@@ -109,7 +170,7 @@
       return it;
     });
   }
-
+*/
   function FilterData() {
     console.log("Filtrar", text_search);
     if (text_search && text_search.length > 0) {
@@ -139,6 +200,12 @@
   function HandleOnClickEdit() {
     console.log(showEdit);
     showEdit = !showEdit;
+    return false;
+  }
+
+  function HandleOnClickSelection() {
+    console.log(showSelection);
+    showSelection = !showSelection;
     return false;
   }
 
@@ -192,7 +259,6 @@
 
   <!-- Right side -->
   <div class="level-right">
-
     {#if ShowItem0}
       <div class="level-item">
         <slot name="Item0" />
@@ -227,7 +293,6 @@
     {/if}
 
     <div class="level-item">
-
       <div class="dropdown is-hoverable is-right">
         <div class="dropdown-trigger">
           <button
@@ -245,7 +310,6 @@
         </div>
         <div class="dropdown-menu" role="menu">
           <div class="dropdown-content">
-
             <!-- svelte-ignore a11y-missing-attribute -->
             <a class="dropdown-item is-size-7" on:click={HClickNew}>
               <span class="icon">
@@ -256,7 +320,10 @@
             <hr class="dropdown-divider" />
 
             <!-- svelte-ignore a11y-missing-attribute -->
-            <a class="dropdown-item is-size-7">
+            <a
+              class="dropdown-item is-size-7"
+              class:is-active={showSelection}
+              on:click={HandleOnClickSelection}>
               <span class="icon">
                 <i class="fas fa-tasks" />
               </span>
@@ -272,8 +339,13 @@
               </span>
               <span>Editar</span>
             </a>
-            
-
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <a class="dropdown-item is-size-7" on:click={handleExportSelection}>
+              <span class="icon">
+                <i class="fas fa-download" />
+              </span>
+              <span>Exportar</span>
+            </a>
           </div>
         </div>
       </div>
@@ -333,14 +405,19 @@
   {#if DataTable.length > 0}
     <table
       class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-
       <!-- Aqui escribe el encabezado de la tabla -->
       <thead>
         <tr class="gbackground-silver">
-          <th class=" has-text-centered">#</th>
+          <th class="has-text-centered">#</th>
+
+          {#if showSelection}
+            <th class="has-text-centered">
+              <input type="checkbox" on:click={handleChangeSelectAll} />
+            </th>
+          {/if}
 
           {#if showEdit}
-            <th class=" has-text-centered">
+            <th class="has-text-centered">
               <i class="fas fa-pen" />
             </th>
           {/if}
@@ -352,7 +429,7 @@
                 {#if columns[item].label}
                   <!-- Mostramos label si esque existe -->
                   <th
-                    class=" has-text-centered show_cursor_mouse"
+                    class="has-text-centered show_cursor_mouse"
                     data-column={item}
                     on:click={HClickHeader}>
                     {columns[item].label}
@@ -366,19 +443,27 @@
         </tr>
       </thead>
       <tbody>
-
         {#each DataTable as dataRow, i}
           <tr>
             <td>{i + 1}</td>
+            {#if showSelection}
+              <td class="has-text-centered show_cursor_mouse">
+                <input
+                  type="checkbox"
+                  checked={dataRow['OMS-Table-RowSelected']}
+                  on:click={(e) => {
+                    dataRow['OMS-Table-RowSelected'] = e.target.checked;
+                  }} />
+              </td>
+            {/if}
+
             {#if showEdit}
               <td
-                class=" has-text-centered show_cursor_mouse"
+                class="has-text-centered show_cursor_mouse"
                 on:click={HClickEditRow(dataRow)}>
-
                 <span class="icon is-small">
                   <i class="fas fa-pen" />
                 </span>
-
               </td>
             {/if}
             {#each Object.keys(dataRow) as item, itd}
