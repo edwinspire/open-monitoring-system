@@ -1,4 +1,8 @@
 require('dotenv').config({ override: true });
+const fn_move_events_closed = require("@tasks/fn_move_events_closed");
+const fn_set_expired_lifetime = require("@tasks/fn_set_expired_lifetime");
+var fn_move_events_closedRunning = false;
+var ExpiredEventsRunning = false;
 
 var cluster = require("cluster");
 import * as sapper from "@sapper/server";
@@ -22,6 +26,45 @@ const cookieParser = require("cookie-parser");
 
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === "development";
+
+
+
+setInterval(() => {
+  if (!fn_move_events_closedRunning) {
+    fn_move_events_closedRunning = true;
+    fn_move_events_closed()
+      .then((ret) => {
+        console.log("fn_move_events_closed Running", ret);
+        fn_move_events_closedRunning = false;
+      })
+      .catch((e) => {
+        console.log("fn_move_events_closed Running Error", e);
+        fn_move_events_closedRunning = false;
+      });
+  } else {
+    console.log("fn_move_events_closed Running...");
+  }
+}, 60 * 60 * 1000);
+
+
+setInterval(() => {
+  if (!ExpiredEventsRunning) {
+    ExpiredEventsRunning = true;
+    fn_set_expired_lifetime()
+      .then((ret) => {
+        console.log("ExpiredEvents Running", ret);
+        ExpiredEventsRunning = false;
+      })
+      .catch((e) => {
+        console.log("ExpiredEvents Running Error", e);
+        ExpiredEventsRunning = false;
+      });
+  } else {
+    console.log("ExpiredEvents Running...");
+  }
+}, 25 * 1000);
+
+
 
 //const PORT = process.env.PORT || 5000 // Esto lo define Heroku
 //process.env.DATABASE_URL =  'postgresql://dbuser:secretpassword@database.server.com:3211/mydb';
