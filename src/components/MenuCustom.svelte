@@ -47,22 +47,3 @@
 
 
 
-
-
-
-<div class="navbar-item has-dropdown is-hoverable ">
-  <!-- svelte-ignore a11y-missing-attribute -->
-  <a class="navbar-link">
-    <span class="icon">
-      <i class="fa fa-building" aria-hidden="true" />
-    </span>
-    <span>Divisiones</span>
-  </a>
-
-  <div class="navbar-dropdown is-boxed is-right">  
-      {#each datas as { iddivision, name }, i}
-        <a class="navbar-item" href="/monitor?iddivision={iddivision}">{name}</a>
-      {/each}
-
-  </div>
-</div>
