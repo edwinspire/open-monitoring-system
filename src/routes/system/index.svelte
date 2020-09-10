@@ -1,6 +1,5 @@
 <script>
   import { onMount } from "svelte";
-  import Menu from "../../components/Menu.svelte";
   import NavSystem from "../../components/NavSystem.svelte";
   import Monitor from "../../components/Monitor.svelte";
   import Table from "../../components/Table/Table.svelte";

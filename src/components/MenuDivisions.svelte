@@ -36,8 +36,7 @@
       <p>...waiting</p>
     {:then datas}
       {#each datas as { iddivision, name }, i}
-        <!-- svelte-ignore a11y-missing-attribute -->
-        <a class="navbar-item">{name}</a>
+        <a class="navbar-item" href="/monitor?iddivision={iddivision}">{name}</a>
       {/each}
     {:catch error}
       <p style="color: red">{error.message}</p>

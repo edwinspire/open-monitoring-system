@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import Menu from "../../components/Menu.svelte";
+  import NavSystem from "../../components/NavSystem.svelte";
   import Monitor from "../../components/Monitor.svelte";
   import Table from "../../components/Table/Table.svelte";
   import { FetchData } from "../../components/FetchData.js";
@@ -92,13 +92,11 @@
   }*/
 </style>
 
-<Menu {segment}>
-  <span slot="Title">
-    <i class="fas fa-shield-alt" />
-    OPEN MONITORING SYSTEM
+<NavSystem {segment} >
+  <span slot="title">
+    <strong>OPEN MONITORING SYSTEM</strong>
   </span>
-
-</Menu>
+</NavSystem>
 
 <div class="tabs is-small tab_margin">
   <!-- svelte-ignore a11y-missing-attribute -->

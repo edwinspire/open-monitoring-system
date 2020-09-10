@@ -1,6 +1,7 @@
 <script>
   import { onMount, createEventDispatcher } from "svelte";
   import MenuDivisions from "./MenuDivisions.svelte";
+  import MenuCustom from "./MenuCustom.svelte";
 
   let MenuOpen = false;
   const dispatch = createEventDispatcher();
@@ -88,6 +89,7 @@
       </div>
 
       <MenuDivisions />
+      <MenuCustom />
       <div class="navbar-item">
         <div class="buttons">
 

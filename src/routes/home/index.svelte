@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
-  import Menu from "../../components/Menu.svelte";
+  //import Menu from "../../components/Menu.svelte";
+  import NavSystem from "../../components/NavSystem.svelte";
   import SummaryDivisions from "../../components/SummaryDivisions.svelte";
   import { FetchData } from "../../components/FetchData.js";
   import { IdAccount, APPLocalStorage } from "../../components/Stores.js";
@@ -43,13 +44,11 @@
   }*/
 </style>
 
-<Menu {segment} >
-  <span slot="Title">
-    <i class="fas fa-shield-alt"></i>
-    OPEN MONITORING SYSTEM
+<NavSystem {segment} >
+  <span slot="title">
+    <strong>OPEN MONITORING SYSTEM</strong>
   </span>
-
-</Menu>
+</NavSystem>
 
 <div class="columns is-multiline is-mobile root">
   {#await promise}
