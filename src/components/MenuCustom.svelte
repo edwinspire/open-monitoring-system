@@ -19,31 +19,40 @@
 </script>
 
 {#await promise}
-<p>...waiting</p>
+  <p>...waiting</p>
 {:then datas}
-{#each datas as { label, submenu }, i}
-  
-<div class="navbar-item has-dropdown is-hoverable ">
-  <!-- svelte-ignore a11y-missing-attribute -->
-  <a class="navbar-link">
-    <span class="icon">
-      <i class="fa fa-building" aria-hidden="true" />
-    </span>
-    <span>{label}</span>
-  </a>
+  {#each datas as { label, submenu, icon, url_target }, i}
+    {#if submenu && Array.isArray(submenu) && submenu.length > 0}
+      <div class="navbar-item has-dropdown is-hoverable">
+        <!-- svelte-ignore a11y-missing-attribute -->
+        <a class="navbar-link">
+          {#if icon && icon.length > 0}
+            <span class="icon">
+              <i class="fa fa-building" aria-hidden="true" />
+            </span>
+          {/if}
+          <span>{label}</span>
+        </a>
 
-  <div class="navbar-dropdown is-boxed is-right">  
-      {#each submenu as { label }, i2}
-        <a class="navbar-item" href="/monitor?iddivision={i2}">{label}</a>
-      {/each}
-
-  </div>
-</div>
-{/each}
+        <div class="navbar-dropdown is-boxed is-right">
+          {#each submenu as { label, icon, url_target }, i2}
+            <a class="navbar-item" href={url_target}>{label}</a>
+          {/each}
+        </div>
+      </div>
+    {:else}
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="bd-tw-button button is-small" href={url_target}>
+            {#if icon.length > 0}
+              <span class="icon"> <i class={icon} /> </span>
+            {/if}
+            <span>{label}</span>
+          </a>
+        </div>
+      </div>
+    {/if}
+  {/each}
 {:catch error}
-<span style="color: red">{error.message}</span>
+  <span style="color: red">{error.message}</span>
 {/await}
-
-
-
-
