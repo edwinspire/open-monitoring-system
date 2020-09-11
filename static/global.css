@@ -186,6 +186,10 @@ summary {
   padding-bottom: 0.2rem !important;
 }
 
+.navbar-dropdown {
+  font-size: .75rem!important;
+}
+
 .gbackground-silver {
   background: rgb(238, 238, 238);
   background: -moz-linear-gradient(
