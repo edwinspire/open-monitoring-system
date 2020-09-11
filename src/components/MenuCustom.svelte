@@ -35,15 +35,26 @@
         </a>
 
         <div class="navbar-dropdown is-boxed is-right">
-          {#each submenu as { label, icon, url_target }, i2}
-            <a class="navbar-item" href={url_target}>{label}</a>
+          {#each submenu as { label, icon, url_target, isseparator }, i2}
+            {#if isseparator}
+              <hr class="navbar-divider" />
+            {:else}
+              <a class="navbar-item" href={url_target}>
+                {#if icon && icon.length > 0}
+                  <span class="icon">
+                    <i class={icon} aria-hidden="true" />
+                  </span>
+                {/if}
+                <span>{label}</span>
+              </a>
+            {/if}
           {/each}
         </div>
       </div>
     {:else}
       <div class="navbar-item">
         <div class="buttons">
-          <a class="bd-tw-button button is-small" href={url_target}>
+          <a class="bd-tw-button button is-small is-light" href={url_target}>
             {#if icon.length > 0}
               <span class="icon"> <i class={icon} /> </span>
             {/if}
