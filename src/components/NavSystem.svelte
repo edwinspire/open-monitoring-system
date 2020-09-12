@@ -93,7 +93,7 @@
       <div class="navbar-item">
         <div class="buttons">
 
-          <a class="bd-tw-button button is-small is-primary" href="/">
+          <a class="bd-tw-button button is-small is-dark" href="/">
             <span class="icon">
               <i class="fas fa-sign-out-alt" />
             </span>

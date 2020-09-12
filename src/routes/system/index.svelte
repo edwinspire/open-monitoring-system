@@ -51,6 +51,7 @@
 
   {#if pageSelected === 'system.events'}
     <Table
+    title="Eventos"
       url="/pgapi/events/view_open_events"
       params={paramsMonitor}
       columns={ColumnsMonitor} />

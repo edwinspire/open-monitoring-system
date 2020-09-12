@@ -19,7 +19,7 @@
 </script>
 
 {#await promise}
-  <p>...waiting</p>
+  <span>-</span>
 {:then datas}
   {#each datas as { label, submenu, icon, url_target }, i}
     {#if submenu && Array.isArray(submenu) && submenu.length > 0}
@@ -65,5 +65,5 @@
     {/if}
   {/each}
 {:catch error}
-  <span style="color: red">{error.message}</span>
+  <span style="color: red">-</span>
 {/await}

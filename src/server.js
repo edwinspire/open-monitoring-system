@@ -95,7 +95,7 @@ if (cluster.isMaster) {
     var httpServer = http.createServer(app);
     httpServer.listen(PORT, () => {
       console.log(
-        "Example app listening on port " +
+        "App listening on port " +
           PORT +
           " " +
           cluster.worker.id
@@ -105,7 +105,7 @@ if (cluster.isMaster) {
     var httpsServer = https.createServer(credentials, app);
     httpsServer.listen(PORT, () => {
       console.log(
-        "Example app HTTPS listening on port " +
+        "App HTTPS listening on port " +
           PORT +
           " " +
           cluster.worker.id
