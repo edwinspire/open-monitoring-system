@@ -10,7 +10,7 @@
   let AppLS = new APPLocalStorage();
 
   export let segment;
-  let promise = GetData();
+  let promise = new Promise(()=>{}, ()=>{});
   let idaccount = 0;
 
   
@@ -31,6 +31,7 @@
   onMount(async () => {
     //AppLS = new APPLocalStorage();
     //idaccount = AppLS.getUser().idaccount;
+    promise = GetData();
   });
 </script>
 

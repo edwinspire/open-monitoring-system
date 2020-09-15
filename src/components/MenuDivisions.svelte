@@ -1,8 +1,9 @@
 <script>
   import { FetchData } from "./FetchData.js";
+  import { onMount } from 'svelte';
 
   let FData = new FetchData();
-  let promise = GetDivisions();
+  let promise = new Promise(()=>{}, ()=>{});
 
   async function GetDivisions(search) {
     let query = {};
@@ -16,6 +17,13 @@
       throw new Error("No se pudo cargar la información");
     }
   }
+
+  onMount(async () => {
+    promise = GetDivisions();
+	});
+
+
+
 </script>
 
 <style>
@@ -28,18 +36,20 @@
     <span class="icon">
       <i class="fa fa-building" aria-hidden="true" />
     </span>
-    <span>Divisiones</span>
+    <span>Companías</span>
   </a>
 
   <div class="navbar-dropdown is-boxed is-right">
     {#await promise}
-      <p>...waiting</p>
+      <!-- svelte-ignore a11y-missing-attribute -->
+      <a class="is-loading">Cargando...</a>
     {:then datas}
       {#each datas as { iddivision, name }, i}
-        <a class="navbar-item" href="/monitor?iddivision={iddivision}">{name}</a>
+        <a class="navbar-item" href="/monitor?iddivision={iddivision}&nocachets={Math.random()}{new Date().getTime()} ">{name}</a>
       {/each}
     {:catch error}
-      <p style="color: red">{error.message}</p>
+    <!-- svelte-ignore a11y-missing-attribute -->
+    <a style="color: red" class="is-loading">{error.message}</a>
     {/await}
 
   </div>

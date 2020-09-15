@@ -1,8 +1,9 @@
 <script>
   import { FetchData } from "./FetchData.js";
+  import { onMount } from 'svelte';
 
   let FData = new FetchData();
-  let promise = GetMenu();
+  let promise = new Promise(()=>{}, ()=>{});
 
   async function GetMenu(search) {
     let query = {};
@@ -16,6 +17,11 @@
       throw new Error("No se pudo cargar la información");
     }
   }
+
+  onMount(async () => {
+    promise = GetMenu();
+	});
+
 </script>
 
 {#await promise}
