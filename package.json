@@ -21,7 +21,7 @@
     "express-promise-router": "^4.0.1",
     "momento": "^0.2.0",
     "morgan": "^1.10.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "nodemailer": "^6.4.10",
     "pg": "^8.2.1",
     "polka": "next",
